@@ -39,7 +39,7 @@ Future main() async {
         (_) => runApp(
       EasyLocalization(
         supportedLocales: const [
-          Locale('kk', 'KK'),
+          Locale('qq', 'QQ'),
           Locale('ru', 'RU'),
           Locale('uz', 'UZ'),
         ],
