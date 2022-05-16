@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
-import 'package:mydtm/view/pages/person_info/person_information.dart';
+import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 
 class ProviderEnterFirst extends ChangeNotifier {
   bool boolPasswordVisible = false;

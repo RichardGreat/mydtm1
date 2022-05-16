@@ -27,7 +27,7 @@ class _EnterFirstState extends State<EnterFirst> {
               context: context, providerEnterFirst: providerEnterFirst),
           body:  Form(
           key: providerEnterFirst.formKey,
-    autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child:
           Padding(
 
