@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ConnectionNotifier(
-        disconnectedContent: const Center(child: Text("Internet tekshiring")),
+        disconnectedContent: const Center(child: Text("Internet bilan oloqa yoq")),
         connectedContent: const Center(child: Text("Aloqa tiklandi")),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -85,10 +85,10 @@ class _MyAppState extends State<MyApp> {
           //   registration: 1,
           //   userRole: "",
           // )
-              ? Graduated()//const MainPages()
+              ? const MainPages()
               :
           // const NewPassword(),
-          const Graduated()//EnterFirst(),
+          const EnterFirst(),
         ));
   }
 }

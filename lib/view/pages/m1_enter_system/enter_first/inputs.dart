@@ -15,6 +15,7 @@ Widget enterFirstBodyInput(
     children: [
       MyWidgets.robotoFontText(text: "Telefon"),
       TextFormField(
+          controller: providerEnterFirst.textAuthLogin,
           maxLines: 1,
           textAlignVertical: TextAlignVertical.center,
           maxLength: 9,
@@ -103,11 +104,13 @@ Widget enterFirstBodyInput(
             return null;
           }
       ),
-      const SizedBox(height: 20),
+      const SizedBox(height: 10),
       MyWidgets.robotoFontText(text: "Parol"),
       TextFormField(
+        controller: providerEnterFirst.textAuthPassword,
           textAlignVertical: TextAlignVertical.center,
           maxLines: 1,
+          maxLength: 20,
           autofocus:false,
           obscureText: providerEnterFirst.boolPasswordVisible,
           keyboardType:
@@ -133,7 +136,9 @@ Widget enterFirstBodyInput(
             fillColor: Colors.white,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: MyColors.appColorGrey100()),
+              borderSide: BorderSide(
+                color: MyColors.appColorBlue2(),
+              ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
@@ -142,7 +147,31 @@ Widget enterFirstBodyInput(
                 width: 2.0,
               ),
             ),
-          )),
+            focusedErrorBorder:  OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: MyColors.appColorGrey100(),
+                width: 2.0,
+              ),
+            ),
+            errorStyle: TextStyle(
+              color: MyColors.appColorRed(),
+              fontWeight: FontWeight.w500,
+            ),
+            errorBorder:  OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: MyColors.appColorGrey100(),
+                width: 2.0,
+              ),
+            ),
+          ),
+        validator: (value) {
+          if(value!.isEmpty || value.length < 8){
+            return "er";
+          }
+  }
+      ),
     ],
   );
 }

@@ -13,6 +13,7 @@ Widget inputsSignUp(
     children: [
       MyWidgets.robotoFontText(text: "Telefon"),
       TextFormField(
+          controller: providerSignUp.textSingUpLogin,
           maxLines: 1,
           textAlignVertical: TextAlignVertical.center,
           maxLength: 9,
@@ -61,6 +62,7 @@ Widget inputsSignUp(
           ),
           validator: (value) {
             if (value == null || value.length < 9) {
+              providerSignUp.boolButtonCol1(boolValue: false);
               if (value!.length > 1) {
                 String kod = value.substring(0, 2);
                 for (var element in MyWidgets.checkTelephoneCompanyCode) {
@@ -103,6 +105,7 @@ Widget inputsSignUp(
       const SizedBox(height: 5),
       MyWidgets.robotoFontText(text: "Parol"),
       TextFormField(
+        controller: providerSignUp.textSingUpPassword,
           textAlignVertical: TextAlignVertical.center,
           maxLines: 1,
           maxLength: 20,
@@ -129,9 +132,29 @@ Widget inputsSignUp(
             fillColor: Colors.white,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: MyColors.appColorGrey100()),
+              borderSide: BorderSide(
+                color: MyColors.appColorBlue2(),
+              ),
             ),
             enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: MyColors.appColorGrey100(),
+                width: 2.0,
+              ),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: MyColors.appColorGrey100(),
+                width: 2.0,
+              ),
+            ),
+            errorStyle: TextStyle(
+              color: MyColors.appColorRed(),
+              fontWeight: FontWeight.w500,
+            ),
+            errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
                 color: MyColors.appColorGrey100(),
@@ -141,7 +164,11 @@ Widget inputsSignUp(
           ),
       validator: (value){
   if (value == null || value.length < 8) {
+    providerSignUp.boolButtonCol2(boolValue: false);
     return "length";
+  }else{
+    providerSignUp.boolButtonCol2(boolValue: true);
+    return "";
   }
       },
       ),

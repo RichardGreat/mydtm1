@@ -16,7 +16,13 @@ Widget enterButton(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           onPressed: () {
-            providerEnterFirst.enterPersonPassport(context: context);
+            // providerEnterFirst.enterPersonPassport(context: context);
+            if(providerEnterFirst.formKey.currentState!.validate() && providerEnterFirst.textCaptchaEditingController.text.isNotEmpty){
+              providerEnterFirst.getAuthorization(context: context);
+            }else{
+              MyWidgets.scaffoldMessengerBottom(context: context, valueText: "Maydonlarni to'ldiring");
+            }
+
 
           },
           child: MyWidgets.robotoFontText(

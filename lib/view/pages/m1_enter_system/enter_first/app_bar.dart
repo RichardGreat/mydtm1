@@ -9,6 +9,7 @@ PreferredSizeWidget enterFirstAppBar(
     required ProviderEnterFirst providerEnterFirst}) {
   return AppBar(
     elevation: 0,
+    toolbarHeight: 45,
     backgroundColor: MyColors.appColorWhite(),
     actions: [
       GestureDetector(
@@ -16,8 +17,8 @@ PreferredSizeWidget enterFirstAppBar(
           modelSheet(context: context, providerEnterFirst: providerEnterFirst);
         },
         child: Container(
-          padding: const EdgeInsets.only(left: 4, right: 4, top: 2, bottom: 2),
-          margin: const EdgeInsets.only(left: 5, right: 4, bottom: 5, top: 10),
+          padding: const EdgeInsets.only(left: 4, right: 4, top: 0, bottom: 0),
+          margin: const EdgeInsets.only(left: 5, right: 15, bottom: 4, top: 4),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: MyColors.appColorGrey400())),

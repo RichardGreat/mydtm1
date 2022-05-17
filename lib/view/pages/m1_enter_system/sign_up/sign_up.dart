@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/app_bar_sign_up.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/button_sign_up.dart';
+import 'package:mydtm/view/pages/m1_enter_system/sign_up/captcha_sing_up.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/input_sign_up.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/provider_sign_up.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -16,6 +17,12 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   ProviderSignUp providerSignUp = ProviderSignUp();
+
+  @override
+  void initState() {
+    providerSignUp.getCaptcha();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +44,14 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.all(15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+
                         textWords(
                             context: context, providerSignUp: providerSignUp),
                         inputsSignUp(
                             context: context, providerSignUp: providerSignUp),
+                        captchaSignUp(context: context, providerSignUp: providerSignUp),
                         buttonSignUp(
                             context: context, providerSignUp: providerSignUp)
                       ],

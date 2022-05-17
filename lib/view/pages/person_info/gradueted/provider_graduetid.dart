@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 
-class ProviderGradueted extends ChangeNotifier {
+class ProviderGraduated extends ChangeNotifier {
 
-  final formKeyGradueted = GlobalKey<FormState>();
+  final formKeyGraduated = GlobalKey<FormState>();
 
-  bool boolUzbekGradueted = true;
+  bool boolUzbekGraduated = true;
 
-
+  /// graduated type
+  String graduatedName = "", graduatedId = "";
+  bool boolGraduatedType = true;
+  Future setGraduatedType({required String id, required String name})async{
+    graduatedName = name;
+    graduatedId = id;
+    if(graduatedId == "4"){
+      boolGraduatedType = false;
+    }else{
+      boolGraduatedType = true;
+    }
+    notifyListeners();
+  }
 
 }

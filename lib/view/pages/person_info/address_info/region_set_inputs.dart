@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -86,9 +84,10 @@ Widget regionSetInputs(
       const SizedBox(height: 8),
       TextFormField(
           controller: providerAddressInfo.txtEditControllerAddress,
-          keyboardType: TextInputType.multiline,
+          keyboardType: TextInputType.emailAddress,
           autofocus: false,
-          maxLines: 2,
+          maxLines: 1,
+
           textAlignVertical: TextAlignVertical.center,
           maxLength: 100,
           decoration: InputDecoration(

@@ -5,7 +5,7 @@ import 'package:mydtm/view/pages/person_info/pasport_info_set/input_pasport.dart
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-Widget graduatedUzbek({required BuildContext context, required ProviderGradueted providerGradueted}){
+Widget graduatedUzbek({required BuildContext context, required ProviderGraduated providerGradueted}){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [

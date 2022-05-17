@@ -85,21 +85,13 @@ class MyWidgets {
 
 
 
-  errorScaffoldMessage({ required BuildContext context, required int value}) {
+  static scaffoldMessengerBottom({ required BuildContext context, required String valueText}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        duration: const Duration(milliseconds: 600),
-        backgroundColor: MyColors.appColorRed(),
+        duration: const Duration(milliseconds: 800),
+        backgroundColor: MyColors.appColorBlack(),
         content: Container(
-          decoration: BoxDecoration(color: MyColors.appColorRed()),
-          child: Row(
-            children: [
-              value == 1 ?
-              Text("errorServer".tr())
-                  : Text("province".tr()),
-
-
-            ],
-          ),
+          decoration: BoxDecoration(color: MyColors.appColorBlack()),
+          child: MyWidgets.robotoFontText(text:valueText,textColor: MyColors.appColorWhite())
         )));
   }
 

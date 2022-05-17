@@ -5,7 +5,6 @@ import 'package:mydtm/view/pages/person_info/gradueted/const_gradueted.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/g_forgione.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_uzbek/graduated_uzbek.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
-import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
@@ -17,19 +16,19 @@ class Graduated extends StatefulWidget {
 }
 
 class _GraduatedState extends State<Graduated> {
-  ProviderGradueted providerGradueted = ProviderGradueted();
+  ProviderGraduated providerGraduated = ProviderGraduated();
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => providerGradueted,
-      child: Consumer<ProviderGradueted>(
+      create: (context) => providerGraduated,
+      child: Consumer<ProviderGraduated>(
         builder: (context, value, child) => Scaffold(
           backgroundColor: MyColors.appColorWhite(),
           appBar: appBarGradueted(
-              context: context, providerGradueted: providerGradueted),
+              context: context, providerGradueted: providerGraduated),
           body: Form(
-              key: providerGradueted.formKeyGradueted,
+              key: providerGraduated.formKeyGraduated,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               child: SingleChildScrollView(
                 child: Container(
@@ -37,19 +36,21 @@ class _GraduatedState extends State<Graduated> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       /// header
-                      constGraduated(context: context, providerGradueted: providerGradueted),
+                      constGraduated(context: context, providerGraduated: providerGraduated),
                       /// uzbek
                       Visibility(
+                        visible: providerGraduated.boolGraduatedType,
                           child: graduatedUzbek(
                               context: context,
-                              providerGradueted: providerGradueted)),
+                              providerGradueted: providerGraduated)),
                       /// foreign
                       Visibility(
+                        visible: !providerGraduated.boolGraduatedType,
                           child: graduatedForeign(
                               context: context,
-                              providerGradueted: providerGradueted)),
+                              providerGraduated: providerGraduated)),
                      /// button
-                      buttonGradueted(context: context, providerGradueted: providerGradueted)
+                      buttonGradueted(context: context, providerGradueted: providerGraduated)
                     ],
                   ),
                   margin: const EdgeInsets.all(15),
