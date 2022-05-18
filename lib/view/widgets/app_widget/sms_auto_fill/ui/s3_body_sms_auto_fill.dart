@@ -36,8 +36,8 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
 
     providerSms.getSmsCode(
         context: context,
-        captchaKey:  widget.captchaValue,
-        captchaValue: widget.captchaKey,
+        captchaKey:  widget.captchaKey,
+        captchaValue: widget.captchaValue,
         password: widget.password,
         phoneNum: widget.phoneNum,
         numbers: widget.registration);
@@ -48,7 +48,7 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
   @override
   void dispose() {
     // TODO: implement dispose
-    if(!providerSms.boolData) {
+    if(providerSms.boolData) {
       providerSms.timer.cancel();
     }
     super.dispose();

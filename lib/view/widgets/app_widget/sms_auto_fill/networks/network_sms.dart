@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
 
@@ -12,6 +13,17 @@ class NetworkSmsAutoFill {
       required String smsHash}) async {
     Response response;
     var dio = Dio();
+    // Map<String, dynamic> myMap = {
+    //   "username": userName,
+    //   "password": password,
+    //   "captcha_key": captchaKey,
+    //   "captcha_val": captchaValue
+    // };
+    // log("##############");
+    // log(jsonEncode(myMap));
+    log("##############");
+    log(smsHash);
+
     response = await dio.post("${MainUrl.mainUrls}/auth/register", data: {
       "username": userName,
       "password": password,
@@ -20,6 +32,7 @@ class NetworkSmsAutoFill {
       //, "sms_hash":smsHash
     });
     return jsonEncode(response.data);
+    // return "";
   }
 
   Future<String> resetPasswordSms(

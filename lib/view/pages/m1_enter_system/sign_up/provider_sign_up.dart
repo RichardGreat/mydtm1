@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_captcha.dart';
-import 'package:mydtm/data/internet_connections/m1_internet/registration.dart';
 import 'package:mydtm/data/model_parse/m1_model/parse_captche.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
-
+import 'dart:developer';
 class ProviderSignUp extends ChangeNotifier {
   ///# offline
   final formKey = GlobalKey<FormState>();
@@ -54,15 +52,7 @@ class ProviderSignUp extends ChangeNotifier {
 
   ///#2 Registration
   Future getRegistration({required BuildContext context}) async {
-    Map<String, String> registrationMap = {
-      "username": textSingUpLogin.text.toString(),
-      "password": textSingUpPassword.text.toString(),
-      "captcha_key": modelParseCaptcha.data.captchaKey,
-      "captcha_val": textCaptchaSignUpController.text.toString(),
-    };
-
     try {
-
     getCaptcha();
       Navigator.push(
           context,
@@ -74,7 +64,10 @@ class ProviderSignUp extends ChangeNotifier {
                 captchaValue: textCaptchaSignUpController.text,
                 registration: 1),
           ));
-    } catch (e) {}
+      // textCaptchaSignUpController.clear();
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   ///#

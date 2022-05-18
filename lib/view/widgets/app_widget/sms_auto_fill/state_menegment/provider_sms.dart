@@ -50,12 +50,12 @@ class ProviderSms extends ChangeNotifier {
           captchaKey: captchaKey,
           smsHash: valueSignature!);
     } else {
-      dataSms = await networkSmsAutoFill.registrationSms(
-          userName: userName,
-          password: password,
-          captchaValue: captchaValue,
-          captchaKey: captchaKey,
-          smsHash: "76892");
+      // dataSms = await networkSmsAutoFill.registrationSms(
+      //     userName: userName,
+      //     password: password,
+      //     captchaValue: captchaValue,
+      //     captchaKey: captchaKey,
+      //     smsHash: "76892");
     }
     try {
       ModelRegistrationSms modelRegistrationSms =
@@ -64,19 +64,16 @@ class ProviderSms extends ChangeNotifier {
         boolRegistration = false;
 
         smsId = modelRegistrationSms.data.smsId.toString();
-        timeFormat(
-            totalCount: totalCount,
-            timeCount: modelRegistrationSms.data.endDate);
+        smsTimer(timers: modelRegistrationSms.data.endDate, context: context);
+
         boolData = true;
         notifyListeners();
       }
     } catch (e) {
       try {
         boolRegistration = true;
-
         modelRegistrationHave =
             ModelRegistrationHave.fromJson(jsonDecode(dataSms));
-
         dataRegisSmsMessage = modelRegistrationHave.errors.username[0];
         boolData = true;
         notifyListeners();
@@ -84,11 +81,11 @@ class ProviderSms extends ChangeNotifier {
         /// ro'yxatdan o'tgan polzovitl
       } catch (e) {
         /// Captchada xato
-        MyWidgets.scaffoldMessengerBottom(context: context, valueText: "Arfimetik amalda xatolik");
+        MyWidgets.scaffoldMessengerBottom(context: context, valueText: dataSms);
          modelRegistrationCaptchaError =
             ModelRegistrationCaptchaError.fromJson(jsonDecode(dataSms));
-          await Future.delayed(time1);
-          Navigator.of(context).pop();
+          // await Future.delayed(Duration(seconds: 3));
+          // Navigator.of(context).pop();
 
         log("catch");
         log(e.toString());
@@ -115,6 +112,7 @@ class ProviderSms extends ChangeNotifier {
 
         ModelRegistrationSms modelRegistrationSms =
             ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
+
         smsTimer(timers: modelRegistrationSms.data.endDate, context: context);
         ModelRegistrationSms modelRegistrationSms12 =
             ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
@@ -208,6 +206,7 @@ class ProviderSms extends ChangeNotifier {
       required String password,
       required String captchaKey,
       required String captchaValue}) async {
+
     OTPInteractor otpInteract = OTPInteractor();
     valueSignature = await otpInteract.getAppSignature();
     code1 = valueSignature!;

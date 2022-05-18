@@ -87,7 +87,7 @@ class MyWidgets {
 
   static scaffoldMessengerBottom({ required BuildContext context, required String valueText}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        duration: const Duration(milliseconds: 800),
+        duration: const Duration(seconds: 5),
         backgroundColor: MyColors.appColorBlack(),
         content: Container(
           decoration: BoxDecoration(color: MyColors.appColorBlack()),
