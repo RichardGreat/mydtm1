@@ -27,23 +27,17 @@ class ProviderMainHome extends ChangeNotifier {
       int counter = 0;
       /// modelListForDeleteTemp xar bir itemListiga alohida qo'shaman
       /// keyin oxirida addAll ishlataman
-      /// 
+      ///
       for (int i = 0; i < modelListForDelete.length; i++) {
-
-
-
         if (modelListForDelete[i - 1].category != modelListForDelete[i].category) {
-
           if (modelListForDeleteTemp.isEmpty) {
-
             modelListForDeleteTemp[counter].add(modelListForDelete[i - 1]);
           }
-          modelListListForDelete.add(modelListForDeleteTemp);
+          // modelListListForDelete.add(modelListForDeleteTemp);
           log("jsonEncode(modelListListForDelete)");
           // modelListForDeleteTemp.clear();
         } else {
-
-          modelListForDeleteTemp.add(modelListForDelete[i - 1]);
+          // modelListForDeleteTemp.add(modelListForDelete[i - 1]);
         }
       }
     }
