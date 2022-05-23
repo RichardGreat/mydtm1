@@ -76,16 +76,11 @@ class _MyAppState extends State<MyApp> {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          home: box.get("token").toString().length > 30
-          //     SmsAutoFillUi(
-          //   phoneNum: "998489900",
-          //   lastName: "",
-          //   firstName: "",
-          //   password: "",
-          //   registration: 1,
-          //   userRole: "",
-          // )
-              ? const MainPages()
+          home:
+          box.get("token").toString().length > 30
+
+              ?
+          const MainPages()
               :
           // const NewPassword(),
           const EnterFirst(),

@@ -1,13 +1,18 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/authorize.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_captcha.dart';
+import 'package:mydtm/data/internet_connections/m1_internet/get_token.dart';
+import 'package:mydtm/data/model_parse/m1_model/authhorization/model_auth_token.dart';
 import 'package:mydtm/data/model_parse/m1_model/authhorization/model_auth_captcha_error.dart';
 import 'package:mydtm/data/model_parse/m1_model/authhorization/model_auth_error.dart';
 import 'package:mydtm/data/model_parse/m1_model/authhorization/model_auth_success.dart';
+import 'package:mydtm/data/model_parse/m1_model/authhorization/model_get_token.dart';
 import 'package:mydtm/data/model_parse/m1_model/parse_captche.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
+import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 
@@ -74,8 +79,10 @@ class ProviderEnterFirst extends ChangeNotifier {
 
   bool boolAuthorization = false;
 
-  Future getAuthorization({required BuildContext context}) async {
+  ///
+  var box = Hive.box("online");
 
+  Future getAuthorization({required BuildContext context}) async {
     boolAuthorization = false;
     Map<String, String> getAuthorizationData = {
       "username": textAuthLogin.text,
@@ -85,23 +92,44 @@ class ProviderEnterFirst extends ChangeNotifier {
       "app_id": "1"
     };
     getCaptcha();
+    boolAuthorization = true;
+    notifyListeners();
     String data =
         await NetworkAuthorize.getAuthorize(mapAuthorize: getAuthorizationData);
+    ModelUserToken modelUserToken = ModelUserToken.fromJson(jsonDecode(data));
+    String token = await NetworkGetToken.getTokenModel(
+        authCode: modelUserToken.data.authorizationCode);
+    ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(token));
+    box.put("token", modelGetToken.data.accessToken);
+    log(box.get("token"));
+    if (box.get("token").toString().length > 30) {
+      Navigator.pushReplacement(
+          context,
+          CupertinoPageRoute(
+            builder: (context) => const MainPages(),
+          ));
+    }
     boolAuthorization = false;
-    try{
-      modelAuthorizationParse = ModelAuthorizationParse.fromJson(jsonDecode(data));
-
-    }catch(e){
-      try{
-        modelAuthorizationError = ModelAuthorizationError.fromJson(jsonDecode(data));
-        MyWidgets.scaffoldMessengerBottom(context: context, valueText: modelAuthorizationError.errors.password[0]);
-      }catch(e){
-        modelAuthorizationCaptchaError = ModelAuthorizationCaptchaError.fromJson(jsonDecode(data));
-        MyWidgets.scaffoldMessengerBottom(context: context, valueText: modelAuthorizationCaptchaError.errors);
+    try {
+      modelAuthorizationParse =
+          ModelAuthorizationParse.fromJson(jsonDecode(data));
+    } catch (e) {
+      try {
+        boolAuthorization = false;
+        modelAuthorizationError =
+            ModelAuthorizationError.fromJson(jsonDecode(data));
+        MyWidgets.scaffoldMessengerBottom(
+            context: context,
+            valueText: modelAuthorizationError.errors.password[0]);
+      } catch (e) {
+        boolAuthorization = false;
+        modelAuthorizationCaptchaError =
+            ModelAuthorizationCaptchaError.fromJson(jsonDecode(data));
+        MyWidgets.scaffoldMessengerBottom(
+            context: context, valueText: modelAuthorizationCaptchaError.errors);
       }
     }
-
-
+    notifyListeners();
     log(jsonEncode(modelAuthorizationParse));
   }
 

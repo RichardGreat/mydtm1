@@ -37,7 +37,7 @@ Widget captchaGet(
                     child: TextFormField(
                       controller:
                           providerEnterFirst.textCaptchaEditingController,
-                      maxLength: 2,
+                      maxLength: 3,
                       maxLines: 1,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
