@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class MyColors {
+
   static Color appColorWhite() {
     return Colors.white;
   }
@@ -14,6 +15,8 @@ class MyColors {
   static Color appColorGrey400() {
     return Colors.grey.shade400;
   }
+
+
 
   static Color appColorGrey600() {
     return Colors.grey.shade600;
@@ -74,16 +77,17 @@ class MyColors {
 
   Random random = Random();
   List<Color> myColors = [
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.yellow,
-    Colors.brown,
-    Colors.deepPurple,
-    Colors.deepPurpleAccent,
-    Colors.pinkAccent,
-    Colors.amber,
-    Colors.tealAccent
+    const Color.fromRGBO(254, 246, 225, 1),
+    const Color.fromRGBO(232, 247, 244, 1),
+    const Color.fromRGBO(232, 247, 244, 1),
+    Colors.blue.withOpacity(0.7),
+    Colors.green.withOpacity(0.7),
+    Colors.yellow.withOpacity(0.7),
+    Colors.brown.withOpacity(0.7),
+    Colors.deepPurple.withOpacity(0.7),
+    Colors.deepPurpleAccent.withOpacity(0.7),
+    Colors.amber.withOpacity(0.7),
+    Colors.tealAccent.withOpacity(0.7)
   ];
 
   Color randomColor() {
