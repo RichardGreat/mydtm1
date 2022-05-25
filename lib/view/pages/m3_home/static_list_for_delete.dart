@@ -3,7 +3,7 @@ class StaticListForDelete {
 
   List<ModelListForDelete> getListDelete() {
     listForDelete = [
-      ModelListForDelete(status: 1, name: "Chet tili", category: 0, id: 1),
+      ModelListForDelete(status: 0, name: "Chet tili", category: 0, id: 1),
       ModelListForDelete(status: 1, name: "Oliy ta'lim", category: 1, id: 2),
       ModelListForDelete(status: 0, name: "TOEFL ITM", category: 1, id: 3),
       ModelListForDelete(status: 1, name: "Diagnostika", category: 1, id: 4),
