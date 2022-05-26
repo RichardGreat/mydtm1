@@ -18,7 +18,7 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 
 class ProviderEnterFirst extends ChangeNotifier {
   ///#offline App Logic
-  bool boolPasswordVisible = false;
+  bool boolPasswordVisible = true;
   final formKey = GlobalKey<FormState>();
   bool myBoolWidget = false;
   bool boolButtonColor1 = false;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
+import 'package:mydtm/view/pages/person_info/certificate/widgets/photo/image_choose.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
@@ -19,6 +20,7 @@ Widget bodyCertificate(
         GestureDetector(
             onTap: (){
                 /// choose image
+              changeAvatar(context: context, providerCertificate: providerCertificate);
             },
           child: Container(
             height: 50,

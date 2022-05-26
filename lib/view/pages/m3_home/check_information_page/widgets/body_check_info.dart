@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_information.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
+import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/foreigion_lang_add.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 Widget bodyCheckInformation(
     {required BuildContext context,
@@ -36,35 +38,76 @@ Widget bodyCheckInformation(
               visualDensity: const VisualDensity(vertical: 0),
               onTap: () {
                 if (index == 0) {
-                  Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => PersonInformation(),
-                      ));
+
+                  pushNewScreen(
+                    context,
+                    screen: PersonInformation(),
+                    withNavBar: false,
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  );
+
+
+                  // Navigator.push(
+                  //     context,
+                  //     CupertinoPageRoute(
+                  //       builder: (context) => PersonInformation(),
+                  //     ));
                 }
                 else if(index == 1){
 
-                  Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => AddressInfo(),
-                      ));
+                  pushNewScreen(
+                    context,
+                    screen: AddressInfo(),
+                    withNavBar: false,
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  );
+
+
+                  // Navigator.push(
+                  //     context,
+                  //     CupertinoPageRoute(
+                  //       builder: (context) => AddressInfo(),
+                  //     ));
                 }
 
                 else if(index == 2){
 
-                  Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => Graduated(),
-                      ));
+                  pushNewScreen(
+                    context,
+                    screen: Graduated(),
+                    withNavBar: false,
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  );
+                  // Navigator.push(
+                  //     context,
+                  //     CupertinoPageRoute(
+                  //       builder: (context) => Graduated(),
+                  //     ));
                 } else if(index == 3){
-
-                  Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => Certificates(),
-                      ));
+                  pushNewScreen(
+                    context,
+                    screen: Certificates(),
+                    withNavBar: false,
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  );
+                  // Navigator.push(
+                  //     context,
+                  //     CupertinoPageRoute(
+                  //       builder: (context) => Certificates(),
+                  //     ));
+                }
+                else if(index == 4){
+                  pushNewScreen(
+                    context,
+                    screen: ForeignLanguageAdd(),
+                    withNavBar: false,
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  );
+                // Navigator.push(
+                // context,
+                // CupertinoPageRoute(
+                // builder: (context) => ForeignLanguageAdd(),
+                // ));
                 }
 
               },

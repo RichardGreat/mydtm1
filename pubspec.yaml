@@ -24,6 +24,10 @@ dependencies:
   persistent_bottom_nav_bar_v2: ^4.1.11
   dio: ^4.0.6
   otp_autofill: ^2.1.0
+  permission_handler: ^9.2.0
+  image_cropper: ^2.0.2
+  image_picker: ^0.8.5+1
+  awesome_dialog: ^2.2.1
 
 
 dev_dependencies:
