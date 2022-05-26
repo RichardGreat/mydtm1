@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_information.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
+import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -56,6 +57,13 @@ Widget bodyCheckInformation(
                       context,
                       CupertinoPageRoute(
                         builder: (context) => Graduated(),
+                      ));
+                } else if(index == 3){
+
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => Certificates(),
                       ));
                 }
 

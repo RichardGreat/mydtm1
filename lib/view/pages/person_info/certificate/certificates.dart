@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
+import 'package:mydtm/view/pages/person_info/certificate/widgets/app_bar_certificate.dart';
 import 'package:mydtm/view/pages/person_info/certificate/widgets/body_certificate.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +20,10 @@ class _CertificatesState extends State<Certificates> {
       create: (context) => providerCertificate,
       child: Consumer<ProviderCertificate>(
         builder: (context, value, child) => Scaffold(
-          body: bodyCertificate(context: context, providerCertificate: providerCertificate),
+          appBar: appBarCertificate(
+              context: context, providerCertificate: providerCertificate),
+          body: bodyCertificate(
+              context: context, providerCertificate: providerCertificate),
         ),
       ),
     );
