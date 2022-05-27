@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/provider_service_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -11,23 +12,25 @@ serviceSheetBottomSheet(
   showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          margin:const  EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  MyWidgets.robotoFontText(text: "Xizmat haqida"),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      icon: const Icon(Icons.close))
-                ],
-              ),
-              Text(a),
-            ],
+        return SingleChildScrollView(
+          child: Container(
+            margin:const  EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    MyWidgets.robotoFontText(text: "aboutService".tr()),
+                    IconButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        icon: const Icon(Icons.close))
+                  ],
+                ),
+                Text(a),
+              ],
+            ),
           ),
         );
       });

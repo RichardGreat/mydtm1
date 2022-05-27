@@ -16,18 +16,19 @@ class MyWidgets {
     );
   }
 
-  static Text robotoFontText({
-    required String text,
-    double? textSize,
-    Color? textColor,
-    FontWeight? textFontWeight
-  }) {
-    return Text(text, style: TextStyle(
-        color: textColor ?? MyColors.appColorBlack(),
-        fontSize: textSize ?? 17,
-        fontWeight: textFontWeight ?? FontWeight.normal,
-        fontFamily: 'Roboto-Medium'
-    ),);
+  static Text robotoFontText(
+      {required String text,
+      double? textSize,
+      Color? textColor,
+      FontWeight? textFontWeight}) {
+    return Text(
+      text,
+      style: TextStyle(
+          color: textColor ?? MyColors.appColorBlack(),
+          fontSize: textSize ?? 17,
+          fontWeight: textFontWeight ?? FontWeight.normal,
+          fontFamily: 'Roboto-Medium'),
+    );
   }
 
   static Text appTextTitles2(
@@ -64,8 +65,6 @@ class MyWidgets {
 
   /// Buttons
 
-
-
   static Widget pointButton({String? txt, BuildContext? contexts}) {
     return Container(
       padding: const EdgeInsets.all(10),
@@ -84,34 +83,50 @@ class MyWidgets {
     );
   }
 
-
-
-  static scaffoldMessengerBottom({ required BuildContext context, required String valueText}) {
+  static scaffoldMessengerBottom(
+      {required BuildContext context, required String valueText}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: const Duration(seconds: 5),
         backgroundColor: MyColors.appColorBlack(),
         content: Container(
-          decoration: BoxDecoration(color: MyColors.appColorBlack()),
-          child: MyWidgets.robotoFontText(text:valueText,textColor: MyColors.appColorWhite())
-        )));
+            decoration: BoxDecoration(color: MyColors.appColorBlack()),
+            child: MyWidgets.robotoFontText(
+                text: valueText, textColor: MyColors.appColorWhite()))));
   }
 
+  static awesomeDialogInfo(
+      {required BuildContext context, required String valueText}) {
+    AwesomeDialog(
+            context: context,
+            dialogType: DialogType.INFO,
+            animType: AnimType.BOTTOMSLIDE,
+            title: "DTM",
+            desc: valueText,
+            titleTextStyle: TextStyle(
+                color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+            descTextStyle: TextStyle(
+                color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+            btnCancelOnPress: () {},
+            btnCancelText: "OK")
+        .show();
+  }
 
-  static awesomeDialogInfo({ required BuildContext context, required String valueText}) {
+  static awesomeDialogError(
+      {required BuildContext context, required String valueText}) {
     AwesomeDialog(
         context: context,
-        dialogType: DialogType.INFO,
+        dialogType: DialogType.ERROR,
         animType: AnimType.BOTTOMSLIDE,
         title: "DTM",
-        desc:valueText, titleTextStyle:TextStyle(color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold), descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+        desc: valueText,
+        titleTextStyle: TextStyle(
+            color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+        descTextStyle: TextStyle(
+            color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
         btnCancelOnPress: () {},
-        btnCancelText: "OK"
-    ).show();
+        btnCancelText: "OK")
+        .show();
   }
-
-
-
-
   /// Phone code
   static String returnPhoneFormat({required String phoneNumber}) {
     String p = "(${phoneNumber.substring(0, 2)})-";
@@ -133,5 +148,4 @@ class MyWidgets {
     "98",
     "99"
   ];
-
 }

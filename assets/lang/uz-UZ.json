@@ -4,5 +4,8 @@
   "serviceNot": "Xizmat vaqtingcha yopiq",
   "enter": "Kirish",
   "enterSystem": "Tizimga kirish",
-  "fillInField": "Maydonlarni to'ldiring"
+  "fillInField": "Maydonlarni to'ldiring",
+  "noInfoCheck": "Ma'lumotlar to'liq emas",
+  "aboutService": "Xizmat haqida"
+
 }

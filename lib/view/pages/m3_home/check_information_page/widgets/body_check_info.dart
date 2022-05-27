@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_information.dart';
+import 'package:mydtm/view/pages/m3_home/check_information_page/widgets/button_check_info.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
 import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/foreigion_lang_add.dart';
@@ -53,17 +54,7 @@ Widget bodyCheckInformation(
           ),
         ),
       ),
-      const SizedBox(height: 20),
-      MaterialButton(
-        height: 50,
-        minWidth: double.infinity,
-        onPressed: () {},
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        color: MyColors.appColorBlue1(),
-        child: MyWidgets.robotoFontText(
-            text: "Yuborish", textColor: MyColors.appColorWhite()),
-      ),
-      const SizedBox(height: 20),
+      bottomCheckInfo(providerCheckInformation: providerCheckInformation, context: context)
     ],
   );
 }
