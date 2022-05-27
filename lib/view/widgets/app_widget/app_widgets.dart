@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -94,6 +95,21 @@ class MyWidgets {
           child: MyWidgets.robotoFontText(text:valueText,textColor: MyColors.appColorWhite())
         )));
   }
+
+
+  static awesomeDialogInfo({ required BuildContext context, required String valueText}) {
+    AwesomeDialog(
+        context: context,
+        dialogType: DialogType.INFO,
+        animType: AnimType.BOTTOMSLIDE,
+        title: "DTM",
+        desc:valueText, titleTextStyle:TextStyle(color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold), descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+        btnCancelOnPress: () {},
+        btnCancelText: "OK"
+    ).show();
+  }
+
+
 
 
   /// Phone code

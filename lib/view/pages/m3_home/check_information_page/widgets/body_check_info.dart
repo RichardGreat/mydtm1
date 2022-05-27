@@ -37,84 +37,18 @@ Widget bodyCheckInformation(
               dense: true,
               visualDensity: const VisualDensity(vertical: 0),
               onTap: () {
-                if (index == 0) {
-
-                  pushNewScreen(
-                    context,
-                    screen: PersonInformation(),
-                    withNavBar: false,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-
-
-                  // Navigator.push(
-                  //     context,
-                  //     CupertinoPageRoute(
-                  //       builder: (context) => PersonInformation(),
-                  //     ));
-                }
-                else if(index == 1){
-
-                  pushNewScreen(
-                    context,
-                    screen: AddressInfo(),
-                    withNavBar: false,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-
-
-                  // Navigator.push(
-                  //     context,
-                  //     CupertinoPageRoute(
-                  //       builder: (context) => AddressInfo(),
-                  //     ));
-                }
-
-                else if(index == 2){
-
-                  pushNewScreen(
-                    context,
-                    screen: Graduated(),
-                    withNavBar: false,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-                  // Navigator.push(
-                  //     context,
-                  //     CupertinoPageRoute(
-                  //       builder: (context) => Graduated(),
-                  //     ));
-                } else if(index == 3){
-                  pushNewScreen(
-                    context,
-                    screen: Certificates(),
-                    withNavBar: false,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-                  // Navigator.push(
-                  //     context,
-                  //     CupertinoPageRoute(
-                  //       builder: (context) => Certificates(),
-                  //     ));
-                }
-                else if(index == 4){
-                  pushNewScreen(
-                    context,
-                    screen: ForeignLanguageAdd(),
-                    withNavBar: false,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-                // Navigator.push(
-                // context,
-                // CupertinoPageRoute(
-                // builder: (context) => ForeignLanguageAdd(),
-                // ));
-                }
-
+                providerCheckInformation.checkInfo(
+                    index: index, context: context);
               },
               trailing: const Icon(Icons.arrow_forward_ios_sharp),
               leading: MyWidgets.robotoFontText(
                   text: providerCheckInformation.myList[index].name),
-              title: Icon(Icons.check_circle, color: MyColors.appColorGreen1()),
+              title:
+              providerCheckInformation.myList[index].status == 1 ?
+
+              Icon(Icons.check_circle, color: MyColors.appColorGreen1())
+              :
+                  Icon(Icons.error, color: MyColors.appColorRed()),
             ),
           ),
         ),

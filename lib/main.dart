@@ -8,6 +8,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
@@ -29,11 +30,11 @@ Future main() async {
   await Hive.initFlutter();
   await Hive.openBox("online");
   SystemChrome.setPreferredOrientations(
-    // [DeviceOrientation.portraitDown]).then(
+      // [DeviceOrientation.portraitDown]).then(
       [
         DeviceOrientation.portraitUp, // DeviceOrientation.portraitDown
       ]).then(
-        (_) => runApp(
+    (_) => runApp(
       EasyLocalization(
         supportedLocales: const [
           Locale('qq', 'QQ'),
@@ -69,21 +70,15 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ConnectionNotifier(
-        disconnectedContent: const Center(child: Text("Internet bilan oloqa yoq")),
-        connectedContent: const Center(child: Text("Aloqa tiklandi")),
-        child: MaterialApp(
+      disconnectedContent:
+          const Center(child: Text("Internet bilan oloqa yoq")),
+      connectedContent: const Center(child: Text("Aloqa tiklandi")),
+      child: MaterialApp(
           debugShowCheckedModeBanner: false,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          home:
-          box.get("token").toString().length > 30
-
-              ?
-          const MainPages()
-              :
-          // const NewPassword(),
-          const EnterFirst(),
-        ));
+          home: const MainPages()),
+    );
   }
 }

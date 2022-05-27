@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/provider_enter_first.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 Widget enterButton(
     {required BuildContext context,
     required ProviderEnterFirst providerEnterFirst}) {
@@ -20,13 +20,11 @@ Widget enterButton(
             if(providerEnterFirst.formKey.currentState!.validate() && providerEnterFirst.textCaptchaEditingController.text.isNotEmpty){
               providerEnterFirst.getAuthorization(context: context);
             }else{
-              MyWidgets.scaffoldMessengerBottom(context: context, valueText: "Maydonlarni to'ldiring");
+              MyWidgets.scaffoldMessengerBottom(context: context, valueText: "fillInField".tr());
             }
-
-
           },
           child: MyWidgets.robotoFontText(
-              text: "Tizimga kirish", textColor: MyColors.appColorWhite())),
+              text: "enterSystem".tr(), textColor: MyColors.appColorWhite())),
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Stack(

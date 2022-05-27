@@ -11,11 +11,13 @@ PreferredSizeWidget enterFirstAppBar(
     elevation: 0,
     toolbarHeight: 45,
     backgroundColor: MyColors.appColorWhite(),
+    iconTheme: IconThemeData(color: MyColors.appColorBlack()),
     actions: [
       GestureDetector(
         onTap: (){
           modelSheet(context: context, providerEnterFirst: providerEnterFirst);
         },
+
         child: Container(
           padding: const EdgeInsets.only(left: 4, right: 4, top: 0, bottom: 0),
           margin: const EdgeInsets.only(left: 5, right: 15, bottom: 4, top: 4),

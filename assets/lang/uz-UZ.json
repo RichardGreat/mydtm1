@@ -1,3 +1,8 @@
 {
-  "uz": "uzbek"
+  "uz": "uzbek",
+  "identification": "Xizmatdan foydalanish uchun identifikatsiya tizimi orqali kirishingiz kerak",
+  "serviceNot": "Xizmat vaqtingcha yopiq",
+  "enter": "Kirish",
+  "enterSystem": "Tizimga kirish",
+  "fillInField": "Maydonlarni to'ldiring"
 }

@@ -103,11 +103,11 @@ class ProviderEnterFirst extends ChangeNotifier {
     box.put("token", modelGetToken.data.accessToken);
     log(box.get("token"));
     if (box.get("token").toString().length > 30) {
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
           context,
           CupertinoPageRoute(
-            builder: (context) => const MainPages(),
-          ));
+            builder: (context) =>   MainPages(),
+          ), (route) => false);
     }
     boolAuthorization = false;
     try {

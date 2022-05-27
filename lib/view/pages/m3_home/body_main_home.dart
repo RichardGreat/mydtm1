@@ -61,6 +61,9 @@ Widget bodyMainHome(
                                 .modelListForDeleteTemp[index].length,
                             itemBuilder: (context, index2) => GestureDetector(
                               onTap: () {
+
+
+
                                 Navigator.push(
                                     context,
                                     CupertinoPageRoute(
