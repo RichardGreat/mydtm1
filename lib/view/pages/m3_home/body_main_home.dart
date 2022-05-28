@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mydtm/view/pages/m3_home/carousel.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/pages/m3_home/show_by_category/show_by_category.dart';
@@ -15,10 +16,15 @@ Widget bodyMainHome(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                title: const Text('News'),
+                backgroundColor: MyColors.appColorWhite(),
                 floating: true,
-                expandedHeight: 150.0,
+                expandedHeight: 200.0,
+                centerTitle: true,
+                // foregroundColor: MyColors.appColorWhite(),
                 forceElevated: innerBoxIsScrolled,
+                excludeHeaderSemantics: true,
+                flexibleSpace:  carouselMain(
+                    context: context, providerMainHome: providerMainHome),
               ),
             ];
           },

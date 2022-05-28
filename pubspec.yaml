@@ -28,6 +28,7 @@ dependencies:
   image_cropper: ^2.0.2
   image_picker: ^0.8.5+1
   awesome_dialog: ^2.2.1
+  carousel_slider: ^4.1.1
 
 
 dev_dependencies:

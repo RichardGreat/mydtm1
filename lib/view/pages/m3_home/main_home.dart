@@ -23,9 +23,10 @@ class _MainHomeState extends State<MainHome> {
     return ChangeNotifierProvider(create: (context) => providerMainHome,
     child: Consumer<ProviderMainHome>(builder: (context, value, child) => Scaffold(
       backgroundColor: MyColors.appColorWhite(),
-      body: bodyMainHome(context: context, providerMainHome: providerMainHome),
-
-    ),),
+          body: SafeArea(
+              child: bodyMainHome(
+                  context: context, providerMainHome: providerMainHome)),
+        ),),
     );
   }
 }

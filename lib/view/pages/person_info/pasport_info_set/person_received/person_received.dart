@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
 import 'dart:developer';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/provider_person_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -41,8 +42,8 @@ modelSheetPersonReceived(
                       margin: const EdgeInsets.all(10),
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(color: MyColors.appColorRed2()),
-                      child: Image.asset(
-                        "assets/images/passport.png",
+                      child: Image.memory(
+                        base64Decode((providerPersonInfo.image.replaceAll("n\'", "").substring(0,24))),
                         height: 80,
                         fit: BoxFit.cover,
                       ),
@@ -56,7 +57,7 @@ modelSheetPersonReceived(
                             textSize: 16,
                             textColor: MyColors.appColorGrey400()),
                         MyWidgets.robotoFontText(
-                          text: "Familiya Ism Sharif",
+                          text: "${providerPersonInfo.fname} ${providerPersonInfo.lname} ${providerPersonInfo.mname}",
                           textSize: 16,
                         ),
                         const SizedBox(height: 5),
@@ -65,7 +66,7 @@ modelSheetPersonReceived(
                             textSize: 16,
                             textColor: MyColors.appColorGrey400()),
                         MyWidgets.robotoFontText(
-                          text: "01.01.2002",
+                          text: providerPersonInfo.bdate,
                           textSize: 16,
                         ),
                         const SizedBox(height: 5),
@@ -74,7 +75,8 @@ modelSheetPersonReceived(
                             textSize: 16,
                             textColor: MyColors.appColorGrey400()),
                         MyWidgets.robotoFontText(
-                          text: "AA 1234567",
+                          text: providerPersonInfo.psser +
+                              providerPersonInfo.psnum,
                           textSize: 16,
                         ),
                         const SizedBox(height: 5),
@@ -83,7 +85,7 @@ modelSheetPersonReceived(
                             textSize: 16,
                             textColor: MyColors.appColorGrey400()),
                         MyWidgets.robotoFontText(
-                          text: "12345678912345",
+                          text: providerPersonInfo.imie,
                           textSize: 16,
                         ),
                       ],

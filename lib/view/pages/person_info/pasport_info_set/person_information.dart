@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/buttons_person.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/input_pasport.dart';
@@ -16,6 +17,12 @@ class PersonInformation extends StatefulWidget {
 class _PersonInformationState extends State<PersonInformation> {
   ProviderPersonInfo providerPersonInfo = ProviderPersonInfo();
 
+  @protected
+  @mustCallSuper
+  void initState() {
+    providerPersonInfo.getPersonInformation(context: context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -23,35 +30,42 @@ class _PersonInformationState extends State<PersonInformation> {
       child: Consumer<ProviderPersonInfo>(
         builder: (context, value, child) => Scaffold(
             backgroundColor: MyColors.appColorWhite(),
-            appBar:appBarPersonInfo(),
+            appBar: appBarPersonInfo(),
             body: Form(
                 key: providerPersonInfo.formKey123,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: SafeArea(
-                    child: SingleChildScrollView(
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    height: MediaQuery.of(context).size.height * 0.95 - appBarPersonInfo().preferredSize.height,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        inputPassportInfo(
-                            context: context,
-                            providerPersonInfo: providerPersonInfo),
-                        const SizedBox(height: 10),
-                        MyWidgets.robotoFontText(text: "Millati"),
-                        const SizedBox(height: 4),
-                        Expanded(
-                            child: buttonsPersonInfo(
-                                context: context,
-                                providerPersonInfo: providerPersonInfo)),
-                      ],
-                    ),
-                  ),
-                )))),
+                child: !providerPersonInfo.boolNetworkGetData
+                    ? SafeArea(
+                        child: SingleChildScrollView(
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          height: MediaQuery.of(context).size.height * 0.95 -
+                              appBarPersonInfo().preferredSize.height,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              inputPassportInfo(
+                                  context: context,
+                                  providerPersonInfo: providerPersonInfo),
+                              const SizedBox(height: 10),
+                                MyWidgets.robotoFontText(text: "Millati"),
+                                const SizedBox(height: 4),
+                                Expanded(
+                                    child: buttonsPersonInfo(
+                                        context: context,
+                                        providerPersonInfo: providerPersonInfo)),
+                              ],
+                            ),
+                          ),
+                        ))
+                        : const Center(child: CupertinoActivityIndicator(),)
+                )
+
+            ),
       ),
     );
   }
+
   PreferredSizeWidget appBarPersonInfo(){
     return AppBar(
       toolbarHeight: 45,
