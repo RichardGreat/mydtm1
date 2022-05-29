@@ -20,6 +20,7 @@ Widget bodyMainHome(
                 floating: true,
                 expandedHeight: 200.0,
                 centerTitle: true,
+
                 // foregroundColor: MyColors.appColorWhite(),
                 forceElevated: innerBoxIsScrolled,
                 excludeHeaderSemantics: true,

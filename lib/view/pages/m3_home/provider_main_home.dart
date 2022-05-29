@@ -6,6 +6,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 class ProviderMainHome extends ChangeNotifier {
 
   List<ModelListForDelete> modelListForDelete = [];
+  List<ModelListForDelete> modelListForDeleteSearch = [];
   List<List<ModelListForDelete>> modelListForDeleteTemp = [];
   late Map<int, List<ModelListForDelete>> releaseDateMap;
   bool boolParseData = false;
@@ -15,6 +16,9 @@ class ProviderMainHome extends ChangeNotifier {
     boolParseData = false;
     StaticListForDelete staticListForDelete = StaticListForDelete();
     modelListForDelete.addAll(staticListForDelete.getListDelete());
+    modelListForDeleteSearch.clear();
+    modelListForDeleteSearch.addAll(modelListForDelete);
+
     modelListForDelete.sort((a, b) => a.category.compareTo(b.category));
     releaseDateMap =
         modelListForDelete.groupListsBy((element) => element.category);
@@ -23,4 +27,20 @@ class ProviderMainHome extends ChangeNotifier {
     notifyListeners();
 
   }
+
+  /// search
+  Future searchServicesItem({required String searchValue})async{
+    modelListForDeleteSearch.clear();
+    for (var element in modelListForDelete) {
+      if(element.name.toLowerCase().contains(searchValue.toLowerCase())){
+        modelListForDeleteSearch.add(element);
+      }
+    }
+  }
+  Future closeSearchMain()async{
+    modelListForDeleteSearch.clear();
+    modelListForDeleteSearch.addAll(modelListForDelete);
+    notifyListeners();
+  }
+  ///
 }
