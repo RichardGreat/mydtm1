@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m3_home/carousel.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
-import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/pages/m3_home/show_by_category/show_by_category.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -68,30 +67,21 @@ Widget bodyMainHome(
                                 .modelListForDeleteTemp[index].length,
                             itemBuilder: (context, index2) => GestureDetector(
                               onTap: () {
-
-
-
-                                Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                      builder: (context) => ServicePage(
-                                          status: providerMainHome
-                                              .modelListForDeleteTemp[index]
-                                                  [index2]
-                                              .status,
-                                          serviceId: providerMainHome
-                                              .modelListForDeleteTemp[index]
-                                                  [index2]
-                                              .id,
-                                          category: providerMainHome
-                                              .modelListForDeleteTemp[index]
-                                                  [index2]
-                                              .category,
-                                          categoryName: providerMainHome
-                                              .modelListForDeleteTemp[index]
-                                                  [index2]
-                                              .name),
-                                    ));
+                                /// go service page
+                                providerMainHome.goServicePage(
+                                    context: context,
+                                    status: providerMainHome
+                                        .modelListForDeleteTemp[index][index2]
+                                        .status,
+                                    serviceId: providerMainHome
+                                        .modelListForDeleteTemp[index][index2]
+                                        .id,
+                                    category: providerMainHome
+                                        .modelListForDeleteTemp[index][index2]
+                                        .category,
+                                    categoryName: providerMainHome
+                                        .modelListForDeleteTemp[index][index2]
+                                        .name);
                               },
                               child: Container(
                                 height: 80,

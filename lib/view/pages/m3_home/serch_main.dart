@@ -44,7 +44,8 @@ mainSearchBottomSheet(
     required ProviderMainHome providerMainHome}) {
   showModalBottomSheet(
       context: context,
-      enableDrag: false,
+
+      enableDrag: true,
       isDismissible: false,
       builder: (_) {
         return StatefulBuilder(
@@ -60,6 +61,7 @@ mainSearchBottomSheet(
                     height: 50,
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: TextFormField(
+                      controller: providerMainHome.textEditController,
                       onChanged: (val){
                         providerMainHome.searchServicesItem(searchValue: val);
                         state((){});
@@ -67,6 +69,12 @@ mainSearchBottomSheet(
                       maxLines: 1,
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              providerMainHome.searchServicesItem(searchValue: "");
+                              providerMainHome.textEditController.clear();
+                              state((){});
+                            }, icon: const Icon(Icons.clear, size: 13,)),
                         prefixIcon: const Icon(Icons.search),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
@@ -91,23 +99,38 @@ mainSearchBottomSheet(
                         providerMainHome.closeSearchMain();
                         Navigator.of(context).pop();
                       },
-                      icon: const Icon(Icons.close))
+                      icon: const Icon(Icons.keyboard_arrow_down_sharp, size: 32,))
                 ],
               ),
               const SizedBox(height: 20),
               Expanded(
                   child: ListView.builder(
-                itemCount: providerMainHome.modelListForDeleteSearch.length,
-                 itemBuilder: (context, index) => Container(
-                    margin: const EdgeInsets.fromLTRB(5, 1, 4, 1),
-                    padding: const EdgeInsets.all(4),
+                    itemCount: providerMainHome.modelListForDeleteSearch.length,
+                itemBuilder: (context, index) => Container(
+                    margin: const EdgeInsets.fromLTRB(5, 4, 4, 4),
+                    padding: const EdgeInsets.fromLTRB(1, 3, 1, 4),
                     decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(
                                 width: 1, color: MyColors.appColorGrey100()))),
-                    child: MyWidgets.robotoFontText(
-                        text: providerMainHome.modelListForDeleteSearch[index].name,
-                        textSize: 18)),
+                    child: GestureDetector(
+                      onTap: (){
+                        // Navigator.of(context).pop();
+                        providerMainHome.goServicePage(
+                            context: context,
+                            status:providerMainHome.modelListForDeleteSearch[index].status,
+                            serviceId:providerMainHome.modelListForDeleteSearch[index].id,
+                            category: providerMainHome.modelListForDeleteSearch[index].category,
+                            categoryName:providerMainHome.modelListForDeleteSearch[index].name);
+
+
+                      },
+                      child: MyWidgets.robotoFontText(
+                          text: providerMainHome
+                              .modelListForDeleteSearch[index].name,
+                          textColor: Colors.black.withOpacity(0.9),
+                          textSize: 20),
+                    )),
               ))
             ]),
           ),
