@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/pages/m3_home/static_list_for_delete.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderMainHome extends ChangeNotifier {
 
@@ -37,16 +38,18 @@ class ProviderMainHome extends ChangeNotifier {
     required int status,
 
   }) async {
-    Navigator.push(
-        context,
-        CupertinoPageRoute(
-          builder: (context) =>
-              ServicePage(
-                  status: status,
-                  serviceId: serviceId,
-                  category: category,
-                  categoryName: categoryName),
-        ));
+
+    pushNewScreen(
+      context,
+      screen: ServicePage(
+          status: status,
+          serviceId: serviceId,
+          category: category,
+          categoryName: categoryName),
+      withNavBar: false,
+      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    );
+
   }
 
   /// search

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m3_home/carousel.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
+import 'package:mydtm/view/pages/m3_home/serch_main.dart';
 import 'package:mydtm/view/pages/m3_home/show_by_category/show_by_category.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -16,16 +17,20 @@ Widget bodyMainHome(
             return <Widget>[
               SliverAppBar(
                 backgroundColor: MyColors.appColorWhite(),
-                floating: true,
-                expandedHeight: 200.0,
-                centerTitle: true,
-
+                floating: false,
+                // centerTitle: false,
+elevation: 0,
+                expandedHeight: 0,
+                flexibleSpace:searchMain(context: context, providerMainHome: providerMainHome) ,
                 // foregroundColor: MyColors.appColorWhite(),
                 forceElevated: innerBoxIsScrolled,
                 excludeHeaderSemantics: true,
-                flexibleSpace:  carouselMain(
-                    context: context, providerMainHome: providerMainHome),
+                // flexibleSpace:
+
+
               ),
+              SliverToBoxAdapter(child:   carouselMain(
+                  context: context, providerMainHome: providerMainHome),)
             ];
           },
           body: Container(

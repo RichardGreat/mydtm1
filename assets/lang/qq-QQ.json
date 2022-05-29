@@ -6,5 +6,6 @@
   "enterSystem": "Tizimga kirish",
   "fillInField": "Maydonlarni to'ldiring",
   "noInfoCheck": "Ma'lumotlar to'liq emas",
-  "aboutService": "Xizmat haqida"
+  "aboutService": "Xizmat haqida",
+  "noAccount": "Siz identifikatsiyadan o'tmagansiz"
 }
