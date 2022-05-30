@@ -12,41 +12,101 @@ myViewButton(
   showModalBottomSheet(
       context: context,
       enableDrag: true,
+      isDismissible: false,
       isScrollControlled: true,
       builder: (BuildContext context) {
         return Container(
             height: MediaQuery.of(context).size.height * 0.7,
+            margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(color: MyColors.appColorWhite()),
-            child: GridView.builder(
-              itemCount: myList.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => ServicePage(
-                              status: myList[index].status
-                                  ,
-                              serviceId: myList[index].id,
-                              category: myList[index].category,
-                              categoryName: myList[index].name),
-                        ));
-                  },
-                  child: Container(
-                      margin: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: providerMainHome.myColors.randomColor(),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Center(child: Text(myList[index].name))),
-                );
-              },
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10),
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(
+                      left: 10, right: 10, top: 2, bottom: 2),
+                  padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        myList[0].serviceName,
+                        style: TextStyle(
+                            color: MyColors.appColorBlack(),
+                            fontSize: 17,
+                            fontWeight: FontWeight.normal,
+                            fontFamily: 'Roboto-Medium'),
+                        maxLines: 3,
+                        softWrap: true,
+                        overflow: TextOverflow.fade,
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: Icon(
+                            Icons.keyboard_arrow_down,
+                            size: 32,
+                            color: MyColors.appColorBlack(),
+                          ))
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    itemCount: myList.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                builder: (context) => ServicePage(
+                                    status: myList[index].status,
+                                    serviceId: myList[index].id,
+                                    category: myList[index].category,
+                                    categoryName: myList[index].name),
+                              ));
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(
+                              left: 10, right: 10, top: 2, bottom: 2),
+                          padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
+                          decoration: BoxDecoration(
+                              color: providerMainHome.myColors.randomColor(),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.account_balance_sharp, size: 48),
+                              SizedBox(
+                                child: Text(
+                                  myList[index].name,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 3,
+                                  softWrap: true,
+                                  overflow: TextOverflow.fade,
+                                  style: TextStyle(
+                                      color: MyColors.appColorBlack(),
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.normal,
+                                      fontFamily: 'Roboto-Medium'),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 3 / 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10),
+                  ),
+                ),
+              ],
             ));
       });
 }

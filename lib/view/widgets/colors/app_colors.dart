@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyColors {
@@ -76,6 +77,9 @@ class MyColors {
   }
 
   Random random = Random();
+
+
+
   List<Color> myColors = [
     const Color.fromRGBO(254, 246, 225, 1),
     const Color.fromRGBO(232, 247, 244, 1),
