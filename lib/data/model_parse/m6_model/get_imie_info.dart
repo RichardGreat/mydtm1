@@ -1,37 +1,36 @@
 class ModelGetImieInfo {
   ModelGetImieInfo({
-    required this.status,
-    required this.data,
+   required this.status,
+   required this.data,
   });
 
   int status;
   DataGetImieInfo data;
 
-  factory ModelGetImieInfo.fromJson(Map<String, dynamic> json) =>
-      ModelGetImieInfo(
-        status: json["status"],
-        data: DataGetImieInfo.fromJson(json["data"]),
-      );
+  factory ModelGetImieInfo.fromJson(Map<String, dynamic> json) => ModelGetImieInfo(
+    status: json["status"],
+    data: DataGetImieInfo.fromJson(json["data"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "data": data.toJson(),
-      };
+    "status": status,
+    "data": data.toJson(),
+  };
 }
 
 class DataGetImieInfo {
   DataGetImieInfo({
-    required this.id,
-    required this.psser,
-    required this.psnum,
-    required this.imie,
-    required this.lname,
-    required this.fname,
-    required this.mname,
-    required this.bdate,
-    required this.sex,
-    required this.nationId,
-    required this.image,
+  required this.id,
+  required this.psser,
+  required this.psnum,
+  required this.imie,
+  required this.lname,
+  required this.fname,
+  required this.mname,
+  required this.bdate,
+  required this.sex,
+  required this.nationId,
+  required this.image,
   });
 
   dynamic id;
@@ -46,32 +45,31 @@ class DataGetImieInfo {
   dynamic nationId;
   dynamic image;
 
-  factory DataGetImieInfo.fromJson(Map<String, dynamic> json) =>
-      DataGetImieInfo(
-        id: json["id"],
-        psser: json["psser"],
-        psnum: json["psnum"],
-        imie: json["imie"],
-        lname: json["lname"],
-        fname: json["fname"],
-        mname: json["mname"],
-        bdate: json["bdate"],
-        sex: json["sex"],
-        nationId: json["nation_id"],
-        image: json["image"],
-      );
+  factory DataGetImieInfo.fromJson(Map<String, dynamic> json) => DataGetImieInfo(
+    id: json["id"],
+    psser: json["psser"],
+    psnum: json["psnum"],
+    imie: json["imie"],
+    lname: json["lname"],
+    fname: json["fname"],
+    mname: json["mname"],
+    bdate: DateTime.parse(json["bdate"]),
+    sex: json["sex"],
+    nationId: json["nation_id"],
+    image: json["image"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "psser": psser,
-        "psnum": psnum,
-        "imie": imie,
-        "lname": lname,
-        "fname": fname,
-        "mname": mname,
-        "bdate": bdate,
-        "sex": sex,
-        "nation_id": nationId,
-        "image": image,
-      };
+    "id": id,
+    "psser": psser,
+    "psnum": psnum,
+    "imie": imie,
+    "lname": lname,
+    "fname": fname,
+    "mname": mname,
+    "bdate": "${bdate.year.toString().padLeft(4, '0')}-${bdate.month.toString().padLeft(2, '0')}-${bdate.day.toString().padLeft(2, '0')}",
+    "sex": sex,
+    "nation_id": nationId,
+    "image": image,
+  };
 }

@@ -33,17 +33,16 @@ class ProviderPersonInfo extends ChangeNotifier {
     try {
       boolNetworkGetData = true;
       String dataInfo = await networkGetIMie.getIMieInformation();
-      log(dataInfo.toString());
+      log(dataInfo);
       modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
       dataGetImieInfo = modelGetImieInfo.data;
-
       psser = dataGetImieInfo.psser;
       psnum = dataGetImieInfo.psnum.toString();
-      imie = dataGetImieInfo.imie;
+      imie = dataGetImieInfo.imie.toString();
       lname = dataGetImieInfo.lname;
       fname = dataGetImieInfo.fname;
       mname = dataGetImieInfo.mname;
-      bdate = dataGetImieInfo.bdate;
+      bdate = dataGetImieInfo.bdate.toString();
       sex = dataGetImieInfo.sex.toString();
       nationId = dataGetImieInfo.nationId.toString();
       image = dataGetImieInfo.image;

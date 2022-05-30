@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import "package:collection/collection.dart";
 import 'package:flutter/cupertino.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/pages/m3_home/static_list_for_delete.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-
+import 'dart:developer';
 class ProviderMainHome extends ChangeNotifier {
 
   List<ModelListForDelete> modelListForDelete = [];
@@ -18,6 +20,7 @@ class ProviderMainHome extends ChangeNotifier {
     boolParseData = false;
     StaticListForDelete staticListForDelete = StaticListForDelete();
     modelListForDelete.addAll(staticListForDelete.getListDelete());
+    log(jsonEncode(modelListForDelete));
     modelListForDeleteSearch.clear();
     modelListForDeleteSearch.addAll(modelListForDelete);
 

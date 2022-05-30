@@ -19,7 +19,7 @@ Widget bodyMainHome(
                 backgroundColor: MyColors.appColorWhite(),
                 floating: false,
                 // centerTitle: false,
-elevation: 0,
+                elevation: 0,
                 expandedHeight: 0,
                 flexibleSpace:searchMain(context: context, providerMainHome: providerMainHome) ,
                 // foregroundColor: MyColors.appColorWhite(),

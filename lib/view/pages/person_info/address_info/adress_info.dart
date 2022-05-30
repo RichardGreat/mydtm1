@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/address_info/button_addres_info.dart';
 import 'package:mydtm/view/pages/person_info/address_info/provider_address_info.dart';
-import 'package:mydtm/view/pages/person_info/address_info/region_set_inputs.dart';
+import 'package:mydtm/view/pages/person_info/address_info/region_set_info/region_set_inputs.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,10 @@ class AddressInfo extends StatefulWidget {
 
 class _AddressInfoState extends State<AddressInfo> {
   ProviderAddressInfo providerAddressInfo = ProviderAddressInfo();
-
+  @override
+  initState(){
+    providerAddressInfo.getAddressInfo();
+  }
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -25,7 +29,9 @@ class _AddressInfoState extends State<AddressInfo> {
           backgroundColor: MyColors.appColorWhite(),
           appBar: addressAppBar(
               context: context, providerAddressInfo: providerAddressInfo),
-          body: Form(
+          body: providerAddressInfo.boolGetAddressInfo ?
+
+          Form(
             key: providerAddressInfo.keyAddressInfo,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: SafeArea(
@@ -53,7 +59,7 @@ class _AddressInfoState extends State<AddressInfo> {
                     ],
                   ),
                 ),
-              )),)
+              )),):const Center(child: CupertinoActivityIndicator(),)
         ),
       ),
     );

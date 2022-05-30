@@ -13,9 +13,10 @@ class NetworkGetIMie {
 
     response = await dio.get("${MainUrl.mainUrls}/v1/person-data/get-imie",
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
-  log("{${MainUrl.mainUrlHeader}:${box.get("token")}");
+  log("${MainUrl.mainUrls}/v1/person-data/get-imie");
+  log("${MainUrl.mainUrlHeader}:${box.get("token")}");
+    log(jsonEncode(response.data));
   log(response.statusCode.toString());
-  log(response.data);
-    return jsonEncode(response.data).toString();
+    return jsonEncode(response.data);
   }
 }

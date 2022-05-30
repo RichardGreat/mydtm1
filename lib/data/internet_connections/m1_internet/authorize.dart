@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
-import 'package:mydtm/data/model_parse/m1_model/authhorization/model_auth_success.dart';
 
 class NetworkAuthorize {
 

@@ -9,6 +9,7 @@ Widget carouselMain(
   MyColors myColors = MyColors();
   return SizedBox(
       // margin: const EdgeInsets.only(top: 10),
+
       child: Column(
     children: [
       CarouselSlider(
@@ -28,6 +29,7 @@ Widget carouselMain(
                 },
                 child: Container(
                     width: MediaQuery.of(context).size.width,
+                    height: 135,
                     margin: const EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -36,16 +38,16 @@ Widget carouselMain(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         Icon(Icons.account_balance_sharp,
                             color: MyColors.appColorBlack(), size: 82),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         Text(
                           i.name,
                           style: const TextStyle(
                               fontSize: 24.0, fontFamily: 'Roboto-Medium'),
                         ),
-                        const SizedBox(height: 20)
+                        const SizedBox(height: 10)
                       ],
                     )),
               );

@@ -7,6 +7,12 @@
   "fillInField": "Maydonlarni to'ldiring",
   "noInfoCheck": "Ma'lumotlar to'liq emas",
   "aboutService": "Xizmat haqida",
-  "noAccount": "Siz identifikatsiya tizimidan o'ting"
+  "noAccount": "Siz identifikatsiya tizimidan o'ting",
+  "choose": "Tanlang",
+  "state": "Davlat",
+  "province": "Hudud",
+  "district": "Tuman",
+  "address": "Manzil"
+
 
 }

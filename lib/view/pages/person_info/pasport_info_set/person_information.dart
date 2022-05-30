@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/buttons_person.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/input_pasport.dart';
+import 'package:mydtm/view/pages/person_info/pasport_info_set/person_received/person_received.dart';
+import 'package:mydtm/view/pages/person_info/pasport_info_set/person_received/person_received2.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/provider_person_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -17,10 +19,10 @@ class PersonInformation extends StatefulWidget {
 class _PersonInformationState extends State<PersonInformation> {
   ProviderPersonInfo providerPersonInfo = ProviderPersonInfo();
 
-  @protected
-  @mustCallSuper
+  @override
   void initState() {
     providerPersonInfo.getPersonInformation(context: context);
+
   }
 
   @override
@@ -31,11 +33,16 @@ class _PersonInformationState extends State<PersonInformation> {
         builder: (context, value, child) => Scaffold(
             backgroundColor: MyColors.appColorWhite(),
             appBar: appBarPersonInfo(),
-            body: Form(
+            body:
+            !providerPersonInfo.boolNetworkGetData
+                ?
+            providerPersonInfo.imie.length == 14?
+            personReceived2(providerPersonInfo: providerPersonInfo, context: context)
+                :
+            Form(
                 key: providerPersonInfo.formKey123,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: !providerPersonInfo.boolNetworkGetData
-                    ? SafeArea(
+                child:  SafeArea(
                         child: SingleChildScrollView(
                         child: Container(
                           padding: const EdgeInsets.all(10),
@@ -58,10 +65,11 @@ class _PersonInformationState extends State<PersonInformation> {
                             ),
                           ),
                         ))
-                        : const Center(child: CupertinoActivityIndicator(),)
-                )
 
-            ),
+                ): const Center(child: CupertinoActivityIndicator(),)
+
+            )
+        ,
       ),
     );
   }
