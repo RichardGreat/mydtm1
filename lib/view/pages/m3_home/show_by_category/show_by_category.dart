@@ -1,19 +1,20 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
-import 'package:mydtm/view/pages/m3_home/static_list_for_delete.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 myViewButton(
     {required BuildContext context,
-    required List<ModelListForDelete> myList,
+    required List<ServiceMainList> myList,
     required ProviderMainHome providerMainHome}) {
   showModalBottomSheet(
       context: context,
       enableDrag: true,
       isDismissible: false,
       isScrollControlled: true,
+      backgroundColor: MyColors.appColorWhite(),
       builder: (BuildContext context) {
         return Container(
             height: MediaQuery.of(context).size.height * 0.7,
@@ -28,16 +29,18 @@ myViewButton(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        myList[0].serviceName,
-                        style: TextStyle(
-                            color: MyColors.appColorBlack(),
-                            fontSize: 17,
-                            fontWeight: FontWeight.normal,
-                            fontFamily: 'Roboto-Medium'),
-                        maxLines: 3,
-                        softWrap: true,
-                        overflow: TextOverflow.fade,
+                      Flexible(
+                        child: Text(
+                          myList[0].serviceName,
+                          style: TextStyle(
+                              color: MyColors.appColorBlack(),
+                              fontSize: 17,
+                              fontWeight: FontWeight.normal,
+                              fontFamily: 'Roboto-Medium'),
+                          maxLines: 3,
+                          softWrap: true,
+                          overflow: TextOverflow.fade,
+                        ),
                       ),
                       IconButton(
                           onPressed: () {
@@ -58,15 +61,23 @@ myViewButton(
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).pop();
-                          Navigator.push(
-                              context,
-                              CupertinoPageRoute(
-                                builder: (context) => ServicePage(
-                                    status: myList[index].status,
-                                    serviceId: myList[index].id,
-                                    category: myList[index].category,
-                                    categoryName: myList[index].name),
-                              ));
+
+                          pushNewScreen(
+                            context,
+                            screen:    ServicePage(serviceMainList: myList[index]),
+                            withNavBar: true, // OPTIONAL VALUE. True by default.
+                            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                          );
+
+                          // Navigator.push(
+                          //     context,
+                          //     CupertinoPageRoute(
+                          //       builder: (context) => ServicePage(
+                          //           status: myList[index].status,
+                          //           serviceId: myList[index].id,
+                          //           category: myList[index].category,
+                          //           categoryName: myList[index].name),
+                          //     ));
                         },
                         child: Container(
                           margin: const EdgeInsets.only(
@@ -81,9 +92,9 @@ myViewButton(
                               const Icon(Icons.account_balance_sharp, size: 48),
                               SizedBox(
                                 child: Text(
-                                  myList[index].name,
+                                  myList[index].serviceName,
                                   textAlign: TextAlign.center,
-                                  maxLines: 3,
+                                  maxLines: 2,
                                   softWrap: true,
                                   overflow: TextOverflow.fade,
                                   style: TextStyle(

@@ -14,8 +14,8 @@ class ProviderServicePage extends ChangeNotifier{
 
   ///
   /// Button
-  Future checkUserStatus({required BuildContext context, required int status, required String categoryName})async{
-    status == 1
+  Future checkUserStatus({required BuildContext context, required bool status, required String categoryName})async{
+    status
         ? {
       if(box.get("token").toString().length < 30){
 

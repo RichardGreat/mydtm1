@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/app_bar_service.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/provider_service_page.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/widgets/service_page_body.dart';
@@ -7,17 +10,12 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class ServicePage extends StatefulWidget {
-  int category;
-  int serviceId;
-  String categoryName;
-  int status;
+  late ServiceMainList serviceMainList;
 
   ServicePage(
       {Key? key,
-      required this.serviceId,
-      required this.category,
-      required this.categoryName,
-      required this.status})
+      required this.serviceMainList,
+    })
       : super(key: key);
 
   @override
@@ -39,12 +37,13 @@ class _ServicePageState extends State<ServicePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 servicePageHead(
-                    status: widget.status,
                     context: context,
                     providerServicePage: providerServicePage,
-                    categoryName: widget.categoryName),
+                serviceMainList: widget.serviceMainList
+                ),
                 const SizedBox(height: 20),
                 servicePageBody(
+                  serviceMainList: widget.serviceMainList,
                     context: context, providerServicePage: providerServicePage)
               ],
             )),

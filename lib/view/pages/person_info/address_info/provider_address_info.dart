@@ -14,7 +14,7 @@ class ProviderAddressInfo extends ChangeNotifier {
 
   TextEditingController txtEditControllerAddress = TextEditingController();
 
-  late String provinceId, districtId, provinceName, districtName, address;
+  late String provinceId= "", districtId= "", provinceName = "", districtName= "", address= "";
 
   /// Get Address
   NetworkGetAddressInfo networkGetAddressInfo = NetworkGetAddressInfo();
@@ -37,12 +37,15 @@ class ProviderAddressInfo extends ChangeNotifier {
       if (txtEditControllerAddress.text.length > 3) {
         boolAddressText = true;
       } else {
-        boolAddressText = false;
+        boolAddressText = true;
+        notifyListeners();
       }
       boolGetAddressInfo = true;
       notifyListeners();
     } catch (e) {
       log(e.toString());
+      boolGetAddressInfo = true;
+      notifyListeners();
     }
   }
 

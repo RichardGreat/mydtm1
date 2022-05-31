@@ -15,17 +15,15 @@ Widget carouselMain(
       CarouselSlider(
         options: CarouselOptions(
             autoPlay: true, autoPlayInterval: const Duration(seconds: 8)),
-        items: providerMainHome.modelListForDeleteTemp[3].map((i) {
+        items: providerMainHome.listDataServiceList[0].service.map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return GestureDetector(
                     onTap: () {
                       providerMainHome.goServicePage
                         (context: context,
-                          category: i.category,
-                          serviceId: i.id,
-                          categoryName: i.name,
-                      status: i.status);
+                          serviceMainList: i
+                      );
                 },
                 child: Container(
                     width: MediaQuery.of(context).size.width,
@@ -43,7 +41,10 @@ Widget carouselMain(
                             color: MyColors.appColorBlack(), size: 82),
                         const SizedBox(height: 10),
                         Text(
-                          i.name,
+                          i.serviceName,
+                          maxLines: 3,
+                          softWrap: true,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontSize: 24.0, fontFamily: 'Roboto-Medium'),
                         ),

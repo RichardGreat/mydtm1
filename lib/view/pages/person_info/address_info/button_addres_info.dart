@@ -9,10 +9,10 @@ import 'dart:developer';
 Widget buttonAddressInfo(
     {required BuildContext context,
     required ProviderAddressInfo providerAddressInfo}) {
-  log((providerAddressInfo.boolAddressText &&
-          providerAddressInfo.districtName.length > 4 &&
-          providerAddressInfo.provinceName.length > 4)
-      .toString());
+  // log((providerAddressInfo.boolAddressText &&
+  //         providerAddressInfo.districtName.length > 4 &&
+  //         providerAddressInfo.provinceName.length > 4)
+  //     .toString());
   return Align(
     alignment: Alignment.bottomCenter,
     child: Container(

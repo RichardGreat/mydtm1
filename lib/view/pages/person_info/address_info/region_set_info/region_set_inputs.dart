@@ -5,8 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:mydtm/view/pages/person_info/address_info/provider_address_info.dart';
 import 'package:mydtm/view/pages/person_info/address_info/region_set_info/province.dart';
 import 'package:mydtm/view/pages/person_info/address_info/region_set_info/district_choose.dart';
-import 'package:mydtm/view/pages/person_info/address_info/sheet_district.dart';
-import 'package:mydtm/view/pages/person_info/address_info/sheet_province.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -17,12 +15,6 @@ Widget regionSetInput(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-
-      const SizedBox(height: 20),
-      MyWidgets.robotoFontText(text: "province".tr(), textSize: 15),
-      const SizedBox(height: 8),
-
-
       province(context: context, providerAddressInfo: providerAddressInfo),
       Visibility(
           visible: true,

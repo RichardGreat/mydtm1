@@ -44,8 +44,8 @@ mainSearchBottomSheet(
     required ProviderMainHome providerMainHome}) {
   showModalBottomSheet(
       context: context,
-
       enableDrag: true,
+      isScrollControlled: true,
       isDismissible: false,
       builder: (_) {
         return StatefulBuilder(
@@ -104,9 +104,10 @@ mainSearchBottomSheet(
               ),
               const SizedBox(height: 20),
               Expanded(
-                  child: ListView.builder(
-                    itemCount: providerMainHome.modelListForDeleteSearch.length,
-                itemBuilder: (context, index) => Container(
+                  child:ListView.builder(
+                  itemCount: providerMainHome.listDataServiceListTemp.length,
+                  itemBuilder:
+                    (context, index) => Container(
                     margin: const EdgeInsets.fromLTRB(5, 4, 4, 4),
                     padding: const EdgeInsets.fromLTRB(1, 3, 1, 4),
                     decoration: BoxDecoration(
@@ -115,23 +116,21 @@ mainSearchBottomSheet(
                                 width: 1, color: MyColors.appColorGrey100()))),
                     child: GestureDetector(
                       onTap: (){
-                        // Navigator.of(context).pop();
+                        Navigator.of(context).pop();
                         providerMainHome.goServicePage(
                             context: context,
-                            status:providerMainHome.modelListForDeleteSearch[index].status,
-                            serviceId:providerMainHome.modelListForDeleteSearch[index].id,
-                            category: providerMainHome.modelListForDeleteSearch[index].category,
-                            categoryName:providerMainHome.modelListForDeleteSearch[index].name);
+                            serviceMainList:  providerMainHome.listDataServiceListTemp[index]
+                        );
 
 
                       },
                       child: MyWidgets.robotoFontText(
                           text: providerMainHome
-                              .modelListForDeleteSearch[index].name,
+                              .listDataServiceListTemp[index].serviceName,
                           textColor: Colors.black.withOpacity(0.9),
                           textSize: 20),
-                    )),
-              ))
+                    )),)
+              )
             ]),
           ),
         );

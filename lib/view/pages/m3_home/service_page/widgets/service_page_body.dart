@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/provider_service_page.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/widgets/service_page_bottonsheet.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -6,6 +7,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 Widget servicePageBody(
     {required BuildContext context,
+      required ServiceMainList serviceMainList,
     required ProviderServicePage providerServicePage}) {
   List<String> myList = [
     "Xizmat haqida",
@@ -34,6 +36,7 @@ Widget servicePageBody(
             onTap: (){
               if(index == 0) {
                 serviceSheetBottomSheet(
+                  serviceMainList: serviceMainList,
                     context: context, providerServicePage: providerServicePage);
               }
             },

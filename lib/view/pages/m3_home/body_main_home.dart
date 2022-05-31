@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/view/pages/m3_home/carousel.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/serch_main.dart';
 import 'package:mydtm/view/pages/m3_home/show_by_category/show_by_category.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:universal_image/universal_image.dart';
 
 Widget bodyMainHome(
     {required BuildContext context,
@@ -21,24 +23,28 @@ Widget bodyMainHome(
                 // centerTitle: false,
                 elevation: 0,
                 expandedHeight: 0,
-                flexibleSpace:searchMain(context: context, providerMainHome: providerMainHome) ,
+                flexibleSpace: searchMain(
+                    context: context, providerMainHome: providerMainHome),
                 // foregroundColor: MyColors.appColorWhite(),
                 forceElevated: innerBoxIsScrolled,
                 excludeHeaderSemantics: true,
                 // flexibleSpace:
-
-
               ),
-              SliverToBoxAdapter(child:   carouselMain(
-                  context: context, providerMainHome: providerMainHome),)
+              SliverToBoxAdapter(
+                child: carouselMain(
+                    context: context, providerMainHome: providerMainHome),
+              )
             ];
           },
           body: Container(
               margin: const EdgeInsets.fromLTRB(10, 2, 10, 8),
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
-                itemCount: providerMainHome.modelListForDeleteTemp.length,
-                itemBuilder: (context, index) => SizedBox(
+                itemCount: providerMainHome.listDataServiceList
+                    .length,
+                itemBuilder: (context, index) =>
+                  providerMainHome.listDataServiceList[index].service.isNotEmpty ?
+                    SizedBox(
                     height: 160,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -49,28 +55,30 @@ Widget bodyMainHome(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width: MediaQuery.of(context).size.width*0.6,
-                              child: Text(providerMainHome
-                                      .modelListForDeleteTemp[index][0]
-                                      .serviceName,
-                              style: TextStyle(
-                                  color:  MyColors.appColorBlack(),
-                                  fontSize: 17,
-                                  fontWeight:FontWeight.normal,
-                                  fontFamily: 'Roboto-Medium'),
-                                 maxLines: 3,
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              child: Text(
+                                providerMainHome.listDataServiceList[index]
+                                    .categoryName,
+                                style: TextStyle(
+                                    color: MyColors.appColorBlack(),
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.normal,
+                                    fontFamily: 'Roboto-Medium'),
+                                maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                                 softWrap: true,
-
                               ),
                             ),
                             GestureDetector(
                               onTap: () {
-                                myViewButton(
-                                    context: context,
-                                    providerMainHome: providerMainHome,
-                                    myList: providerMainHome
-                                        .modelListForDeleteTemp[index]);
+
+                                if(providerMainHome.listDataServiceList[index].service.isNotEmpty) {
+                                  myViewButton(
+                                      context: context,
+                                      providerMainHome: providerMainHome,
+                                      myList: providerMainHome
+                                          .listDataServiceList[index].service);
+                                }
                               },
                               child: MyWidgets.robotoFontText(
                                   text: "Barchasi",
@@ -83,25 +91,15 @@ Widget bodyMainHome(
                         Expanded(
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: providerMainHome
-                                .modelListForDeleteTemp[index].length,
+                            itemCount:
+                                providerMainHome.listDataServiceList[index].service.length,
                             itemBuilder: (context, index2) => GestureDetector(
                               onTap: () {
                                 /// go service page
                                 providerMainHome.goServicePage(
                                     context: context,
-                                    status: providerMainHome
-                                        .modelListForDeleteTemp[index][index2]
-                                        .status,
-                                    serviceId: providerMainHome
-                                        .modelListForDeleteTemp[index][index2]
-                                        .id,
-                                    category: providerMainHome
-                                        .modelListForDeleteTemp[index][index2]
-                                        .category,
-                                    categoryName: providerMainHome
-                                        .modelListForDeleteTemp[index][index2]
-                                        .name);
+                                  serviceMainList: providerMainHome.listDataServiceList[index].service[index2],
+                                    );
                               },
                               child: Container(
                                 height: 100,
@@ -118,13 +116,55 @@ Widget bodyMainHome(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     const SizedBox(height: 1),
-                                    Icon(Icons.account_balance_sharp,
-                                        color: MyColors.appColorBlack(),
-                                        size: 32),
+
+                                    UniversalImage(
+                                      "${MainUrl.mainUrlImage}/${providerMainHome.listDataServiceList[index].service[index2].icon}", // image storage file path
+                                      color: Colors.black,
+                                      matchTextDirection: false,
+                                      scale: 1.0,
+                                      width: 30,
+                                      height: 30,
+                                      // frameBuilder: null,
+                                      // errorBuilder: null,
+                                      // semanticLabel: null,
+                                      // excludeFromSemantics: false,
+                                      // colorBlendMode: BlendMode.clear,
+                                      // fit: BoxFit.cover,
+                                      // alignment: Alignment.center,
+                                      // repeat: ImageRepeat.noRepeat,
+                                      // centerSlice: Rect.fromLTWH(0, 0, 100, 100),
+                                      // gaplessPlayback: false,
+                                      // isAntiAlias: false,
+                                      // filterQuality: FilterQuality.high,
+                                      // cacheWidth: 30,
+                                      // cacheHeight: 30,
+                                      // allowDrawingOutsideViewBox: false,
+                                      // svgSkiaMode: false,
+                                      placeholder: Container(child: CupertinoActivityIndicator()),
+                                    ),
+
+
+                                    // SvgPicture.network(
+                                    //
+                                    //   "${MainUrl.mainUrlImage}/${providerMainHome.listDataServiceList[index].service[index2].icon}",
+                                    //   height: 40,
+                                    //   fit: BoxFit.fill,
+                                    //   placeholderBuilder:
+                                    //       (BuildContext context) => Container(
+                                    //           padding:
+                                    //               const EdgeInsets.all(30.0),
+                                    //           child:
+                                    //               const CircularProgressIndicator()),
+                                    // ),
+
+                                    // Icon(Icons.account_balance_sharp,
+                                    //     color: MyColors.appColorBlack(),
+                                    //     size: 32),
                                     Text(
                                       providerMainHome
-                                          .modelListForDeleteTemp[index][index2]
-                                          .name,
+                                          .listDataServiceList[index]
+                                          .service[index2]
+                                          .serviceName,
                                       textAlign: TextAlign.center,
                                       overflow: TextOverflow.fade,
                                       maxLines: 2,
@@ -139,7 +179,9 @@ Widget bodyMainHome(
                           ),
                         )
                       ],
-                    )),
+                    ))
+                : SizedBox.shrink()
+                ,
               )),
         )
       : const Center(child: CupertinoActivityIndicator());

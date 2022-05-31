@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/provider_service_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -6,8 +7,8 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 Widget servicePageHead(
     {required BuildContext context,
     required ProviderServicePage providerServicePage,
-    required String categoryName,
-    required int status}) {
+    required ServiceMainList serviceMainList ,
+   }) {
   return Container(
     decoration: BoxDecoration(color: MyColors.appColorWhite()),
     child: Container(
@@ -16,7 +17,7 @@ Widget servicePageHead(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyWidgets.robotoFontText(
-              text: categoryName,
+              text: serviceMainList.serviceName,
               textFontWeight: FontWeight.bold,
               textSize: 25),
           const SizedBox(height: 20),
@@ -24,12 +25,12 @@ Widget servicePageHead(
               onPressed: () {
                 providerServicePage.checkUserStatus(
                     context: context,
-                    status: status,
-                    categoryName: categoryName);
+                    status: serviceMainList.status,
+                    categoryName: serviceMainList.serviceName);
               },
               minWidth: double.infinity,
               height: 50,
-              color: status == 1
+              color: serviceMainList.status
                   ? MyColors.appColorBlue1()
                   : Colors.blueAccent.withOpacity(0.2),
               shape: RoundedRectangleBorder(
