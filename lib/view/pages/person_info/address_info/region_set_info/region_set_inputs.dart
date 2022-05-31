@@ -10,7 +10,7 @@ import 'package:mydtm/view/pages/person_info/address_info/sheet_province.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
-Widget regionSetInputs(
+Widget regionSetInput(
     {required BuildContext context,
     required ProviderAddressInfo providerAddressInfo}) {
   return Column(
@@ -19,55 +19,18 @@ Widget regionSetInputs(
     children: [
 
       const SizedBox(height: 20),
-      MyWidgets.robotoFontText(text: "state".tr(), textSize: 15),
+      MyWidgets.robotoFontText(text: "province".tr(), textSize: 15),
       const SizedBox(height: 8),
 
-      GestureDetector(
-        onTap: () {
-          providerAddressInfo.getRegion(
-              context: context, providerAddressInfo: providerAddressInfo);
-        },
-        child: Container(
-          height: 50,
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: MyColors.appColorGrey400())),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Flexible(
-              child: Text(
-                providerAddressInfo.provinceName.length < 2
-                    ? "Tanlang..."
-                    : providerAddressInfo.provinceName,
-                overflow: TextOverflow.ellipsis,
-                softWrap: true,
-                maxLines: 1,
-                style: TextStyle(
-                    color: providerAddressInfo.provinceName.length < 5
-                        ? MyColors.appColorGrey400()
-                        : MyColors.appColorBlack(),
-                    fontSize: 17,
-                    fontWeight: FontWeight.normal,
-                    fontFamily: 'Roboto-Medium'),
-              ),
-            ),
-            Icon(
-              Icons.arrow_drop_down,
-              color: MyColors.appColorBlack(),
-              size: 32,
-            )
-          ]),
-        ),
-      ),
 
+      province(context: context, providerAddressInfo: providerAddressInfo),
       Visibility(
           visible: true,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              province(context: context, providerAddressInfo: providerAddressInfo),
+              // province(context: context, providerAddressInfo: providerAddressInfo),
               districtChoose(
                   context: context, providerAddressInfo: providerAddressInfo),
             ],

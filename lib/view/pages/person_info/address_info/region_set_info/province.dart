@@ -13,34 +13,44 @@ Widget province({required BuildContext context,required ProviderAddressInfo prov
     const SizedBox(height: 10),
     MyWidgets.robotoFontText(text: "province", textSize: 15),
     const SizedBox(height: 8),
-    GestureDetector(
-      onTap: () {
-        modelSheetDistrict(
-            context: context, providerAddressInfo: providerAddressInfo);
-      },
-      child: Container(
-        height: 50,
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: MyColors.appColorGrey400())),
-        child:
+      GestureDetector(
+  onTap: () {
+    providerAddressInfo.getRegion(
+        context: context, providerAddressInfo: providerAddressInfo);
+  },
+  child: Container(
+    height: 50,
+    padding: const EdgeInsets.only(left: 10, right: 10),
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: MyColors.appColorGrey400())),
+    child:
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          MyWidgets.robotoFontText(
-              text: providerAddressInfo.districtName.length < 5
-                  ? "choose".tr()
-                  : providerAddressInfo.districtName,
-              textSize: 16,
-              textColor: providerAddressInfo.districtName.length < 5
+      Flexible(
+        child: Text(
+          providerAddressInfo.provinceName.length < 2
+              ? "Tanlang..."
+              : providerAddressInfo.provinceName,
+          overflow: TextOverflow.ellipsis,
+          softWrap: true,
+          maxLines: 1,
+          style: TextStyle(
+              color: providerAddressInfo.provinceName.length < 5
                   ? MyColors.appColorGrey400()
-                  : MyColors.appColorBlack()),
-          Icon(
-            Icons.arrow_drop_down,
-            color: MyColors.appColorBlack(),
-            size: 32,
-          )
-        ]),
+                  : MyColors.appColorBlack(),
+              fontSize: 17,
+              fontWeight: FontWeight.normal,
+              fontFamily: 'Roboto-Medium'),
+        ),
       ),
-    ),
+      Icon(
+        Icons.arrow_drop_down,
+        color: MyColors.appColorBlack(),
+        size: 32,
+      )
+
+    ]),
+  ),
+),
   ],);
 }

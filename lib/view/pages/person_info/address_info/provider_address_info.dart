@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_address.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_district.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_region.dart';
+import 'package:mydtm/data/model_parse/m6_model/district.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_address.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_country.dart';
 import 'package:mydtm/view/pages/person_info/address_info/sheet_province.dart';
@@ -107,11 +108,15 @@ class ProviderAddressInfo extends ChangeNotifier {
   /// tuman
   ///
   NetworkDistrict networkDistrict = NetworkDistrict();
-
+  late ModelGetDistrict modelGetDistrict;
+  bool boolGetDistrict = false;
   Future getDistrict({required String parentId}) async {
     try{
-      String data = await networkDistrict.getDistricts(parentId: parentId);
-
+      boolGetDistrict = false;
+      String data = await networkDistrict. getDistricts(parentId: parentId);
+      modelGetDistrict = ModelGetDistrict.fromJson(jsonDecode(data));
+      boolGetDistrict = true;
+      notifyListeners();
     }catch(e){}
   }
 

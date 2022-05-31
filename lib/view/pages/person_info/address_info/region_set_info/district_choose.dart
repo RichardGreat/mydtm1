@@ -17,6 +17,7 @@ Widget districtChoose(
         const SizedBox(height: 8),
         GestureDetector(
             onTap: () {
+                providerAddressInfo.getDistrict(parentId: providerAddressInfo.provinceId);
                 modelSheetDistrict(
                     context: context, providerAddressInfo: providerAddressInfo);
             },

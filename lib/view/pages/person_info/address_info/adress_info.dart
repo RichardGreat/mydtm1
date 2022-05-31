@@ -52,7 +52,7 @@ class _AddressInfoState extends State<AddressInfo> {
                           textColor: MyColors.appColorGrey400(),
                           textFontWeight: FontWeight.w400,
                           textSize: 15),
-                      regionSetInputs(
+                      regionSetInput(
                           context: context,
                           providerAddressInfo: providerAddressInfo),
                       buttonAddressInfo(context: context, providerAddressInfo: providerAddressInfo)

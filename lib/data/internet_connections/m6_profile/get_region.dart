@@ -10,7 +10,7 @@ class NetworkGetRegion{
     var dio = Dio();
     Response response;
     var box = Hive.box("online");
-    response = await dio.get("${MainUrl.mainUrls}/v1/region/country",
+    response = await dio.get("${MainUrl.mainUrls}/v1/region",
     options: Options(headers: {MainUrl.mainUrlHeader:box.get("token")})
     );
 
