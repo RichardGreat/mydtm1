@@ -27,7 +27,7 @@ Widget province(
               border: Border.all(color: MyColors.appColorGrey400())),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Flexible(
+                 Flexible(
               child: Text(
                 providerAddressInfo.provinceName.toString().length < 4 || providerAddressInfo.provinceName != null
                     ? "Tanlang..."
@@ -44,7 +44,7 @@ Widget province(
                     fontFamily: 'Roboto-Medium'),
               ),
             ),
-            Icon(
+                Icon(
               Icons.arrow_drop_down,
               color: MyColors.appColorBlack(),
               size: 32,
