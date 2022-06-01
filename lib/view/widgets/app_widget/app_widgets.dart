@@ -14,6 +14,10 @@ class MyWidgets {
     pushNewScreen(context, screen: EnterFirst(), withNavBar: false);
   }
 
+  static Widget loaderDownload({required BuildContext context}){
+    return const Center(child: CupertinoActivityIndicator(),);
+  }
+
   /// Text
   static Text appTextTitles1({String? txt, double? txtSize}) {
     return Text(

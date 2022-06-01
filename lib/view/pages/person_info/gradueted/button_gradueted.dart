@@ -5,7 +5,7 @@ import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-Widget buttonGradueted({required BuildContext context, required ProviderGraduated providerGradueted}){
+Widget buttonGraduated({required BuildContext context, required ProviderGraduated providerGradueted}){
   return MaterialButton(
     minWidth: double.infinity,
     height: 50,

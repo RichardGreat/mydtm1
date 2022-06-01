@@ -14,7 +14,11 @@ class ProviderAddressInfo extends ChangeNotifier {
 
   TextEditingController txtEditControllerAddress = TextEditingController();
 
-  late String provinceId= "", districtId= "", provinceName = "", districtName= "", address= "";
+  late String provinceId = "",
+      districtId = "",
+      provinceName = "",
+      districtName = "",
+      address = "";
 
   /// Get Address
   NetworkGetAddressInfo networkGetAddressInfo = NetworkGetAddressInfo();
@@ -28,7 +32,7 @@ class ProviderAddressInfo extends ChangeNotifier {
       String dataAddressInfo = await networkGetAddressInfo.getAddressInfo();
       modelGetAddressInfo =
           ModelGetAddressInfo.fromJson(jsonDecode(dataAddressInfo));
-
+      log(dataAddressInfo);
       provinceId = modelGetAddressInfo.data.regionId.toString();
       districtId = modelGetAddressInfo.data.districtId.toString();
       provinceName = modelGetAddressInfo.data.regionName;
@@ -77,7 +81,7 @@ class ProviderAddressInfo extends ChangeNotifier {
   Future searchRegion({required String value}) async {
     listGetCountryTemp.clear();
     for (var element in modelGetCountry.data) {
-      if (element.name.toLowerCase().contains(value.toLowerCase())) {
+      if (element.name.trim().toLowerCase().contains(value.trim().toLowerCase())) {
         listGetCountryTemp.add(element);
       }
     }
@@ -113,14 +117,15 @@ class ProviderAddressInfo extends ChangeNotifier {
   NetworkDistrict networkDistrict = NetworkDistrict();
   late ModelGetDistrict modelGetDistrict;
   bool boolGetDistrict = false;
+
   Future getDistrict({required String parentId}) async {
-    try{
+    try {
       boolGetDistrict = false;
-      String data = await networkDistrict. getDistricts(parentId: parentId);
+      String data = await networkDistrict.getDistricts(parentId: parentId);
       modelGetDistrict = ModelGetDistrict.fromJson(jsonDecode(data));
       boolGetDistrict = true;
       notifyListeners();
-    }catch(e){}
+    } catch (e) {}
   }
 
   ///

@@ -12,6 +12,16 @@
   "state": "Davlat",
   "province": "Hudud",
   "district": "Tuman",
-  "address": "Manzil"
+  "address": "Manzil",
+  "graduated": "Umumta'lim muassasi",
+  "gType": "Muassasi turi",
+  "gName": "Muassasi turi",
+  "fillAll": "Barcha qatorlarni to'ldiring",
+  "exet": "Chiqish",
+  "system_infor": "Tizim ma'lumoti",
+  "help": "Yordam",
+  "settings": "Sozlash",
+  "advice": "advice",
+  "news": "news"
 
 }

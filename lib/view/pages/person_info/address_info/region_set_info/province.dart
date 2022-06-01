@@ -27,16 +27,19 @@ Widget province(
               border: Border.all(color: MyColors.appColorGrey400())),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                 Flexible(
+            Flexible(
               child: Text(
-                providerAddressInfo.provinceName.toString().length < 4 || providerAddressInfo.provinceName != null
-                    ? "Tanlang..."
+                providerAddressInfo.provinceName.toString().length < 4 ||
+                        providerAddressInfo.provinceName == null
+                    ? "choose".tr()
                     : providerAddressInfo.provinceName,
                 overflow: TextOverflow.ellipsis,
                 softWrap: true,
                 maxLines: 1,
                 style: TextStyle(
-                    color: providerAddressInfo.provinceName.toString().length < 5 || providerAddressInfo.provinceName != null
+                    color: providerAddressInfo.provinceName.toString().length <
+                                5 ||
+                            providerAddressInfo.provinceName == null
                         ? MyColors.appColorGrey400()
                         : MyColors.appColorBlack(),
                     fontSize: 17,
@@ -44,7 +47,7 @@ Widget province(
                     fontFamily: 'Roboto-Medium'),
               ),
             ),
-                Icon(
+            Icon(
               Icons.arrow_drop_down,
               color: MyColors.appColorBlack(),
               size: 32,

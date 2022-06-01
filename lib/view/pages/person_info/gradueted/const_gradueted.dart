@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_type.dart';
-import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/state_choose.dart';
+import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/state_choose.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 Widget constGraduated(
     {required BuildContext context,
     required ProviderGraduated providerGraduated}) {
-  return Column(
+  return StatefulBuilder(builder: (context, setState) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       MyWidgets.robotoFontText(
-          text: "Umumta'lim muassasi",
+          text: "graduated".tr(),
           textColor: MyColors.appColorBlack(),
           textSize: 32),
       MyWidgets.robotoFontText(
-          text: "Barcha qatorlarni to'ldiring",
+          text: "fillAll".tr(),
           textColor: MyColors.appColorGrey400(),
           textSize: 16),
       const SizedBox(height: 20),
       MyWidgets.robotoFontText(
-          text: "Mussasa turi",
+          text: "gType".tr(),
           textColor: MyColors.appColorGrey400(),
           textSize: 16),
       const SizedBox(height: 4),
@@ -38,47 +38,24 @@ Widget constGraduated(
             children: [
               MyWidgets.robotoFontText(
                   text: providerGraduated.graduatedName.length < 4
-                      ? "Tanlang..."
+                      ? "choose".tr()
                       : providerGraduated.graduatedName,
-
-              textColor: providerGraduated.graduatedName.length < 4
-                  ? MyColors.appColorGrey400()
-                  : MyColors.appColorBlack()
-              ),
+                  textColor: providerGraduated.graduatedName.length < 4
+                      ? MyColors.appColorGrey400()
+                      : MyColors.appColorBlack()),
               const Icon(Icons.arrow_drop_down_outlined)
             ],
           ),
         ),
         onTap: () {
-          modelSheetGraduatedType(
+          setState((){});
+          providerGraduated.getGraduatedType(
               context: context, providerGraduated: providerGraduated);
         },
       ),
-      const SizedBox(height: 10),
-      MyWidgets.robotoFontText(
-          text: "Davlat", textColor: MyColors.appColorGrey400(), textSize: 16),
-      const SizedBox(height: 4),
-      GestureDetector(
-        onTap: (){
-          modelSheetStateChoose(context: context, providerGraduated: providerGraduated);
-        },
-        child: Container(
-          height: 50,
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: MyColors.appColorGrey400()),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MyWidgets.robotoFontText(text: "Tanlang..."),
-              const Icon(Icons.arrow_drop_down_outlined)
-            ],
-          ),
-        ),
-      ),
-      const SizedBox(height: 10),
+
     ],
-  );
+  ),)
+
+    ;
 }
