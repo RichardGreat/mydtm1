@@ -119,6 +119,7 @@ class ProviderGraduated extends ChangeNotifier {
         listGraduatedYear.add(i.toString());
       }
       listGraduatedYearTemp.clear();
+      listGraduatedYearTemp=[];
       listGraduatedYearTemp.addAll(listGraduatedYear);
       modelSheetGraduatedYear(
           contexts: contexts, providerGraduated: providerGraduated);
