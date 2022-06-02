@@ -6,6 +6,7 @@ class ProviderCertificate extends ChangeNotifier{
 
   bool imageChange = true;
   var box = Hive.box("online");
+
   Future changeImage(
       {required dynamic imageData, required String fileTypeName}) async {
     imageChange = false;

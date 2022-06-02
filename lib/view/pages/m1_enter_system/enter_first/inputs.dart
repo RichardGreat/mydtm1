@@ -25,6 +25,10 @@ Widget enterFirstBodyInput(
           ],
           decoration: InputDecoration(
             prefixText: "+998 ",
+            suffixIcon:
+             GestureDetector(child: const Icon(Icons.clear, size: 12), onTap: (){
+               providerEnterFirst.textAuthLogin.clear();
+             },),
             contentPadding: const EdgeInsets.all(8),
             fillColor: Colors.white,
             focusedBorder: OutlineInputBorder(

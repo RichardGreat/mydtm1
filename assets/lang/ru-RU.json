@@ -31,7 +31,9 @@
   "kodLength": "uzunlig",
   "phoneNumber": "Telefon raqam",
   "checkField": "Maydonlarni to'ldirilganini tekshiring",
-  "goMainScreen": "Asosiy ekranga qaytish"
+  "goMainScreen": "Asosiy ekranga qaytish",
+  "addCertificate": "Chet tili sertifikatini qo'shish",
+  "add": "Qo'shish"
 
 
 
