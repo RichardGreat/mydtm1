@@ -37,7 +37,7 @@ Widget enterButton(
                   color: MyColors.appColorWhite(),
                   // margin: const EdgeInsets.only(left: 10, right: 10),
                   child: Text(
-                    "Yoki",
+                    "or".tr(),
                     style: TextStyle(backgroundColor: MyColors.appColorWhite()),
                   ),
                 ))
@@ -55,7 +55,7 @@ Widget enterButton(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: MyColors.appColorBlack())),
             child: Center(
-                child: MyWidgets.robotoFontText(text: "Ro'yxatdan o'tish"))),
+                child: MyWidgets.robotoFontText(text: "registration".tr()))),
       ),
     ],
   );

@@ -27,6 +27,7 @@ Widget bodyCheckInformation(
         // decoration: BoxDecoration(
         //     color: MyColors.appColorWhite(),
         //     borderRadius: BorderRadius.circular(10)),
+
         child: ListView.builder(
           itemCount: providerCheckInformation.myList.length,
           itemBuilder: (context, index) => Container(

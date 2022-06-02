@@ -14,7 +14,11 @@ class ProviderProfile extends ChangeNotifier{
       withNavBar: false,
       pageTransitionAnimation: PageTransitionAnimation.cupertino,
     );
-
   }
+
+  Future logOut()async{
+    
+  }
+
 
 }

@@ -37,10 +37,10 @@ Widget constGraduated(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MyWidgets.robotoFontText(
-                  text: providerGraduated.graduatedName.length < 4
+                  text: providerGraduated.gTypeName.length < 4
                       ? "choose".tr()
-                      : providerGraduated.graduatedName,
-                  textColor: providerGraduated.graduatedName.length < 4
+                      : providerGraduated.gTypeName ,
+                  textColor: providerGraduated.gTypeName .length < 4
                       ? MyColors.appColorGrey400()
                       : MyColors.appColorBlack()),
               const Icon(Icons.arrow_drop_down_outlined)

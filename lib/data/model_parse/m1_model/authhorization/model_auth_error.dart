@@ -1,15 +1,15 @@
-class ModelAuthorizationError {
-  ModelAuthorizationError({
-   required this.status,
-   required this.errorCode,
-   required this.errors,
+class ModelErrorUserName {
+  ModelErrorUserName({
+ required   this.status,
+ required   this.errorCode,
+ required   this.errors,
   });
 
   int status;
   int errorCode;
   Errors errors;
 
-  factory ModelAuthorizationError.fromJson(Map<String, dynamic> json) => ModelAuthorizationError(
+  factory ModelErrorUserName.fromJson(Map<String, dynamic> json) => ModelErrorUserName(
     status: json["status"],
     errorCode: json["error_code"],
     errors: Errors.fromJson(json["errors"]),

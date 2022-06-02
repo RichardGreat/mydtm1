@@ -29,35 +29,53 @@ class _EnterFirstState extends State<EnterFirst> {
     return ChangeNotifierProvider(
       create: (context) => providerEnterFirst,
       child: Consumer<ProviderEnterFirst>(
-        builder: (context, value, child) => Scaffold(
-          backgroundColor: MyColors.appColorWhite(),
-          appBar: enterFirstAppBar(
-              context: context, providerEnterFirst: providerEnterFirst),
-          body:  Form(
-          key: providerEnterFirst.formKey,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          child: providerEnterFirst.boolAuthorization ?
-              const Center(child: CupertinoActivityIndicator(),)
-              :
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                const SizedBox(height: 20),
-                const  Icon(Icons.star, size: 70),
-                  enterFirstBodyInput(
-                      context: context, providerEnterFirst: providerEnterFirst),
-                  const SizedBox(height: 20),
-                  captchaGet(context: context, providerEnterFirst: providerEnterFirst),
-                  const SizedBox(height: 20),
-                  enterButton(context: context, providerEnterFirst: providerEnterFirst)
-                ],
-              ),
-            ),
-          ))
-        ),
-      ),
+          builder: (context, value, child) => WillPopScope(
+                child: Scaffold(
+                    backgroundColor: MyColors.appColorWhite(),
+                    appBar: enterFirstAppBar(
+                        context: context,
+                        providerEnterFirst: providerEnterFirst),
+                    body: Form(
+                        key: providerEnterFirst.formKey,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        child: providerEnterFirst.boolAuthorization
+                            ? const Center(
+                                child: CupertinoActivityIndicator(),
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      const SizedBox(height: 20),
+                                      const Icon(Icons.star, size: 70),
+                                      enterFirstBodyInput(
+                                          context: context,
+                                          providerEnterFirst:
+                                              providerEnterFirst),
+                                      const SizedBox(height: 20),
+                                      captchaGet(
+                                          context: context,
+                                          providerEnterFirst:
+                                              providerEnterFirst),
+                                      const SizedBox(height: 20),
+                                      enterButton(
+                                          context: context,
+                                          providerEnterFirst:
+                                              providerEnterFirst)
+                                    ],
+                                  ),
+                                ),
+                              ))),
+                onWillPop: () async {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => const EnterFirst()),
+                      (route) => false);
+                  return true;
+                },
+              )),
     );
   }
 }

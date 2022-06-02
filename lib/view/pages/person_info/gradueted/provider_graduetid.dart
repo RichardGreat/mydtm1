@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'package:easy_localization/easy_localization.dart';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/country.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/g_edu_type.dart';
+import 'package:mydtm/data/internet_connections/person_info/graduated/get_graduated_all.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/year_graduated.dart';
 import 'package:mydtm/data/model_parse/person_info/g_edu_type.dart';
+import 'package:mydtm/data/model_parse/person_info/graduated/all_info_graduated.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/g_country.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/graduated_year.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/state_choose.dart';
@@ -15,6 +18,104 @@ class ProviderGraduated extends ChangeNotifier {
   final formKeyGraduated = GlobalKey<FormState>();
 
   bool boolUzbekGraduated = true;
+  /// All info graduated
+  NetworkGetGraduated networkGetGraduated = NetworkGetGraduated();
+  late ModelGraduatedInfo modelGraduatedInfo;
+  late DataGraduatedInfo dataGraduatedInfo;
+  bool boolAllInfoGraduated = false;
+
+  String gTypeName = "";
+  String gTypeId = "";
+  String gCountryName = "";
+  String gCountryId = "";
+  String gProvinceName = "";
+  String gProvinceId = "";
+  String gDistrictName = "";
+  String gDistrictId = "";
+  String gName = "";
+  String gId = "";
+  String gYear = "";
+  String gSerNome = "";
+
+  TextEditingController textEditingSerNumber = TextEditingController();
+
+
+
+  Future getAllInfoGraduated()async{
+
+    try{
+      boolAllInfoGraduated = false;
+      String data = await networkGetGraduated.getAllGraduated();
+      modelGraduatedInfo = ModelGraduatedInfo.fromJson(jsonDecode(data));
+      checkAllInfo(dataGraduatedInfo: modelGraduatedInfo.data);
+      // dataGraduatedInfo = modelGraduatedInfo.data;
+      boolAllInfoGraduated = true;
+      notifyListeners();
+    }catch(e){}
+
+  }
+
+  Future checkAllInfo({required DataGraduatedInfo dataGraduatedInfo})async{
+    try{
+      log(jsonEncode(dataGraduatedInfo));
+      if(dataGraduatedInfo.countryId == 860&& dataGraduatedInfo.eduTypeId != 4){
+        boolUzbekGraduated = true;
+        gTypeName = dataGraduatedInfo.eduName.toString();
+        gTypeId = dataGraduatedInfo.eduTypeId.toString();
+        gCountryName = dataGraduatedInfo.countryName;
+        gCountryId = dataGraduatedInfo.countryId.toString();
+        gProvinceName = dataGraduatedInfo.regionName;
+        gProvinceId = dataGraduatedInfo.regionId.toString();
+        gDistrictName = dataGraduatedInfo.districtName;
+        gDistrictId = dataGraduatedInfo.districtId.toString();
+        gName = dataGraduatedInfo.gName;
+        gId = dataGraduatedInfo.eduTypeId.toString();
+        gYear = dataGraduatedInfo.graduatedYear.toString();
+        textEditingSerNumber.text = dataGraduatedInfo.docSerNum;
+        notifyListeners();
+      } else if(dataGraduatedInfo.countryId == 860 && dataGraduatedInfo.eduTypeId == 4){
+        boolUzbekGraduated = true;
+        gTypeName = dataGraduatedInfo.eduName.toString();
+        gTypeId = dataGraduatedInfo.eduTypeId.toString();
+        gCountryName = dataGraduatedInfo.countryName;
+        gCountryId = dataGraduatedInfo.countryId.toString();
+        gProvinceName = dataGraduatedInfo.regionName;
+        gProvinceId = dataGraduatedInfo.regionId.toString();
+        gDistrictName = dataGraduatedInfo.districtName;
+        gDistrictId = dataGraduatedInfo.districtId.toString();
+        gName = dataGraduatedInfo.gName;
+        gId = dataGraduatedInfo.eduTypeId.toString();
+        gYear = dataGraduatedInfo.graduatedYear.toString();
+        textEditingSerNumber.text = dataGraduatedInfo.docSerNum;
+
+        notifyListeners();
+      }
+
+      else{
+        boolUzbekGraduated = false;
+        gTypeName = dataGraduatedInfo.eduName.toString();
+        gTypeId = dataGraduatedInfo.eduTypeId.toString();
+        gCountryName = dataGraduatedInfo.countryName;
+        gCountryId = dataGraduatedInfo.countryId.toString();
+        gProvinceName = dataGraduatedInfo.regionName;
+        gProvinceId = dataGraduatedInfo.regionId.toString();
+        gDistrictName = dataGraduatedInfo.districtName;
+        gDistrictId = dataGraduatedInfo.districtId.toString();
+        gName = dataGraduatedInfo.gName;
+        gId = dataGraduatedInfo.eduTypeId.toString();
+        gYear = dataGraduatedInfo.graduatedYear.toString();
+        textEditingSerNumber.text = dataGraduatedInfo.docSerNum;
+        notifyListeners();
+      }
+
+
+    }catch(e){
+      log(e.toString());
+    }
+
+
+  }
+
 
   /// graduated type
   String graduatedName = "", graduatedId = "";
@@ -41,14 +142,19 @@ class ProviderGraduated extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// State
+  /// State foreign
 
   NetworkGraduatedCountry networkGraduatedCountry = NetworkGraduatedCountry();
   List<DataGraduatedCountry> listGraduatedCountry = [];
   List<DataGraduatedCountry> listGraduatedCountryTemp = [];
   bool boolGraduatedCountry = false;
-  TextEditingController txtControllerGraduatedCountry = TextEditingController();
 
+  TextEditingController txtControllerGraduatedCountry = TextEditingController();
+  TextEditingController txtControllerGraduatedName = TextEditingController();
+
+
+  String foreignCountryName = "";
+  String foreignCountryId = "";
   Future getCountry(
       {required BuildContext context,
       required ProviderGraduated providerGraduated}) async {
@@ -72,9 +178,8 @@ class ProviderGraduated extends ChangeNotifier {
 
     for (var values in listGraduatedCountry) {
       if (values.name
-          .trim()
           .toLowerCase()
-          .contains(value.trim().toLowerCase())) {
+          .contains(value.toLowerCase())) {
         log(jsonEncode(values));
         listGraduatedCountryTemp.add(values);
       } else {
@@ -84,12 +189,12 @@ class ProviderGraduated extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future closeGraduatedSheet({required BuildContext context}) async {
-    listGraduatedCountryTemp.clear();
-    listGraduatedCountryTemp = listGraduatedCountry;
-    txtControllerGraduatedCountry.clear();
-    Navigator.of(context).pop();
+  Future setForeign({required String name, required String id})async{
+    gCountryName  = name;
+    gCountryId  = id;
+    notifyListeners();
   }
+
 
   ///
 
@@ -116,11 +221,10 @@ class ProviderGraduated extends ChangeNotifier {
       for (int i = int.parse(modelGraduatedYear.data.beginYear);
           i <= int.parse(modelGraduatedYear.data.endYear);
           i++) {
-        listGraduatedYear.add(i.toString());
+        listGraduatedYear.add("$i-${"year".tr()}");
       }
-      listGraduatedYearTemp.clear();
-      listGraduatedYearTemp=[];
-      listGraduatedYearTemp.addAll(listGraduatedYear);
+      // listGraduatedYearTemp.clear();
+      listGraduatedYearTemp =  listGraduatedYear;
       modelSheetGraduatedYear(
           contexts: contexts, providerGraduated: providerGraduated);
 
@@ -136,13 +240,20 @@ class ProviderGraduated extends ChangeNotifier {
     listGraduatedYearTemp.clear();
 
     for (var values in listGraduatedYear) {
-      if (values.trim().contains(value.trim())) {
+      if (values.toString().contains(value.toString())) {
+       print(values);
         listGraduatedYearTemp.add(values);
       }
     }
     notifyListeners();
   }
-  Future closeWindow()async{}
+  Future closeGraduatedSheet({required BuildContext context}) async {
+    listGraduatedCountryTemp.clear();
+    listGraduatedCountryTemp = listGraduatedCountry;
+    txtControllerGraduatedCountry.clear();
+    Navigator.of(context).pop();
+  }
+
 
   Future setMethodGraduatedYear({required String id}) async {
     setGraduatedYear = id;
@@ -150,14 +261,18 @@ class ProviderGraduated extends ChangeNotifier {
   }
 
   Future setGraduatedType({required String name, required String id}) async {
-    graduatedName = name;
-    graduatedId = id;
+    gTypeName  = name;
+    gTypeId  = id;
 
-    if (graduatedId == "4") {
+    if (gTypeId == "4") {
       boolGraduatedType = false;
     } else {
       boolGraduatedType = true;
     }
     notifyListeners();
   }
+
+  ///
+
+
 }

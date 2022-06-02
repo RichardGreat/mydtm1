@@ -18,7 +18,7 @@ modelSheetStateChoose(
       backgroundColor: MyColors.appColorWhite(),
       builder: (BuildContext context) {
         return StatefulBuilder(
-          builder: (context, setState) => Container(
+          builder: (context, setState) => SizedBox(
             height: MediaQuery.of(context).size.height * 0.7,
             child: Column(
               children: [
@@ -30,8 +30,8 @@ modelSheetStateChoose(
                       height: 50,
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: TextFormField(
-                        controller:
-                            providerGraduated.txtControllerGraduatedCountry,
+                        // controller:
+                            // providerGraduated.txtControllerGraduatedCountry,
                         maxLines: 1,
                         keyboardType: TextInputType.text,
                         onChanged: (values) {
@@ -86,10 +86,6 @@ modelSheetStateChoose(
                       icon: Icon(CupertinoIcons.chevron_down,
                           color: MyColors.appColorBlack()),
                     )
-                    // GestureDetector(child: Padding(
-                    //   padding: const EdgeInsets.only(right: 10),
-                    //   child: Icon(CupertinoIcons.chevron_down, color: MyColors.appColorBlack()),
-                    // ),)
                   ],
                 ),
                 Expanded(
@@ -106,7 +102,12 @@ modelSheetStateChoose(
                         ),
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      providerGraduated.setForeign(name:  providerGraduated
+                          .listGraduatedCountryTemp[index].name, id:  providerGraduated
+                          .listGraduatedCountryTemp[index].id.toString());
+                      Navigator.of(context).pop();
+                    },
                   ),
                 )),
               ],

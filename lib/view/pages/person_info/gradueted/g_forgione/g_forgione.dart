@@ -1,11 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/state_choose.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
-import 'package:mydtm/view/pages/person_info/pasport_info_set/input_pasport.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 Widget graduatedForeign(
     {required BuildContext context,
@@ -36,7 +34,10 @@ Widget graduatedForeign(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MyWidgets.robotoFontText(text: "choose".tr()),
+              MyWidgets.robotoFontText(text: providerGraduated.gCountryName .length < 5?
+              "choose".tr():
+              providerGraduated.gCountryName
+              ),
               const Icon(Icons.arrow_drop_down_outlined)
             ],
           ),
@@ -44,14 +45,14 @@ Widget graduatedForeign(
       ),
       const SizedBox(height: 10),
       MyWidgets.robotoFontText(
-          text: "Muassasa nomi",
+          text: "gName".tr(),
           textColor: MyColors.appColorGrey400(),
           textSize: 16),
       const SizedBox(height: 4),
       TextFormField(
-        // controller: providerPersonInfo.txtPsNumController,
+        controller: providerGraduated.txtControllerGraduatedName,
         maxLines: 1,
-        maxLength: 80,
+        maxLength: 30,
 
         keyboardType: TextInputType.streetAddress,
 
@@ -95,16 +96,15 @@ Widget graduatedForeign(
           // ),
         ),
         validator: (value3) {
-          if (value3!.isEmpty || value3.length < 7) {
+          if (value3!.isEmpty || value3.length < 4) {
             // providerPersonInfo.boolPsNumber(boolNum: false);
-            return "uzunlikda xato";
+            return "Uzunlik 4 dan ko'p bo'lishi kerak";
           } else {
             // providerPersonInfo.boolPsNumber(boolNum: true);
             return null;
           }
         },
       ),
-
     ],
   );
 }

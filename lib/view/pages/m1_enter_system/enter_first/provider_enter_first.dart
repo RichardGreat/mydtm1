@@ -74,7 +74,7 @@ class ProviderEnterFirst extends ChangeNotifier {
 
   /// #1 Authorization
   late ModelAuthorizationParse modelAuthorizationParse;
-  late ModelAuthorizationError modelAuthorizationError;
+  late ModelErrorUserName modelAuthorizationError;
   late ModelAuthorizationCaptchaError modelAuthorizationCaptchaError;
 
   bool boolAuthorization = false;
@@ -96,28 +96,30 @@ class ProviderEnterFirst extends ChangeNotifier {
     notifyListeners();
     String data =
         await NetworkAuthorize.getAuthorize(mapAuthorize: getAuthorizationData);
-    ModelUserToken modelUserToken = ModelUserToken.fromJson(jsonDecode(data));
-    String token = await NetworkGetToken.getTokenModel(
-        authCode: modelUserToken.data.authorizationCode);
-    ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(token));
-    box.put("token", modelGetToken.data.accessToken);
-    log(box.get("token"));
-    if (box.get("token").toString().length > 30) {
-      Navigator.pushAndRemoveUntil(
-          context,
-          CupertinoPageRoute(
-            builder: (context) =>   MainPages(),
-          ), (route) => false);
-    }
-    boolAuthorization = false;
+
+
     try {
+      ModelUserToken modelUserToken = ModelUserToken.fromJson(jsonDecode(data));
+      String token = await NetworkGetToken.getTokenModel(
+          authCode: modelUserToken.data.authorizationCode);
+      ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(token));
+      box.put("token", modelGetToken.data.accessToken);
+      log(box.get("token"));
+      if (box.get("token").toString().length > 30) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            CupertinoPageRoute(
+              builder: (context) =>   MainPages(),
+            ), (route) => false);
+      }
+      boolAuthorization = false;
       modelAuthorizationParse =
           ModelAuthorizationParse.fromJson(jsonDecode(data));
     } catch (e) {
       try {
         boolAuthorization = false;
         modelAuthorizationError =
-            ModelAuthorizationError.fromJson(jsonDecode(data));
+            ModelErrorUserName.fromJson(jsonDecode(data));
         MyWidgets.scaffoldMessengerBottom(
             context: context,
             valueText: modelAuthorizationError.errors.password[0]);
@@ -130,7 +132,6 @@ class ProviderEnterFirst extends ChangeNotifier {
       }
     }
     notifyListeners();
-    log(jsonEncode(modelAuthorizationParse));
   }
 
   /// #1

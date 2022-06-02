@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
+import 'package:mydtm/view/pages/m6_profile/widget_main_profile/app_bar.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/body_no_profile_info.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/body_profile.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class _MainProfileState extends State<MainProfile> {
       create: (context) => providerProfile,
       child: Consumer<ProviderProfile>(
         builder: (context, value, child) => Scaffold(
+          appBar: appBarProfile(context: context, providerProfile: providerProfile),
             body: SafeArea(
                 child:box.get("token").toString().length  > 30
                     ?

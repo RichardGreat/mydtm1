@@ -1,5 +1,6 @@
 {
   "uz": "uzbek",
+  "registration": "Ro'yxatdan o'tish",
   "identification": "Xizmatdan foydalanish uchun identifikatsiya tizimi orqali kirishingiz kerak",
   "serviceNot": "Xizmat vaqtingcha yopiq",
   "enter": "Kirish",
@@ -7,7 +8,7 @@
   "fillInField": "Maydonlarni to'ldiring",
   "noInfoCheck": "Ma'lumotlar to'liq emas",
   "aboutService": "Xizmat haqida",
-  "noAccount": "Siz identifikatsiyadan o'tmagansiz",
+  "noAccount": "Siz identifikatsiya tizimidan o'ting",
   "choose": "Tanlang",
   "state": "Davlat",
   "province": "Hudud",
@@ -15,13 +16,25 @@
   "address": "Manzil",
   "graduated": "Umumta'lim muassasi",
   "gType": "Muassasi turi",
-  "gName": "Muassasi turi",
+  "gName": "Muassasi nomi",
   "fillAll": "Barcha qatorlarni to'ldiring",
   "exet": "Chiqish",
   "system_infor": "Tizim ma'lumoti",
   "help": "Yordam",
   "settings": "Sozlash",
   "advice": "advice",
-  "news": "news"
+  "news": "news",
+  "or": "Yoki",
+  "year": "yil",
+  "bYear":"Tugatgan yili",
+  "document": "Hujjat seriyasi va raqami",
+  "kodLength": "uzunlig",
+  "phoneNumber": "Telefon raqam",
+  "checkField": "Maydonlarni to'ldirilganini tekshiring",
+  "goMainScreen": "Asosiy ekranga qaytish"
+
+
+
+
 
 }

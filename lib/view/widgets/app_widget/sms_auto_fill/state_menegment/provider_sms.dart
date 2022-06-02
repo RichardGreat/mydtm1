@@ -62,10 +62,8 @@ class ProviderSms extends ChangeNotifier {
           ModelRegistrationSms.fromJson(jsonDecode(dataSms));
       if (modelRegistrationSms.status == 1) {
         boolRegistration = false;
-
         smsId = modelRegistrationSms.data.smsId.toString();
         smsTimer(timers: modelRegistrationSms.data.endDate, context: context);
-
         boolData = true;
         notifyListeners();
       }
@@ -77,15 +75,14 @@ class ProviderSms extends ChangeNotifier {
         dataRegisSmsMessage = modelRegistrationHave.errors.username[0];
         boolData = true;
         notifyListeners();
-
         /// ro'yxatdan o'tgan polzovitl
       } catch (e) {
         /// Captchada xato
-        MyWidgets.scaffoldMessengerBottom(context: context, valueText: dataSms);
-         modelRegistrationCaptchaError =
+
+        modelRegistrationCaptchaError =
             ModelRegistrationCaptchaError.fromJson(jsonDecode(dataSms));
-          // await Future.delayed(Duration(seconds: 3));
-          // Navigator.of(context).pop();
+        MyWidgets.scaffoldMessengerBottom(context: context, valueText: modelRegistrationCaptchaError.errors);
+          Navigator.of(context).pop();
 
         log("catch");
         log(e.toString());

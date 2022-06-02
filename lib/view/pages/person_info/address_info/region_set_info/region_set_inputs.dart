@@ -1,7 +1,5 @@
 import 'dart:developer';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mydtm/view/pages/person_info/address_info/provider_address_info.dart';
 import 'package:mydtm/view/pages/person_info/address_info/region_set_info/province.dart';
 import 'package:mydtm/view/pages/person_info/address_info/region_set_info/district_choose.dart';

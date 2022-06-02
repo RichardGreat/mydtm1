@@ -19,7 +19,7 @@ modelSheetGraduatedYear(
           builder: (BuildContext context, setState) => providerGraduated
               .boolGraduatedYear
               ? Container(
-              height: MediaQuery.of(contexts).size.height * 0.5,
+              height: MediaQuery.of(contexts).size.height * 0.6,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8)),
@@ -36,7 +36,7 @@ modelSheetGraduatedYear(
                           controller:
                           providerGraduated.textEditYearSearch,
                           maxLines: 1,
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.number,
                           onChanged: (values) {
 
                             providerGraduated.searchYear(value: values);
@@ -111,7 +111,7 @@ modelSheetGraduatedYear(
                         ),
                         onTap: () {
                           providerGraduated.setMethodGraduatedYear(
-                              id: providerGraduated.listGraduatedYearTemp
+                              id: providerGraduated.listGraduatedYearTemp[index]
                                   .toString());
 
                           Navigator.of(contexts).pop();
@@ -125,28 +125,3 @@ modelSheetGraduatedYear(
         );
       });
 }
-// class GetData extends StatefulWidget {
-//   ProviderGraduated providerGraduated;
-//    GetData({Key? key, required this.providerGraduated}) : super(key: key);
-//
-//   @override
-//   State<GetData> createState() => _GetDataState();
-// }
-//
-// class _GetDataState extends State<GetData> {
-//
-//   @override
-//   initState(){
-//     widget.providerGraduated.getGraduatedType(providerGraduated: widget.providerGraduated);
-//     setState((){
-//
-//     });
-//
-//   }
-//   @override
-//   Widget build(BuildContext context) {
-//
-//     return  Scaffold(body: );
-//
-//   }
-// }
