@@ -15,6 +15,9 @@ import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart';
+import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderEnterFirst extends ChangeNotifier {
   ///#offline App Logic
@@ -95,9 +98,8 @@ class ProviderEnterFirst extends ChangeNotifier {
     boolAuthorization = true;
     notifyListeners();
     String data =
-        await NetworkAuthorize.getAuthorize(mapAuthorize: getAuthorizationData);
-
-
+    await NetworkAuthorize.getAuthorize(mapAuthorize: getAuthorizationData);
+  log(data);
     try {
       ModelUserToken modelUserToken = ModelUserToken.fromJson(jsonDecode(data));
       String token = await NetworkGetToken.getTokenModel(
@@ -105,11 +107,15 @@ class ProviderEnterFirst extends ChangeNotifier {
       ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(token));
       box.put("token", modelGetToken.data.accessToken);
       log(box.get("token"));
-      if (box.get("token").toString().length > 30) {
+      if (box
+          .get("token")
+          .toString()
+          .length > 30) {
+        // ignore: use_build_context_synchronously
         Navigator.pushAndRemoveUntil(
             context,
             CupertinoPageRoute(
-              builder: (context) =>   MainPages(),
+              builder: (context) => const MainPages(),
             ), (route) => false);
       }
       boolAuthorization = false;
@@ -124,16 +130,31 @@ class ProviderEnterFirst extends ChangeNotifier {
             context: context,
             valueText: modelAuthorizationError.errors.password[0]);
       } catch (e) {
-        boolAuthorization = false;
-        modelAuthorizationCaptchaError =
-            ModelAuthorizationCaptchaError.fromJson(jsonDecode(data));
-        MyWidgets.scaffoldMessengerBottom(
-            context: context, valueText: modelAuthorizationCaptchaError.errors);
+        try {
+          boolAuthorization = false;
+          modelAuthorizationCaptchaError =
+              ModelAuthorizationCaptchaError.fromJson(jsonDecode(data));
+          MyWidgets.scaffoldMessengerBottom(
+              context: context,
+              valueText: modelAuthorizationCaptchaError.errors);
+        } catch (e) {
+          // smsId: widget.captchaValue, endTime: int.parse(widget.captchaKey), context: context);
+          ModelRegistrationSms modelRegistrationSms = ModelRegistrationSms.fromJson(jsonDecode(data));
+
+
+          // ignore: use_build_context_synchronously
+          pushNewScreen(context, screen: SmsAutoFillUi(
+              phoneNum: textAuthLogin.text,
+              password: textAuthPassword.text,
+              captchaKey: modelRegistrationSms.data.endDate.toString(),
+              captchaValue: modelRegistrationSms.data.smsId.toString(),
+              registration: 99));
+        }
       }
     }
     notifyListeners();
   }
 
-  /// #1
+/// #1
 
 }

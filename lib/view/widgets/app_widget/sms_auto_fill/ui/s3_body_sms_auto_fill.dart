@@ -14,15 +14,18 @@ class SmsAutoFillUi extends StatefulWidget {
   String captchaValue;
 
   ///
-  int registration; /// agar registration 0 bo'lsa parol tiklash
+  int registration;
 
-  SmsAutoFillUi({Key? key,
-    required this.phoneNum,
-    required this.password,
-    required this.captchaKey,
-    required this.captchaValue,
-    required this.registration
-    }) : super(key: key);
+  /// agar registration 0 bo'lsa parol tiklash
+
+  SmsAutoFillUi(
+      {Key? key,
+      required this.phoneNum,
+      required this.password,
+      required this.captchaKey,
+      required this.captchaValue,
+      required this.registration})
+      : super(key: key);
 
   @override
   State<SmsAutoFillUi> createState() => _SmsAutoFillUiState();
@@ -33,26 +36,32 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
 
   @override
   void initState() {
+    if (widget.registration != 99) {
+      providerSms.getSmsCode(
+          context: context,
+          captchaKey: widget.captchaKey,
+          captchaValue: widget.captchaValue,
+          password: widget.password,
+          phoneNum: widget.phoneNum,
+          numbers: widget.registration);
 
-    providerSms.getSmsCode(
-        context: context,
-        captchaKey:  widget.captchaKey,
-        captchaValue: widget.captchaValue,
-        password: widget.password,
-        phoneNum: widget.phoneNum,
-        numbers: widget.registration);
-
+    } else if (widget.registration == 99) {
+      providerSms.regNotActivated(
+          smsId: widget.captchaValue, endTime: int.parse(widget.captchaKey), context: context);
+    }
 
     super.initState();
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
-    if(providerSms.boolData) {
+    if (providerSms.boolData) {
       providerSms.timer.cancel();
     }
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -71,12 +80,15 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               uiText(
-                                  context: context, phoneNum: widget.phoneNum,
-                              providerSms: providerSms
-                              ),
+                                  context: context,
+                                  phoneNum: widget.phoneNum,
+                                  providerSms: providerSms),
                               const SizedBox(height: 10),
 
-                              Expanded(child: bottomUI(context: context, providerSms: providerSms))
+                              Expanded(
+                                  child: bottomUI(
+                                      context: context,
+                                      providerSms: providerSms))
 
                               // Text(providerSms.valueSignature ?? ""),
                             ],

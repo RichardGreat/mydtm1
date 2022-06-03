@@ -28,18 +28,14 @@ Widget bottomUI(
         color: const Color.fromRGBO(48, 192, 192, 1),
         onPressed: () {
           log(providerSms.smsId.toString());
-          ///
-          // providerSms.controller.text.length >= 5
-          //     ? Navigator.push(
-          //         context,
-          //         CupertinoPageRoute(
-          //           builder: (context) => NewPassword(
-          //               smsCode: providerSms.controller.text.trim(),
-          //               smsId: providerSms.smsId!,
-          //
-          //           ),
-          //         ))
-          //     : {};
+          // providerSms.sentServer(
+          //     appId: providerSms.smsIdActivate,
+          //     smsCode: providerSms.controller.text);
+          if (providerSms.controller.text.length > 4) {
+            providerSms.sentServer(
+                appId: providerSms.smsIdActivate,
+                smsCode: providerSms.controller.text);
+          }
 
           ///
         },

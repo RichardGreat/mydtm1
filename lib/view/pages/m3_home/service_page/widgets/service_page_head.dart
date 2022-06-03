@@ -3,7 +3,7 @@ import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/provider_service_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 Widget servicePageHead(
     {required BuildContext context,
     required ProviderServicePage providerServicePage,
@@ -36,7 +36,7 @@ Widget servicePageHead(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               child: MyWidgets.robotoFontText(
-                  text: "Xizmatdan foydalanish",
+                  text: "userService".tr(),
                   textColor: MyColors.appColorWhite())),
           const SizedBox(height: 20),
         ],

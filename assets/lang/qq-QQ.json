@@ -33,10 +33,13 @@
   "checkField": "Maydonlarni to'ldirilganini tekshiring",
   "goMainScreen": "Asosiy ekranga qaytish",
   "addCertificate": "Chet tili sertifikatini qo'shish",
-  "add": "Qo'shish"
-
-
-
-
+  "add": "Qo'shish",
+  "continue": "Davom etish",
+  "enterSms": "Sms kiriting",
+  "reSentSms": "Sms qayta yuborish",
+  "smsSent":"Sms yuborish",
+  "chooseDirection":"Yo'nlish tanlang",
+  "userService": "Xizmatdan foydalanish",
+  "selectedDirection": "Tanlangan yo'nalishlar"
 
 }

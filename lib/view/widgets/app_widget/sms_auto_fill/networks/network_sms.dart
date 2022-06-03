@@ -13,17 +13,6 @@ class NetworkSmsAutoFill {
       required String smsHash}) async {
     Response response;
     var dio = Dio();
-    // Map<String, dynamic> myMap = {
-    //   "username": userName,
-    //   "password": password,
-    //   "captcha_key": captchaKey,
-    //   "captcha_val": captchaValue
-    // };
-    // log("##############");
-    // log(jsonEncode(myMap));
-    log("##############");
-    log(smsHash);
-
     response = await dio.post("${MainUrl.mainUrls}/auth/register", data: {
       "username": userName,
       "password": password,
@@ -32,9 +21,9 @@ class NetworkSmsAutoFill {
       //, "sms_hash":smsHash
     });
     return jsonEncode(response.data);
-    // return "";
   }
 
+  ///
   Future<String> resetPasswordSms(
       {required String userName,
       required String captchaKey,
@@ -48,9 +37,22 @@ class NetworkSmsAutoFill {
       "username": userName,
       "captcha_key": captchaKey,
       "captcha_val": captchaVal,
-      //"sms_hash": smsHash
     });
     log(response.data.toString());
+    return jsonEncode(response.data);
+  }
+
+  static Future<String> sentServerSms(
+      {required String smsCode,
+      required String smsId,
+      required String appId}) async {
+
+    var dio = Dio();
+    Response response;
+    log("sms_code: $smsCode, sms_id:$smsId");
+    response = await dio.post("${MainUrl.mainUrls}/auth/check-sms",
+        data: {"sms_code": smsCode, "sms_id": smsId, "app_id": "1"});
+    log(jsonEncode(response.data));
     return jsonEncode(response.data);
   }
 }

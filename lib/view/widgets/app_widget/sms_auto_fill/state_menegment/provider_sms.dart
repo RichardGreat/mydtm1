@@ -12,7 +12,7 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/networks/network_sms
 import 'package:otp_autofill/otp_autofill.dart';
 
 class ProviderSms extends ChangeNotifier {
-  late OTPTextEditController controller;
+  late OTPTextEditController controller = OTPTextEditController(codeLength: 5);
 
   final scaffoldKey = GlobalKey();
   String? valueSignature;
@@ -21,7 +21,7 @@ class ProviderSms extends ChangeNotifier {
   late Duration time1;
   late Timer timer;
   int timeCount = 0;
-  int totalCount = 1200;
+  int totalCount = 300;
   String? timeFormatString;
   bool boolData = false;
   dynamic smsId;
@@ -132,6 +132,7 @@ class ProviderSms extends ChangeNotifier {
     notifyListeners();
   }
 
+
   Future changePhone(
       {required String userName,
       required String smsHash,
@@ -167,11 +168,11 @@ class ProviderSms extends ChangeNotifier {
     ss = (timeCount % 60).toStringAsFixed(0);
     mm = ((timeCount ~/ 60) % 60).toStringAsFixed(0);
     hh = ((timeCount ~/ 3600).toStringAsFixed(0));
-    hh = hh.length < 2 ? ("0" + hh).substring(0, 2) : "00";
+    hh = hh.length < 2 ? ("0$hh").substring(0, 2) : "00";
     mm =
-        mm.length < 2 ? ("0" + mm).substring(0, 2) : ("0" + mm).substring(1, 3);
+        mm.length < 2 ? ("0$mm").substring(0, 2) : ("0$mm").substring(1, 3);
     ss =
-        ss.length < 2 ? ("0" + ss).substring(0, 2) : ("0" + ss).substring(1, 3);
+        ss.length < 2 ? ("0$ss").substring(0, 2) : ("0$ss").substring(1, 3);
     timeFormatString = "$mm:$ss";
   }
 
@@ -195,6 +196,30 @@ class ProviderSms extends ChangeNotifier {
 
   /// Begin
   late String code1;
+/// registratsiya qilgan sms activate qilmagan
+  String smsIdActivate = "";
+
+  Future regNotActivated({
+  required String smsId,
+  required int endTime,
+    required BuildContext context
+})async  {
+    boolRegistration = false;
+    smsIdActivate = smsId;
+    smsTimer(timers: endTime, context: context);
+    boolData = true;
+    notifyListeners();
+  }
+
+
+
+  Future sentServer({required String appId, required String smsCode})async{
+    try{
+
+      String data = await NetworkSmsAutoFill.sentServerSms(smsCode: smsCode, smsId: smsId, appId: "1");
+      log(data);
+    }catch(e){}
+  }
 
   Future getSmsCode(
       {required BuildContext context,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
 import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/foreigion_lang_add.dart';
@@ -52,6 +53,14 @@ class ProviderCheckInformation extends ChangeNotifier {
       pushNewScreen(
         context,
         screen: const ForeignLanguageAdd(),
+        withNavBar: false,
+        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+      );
+    }
+    else if (index == 5) {
+      pushNewScreen(
+        context,
+        screen: const ChooseEdu(),
         withNavBar: false,
         pageTransitionAnimation: PageTransitionAnimation.cupertino,
       );
