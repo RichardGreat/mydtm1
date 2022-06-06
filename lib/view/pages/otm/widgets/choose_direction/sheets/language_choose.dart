@@ -1,49 +1,52 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/person_info/address_info/provider_address_info.dart';
+import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-modelSheetDistrict(
+sheetLanguageChooseTest(
     {required BuildContext context,
-    required ProviderAddressInfo providerAddressInfo}) {
-  showModalBottomSheet<void>(
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10), topRight: Radius.circular(10))),
-      barrierColor: Colors.black.withOpacity(0.2),
+    required ProviderChooseEdu providerChooseEdu}) {
+  showModalBottomSheet(
       context: context,
-      builder: (_) => SheetDistrict(providerAddressInfo: providerAddressInfo));
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) => Container(
+            height: MediaQuery.of(context).size.height * 0.6,
+            child: LangEduChooseTest(providerChooseEdu: providerChooseEdu),
+          ),
+        );
+      });
 }
 
-// providerAddressInfo.getDistrict(parentId: providerAddressInfo.provinceId);
-class SheetDistrict extends StatefulWidget {
-  late ProviderAddressInfo providerAddressInfo;
+class LangEduChooseTest extends StatefulWidget {
+  late ProviderChooseEdu providerChooseEdu;
 
-  SheetDistrict({Key? key, required this.providerAddressInfo})
+  LangEduChooseTest({Key? key, required this.providerChooseEdu})
       : super(key: key);
 
   @override
-  State<SheetDistrict> createState() => _SheetDistrictState();
+  State<LangEduChooseTest> createState() => _LangEduChooseTestState();
 }
 
-class _SheetDistrictState extends State<SheetDistrict> {
-  Future getData() async {
-    await widget.providerAddressInfo
-        .getDistrict(parentId: widget.providerAddressInfo.provinceId);
+class _LangEduChooseTestState extends State<LangEduChooseTest> {
+  Future langEduChooseTest() async {
+    // await Future.delayed(Duration(seconds: 1));
+    await widget.providerChooseEdu.getLangEduChooseTest(
+        context: context, providerChooseEdu: widget.providerChooseEdu);
     setState(() {});
   }
 
   @override
   initState() {
-    getData();
+    langEduChooseTest();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: widget.providerAddressInfo.boolGetDistrict
+      child: widget.providerChooseEdu.boolLangEduTest
           ? Container(
               height: MediaQuery.of(context).size.height * 0.6,
               decoration: BoxDecoration(
@@ -61,12 +64,12 @@ class _SheetDistrictState extends State<SheetDistrict> {
                             width: MediaQuery.of(context).size.width * 0.8,
                             height: 50,
                             child: TextFormField(
-                              controller: widget
-                                  .providerAddressInfo.txtDistrictController,
+                              controller: widget.providerChooseEdu
+                                  .textLangEduChooseTestController,
                               minLines: 1,
                               onChanged: (value) {
-                                widget.providerAddressInfo
-                                    .searchDistrict(value: value);
+                                widget.providerChooseEdu
+                                    .searchLangEduChooseTest(value: value);
                                 setState(() {});
                               },
                               textAlignVertical: TextAlignVertical.center,
@@ -74,8 +77,8 @@ class _SheetDistrictState extends State<SheetDistrict> {
                                 prefixIcon: const Icon(Icons.search),
                                 suffix: IconButton(
                                     onPressed: () {
-                                      widget.providerAddressInfo
-                                          .clearTextDistrict();
+                                      widget.providerChooseEdu
+                                          .clearTextLangEduChoose();
                                       setState(() {});
                                     },
                                     icon: const Icon(
@@ -105,8 +108,9 @@ class _SheetDistrictState extends State<SheetDistrict> {
                           ),
                           IconButton(
                               onPressed: () {
-                                widget.providerAddressInfo
-                                    .txtDistrictController.clear();
+                                widget.providerChooseEdu
+                                    .textLangEduChooseTestController
+                                    .clear();
                                 Navigator.of(context).pop();
                               },
                               icon: const Icon(Icons.arrow_downward_outlined))
@@ -115,30 +119,29 @@ class _SheetDistrictState extends State<SheetDistrict> {
                   Expanded(
                     child: ListView.builder(
                       itemCount: widget
-                          .providerAddressInfo.listGetDistrictTemp.length,
+                          .providerChooseEdu.listLangEduChooseTestTemp.length,
                       itemBuilder: (context, index) => GestureDetector(
                         child: Card(
                           margin: const EdgeInsets.all(8),
                           child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Text(
-                               widget.providerAddressInfo.listGetDistrictTemp
-                                  [index].name,
+                              widget.providerChooseEdu
+                                  .listLangEduChooseTestTemp[index].name,
                               overflow: TextOverflow.fade,
                               softWrap: true,
                               maxLines: 3,
                               textAlign: TextAlign.start,
-
                             ),
                           ),
                         ),
                         onTap: () {
-                          widget.providerAddressInfo.setDistrict(
-                              distId: widget.providerAddressInfo
-                                  .listGetDistrictTemp[index].id
-                                  .toString(),
-                              distName: widget.providerAddressInfo
-                                  .listGetDistrictTemp[index].name);
+                          widget.providerChooseEdu.setLanguage(
+                              name: widget.providerChooseEdu
+                                  .listLangEduChooseTestTemp[index].name,
+                              id: widget.providerChooseEdu
+                                  .listLangEduChooseTestTemp[index].id
+                                  .toString());
                           Navigator.of(context).pop();
                         },
                       ),

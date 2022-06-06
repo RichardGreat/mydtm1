@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/pages/otm/widgets/app_bar_choose_edu.dart';
 import 'package:mydtm/view/pages/otm/widgets/body_choose_edu.dart';
@@ -13,15 +14,22 @@ class ChooseEdu extends StatefulWidget {
 
 class _ChooseEduState extends State<ChooseEdu> {
   ProviderChooseEdu providerChooseEdu = ProviderChooseEdu();
+  var box = Hive.box("online");
 
+  @override
+  initState(){
+    print("token ");
+    print(box.get("token"));
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => providerChooseEdu,
       child: Consumer(
-        builder: (context, value, child) => Scaffold(
+        builder: (contexts, value, child) => Scaffold(
             appBar: appBarEduChoose(
-                context: context, providerChooseEdu: providerChooseEdu),
+                context: contexts, providerChooseEdu: providerChooseEdu),
             body: SafeArea(
               child: Container(
                 margin: const EdgeInsets.all(15),

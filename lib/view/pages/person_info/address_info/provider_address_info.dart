@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_address.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_district.dart';
@@ -7,7 +8,6 @@ import 'package:mydtm/data/internet_connections/m6_profile/get_region.dart';
 import 'package:mydtm/data/model_parse/m6_model/district.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_address.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_country.dart';
-import 'package:mydtm/view/pages/person_info/address_info/sheet_province.dart';
 
 class ProviderAddressInfo extends ChangeNotifier {
   final keyAddressInfo = GlobalKey<FormState>();
@@ -61,19 +61,16 @@ class ProviderAddressInfo extends ChangeNotifier {
   late ModelGetCountry modelGetCountry;
   bool boolGetRegion = false;
 
-  Future getRegion(
-      {required BuildContext context,
-      required ProviderAddressInfo providerAddressInfo}) async {
+  Future getRegion({required BuildContext context}) async {
     try {
       boolGetRegion = false;
 
       String dataCountry = await networkGetRegion.getRegions();
       modelGetCountry = ModelGetCountry.fromJson(jsonDecode(dataCountry));
+      log(dataCountry);
       listGetCountryTemp.clear();
       listGetCountryTemp.addAll(modelGetCountry.data);
       boolGetRegion = true;
-      modelSheetProvince(
-          context: context, providerAddressInfo: providerAddressInfo);
       notifyListeners();
     } catch (e) {}
   }
@@ -116,18 +113,44 @@ class ProviderAddressInfo extends ChangeNotifier {
   ///
   NetworkDistrict networkDistrict = NetworkDistrict();
   late ModelGetDistrict modelGetDistrict;
+  List<DataGetDistrict> listGetDistrict = [];
+  List<DataGetDistrict> listGetDistrictTemp = [];
   bool boolGetDistrict = false;
+  TextEditingController txtDistrictController = TextEditingController();
 
   Future getDistrict({required String parentId}) async {
     try {
       boolGetDistrict = false;
       String data = await networkDistrict.getDistricts(parentId: parentId);
       modelGetDistrict = ModelGetDistrict.fromJson(jsonDecode(data));
+      listGetDistrict = modelGetDistrict.data;
+      listGetDistrictTemp.clear();
+      listGetDistrictTemp.addAll(listGetDistrict);
       boolGetDistrict = true;
       notifyListeners();
     } catch (e) {}
   }
 
+  Future searchDistrict({required String value}) async {
+    listGetDistrictTemp.clear();
+    for (var val in listGetDistrict) {
+      if (val.name.trim().toLowerCase().contains(value.trim().toLowerCase())) {
+        listGetDistrictTemp.add(val);
+
+      }
+    }
+    notifyListeners();
+  }
+
+  Future clearTextDistrict()async  {
+    boolGetDistrict = false;
+    notifyListeners();
+    listGetDistrictTemp.clear();
+    txtDistrictController.clear();
+    listGetDistrictTemp.addAll(listGetDistrict);
+    boolGetDistrict = true;
+    notifyListeners();
+  }
   ///
   Future setDistrict({required String distId, required String distName}) async {
     districtName = distName;

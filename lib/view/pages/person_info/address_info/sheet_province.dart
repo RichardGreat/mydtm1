@@ -15,108 +15,130 @@ modelSheetProvince(
       barrierColor: Colors.black.withOpacity(0.2),
       context: context,
       builder: (_) {
-    return StatefulBuilder(
-        builder: (context, state) =>
-         providerAddressInfo.boolGetRegion
-            ? Container(
-                height: MediaQuery.of(context).size.height * 0.8,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 10),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              height: 50,
-                              child: TextFormField(
-                                controller:
-                                    providerAddressInfo.txtEditControllerSearch,
-                                minLines: 1,
-                                onChanged: (value) {
-                                  providerAddressInfo.searchRegion(
-                                      value: value);
-                                  state((){});
-                                },
-                                textAlignVertical: TextAlignVertical.center,
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.search),
-                                  suffix: IconButton(
-                                      onPressed: () {
-                                        providerAddressInfo
-                                            .clearCloseRegionSheet();
-                                        state((){});
-                                      },
-                                      icon: const Icon(
-                                        Icons.clear,
-                                        size: 12,
-                                      )),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: MyColors.appColorGrey400(),
-                                    ),
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: MyColors.appColorGrey400(),
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: MyColors.appColorGrey400(),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  providerAddressInfo
-                                      .clearCloseRegionSheet();
-                                  Navigator.of(context).pop();
+    return SheetProvince(providerAddressInfo: providerAddressInfo);
+      });
+}
+class SheetProvince extends StatefulWidget {
+  late ProviderAddressInfo providerAddressInfo;
+   SheetProvince({Key? key, required this.providerAddressInfo}) : super(key: key);
 
-                                },
-                                icon: const Icon(Icons.arrow_downward_outlined))
-                          ]),
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount:
-                            providerAddressInfo.listGetCountryTemp.length,
-                        itemBuilder: (context, index) => GestureDetector(
-                          child: Card(
-                            margin: const EdgeInsets.all(8),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: MyWidgets.robotoFontText(
-                                text: providerAddressInfo
-                                    .listGetCountryTemp[index].name,
-                              ),
+  @override
+  State<SheetProvince> createState() => _SheetProvinceState();
+}
+
+class _SheetProvinceState extends State<SheetProvince> {
+
+  Future getRegionName()async{
+    await widget.providerAddressInfo.getRegion(context: context);
+    setState((){});
+  }
+
+  @override
+  initState(){
+    getRegionName() ;
+
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: MediaQuery.of(context).size.height * 0.8,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8)),
+        child: Column(
+          children: [
+            const SizedBox(height: 10),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: 50,
+                      child: TextFormField(
+                        controller:
+                        widget.providerAddressInfo.txtEditControllerSearch,
+                        minLines: 1,
+                        onChanged: (value) {
+                          widget. providerAddressInfo.searchRegion(
+                              value: value);
+                          setState((){});
+                        },
+                        textAlignVertical: TextAlignVertical.center,
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.search),
+                          suffix: IconButton(
+                              onPressed: () {
+                                widget.  providerAddressInfo
+                                    .clearCloseRegionSheet();
+                                setState((){});
+                              },
+                              icon: const Icon(
+                                Icons.clear,
+                                size: 12,
+                              )),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: MyColors.appColorGrey400(),
                             ),
                           ),
-                          onTap: () {
-                            providerAddressInfo.setProvince(
-                                pronId: providerAddressInfo
-                                    .listGetCountryTemp[index].id
-                                    .toString(),
-                                proName: providerAddressInfo
-                                    .listGetCountryTemp[index].name);
-                            Navigator.of(context).pop();
-                          },
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: MyColors.appColorGrey400(),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: MyColors.appColorGrey400(),
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ],
-                ))
-            : const Center(child: CupertinoActivityIndicator()));
-      });
+                    IconButton(
+                        onPressed: () {
+                          widget.    providerAddressInfo
+                              .clearCloseRegionSheet();
+                          Navigator.of(context).pop();
+
+                        },
+                        icon: const Icon(Icons.arrow_downward_outlined))
+                  ]),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount:
+                widget.providerAddressInfo.listGetCountryTemp.length,
+                itemBuilder: (context, index) => GestureDetector(
+                  child: Card(
+                    margin: const EdgeInsets.all(8),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: MyWidgets.robotoFontText(
+                        text:   widget.providerAddressInfo
+                            .listGetCountryTemp[index].name,
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    widget.   providerAddressInfo.setProvince(
+                        pronId:  widget. providerAddressInfo
+                            .listGetCountryTemp[index].id
+                            .toString(),
+                        proName:  widget. providerAddressInfo
+                            .listGetCountryTemp[index].name);
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ));
+  }
 }

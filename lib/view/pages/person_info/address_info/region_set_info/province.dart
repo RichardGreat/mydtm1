@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/address_info/provider_address_info.dart';
+import 'package:mydtm/view/pages/person_info/address_info/sheet_province.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
@@ -16,8 +17,10 @@ Widget province(
       const SizedBox(height: 8),
       GestureDetector(
         onTap: () {
-          providerAddressInfo.getRegion(
+          modelSheetProvince(
               context: context, providerAddressInfo: providerAddressInfo);
+          // providerAddressInfo.getRegion(
+          //     context: context, providerAddressInfo: providerAddressInfo);
         },
         child: Container(
           height: 50,

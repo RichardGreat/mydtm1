@@ -40,6 +40,13 @@
   "smsSent":"Sms yuborish",
   "chooseDirection":"Yo'nlish tanlang",
   "userService": "Xizmatdan foydalanish",
-  "selectedDirection": "Tanlangan yo'nalishlar"
+  "selectedDirection": "Tanlangan yo'nalishlar",
+  "grant": "Grant",
+  "contract": "Kontrakt",
+  "chooseTestRegion": "Test topshirishish hududi",
+  "chooseLangEmode": "Ta'lim tili",
+  "chooseGrantContract":"Tanlov ustuvorligi",
+  "testGraphic": "Test topshirish alifbosi",
+  "chooseEduType": "Ta'lim shaklini tanlang"
 
 }

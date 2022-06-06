@@ -1,51 +1,58 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/person_info/address_info/provider_address_info.dart';
+import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-modelSheetDistrict(
-    {required BuildContext context,
-    required ProviderAddressInfo providerAddressInfo}) {
-  showModalBottomSheet<void>(
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10), topRight: Radius.circular(10))),
-      barrierColor: Colors.black.withOpacity(0.2),
-      context: context,
-      builder: (_) => SheetDistrict(providerAddressInfo: providerAddressInfo));
+sheetOTMEdu(
+    {required BuildContext contexts,
+    required ProviderChooseEdu providerChooseEdu}) {
+  showModalBottomSheet(
+      context: contexts,
+      enableDrag: true,
+      isScrollControlled: true,
+      builder: (_) {
+        return OTMEdu(providerChooseEdu: providerChooseEdu, contexts: contexts);
+      });
 }
 
-// providerAddressInfo.getDistrict(parentId: providerAddressInfo.provinceId);
-class SheetDistrict extends StatefulWidget {
-  late ProviderAddressInfo providerAddressInfo;
+// ignore: must_be_immutable
+class OTMEdu extends StatefulWidget {
+  ProviderChooseEdu providerChooseEdu;
+  BuildContext contexts;
 
-  SheetDistrict({Key? key, required this.providerAddressInfo})
+  OTMEdu({Key? key, required this.providerChooseEdu, required this.contexts})
       : super(key: key);
 
   @override
-  State<SheetDistrict> createState() => _SheetDistrictState();
+  State<OTMEdu> createState() => _OTMEduState();
 }
 
-class _SheetDistrictState extends State<SheetDistrict> {
-  Future getData() async {
-    await widget.providerAddressInfo
-        .getDistrict(parentId: widget.providerAddressInfo.provinceId);
+class _OTMEduState extends State<OTMEdu> {
+  Future countValue() async {
+    // await Future.delayed(Duration(seconds: 1));
+    await widget.providerChooseEdu.getOtm1();
     setState(() {});
   }
 
+  // Future setData({required String name, required String id}) async {
+  //   await widget.providerChooseEdu
+  //       .setTestRegion(regionId: id, regionName: name);
+  //   setState(() {});
+  // }
+
   @override
   initState() {
-    getData();
-    super.initState();
+    countValue();
+    // super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(_) {
     return Container(
-      child: widget.providerAddressInfo.boolGetDistrict
+      child: widget.providerChooseEdu.boolOtmData
           ? Container(
-              height: MediaQuery.of(context).size.height * 0.6,
+              height: MediaQuery.of(context).size.height * 0.95,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Column(
@@ -61,12 +68,11 @@ class _SheetDistrictState extends State<SheetDistrict> {
                             width: MediaQuery.of(context).size.width * 0.8,
                             height: 50,
                             child: TextFormField(
-                              controller: widget
-                                  .providerAddressInfo.txtDistrictController,
+                              controller:
+                                  widget.providerChooseEdu.textOTMChoose,
                               minLines: 1,
                               onChanged: (value) {
-                                widget.providerAddressInfo
-                                    .searchDistrict(value: value);
+                                widget.providerChooseEdu.searchOtm(val: value);
                                 setState(() {});
                               },
                               textAlignVertical: TextAlignVertical.center,
@@ -74,8 +80,7 @@ class _SheetDistrictState extends State<SheetDistrict> {
                                 prefixIcon: const Icon(Icons.search),
                                 suffix: IconButton(
                                     onPressed: () {
-                                      widget.providerAddressInfo
-                                          .clearTextDistrict();
+                                      widget.providerChooseEdu.clearTextOtm1();
                                       setState(() {});
                                     },
                                     icon: const Icon(
@@ -105,8 +110,7 @@ class _SheetDistrictState extends State<SheetDistrict> {
                           ),
                           IconButton(
                               onPressed: () {
-                                widget.providerAddressInfo
-                                    .txtDistrictController.clear();
+                                widget.providerChooseEdu.textOTMChoose.clear();
                                 Navigator.of(context).pop();
                               },
                               icon: const Icon(Icons.arrow_downward_outlined))
@@ -114,31 +118,29 @@ class _SheetDistrictState extends State<SheetDistrict> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: widget
-                          .providerAddressInfo.listGetDistrictTemp.length,
+                      itemCount:
+                          widget.providerChooseEdu.listDataOtmTemp.length,
                       itemBuilder: (context, index) => GestureDetector(
                         child: Card(
                           margin: const EdgeInsets.all(8),
                           child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Text(
-                               widget.providerAddressInfo.listGetDistrictTemp
-                                  [index].name,
+                              widget.providerChooseEdu.listDataOtmTemp[index]
+                                  .name,
                               overflow: TextOverflow.fade,
                               softWrap: true,
                               maxLines: 3,
                               textAlign: TextAlign.start,
-
                             ),
                           ),
                         ),
                         onTap: () {
-                          widget.providerAddressInfo.setDistrict(
-                              distId: widget.providerAddressInfo
-                                  .listGetDistrictTemp[index].id
-                                  .toString(),
-                              distName: widget.providerAddressInfo
-                                  .listGetDistrictTemp[index].name);
+                          widget.providerChooseEdu.setOtm1(
+                              name: widget.providerChooseEdu
+                                  .listDataOtmTemp[index].name,
+                              id: widget
+                                  .providerChooseEdu.listDataOtmTemp[index].id);
                           Navigator.of(context).pop();
                         },
                       ),
