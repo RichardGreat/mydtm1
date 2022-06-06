@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:mydtm/data/internet_connections/person_info/check_user_info/check_user_info.dart';
+import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
@@ -8,7 +12,10 @@ import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderCheckInformation extends ChangeNotifier {
+
+
   List<ModelCheckInformationForDelete> myList = [
+
     ModelCheckInformationForDelete(
         id: 1, name: "Shaxsiy ma'lumotlar", status: 0),
     ModelCheckInformationForDelete(
@@ -19,6 +26,20 @@ class ProviderCheckInformation extends ChangeNotifier {
     ModelCheckInformationForDelete(id: 5, name: "Imtiyozlar", status: 1),
     ModelCheckInformationForDelete(id: 6, name: "Yo'nalish tanlash", status: 1),
   ];
+
+
+
+  NetworkCheckUserInfo networkCheckUserInfo = NetworkCheckUserInfo();
+  late ModelCheckUserInfo modelCheckUserInfo;
+  Future getInfoUser()async{
+    try{
+      String dataCheckInfo = await networkCheckUserInfo.getUserInfo(phoneNumber: "998489900");
+      modelCheckUserInfo = ModelCheckUserInfo.fromJson(jsonDecode(dataCheckInfo));
+      log(dataCheckInfo);
+    }catch(e){}
+    // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
+  }
+
 
   Future checkInfo({required int index, required BuildContext context}) async {
     if (index == 0) {

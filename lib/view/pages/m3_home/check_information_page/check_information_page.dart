@@ -19,6 +19,13 @@ class _CheckInformationState extends State<CheckInformation> {
       ProviderCheckInformation();
 
   @override
+  initState(){
+    // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
+    providerCheckInformation.getInfoUser();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => providerCheckInformation,
