@@ -6,13 +6,17 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 sheetOTMEdu(
     {required BuildContext contexts,
-    required ProviderChooseEdu providerChooseEdu}) {
+    required ProviderChooseEdu providerChooseEdu,
+    required int titleEduDirId}) {
   showModalBottomSheet(
       context: contexts,
       enableDrag: true,
       isScrollControlled: true,
       builder: (_) {
-        return OTMEdu(providerChooseEdu: providerChooseEdu, contexts: contexts);
+        return OTMEdu(
+            providerChooseEdu: providerChooseEdu,
+            contexts: contexts,
+            titleEduDirId: titleEduDirId);
       });
 }
 
@@ -20,8 +24,13 @@ sheetOTMEdu(
 class OTMEdu extends StatefulWidget {
   ProviderChooseEdu providerChooseEdu;
   BuildContext contexts;
+  int titleEduDirId;
 
-  OTMEdu({Key? key, required this.providerChooseEdu, required this.contexts})
+  OTMEdu(
+      {Key? key,
+      required this.providerChooseEdu,
+      required this.contexts,
+      required this.titleEduDirId})
       : super(key: key);
 
   @override
@@ -29,22 +38,16 @@ class OTMEdu extends StatefulWidget {
 }
 
 class _OTMEduState extends State<OTMEdu> {
+
   Future countValue() async {
-    // await Future.delayed(Duration(seconds: 1));
-    await widget.providerChooseEdu.getOtm1();
+    await widget.providerChooseEdu.getOtm1(titleEduDir: widget.titleEduDirId);
     setState(() {});
   }
-
-  // Future setData({required String name, required String id}) async {
-  //   await widget.providerChooseEdu
-  //       .setTestRegion(regionId: id, regionName: name);
-  //   setState(() {});
-  // }
 
   @override
   initState() {
     countValue();
-    // super.initState();
+    super.initState();
   }
 
   @override
@@ -137,11 +140,14 @@ class _OTMEduState extends State<OTMEdu> {
                         ),
                         onTap: () {
                           widget.providerChooseEdu.setOtm1(
+                              contexts: context,
+                              titleEduDirId: widget.titleEduDirId,
+                              providerChooseEdu: widget.providerChooseEdu,
                               name: widget.providerChooseEdu
                                   .listDataOtmTemp[index].name,
                               id: widget
                                   .providerChooseEdu.listDataOtmTemp[index].id);
-                          Navigator.of(context).pop();
+                          // Navigator.of(context).pop();
                         },
                       ),
                     ),

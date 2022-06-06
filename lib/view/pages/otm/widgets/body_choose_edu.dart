@@ -10,46 +10,68 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 Widget bodyChooseEdu(
     {required BuildContext context,
     required ProviderChooseEdu providerChooseEdu}) {
-
-  List<String> listSelectDirection = [
-    "1 Oliy ta'lim muassasi",
-    "2 Oliy ta'lim muassasi",
-    "3 Oliy ta'lim muassasi",
-    "4 Oliy ta'lim muassasi",
-    "5 Oliy ta'lim muassasi",
-    "Chet tili tanlash",
-  ];
-
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       chooseDirect(context: context, providerChooseEdu: providerChooseEdu),
-      MyWidgets.robotoFontText(text: "selectedDirection"),
+      MyWidgets.robotoFontText(text: "selectedDirection".tr()),
       const SizedBox(height: 20),
       Expanded(
         child: Container(
           decoration: BoxDecoration(
-              color: MyColors.appColorWhite(),
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
-              )),
+            color: MyColors.appColorWhite(),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
+          ),
           child: ListView.builder(
-            itemCount: listSelectDirection.length,
+            // physics: const NeverScrollableScrollPhysics(),
+            itemCount: providerChooseEdu.listTitleEduDir.length,
             itemBuilder: (context, index) => GestureDetector(
-              onTap: (){
-                if(index == 0){
-                  pushNewScreen(context, screen:SelectDirection(providerChooseEdu: providerChooseEdu));
+              onTap: () {
+                if (providerChooseEdu.langId.isNotEmpty &&
+                    providerChooseEdu.grantContractId.isNotEmpty &&
+                    providerChooseEdu.testRegionId.isNotEmpty &&
+                    providerChooseEdu.maqsadliName.isNotEmpty) {
+
+                    pushNewScreen(context,
+                        screen: SelectDirection(
+                          providerChooseEdu: providerChooseEdu,
+                          indexEduDir: int.parse(
+                              providerChooseEdu.listTitleEduDir[index].id),
+                        ));
+
+
+
+                } else {
+                  MyWidgets.scaffoldMessengerBottom(
+                      context: context,
+                      valueText: "Yuqoridagilarni to'ldiring");
                 }
               },
               child: ListTile(
-                  title:
-                      MyWidgets.robotoFontText(text: listSelectDirection[index])),
+                  // isThreeLine: true,
+                  subtitle:
+                      Text(providerChooseEdu.listTitleEduDir[index].dirName),
+                  title: MyWidgets.robotoFontText(
+                    text: providerChooseEdu
+                                .listTitleEduDir[index].nameEdu.length <
+                            4
+                        ? "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameTitle}"}"
+                        : "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}",
+                    textColor: providerChooseEdu.langId.isNotEmpty &&
+                            providerChooseEdu.grantContractId.isNotEmpty &&
+                            providerChooseEdu.testRegionId.isNotEmpty &&
+                            providerChooseEdu.maqsadliName.isNotEmpty
+                        ? MyColors.appColorBlack()
+                        : MyColors.appColorGrey400(),
+                  )),
             ),
           ),
         ),
       ),
-      const SizedBox(height: 20),
+      const SizedBox(height: 10),
       MaterialButton(
         onPressed: () {},
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -57,7 +79,7 @@ Widget bodyChooseEdu(
         minWidth: double.infinity,
         height: 50,
         child: MyWidgets.robotoFontText(
-            text: "Tasdiqlash", textColor: MyColors.appColorWhite()),
+            text: "access".tr(), textColor: MyColors.appColorWhite()),
       )
     ],
   );

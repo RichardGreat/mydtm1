@@ -38,3 +38,23 @@ class DataOTM {
     "name": name,
   };
 }
+
+class DataOTMDir {
+  DataOTMDir({
+    required  this.id,
+    required  this.name,
+  });
+
+  String id;
+  String name;
+
+  factory DataOTMDir.fromJson(Map<String, dynamic> json) => DataOTMDir(
+    id: json["id"],
+    name: json["name"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+  };
+}

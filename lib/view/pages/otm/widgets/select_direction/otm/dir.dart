@@ -4,86 +4,97 @@ import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-sheetOTMEdu(
-    {required BuildContext contexts,
-      required ProviderChooseEdu providerChooseEdu}) {
+sheetDIRdu({required BuildContext contexts,
+  required ProviderChooseEdu providerChooseEdu,
+  required int titleEduDir}) {
   showModalBottomSheet(
       context: contexts,
       enableDrag: true,
       isScrollControlled: true,
       builder: (_) {
-        return OTMEdu(providerChooseEdu: providerChooseEdu, contexts: contexts);
+        return DIREdu(
+            providerChooseEdu: providerChooseEdu,
+            contexts: contexts,
+            titleEduDirId: titleEduDir);
       });
 }
 
 // ignore: must_be_immutable
-class OTMEdu extends StatefulWidget {
+class DIREdu extends StatefulWidget {
   ProviderChooseEdu providerChooseEdu;
   BuildContext contexts;
+  int titleEduDirId;
 
-  OTMEdu({Key? key, required this.providerChooseEdu, required this.contexts})
+  DIREdu({Key? key,
+    required this.providerChooseEdu,
+    required this.contexts,
+    required this.titleEduDirId})
       : super(key: key);
 
   @override
-  State<OTMEdu> createState() => _OTMEduState();
+  State<DIREdu> createState() => _DIREduState();
 }
 
-class _OTMEduState extends State<OTMEdu> {
+class _DIREduState extends State<DIREdu> {
   Future countValue() async {
-    // await Future.delayed(Duration(seconds: 1));
-    await widget.providerChooseEdu.getOtm1();
+
+    await widget.providerChooseEdu.getDir1(titleEduDir: widget.titleEduDirId);
     setState(() {});
   }
 
-  // Future setData({required String name, required String id}) async {
-  //   await widget.providerChooseEdu
-  //       .setTestRegion(regionId: id, regionName: name);
-  //   setState(() {});
-  // }
+
 
   @override
   initState() {
-
     countValue();
-    // super.initState();
+    super.initState();
   }
 
   @override
   Widget build(_) {
     return Container(
-      child: widget.providerChooseEdu.boolOtmData
+      child: widget.providerChooseEdu.boolDirDownload
           ? Container(
-          height: MediaQuery.of(context).size.height * 0.95,
+          height: MediaQuery
+              .of(context)
+              .size
+              .height * 0.95,
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(8)),
           child: Column(
             children: [
               const SizedBox(height: 20),
               Container(
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
                 margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.8,
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.8,
                         height: 50,
                         child: TextFormField(
-                          controller: widget
-                              .providerChooseEdu.textOTMChoose,
+                          controller:
+                          widget.providerChooseEdu.textDir1Controller,
                           minLines: 1,
                           onChanged: (value) {
-                            widget.providerChooseEdu
-                                .searchOtm(val: value);
-                            setState(() {});
+                            // widget.providerChooseEdu
+                            //     .searchOtm(val: value);
+                            // setState(() {});
                           },
                           textAlignVertical: TextAlignVertical.center,
                           decoration: InputDecoration(
                             prefixIcon: const Icon(Icons.search),
                             suffix: IconButton(
                                 onPressed: () {
-                                  widget.providerChooseEdu
-                                      .clearTextOtm1();
+                                  // widget.providerChooseEdu
+                                  //     .clearTextOtm1();
                                   setState(() {});
                                 },
                                 icon: const Icon(
@@ -113,8 +124,7 @@ class _OTMEduState extends State<OTMEdu> {
                       ),
                       IconButton(
                           onPressed: () {
-                            widget
-                                .providerChooseEdu.textOTMChoose
+                            widget.providerChooseEdu.textDir1Controller
                                 .clear();
                             Navigator.of(context).pop();
                           },
@@ -123,33 +133,39 @@ class _OTMEduState extends State<OTMEdu> {
               ),
               Expanded(
                 child: ListView.builder(
-                  itemCount: widget
-                      .providerChooseEdu.listDataOtmTemp.length,
-                  itemBuilder: (context, index) => GestureDetector(
-                    child: Card(
-                      margin: const EdgeInsets.all(8),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          widget.providerChooseEdu
-                              .listDataOtmTemp[index].name,
-                          overflow: TextOverflow.fade,
-                          softWrap: true,
-                          maxLines: 3,
-                          textAlign: TextAlign.start,
+                  itemCount: widget.providerChooseEdu.listDirTemp.length,
+                  itemBuilder: (context, index) =>
+                      GestureDetector(
+                        child: Card(
+                          margin: const EdgeInsets.all(8),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              widget.providerChooseEdu.listDirTemp[index].name,
+                              overflow: TextOverflow.fade,
+                              softWrap: true,
+                              maxLines: 3,
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
                         ),
+                        onTap: () {
+                          widget.providerChooseEdu.setDir1(nameDir:  widget.providerChooseEdu.listDirTemp[index].name,
+                              idDir:  widget.providerChooseEdu.listDirTemp[index].id.toString(),
+                             fLang: widget.providerChooseEdu.listDirTemp[index].flangId.toString(),
+                              titleEduDirId: widget.titleEduDirId);
+                          setState((){});
+                          // setData(
+                          //     name: widget.providerChooseEdu
+                          //         .listEduChooseRegionTemp[index].regionName,
+                          //     id: widget.providerChooseEdu
+                          //         .listEduChooseRegionTemp[index].regionId);
+                          // setState((){});
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                          Navigator.of(context).pop();
+                        },
                       ),
-                    ),
-                    onTap: () {
-                      // setData(
-                      //     name: widget.providerChooseEdu
-                      //         .listEduChooseRegionTemp[index].regionName,
-                      //     id: widget.providerChooseEdu
-                      //         .listEduChooseRegionTemp[index].regionId);
-                      // setState((){});
-                      Navigator.of(context).pop();
-                    },
-                  ),
                 ),
               ),
             ],

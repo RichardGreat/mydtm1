@@ -20,6 +20,7 @@ class _ChooseEduState extends State<ChooseEdu> {
   initState(){
     print("token ");
     print(box.get("token"));
+
     super.initState();
   }
   @override
@@ -31,10 +32,13 @@ class _ChooseEduState extends State<ChooseEdu> {
             appBar: appBarEduChoose(
                 context: contexts, providerChooseEdu: providerChooseEdu),
             body: SafeArea(
-              child: Container(
-                margin: const EdgeInsets.all(15),
-                child: bodyChooseEdu(
-                    context: context, providerChooseEdu: providerChooseEdu),
+              child: SingleChildScrollView(
+                child: Container(
+                  height: MediaQuery.of(context).size.height,
+                  margin: const EdgeInsets.all(15),
+                  child: bodyChooseEdu(
+                      context: context, providerChooseEdu: providerChooseEdu),
+                ),
               ),
             )),
       ),

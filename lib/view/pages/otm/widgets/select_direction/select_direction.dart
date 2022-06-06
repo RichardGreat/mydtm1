@@ -1,14 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
-import 'package:mydtm/view/pages/otm/widgets/select_direction/otm/otm.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 class SelectDirection extends StatefulWidget {
   ProviderChooseEdu providerChooseEdu;
+  int indexEduDir;
 
-  SelectDirection({Key? key, required this.providerChooseEdu})
+  SelectDirection(
+      {Key? key, required this.providerChooseEdu, required this.indexEduDir})
       : super(key: key);
 
   @override
@@ -16,8 +17,13 @@ class SelectDirection extends StatefulWidget {
 }
 
 class _SelectDirectionState extends State<SelectDirection> {
+
   Future getEmodes() async {
-    await widget.providerChooseEdu.getEmode();
+    if (widget.indexEduDir == 0) {
+      await widget.providerChooseEdu.getEmode();
+    } else {
+      await widget.providerChooseEdu.getEmode2(indexEduDir: widget.indexEduDir);
+    }
     setState(() {});
   }
 
@@ -60,16 +66,16 @@ class _SelectDirectionState extends State<SelectDirection> {
                             textSize: 20),
                         trailing: const Icon(Icons.arrow_forward_ios_sharp),
                         onTap: () {
-                          widget.providerChooseEdu.setEMode(
-                            context: context,
-                              providerChooseEdu: widget.providerChooseEdu,
-                              name: widget.providerChooseEdu
-                                  .listEmodeChoose[index].name,
-                              id: widget
-                                  .providerChooseEdu.listEmodeChoose[index].id);
-
-
-
+                          if (index == 0) {
+                            widget.providerChooseEdu.setEMode(
+                                titleEduDirId: widget.indexEduDir,
+                                context: context,
+                                providerChooseEdu: widget.providerChooseEdu,
+                                name: widget.providerChooseEdu
+                                    .listEmodeChoose[index].name,
+                                id: widget.providerChooseEdu
+                                    .listEmodeChoose[index].id);
+                          }
                         },
                       ),
                     )

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
-import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 sheetGrantContractChoose({required BuildContext context,
   required ProviderChooseEdu providerChooseEdu}) {
@@ -9,8 +9,10 @@ sheetGrantContractChoose({required BuildContext context,
       builder: (context) {
         return StatefulBuilder(
           builder: (context, setState) =>
-              SizedBox(
-                  height: 400,
+              Container(
+                margin: const EdgeInsets.only(top: 15),
+                color: MyColors.appColorWhite(),
+                  height: MediaQuery.of(context).size.height*0.2,
                   child: ListView.builder(
                     itemCount: providerChooseEdu.listGrantContract.length,
                     itemBuilder: (context, index) =>
@@ -20,6 +22,7 @@ sheetGrantContractChoose({required BuildContext context,
                                   id: index.toString(),
                                   name: providerChooseEdu
                                       .listGrantContract[index]);
+                              Navigator.of(context).pop();
                             },
                             child:  Card(
                               margin: const EdgeInsets.all(8),

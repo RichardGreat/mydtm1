@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/pages/otm/widgets/choose_direction/sheets/grant_contract.dart';
 import 'package:mydtm/view/pages/otm/widgets/choose_direction/sheets/language_choose.dart';
+import 'package:mydtm/view/pages/otm/widgets/choose_direction/sheets/maqsadli.dart';
 import 'package:mydtm/view/pages/otm/widgets/choose_direction/sheets/region_test.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -13,13 +14,16 @@ Widget chooseDirect({required BuildContext context, required ProviderChooseEdu p
     "chooseTestRegion".tr(),
     "chooseGrantContract".tr(),
     "chooseLangEmode".tr(),
+    "targetSelection".tr(),
     "testGraphic".tr()
   ];
   return Column(
-    mainAxisAlignment: MainAxisAlignment.start,
+
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       MyWidgets.robotoFontText(text: "chooseDirection".tr(), textSize: 24),
       const SizedBox(height: 20),
+      /// test hudud
       Container(
         decoration: BoxDecoration(color: MyColors.appColorWhite(),
             borderRadius: const BorderRadius.only(
@@ -38,6 +42,7 @@ Widget chooseDirect({required BuildContext context, required ProviderChooseEdu p
         ),
       ),
 
+      /// ustuvorlik
       Container(
         decoration: BoxDecoration(color: MyColors.appColorWhite()),
         child: ListTile(
@@ -50,12 +55,27 @@ Widget chooseDirect({required BuildContext context, required ProviderChooseEdu p
         ),
 
       ),
+      /// maqsadli
       Container(
         decoration: BoxDecoration(color: MyColors.appColorWhite(),
 
         ),
         child: ListTile(
-          title: MyWidgets.robotoFontText(text: listDirection[1], textSize: 20),
+          title: MyWidgets.robotoFontText(text: listDirection[3], textSize: 20),
+          trailing: const Icon(Icons.arrow_forward_ios_sharp),
+          subtitle: Text(providerChooseEdu.maqsadliName),
+          onTap: (){
+            sheetMaqsadli(context: context, providerChooseEdu: providerChooseEdu);
+          },
+        ),
+      ),
+      /// Ta'lim tili
+      Container(
+        decoration: BoxDecoration(color: MyColors.appColorWhite(),
+
+        ),
+        child: ListTile(
+          title: MyWidgets.robotoFontText(text: listDirection[2], textSize: 20),
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           subtitle: Text(providerChooseEdu.langName),
           onTap: (){
@@ -63,6 +83,7 @@ Widget chooseDirect({required BuildContext context, required ProviderChooseEdu p
           },
         ),
       ),
+      /// Test grafik
       Visibility(
         visible: providerChooseEdu.langId == "1",
         child: Container(
@@ -70,7 +91,7 @@ Widget chooseDirect({required BuildContext context, required ProviderChooseEdu p
 
         ),
         child: ListTile(
-          title: MyWidgets.robotoFontText(text: listDirection[3], textSize: 20),
+          title: MyWidgets.robotoFontText(text: listDirection[4], textSize: 20),
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           subtitle: Text(providerChooseEdu.langName),
           onTap: (){

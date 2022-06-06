@@ -47,6 +47,10 @@
   "chooseLangEmode": "Ta'lim tili",
   "chooseGrantContract":"Tanlov ustuvorligi",
   "testGraphic": "Test topshirish alifbosi",
-  "chooseEduType": "Ta'lim shaklini tanlang"
+  "chooseEduType": "Ta'lim shaklini tanlang",
+  "targetSelection": "Maqsadli tanlovga rozimisiz",
+  "access": "Tasdiqlash",
+  "targeted": "Maqsadli",
+  "aimless": "Maqsadsiz"
 
 }
