@@ -1,11 +1,11 @@
 class ModelCheckUserInfo {
   ModelCheckUserInfo({
-  required   this.person,
-  required  this.personAddress,
-  required  this.personGeneralEdu,
-  required  this.certificate,
-  required  this.imtiyoz,
-  required  this.bakalavr,
+    required this.person,
+    required this.personAddress,
+    required this.personGeneralEdu,
+    required this.certificate,
+    required this.imtiyoz,
+    required this.bakalavr,
   });
 
   bool person;

@@ -572,4 +572,14 @@ class ProviderChooseEdu extends ChangeNotifier {
       log(e.toString());
     }
   }
+
+
+//  Bloc #last
+
+Future setDataEduDir()async{
+    try{
+      log(jsonEncode(listTitleEduDir));
+    }catch(e){}
+}
+
 }

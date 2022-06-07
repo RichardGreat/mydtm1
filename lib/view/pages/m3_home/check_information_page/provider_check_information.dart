@@ -31,11 +31,15 @@ class ProviderCheckInformation extends ChangeNotifier {
 
   NetworkCheckUserInfo networkCheckUserInfo = NetworkCheckUserInfo();
   late ModelCheckUserInfo modelCheckUserInfo;
+  bool boolCheckUserInfo = false;
   Future getInfoUser()async{
     try{
+      boolCheckUserInfo = false;
       String dataCheckInfo = await networkCheckUserInfo.getUserInfo(phoneNumber: "998489900");
       modelCheckUserInfo = ModelCheckUserInfo.fromJson(jsonDecode(dataCheckInfo));
-      log(dataCheckInfo);
+      boolCheckUserInfo = true;
+
+      notifyListeners();
     }catch(e){}
     // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
   }

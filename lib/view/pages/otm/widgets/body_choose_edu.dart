@@ -85,7 +85,6 @@ Widget bodyChooseEdu({required BuildContext context,
                     }
                   },
                   child: ListTile(
-                    // isThreeLine: true,
                       subtitle:
                       Text(providerChooseEdu.listTitleEduDir[index].dirName),
                       title: MyWidgets.robotoFontText(
@@ -101,7 +100,9 @@ Widget bodyChooseEdu({required BuildContext context,
       ),
       const SizedBox(height: 10),
       MaterialButton(
-        onPressed: () {},
+        onPressed: () {
+          providerChooseEdu.setDataEduDir();
+        },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color:
         checkFillSelected()?
