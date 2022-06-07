@@ -78,7 +78,7 @@ class ProviderChooseEdu extends ChangeNotifier {
 
   Future setTestRegion(
       {required String regionId, required String regionName}) async {
-    Future.delayed(Duration.zero);
+    await Future.delayed(Duration.zero);
     testRegionId = regionId;
     testRegionNames = regionName;
     notifyListeners();

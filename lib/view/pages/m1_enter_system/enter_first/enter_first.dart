@@ -5,6 +5,8 @@ import 'package:mydtm/view/pages/m1_enter_system/enter_first/captcha.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_button.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/inputs.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/provider_enter_first.dart';
+import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
+import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
@@ -39,9 +41,7 @@ class _EnterFirstState extends State<EnterFirst> {
                         key: providerEnterFirst.formKey,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         child: providerEnterFirst.boolAuthorization
-                            ? const Center(
-                                child: CupertinoActivityIndicator(),
-                              )
+                            ? MyWidgets.loaderDownload(context: context)
                             : Padding(
                                 padding: const EdgeInsets.all(10),
                                 child: SingleChildScrollView(
@@ -71,7 +71,7 @@ class _EnterFirstState extends State<EnterFirst> {
                   Navigator.pushAndRemoveUntil(
                       context,
                       CupertinoPageRoute(
-                          builder: (context) => const EnterFirst()),
+                          builder: (context) => const MainPages()),
                       (route) => false);
                   return true;
                 },

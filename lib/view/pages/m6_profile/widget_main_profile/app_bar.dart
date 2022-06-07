@@ -12,6 +12,8 @@ PreferredSizeWidget appBarProfile(
     backgroundColor: MyColors.appColorGrey100(),
     elevation: 0,
     actions: [
+      box.get("token").toString().length  > 30
+          ?
       IconButton(
           onPressed: () {
 
@@ -26,7 +28,7 @@ PreferredSizeWidget appBarProfile(
           icon: Icon(
             Icons.logout,
             color: MyColors.appColorBlack(),
-          ))
+          )):const SizedBox.shrink()
     ],
   );
 }

@@ -51,6 +51,11 @@
   "targetSelection": "Maqsadli tanlovga rozimisiz",
   "access": "Tasdiqlash",
   "targeted": "Maqsadli",
-  "aimless": "Maqsadsiz"
+  "aimless": "Maqsadsiz",
+  "personInformation": "Shaxsiy ma'lumotlar",
+  "addressAlways": "Doimiy yashash manzili",
+  "schoolInfo": "Umumta'lim muassasi",
+  "certificates":"Sertifikatlar",
+  "privileges": "Imtiyozlar"
 
 }

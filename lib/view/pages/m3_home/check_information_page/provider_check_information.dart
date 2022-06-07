@@ -10,21 +10,21 @@ import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/foreigion
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 class ProviderCheckInformation extends ChangeNotifier {
 
 
   List<ModelCheckInformationForDelete> myList = [
 
     ModelCheckInformationForDelete(
-        id: 1, name: "Shaxsiy ma'lumotlar", status: 0),
+        id: 1, name: "personInformation".tr(), status: 0),
     ModelCheckInformationForDelete(
-        id: 2, name: "Doimiy yashash manzili", status: 0),
+        id: 2, name: "addressAlways".tr(), status: 0),
     ModelCheckInformationForDelete(
-        id: 3, name: "Umumta'lim muassasi", status: 1),
-    ModelCheckInformationForDelete(id: 4, name: "Sertifikatlar", status: 1),
-    ModelCheckInformationForDelete(id: 5, name: "Imtiyozlar", status: 1),
-    ModelCheckInformationForDelete(id: 6, name: "Yo'nalish tanlash", status: 1),
+        id: 3, name: "schoolInfo".tr(), status: 1),
+    ModelCheckInformationForDelete(id: 4, name: "certificates".tr(), status: 1),
+    ModelCheckInformationForDelete(id: 5, name: "privileges".tr(), status: 1),
+    ModelCheckInformationForDelete(id: 6, name: "chooseDirection".tr(), status: 1),
   ];
 
 

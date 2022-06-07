@@ -33,13 +33,13 @@ class ChooseRegion extends StatefulWidget {
 
 class _ChooseRegionState extends State<ChooseRegion> {
   Future countValue() async {
-    // await Future.delayed(Duration(seconds: 1));
     await widget.providerChooseEdu.getChooseRegion(
         context: context, providerChooseEdu: widget.providerChooseEdu);
     setState(() {});
   }
 
   Future setData({required String name, required String id}) async {
+    setState(() {});
     await widget.providerChooseEdu
         .setTestRegion(regionId: id, regionName: name);
     setState(() {});
@@ -48,11 +48,13 @@ class _ChooseRegionState extends State<ChooseRegion> {
   @override
   initState() {
     countValue();
-    // super.initState();
+    super.initState();
   }
+
 
   @override
   Widget build(_) {
+
     return Container(
       child: widget.providerChooseEdu.boolEduChoose
           ? Container(
@@ -144,12 +146,19 @@ class _ChooseRegionState extends State<ChooseRegion> {
                           ),
                         ),
                         onTap: () {
-                          setData(
-                              name: widget.providerChooseEdu
-                                  .listEduChooseRegionTemp[index].regionName,
-                              id: widget.providerChooseEdu
-                                  .listEduChooseRegionTemp[index].regionId);
+                          widget.providerChooseEdu.testRegionNames = widget.providerChooseEdu
+                                  .listEduChooseRegionTemp[index].regionName;
+                          widget.providerChooseEdu.testRegionId = widget.providerChooseEdu
+                              .listEduChooseRegionTemp[index].regionId;
+                          setState((){});
+
+                          // setData(
+                          //     name: widget.providerChooseEdu
+                          //         .listEduChooseRegionTemp[index].regionName,
+                          //     id: widget.providerChooseEdu
+                          //         .listEduChooseRegionTemp[index].regionId);
                           // setState((){});
+
                           Navigator.of(context).pop();
                         },
                       ),

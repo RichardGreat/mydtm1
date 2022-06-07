@@ -13,23 +13,28 @@ PreferredSizeWidget enterFirstAppBar(
     backgroundColor: MyColors.appColorWhite(),
     iconTheme: IconThemeData(color: MyColors.appColorBlack()),
     actions: [
-      GestureDetector(
-        onTap: (){
-          modelSheet(context: context, providerEnterFirst: providerEnterFirst);
-        },
-
-        child: Container(
-          padding: const EdgeInsets.only(left: 4, right: 4, top: 0, bottom: 0),
-          margin: const EdgeInsets.only(left: 5, right: 15, bottom: 4, top: 4),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: MyColors.appColorGrey400())),
-          child: Row(children: [
-            Icon(
-              Icons.language,
-              color: MyColors.appColorBlue2(),
-            ),
-            MyWidgets.robotoFontText(text: "UZ")
+      if (providerEnterFirst.boolAuthorization)
+        const SizedBox.shrink()
+      else
+        GestureDetector(
+          onTap: () {
+            modelSheet(
+                context: context, providerEnterFirst: providerEnterFirst);
+          },
+          child: Container(
+            padding:
+                const EdgeInsets.only(left: 4, right: 4, top: 0, bottom: 0),
+            margin:
+                const EdgeInsets.only(left: 5, right: 15, bottom: 4, top: 4),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: MyColors.appColorGrey400())),
+            child: Row(children: [
+              Icon(
+                Icons.language,
+                color: MyColors.appColorBlue2(),
+              ),
+              MyWidgets.robotoFontText(text: "UZ")
           ]),
         ),
       )
