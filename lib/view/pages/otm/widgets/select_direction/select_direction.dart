@@ -66,7 +66,7 @@ class _SelectDirectionState extends State<SelectDirection> {
                             textSize: 20),
                         trailing: const Icon(Icons.arrow_forward_ios_sharp),
                         onTap: () {
-                          if (index == 0) {
+                          // if (index == 0) {
                             widget.providerChooseEdu.setEMode(
                                 titleEduDirId: widget.indexEduDir,
                                 context: context,
@@ -75,7 +75,7 @@ class _SelectDirectionState extends State<SelectDirection> {
                                     .listEmodeChoose[index].name,
                                 id: widget.providerChooseEdu
                                     .listEmodeChoose[index].id);
-                          }
+                          // }
                         },
                       ),
                     )

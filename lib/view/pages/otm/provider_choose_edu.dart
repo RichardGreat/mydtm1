@@ -145,6 +145,15 @@ class ProviderChooseEdu extends ChangeNotifier {
     notifyListeners();
   }
 
+  String langGraphicId = "0";
+  String langGraphicName = "Lotin";
+
+  Future setLanguageGraphic({required String name, required String id}) async {
+    langGraphicId = id;
+    langGraphicName = name;
+    notifyListeners();
+  }
+
 //#Bloc3
 // Choose Grant Contract
   List<String> listGrantContract = ["grant".tr(), "contract".tr()];
@@ -176,7 +185,15 @@ class ProviderChooseEdu extends ChangeNotifier {
 
 // #Bolc4
 //  choose emode
+  List<String> listTitleName = [
+    "Oliy ta'lim muassasi",
+    "Oliy ta'lim muassasi",
+    "Oliy ta'lim muassasi",
+    "Oliy ta'lim muassasi",
+    "Oliy ta'lim muassasi",
+    "Chet tili"
 
+  ];
   List<ListModelEduDir> listTitleEduDir = [
     ListModelEduDir(
         id: "0",
@@ -409,8 +426,6 @@ class ProviderChooseEdu extends ChangeNotifier {
     notifyListeners();
   }
 
-
-
   Future setOtm1(
       {required String name,
       required String id,
@@ -435,10 +450,25 @@ class ProviderChooseEdu extends ChangeNotifier {
       required int titleEduDirId}) async {
     listTitleEduDir[titleEduDirId].dirId = idDir;
     listTitleEduDir[titleEduDirId].dirName = nameDir;
+
     notifyListeners();
   }
 
   // #Bloc6 1
+
+  Future getDefault({required int titleEduDir}) async {
+    for (int i = titleEduDir+1; i < listTitleEduDir.length; i++) {
+      listTitleEduDir[i] = ListModelEduDir(
+          id: i.toString(),
+          nameTitle: listTitleName[i],
+          titleId: i.toString(),
+          nameEdu: "",
+          eduId: "",
+          dirName: "",
+          dirId: "");
+    }
+  }
+
   NetworkDir1 networkDir1 = NetworkDir1();
   late ModelDir1 modelDir1;
   List<DataDir1> listDir = [];
@@ -450,6 +480,7 @@ class ProviderChooseEdu extends ChangeNotifier {
   Future getDir1({required int titleEduDir}) async {
     try {
       boolDirDownload = false;
+      getDefault(titleEduDir: titleEduDir);
       if (titleEduDir == 0) {
         dataDir = await networkDir1.getDir1(
             otmId: listTitleEduDir[0].eduId,
