@@ -153,10 +153,6 @@ class _ChooseRegionState extends State<ChooseRegion> {
                         ),
                         onTap: () {
 
-
-
-                          // setState((){});
-
                           widget.providerChooseEdu
                               .setTestRegion(regionId: widget
                               .providerChooseEdu.listEduChooseRegionTemp[index].regionId, regionName: widget.providerChooseEdu
