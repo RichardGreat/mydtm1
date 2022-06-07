@@ -5,14 +5,17 @@ import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'dart:developer';
 
 sheetRegionTest(
-    {required BuildContext contexts,
-    required ProviderChooseEdu providerChooseEdu}) {
+    {required BuildContext context,
+    required ProviderChooseEdu providerChooseEdu,
+
+    }) {
 
   showModalBottomSheet(
-      context: contexts,
-      builder: (_) {
+      context: context,
+      builder: (contexts) {
         return  ChooseRegion(
                 providerChooseEdu: providerChooseEdu, contexts: contexts);
       });
@@ -23,6 +26,7 @@ class ChooseRegion extends StatefulWidget {
   ProviderChooseEdu providerChooseEdu;
   BuildContext contexts;
 
+
   ChooseRegion(
       {Key? key, required this.providerChooseEdu, required this.contexts})
       : super(key: key);
@@ -32,7 +36,9 @@ class ChooseRegion extends StatefulWidget {
 }
 
 class _ChooseRegionState extends State<ChooseRegion> {
+
   Future countValue() async {
+
     await widget.providerChooseEdu.getChooseRegion(
         context: context, providerChooseEdu: widget.providerChooseEdu);
     setState(() {});
@@ -146,18 +152,16 @@ class _ChooseRegionState extends State<ChooseRegion> {
                           ),
                         ),
                         onTap: () {
-                          widget.providerChooseEdu.testRegionNames = widget.providerChooseEdu
-                                  .listEduChooseRegionTemp[index].regionName;
-                          widget.providerChooseEdu.testRegionId = widget.providerChooseEdu
-                              .listEduChooseRegionTemp[index].regionId;
-                          setState((){});
 
-                          // setData(
-                          //     name: widget.providerChooseEdu
-                          //         .listEduChooseRegionTemp[index].regionName,
-                          //     id: widget.providerChooseEdu
-                          //         .listEduChooseRegionTemp[index].regionId);
+
+
                           // setState((){});
+
+                          widget.providerChooseEdu
+                              .setTestRegion(regionId: widget
+                              .providerChooseEdu.listEduChooseRegionTemp[index].regionId, regionName: widget.providerChooseEdu
+                              .listEduChooseRegionTemp[index].regionName);
+                          setState(() {});
 
                           Navigator.of(context).pop();
                         },

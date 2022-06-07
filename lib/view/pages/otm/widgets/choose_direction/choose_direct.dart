@@ -37,7 +37,7 @@ Widget chooseDirect({required BuildContext context, required ProviderChooseEdu p
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           subtitle: Text(providerChooseEdu.testRegionNames),
           onTap: (){
-            sheetRegionTest(contexts: context, providerChooseEdu: providerChooseEdu);
+            sheetRegionTest(context: context, providerChooseEdu: providerChooseEdu);
           },
         ),
       ),

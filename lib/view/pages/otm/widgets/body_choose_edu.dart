@@ -9,7 +9,9 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 Widget bodyChooseEdu(
     {required BuildContext context,
-    required ProviderChooseEdu providerChooseEdu}) {
+    required ProviderChooseEdu providerChooseEdu,
+
+    }) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [

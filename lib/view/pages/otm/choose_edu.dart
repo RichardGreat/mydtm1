@@ -23,11 +23,15 @@ class _ChooseEduState extends State<ChooseEdu> {
 
     super.initState();
   }
+  //
+  // refresh() {
+  //   setState(() {});
+  // }
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => providerChooseEdu,
-      child: Consumer(
+      child: Consumer<ProviderChooseEdu>(
         builder: (contexts, value, child) => Scaffold(
             appBar: appBarEduChoose(
                 context: contexts, providerChooseEdu: providerChooseEdu),
