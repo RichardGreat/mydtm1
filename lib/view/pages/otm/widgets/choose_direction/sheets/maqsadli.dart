@@ -23,6 +23,7 @@ sheetMaqsadli({required BuildContext context,
                                 id: index.toString(),
                                 name: providerChooseEdu
                                     .listmaqsadli[index]);
+
                             Navigator.of(context).pop();
                           },
                           child:  Card(

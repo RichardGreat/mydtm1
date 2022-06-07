@@ -47,7 +47,7 @@ Widget bodyChooseEdu({required BuildContext context,
         : "${index + 1}${" ${providerChooseEdu
         .listTitleEduDir[index].nameEdu}"}";
   }
- 
+
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [

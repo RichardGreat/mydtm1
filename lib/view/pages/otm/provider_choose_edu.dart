@@ -79,6 +79,7 @@ class ProviderChooseEdu extends ChangeNotifier {
   Future setTestRegion(
       {required String regionId, required String regionName}) async {
     await Future.delayed(Duration.zero);
+    setDefaultEduDir();
     testRegionId = regionId;
     testRegionNames = regionName;
     notifyListeners();
@@ -139,6 +140,7 @@ class ProviderChooseEdu extends ChangeNotifier {
   String langName = "";
 
   Future setLanguage({required String name, required String id}) async {
+    setDefaultEduDir();
     langName = name;
     langId = id;
     log(langId + langName);
@@ -149,6 +151,7 @@ class ProviderChooseEdu extends ChangeNotifier {
   String langGraphicName = "Lotin";
 
   Future setLanguageGraphic({required String name, required String id}) async {
+    setDefaultEduDir();
     langGraphicId = id;
     langGraphicName = name;
     notifyListeners();
@@ -162,6 +165,7 @@ class ProviderChooseEdu extends ChangeNotifier {
   String grantContractId = "";
 
   Future setGrantContract({required String id, required String name}) async {
+    setDefaultEduDir();
     grantContractId = id;
     grantContractName = name;
     notifyListeners();
@@ -177,6 +181,7 @@ class ProviderChooseEdu extends ChangeNotifier {
   String maqsadliName = "";
 
   Future setMaqsadli({required String id, required String name}) async {
+    setDefaultEduDir();
     maqsadliId = id;
     maqsadliName = name;
     print("$maqsadliName  $maqsadliId");
@@ -185,6 +190,36 @@ class ProviderChooseEdu extends ChangeNotifier {
 
 // #Bolc4
 //  choose emode
+
+  /// Yuqoridagilardan biri qayta tanlansa pastni to'liq tozalash kerak
+  Future setDefaultEduDir() async {
+
+    for(int i = 0; i < listTitleEduDir.length; i++){
+      listTitleEduDir[i] =  ListModelEduDir(
+          id: "",
+          nameTitle: "",
+          titleId: "$i",
+          nameEdu: "",
+          eduId: "",
+          dirName: "",
+          dirId: "");
+    }
+    // Oliy ta'lim muassasi
+
+    for(int i = 0; i < listTitleEduDir.length; i++){
+      listTitleEduDir[i] =  ListModelEduDir(
+          id: "$i",
+          nameTitle: "Oliy ta'lim muassasi",
+          titleId: "$i",
+          nameEdu: "",
+          eduId: "",
+          dirName: "",
+          dirId: "");
+    }
+    notifyListeners();
+
+  }
+
   List<String> listTitleName = [
     "Oliy ta'lim muassasi",
     "Oliy ta'lim muassasi",
@@ -192,8 +227,8 @@ class ProviderChooseEdu extends ChangeNotifier {
     "Oliy ta'lim muassasi",
     "Oliy ta'lim muassasi",
     "Chet tili"
-
   ];
+
   List<ListModelEduDir> listTitleEduDir = [
     ListModelEduDir(
         id: "0",
@@ -244,6 +279,7 @@ class ProviderChooseEdu extends ChangeNotifier {
         dirName: "",
         dirId: ""),
   ];
+
   NetworkEmodeChoose networkEmodeChoose = NetworkEmodeChoose();
   late ModelEmodeGet modelEmodeGet;
   Map<String, String> modelMapEmodeGet = {};
@@ -457,7 +493,7 @@ class ProviderChooseEdu extends ChangeNotifier {
   // #Bloc6 1
 
   Future getDefault({required int titleEduDir}) async {
-    for (int i = titleEduDir+1; i < listTitleEduDir.length; i++) {
+    for (int i = titleEduDir + 1; i < listTitleEduDir.length; i++) {
       listTitleEduDir[i] = ListModelEduDir(
           id: i.toString(),
           nameTitle: listTitleName[i],
