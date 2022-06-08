@@ -1,4 +1,6 @@
+
 class ModelServiceList {
+
   ModelServiceList({
     required this.status,
     required this.data,
@@ -50,6 +52,7 @@ class ServiceMainList {
    required this.serviceName,
    required this.serviceText,
    required this.status,
+   required this.mobilIcon,
    required this.link,
    required this.icon,
    required this.catId,
@@ -60,6 +63,7 @@ class ServiceMainList {
   int id;
   String serviceName;
   String serviceText;
+  String mobilIcon;
   bool status;
   String link;
   String icon;
@@ -71,6 +75,7 @@ class ServiceMainList {
         id: json["id"],
         serviceName: json["service_name"],
         serviceText: json["service_text"],
+        mobilIcon: json["mobil_icon"],
         status: json["status"],
         link: json["link"],
         icon: json["icon"],
@@ -85,6 +90,7 @@ class ServiceMainList {
         "service_text": serviceText,
         "status": status,
         "link": link,
+        "mobil_icon": mobilIcon,
         "icon": icon,
         "cat_id": catId,
         "cod": cod,

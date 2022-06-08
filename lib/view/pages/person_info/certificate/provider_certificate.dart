@@ -15,6 +15,7 @@ class ProviderCertificate extends ChangeNotifier {
   NetworkNationalCert networkNationalCert = NetworkNationalCert();
   List<DataCheckCertificate> listCheckCertificate =[];
   bool boolCheckCertificateData = false;
+  bool boolCheckCertificateDataNot = false;
 
   Future getNationCertInfo() async {
     try {
@@ -23,17 +24,20 @@ class ProviderCertificate extends ChangeNotifier {
       ModelCheckCertificate modelCheckCertificate =
           ModelCheckCertificate.fromJson(jsonDecode(dataCert));
       listCheckCertificate = modelCheckCertificate.data;
-
       boolCheckCertificateData = true;
       notifyListeners();
 
-    } catch (e) {}
+    } catch (e) {
+      boolCheckCertificateData = true;
+      boolCheckCertificateDataNot = true;
+      notifyListeners();
+    }
   }
 
   // lang cert
   NetworkForeignCert networkForeignCert = NetworkForeignCert();
   late ModelCheckForeignCertificate modelCheckForeignCertificate;
-  late DataCheckForeignCertificate dataCheckForeignCertificate;
+  DataCheckForeignCertificate dataCheckForeignCertificate =DataCheckForeignCertificate() ;
   bool boolCheckForeignLang = false;
   bool boolCheckForeignLangNot = false;
 
@@ -48,7 +52,7 @@ class ProviderCertificate extends ChangeNotifier {
     }catch(e){
       log(e.toString());
       boolCheckForeignLangNot = true;
-      // boolCheckForeignLang = true;
+      boolCheckForeignLang = true;
 
       notifyListeners();
     }

@@ -22,24 +22,24 @@ class ModelCheckCertificate {
 
 class DataCheckCertificate {
   DataCheckCertificate({
-    required this.certSernum,
-    required this.id,
-    required this.ball,
-    required this.percent,
-    required this.startAt,
-    required this.endAt,
-    required this.name,
-    required this.isCheck,
+   this.certSernum,
+   this.id,
+   this.ball,
+   this.percent,
+   this.startAt,
+   this.endAt,
+   this.name,
+   this.isCheck,
   });
 
-  String certSernum;
-  int id;
-  String ball;
-  String percent;
-  String startAt;
-  String endAt;
-  String name;
-  dynamic isCheck;
+  dynamic certSernum = "";
+  dynamic id = "";
+  dynamic ball = "";
+  dynamic percent = "";
+  dynamic startAt = "";
+  dynamic endAt = "";
+  dynamic name = "";
+  dynamic isCheck = "";
 
   factory DataCheckCertificate.fromJson(Map<String, dynamic> json) =>
       DataCheckCertificate(

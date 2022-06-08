@@ -16,10 +16,18 @@ Widget servicePageHead(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MyWidgets.robotoFontText(
-              text: serviceMainList.serviceName,
-              textFontWeight: FontWeight.bold,
-              textSize: 25),
+          Text(
+            serviceMainList.serviceName,
+            textAlign: TextAlign.start,
+
+            style: TextStyle(
+
+                color: MyColors.appColorBlack(),
+                fontSize: 20,
+                fontWeight:  FontWeight.normal,
+                fontFamily: 'Roboto-Medium'),
+          ),
+
           const SizedBox(height: 20),
           MaterialButton(
               onPressed: () {

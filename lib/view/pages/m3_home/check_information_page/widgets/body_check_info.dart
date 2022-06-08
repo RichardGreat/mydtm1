@@ -12,7 +12,7 @@ Widget bodyCheckInformation(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       const SizedBox(height: 20),
-      MyWidgets.robotoFontText(text: serviceName, textSize: 22),
+      MyWidgets.robotoFontText(text: serviceName, textSize: 20),
       const SizedBox(height: 20),
       Container(
         margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),

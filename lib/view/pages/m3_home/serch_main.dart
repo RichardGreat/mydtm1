@@ -38,7 +38,6 @@ PreferredSizeWidget searchMain(
     //MyWidgets.robotoFontText(text:"search", ),
   );
 }
-
 mainSearchBottomSheet(
     {required BuildContext context,
     required ProviderMainHome providerMainHome}) {
@@ -47,11 +46,12 @@ mainSearchBottomSheet(
       enableDrag: true,
       isScrollControlled: true,
       isDismissible: false,
+      backgroundColor: MyColors.appColorWhite(),
       builder: (_) {
         return StatefulBuilder(
           builder: (context, state) => Container(
             height: MediaQuery.of(context).size.height * 0.88,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 7),
             child: Column(children: [
               const SizedBox(height: 20),
               Row(
@@ -108,8 +108,7 @@ mainSearchBottomSheet(
                   itemCount: providerMainHome.listDataServiceListTemp.length,
                   itemBuilder:
                     (context, index) => Container(
-                    margin: const EdgeInsets.fromLTRB(5, 4, 4, 4),
-                    padding: const EdgeInsets.fromLTRB(1, 3, 1, 4),
+                    margin: const EdgeInsets.fromLTRB(3, 1, 3, 1),
                     decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(
@@ -121,14 +120,17 @@ mainSearchBottomSheet(
                             context: context,
                             serviceMainList:  providerMainHome.listDataServiceListTemp[index]
                         );
-
-
                       },
-                      child: MyWidgets.robotoFontText(
-                          text: providerMainHome
-                              .listDataServiceListTemp[index].serviceName,
-                          textColor: Colors.black.withOpacity(0.9),
-                          textSize: 20),
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                          child: MyWidgets.robotoFontText(
+                              text: providerMainHome
+                                  .listDataServiceListTemp[index].serviceName,
+                              textColor: Colors.black.withOpacity(0.9),
+                              textSize: 20),
+                        ),
+                      ),
                     )),)
               )
             ]),

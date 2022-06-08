@@ -52,7 +52,7 @@ Widget bodyChooseEdu({
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       chooseDirect(context: context, providerChooseEdu: providerChooseEdu),
-      MyWidgets.robotoFontText(text: "selectedDirection".tr()),
+      MyWidgets.robotoFontText(text: "selectedDirection".tr(), textSize: 20),
       const SizedBox(height: 20),
       Expanded(
         child: Container(

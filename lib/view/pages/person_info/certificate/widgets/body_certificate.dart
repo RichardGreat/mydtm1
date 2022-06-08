@@ -23,7 +23,11 @@ Widget bodyCertificate(
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () {
-                      pushNewScreen(context, screen: ForeignLanguageAdd());
+                      providerCertificate.dataCheckForeignCertificate.status ==
+                              0 || providerCertificate.dataCheckForeignCertificate.status ==
+                          1
+                          ?{}
+                          :  pushNewScreen(context, screen: ForeignLanguageAdd());
                     },
                     child: Container(
                       height: 50,
@@ -34,15 +38,24 @@ Widget bodyCertificate(
                       child: Center(
                           child: MyWidgets.robotoFontText(
                               text: "Chet tili sertifiati qo'shish",
-                              textColor: MyColors.appColorBlue1(),
+                              textColor:
+                              providerCertificate.dataCheckForeignCertificate.status ==
+                                  0 || providerCertificate.dataCheckForeignCertificate.status ==
+                                  1
+                                  ? MyColors.appColorGrey400():
+                              MyColors.appColorBlue1(),
                               textSize: 15)),
                     ),
                   ),
-                  Text("Chet tili"),
+                  providerCertificate.boolCheckForeignLangNot?SizedBox.shrink():
+                  const Text("Chet tili"),
+                  providerCertificate.boolCheckForeignLangNot?SizedBox.shrink():
                   Container(
                     height: 200,
-                     width: double.infinity,
-                    color: MyColors.appColorBlue1(),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: MyColors.appColorBlue1(),
+                        borderRadius: BorderRadius.circular(8)),
                     child: Column(
                       children: [
                         MyWidgets.robotoFontText(
@@ -50,12 +63,14 @@ Widget bodyCertificate(
                                 .dataCheckForeignCertificate.flangCertName),
                         MyWidgets.robotoFontText(
                             text: providerCertificate
-                                .dataCheckForeignCertificate.statusName)
+                                .dataCheckForeignCertificate.statusName??"")
                       ],
                     ),
                   ),
-                  Text("Milliy sertifikat"),
-                  Divider(),
+
+                  providerCertificate.boolCheckCertificateDataNot?SizedBox.shrink():Text("Milliy sertifikat"),
+                  providerCertificate.boolCheckCertificateDataNot?SizedBox.shrink():Divider(),
+                  providerCertificate.boolCheckCertificateDataNot?SizedBox.shrink():
                   Expanded(
                       child: ListView.builder(
                     itemCount: providerCertificate.listCheckCertificate.length,
@@ -77,10 +92,9 @@ Widget bodyCertificate(
                           children: [
                             MyWidgets.robotoFontText(
                                 text: providerCertificate
-                                    .listCheckCertificate[index].name),
+                                    .listCheckCertificate[index].name??""),
                             Text(
-                              "${providerCertificate
-                                .listCheckCertificate[index].percent.toString()} %",
+                              "${providerCertificate.listCheckCertificate[index].percent.toString()} %",
                               style: TextStyle(
                                   color: MyColors.appColorBlack(),
                                   fontSize: 17,
@@ -89,7 +103,7 @@ Widget bodyCertificate(
                             ),
                             Text(
                               providerCertificate
-                                  .listCheckCertificate[index].startAt,
+                                  .listCheckCertificate[index].startAt??"",
                               style: TextStyle(
                                   color: MyColors.appColorBlack(),
                                   fontSize: 17,
@@ -98,7 +112,7 @@ Widget bodyCertificate(
                             ),
                             Text(
                               providerCertificate
-                                  .listCheckCertificate[index].endAt,
+                                  .listCheckCertificate[index].endAt??"",
                               style: TextStyle(
                                   color: MyColors.appColorBlack(),
                                   fontSize: 17,

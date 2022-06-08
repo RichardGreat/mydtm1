@@ -21,28 +21,28 @@ class ModelCheckForeignCertificate {
 
 class DataCheckForeignCertificate {
   DataCheckForeignCertificate({
-    required this.serNum,
-    required this.flangCertName,
-    required this.flangCertId,
-    required this.flangLevelName,
-    required this.flangLevelId,
-    required this.status,
-    required this.statusName,
-    required this.givenDate,
-    required this.flangId,
-    required this.flangName,
+    this.serNum,
+    this.flangCertName,
+    this.flangCertId,
+    this.flangLevelName,
+    this.flangLevelId,
+    this.status,
+    this.statusName,
+    this.givenDate,
+    this.flangId,
+    this.flangName,
   });
 
-  dynamic serNum;
-  dynamic flangCertName;
-  dynamic flangCertId;
-  dynamic flangLevelName;
-  dynamic flangLevelId;
-  dynamic status;
-  dynamic statusName;
-  dynamic givenDate;
-  dynamic flangId;
-  dynamic flangName;
+  dynamic serNum = "";
+  dynamic flangCertName = "";
+  dynamic flangCertId = "";
+  dynamic flangLevelName = "";
+  dynamic flangLevelId = "";
+  dynamic status = -1;
+  dynamic statusName = "";
+  dynamic givenDate = "";
+  dynamic flangId = "";
+  dynamic flangName = "";
 
   factory DataCheckForeignCertificate.fromJson(Map<String, dynamic> json) =>
       DataCheckForeignCertificate(

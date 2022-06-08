@@ -6,6 +6,7 @@ import 'package:mydtm/view/pages/otm/widgets/choose_direction/sheets/grant_contr
 import 'package:mydtm/view/pages/otm/widgets/choose_direction/sheets/language_choose.dart';
 import 'package:mydtm/view/pages/otm/widgets/choose_direction/sheets/maqsadli.dart';
 import 'package:mydtm/view/pages/otm/widgets/choose_direction/sheets/region_test.dart';
+import 'package:mydtm/view/pages/otm/widgets/use_certificate/certificate_use.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -23,7 +24,7 @@ Widget chooseDirect(
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      MyWidgets.robotoFontText(text: "chooseDirection".tr(), textSize: 24),
+      MyWidgets.robotoFontText(text: "chooseDirection".tr(), textSize: 25),
       const SizedBox(height: 20),
 
       /// test hudud
@@ -36,7 +37,7 @@ Widget chooseDirect(
             )),
         child: ListTile(
           minVerticalPadding: 0,
-          title: MyWidgets.robotoFontText(text: listDirection[0], textSize: 18),
+          title: MyWidgets.robotoFontText(text: listDirection[0], textSize: 19),
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           subtitle: Text(providerChooseEdu.testRegionNames),
           onTap: () {
@@ -50,7 +51,7 @@ Widget chooseDirect(
       Container(
         decoration: BoxDecoration(color: MyColors.appColorWhite()),
         child: ListTile(
-          title: MyWidgets.robotoFontText(text: listDirection[1], textSize: 20),
+          title: MyWidgets.robotoFontText(text: listDirection[1], textSize: 19),
           subtitle: Text(providerChooseEdu.grantContractName),
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           onTap: () {
@@ -66,7 +67,7 @@ Widget chooseDirect(
           color: MyColors.appColorWhite(),
         ),
         child: ListTile(
-          title: MyWidgets.robotoFontText(text: listDirection[3], textSize: 20),
+          title: MyWidgets.robotoFontText(text: listDirection[3], textSize: 18),
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
 
           subtitle: Text(providerChooseEdu.maqsadliName),
@@ -83,7 +84,7 @@ Widget chooseDirect(
           color: MyColors.appColorWhite(),
         ),
         child: ListTile(
-          title: MyWidgets.robotoFontText(text: listDirection[2], textSize: 20),
+          title: MyWidgets.robotoFontText(text: listDirection[2], textSize: 19),
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           subtitle: Text(providerChooseEdu.langName),
           onTap: () {
@@ -100,12 +101,29 @@ Widget chooseDirect(
           decoration: BoxDecoration(color: MyColors.appColorWhite()),
           child: ListTile(
             title:
-                MyWidgets.robotoFontText(text: listDirection[4], textSize: 20),
+                MyWidgets.robotoFontText(text: listDirection[4], textSize: 19),
             trailing: const Icon(Icons.arrow_forward_ios_sharp),
             subtitle: Text(providerChooseEdu.langGraphicName),
             onTap: () {
               sheetLanguageGraphicTest(
                   context: context, providerChooseEdu: providerChooseEdu);
+            },
+          ),
+        ),
+      ),
+
+      /// sertifikat
+      Visibility(
+        visible: !providerChooseEdu.boolCheckUseCertificateDataNot,
+        child: Container(
+          decoration: BoxDecoration(color: MyColors.appColorWhite()),
+          child: ListTile(
+            title:
+            MyWidgets.robotoFontText(text: "Certifikat", textSize: 19),
+            trailing: const Icon(Icons.arrow_forward_ios_sharp),
+            onTap: () {
+              sheetCertificateUse(
+                  contexts: context, providerChooseEdu: providerChooseEdu);
             },
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/pages/otm/widgets/app_bar_choose_edu.dart';
 import 'package:mydtm/view/pages/otm/widgets/body_choose_edu.dart';
+import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:provider/provider.dart';
 
 class ChooseEdu extends StatefulWidget {
@@ -18,15 +19,10 @@ class _ChooseEduState extends State<ChooseEdu> {
 
   @override
   initState(){
-    print("token ");
-    print(box.get("token"));
-
+    providerChooseEdu.getCheckUseNationCertInfo();
     super.initState();
   }
-  //
-  // refresh() {
-  //   setState(() {});
-  // }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -38,10 +34,12 @@ class _ChooseEduState extends State<ChooseEdu> {
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Container(
-                  height: MediaQuery.of(context).size.height*1.2,
+                  height: MediaQuery.of(context).size.height*1.7,
                   margin: const EdgeInsets.all(15),
-                  child: bodyChooseEdu(
-                      context: context, providerChooseEdu: providerChooseEdu),
+                  child: 
+                  providerChooseEdu.boolCheckUseCertificateData ?
+                  bodyChooseEdu(
+                      context: context, providerChooseEdu: providerChooseEdu):MyWidgets.loaderDownload(context: context),
                 ),
               ),
             )),

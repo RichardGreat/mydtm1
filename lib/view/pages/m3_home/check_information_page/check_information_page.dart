@@ -37,12 +37,14 @@ class _CheckInformationState extends State<CheckInformation> {
           body:
           providerCheckInformation.boolCheckUserInfo?
           SafeArea(
-            child: Container(
-              margin: const EdgeInsets.all(10),
-              child: bodyCheckInformation(
-                  context: context,
-                  providerCheckInformation: providerCheckInformation,
-                  serviceName: widget.serviceName),
+            child: SingleChildScrollView(
+              child: Container(
+                margin: const EdgeInsets.all(10),
+                child: bodyCheckInformation(
+                    context: context,
+                    providerCheckInformation: providerCheckInformation,
+                    serviceName: widget.serviceName),
+              ),
             ),
           ):MyWidgets.loaderDownload(context: context),
         ),

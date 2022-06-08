@@ -17,13 +17,57 @@ import 'package:mydtm/data/model_parse/edu_choose/model_edu_dir.dart';
 import 'package:mydtm/data/model_parse/edu_choose/otm/dir.dart';
 import 'package:mydtm/data/model_parse/edu_choose/otm/otm.dart';
 import 'package:mydtm/data/model_parse/edu_choose/region.dart';
+import 'package:mydtm/data/model_parse/person_info/certificate/for_server.dart';
+import 'package:mydtm/data/model_parse/person_info/certificate/national_cert.dart';
+import 'package:mydtm/data/model_parse/send_server/send_server.dart';
 import 'package:mydtm/view/pages/otm/widgets/select_direction/otm/dir.dart';
 import 'package:mydtm/view/pages/otm/widgets/select_direction/otm/otm.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
+import '../../../data/internet_connections/person_info/certificate/national_certificate.dart';
+
 class ProviderChooseEdu extends ChangeNotifier {
   late String testRegionId;
+
+  /// Check Use Certificate
+
+  NetworkNationalCert networkNationalCert = NetworkNationalCert();
+  List<DataCheckCertificate> listCheckCertificate = [];
+  bool boolCheckUseCertificateData = false;
+  bool boolCheckUseCertificateDataNot = false;
+  List<ModelCertificateForServer> listCertificateCheckUse = [];
+
+  Future getCheckUseNationCertInfo() async {
+    try {
+      boolCheckUseCertificateData = false;
+      String dataCert = await networkNationalCert.getNationalCert();
+      ModelCheckCertificate modelCheckCertificate =
+          ModelCheckCertificate.fromJson(jsonDecode(dataCert));
+      listCheckCertificate = modelCheckCertificate.data;
+      for (int i = 0; i < listCheckCertificate.length; i++) {
+        listCertificateCheckUse.add(ModelCertificateForServer(
+            certId: "0",
+            userValue: listCheckCertificate[i].certSernum.toString(),
+            certBall:  listCheckCertificate[i].percent.toString(),
+            certName:  listCheckCertificate[i].name.toString(),
+        ));
+      }
+      boolCheckUseCertificateData = true;
+      notifyListeners();
+    } catch (e) {
+      log(e.toString());
+      boolCheckUseCertificateData = true;
+      boolCheckUseCertificateDataNot = true;
+      notifyListeners();
+    }
+  }
+
+  Future setUserNationCert({required String certId, required String userVal }) async {
+
+
+
+  }
 
   /// Choose direction
   //#Bloc1
@@ -529,10 +573,11 @@ class ProviderChooseEdu extends ChangeNotifier {
   NetworkLangTest networkLangTest = NetworkLangTest();
   late ModelLangTest modelLangTest;
   List<DataForeignLang> listDataForeignLang = [];
-  List<DataForeignLang> listDataForeignLangTemp =  [];
+  List<DataForeignLang> listDataForeignLangTemp = [];
   bool boolForeignLanguage = false;
   String stringForeignLangName = "";
   String stringForeignLangId = "";
+
   Future getForeignLangMethod() async {
     try {
       boolForeignLanguage = false;
@@ -544,7 +589,6 @@ class ProviderChooseEdu extends ChangeNotifier {
               (key) => DataForeignLang(id: key.key, name: key.value.toString()))
           .toList();
 
-
       listDataForeignLangTemp.clear();
       listDataForeignLangTemp = listDataForeignLang;
 
@@ -554,7 +598,8 @@ class ProviderChooseEdu extends ChangeNotifier {
   }
 
   bool boolSelectForeignLang = false;
-  Future setForeignLang({required String id, required String name})async{
+
+  Future setForeignLang({required String id, required String name}) async {
     boolSelectForeignLang = false;
     stringForeignLangName = name;
     stringForeignLangId = id;
@@ -666,6 +711,19 @@ class ProviderChooseEdu extends ChangeNotifier {
 
   Future setDataEduDir() async {
     try {
+      // ModelSendServerInfo modelSendServerInfo = ModelSendServerInfo
+      //   (sert: sert,
+      //     isGrand: isGrand,
+      //     isMaqsad: isMaqsad,
+      //     testRegionId: testRegionId,
+      //     langId: langId,
+      //     testGraph: testGraph,
+      //     emodeId: emodeId,
+      //     eduId: eduId,
+      //     planId: planId,
+      //     flangId: flangId);
+
+      log(stringForeignLangId);
       log(jsonEncode(listTitleEduDir));
     } catch (e) {}
   }
