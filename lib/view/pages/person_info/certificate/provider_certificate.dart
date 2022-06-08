@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/foreign_cert.dart';
@@ -44,9 +44,12 @@ class ProviderCertificate extends ChangeNotifier {
       modelCheckForeignCertificate = ModelCheckForeignCertificate.fromJson(jsonDecode(dataCertForeign));
       dataCheckForeignCertificate = modelCheckForeignCertificate.data;
       boolCheckForeignLang = true;
+      notifyListeners();
     }catch(e){
+      log(e.toString());
       boolCheckForeignLangNot = true;
-      boolCheckForeignLang = true;
+      // boolCheckForeignLang = true;
+
       notifyListeners();
     }
   }

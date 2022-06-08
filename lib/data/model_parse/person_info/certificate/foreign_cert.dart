@@ -33,16 +33,16 @@ class DataCheckForeignCertificate {
     required this.flangName,
   });
 
-  String serNum;
-  String flangCertName;
-  String flangCertId;
-  String flangLevelName;
-  String flangLevelId;
-  String status;
-  String statusName;
-  String givenDate;
-  String flangId;
-  String flangName;
+  dynamic serNum;
+  dynamic flangCertName;
+  dynamic flangCertId;
+  dynamic flangLevelName;
+  dynamic flangLevelId;
+  dynamic status;
+  dynamic statusName;
+  dynamic givenDate;
+  dynamic flangId;
+  dynamic flangName;
 
   factory DataCheckForeignCertificate.fromJson(Map<String, dynamic> json) =>
       DataCheckForeignCertificate(
