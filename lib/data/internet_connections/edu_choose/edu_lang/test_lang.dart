@@ -10,6 +10,7 @@ class NetworkLangTest{
   Future<String> getTestLang({required String langId})async{
     var dio = Dio();
     Response response;
+    // https://api.dtm.uz/v1/qabul/fland-edu?flang_id=4
     response = await dio.get("${MainUrl.mainUrls}/v1/qabul/fland-edu?flang_id=$langId",
     options: Options(headers: {MainUrl.mainUrlHeader:box.get("token")})
     );

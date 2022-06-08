@@ -9,6 +9,7 @@ import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
 import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/foreigion_lang_add.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
+import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:easy_localization/easy_localization.dart';
 class ProviderCheckInformation extends ChangeNotifier {
@@ -77,7 +78,7 @@ class ProviderCheckInformation extends ChangeNotifier {
     } else if (index == 4) {
       pushNewScreen(
         context,
-        screen: const ForeignLanguageAdd(),
+        screen: const Privilege(),
         withNavBar: false,
         pageTransitionAnimation: PageTransitionAnimation.cupertino,
       );

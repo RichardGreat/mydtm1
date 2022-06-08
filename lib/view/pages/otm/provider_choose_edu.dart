@@ -198,10 +198,9 @@ class ProviderChooseEdu extends ChangeNotifier {
 
   /// Yuqoridagilardan biri qayta tanlansa pastni to'liq tozalash kerak
   Future setDefaultEduDir() async {
-
     boolForeignLang = false;
-    for(int i = 0; i < listTitleEduDir.length; i++){
-      listTitleEduDir[i] =  ListModelEduDir(
+    for (int i = 0; i < listTitleEduDir.length; i++) {
+      listTitleEduDir[i] = ListModelEduDir(
           id: "",
           nameTitle: "",
           titleId: "$i",
@@ -209,12 +208,11 @@ class ProviderChooseEdu extends ChangeNotifier {
           eduId: "",
           dirName: "",
           dirId: "",
-        fLangId: ""
-      );
+          fLangId: "");
     }
     // Oliy ta'lim muassasi
-    for(int i = 0; i < listTitleEduDir.length; i++){
-      listTitleEduDir[i] =  ListModelEduDir(
+    for (int i = 0; i < listTitleEduDir.length; i++) {
+      listTitleEduDir[i] = ListModelEduDir(
           id: "$i",
           nameTitle: "Oliy ta'lim muassasi",
           titleId: "$i",
@@ -222,8 +220,7 @@ class ProviderChooseEdu extends ChangeNotifier {
           eduId: "",
           dirName: "",
           dirId: "",
-          fLangId: ""
-      );
+          fLangId: "");
     }
     notifyListeners();
   }
@@ -397,7 +394,6 @@ class ProviderChooseEdu extends ChangeNotifier {
 
   Future getOtm1({required int titleEduDir}) async {
     try {
-      log("titleEduDir $titleEduDir");
       boolOtmData = false;
       if (titleEduDir == 0) {
         dataOtm = await networkOtm.getOtm(eModeId: eModeId, langId: langId);
@@ -487,7 +483,9 @@ class ProviderChooseEdu extends ChangeNotifier {
         titleEduDir: titleEduDirId);
     notifyListeners();
   }
-bool boolForeignLang = false;
+
+  bool boolForeignLang = false;
+
   Future setDir1(
       {required String nameDir,
       required String idDir,
@@ -496,10 +494,10 @@ bool boolForeignLang = false;
     listTitleEduDir[titleEduDirId].dirId = idDir;
     listTitleEduDir[titleEduDirId].dirName = nameDir;
     listTitleEduDir[titleEduDirId].fLangId = fLang;
-    if(listTitleEduDir[0].fLangId =="0"){
+    if (listTitleEduDir[0].fLangId == "0") {
       boolForeignLang = false;
       notifyListeners();
-    }else if(listTitleEduDir[0].fLangId =="4"){
+    } else if (listTitleEduDir[0].fLangId == "4") {
       boolForeignLang = true;
       notifyListeners();
     }
@@ -530,17 +528,43 @@ bool boolForeignLang = false;
   // #GetForeignLanguage
   NetworkLangTest networkLangTest = NetworkLangTest();
   late ModelLangTest modelLangTest;
-  Future getForeignLang()async{
-      try{
-        String dataTestLang = await networkLangTest.getTestLang(langId: listTitleEduDir[0].fLangId);
-        modelLangTest = ModelLangTest.fromJson(jsonDecode(dataTestLang));
+  List<DataForeignLang> listDataForeignLang = [];
+  List<DataForeignLang> listDataForeignLangTemp =  [];
+  bool boolForeignLanguage = false;
+  String stringForeignLangName = "";
+  String stringForeignLangId = "";
+  Future getForeignLangMethod() async {
+    try {
+      boolForeignLanguage = false;
+      String dataTestLang =
+          await networkLangTest.getTestLang(langId: listTitleEduDir[0].fLangId);
+      modelLangTest = ModelLangTest.fromJson(jsonDecode(dataTestLang));
+      listDataForeignLang = modelLangTest.data.entries
+          .map(
+              (key) => DataForeignLang(id: key.key, name: key.value.toString()))
+          .toList();
 
-      }catch(e){}
+
+      listDataForeignLangTemp.clear();
+      listDataForeignLangTemp = listDataForeignLang;
+
+      boolForeignLanguage = true;
+      notifyListeners();
+    } catch (e) {}
   }
+
+  bool boolSelectForeignLang = false;
+  Future setForeignLang({required String id, required String name})async{
+    boolSelectForeignLang = false;
+    stringForeignLangName = name;
+    stringForeignLangId = id;
+    boolSelectForeignLang = true;
+    notifyListeners();
+  }
+
   // #Bloc6 1
 
   Future getDefault({required int titleEduDir}) async {
-
     for (int i = titleEduDir + 1; i < listTitleEduDir.length; i++) {
       listTitleEduDir[i] = ListModelEduDir(
           id: i.toString(),
@@ -550,10 +574,8 @@ bool boolForeignLang = false;
           eduId: "",
           dirName: "",
           dirId: "",
-          fLangId: ""
-      );
+          fLangId: "");
     }
-
   }
 
   NetworkDir1 networkDir1 = NetworkDir1();
@@ -564,7 +586,8 @@ bool boolForeignLang = false;
   TextEditingController textDir1Controller = TextEditingController();
   late String dataDir;
 
-  Future getDir1({required int titleEduDir, required  BuildContext context}) async {
+  Future getDir1(
+      {required int titleEduDir, required BuildContext context}) async {
     try {
       boolDirDownload = false;
       getDefault(titleEduDir: titleEduDir);
@@ -621,17 +644,19 @@ bool boolForeignLang = false;
       log(dataDir);
     } catch (e) {
       AwesomeDialog(
-          context: context,
-          dialogType: DialogType.ERROR,
-          animType: AnimType.BOTTOMSLIDE,
-          title: "DTM",
-          desc: "Mos yo'nalish topilmadi, qayta tanlang",
-          titleTextStyle: TextStyle(
-              color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
-          descTextStyle: TextStyle(
-              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-          btnCancelOnPress: () {Navigator.of(context).pop();},
-          btnCancelText: "OK")
+              context: context,
+              dialogType: DialogType.ERROR,
+              animType: AnimType.BOTTOMSLIDE,
+              title: "DTM",
+              desc: "Mos yo'nalish topilmadi, qayta tanlang",
+              titleTextStyle: TextStyle(
+                  color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(
+                  color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+              btnCancelOnPress: () {
+                Navigator.of(context).pop();
+              },
+              btnCancelText: "OK")
           .show();
       log(e.toString());
     }
@@ -639,10 +664,9 @@ bool boolForeignLang = false;
 
 //  Bloc #last
 
-Future setDataEduDir()async{
-    try{
+  Future setDataEduDir() async {
+    try {
       log(jsonEncode(listTitleEduDir));
-    }catch(e){}
-}
-
+    } catch (e) {}
+  }
 }

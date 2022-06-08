@@ -13,6 +13,18 @@ class Certificates extends StatefulWidget {
 
 class _CertificatesState extends State<Certificates> {
   ProviderCertificate providerCertificate = ProviderCertificate();
+  @override
+  initState(){
+    providerCertificate.getForeignCert();
+    providerCertificate.getNationCertInfo();
+    // {
+    //   "status": 0,
+    // "error_code": 400,
+    // "errors": "Ma`lumot topilmadi."
+    // }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -17,3 +17,16 @@ class ModelLangTest {
     "data": Map.from(data).map((k, v) => MapEntry<String, dynamic>(k, v)),
   };
 }
+
+class DataForeignLang{
+  String id, name;
+  DataForeignLang({required this.id, required this.name});
+
+  factory DataForeignLang.fromJson({ required Map<String, dynamic> json}) => DataForeignLang(id: json["id"], name:json["name"]);
+
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name
+  };
+}

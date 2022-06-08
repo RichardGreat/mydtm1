@@ -56,6 +56,8 @@
   "addressAlways": "Doimiy yashash manzili",
   "schoolInfo": "Umumta'lim muassasi",
   "certificates":"Sertifikatlar",
-  "privileges": "Imtiyozlar"
+  "privileges": "Imtiyozlar",
+  "noPrivileges": "Imtiyoz mavjud emas",
+  "noPrivilegesText": "Agar abituriyentning imtiyozi chiqmasa, abituriyent imtiyozni taqdim etgan vazirlik yoki idoraga murojaat qilishi lozim."
 
 }
