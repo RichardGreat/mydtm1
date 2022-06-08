@@ -6,6 +6,7 @@ class ListModelEduDir {
   String eduId;
   String dirName;
   String dirId;
+  String fLangId;
 
   ListModelEduDir(
       {required this.id,
@@ -14,7 +15,10 @@ class ListModelEduDir {
       required this.nameEdu,
       required this.eduId,
       required this.dirName,
-      required this.dirId});
+      required this.dirId,
+      required this.fLangId
+
+      });
 
   factory ListModelEduDir.fromJson(Map<String, dynamic> json) =>
       ListModelEduDir(
@@ -26,6 +30,7 @@ class ListModelEduDir {
           eduId:json["edu_id"],
           dirName:json["dir_name"],
           dirId:json["dir_id"],
+          fLangId:json["flang_id"],
       );
 
   Map<String, dynamic> toJson() =>
@@ -37,5 +42,6 @@ class ListModelEduDir {
         "edu_id":eduId,
         "dir_name":dirName,
         "dir_id":dirId,
+        "flang_id":fLangId
        };
 }

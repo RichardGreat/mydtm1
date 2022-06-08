@@ -38,7 +38,7 @@ class _ChooseEduState extends State<ChooseEdu> {
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Container(
-                  height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height*1.5,
                   margin: const EdgeInsets.all(15),
                   child: bodyChooseEdu(
                       context: context, providerChooseEdu: providerChooseEdu),

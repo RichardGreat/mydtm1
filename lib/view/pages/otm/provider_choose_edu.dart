@@ -1,21 +1,26 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/edu_lang/lang_choose_edu.dart';
+import 'package:mydtm/data/internet_connections/edu_choose/edu_lang/test_lang.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/emode/emode_choose.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/otm/dir1.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/otm/otm_1.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/region/choose_region.dart';
 import 'package:mydtm/data/model_parse/edu_choose/emode/emodes.dart';
 import 'package:mydtm/data/model_parse/edu_choose/lang/lang_edu_model.dart';
+import 'package:mydtm/data/model_parse/edu_choose/lang/test_lang.dart';
 import 'package:mydtm/data/model_parse/edu_choose/model_edu_dir.dart';
 import 'package:mydtm/data/model_parse/edu_choose/otm/dir.dart';
 import 'package:mydtm/data/model_parse/edu_choose/otm/otm.dart';
 import 'package:mydtm/data/model_parse/edu_choose/region.dart';
 import 'package:mydtm/view/pages/otm/widgets/select_direction/otm/dir.dart';
 import 'package:mydtm/view/pages/otm/widgets/select_direction/otm/otm.dart';
+import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 class ProviderChooseEdu extends ChangeNotifier {
   late String testRegionId;
@@ -194,6 +199,7 @@ class ProviderChooseEdu extends ChangeNotifier {
   /// Yuqoridagilardan biri qayta tanlansa pastni to'liq tozalash kerak
   Future setDefaultEduDir() async {
 
+    boolForeignLang = false;
     for(int i = 0; i < listTitleEduDir.length; i++){
       listTitleEduDir[i] =  ListModelEduDir(
           id: "",
@@ -202,10 +208,11 @@ class ProviderChooseEdu extends ChangeNotifier {
           nameEdu: "",
           eduId: "",
           dirName: "",
-          dirId: "");
+          dirId: "",
+        fLangId: ""
+      );
     }
     // Oliy ta'lim muassasi
-
     for(int i = 0; i < listTitleEduDir.length; i++){
       listTitleEduDir[i] =  ListModelEduDir(
           id: "$i",
@@ -214,10 +221,11 @@ class ProviderChooseEdu extends ChangeNotifier {
           nameEdu: "",
           eduId: "",
           dirName: "",
-          dirId: "");
+          dirId: "",
+          fLangId: ""
+      );
     }
     notifyListeners();
-
   }
 
   List<String> listTitleName = [
@@ -225,59 +233,60 @@ class ProviderChooseEdu extends ChangeNotifier {
     "Oliy ta'lim muassasi",
     "Oliy ta'lim muassasi",
     "Oliy ta'lim muassasi",
-    "Oliy ta'lim muassasi",
-    "Chet tili"
+    "Oliy ta'lim muassasi"
   ];
 
   List<ListModelEduDir> listTitleEduDir = [
     ListModelEduDir(
-        id: "0",
-        nameTitle: "Oliy ta'lim muassasi",
-        titleId: "0",
-        nameEdu: "",
-        eduId: "",
-        dirName: "",
-        dirId: ""),
+      id: "0",
+      nameTitle: "Oliy ta'lim muassasi",
+      titleId: "0",
+      nameEdu: "",
+      eduId: "",
+      dirName: "",
+      dirId: "",
+      fLangId: "",
+    ),
     ListModelEduDir(
-        id: "1",
-        nameTitle: "Oliy ta'lim muassasi",
-        titleId: "1",
-        nameEdu: "",
-        eduId: "",
-        dirName: "",
-        dirId: ""),
+      id: "1",
+      nameTitle: "Oliy ta'lim muassasi",
+      titleId: "1",
+      nameEdu: "",
+      eduId: "",
+      dirName: "",
+      dirId: "",
+      fLangId: "",
+    ),
     ListModelEduDir(
-        id: "2",
-        nameTitle: "Oliy ta'lim muassasi",
-        titleId: "2",
-        nameEdu: "",
-        eduId: "",
-        dirName: "",
-        dirId: ""),
+      id: "2",
+      nameTitle: "Oliy ta'lim muassasi",
+      titleId: "2",
+      nameEdu: "",
+      eduId: "",
+      dirName: "",
+      dirId: "",
+      fLangId: "",
+    ),
     ListModelEduDir(
-        id: "3",
-        nameTitle: "Oliy ta'lim muassasi",
-        titleId: "3",
-        nameEdu: "",
-        eduId: "",
-        dirName: "",
-        dirId: ""),
+      id: "3",
+      nameTitle: "Oliy ta'lim muassasi",
+      titleId: "3",
+      nameEdu: "",
+      eduId: "",
+      dirName: "",
+      dirId: "",
+      fLangId: "",
+    ),
     ListModelEduDir(
-        id: "4",
-        nameTitle: "Oliy ta'lim muassasi",
-        titleId: "4",
-        nameEdu: "",
-        eduId: "",
-        dirName: "",
-        dirId: ""),
-    ListModelEduDir(
-        id: "5",
-        nameTitle: "Chet tili",
-        titleId: "5",
-        nameEdu: "",
-        eduId: "",
-        dirName: "",
-        dirId: ""),
+      id: "4",
+      nameTitle: "Oliy ta'lim muassasi",
+      titleId: "4",
+      nameEdu: "",
+      eduId: "",
+      dirName: "",
+      dirId: "",
+      fLangId: "",
+    ),
   ];
 
   NetworkEmodeChoose networkEmodeChoose = NetworkEmodeChoose();
@@ -478,7 +487,7 @@ class ProviderChooseEdu extends ChangeNotifier {
         titleEduDir: titleEduDirId);
     notifyListeners();
   }
-
+bool boolForeignLang = false;
   Future setDir1(
       {required String nameDir,
       required String idDir,
@@ -486,13 +495,52 @@ class ProviderChooseEdu extends ChangeNotifier {
       required int titleEduDirId}) async {
     listTitleEduDir[titleEduDirId].dirId = idDir;
     listTitleEduDir[titleEduDirId].dirName = nameDir;
+    listTitleEduDir[titleEduDirId].fLangId = fLang;
+    if(listTitleEduDir[0].fLangId =="0"){
+      boolForeignLang = false;
+      notifyListeners();
+    }else if(listTitleEduDir[0].fLangId =="4"){
+      boolForeignLang = true;
+      notifyListeners();
+    }
 
     notifyListeners();
   }
 
+  Future searchDir({required String val}) async {
+    listDirTemp.clear();
+    for (var l in listDir) {
+      if (l.name.toLowerCase().contains(val.trim().toLowerCase())) {
+        listDirTemp.add(l);
+      }
+    }
+    notifyListeners();
+  }
+
+  Future clearTextDir1() async {
+    boolDirDownload = false;
+    notifyListeners();
+    textDir1Controller.clear();
+    listDirTemp.clear();
+    listDirTemp.addAll(listDir);
+    boolDirDownload = true;
+    notifyListeners();
+  }
+
+  // #GetForeignLanguage
+  NetworkLangTest networkLangTest = NetworkLangTest();
+  late ModelLangTest modelLangTest;
+  Future getForeignLang()async{
+      try{
+        String dataTestLang = await networkLangTest.getTestLang(langId: listTitleEduDir[0].fLangId);
+        modelLangTest = ModelLangTest.fromJson(jsonDecode(dataTestLang));
+
+      }catch(e){}
+  }
   // #Bloc6 1
 
   Future getDefault({required int titleEduDir}) async {
+
     for (int i = titleEduDir + 1; i < listTitleEduDir.length; i++) {
       listTitleEduDir[i] = ListModelEduDir(
           id: i.toString(),
@@ -501,8 +549,11 @@ class ProviderChooseEdu extends ChangeNotifier {
           nameEdu: "",
           eduId: "",
           dirName: "",
-          dirId: "");
+          dirId: "",
+          fLangId: ""
+      );
     }
+
   }
 
   NetworkDir1 networkDir1 = NetworkDir1();
@@ -513,7 +564,7 @@ class ProviderChooseEdu extends ChangeNotifier {
   TextEditingController textDir1Controller = TextEditingController();
   late String dataDir;
 
-  Future getDir1({required int titleEduDir}) async {
+  Future getDir1({required int titleEduDir, required  BuildContext context}) async {
     try {
       boolDirDownload = false;
       getDefault(titleEduDir: titleEduDir);
@@ -569,10 +620,22 @@ class ProviderChooseEdu extends ChangeNotifier {
 
       log(dataDir);
     } catch (e) {
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.ERROR,
+          animType: AnimType.BOTTOMSLIDE,
+          title: "DTM",
+          desc: "Mos yo'nalish topilmadi, qayta tanlang",
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () {Navigator.of(context).pop();},
+          btnCancelText: "OK")
+          .show();
       log(e.toString());
     }
   }
-
 
 //  Bloc #last
 

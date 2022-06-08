@@ -19,14 +19,6 @@ Widget bodyChooseEdu({required BuildContext context,
         providerChooseEdu.maqsadliName.isNotEmpty;
   } 
 
-  List<bool> listBoolCheckFillDir = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
  bool  checkFillDir({required int index}){
    
    if(index >= 1){
@@ -64,7 +56,9 @@ Widget bodyChooseEdu({required BuildContext context,
             ),
           ),
           child: ListView.builder(
-            // physics: const NeverScrollableScrollPhysics(),
+            // primary: true,
+            // shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: providerChooseEdu.listTitleEduDir.length,
             itemBuilder: (context, index) =>
                 GestureDetector(
@@ -93,22 +87,42 @@ Widget bodyChooseEdu({required BuildContext context,
                         checkFillDir(index: index) ?
                         MyColors.appColorBlack()
                             : MyColors.appColorGrey400() :MyColors.appColorGrey400(),
-                      )),
+                      ),
+                    trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                  ),
                 ),
           ),
         ),
       ),
+      Visibility(
+        visible: providerChooseEdu.boolForeignLang,
+        child: Container(
+          color: MyColors.appColorWhite(),
+          child: ListTile(
+            title: MyWidgets.robotoFontText(
+              text: "Chet tilini tanlang",
+              textColor:
+              MyColors.appColorBlack()
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios_sharp),
+          ),
+        ),),
       const SizedBox(height: 10),
       MaterialButton(
         onPressed: () {
-          providerChooseEdu.setDataEduDir();
+          if(checkFillSelected() &&
+              checkFillDir(index: 1) && providerChooseEdu.boolForeignLang) {
+            providerChooseEdu.setDataEduDir();
+          }else{
+            providerChooseEdu.setDataEduDir();
+          }
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color:
-        checkFillSelected()?
-        checkFillDir(index: 1) ?
+        checkFillSelected() &&
+        checkFillDir(index: 1) && providerChooseEdu.boolForeignLang ?
           MyColors.appColorBlue1()
-            : MyColors.appColorGrey400():MyColors.appColorGrey400(),
+            : MyColors.appColorGrey400(),
 
         minWidth: double.infinity,
         height: 50,

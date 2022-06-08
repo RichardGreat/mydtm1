@@ -38,7 +38,7 @@ class DIREdu extends StatefulWidget {
 class _DIREduState extends State<DIREdu> {
   Future countValue() async {
 
-    await widget.providerChooseEdu.getDir1(titleEduDir: widget.titleEduDirId);
+    await widget.providerChooseEdu.getDir1(titleEduDir: widget.titleEduDirId, context: context);
     setState(() {});
   }
 
@@ -84,17 +84,17 @@ class _DIREduState extends State<DIREdu> {
                           widget.providerChooseEdu.textDir1Controller,
                           minLines: 1,
                           onChanged: (value) {
-                            // widget.providerChooseEdu
-                            //     .searchOtm(val: value);
-                            // setState(() {});
+                            widget.providerChooseEdu
+                                .searchDir(val: value);
+                            setState(() {});
                           },
                           textAlignVertical: TextAlignVertical.center,
                           decoration: InputDecoration(
                             prefixIcon: const Icon(Icons.search),
                             suffix: IconButton(
                                 onPressed: () {
-                                  // widget.providerChooseEdu
-                                  //     .clearTextOtm1();
+                                  widget.providerChooseEdu
+                                      .clearTextDir1();
                                   setState(() {});
                                 },
                                 icon: const Icon(
@@ -150,10 +150,13 @@ class _DIREduState extends State<DIREdu> {
                           ),
                         ),
                         onTap: () {
-                          widget.providerChooseEdu.setDir1(nameDir:  widget.providerChooseEdu.listDirTemp[index].name,
+
+                          widget.providerChooseEdu.setDir1(
+                              nameDir:  widget.providerChooseEdu.listDirTemp[index].name,
                               idDir:  widget.providerChooseEdu.listDirTemp[index].id.toString(),
-                             fLang: widget.providerChooseEdu.listDirTemp[index].flangId.toString(),
-                              titleEduDirId: widget.titleEduDirId);
+                              fLang: widget.providerChooseEdu.listDirTemp[index].flangId.toString(),
+                              titleEduDirId: widget.titleEduDirId,
+                          );
                           setState((){});
                           // setData(
                           //     name: widget.providerChooseEdu
