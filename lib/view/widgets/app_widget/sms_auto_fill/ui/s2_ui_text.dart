@@ -16,7 +16,7 @@ Widget uiText({required BuildContext context, required String phoneNum, required
               fontWeight: FontWeight.w400)),
       const SizedBox(height: 5),
       providerSms.timeFormatString == "00:00"?const SizedBox.shrink():
-      Text("+998 " + returnPhoneFormat(phoneNumber: phoneNum),
+      Text("+998 ${returnPhoneFormat(phoneNumber: phoneNum)}",
           style: const TextStyle(
               fontSize: 17, color: Colors.black, fontWeight: FontWeight.w600)),
       providerSms.timeFormatString == "00:00"?const SizedBox.shrink():
@@ -30,7 +30,7 @@ Widget uiText({required BuildContext context, required String phoneNum, required
             child: TextFormField(
               controller: providerSms.controller,
               maxLines: 1,
-              maxLength: 5,
+              maxLength: 6,
               decoration: InputDecoration(
                 labelText: "enterSms".tr(),
                 labelStyle: const TextStyle(

@@ -4,7 +4,13 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/data/internet_connections/m1_internet/get_token.dart';
+import 'package:mydtm/data/model_parse/m1_model/authhorization/model_get_token.dart';
+import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
+import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_auth.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_captcha_error.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_registrated.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart';
@@ -212,15 +218,41 @@ class ProviderSms extends ChangeNotifier {
   }
 
 
-
-  Future sentServer({required String appId, required String smsCode})async{
+  var box = Hive.box("online");
+  Future sentServer({required BuildContext context, required String appId, required String smsCode})async{
     try{
 
       String data = await NetworkSmsAutoFill.sentServerSms(smsCode: smsCode, smsId: smsId, appId: "1");
+      try{
+        ModelAuthSms modelAuthSms = ModelAuthSms.fromJson(jsonDecode(data));
+            String token = await NetworkGetToken.getTokenModel(
+            authCode: modelAuthSms.data.authorizationCode);
+        ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(token));
+
+        box.put("token", modelGetToken.data.accessToken);
+        log(box.get("token"));
+        if (box
+            .get("token")
+            .toString()
+            .length > 30) {
+          // ignore: use_build_context_synchronously
+          box.delete("phoneNumber");
+          box.put("phoneNumber", phoneNumber);
+          // ignore: use_build_context_synchronously
+          Navigator.pushAndRemoveUntil(
+              context,
+              CupertinoPageRoute(
+                builder: (context) => const MainPages(),
+              ), (route) => false);
+        }
+      }catch(e){}
+
       log(data);
+      log(smsCode);
+      log(smsId);
     }catch(e){}
   }
-
+  String phoneNumber = "";
   Future getSmsCode(
       {required BuildContext context,
       required int numbers,
@@ -250,6 +282,7 @@ class ProviderSms extends ChangeNotifier {
 
     if (numbers == 1) {
       /// registratsiya
+      phoneNumber = phoneNum;
       downloadRegistrationData(
         context: context,
         userName: phoneNum,

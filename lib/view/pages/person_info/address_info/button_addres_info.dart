@@ -19,7 +19,13 @@ Widget buttonAddressInfo(
         margin: const EdgeInsets.all(10),
         child: MaterialButton(
           onPressed: () {
-            Navigator.push(context,CupertinoPageRoute(builder: (context) => const Graduated(),));
+              if( providerAddressInfo.boolAddressText &&
+                  providerAddressInfo.districtName.length > 4 &&
+                  providerAddressInfo.provinceName.length > 4){
+                // Navigator.push(context,CupertinoPageRoute(builder: (context) => const Graduated(),));
+                providerAddressInfo.setAddress(context: context);
+              }
+
 
           },
           minWidth: double.infinity,

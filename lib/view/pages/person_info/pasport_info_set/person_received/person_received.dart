@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/provider_person_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 modelSheetPersonReceived(
     {required BuildContext context,
     required ProviderPersonInfo providerPersonInfo}) {
@@ -51,7 +51,7 @@ modelSheetPersonReceived(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         MyWidgets.robotoFontText(
-                            text: "FISH",
+                            text: "fish".tr(),
                             textSize: 16,
                             textColor: MyColors.appColorGrey400()),
                         MyWidgets.robotoFontText(
@@ -60,7 +60,7 @@ modelSheetPersonReceived(
                         ),
                         const SizedBox(height: 5),
                         MyWidgets.robotoFontText(
-                            text: "Tug'ulgan sana",
+                            text: "bDate".tr(),
                             textSize: 16,
                             textColor: MyColors.appColorGrey400()),
                         MyWidgets.robotoFontText(
@@ -69,7 +69,7 @@ modelSheetPersonReceived(
                         ),
                         const SizedBox(height: 5),
                         MyWidgets.robotoFontText(
-                            text: "Pasport seriya va raqam",
+                            text: "passport".tr(),
                             textSize: 16,
                             textColor: MyColors.appColorGrey400()),
                         MyWidgets.robotoFontText(
@@ -79,7 +79,7 @@ modelSheetPersonReceived(
                         ),
                         const SizedBox(height: 5),
                         MyWidgets.robotoFontText(
-                            text: "JShShIR",
+                            text: "personCode".tr(),
                             textSize: 16,
                             textColor: MyColors.appColorGrey400()),
                         MyWidgets.robotoFontText(
@@ -110,7 +110,7 @@ modelSheetPersonReceived(
                       },
                       height: 50,
                       child: MyWidgets.robotoFontText(
-                          text: "Tasdiqlash",
+                          text: "access".tr(),
                           textColor: MyColors.appColorWhite()),
                     ),
                   ),

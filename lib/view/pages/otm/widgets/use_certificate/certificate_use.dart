@@ -80,12 +80,10 @@ class _CertificateUseCheckState extends State<CertificateUseCheck> {
                               text: "Milli sertifikatdan foydalanish"),
                           const SizedBox(height: 20),
                           Text(widget.providerChooseEdu
-                                  .listCheckCertificate[index].name ??
-                              ""),
+                                  .listCheckCertificate[index].name),
                           const Divider(),
                           Text(
-                              "${widget.providerChooseEdu.listCheckCertificate[index].percent} %" ??
-                                  "",
+                              "${widget.providerChooseEdu.listCheckCertificate[index].percent} %",
                               style: TextStyle(
                                   fontSize: 20,
                                   color: MyColors.appColorBlack())),

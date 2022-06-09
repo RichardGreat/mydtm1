@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/person_info/check_user_info/check_user_info.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/view/pages/otm/choose_edu.dart';
@@ -33,18 +34,18 @@ class ProviderCheckInformation extends ChangeNotifier {
   NetworkCheckUserInfo networkCheckUserInfo = NetworkCheckUserInfo();
   late ModelCheckUserInfo modelCheckUserInfo;
   bool boolCheckUserInfo = false;
+  var box = Hive.box("online");
+
   Future getInfoUser()async{
     try{
       boolCheckUserInfo = false;
-      String dataCheckInfo = await networkCheckUserInfo.getUserInfo(phoneNumber: "998489900");
+      String dataCheckInfo = await networkCheckUserInfo.getUserInfo(phoneNumber: box.get("phoneNumber"));
       modelCheckUserInfo = ModelCheckUserInfo.fromJson(jsonDecode(dataCheckInfo));
       boolCheckUserInfo = true;
-
       notifyListeners();
     }catch(e){}
     // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
   }
-
 
   Future checkInfo({required int index, required BuildContext context}) async {
     if (index == 0) {

@@ -6,6 +6,7 @@ import 'package:mydtm/view/pages/person_info/address_info/region_set_info/region
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class AddressInfo extends StatefulWidget {
   const AddressInfo({Key? key}) : super(key: key);
@@ -19,22 +20,25 @@ class _AddressInfoState extends State<AddressInfo> {
   @override
   initState(){
     providerAddressInfo.getAddressInfo();
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => providerAddressInfo,
       child: Consumer<ProviderAddressInfo>(
-        builder: (context, value, child) => Scaffold(
+        builder: (context, value, child) =>
+            Form(
+                key: providerAddressInfo.keyAddressInfo,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                child:
+                Scaffold(
           backgroundColor: MyColors.appColorWhite(),
           appBar: addressAppBar(
               context: context, providerAddressInfo: providerAddressInfo),
           body: providerAddressInfo.boolGetAddressInfo ?
 
-          Form(
-            key: providerAddressInfo.keyAddressInfo,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            child: SafeArea(
+        SafeArea(
               child: Container(
                 margin: const EdgeInsets.all(10),
                 child: SingleChildScrollView(
@@ -43,12 +47,12 @@ class _AddressInfoState extends State<AddressInfo> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       MyWidgets.robotoFontText(
-                          text: "Doimiy yashash manzili",
+                          text: "address2".tr(),
                           textColor: MyColors.appColorBlack(),
                           textSize: 26),
                       const SizedBox(height: 5),
                       MyWidgets.robotoFontText(
-                          text: "Barcha qatorlarni to'ldiring",
+                          text: "fillAllRows".tr(),
                           textColor: MyColors.appColorGrey400(),
                           textFontWeight: FontWeight.w400,
                           textSize: 15),
@@ -59,10 +63,10 @@ class _AddressInfoState extends State<AddressInfo> {
                     ],
                   ),
                 ),
-              )),):const Center(child: CupertinoActivityIndicator(),)
+              )):const Center(child: CupertinoActivityIndicator(),)
         ),
       ),
-    );
+    ));
   }
 
   PreferredSizeWidget addressAppBar(

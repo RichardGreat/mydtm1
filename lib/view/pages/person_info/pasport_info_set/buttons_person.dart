@@ -4,7 +4,7 @@ import 'package:mydtm/view/pages/person_info/pasport_info_set/person_received/pe
 import 'package:mydtm/view/pages/person_info/pasport_info_set/provider_person_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 Widget buttonsPersonInfo(
     {required BuildContext context,
     required ProviderPersonInfo providerPersonInfo}) {
@@ -25,7 +25,7 @@ Widget buttonsPersonInfo(
               children: [
                 MyWidgets.robotoFontText(
                     text: providerPersonInfo.nationNames.length < 2
-                        ? "Tanlang..."
+                        ? "choose".tr()
                         : providerPersonInfo.nationNames,
                     textColor: providerPersonInfo.nationNames.length < 2
                         ? MyColors.appColorGrey400()
@@ -51,8 +51,10 @@ Widget buttonsPersonInfo(
                   providerPersonInfo.boolPsNum &&
                   providerPersonInfo.boolChooseNation
               ? {
-            if(providerPersonInfo.formKey123.currentState!.validate())
-            modelSheetPersonReceived(context: context, providerPersonInfo: providerPersonInfo)
+            if(providerPersonInfo.formKey123.currentState!.validate()){
+              providerPersonInfo.setPersonInfoServer(context: context)
+              // modelSheetPersonReceived(context: context, providerPersonInfo: providerPersonInfo)
+            }
 
           }
               : {
@@ -62,19 +64,19 @@ Widget buttonsPersonInfo(
                         backgroundColor: MyColors.appColorBlack(),
                       duration: const Duration(seconds: 1),
                           content: MyWidgets.robotoFontText(
-                          text: "Ma'lumotlarni to'ldiring",
+                          text: "fillInfo".tr(),
                       textColor: MyColors.appColorRed2()
                       )))
                 };
         },
-        child: MyWidgets.robotoFontText(
-            text: "Davom etish", textColor: MyColors.appColorWhite()),
         color: providerPersonInfo.boolJShShIR &&
                 providerPersonInfo.boolPsSer &&
                 providerPersonInfo.boolPsNum &&
                 providerPersonInfo.boolChooseNation
             ? MyColors.appColorBlue1()
             : MyColors.appColorGrey400(),
+        child: MyWidgets.robotoFontText(
+            text: "continue".tr(), textColor: MyColors.appColorWhite()),
       )
     ],
   );

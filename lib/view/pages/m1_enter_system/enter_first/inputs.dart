@@ -13,7 +13,7 @@ Widget enterFirstBodyInput(
     // mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      MyWidgets.robotoFontText(text: "Telefon"),
+      MyWidgets.robotoFontText(text: "telephone".tr()),
       TextFormField(
           controller: providerEnterFirst.textAuthLogin,
           maxLines: 1,
@@ -84,7 +84,7 @@ Widget enterFirstBodyInput(
                   return "kodLength".tr();
                 }
               } else {
-                return "phoneNumber".tr();
+                return "kodError".tr();
               }
             } else {
               String kod = value.substring(0, 2);
@@ -109,7 +109,7 @@ Widget enterFirstBodyInput(
           }
       ),
       const SizedBox(height: 10),
-      MyWidgets.robotoFontText(text: "Parol"),
+      MyWidgets.robotoFontText(text: "password".tr()),
       TextFormField(
         controller: providerEnterFirst.textAuthPassword,
           textAlignVertical: TextAlignVertical.center,
@@ -172,7 +172,7 @@ Widget enterFirstBodyInput(
           ),
         validator: (value) {
           if(value!.isEmpty || value.length < 8){
-            return "er";
+            return "passwordLength".tr();
           }
   }
       ),

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/authorize.dart';
@@ -105,12 +106,16 @@ class ProviderEnterFirst extends ChangeNotifier {
       String token = await NetworkGetToken.getTokenModel(
           authCode: modelUserToken.data.authorizationCode);
       ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(token));
+
       box.put("token", modelGetToken.data.accessToken);
       log(box.get("token"));
       if (box
           .get("token")
           .toString()
           .length > 30) {
+        // ignore: use_build_context_synchronously
+        box.delete("phoneNumber");
+        box.put("phoneNumber", textAuthLogin.text);
         // ignore: use_build_context_synchronously
         Navigator.pushAndRemoveUntil(
             context,
@@ -141,6 +146,8 @@ class ProviderEnterFirst extends ChangeNotifier {
           // smsId: widget.captchaValue, endTime: int.parse(widget.captchaKey), context: context);
           ModelRegistrationSms modelRegistrationSms = ModelRegistrationSms.fromJson(jsonDecode(data));
 
+            log(data);
+            log("::");
 
           // ignore: use_build_context_synchronously
           pushNewScreen(context, screen: SmsAutoFillUi(

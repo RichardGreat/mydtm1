@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/buttons_person.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/input_pasport.dart';
-import 'package:mydtm/view/pages/person_info/pasport_info_set/person_received/person_received.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_received/person_received2.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/provider_person_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -22,7 +22,7 @@ class _PersonInformationState extends State<PersonInformation> {
   @override
   void initState() {
     providerPersonInfo.getPersonInformation(context: context);
-
+    super.initState();
   }
 
   @override
@@ -36,7 +36,7 @@ class _PersonInformationState extends State<PersonInformation> {
             body:
             !providerPersonInfo.boolNetworkGetData
                 ?
-            providerPersonInfo.imie.length == 14?
+           ! providerPersonInfo.boolCheckImieHas?
             personReceived2(providerPersonInfo: providerPersonInfo, context: context)
                 :
             Form(
@@ -55,7 +55,7 @@ class _PersonInformationState extends State<PersonInformation> {
                                   context: context,
                                   providerPersonInfo: providerPersonInfo),
                               const SizedBox(height: 10),
-                                MyWidgets.robotoFontText(text: "Millati"),
+                                MyWidgets.robotoFontText(text: "nation".tr()),
                                 const SizedBox(height: 4),
                                 Expanded(
                                     child: buttonsPersonInfo(

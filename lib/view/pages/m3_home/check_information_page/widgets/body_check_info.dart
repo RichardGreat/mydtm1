@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_information.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/widgets/button_check_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -8,6 +9,7 @@ Widget bodyCheckInformation(
     {required BuildContext context,
     required ProviderCheckInformation providerCheckInformation,
     required String serviceName}) {
+  var box = Hive.box("online");
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -32,7 +34,8 @@ Widget bodyCheckInformation(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                providerCheckInformation.modelCheckUserInfo.person
+
+                providerCheckInformation.modelCheckUserInfo.person || box.get("imie").toString().length >=14
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : Icon(Icons.error, color: MyColors.appColorRed()),
               ]),

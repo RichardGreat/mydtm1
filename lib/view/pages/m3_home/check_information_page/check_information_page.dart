@@ -26,6 +26,7 @@ class _CheckInformationState extends State<CheckInformation> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(

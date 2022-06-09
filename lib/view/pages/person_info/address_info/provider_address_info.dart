@@ -1,13 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_address.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_district.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_region.dart';
+import 'package:mydtm/data/internet_connections/person_info/set_address.dart';
 import 'package:mydtm/data/model_parse/m6_model/district.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_address.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_country.dart';
+import 'package:mydtm/data/model_parse/person_info/model_address.dart';
+import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 
 class ProviderAddressInfo extends ChangeNotifier {
   final keyAddressInfo = GlobalKey<FormState>();
@@ -54,7 +57,7 @@ class ProviderAddressInfo extends ChangeNotifier {
   }
 
   /// Country
-  ///
+
   TextEditingController txtEditControllerSearch = TextEditingController();
   List<DataGetCountry> listGetCountryTemp = [];
   NetworkGetRegion networkGetRegion = NetworkGetRegion();
@@ -78,7 +81,10 @@ class ProviderAddressInfo extends ChangeNotifier {
   Future searchRegion({required String value}) async {
     listGetCountryTemp.clear();
     for (var element in modelGetCountry.data) {
-      if (element.name.trim().toLowerCase().contains(value.trim().toLowerCase())) {
+      if (element.name
+          .trim()
+          .toLowerCase()
+          .contains(value.trim().toLowerCase())) {
         listGetCountryTemp.add(element);
       }
     }
@@ -104,6 +110,11 @@ class ProviderAddressInfo extends ChangeNotifier {
   Future setProvince({required String pronId, required String proName}) async {
     provinceName = proName;
     provinceId = pronId;
+    districtId = "";
+    districtName = "";
+    txtEditControllerAddress.text = "";
+    address = "";
+
     getDistrict(parentId: pronId);
 
     notifyListeners();
@@ -136,13 +147,12 @@ class ProviderAddressInfo extends ChangeNotifier {
     for (var val in listGetDistrict) {
       if (val.name.trim().toLowerCase().contains(value.trim().toLowerCase())) {
         listGetDistrictTemp.add(val);
-
       }
     }
     notifyListeners();
   }
 
-  Future clearTextDistrict()async  {
+  Future clearTextDistrict() async {
     boolGetDistrict = false;
     notifyListeners();
     listGetDistrictTemp.clear();
@@ -151,10 +161,46 @@ class ProviderAddressInfo extends ChangeNotifier {
     boolGetDistrict = true;
     notifyListeners();
   }
+
   ///
   Future setDistrict({required String distId, required String distName}) async {
     districtName = distName;
     districtId = distId;
     notifyListeners();
+  }
+
+  NetworkSetAddress networkSetAddress = NetworkSetAddress();
+
+  Future setAddress({required BuildContext context}) async {
+    boolGetAddressInfo = false;
+    notifyListeners();
+
+    Map<String, String> mapAddress = {
+      "region_id": provinceId,
+      "district_id": districtId,
+      "address": txtEditControllerAddress.text
+    };
+    log(jsonEncode(mapAddress));
+    try {
+      String dataSetAddress = await networkSetAddress.setAddressInfo(
+          setAddressInfo: jsonEncode(mapAddress));
+      ModelGetAddress modelGetAddress =
+          ModelGetAddress.fromJson(jsonDecode(dataSetAddress));
+      provinceId = modelGetAddress.data.regionId.toString();
+      districtId = modelGetAddress.data.districtId.toString();
+      provinceName = modelGetAddress.data.regionName;
+      districtName = modelGetAddress.data.districtName;
+      address = modelGetAddress.data.address;
+
+      boolGetRegion = true;
+      notifyListeners();
+
+      boolGetAddressInfo = true;
+      MyWidgets.awesomeDialogInfo(context: context, valueText: "saved".tr());
+
+      notifyListeners();
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }

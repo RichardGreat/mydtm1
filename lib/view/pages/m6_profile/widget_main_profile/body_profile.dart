@@ -1,12 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 Widget bodyProfile({required BuildContext context, required ProviderProfile providerProfile}){
-
+  var box = Hive.box("online");
   List<Icon> myIcon = [
     Icon(
       CupertinoIcons.news_solid,
@@ -149,7 +150,7 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
               color: MyColors.appColorBlue1(),
               size: 24,
             ),
-            title: MyWidgets.robotoFontText(text: "998489900"),
+            title: MyWidgets.robotoFontText(text: box.get("phoneNumber")),
             subtitle: MyWidgets.robotoFontText(
                 text: "nomer o'zgatirish",
                 textColor: MyColors.appColorGrey400(),

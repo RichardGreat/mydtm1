@@ -33,6 +33,7 @@ class NetworkSmsAutoFill {
     var dio = Dio();
     log(userName);
     response = await dio
+
         .post("${MainUrl.mainUrls}/auth/request-password-reset", data: {
       "username": userName,
       "captcha_key": captchaKey,
@@ -52,7 +53,7 @@ class NetworkSmsAutoFill {
     log("sms_code: $smsCode, sms_id:$smsId");
     response = await dio.post("${MainUrl.mainUrls}/auth/check-sms",
         data: {"sms_code": smsCode, "sms_id": smsId, "app_id": "1"});
-    log(jsonEncode(response.data));
+
     return jsonEncode(response.data);
   }
 }

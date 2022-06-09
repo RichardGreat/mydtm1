@@ -14,24 +14,24 @@ Widget inputPassportInfo(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      MyWidgets.robotoFontText(text: "Shaxsiy ma'lumot", textSize: 28),
+      MyWidgets.robotoFontText(text: "personInformation".tr(), textSize: 28),
       const SizedBox(height: 20),
       MyWidgets.robotoFontText(
-          text: "Barcha qatorlarni to'ldiring",
+          text: "fillAllRows".tr(),
           textSize: 15,
           textColor: MyColors.appColorGrey600()),
       const SizedBox(height: 20),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          MyWidgets.robotoFontText(text: "SHSHIR"),
+          MyWidgets.robotoFontText(text: "personCode".tr()),
           // modelSheetPassportIdCard
           GestureDetector(
             onTap: (){
               modelSheetPassportIdCard(context: context, providerPersonInfo: providerPersonInfo);
             },
             child: MyWidgets.robotoFontText(
-                text: "Bu qanday aniqlanadi?",
+                text: "howToKnow".tr(),
                 textColor: MyColors.appColorBlue1()),
           ),
         ],
@@ -101,12 +101,12 @@ Widget inputPassportInfo(
                   }
                 }
                 if (!providerPersonInfo.myBoolWidget && value.length < 2) {
-                  return "jshshir xato".tr();
+                  return "personCodeError".tr();
                 } else {
-                  return "jshshir xato".tr();
+                  return "personCodeError".tr();
                 }
               } else {
-                return "jshshir xato".tr();
+                return "personCodeError".tr();
               }
             } else {
               String kod = value.substring(0, 1);
@@ -122,7 +122,7 @@ Widget inputPassportInfo(
               }
               if (!providerPersonInfo.myBoolWidget) {
                 providerPersonInfo.boolShShIR(boolShiR: false);
-                return "jshshir xato".tr();
+                return "personCodeError".tr();
               } else {
                 providerPersonInfo.boolShShIR(boolShiR: true);
               }
@@ -130,7 +130,7 @@ Widget inputPassportInfo(
             return null;
           }),
       const SizedBox(height: 5),
-      MyWidgets.robotoFontText(text: "Pasport seriya va raqami"),
+      MyWidgets.robotoFontText(text: "passport".tr()),
       const SizedBox(height: 5),
       Row(
         children: [
@@ -242,7 +242,7 @@ Widget inputPassportInfo(
               validator: (value3){
                 if(value3!.isEmpty || value3.length < 7){
                   providerPersonInfo.boolPsNumber(boolNum: false);
-                  return "uzunlikda xato";
+                  return "passportLength".tr();
                 }else{
                   providerPersonInfo.boolPsNumber(boolNum: true);
                   return null;

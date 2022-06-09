@@ -28,7 +28,6 @@
   "year": "yil",
   "bYear":"Tugatgan yili",
   "document": "Hujjat seriyasi va raqami",
-  "kodLength": "uzunlig",
   "phoneNumber": "Telefon raqam",
   "checkField": "Maydonlarni to'ldirilganini tekshiring",
   "goMainScreen": "Asosiy ekranga qaytish",
@@ -58,6 +57,20 @@
   "certificates":"Sertifikatlar",
   "privileges": "Imtiyozlar",
   "noPrivileges": "Imtiyoz mavjud emas",
-  "noPrivilegesText": "Agar abituriyentning imtiyozi chiqmasa, abituriyent imtiyozni taqdim etgan vazirlik yoki idoraga murojaat qilishi lozim."
+  "noPrivilegesText": "Agar abituriyentning imtiyozi chiqmasa, abituriyent imtiyozni taqdim etgan vazirlik yoki idoraga murojaat qilishi lozim.",
+  "telephone":"Telefon",
+  "kodError": "Telefon nomer kodida xato",
+  "kodLength": "Telefon nomer uzunligi yetarli emas",
+  "password": "Parol",
+  "passwordLength": "Parol uzunligi kam",
+  "nation": "Millati",
+  "fillAllRows": "Barcha qatorlarni to'ldiring",
+  "personCode": "SHSHIR",
+  "personCodeError": "jshshir xato",
+  "howToKnow":"Bu qanday aniqlanadi?",
+  "passport": "Pasport seriya va raqami",
+  "passportLength": "Pasport raqam 7 raqamdan iborat",
+  "fillInfo": "Ma'lumotlarni to'ldiring"
+
 
 }

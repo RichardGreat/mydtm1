@@ -7,6 +7,7 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s2_ui_text.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s4_botton_widget.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class SmsAutoFillUi extends StatefulWidget {
   final String phoneNum;
   String password;
