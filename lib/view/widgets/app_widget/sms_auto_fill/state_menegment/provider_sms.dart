@@ -162,6 +162,13 @@ class ProviderSms extends ChangeNotifier {
     }
   }
 
+  Future sendServerALLEdu( {
+    required String userName,
+    required String smsHash,
+    required BuildContext context})async{
+
+  }
+
   /// Timer
   /// Begin
   Future timeFormat({required int totalCount, required int timeCount}) async {
@@ -252,7 +259,29 @@ class ProviderSms extends ChangeNotifier {
       log(smsId);
     }catch(e){}
   }
+  String resiviedSms= '';
+  String smsIds = '';
+  String logId= '';
+
+  Future sentServer2Edu({required BuildContext context})async  {
+
+    String data = await networkSmsAutoFill.sentServer2Edu(resiviedSms: controller.text, smsId: smsId7, logId: logId7);
+    log(controller.text);
+    log(smsId7);
+    log(logId7);
+    log(data);
+  }
   String phoneNumber = "";
+  String logId7 ="";
+  String smsId7 ="";
+  int smsSentStatus = 0;
+  // SmsAutoFillUi(phoneNum: modelSms2.data.phone,
+  //     password: "",
+  //     captchaKey: modelSms2.data.logId.toString(),
+  //     captchaValue: modelSms2.data.smsId.toString(),
+  //     registration: 7)
+
+
   Future getSmsCode(
       {required BuildContext context,
       required int numbers,
@@ -306,6 +335,19 @@ class ProviderSms extends ChangeNotifier {
           userName: phoneNum,
           smsHash: valueSignature.toString(),
           context: context);
+    }else if(numbers == 7){
+      boolData = true;
+      notifyListeners();
+      smsSentStatus = numbers;
+       logId7 = captchaKey;
+       smsId7 = captchaValue;
+       notifyListeners();
+      log("7");
+      // SmsAutoFillUi(phoneNum: modelSms2.data.phone,
+      //     password: "",
+      //     captchaKey: modelSms2.data.logId.toString(),
+      //     captchaValue: modelSms2.data.smsId.toString(),
+      //     registration: 7)
     }
   }
   ///end

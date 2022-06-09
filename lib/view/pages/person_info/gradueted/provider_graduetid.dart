@@ -40,7 +40,7 @@ class ProviderGraduated extends ChangeNotifier {
   TextEditingController textEditingSerNumber = TextEditingController();
 
 
-
+  bool boolAllInfoGraduatedNot = false;
   Future getAllInfoGraduated()async{
 
     try{
@@ -48,10 +48,14 @@ class ProviderGraduated extends ChangeNotifier {
       String data = await networkGetGraduated.getAllGraduated();
       modelGraduatedInfo = ModelGraduatedInfo.fromJson(jsonDecode(data));
       checkAllInfo(dataGraduatedInfo: modelGraduatedInfo.data);
-      // dataGraduatedInfo = modelGraduatedInfo.data;
       boolAllInfoGraduated = true;
       notifyListeners();
-    }catch(e){}
+    }catch(e){
+      boolAllInfoGraduatedNot = true;
+      boolAllInfoGraduated = true;
+      notifyListeners();
+      log(e.toString());
+    }
 
   }
 

@@ -62,7 +62,7 @@ class ProviderSignUp extends ChangeNotifier {
                 password: textSingUpPassword.text,
                 captchaKey: modelParseCaptcha.data.captchaKey,
                 captchaValue: textCaptchaSignUpController.text,
-                registration: 1),
+                registration: "1"),
           ));
       // textCaptchaSignUpController.clear();
     } catch (e) {

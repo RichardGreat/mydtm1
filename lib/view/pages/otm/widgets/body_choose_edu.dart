@@ -122,9 +122,9 @@ Widget bodyChooseEdu({
           if (checkFillSelected() &&
               checkFillDir(index: 1) &&
               providerChooseEdu.boolForeignLang) {
-            providerChooseEdu.setDataEduDir();
+            providerChooseEdu.setDataEduDir(context: context);
           } else {
-            providerChooseEdu.setDataEduDir();
+            providerChooseEdu.setDataEduDir(context: context);
           }
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

@@ -68,6 +68,7 @@ class _SelectDirectionState extends State<SelectDirection> {
                         onTap: () {
                           // if (index == 0) {
                             widget.providerChooseEdu.setEMode(
+                      emodeId: widget.indexEduDir.toString(),
                                 titleEduDirId: widget.indexEduDir,
                                 context: context,
                                 providerChooseEdu: widget.providerChooseEdu,

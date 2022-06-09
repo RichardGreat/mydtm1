@@ -155,7 +155,7 @@ class ProviderEnterFirst extends ChangeNotifier {
               password: textAuthPassword.text,
               captchaKey: modelRegistrationSms.data.endDate.toString(),
               captchaValue: modelRegistrationSms.data.smsId.toString(),
-              registration: 99));
+              registration: "99"));
         }
       }
     }

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:developer';
 
@@ -10,6 +12,7 @@ import 'package:mydtm/data/internet_connections/edu_choose/emode/emode_choose.da
 import 'package:mydtm/data/internet_connections/edu_choose/otm/dir1.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/otm/otm_1.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/region/choose_region.dart';
+import 'package:mydtm/data/internet_connections/edu_choose/sent_server/send_server.dart';
 import 'package:mydtm/data/model_parse/edu_choose/emode/emodes.dart';
 import 'package:mydtm/data/model_parse/edu_choose/lang/lang_edu_model.dart';
 import 'package:mydtm/data/model_parse/edu_choose/lang/test_lang.dart';
@@ -19,11 +22,13 @@ import 'package:mydtm/data/model_parse/edu_choose/otm/otm.dart';
 import 'package:mydtm/data/model_parse/edu_choose/region.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/for_server.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/national_cert.dart';
+import 'package:mydtm/data/model_parse/send_server/model_sms2.dart';
 import 'package:mydtm/data/model_parse/send_server/send_server.dart';
 import 'package:mydtm/view/pages/otm/widgets/select_direction/otm/dir.dart';
 import 'package:mydtm/view/pages/otm/widgets/select_direction/otm/otm.dart';
-import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 import '../../../data/internet_connections/person_info/certificate/national_certificate.dart';
 
@@ -42,17 +47,21 @@ class ProviderChooseEdu extends ChangeNotifier {
     try {
       boolCheckUseCertificateData = false;
       String dataCert = await networkNationalCert.getNationalCert();
+      log(dataCert);
       ModelCheckCertificate modelCheckCertificate =
           ModelCheckCertificate.fromJson(jsonDecode(dataCert));
       listCheckCertificate = modelCheckCertificate.data;
       for (int i = 0; i < listCheckCertificate.length; i++) {
         listCertificateCheckUse.add(ModelCertificateForServer(
-            certId: "0",
-            userValue: listCheckCertificate[i].certSernum.toString(),
-            certBall:  listCheckCertificate[i].percent.toString(),
-            certName:  listCheckCertificate[i].name.toString(),
+          certId: "1",
+          userValue: listCheckCertificate[i].certSernum.toString(),
+          certBall: listCheckCertificate[i].percent.toString(),
+          certName: listCheckCertificate[i].name.toString(),
+          cerId: listCheckCertificate[i].id.toString(),
+          isChecked: listCheckCertificate[i].isCheck.toString()
         ));
       }
+      log(jsonEncode(listCertificateCheckUse));
       boolCheckUseCertificateData = true;
       notifyListeners();
     } catch (e) {
@@ -62,11 +71,20 @@ class ProviderChooseEdu extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-  Future setUserNationCert({required String certId, required String userVal }) async {
-
-
-
+   Map<String, String> mapCert = {};
+  Future setUserNationCert(
+      {required int indexId,required String certId, required int userVal}) async {
+    log("certId $certId");
+    log("userVal.toString() $userVal");
+    log("indexId $indexId");
+    listCertificateCheckUse[indexId].certId =  userVal.toString();
+    mapCert = {for (var item in listCertificateCheckUse) item.cerId : item.certId};
+    log(jsonEncode(mapCert));
+    // for(var l in listCertificateCheckUse){
+    //   log(l.cerId);
+    //   log(l.certId);
+    // }
+    notifyListeners();
   }
 
   /// Choose direction
@@ -249,6 +267,7 @@ class ProviderChooseEdu extends ChangeNotifier {
           nameTitle: "",
           titleId: "$i",
           nameEdu: "",
+          emode: "",
           eduId: "",
           dirName: "",
           dirId: "",
@@ -261,6 +280,7 @@ class ProviderChooseEdu extends ChangeNotifier {
           nameTitle: "Oliy ta'lim muassasi",
           titleId: "$i",
           nameEdu: "",
+          emode: "",
           eduId: "",
           dirName: "",
           dirId: "",
@@ -282,6 +302,7 @@ class ProviderChooseEdu extends ChangeNotifier {
       id: "0",
       nameTitle: "Oliy ta'lim muassasi",
       titleId: "0",
+      emode: "",
       nameEdu: "",
       eduId: "",
       dirName: "",
@@ -292,6 +313,7 @@ class ProviderChooseEdu extends ChangeNotifier {
       id: "1",
       nameTitle: "Oliy ta'lim muassasi",
       titleId: "1",
+      emode: "",
       nameEdu: "",
       eduId: "",
       dirName: "",
@@ -303,6 +325,7 @@ class ProviderChooseEdu extends ChangeNotifier {
       nameTitle: "Oliy ta'lim muassasi",
       titleId: "2",
       nameEdu: "",
+      emode: "",
       eduId: "",
       dirName: "",
       dirId: "",
@@ -313,6 +336,7 @@ class ProviderChooseEdu extends ChangeNotifier {
       nameTitle: "Oliy ta'lim muassasi",
       titleId: "3",
       nameEdu: "",
+      emode: "",
       eduId: "",
       dirName: "",
       dirId: "",
@@ -323,6 +347,7 @@ class ProviderChooseEdu extends ChangeNotifier {
       nameTitle: "Oliy ta'lim muassasi",
       titleId: "4",
       nameEdu: "",
+      emode: "",
       eduId: "",
       dirName: "",
       dirId: "",
@@ -410,19 +435,26 @@ class ProviderChooseEdu extends ChangeNotifier {
 
   String eModeName = "";
   String eModeId = "";
-
+  Map<String, String> mapEmode = {};
   Future setEMode(
       {required BuildContext context,
       required ProviderChooseEdu providerChooseEdu,
       required String name,
       required int titleEduDirId,
-      required String id}) async {
+      required String id,
+      required String emodeId
+      }) async {
     eModeName = name;
     eModeId = id;
+    listTitleEduDir[titleEduDirId].emode = id;
     sheetOTMEdu(
         contexts: context,
         providerChooseEdu: providerChooseEdu,
         titleEduDirId: titleEduDirId);
+    // 123
+    mapEmode = {for (var item in listTitleEduDir) (int.parse(item.id)+1).toString() : item.emode};
+    log(jsonEncode(mapCert));
+
     notifyListeners();
   }
 
@@ -510,7 +542,7 @@ class ProviderChooseEdu extends ChangeNotifier {
     boolOtmData = true;
     notifyListeners();
   }
-
+  Map<String, String> mapOtm = {};
   Future setOtm1(
       {required String name,
       required String id,
@@ -520,7 +552,7 @@ class ProviderChooseEdu extends ChangeNotifier {
     // listOtmNameId[0] = DataOTM(id: id, name: name);
     listTitleEduDir[titleEduDirId].nameEdu = name;
     listTitleEduDir[titleEduDirId].eduId = id;
-
+    mapOtm  = {for (var item in listTitleEduDir) (int.parse(item.id)+1).toString() : item.eduId};
     sheetDIRdu(
         contexts: contexts,
         providerChooseEdu: providerChooseEdu,
@@ -529,7 +561,7 @@ class ProviderChooseEdu extends ChangeNotifier {
   }
 
   bool boolForeignLang = false;
-
+  Map<String, String> mapDir = {};
   Future setDir1(
       {required String nameDir,
       required String idDir,
@@ -545,6 +577,8 @@ class ProviderChooseEdu extends ChangeNotifier {
       boolForeignLang = true;
       notifyListeners();
     }
+
+    mapDir  = {for (var item in listTitleEduDir) (int.parse(item.id)+1).toString() : item.dirId};
 
     notifyListeners();
   }
@@ -616,6 +650,7 @@ class ProviderChooseEdu extends ChangeNotifier {
           nameTitle: listTitleName[i],
           titleId: i.toString(),
           nameEdu: "",
+          emode: "",
           eduId: "",
           dirName: "",
           dirId: "",
@@ -708,23 +743,42 @@ class ProviderChooseEdu extends ChangeNotifier {
   }
 
 //  Bloc #last
-
-  Future setDataEduDir() async {
+  NetworkSendServer networkSendServer = NetworkSendServer();
+  Future setDataEduDir({required BuildContext context}) async {
     try {
-      // ModelSendServerInfo modelSendServerInfo = ModelSendServerInfo
-      //   (sert: sert,
-      //     isGrand: isGrand,
-      //     isMaqsad: isMaqsad,
-      //     testRegionId: testRegionId,
-      //     langId: langId,
-      //     testGraph: testGraph,
-      //     emodeId: emodeId,
-      //     eduId: eduId,
-      //     planId: planId,
-      //     flangId: flangId);
+      ModelSendServerInfo modelSendServerInfo = ModelSendServerInfo
+        (sert: mapCert,
+          isGrand: grantContractId,
+          isMaqsad: maqsadliId,
+          testRegionId: testRegionId,
+          langId: langId,
+          testGraph: langGraphicId,
+          emodeId: mapEmode,
+          eduId: mapOtm,
+          planId: mapDir,
+          flangId: listTitleEduDir[0].fLangId);
+      log("send server");
+      log(jsonEncode(modelSendServerInfo));
+      String data = await networkSendServer.sendServerAll(allData: jsonEncode(modelSendServerInfo));
+      log(data);
+      ModelSms2 modelSms2 = ModelSms2.fromJson(jsonDecode(data));
 
-      log(stringForeignLangId);
-      log(jsonEncode(listTitleEduDir));
-    } catch (e) {}
+      log(modelSms2.data.phone.toString());
+      log(modelSms2.data.logId.toString());
+      log( modelSms2.data.smsId.toString());
+
+      pushNewScreen(context,
+          screen: SmsAutoFillUi(
+          phoneNum: modelSms2.data.phone.toString(),
+          password: "123",
+          captchaKey: modelSms2.data.logId.toString(),
+          captchaValue: modelSms2.data.smsId.toString(),
+          registration: "7")
+      );
+
+
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }

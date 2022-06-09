@@ -74,7 +74,11 @@
   "fish": "FISH",
   "bDate": "Tug'ulgan sana",
   "address2": "Doimiy yashash manzili",
-  "saved": "Ma'lumot saqlandi"
+  "saved": "Ma'lumot saqlandi",
+  "useCertificate":"Milli sertifikatdan foydalanish",
+  "use": "Foydalanish",
+  "rejection": "Rad etish"
+
 
 
 

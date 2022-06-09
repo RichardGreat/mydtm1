@@ -33,10 +33,16 @@ Widget bottomUI(
           //     appId: providerSms.smsIdActivate,
           //     smsCode: providerSms.controller.text);
           if (providerSms.controller.text.length > 5) {
-            providerSms.sentServer(
-              context: context,
-                appId: providerSms.smsIdActivate,
-                smsCode: providerSms.controller.text);
+           if(providerSms.smsSentStatus == 7){
+             providerSms.sentServer2Edu(context: context);
+
+           }else{
+             providerSms.sentServer2Edu(context: context);
+            // providerSms.sentServer(
+            //   context: context,
+            //     appId: providerSms.smsIdActivate,
+            //     smsCode: providerSms.controller.text);
+           }
           }
 
           ///

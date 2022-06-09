@@ -1,5 +1,6 @@
 class ListModelEduDir {
   String id;
+  String emode;
   String nameTitle;
   String titleId;
   String nameEdu;
@@ -11,6 +12,7 @@ class ListModelEduDir {
   ListModelEduDir(
       {required this.id,
       required this.nameTitle,
+      required this.emode,
       required this.titleId,
       required this.nameEdu,
       required this.eduId,
@@ -25,6 +27,7 @@ class ListModelEduDir {
 
           id:json["id"],
           nameTitle:json["name_title"],
+          emode:json["emode"],
           titleId:json["title_id"],
           nameEdu:json["name_edu"],
           eduId:json["edu_id"],
@@ -37,6 +40,7 @@ class ListModelEduDir {
       {
         "id":id,
         "name_title":nameTitle,
+        "emode":emode,
         "title_id":titleId,
         "name_edu":nameEdu,
         "edu_id":eduId,

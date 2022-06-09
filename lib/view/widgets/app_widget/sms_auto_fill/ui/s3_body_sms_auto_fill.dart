@@ -9,13 +9,11 @@ import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class SmsAutoFillUi extends StatefulWidget {
-  final String phoneNum;
+  String phoneNum;
   String password;
   String captchaKey;
   String captchaValue;
-
-  ///
-  int registration;
+ String registration;
 
   /// agar registration 0 bo'lsa parol tiklash
 
@@ -44,7 +42,7 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
           captchaValue: widget.captchaValue,
           password: widget.password,
           phoneNum: widget.phoneNum,
-          numbers: widget.registration);
+          numbers: int.parse(widget.registration));
 
     } else if (widget.registration == 99) {
       providerSms.regNotActivated(

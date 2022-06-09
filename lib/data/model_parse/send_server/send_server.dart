@@ -12,27 +12,27 @@ class ModelSendServerInfo {
   required  this.flangId,
   });
 
-  Map<String, int> sert;
-  int isGrand;
-  int isMaqsad;
-  int testRegionId;
-  int langId;
-  int testGraph;
-  Map<String, int> emodeId;
-  Map<String, int> eduId;
-  Map<String, int> planId;
-  int flangId;
+  Map<String, String> sert;
+  String isGrand;
+  String isMaqsad;
+  String testRegionId;
+  String langId;
+  String testGraph;
+  Map<String, String> emodeId;
+  Map<String, String> eduId;
+  Map<String, String> planId;
+  String flangId;
 
   factory ModelSendServerInfo.fromJson(Map<String, dynamic> json) => ModelSendServerInfo(
-    sert: Map.from(json["sert"]).map((k, v) => MapEntry<String, int>(k, v)),
+    sert: Map.from(json["sert"]).map((k, v) => MapEntry<String, String>(k, v)),
     isGrand: json["is_grand"],
     isMaqsad: json["is_maqsad"],
     testRegionId: json["test_region_id"],
     langId: json["lang_id"],
     testGraph: json["test_graph"],
-    emodeId: Map.from(json["emode_id"]).map((k, v) => MapEntry<String, int>(k, v)),
-    eduId: Map.from(json["edu_id"]).map((k, v) => MapEntry<String, int>(k, v)),
-    planId: Map.from(json["plan_id"]).map((k, v) => MapEntry<String, int>(k, v)),
+    emodeId: Map.from(json["emode_id"]).map((k, v) => MapEntry<String, String>(k, v)),
+    eduId: Map.from(json["edu_id"]).map((k, v) => MapEntry<String, String>(k, v)),
+    planId: Map.from(json["plan_id"]).map((k, v) => MapEntry<String, String>(k, v)),
     flangId: json["flang_id"],
   );
 

@@ -22,7 +22,7 @@ Widget constGraduated(
       const SizedBox(height: 20),
       MyWidgets.robotoFontText(
           text: "gType".tr(),
-          textColor: MyColors.appColorGrey400(),
+          textColor: MyColors.appColorBlack(),
           textSize: 16),
       const SizedBox(height: 4),
       GestureDetector(

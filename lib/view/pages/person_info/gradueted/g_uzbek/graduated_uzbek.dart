@@ -14,7 +14,7 @@ Widget graduatedUzbek(
     children: [
       const SizedBox(height: 10),
       MyWidgets.robotoFontText(
-          text: "Viloyat", textColor: MyColors.appColorGrey400(), textSize: 16),
+          text: "Viloyat", textColor: MyColors.appColorBlack(), textSize: 16),
       const SizedBox(height: 4),
       GestureDetector(
         child: Container(
@@ -35,6 +35,7 @@ Widget graduatedUzbek(
             ],
           ),
         ),
+        onTap: (){},
       ),
       const SizedBox(height: 10),
 
