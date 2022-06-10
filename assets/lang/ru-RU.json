@@ -65,12 +65,23 @@
   "passwordLength": "Parol uzunligi kam",
   "nation": "Millati",
   "fillAllRows": "Barcha qatorlarni to'ldiring",
-  "personCode": "SHSHIR",
+  "personCode": "JSHSHIR",
   "personCodeError": "jshshir xato",
   "howToKnow":"Bu qanday aniqlanadi?",
   "passport": "Pasport seriya va raqami",
   "passportLength": "Pasport raqam 7 raqamdan iborat",
-  "fillInfo": "Ma'lumotlarni to'ldiring"
+  "fillInfo": "Ma'lumotlarni to'ldiring",
+  "fish": "FISH",
+  "bDate": "Tug'ulgan sana",
+  "address2": "Doimiy yashash manzili",
+  "saved": "Ma'lumot saqlandi",
+  "useCertificate":"Milli sertifikatdan foydalanish",
+  "use": "Foydalanish",
+  "rejection": "Rad etish",
+  "applications": "Arizalarim"
+
+
+
 
 
 }
