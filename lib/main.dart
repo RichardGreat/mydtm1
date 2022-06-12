@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
-import 'package:mydtm/view/pages/otm/widgets/edu_reg_success/success_edu_reg.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -55,6 +54,7 @@ class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyAppState createState() => _MyAppState();
 }
 
@@ -78,8 +78,8 @@ class _MyAppState extends State<MyApp> {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          // home: const MainPages()),
-          home: const SuccessEduReg()),
+          home: const MainPages()),
+          // home: const SuccessEduReg()),
     );
   }
 }

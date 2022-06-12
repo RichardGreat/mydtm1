@@ -25,7 +25,6 @@ class _SuccessEduRegState extends State<SuccessEduReg> {
             const SizedBox(height: 20),
             MyWidgets.robotoFontText(text: "textSentSuccess".tr(),  textSize: 25),
             const SizedBox(height: 10),
-
             MyWidgets.robotoFontText(text: "goArizaSection".tr()),
           ],
         ),

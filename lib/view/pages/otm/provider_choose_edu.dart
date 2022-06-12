@@ -297,7 +297,7 @@ class ProviderChooseEdu extends ChangeNotifier {
     "Oliy ta'lim muassasi"
   ];
 
-  List<ListModelEduDir> listTitleEduDir = [
+  List<ListModelEduDir>  listTitleEduDir = [
     ListModelEduDir(
       id: "0",
       nameTitle: "Oliy ta'lim muassasi",

@@ -3,12 +3,11 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
-
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_token.dart';
 import 'package:mydtm/data/model_parse/m1_model/authhorization/model_get_token.dart';
-import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
+import 'package:mydtm/view/pages/otm/widgets/edu_reg_success/success_edu_reg.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/edu/edu_reg_success.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_auth.dart';
@@ -17,6 +16,7 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_registra
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/networks/network_sms.dart';
 import 'package:otp_autofill/otp_autofill.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderSms extends ChangeNotifier {
   late OTPTextEditController controller = OTPTextEditController(codeLength: 5);
@@ -268,10 +268,15 @@ class ProviderSms extends ChangeNotifier {
     log("resivied_sms: ${controller.text.toString()}, sms_id:$smsId7, logId:$logId7");
     String data = await networkSmsAutoFill.sentServer2Edu(resiviedSms: controller.text, smsId: smsId7.toString(), logId: logId7.toString());
     ModelEduSuccess modelEduSuccess = ModelEduSuccess.fromJson(jsonDecode(data));
-    if(modelEduSuccess.status == 1){
-      
+    if (modelEduSuccess.status == 1) {
+      // ignore: use_build_context_synchronously
+      pushNewScreen(context, screen: SuccessEduReg());
+    } else {
+      MyWidgets.awesomeDialogError(
+          context: context,
+          valueText: "Ma'lumot kiritishda xatolik qayta urinib ko'ring ");
+      Navigator.of(context).pop();
     }
-
 
     log(controller.text);
     log(smsId7);
