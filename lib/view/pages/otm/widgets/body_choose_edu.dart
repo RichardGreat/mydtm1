@@ -122,7 +122,13 @@ Widget bodyChooseEdu({
           if (checkFillSelected() &&
               checkFillDir(index: 1) &&
               providerChooseEdu.boolForeignLang) {
-            providerChooseEdu.setDataEduDir(context: context);
+
+            if(!providerChooseEdu.boolCheckUseCertificateDataNot && providerChooseEdu.mapCert.isNotEmpty){
+              providerChooseEdu.setDataEduDir(context: context);
+            }else{
+              MyWidgets.scaffoldMessengerBottom(context: context, valueText: "Sertifikatni tanlang");
+            }
+
           } else {
             providerChooseEdu.setDataEduDir(context: context);
           }

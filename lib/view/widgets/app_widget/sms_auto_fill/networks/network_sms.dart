@@ -64,10 +64,11 @@ class NetworkSmsAutoFill {
       required String logId}) async {
     var dio = Dio();
     Response response;
-    log("resivied_sms: $resiviedSms, sms_id:$smsId");
-    response = await dio.post("${MainUrl.mainUrls}/auth/check-sms",
+    log(box.get("token"));
+    log("resivied_sms $resiviedSms, sms_id $smsId, log_id $logId");
+    response = await dio.post("${MainUrl.mainUrls}/v1/qabul/sms-activation",
         data: {"resivied_sms": resiviedSms, "sms_id": smsId, "log_id": logId},
-        options: Options(headers:{MainUrl.mainUrlHeader: box.get("token")}));
+        options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
 
     return jsonEncode(response.data);
   }

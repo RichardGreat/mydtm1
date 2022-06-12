@@ -22,22 +22,23 @@ Widget bottomUI(
           ),
         ],
       ),
+      providerSms.timeFormatString == "00:00"?const SizedBox.shrink():
       MaterialButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         minWidth: double.infinity,
         height: 45,
         color:MyColors.appColorBlue1(),
         onPressed: () {
-          log(providerSms.smsId.toString());
           // providerSms.sentServer(
           //     appId: providerSms.smsIdActivate,
           //     smsCode: providerSms.controller.text);
-          if (providerSms.controller.text.length > 5) {
+          if (providerSms.controller.text.length > 4) {
            if(providerSms.smsSentStatus == 7){
-             providerSms.sentServer2Edu(context: context);
 
+             providerSms.sentServer2Edu(context: context);
            }else{
              providerSms.sentServer2Edu(context: context);
+             log("7");
             // providerSms.sentServer(
             //   context: context,
             //     appId: providerSms.smsIdActivate,

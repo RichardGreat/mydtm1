@@ -75,8 +75,11 @@
   "bDate": "Tug'ulgan sana",
   "address2": "Doimiy yashash manzili",
   "saved": "Ma'lumot saqlandi",
-  "useCertificate":"Milli sertifikatdan foydalanish",
+  "useCertificate": "Milli sertifikatdan foydalanish",
   "use": "Foydalanish",
   "rejection": "Rad etish",
-  "applications": "Arizalarim"
+  "applications": "Arizalarim",
+  "textSentSuccess": "Hujjat movaffaqiyatli yuborildi",
+  "textArizaEduInfo": "Ariza holatini arizalarim bo'limidan kuzatib boring",
+  "goArizaSection": "Arizalarim bo'limiga o'tish"
 }

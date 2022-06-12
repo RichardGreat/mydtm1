@@ -35,7 +35,7 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
 
   @override
   void initState() {
-    if (widget.registration != 99) {
+    if (widget.registration != "99") {
       providerSms.getSmsCode(
           context: context,
           captchaKey: widget.captchaKey,
@@ -44,7 +44,7 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
           phoneNum: widget.phoneNum,
           numbers: int.parse(widget.registration));
 
-    } else if (widget.registration == 99) {
+    } else if (widget.registration == "99") {
       providerSms.regNotActivated(
           smsId: widget.captchaValue, endTime: int.parse(widget.captchaKey), context: context);
     }

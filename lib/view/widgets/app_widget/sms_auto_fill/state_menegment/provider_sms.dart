@@ -10,6 +10,7 @@ import 'package:mydtm/data/model_parse/m1_model/authhorization/model_get_token.d
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/edu/edu_reg_success.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_auth.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_captcha_error.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_registrated.dart';
@@ -263,9 +264,15 @@ class ProviderSms extends ChangeNotifier {
   String smsIds = '';
   String logId= '';
 
-  Future sentServer2Edu({required BuildContext context})async  {
+  Future  sentServer2Edu({required BuildContext context})async  {
+    log("resivied_sms: ${controller.text.toString()}, sms_id:$smsId7, logId:$logId7");
+    String data = await networkSmsAutoFill.sentServer2Edu(resiviedSms: controller.text, smsId: smsId7.toString(), logId: logId7.toString());
+    ModelEduSuccess modelEduSuccess = ModelEduSuccess.fromJson(jsonDecode(data));
+    if(modelEduSuccess.status == 1){
+      
+    }
 
-    String data = await networkSmsAutoFill.sentServer2Edu(resiviedSms: controller.text, smsId: smsId7, logId: logId7);
+
     log(controller.text);
     log(smsId7);
     log(logId7);
@@ -335,12 +342,16 @@ class ProviderSms extends ChangeNotifier {
           userName: phoneNum,
           smsHash: valueSignature.toString(),
           context: context);
+
+      /// OTM ro'yxatdan o'tish
     }else if(numbers == 7){
       boolData = true;
       notifyListeners();
       smsSentStatus = numbers;
        logId7 = captchaKey;
        smsId7 = captchaValue;
+      smsTimer(timers: 180, context: context);
+      boolData = true;
        notifyListeners();
       log("7");
       // SmsAutoFillUi(phoneNum: modelSms2.data.phone,

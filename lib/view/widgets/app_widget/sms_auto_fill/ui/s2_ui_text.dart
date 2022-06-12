@@ -53,7 +53,7 @@ Widget uiText({required BuildContext context, required String phoneNum, required
           Align(
             alignment: Alignment.centerRight,
             child:MyWidgets.robotoFontText(
-                text:providerSms.timeFormatString??"05:00",
+                text:providerSms.timeFormatString??"--:--",
             textSize: 16
             ),
           ),

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
+import 'package:mydtm/view/pages/otm/widgets/edu_reg_success/success_edu_reg.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -77,7 +78,8 @@ class _MyAppState extends State<MyApp> {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          home: const MainPages()),
+          // home: const MainPages()),
+          home: const SuccessEduReg()),
     );
   }
 }
