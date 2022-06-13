@@ -4,6 +4,7 @@ import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/app_bar.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/body_no_profile_info.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/body_profile.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class MainProfile extends StatefulWidget {
@@ -23,6 +24,7 @@ class _MainProfileState extends State<MainProfile> {
       child: Consumer<ProviderProfile>(
         builder: (context, value, child) => Scaffold(
           appBar: appBarProfile(context: context, providerProfile: providerProfile),
+            backgroundColor: MyColors.appColorWhite(),
             body: SafeArea(
                 child:box.get("token").toString().length  > 30
                     ?

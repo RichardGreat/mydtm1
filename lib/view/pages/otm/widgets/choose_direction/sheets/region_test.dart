@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:provider/provider.dart';
-import 'dart:developer';
+import 'package:easy_localization/easy_localization.dart';
 
 sheetRegionTest(
     {required BuildContext context,
@@ -69,7 +67,9 @@ class _ChooseRegionState extends State<ChooseRegion> {
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Column(
                 children: [
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
+                  MyWidgets.robotoFontText(text: "chooseTestRegion".tr()),
+                  const SizedBox(height: 10),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),

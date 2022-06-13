@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
+import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/phone_change.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 Widget bodyProfile({required BuildContext context, required ProviderProfile providerProfile}){
   var box = Hive.box("online");
@@ -60,17 +64,18 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
                 onTap: () {},
                 child: CircleAvatar(
                   backgroundColor: MyColors.appColorWhite(),
-                  radius: 35,
+                  radius: 50,
                   child: SizedBox.fromSize(
-                    size: const Size.fromRadius(33), // Image radius
+                    size: const Size.fromRadius(50), // Image radius
                     child: ClipOval(
-                      child:// providerAccount!.box.get("image") == null
-                        //  ?
+
+                      child: box.get("personImage") == null
+                         ?
                         Image.asset("assets/images/splash_picture.png")
-                    //       : Image.memory(
-                    //       base64Decode(
-                    //           box.get("image").replaceAll("\n", "")),
-                    //       fit: BoxFit.cover),
+                         : Image.memory(
+                           base64Decode(
+                               box.get("personImage").replaceAll("\n", "").toString().substring(23)),
+                           fit: BoxFit.cover),
                     ),
                   ),
                 ),
@@ -137,13 +142,13 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
           ),
           ListTile(
             onTap: () {
-              // pushNewScreen(
-              //   context,
-              //   screen: const ChangePhoneNumber(),
-              //   withNavBar: false,
-              //   // OPTIONAL VALUE. True by default.
-              //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              // );
+              pushNewScreen(
+                context,
+                screen:  ChangePhoneNumber(providerProfile: providerProfile),
+                withNavBar: false,
+                // OPTIONAL VALUE. True by default.
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
             },
             leading: Icon(
               Icons.phone,

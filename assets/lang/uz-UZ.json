@@ -81,5 +81,6 @@
   "applications": "Arizalarim",
   "textSentSuccess": "Hujjat movaffaqiyatli yuborildi",
   "textArizaEduInfo": "Ariza holatini arizalarim bo'limidan kuzatib boring",
-  "goArizaSection": "Arizalarim bo'limiga o'tish"
+  "goArizaSection": "Arizalarim bo'limiga o'tish",
+  "enterNewPhone": "Yangi telefon raqam kiriting"
 }

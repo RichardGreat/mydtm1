@@ -48,9 +48,9 @@ class _CertificateUseCheckState extends State<CertificateUseCheck> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: MyColors.appColorWhite(),
-        iconTheme: IconThemeData(color: MyColors.appColorBlack()),
+        iconTheme: IconThemeData(color: MyColors.appColorWhite()),
       ),
-      body: bodyCertificateOTM(context: context, providerChooseEdu:widget.providerChooseEdu)
+      body: SafeArea(child: bodyCertificateOTM(context: context, providerChooseEdu:widget.providerChooseEdu))
     );
   }
 }

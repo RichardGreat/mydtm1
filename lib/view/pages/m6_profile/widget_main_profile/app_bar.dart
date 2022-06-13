@@ -9,7 +9,7 @@ PreferredSizeWidget appBarProfile(
     {required BuildContext context, required ProviderProfile providerProfile}) {
   var box = Hive.box("online");
   return AppBar(
-    backgroundColor: MyColors.appColorGrey100(),
+    backgroundColor: MyColors.appColorWhite(),
     elevation: 0,
     actions: [
       box.get("token").toString().length  > 30

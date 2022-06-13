@@ -51,7 +51,7 @@ class ProviderPersonInfo extends ChangeNotifier {
       sex = dataGetImieInfo.sex.toString();
       nationId = dataGetImieInfo.nationId.toString();
       image = dataGetImieInfo.image;
-
+      box.put("personImage", image);
       boolNetworkGetData = false;
       notifyListeners();
     } catch (e) {

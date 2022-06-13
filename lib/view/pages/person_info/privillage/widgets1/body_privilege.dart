@@ -7,8 +7,8 @@ import 'package:easy_localization/easy_localization.dart';
 Widget bodyPrivilege(
     {required BuildContext context,
     required ProviderPrivilege providerPrivilege}) {
-  return providerPrivilege.boolGetDataPrivilege
-      ? Container(
+  if (providerPrivilege.boolGetDataPrivilege) {
+    return Container(
           margin: const EdgeInsets.all(10),
           decoration: BoxDecoration(
 
@@ -32,14 +32,12 @@ Widget bodyPrivilege(
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          providerPrivilege
-                              .listCheckPrivilege[index].orgName
-                              .toString(),
+                        Text("${index+1} "+providerPrivilege
+                              .listCheckPrivilege[index].orgName,
                           textAlign: TextAlign.justify,
                           style: TextStyle(
-                              color: MyColors.appColorBlue1(),
-                              fontSize:  20,
+                              color: MyColors.appColorBlack(),
+                              fontSize:  17,
                               fontWeight:  FontWeight.normal,
                               fontFamily: 'Roboto-Medium'),
                         ),
@@ -50,31 +48,56 @@ Widget bodyPrivilege(
                               .toString(),
                           textAlign: TextAlign.justify,
                           style: TextStyle(
-                              color: MyColors.appColorBlack(),
-                              fontSize:  17,
-                              fontStyle: FontStyle.italic,
+                              color: MyColors.appColorGrey600(),
+                              fontSize:  15,
+                             // fontStyle: FontStyle.italic,
                               fontWeight:  FontWeight.normal,
                               fontFamily: 'Roboto-Medium'),
                         ),
-
+const Divider(),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                         MyWidgets.robotoFontText(
                             text: providerPrivilege
                                 .listCheckPrivilege[index].serNum
-                                .toString()),
-                        MyWidgets.robotoFontText(
-                            text: providerPrivilege
-                                .listCheckPrivilege[index].startDate
-                                .toString()),
-                        MyWidgets.robotoFontText(
-                            text: providerPrivilege
-                                .listCheckPrivilege[index].endDate
-                                .toString()),
+                                .toString(), textSize: 14,
+                            textColor: MyColors.appColorGrey600()
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+
+                            MyWidgets.robotoFontText(
+                                textColor: MyColors.appColorGrey600(),
+                                textSize: 14,
+                                text: providerPrivilege
+                                    .listCheckPrivilege[index].startDate
+                                    .toString()),
+                            Icon(Icons.arrow_forward_rounded,
+                                size: 14,
+                                color:MyColors.appColorGrey600()),
+                            MyWidgets.robotoFontText(
+                                textColor: MyColors.appColorGrey600(),
+                                textSize: 14,
+                                text: providerPrivilege
+                                    .listCheckPrivilege[index].endDate
+                                    .toString()),
+
+
+                          ],),
+                      ]),
+
+
+
 
                       ],
                     )),
               ),
             )
           ]),
-        )
-      : MyWidgets.loaderDownload(context: context);
+        );
+  } else {
+    return MyWidgets.loaderDownload(context: context);
+  }
 }

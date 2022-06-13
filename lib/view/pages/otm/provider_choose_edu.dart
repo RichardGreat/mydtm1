@@ -53,7 +53,7 @@ class ProviderChooseEdu extends ChangeNotifier {
       listCheckCertificate = modelCheckCertificate.data;
       for (int i = 0; i < listCheckCertificate.length; i++) {
         listCertificateCheckUse.add(ModelCertificateForServer(
-          certId: "1",
+          certId: "-1",
           userValue: listCheckCertificate[i].certSernum.toString(),
           certBall: listCheckCertificate[i].percent.toString(),
           certName: listCheckCertificate[i].name.toString(),

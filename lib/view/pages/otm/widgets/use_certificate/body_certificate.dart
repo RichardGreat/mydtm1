@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'dart:developer';
 
 Widget bodyCertificateOTM(
     {required BuildContext context,
@@ -16,6 +15,8 @@ Widget bodyCertificateOTM(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          IconButton(icon: Icon(Icons.arrow_back_outlined, color:MyColors.appColorBlack()), onPressed: () {  },),
+          const SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
               itemCount: providerChooseEdu.listCertificateCheckUse.length,
@@ -57,7 +58,6 @@ Widget bodyCertificateOTM(
                                     setState(() {});
                                     providerChooseEdu.setUserNationCert(
                                         indexId: index,
-
                                         certId: providerChooseEdu
                                             .listCertificateCheckUse[index]
                                             .certName,
@@ -104,7 +104,9 @@ Widget bodyCertificateOTM(
             color: MyColors.appColorBlue1(),
             height: 50,
             minWidth: double.infinity,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
             child: Text("access".tr(),
                 style: TextStyle(color: MyColors.appColorWhite())),
           )
