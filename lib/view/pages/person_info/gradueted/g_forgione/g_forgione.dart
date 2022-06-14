@@ -34,9 +34,23 @@ Widget graduatedForeign(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MyWidgets.robotoFontText(text: providerGraduated.gCountryName .length < 5?
+              // graduatedEduTypeName = name;
+              // graduatedEduTypeId = id;
+              // graduatedRegionId = "";
+              // graduatedRegionName = "";
+              // graduatedDistrictName = "";
+              // graduatedDistrictId = "";
+              // graduatedEduId = "";
+              // graduatedEduName = "";
+              // graduatedEduYear = "";
+              // graduatedEduSerNum = "";
+              // textEditingSerNumber.text = "";
+  //             // setGraduatedYear = "";
+  // String graduatedCountryId = "";
+  // String graduatedCountryName = "";
+              MyWidgets.robotoFontText(text: providerGraduated.graduatedCountryName .length < 5?
               "choose".tr():
-              providerGraduated.gCountryName
+              providerGraduated.graduatedCountryName
               ),
               const Icon(Icons.arrow_drop_down_outlined)
             ],

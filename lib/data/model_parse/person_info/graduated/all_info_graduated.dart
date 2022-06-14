@@ -35,18 +35,18 @@ class DataGraduatedInfo {
   required this.gName,
   });
 
-  int id;
-  int regionId;
-  int countryId;
-  String countryName;
-  String regionName;
-  int districtId;
-  String districtName;
-  String docSerNum;
-  int graduatedYear;
+  dynamic id;
+  dynamic regionId;
+  dynamic countryId;
+  dynamic countryName;
+  dynamic regionName;
+  dynamic districtId;
+  dynamic districtName;
+  dynamic docSerNum;
+  dynamic graduatedYear;
   dynamic eduName;
-  int eduTypeId;
-  String gName;
+  dynamic eduTypeId;
+  dynamic gName;
 
   factory DataGraduatedInfo.fromJson(Map<String, dynamic> json) => DataGraduatedInfo(
     id: json["id"],

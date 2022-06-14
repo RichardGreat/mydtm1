@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/app_bar_gradueted.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/button_gradueted.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/const_gradueted.dart';
@@ -11,7 +12,7 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
-
+import 'dart:developer';
 class Graduated extends StatefulWidget {
   const Graduated({Key? key}) : super(key: key);
 
@@ -21,9 +22,10 @@ class Graduated extends StatefulWidget {
 
 class _GraduatedState extends State<Graduated> {
   ProviderGraduated providerGraduated = ProviderGraduated();
-
+  var box = Hive.box("online");
   @override
   initState() {
+   log(box.get("token"));
     providerGraduated.getAllInfoGraduated();
     super.initState();
   }
@@ -54,7 +56,7 @@ class _GraduatedState extends State<Graduated> {
 
                           /// uzbek
                           Visibility(
-                              visible: providerGraduated.boolGraduatedType,
+                              visible: providerGraduated.boolGraduatedType ,
                               child: graduatedUzbek(
                                   context: context,
                                   providerGradueted: providerGraduated)),
@@ -76,17 +78,17 @@ class _GraduatedState extends State<Graduated> {
                           const SizedBox(height: 4),
                           GestureDetector(
                             onTap: () {
-                              if (providerGraduated.gTypeId == "4" &&
-                                  providerGraduated.gCountryName.length >= 5 &&
+
+
+                              if (providerGraduated.graduatedEduTypeId == "4" &&
+                                  providerGraduated.graduatedCountryName.length >= 5 &&
                                   providerGraduated.txtControllerGraduatedName.text.length >=4
                               ) {
                                 providerGraduated.getYear(
                                     contexts: context,
                                     providerGraduated: providerGraduated);
-                              }else if(providerGraduated.gTypeId != "4"&&
-                              providerGraduated.graduatedEduName.length > 5
-
-                              ){
+                              }else if(providerGraduated.graduatedEduTypeId != "4"&&
+                              providerGraduated.graduatedEduName.length > 5 ){
                                 providerGraduated.getYear(
                                     contexts: context,
                                     providerGraduated: providerGraduated);
@@ -110,9 +112,9 @@ class _GraduatedState extends State<Graduated> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   MyWidgets.robotoFontText(
-                                    text: providerGraduated.setGraduatedYear.length < 3
+                                    text: providerGraduated.graduatedEduYear.length < 3
                                         ? "choose".tr()
-                                        : providerGraduated.setGraduatedYear,
+                                        : providerGraduated.graduatedEduYear,
                                   ),
                                   const Icon(Icons.arrow_drop_down_outlined)
                                 ],
@@ -171,9 +173,9 @@ class _GraduatedState extends State<Graduated> {
                               // ),
                             ),
                             validator: (value3) {
-                              if (value3!.isEmpty || value3.length <= 7) {
+                              if (value3!.isEmpty || value3.length < 6) {
                                 // providerPersonInfo.boolPsNumber(boolNum: false);
-                                return "Uzunlik 7 birlikdan ko'p bo'lishi kerak";
+                                return "Uzunlik 6 birlikdan ko'p bo'lishi kerak";
                               } else {
                                 // providerPersonInfo.boolPsNumber(boolNum: true);
                                 return null;

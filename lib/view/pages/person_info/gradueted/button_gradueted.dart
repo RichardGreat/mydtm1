@@ -4,7 +4,7 @@ import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-
+import 'dart:developer';
 Widget buttonGraduated(
     {required BuildContext context,
     required ProviderGraduated providerGradueted}) {
@@ -14,18 +14,50 @@ Widget buttonGraduated(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     color: MyColors.appColorBlue1(),
     onPressed: () {
-      if (providerGradueted.gTypeId == "4" &&
-          providerGradueted.textEditingSerNumber.text.length >= 7) {
-        if(providerGradueted.graduatedEduYear.length >= 4){
+      // String graduatedEduTypeId = "";
+      // String graduatedEduTypeName = "";
+      // String graduatedCountryId = "";
+      // String graduatedCountryName = "";
+      // String graduatedRegionId = "";
+      // String graduatedRegionName = "";
+      // String graduatedDistrictName = "";
+      // String graduatedDistrictId = "";
+      // String graduatedEduId = "";
+      // String graduatedEduName = "";
+      // String graduatedEduYear = "";
+      // String graduatedEduSerNum = "";
+      providerGradueted.formKeyGraduated.currentState!.validate();
+      log(providerGradueted.graduatedEduTypeId);
+      log(providerGradueted.textEditingSerNumber.text);
+      log(providerGradueted.setGraduatedYear.length.toString());
+      if (providerGradueted.graduatedEduTypeId == "4" &&
+          providerGradueted.textEditingSerNumber.text.length >= 6) {
+        if(providerGradueted.txtControllerGraduatedName.text.length >= 4){
           /// Chet el
-          print("Chet el server");
+          log("Chet el server");
+          providerGradueted.sentServerGraduatedAll(eduType: providerGradueted.graduatedEduTypeId,
+              regionId: providerGradueted.graduatedRegionId,
+              districtId: providerGradueted.graduatedDistrictId,
+              eduListId:  providerGradueted.graduatedEduId,
+              graduatedYear: providerGradueted.setGraduatedYear,
+              docSerNum: providerGradueted.textEditingSerNumber.text,
+              eduName: providerGradueted.txtControllerGraduatedName.text,
+              countryId: providerGradueted.graduatedCountryId);
         }
 
       } else {
         /// o'zbek
-        if(providerGradueted.graduatedEduYear.length >= 4 &&
+        if(providerGradueted.setGraduatedYear.length >= 3 &&
             providerGradueted.textEditingSerNumber.text.length >= 5){
-  print("o'zbek server");
+  log("o'zbek server");
+  providerGradueted.sentServerGraduatedAll(eduType: providerGradueted.graduatedEduTypeId,
+      regionId: providerGradueted.graduatedRegionId,
+      districtId: providerGradueted.graduatedDistrictId,
+      eduListId:  providerGradueted.graduatedEduId,
+      graduatedYear: providerGradueted.setGraduatedYear,
+      docSerNum: providerGradueted.textEditingSerNumber.text,
+      eduName: providerGradueted.txtControllerGraduatedName.text,
+      countryId: providerGradueted.graduatedCountryId);
         }
       }
       // Navigator.push(

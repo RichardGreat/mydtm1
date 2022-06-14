@@ -39,7 +39,19 @@ Widget graduatedUzbek(
           ),
         ),
         onTap: (){
-          providerGradueted.gTypeName.length > 4?
+          // graduatedEduTypeName = name;
+          // graduatedEduTypeId = id;
+          // graduatedRegionId = "";
+          // graduatedRegionName = "";
+          // graduatedDistrictName = "";
+          // graduatedDistrictId = "";
+          // graduatedEduId = "";
+          // graduatedEduName = "";
+          // graduatedEduYear = "";
+          // graduatedEduSerNum = "";
+          // textEditingSerNumber.text = "";
+          // setGraduatedYear = "";
+          providerGradueted.graduatedEduTypeName.length > 4?
           modelSheetProvinceGraduated(context: context, providerGraduated: providerGradueted):{};
         },
       ),
