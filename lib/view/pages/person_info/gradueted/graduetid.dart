@@ -73,7 +73,7 @@ class _GraduatedState extends State<Graduated> {
                       const SizedBox(height: 10),
                       MyWidgets.robotoFontText(
                           text: "bYear".tr(),
-                          textColor: MyColors.appColorGrey400(),
+                          textColor: MyColors.appColorBlack(),
                           textSize: 16),
                       const SizedBox(height: 4),
                       GestureDetector(
@@ -98,7 +98,9 @@ class _GraduatedState extends State<Graduated> {
                                               .gYear .length <
                                           3
                                       ? "choose".tr()
-                                      : providerGraduated.gYear ),
+                                      : providerGraduated.gYear ,
+
+                              ),
                               const Icon(Icons.arrow_drop_down_outlined)
                             ],
                           ),
@@ -107,7 +109,7 @@ class _GraduatedState extends State<Graduated> {
                       const SizedBox(height: 10),
                       MyWidgets.robotoFontText(
                           text: "document".tr(),
-                          textColor: MyColors.appColorGrey400(),
+                          textColor: MyColors.appColorBlack(),
                           textSize: 16),
                       const SizedBox(height: 4),
                       TextFormField(

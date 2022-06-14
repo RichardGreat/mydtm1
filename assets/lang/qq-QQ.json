@@ -81,5 +81,12 @@
   "applications": "Arizalarim",
   "textSentSuccess": "Hujjat movaffaqiyatli yuborildi",
   "textArizaEduInfo": "Ariza holatini arizalarim bo'limidan kuzatib boring",
-  "goArizaSection": "Arizalarim bo'limiga o'tish"
+  "goArizaSection": "Arizalarim bo'limiga o'tish",
+  "enterNewPhone": "Yangi telefon raqam kiriting",
+  "changePassport": "Parolni o'zgartirish",
+  "newInputPassport": "Yangi parolni kiriting",
+  "passwordNotMatch": "Parollar mos emas",
+  "certificate": "Sertifikatlar",
+  "foreignLang": "Chet tili",
+  "nationalCert": "Milliy sertifikat"
 }

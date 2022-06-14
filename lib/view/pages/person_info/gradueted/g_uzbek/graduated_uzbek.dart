@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
+import 'package:mydtm/view/pages/person_info/gradueted/g_uzbek/widgets/region_sheet.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/input_pasport.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -14,7 +15,7 @@ Widget graduatedUzbek(
     children: [
       const SizedBox(height: 10),
       MyWidgets.robotoFontText(
-          text: "Viloyat", textColor: MyColors.appColorBlack(), textSize: 16),
+          text: "province".tr(), textColor: MyColors.appColorBlack(), textSize: 16),
       const SizedBox(height: 4),
       GestureDetector(
         child: Container(
@@ -28,14 +29,16 @@ Widget graduatedUzbek(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MyWidgets.robotoFontText(
-                  text: providerGradueted.gProvinceName.length < 4
+                  text: providerGradueted.graduatedRegionName.length < 4
                       ? "choose".tr()
-                      : providerGradueted.gProvinceName),
+                      : providerGradueted.graduatedRegionName),
               const Icon(Icons.arrow_drop_down_outlined)
             ],
           ),
         ),
-        onTap: (){},
+        onTap: (){
+          modelSheetProvinceGraduated(context: context, providerGraduated: providerGradueted);
+        },
       ),
       const SizedBox(height: 10),
 

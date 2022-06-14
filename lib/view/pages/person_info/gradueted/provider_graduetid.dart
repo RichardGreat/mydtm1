@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'package:easy_localization/easy_localization.dart';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:mydtm/data/internet_connections/m6_profile/get_region.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/country.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/g_edu_type.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/get_graduated_all.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/year_graduated.dart';
+import 'package:mydtm/data/model_parse/m6_model/get_country.dart';
 import 'package:mydtm/data/model_parse/person_info/g_edu_type.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/all_info_graduated.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/g_country.dart';
@@ -202,6 +204,61 @@ class ProviderGraduated extends ChangeNotifier {
 
   ///
 
+  String graduatedRegionId = "";
+  String graduatedRegionName = "";
+  String graduatedDistrictName = "";
+  String graduatedDistrictId = "";
+  String graduatedEduId = "";
+  String graduatedEduName = "";
+  String graduatedEduYear = "";
+  String graduatedEduSerNum = "";
+
+  TextEditingController txtEditControllerSearch = TextEditingController();
+  List<DataGetCountry> listGetCountryTemp = [];
+  NetworkGetRegion networkGetRegion = NetworkGetRegion();
+  late ModelGetCountry modelGetCountry;
+  bool boolGetRegion = false;
+
+  Future getRegion({required BuildContext context}) async {
+    try {
+      boolGetRegion = false;
+
+      String dataCountry = await networkGetRegion.getRegions();
+      modelGetCountry = ModelGetCountry.fromJson(jsonDecode(dataCountry));
+      log(dataCountry);
+      listGetCountryTemp.clear();
+      listGetCountryTemp.addAll(modelGetCountry.data);
+      boolGetRegion = true;
+      notifyListeners();
+    } catch (e) {}
+  }
+
+  Future searchRegion({required String value}) async {
+    listGetCountryTemp.clear();
+    for (var element in modelGetCountry.data) {
+      if (element.name
+          .trim()
+          .toLowerCase()
+          .contains(value.trim().toLowerCase())) {
+        listGetCountryTemp.add(element);
+      }
+    }
+    notifyListeners();
+  }
+
+  Future clearCloseRegionSheet() async {
+    listGetCountryTemp.clear();
+    listGetCountryTemp.addAll(modelGetCountry.data);
+    txtEditControllerSearch.clear();
+    notifyListeners();
+  }
+
+  Future setProvince({required String pronId, required String proName}) async {
+    graduatedRegionId = pronId;
+    graduatedRegionName = proName;
+
+    notifyListeners();
+  }
   /// Graduated year
 
   NetworkGraduatedYear networkGraduatedYear = NetworkGraduatedYear();

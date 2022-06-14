@@ -15,7 +15,8 @@ Widget bodyCertificateOTM(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          IconButton(icon: Icon(Icons.arrow_back_outlined, color:MyColors.appColorBlack()), onPressed: () {  },),
+          IconButton(icon: Icon(Icons.arrow_back_outlined,
+              color:MyColors.appColorBlack()), onPressed: () { Navigator.of(context).pop(); },),
           const SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
