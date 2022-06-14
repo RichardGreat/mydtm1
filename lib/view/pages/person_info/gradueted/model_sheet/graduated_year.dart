@@ -110,6 +110,7 @@ modelSheetGraduatedYear(
                           ),
                         ),
                         onTap: () {
+                          setState((){});
                           providerGraduated.setMethodGraduatedYear(
                               id: providerGraduated.listGraduatedYearTemp[index]
                                   .toString());

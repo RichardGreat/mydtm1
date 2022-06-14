@@ -37,152 +37,158 @@ class _GraduatedState extends State<Graduated> {
           backgroundColor: MyColors.appColorWhite(),
           appBar: appBarGradueted(
               context: context, providerGradueted: providerGraduated),
-          body: 
-              providerGraduated.boolAllInfoGraduated ?
-          
-          Form(
-              key: providerGraduated.formKeyGraduated,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              child: SingleChildScrollView(
-                child: Container(
-                  margin: const EdgeInsets.all(15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      /// header
-                      constGraduated(
-                          context: context,
-                          providerGraduated: providerGraduated),
-
-                      /// uzbek
-                      Visibility(
-                          visible: providerGraduated.boolGraduatedType,
-                          child: graduatedUzbek(
+          body: providerGraduated.boolAllInfoGraduated
+              ? Form(
+                  key: providerGraduated.formKeyGraduated,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: SingleChildScrollView(
+                    child: Container(
+                      margin: const EdgeInsets.all(15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          /// header
+                          constGraduated(
                               context: context,
-                              providerGradueted: providerGraduated)),
+                              providerGraduated: providerGraduated),
 
-                      /// foreign
-                      Visibility(
-                          visible: !providerGraduated.boolGraduatedType,
-                          child: graduatedForeign(
-                              context: context,
-                              providerGraduated: providerGraduated)),
+                          /// uzbek
+                          Visibility(
+                              visible: providerGraduated.boolGraduatedType,
+                              child: graduatedUzbek(
+                                  context: context,
+                                  providerGradueted: providerGraduated)),
 
-                      /// button
+                          /// foreign
+                          Visibility(
+                              visible: !providerGraduated.boolGraduatedType,
+                              child: graduatedForeign(
+                                  context: context,
+                                  providerGraduated: providerGraduated)),
 
-                      const SizedBox(height: 10),
-                      MyWidgets.robotoFontText(
-                          text: "bYear".tr(),
-                          textColor: MyColors.appColorBlack(),
-                          textSize: 16),
-                      const SizedBox(height: 4),
-                      GestureDetector(
-                        onTap: () {
-                          providerGraduated.getYear(
-                              contexts: context,
-                              providerGraduated: providerGraduated);
-                        },
-                        child: Container(
-                          height: 50,
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border:
-                                Border.all(color: MyColors.appColorGrey400()),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              MyWidgets.robotoFontText(
-                                  text: providerGraduated
-                                              .gYear .length <
-                                          3
-                                      ? "choose".tr()
-                                      : providerGraduated.gYear ,
+                          /// button
 
+                          const SizedBox(height: 10),
+                          MyWidgets.robotoFontText(
+                              text: "bYear".tr(),
+                              textColor: MyColors.appColorBlack(),
+                              textSize: 16),
+                          const SizedBox(height: 4),
+                          GestureDetector(
+                            onTap: () {
+                              if (providerGraduated.gTypeId == "4" &&
+                                  providerGraduated.gCountryName.length >= 5 &&
+                                  providerGraduated.txtControllerGraduatedName.text.length >=4
+                              ) {
+                                providerGraduated.getYear(
+                                    contexts: context,
+                                    providerGraduated: providerGraduated);
+                              }else if(providerGraduated.gTypeId != "4"&&
+                              providerGraduated.graduatedEduName.length > 5
+
+                              ){
+                                providerGraduated.getYear(
+                                    contexts: context,
+                                    providerGraduated: providerGraduated);
+                              }
+
+
+
+
+                            },
+                            child: Container(
+                              height: 50,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                    color: MyColors.appColorGrey400()),
                               ),
-                              const Icon(Icons.arrow_drop_down_outlined)
-                            ],
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  MyWidgets.robotoFontText(
+                                    text: providerGraduated.setGraduatedYear.length < 3
+                                        ? "choose".tr()
+                                        : providerGraduated.setGraduatedYear,
+                                  ),
+                                  const Icon(Icons.arrow_drop_down_outlined)
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
+                          const SizedBox(height: 10),
+                          MyWidgets.robotoFontText(
+                              text: "document".tr(),
+                              textColor: MyColors.appColorBlack(),
+                              textSize: 16),
+                          const SizedBox(height: 4),
+                          TextFormField(
+                            controller: providerGraduated.textEditingSerNumber,
+                            maxLines: 1,
+                            maxLength: 25,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              counter: const SizedBox.shrink(),
+                              contentPadding:
+                                  const EdgeInsets.only(left: 8, right: 8),
+                              fillColor: Colors.white,
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide(
+                                  color: MyColors.appColorGreen2(),
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide(
+                                  color: MyColors.appColorGrey400(),
+                                  width: 1.5,
+                                ),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide(
+                                  color: MyColors.appColorBlue1(),
+                                  width: 1.5,
+                                ),
+                              ),
+                              errorStyle: TextStyle(
+                                color: MyColors.appColorRed(),
+                                fontWeight: FontWeight.w500,
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide(
+                                  color: MyColors.appColorBlue1(),
+                                  width: 1.5,
+                                ),
+                              ),
+                              // focusedBorder: UnderlineInputBorder(
+                              //   borderSide: BorderSide(color: MyColors.appColorBackC4()),
+                              // ),
+                            ),
+                            validator: (value3) {
+                              if (value3!.isEmpty || value3.length <= 7) {
+                                // providerPersonInfo.boolPsNumber(boolNum: false);
+                                return "Uzunlik 7 birlikdan ko'p bo'lishi kerak";
+                              } else {
+                                // providerPersonInfo.boolPsNumber(boolNum: true);
+                                return null;
+                              }
+                            },
+                          ),
+                          const SizedBox(height: 20),
+                          buttonGraduated(
+                              context: context,
+                              providerGradueted: providerGraduated)
+                        ],
                       ),
-                      const SizedBox(height: 10),
-                      MyWidgets.robotoFontText(
-                          text: "document".tr(),
-                          textColor: MyColors.appColorBlack(),
-                          textSize: 16),
-                      const SizedBox(height: 4),
-                      TextFormField(
-                        controller: providerGraduated.textEditingSerNumber,
-                        maxLines: 1,
-                        maxLength: 25,
-
-                        keyboardType: TextInputType.text,
-
-                        // inputFormatters: [
-                        //   FilteringTextInputFormatter.allow(
-                        //       RegExp('[0-9]'))
-                        // ],
-                        decoration: InputDecoration(
-                          counter: const SizedBox.shrink(),
-                          contentPadding:
-                              const EdgeInsets.only(left: 8, right: 8),
-                          fillColor: Colors.white,
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                              color: MyColors.appColorGreen2(),
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                              color: MyColors.appColorGrey400(),
-                              width: 1.5,
-                            ),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                              color: MyColors.appColorBlue1(),
-                              width: 1.5,
-                            ),
-                          ),
-                          errorStyle: TextStyle(
-                            color: MyColors.appColorRed(),
-                            fontWeight: FontWeight.w500,
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                              color: MyColors.appColorBlue1(),
-                              width: 1.5,
-                            ),
-                          ),
-                          // focusedBorder: UnderlineInputBorder(
-                          //   borderSide: BorderSide(color: MyColors.appColorBackC4()),
-                          // ),
-                        ),
-                        validator: (value3) {
-                          if (value3!.isEmpty || value3.length <= 3) {
-                            // providerPersonInfo.boolPsNumber(boolNum: false);
-                            return "Uzunlik 3 birlikdan ko'p bo'lishi kerak";
-                          } else {
-                            // providerPersonInfo.boolPsNumber(boolNum: true);
-                            return null;
-                          }
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      buttonGraduated(
-                          context: context,
-                          providerGradueted: providerGraduated)
-                    ],
-                  ),
-                ),
-              )):
-          MyWidgets.loaderDownload(context: context)
-          ,
+                    ),
+                  ))
+              : MyWidgets.loaderDownload(context: context),
         ),
       ),
     );

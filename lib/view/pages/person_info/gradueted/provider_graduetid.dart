@@ -2,15 +2,19 @@ import 'dart:convert';
 import 'package:easy_localization/easy_localization.dart';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:mydtm/data/internet_connections/m6_profile/get_district.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_region.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/country.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/g_edu_type.dart';
+import 'package:mydtm/data/internet_connections/person_info/graduated/g_graduated_names.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/get_graduated_all.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/year_graduated.dart';
+import 'package:mydtm/data/model_parse/m6_model/district.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_country.dart';
 import 'package:mydtm/data/model_parse/person_info/g_edu_type.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/all_info_graduated.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/g_country.dart';
+import 'package:mydtm/data/model_parse/person_info/graduated/graduated_name.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/graduated_year.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/state_choose.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_type.dart';
@@ -20,6 +24,7 @@ class ProviderGraduated extends ChangeNotifier {
   final formKeyGraduated = GlobalKey<FormState>();
 
   bool boolUzbekGraduated = true;
+
   /// All info graduated
   NetworkGetGraduated networkGetGraduated = NetworkGetGraduated();
   late ModelGraduatedInfo modelGraduatedInfo;
@@ -41,30 +46,29 @@ class ProviderGraduated extends ChangeNotifier {
 
   TextEditingController textEditingSerNumber = TextEditingController();
 
-
   bool boolAllInfoGraduatedNot = false;
-  Future getAllInfoGraduated()async{
 
-    try{
+  Future getAllInfoGraduated() async {
+    try {
       boolAllInfoGraduated = false;
       String data = await networkGetGraduated.getAllGraduated();
       modelGraduatedInfo = ModelGraduatedInfo.fromJson(jsonDecode(data));
       checkAllInfo(dataGraduatedInfo: modelGraduatedInfo.data);
       boolAllInfoGraduated = true;
       notifyListeners();
-    }catch(e){
+    } catch (e) {
       boolAllInfoGraduatedNot = true;
       boolAllInfoGraduated = true;
       notifyListeners();
       log(e.toString());
     }
-
   }
 
-  Future checkAllInfo({required DataGraduatedInfo dataGraduatedInfo})async{
-    try{
+  Future checkAllInfo({required DataGraduatedInfo dataGraduatedInfo}) async {
+    try {
       log(jsonEncode(dataGraduatedInfo));
-      if(dataGraduatedInfo.countryId == 860&& dataGraduatedInfo.eduTypeId != 4){
+      if (dataGraduatedInfo.countryId == 860 &&
+          dataGraduatedInfo.eduTypeId != 4) {
         boolUzbekGraduated = true;
         gTypeName = dataGraduatedInfo.eduName.toString();
         gTypeId = dataGraduatedInfo.eduTypeId.toString();
@@ -79,7 +83,8 @@ class ProviderGraduated extends ChangeNotifier {
         gYear = dataGraduatedInfo.graduatedYear.toString();
         textEditingSerNumber.text = dataGraduatedInfo.docSerNum;
         notifyListeners();
-      } else if(dataGraduatedInfo.countryId == 860 && dataGraduatedInfo.eduTypeId == 4){
+      } else if (dataGraduatedInfo.countryId == 860 &&
+          dataGraduatedInfo.eduTypeId == 4) {
         boolUzbekGraduated = true;
         gTypeName = dataGraduatedInfo.eduName.toString();
         gTypeId = dataGraduatedInfo.eduTypeId.toString();
@@ -95,9 +100,7 @@ class ProviderGraduated extends ChangeNotifier {
         textEditingSerNumber.text = dataGraduatedInfo.docSerNum;
 
         notifyListeners();
-      }
-
-      else{
+      } else {
         boolUzbekGraduated = false;
         gTypeName = dataGraduatedInfo.eduName.toString();
         gTypeId = dataGraduatedInfo.eduTypeId.toString();
@@ -113,15 +116,10 @@ class ProviderGraduated extends ChangeNotifier {
         textEditingSerNumber.text = dataGraduatedInfo.docSerNum;
         notifyListeners();
       }
-
-
-    }catch(e){
+    } catch (e) {
       log(e.toString());
     }
-
-
   }
-
 
   /// graduated type
   String graduatedName = "", graduatedId = "";
@@ -158,9 +156,9 @@ class ProviderGraduated extends ChangeNotifier {
   TextEditingController txtControllerGraduatedCountry = TextEditingController();
   TextEditingController txtControllerGraduatedName = TextEditingController();
 
-
   String foreignCountryName = "";
   String foreignCountryId = "";
+
   Future getCountry(
       {required BuildContext context,
       required ProviderGraduated providerGraduated}) async {
@@ -183,9 +181,7 @@ class ProviderGraduated extends ChangeNotifier {
     listGraduatedCountryTemp.clear();
 
     for (var values in listGraduatedCountry) {
-      if (values.name
-          .toLowerCase()
-          .contains(value.toLowerCase())) {
+      if (values.name.toLowerCase().contains(value.toLowerCase())) {
         log(jsonEncode(values));
         listGraduatedCountryTemp.add(values);
       } else {
@@ -195,12 +191,11 @@ class ProviderGraduated extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future setForeign({required String name, required String id})async{
-    gCountryName  = name;
-    gCountryId  = id;
+  Future setForeign({required String name, required String id}) async {
+    gCountryName = name;
+    gCountryId = id;
     notifyListeners();
   }
-
 
   ///
 
@@ -213,6 +208,7 @@ class ProviderGraduated extends ChangeNotifier {
   String graduatedEduYear = "";
   String graduatedEduSerNum = "";
 
+  /// region
   TextEditingController txtEditControllerSearch = TextEditingController();
   List<DataGetCountry> listGetCountryTemp = [];
   NetworkGetRegion networkGetRegion = NetworkGetRegion();
@@ -256,9 +252,124 @@ class ProviderGraduated extends ChangeNotifier {
   Future setProvince({required String pronId, required String proName}) async {
     graduatedRegionId = pronId;
     graduatedRegionName = proName;
+    graduatedDistrictName = "";
+    graduatedDistrictId = "";
 
     notifyListeners();
   }
+
+  /// district
+
+  NetworkDistrict networkDistrict = NetworkDistrict();
+  late ModelGetDistrict modelGetDistrict;
+  List<DataGetDistrict> listGetDistrict = [];
+  List<DataGetDistrict> listGetDistrictTemp = [];
+  bool boolGetDistrict = false;
+  TextEditingController txtDistrictController = TextEditingController();
+
+  Future getDistrict({required String parentId}) async {
+    try {
+      boolGetDistrict = false;
+      String data = await networkDistrict.getDistricts(parentId: parentId);
+      modelGetDistrict = ModelGetDistrict.fromJson(jsonDecode(data));
+      listGetDistrict = modelGetDistrict.data;
+      listGetDistrictTemp.clear();
+      listGetDistrictTemp.addAll(listGetDistrict);
+      boolGetDistrict = true;
+      notifyListeners();
+    } catch (e) {}
+  }
+
+  Future searchDistrict({required String value}) async {
+    listGetDistrictTemp.clear();
+    for (var val in listGetDistrict) {
+      if (val.name.trim().toLowerCase().contains(value.trim().toLowerCase())) {
+        listGetDistrictTemp.add(val);
+      }
+    }
+    notifyListeners();
+  }
+
+  Future clearTextDistrict() async {
+    boolGetDistrict = false;
+    notifyListeners();
+    listGetDistrictTemp.clear();
+    txtDistrictController.clear();
+    listGetDistrictTemp.addAll(listGetDistrict);
+    boolGetDistrict = true;
+    notifyListeners();
+  }
+
+  Future setDistrict({required String distId, required String distName}) async {
+    graduatedDistrictName = distName;
+    graduatedDistrictId = distId;
+    notifyListeners();
+  }
+
+  /// Graduated name
+  NetworkGetGraduatedNames networkGetGraduatedNames =
+      NetworkGetGraduatedNames();
+  late ModelGetGraduatedName modelGetGraduatedName;
+  late ModelGetGraduatedNameError modelGetGraduatedNameError;
+  List<DataGetGraduatedName> listGetName = [];
+  List<DataGetGraduatedName> listGetNameTemp = [];
+  bool boolGetGraduatedName = false;
+  bool boolGetGraduatedNameError = false;
+  TextEditingController txtGraduatedNameController = TextEditingController();
+
+  Future getGraduatedName() async {
+    try {
+      boolGetGraduatedName = false;
+      boolGetGraduatedNameError = false;
+      String data = await networkGetGraduatedNames.getAllGraduatedName(
+          districtId: graduatedDistrictId, gEduType: gTypeId);
+      modelGetGraduatedName = ModelGetGraduatedName.fromJson(jsonDecode(data));
+      listGetName = modelGetGraduatedName.data;
+      listGetNameTemp.clear();
+      listGetNameTemp.addAll(listGetName);
+      boolGetGraduatedName = true;
+      notifyListeners();
+    } catch (e) {
+      boolGetGraduatedName = false;
+      String data = await networkGetGraduatedNames.getAllGraduatedName(
+          districtId: graduatedDistrictId, gEduType: gTypeId);
+      modelGetGraduatedNameError =
+      ModelGetGraduatedNameError.fromJson(jsonDecode(data));
+      boolGetGraduatedNameError = true;
+      boolGetGraduatedName = true;
+
+
+      log(e.toString());
+    }
+  }
+
+  Future searchGraduatedName({required String value}) async {
+    listGetNameTemp.clear();
+    for (var val in listGetName) {
+      if (val.name.trim().toLowerCase().contains(value.trim().toLowerCase())) {
+        listGetNameTemp.add(val);
+      }
+    }
+    notifyListeners();
+  }
+
+  Future clearTextGraduatedName() async {
+    boolGetGraduatedName = false;
+    notifyListeners();
+    listGetNameTemp.clear();
+    txtGraduatedNameController.clear();
+    listGetNameTemp.addAll(listGetName);
+    boolGetGraduatedName = true;
+    notifyListeners();
+  }
+
+  Future setGraduatedName(
+      {required String grdNameId, required String gradName}) async {
+    graduatedEduId = grdNameId;
+    graduatedEduName = gradName;
+    notifyListeners();
+  }
+
   /// Graduated year
 
   NetworkGraduatedYear networkGraduatedYear = NetworkGraduatedYear();
@@ -285,7 +396,7 @@ class ProviderGraduated extends ChangeNotifier {
         listGraduatedYear.add("$i-${"year".tr()}");
       }
       // listGraduatedYearTemp.clear();
-      listGraduatedYearTemp =  listGraduatedYear;
+      listGraduatedYearTemp = listGraduatedYear;
       modelSheetGraduatedYear(
           contexts: contexts, providerGraduated: providerGraduated);
 
@@ -302,12 +413,13 @@ class ProviderGraduated extends ChangeNotifier {
 
     for (var values in listGraduatedYear) {
       if (values.toString().contains(value.toString())) {
-       print(values);
+        print(values);
         listGraduatedYearTemp.add(values);
       }
     }
     notifyListeners();
   }
+
   Future closeGraduatedSheet({required BuildContext context}) async {
     listGraduatedCountryTemp.clear();
     listGraduatedCountryTemp = listGraduatedCountry;
@@ -315,15 +427,26 @@ class ProviderGraduated extends ChangeNotifier {
     Navigator.of(context).pop();
   }
 
-
   Future setMethodGraduatedYear({required String id}) async {
     setGraduatedYear = id;
     notifyListeners();
   }
 
   Future setGraduatedType({required String name, required String id}) async {
-    gTypeName  = name;
-    gTypeId  = id;
+    gTypeName = name;
+    gTypeId = id;
+    graduatedRegionId = "";
+    graduatedRegionName = "";
+    graduatedDistrictName = "";
+    graduatedDistrictId = "";
+    graduatedEduId = "";
+    graduatedEduName = "";
+    graduatedEduYear = "";
+    graduatedEduSerNum = "";
+    textEditingSerNumber.text = "";
+    setGraduatedYear = "";
+
+
 
     if (gTypeId == "4") {
       boolGraduatedType = false;
@@ -333,7 +456,8 @@ class ProviderGraduated extends ChangeNotifier {
     notifyListeners();
   }
 
-  ///
+  Future setServerGraduatedAll()async{}
 
+  ///
 
 }
