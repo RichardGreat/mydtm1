@@ -8,8 +8,11 @@ import 'dart:developer';
 class ProviderProfile extends ChangeNotifier{
 
   TextEditingController textChangePhoneNum = TextEditingController();
+  TextEditingController textChangePassword1 = TextEditingController();
+  TextEditingController textChangePassword2 = TextEditingController();
 
   final formKeyChangePhone = GlobalKey<FormState>();
+  final formKeyChangePassword = GlobalKey<FormState>();
   bool myBoolWidget = false;
   bool boolButtonColor1 = false;
 
@@ -17,12 +20,39 @@ class ProviderProfile extends ChangeNotifier{
     boolButtonColor1 = boolValue;
   }
 
+
+  bool boolButtonColor2 = false;
+
+  Future boolButtonCol2({required bool boolValue}) async {
+    boolButtonColor2 = boolValue;
+  }
+
+  bool boolPasswordVisible = false;
+  bool boolPasswordVisible2 = false;
+
+  Future boolPasswordVisibleMethod() async {
+    boolPasswordVisible = !boolPasswordVisible;
+    notifyListeners();
+  }
+  Future boolPasswordVisibleMethod2() async {
+    boolPasswordVisible2 = !boolPasswordVisible2;
+    notifyListeners();
+  }
+
+  bool boolPasswordBtnColor = false;
+  Future passwordButtonColor({required bool boolBtnCol})async{
+    boolPasswordBtnColor = boolBtnCol;
+    notifyListeners();
+  }
+
+  ///
   NetworkChangePhoneNumber networkChangePhoneNumber = NetworkChangePhoneNumber();
 
   Future changePhoneNumber()async{
       try{
         String data = await networkChangePhoneNumber.getChangePhoneNumber(phoneNumber: textChangePhoneNum.text);
-log(data);
+
+        log(data);
       }catch(e){log(e.toString());}
   }
 

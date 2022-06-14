@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
+import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_password.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -79,7 +80,7 @@ class _MyAppState extends State<MyApp> {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           home: const MainPages()),
-          // home: const SuccessEduReg()),
+
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
+import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_password.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/phone_change.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -66,7 +67,7 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
                   backgroundColor: MyColors.appColorWhite(),
                   radius: 50,
                   child: SizedBox.fromSize(
-                    size: const Size.fromRadius(50), // Image radius
+                    size: const Size.fromRadius(45), // Image radius
                     child: ClipOval(
 
                       child: box.get("personImage") == null
@@ -75,7 +76,9 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
                          : Image.memory(
                            base64Decode(
                                box.get("personImage").replaceAll("\n", "").toString().substring(23)),
-                           fit: BoxFit.cover),
+                           fit: BoxFit.cover,
+
+                      ),
                     ),
                   ),
                 ),
@@ -171,20 +174,20 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
           ),
           ListTile(
             onTap: () {
-              // pushNewScreen(
-              //   context,
-              //   screen: const ChangePassword(),
-              //   withNavBar: false,
-              //   // OPTIONAL VALUE. True by default.
-              //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              // );
+              pushNewScreen(
+                context,
+                screen:  ChangeAccountPasswords(providerProfile: providerProfile),
+                withNavBar: false,
+                // OPTIONAL VALUE. True by default.
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
             },
             leading: Icon(
               Icons.lock,
               color: MyColors.appColorBlue1(),
               size: 24,
             ),
-            title: MyWidgets.robotoFontText(text: "Parolni o'zgartish"),
+            title: MyWidgets.robotoFontText(text: "changePassport".tr()),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
               color: MyColors.appColorGrey400(),

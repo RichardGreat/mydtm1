@@ -24,6 +24,7 @@ class _ChangePhoneNumberState extends State<ChangePhoneNumber> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.appColorWhite(),
       appBar: AppBar(iconTheme: IconThemeData(color: MyColors.appColorBlack()),
       elevation: 0,
         backgroundColor: MyColors.appColorWhite(),

@@ -103,7 +103,7 @@ Widget inputsSignUp(
             return null;
           }),
       const SizedBox(height: 5),
-      MyWidgets.robotoFontText(text: "Parol"),
+      MyWidgets.robotoFontText(text: "password".tr()),
       TextFormField(
         controller: providerSignUp.textSingUpPassword,
           textAlignVertical: TextAlignVertical.center,
