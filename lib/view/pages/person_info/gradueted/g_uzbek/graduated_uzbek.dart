@@ -15,9 +15,14 @@ Widget graduatedUzbek(
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      const SizedBox(height: 10),
+
+      providerGradueted.boolSelectUzb && providerGradueted.boolGraduatedType?
+      const SizedBox(height: 10):SizedBox.shrink(),
+
+
+      providerGradueted.boolSelectUzb && providerGradueted.boolGraduatedType?
       MyWidgets.robotoFontText(
-          text: "province".tr(), textColor: MyColors.appColorBlack(), textSize: 16),
+          text: "province".tr(), textColor: MyColors.appColorBlack(), textSize: 16):SizedBox.shrink(),
       const SizedBox(height: 4),
       GestureDetector(
         child: Container(

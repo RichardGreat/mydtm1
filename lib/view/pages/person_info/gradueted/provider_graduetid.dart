@@ -220,11 +220,17 @@ class ProviderGraduated extends ChangeNotifier {
     }
     notifyListeners();
   }
-
+  bool boolSelectUzb = false;
   Future setForeign({required String name, required String id}) async {
     graduatedCountryName = name;
     graduatedCountryId = id;
+    if (graduatedCountryId == "860") {
+      boolSelectUzb = true;
+    } else {
+      boolSelectUzb = false;
+    }
     notifyListeners();
+
   }
 
   ///
