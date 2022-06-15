@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-
+import 'dart:developer';
 sheetForeignLang({
   required BuildContext contexts,
   required ProviderChooseEdu providerChooseEdu,
@@ -74,6 +74,8 @@ class _ForeignLangTestState extends State<ForeignLangTest> {
                     ),
                   ),
                   onTap: () {
+                    log(widget.providerChooseEdu
+                        .listDataForeignLangTemp[index].id.toString());
                     widget.providerChooseEdu.setForeignLang(
                         id: widget.providerChooseEdu
                             .listDataForeignLangTemp[index].id,

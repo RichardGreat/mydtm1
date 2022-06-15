@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/provider_foriegn_lang.dart';
+import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 class ChooseImageForeignLang extends StatefulWidget {
-  ProviderForeignLang providerForeignLang;
+  ProviderCertificate providerCertificate;
 
-  ChooseImageForeignLang({Key? key, required this.providerForeignLang})
+  ChooseImageForeignLang({Key? key, required this.providerCertificate})
       : super(key: key);
 
   @override
@@ -158,7 +158,7 @@ class _ChooseImageForeignLangState extends State<ChooseImageForeignLang> {
       // final kb = bytes / 1024;
       // final mb = kb / 1024;
       if (mb <= 2) {
-        widget.providerForeignLang
+        widget.providerCertificate
             .changeImageForeign(imageData: img64, fileTypeName: fileTypeName!);
         Navigator.pop(context);
       } else {

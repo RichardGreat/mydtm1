@@ -1,11 +1,19 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/foreign_cert.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/national_certificate.dart';
+import 'package:mydtm/data/internet_connections/person_info/certificate/set_cert/get_cert_level.dart';
+import 'package:mydtm/data/internet_connections/person_info/certificate/set_cert/get_lang.dart';
+import 'package:mydtm/data/internet_connections/person_info/certificate/set_cert/get_lang_type.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/foreign_cert.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/national_cert.dart';
+import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/lang_level.dart';
+import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/lang_type.dart';
+import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/languange.dart';
+import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/widgets/model_botton_sheet.dart';
 
 class ProviderCertificate extends ChangeNotifier {
   bool imageChange = true;
@@ -71,29 +79,177 @@ class ProviderCertificate extends ChangeNotifier {
     });
     notifyListeners();
   }
-// Future showImage(
-//     {required BuildContext context,
-//       required ProviderCertificate providerCertificate}) async {
-//   showDialog(
-//       context: context,
-//       builder: (context) => AlertDialog(
-//           shape: const RoundedRectangleBorder(
-//               borderRadius: BorderRadius.only(
-//                 topRight: Radius.circular(5),
-//                 topLeft: Radius.circular(5),
-//               )),
-//           actions: [
-//             Container(
-//                 width: MediaQuery.of(context).size.width,
-//                 height: MediaQuery.of(context).size.height * 0.5,
-//                 decoration: const BoxDecoration(
-//                     borderRadius: BorderRadius.only(
-//                       topRight: Radius.circular(5),
-//                       topLeft: Radius.circular(5),
-//                     )),
-//                 child: DataTimePic(
-//                     providerCertificate: providerCertificate))
-//           ]));
-// }
+
+
+  /// Foreign Lang
+  bool imageChange2 = true;
+
+
+  addImageForeign(
+      {required BuildContext context,
+        required ProviderCertificate providerCertificate}) {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      enableDrag: true,
+      builder: (context) => Container(
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(5),
+                topLeft: Radius.circular(5),
+              )),
+          height: 200,
+          child: ChooseImageForeignLang(providerCertificate: providerCertificate)),
+    );
+  }
+
+  Future changeImageForeign(
+      {required dynamic imageData, required String fileTypeName}) async {
+    imageChange2= false;
+    box.delete("image");
+    box.delete("imageServer");
+    box.put("image", imageData!.replaceAll("\n", ""));
+    box.put("imageServer",
+        "image:data:image/$fileTypeName;base64, ${imageData!.replaceAll("\n", "")}");
+    await Future.delayed(const Duration(milliseconds: 400)).then((value) {
+      imageChange2 = true;
+    });
+    notifyListeners();
+  }
+
+
+  ///
+  NetworkGetLanguages  networkGetLanguages = NetworkGetLanguages();
+  TextEditingController textEditingLangSearch = TextEditingController();
+  List<DataGetForeignLang> listDataForeignLang = [];
+  List<DataGetForeignLang> listDataForeignLangTemp = [];
+  bool boolCerGetLang = false;
+
+  Future getLanguage({required BuildContext context})async{
+    try{
+      boolCerGetLang = false;
+      String data = await networkGetLanguages.getForeignCert();
+      log(data);
+      ModelGetForeignLang modelGetForeignLang = ModelGetForeignLang.fromJson(jsonDecode(data));
+      listDataForeignLang = modelGetForeignLang.data;
+      listDataForeignLangTemp = listDataForeignLang;
+      boolCerGetLang = true;
+      notifyListeners();
+    }catch(e){
+      log(e.toString());
+    }
+
+  }
+
+  Future searchCertLang({required String value}) async {
+    listDataForeignLangTemp.clear();
+    for (var val in listDataForeignLang) {
+      if (val.name.trim().toLowerCase().contains(value.trim().toLowerCase())) {
+        listDataForeignLangTemp.add(val);
+      }
+    }
+    notifyListeners();
+  }
+
+  Future clearTextCerLang() async {
+    boolCerGetLang = false;
+    notifyListeners();
+    listDataForeignLangTemp.clear();
+    textEditingLangSearch.clear();
+    listDataForeignLangTemp.addAll(listDataForeignLang);
+    boolCerGetLang = true;
+    notifyListeners();
+  }
+
+  String certLangName = '';
+  String certLangId = '';
+  Future setCertLang({required String distId, required String distName}) async {
+    certLangName = distName;
+    certLangId = distId;
+    notifyListeners();
+  }
+
+  /// Cert type
+  List<DataGetLangType> listLangType = [];
+  List<DataGetLangType> listLangTypeTemp = [];
+  bool boolCertType = false;
+  NetworkGetLangType   networkGetLangType = NetworkGetLangType();
+
+  Future getLanguageCertType({required BuildContext context})async{
+    try{
+      boolCertType = false;
+      String data = await networkGetLangType.getForeignCertType(langId: certLangId);
+
+      ModelGetLangType modelGetLangType = ModelGetLangType.fromJson(jsonDecode(data));
+      listLangType = modelGetLangType.data;
+      listLangTypeTemp = listLangType;
+      boolCertType = true;
+      notifyListeners();
+    }catch(e){
+      log(e.toString());
+    }
+
+  }
+
+  String langTypeIds = "";
+  String langTypeNames = "";
+  Future setLangType({required String langTypeId, required String  langTypeName})async{
+    langTypeIds = langTypeId;
+    langTypeNames = langTypeName;
+    notifyListeners();
+  }
+
+  /// Cert level
+  List<DataGetLangLevel> listLangLevel = [];
+  List<DataGetLangLevel> listLangLevelTemp = [];
+  bool boolCertLevel = false;
+  NetworkGetLangLevel   networkGetLangLevel = NetworkGetLangLevel();
+
+  Future getLanguageCertLevel({required BuildContext context})async{
+    try{
+      boolCertLevel = false;
+
+      String data = await networkGetLangLevel.getForeignCertLevel(certType: langTypeIds);
+
+      ModelGetLangLevel modelGetLangLevel = ModelGetLangLevel.fromJson(jsonDecode(data));
+      listLangLevel = modelGetLangLevel.data;
+      log(jsonEncode(listLangLevel));
+      listLangLevelTemp = listLangLevel;
+      boolCertLevel = true;
+      notifyListeners();
+    }catch(e){
+      log(e.toString());
+    }
+
+  }
+
+  String langLevelIds = "";
+  String langNameLevel = "";
+  Future setLangLevel({required String langLevelId, required String  langLeveName})async{
+    langLevelIds = langLevelId;
+    langNameLevel = langLeveName;
+    notifyListeners();
+  }
+
+  ///
+  DateTime currentDate = DateTime.now();
+  String dateYearMonthDay = "";
+  Future<void> selectDate(BuildContext context) async {
+
+    final DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: currentDate,
+        firstDate: DateTime(2019),
+        lastDate: DateTime(2025));
+    if (pickedDate != null && pickedDate != currentDate) {
+      currentDate = pickedDate;
+      // log(DateFormat(currentDate)).YEAR_MONTH_DAY
+      log(DateFormat('yyyy-MM-dd').format(currentDate));
+      dateYearMonthDay = DateFormat('yyyy-MM-dd').format(currentDate);
+      notifyListeners();
+    }
+  }
 
 }

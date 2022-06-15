@@ -33,7 +33,7 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../../../data/internet_connections/person_info/certificate/national_certificate.dart';
 
 class ProviderChooseEdu extends ChangeNotifier {
-  late String testRegionId;
+  late String testRegionId = "";
 
   /// Check Use Certificate
 
@@ -636,6 +636,7 @@ class ProviderChooseEdu extends ChangeNotifier {
   Future setForeignLang({required String id, required String name}) async {
     boolSelectForeignLang = false;
     stringForeignLangName = name;
+
     stringForeignLangId = id;
     boolSelectForeignLang = true;
     notifyListeners();
@@ -747,7 +748,8 @@ class ProviderChooseEdu extends ChangeNotifier {
   Future setDataEduDir({required BuildContext context}) async {
     try {
       ModelSendServerInfo modelSendServerInfo = ModelSendServerInfo
-        (sert: mapCert,
+        (
+          sert: listCheckCertificate.isNotEmpty? mapCert:{},
           isGrand: grantContractId,
           isMaqsad: maqsadliId,
           testRegionId: testRegionId,
@@ -756,7 +758,7 @@ class ProviderChooseEdu extends ChangeNotifier {
           emodeId: mapEmode,
           eduId: mapOtm,
           planId: mapDir,
-          flangId: listTitleEduDir[0].fLangId);
+          flangId: stringForeignLangId);
       log("send server");
       log(jsonEncode(modelSendServerInfo));
       String data = await networkSendServer.sendServerAll(allData: jsonEncode(modelSendServerInfo));

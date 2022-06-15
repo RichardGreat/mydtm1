@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:universal_image/universal_image.dart';
 
 myViewButton(
     {required BuildContext context,
@@ -89,7 +92,13 @@ myViewButton(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.account_balance_sharp, size: 48),
+                              UniversalImage(
+                                "${MainUrl.mainUrlImage}/${myList[index].mobilIcon}", // image storage file path
+                                scale: 1.0,
+                                width: 80,
+                                height: 80,
+                                placeholder:const Center(child: CupertinoActivityIndicator()),
+                              ),
                               SizedBox(
                                 child: Text(
                                   myList[index].serviceName,

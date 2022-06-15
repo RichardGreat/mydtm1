@@ -31,7 +31,7 @@ Widget bodyCertificate(
                               0 || providerCertificate.dataCheckForeignCertificate.status ==
                           1
                           ?{}
-                          :  pushNewScreen(context, screen: ForeignLanguageAdd());
+                          :  pushNewScreen(context, screen: ForeignLanguageAdd(providerCertificate: providerCertificate,));
                     },
                     child: Container(
                       height: 50,
@@ -136,48 +136,8 @@ Widget bodyCertificate(
                             subtitle: MyWidgets.robotoFontText(
                                 text:  providerCertificate
                                            .listCheckCertificate[index].certSernum??""),
-
                             onTap: (){
-
                             }),
-                        // Container(
-                        //   margin: EdgeInsets.all(4),
-                        //   child: Column(
-                        //     mainAxisAlignment: MainAxisAlignment.start,
-                        //     crossAxisAlignment: CrossAxisAlignment.start,
-                        //     children: [
-                        //       MyWidgets.robotoFontText(
-                        //           text: providerCertificate
-                        //               .listCheckCertificate[index].name??""),
-                        //       Text(
-                        //         "${providerCertificate.listCheckCertificate[index].percent.toString()} %",
-                        //         style: TextStyle(
-                        //             color: MyColors.appColorBlack(),
-                        //             fontSize: 17,
-                        //             fontWeight: FontWeight.normal,
-                        //             fontFamily: 'Roboto-Medium'),
-                        //       ),
-                        //       Text(
-                        //         providerCertificate
-                        //             .listCheckCertificate[index].startAt??"",
-                        //         style: TextStyle(
-                        //             color: MyColors.appColorBlack(),
-                        //             fontSize: 17,
-                        //             fontWeight: FontWeight.normal,
-                        //             fontFamily: 'Roboto-Medium'),
-                        //       ),
-                        //       Text(
-                        //         providerCertificate
-                        //             .listCheckCertificate[index].endAt??"",
-                        //         style: TextStyle(
-                        //             color: MyColors.appColorBlack(),
-                        //             fontSize: 17,
-                        //             fontWeight: FontWeight.normal,
-                        //             fontFamily: 'Roboto-Medium'),
-                        //       )
-                        //     ],
-                        //   ),
-                        // )
                     ),
                   ))
                 ],

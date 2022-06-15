@@ -5,6 +5,7 @@ import 'package:mydtm/view/pages/otm/widgets/app_bar_choose_edu.dart';
 import 'package:mydtm/view/pages/otm/widgets/body_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:provider/provider.dart';
+import 'dart:developer';
 
 class ChooseEdu extends StatefulWidget {
   const ChooseEdu({Key? key}) : super(key: key);
@@ -20,8 +21,27 @@ class _ChooseEduState extends State<ChooseEdu> {
   @override
   initState(){
     providerChooseEdu.getCheckUseNationCertInfo();
+
     super.initState();
   }
+
+   double heightScreen(){
+     if(MediaQuery.of(context).size.height >= 800){
+       return MediaQuery.of(context).size.height*1.2;
+     }else if(MediaQuery.of(context).size.height < 800 && MediaQuery.of(context).size.height >= 700){
+       return MediaQuery.of(context).size.height*1.4;
+     }
+   else if(MediaQuery.of(context).size.height < 700 && MediaQuery.of(context).size.height >= 600){
+  return MediaQuery.of(context).size.height*1.5;
+  }
+     else if(MediaQuery.of(context).size.height < 600 && MediaQuery.of(context).size.height >= 500){
+       return MediaQuery.of(context).size.height*1.8;
+     }
+     else if(MediaQuery.of(context).size.height < 500 && MediaQuery.of(context).size.height >= 400){
+       return MediaQuery.of(context).size.height*2.5;
+     }
+    return 700;
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +54,7 @@ class _ChooseEduState extends State<ChooseEdu> {
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Container(
-                  height: MediaQuery.of(context).size.height*1.7,
+                  height: heightScreen(),
                   margin: const EdgeInsets.all(15),
                   child: 
                   providerChooseEdu.boolCheckUseCertificateData ?

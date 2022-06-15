@@ -17,12 +17,6 @@ class _CertificatesState extends State<Certificates> {
   initState(){
     providerCertificate.getForeignCert();
     providerCertificate.getNationCertInfo();
-    // {
-    //   "status": 0,
-    // "error_code": 400,
-    // "errors": "Ma`lumot topilmadi."
-    // }
-
     super.initState();
   }
 

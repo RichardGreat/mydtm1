@@ -33,19 +33,21 @@ class _ServicePageState extends State<ServicePage> {
         builder: (context, value, child) => Scaffold(
             backgroundColor: MyColors.appColorGrey100(),
             appBar: appBarService(context: context),
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                servicePageHead(
-                    context: context,
-                    providerServicePage: providerServicePage,
-                serviceMainList: widget.serviceMainList
-                ),
-                const SizedBox(height: 20),
-                servicePageBody(
-                  serviceMainList: widget.serviceMainList,
-                    context: context, providerServicePage: providerServicePage)
-              ],
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  servicePageHead(
+                      context: context,
+                      providerServicePage: providerServicePage,
+                  serviceMainList: widget.serviceMainList
+                  ),
+                  const SizedBox(height: 20),
+                  servicePageBody(
+                    serviceMainList: widget.serviceMainList,
+                      context: context, providerServicePage: providerServicePage)
+                ],
+              ),
             )),
       ),
     );

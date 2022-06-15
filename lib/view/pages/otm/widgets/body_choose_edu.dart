@@ -7,7 +7,7 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-
+import 'dart:developer';
 Widget bodyChooseEdu({
   required BuildContext context,
   required ProviderChooseEdu providerChooseEdu,
@@ -70,6 +70,7 @@ Widget bodyChooseEdu({
             itemCount: providerChooseEdu.listTitleEduDir.length,
             itemBuilder: (context, index) => GestureDetector(
               onTap: () {
+
                 if (checkFillSelected() && checkFillDir(index: index)) {
                   pushNewScreen(context,
                       screen: SelectDirection(
@@ -122,12 +123,15 @@ Widget bodyChooseEdu({
           if (checkFillSelected() &&
               checkFillDir(index: 1) &&
               providerChooseEdu.boolForeignLang) {
-
-            if(!providerChooseEdu.boolCheckUseCertificateDataNot && providerChooseEdu.mapCert.isNotEmpty){
+            // if(!providerChooseEdu.boolCheckUseCertificateDataNot && providerChooseEdu.mapCert.isNotEmpty){
+            if(providerChooseEdu.listCheckCertificate.isEmpty) {
               providerChooseEdu.setDataEduDir(context: context);
-            }else{
-              MyWidgets.scaffoldMessengerBottom(context: context, valueText: "Sertifikatni tanlang");
+            } else if(providerChooseEdu.mapCert.isNotEmpty){
+              providerChooseEdu.setDataEduDir(context: context);
             }
+            else{
+              MyWidgets.scaffoldMessengerBottom(context: context, valueText: "Sertifikatni tanlang");
+             }
 
           } else {
             providerChooseEdu.setDataEduDir(context: context);

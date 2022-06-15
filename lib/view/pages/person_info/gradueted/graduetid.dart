@@ -1,5 +1,7 @@
+import 'dart:developer';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/app_bar_gradueted.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/button_gradueted.dart';
@@ -7,12 +9,10 @@ import 'package:mydtm/view/pages/person_info/gradueted/const_gradueted.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/g_forgione.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_uzbek/graduated_uzbek.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
-import 'package:mydtm/view/pages/person_info/pasport_info_set/input_pasport.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'dart:developer';
+
 class Graduated extends StatefulWidget {
   const Graduated({Key? key}) : super(key: key);
 
@@ -23,9 +23,10 @@ class Graduated extends StatefulWidget {
 class _GraduatedState extends State<Graduated> {
   ProviderGraduated providerGraduated = ProviderGraduated();
   var box = Hive.box("online");
+
   @override
   initState() {
-   log(box.get("token"));
+    log(box.get("token"));
     providerGraduated.getAllInfoGraduated();
     super.initState();
   }
@@ -78,25 +79,24 @@ class _GraduatedState extends State<Graduated> {
                           const SizedBox(height: 4),
                           GestureDetector(
                             onTap: () {
-
-
                               if (providerGraduated.graduatedEduTypeId == "4" &&
-                                  providerGraduated.graduatedCountryName.length >= 5 &&
-                                  providerGraduated.txtControllerGraduatedName.text.length >=4
-                              ) {
+                                  providerGraduated
+                                          .graduatedCountryName.length >=
+                                      5 &&
+                                  providerGraduated.txtControllerGraduatedName
+                                          .text.length >=
+                                      4) {
                                 providerGraduated.getYear(
                                     contexts: context,
                                     providerGraduated: providerGraduated);
-                              }else if(providerGraduated.graduatedEduTypeId != "4"&&
-                              providerGraduated.graduatedEduName.length > 5 ){
+                              } else if (providerGraduated.graduatedEduTypeId !=
+                                      "4" &&
+                                  providerGraduated.graduatedEduName.length >
+                                      5) {
                                 providerGraduated.getYear(
                                     contexts: context,
                                     providerGraduated: providerGraduated);
                               }
-
-
-
-
                             },
                             child: Container(
                               height: 50,
@@ -112,7 +112,9 @@ class _GraduatedState extends State<Graduated> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   MyWidgets.robotoFontText(
-                                    text: providerGraduated.graduatedEduYear.length < 3
+                                    text: providerGraduated
+                                                .graduatedEduYear.length <
+                                            3
                                         ? "choose".tr()
                                         : providerGraduated.graduatedEduYear,
                                   ),

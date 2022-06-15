@@ -10,7 +10,7 @@ import 'package:mydtm/view/pages/otm/widgets/use_certificate/certificate_use.dar
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
-
+import 'dart:developer';
 Widget chooseDirect(
     {required BuildContext context,
     required ProviderChooseEdu providerChooseEdu}) {
@@ -41,6 +41,7 @@ Widget chooseDirect(
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           subtitle: Text(providerChooseEdu.testRegionNames),
           onTap: () {
+            log(MediaQuery.of(context).size.height.toString());
             sheetRegionTest(
                 context: context, providerChooseEdu: providerChooseEdu);
           },

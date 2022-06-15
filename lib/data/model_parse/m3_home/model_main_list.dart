@@ -25,23 +25,31 @@ class DataServiceList {
   DataServiceList({
    required this.id,
    required this.categoryName,
+   required this.categoryNameRu,
+   required this.categoryNameQQ,
    required this.service,
   });
 
-  int id;
-  String categoryName;
+ dynamic id;
+ dynamic categoryName;
+ dynamic categoryNameRu;
+ dynamic categoryNameQQ;
   List<ServiceMainList> service;
 
   factory DataServiceList.fromJson(Map<String, dynamic> json) => DataServiceList(
         id: json["id"],
-        categoryName: json["category_name"],
+    categoryName: json["name"],
+    categoryNameRu: json["name_ru"],
+    categoryNameQQ: json["name_qq"],
         service:
             List<ServiceMainList>.from(json["service"].map((x) => ServiceMainList.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "category_name": categoryName,
+        "name": categoryName,
+        "name_ru": categoryNameRu,
+        "name_qq": categoryNameQQ,
         "service": List<dynamic>.from(service.map((x) => x.toJson())),
       };
 }
@@ -51,6 +59,10 @@ class ServiceMainList {
    required this.id,
    required this.serviceName,
    required this.serviceText,
+   required this.serviceTextRu,
+   required this.serviceTextQQ,
+   required this.serviceNameRu,
+   required this.serviceNameQQ,
    required this.status,
    required this.mobilIcon,
    required this.link,
@@ -58,23 +70,37 @@ class ServiceMainList {
    required this.catId,
    required this.cod,
    required this.sortId,
+   required this.createdAt,
+   required this.updatedAt,
+   required this.deleted,
   });
 
-  int id;
-  String serviceName;
-  String serviceText;
-  String mobilIcon;
-  bool status;
-  String link;
-  String icon;
-  int catId;
-  int cod;
-  int sortId;
+ dynamic id;
+ dynamic serviceName;
+ dynamic serviceNameRu;
+ dynamic serviceNameQQ;
+ dynamic serviceText;
+ dynamic serviceTextRu;
+ dynamic serviceTextQQ;
+ dynamic mobilIcon;
+ dynamic status;
+ dynamic link;
+ dynamic icon;
+ dynamic catId;
+ dynamic cod;
+ dynamic sortId;
+ dynamic createdAt;
+ dynamic updatedAt;
+ dynamic deleted;
 
   factory ServiceMainList.fromJson(Map<String, dynamic> json) => ServiceMainList(
         id: json["id"],
-        serviceName: json["service_name"],
-        serviceText: json["service_text"],
+        serviceName: json["name"],
+        serviceNameRu: json["name_ru"],
+        serviceNameQQ: json["name_qq"],
+        serviceText: json["text"],
+       serviceTextRu: json["text"],
+       serviceTextQQ: json["text"],
         mobilIcon: json["mobil_icon"],
         status: json["status"],
         link: json["link"],
@@ -82,12 +108,19 @@ class ServiceMainList {
         catId: json["cat_id"],
         cod: json["cod"],
         sortId: json["sort_id"],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
+        deleted: json["deleted"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "service_name": serviceName,
-        "service_text": serviceText,
+        "name": serviceName,
+        "name_ru": serviceName,
+        "name_qq": serviceName,
+        "text": serviceText,
+        "text_ru": serviceText,
+        "text_qq": serviceText,
         "status": status,
         "link": link,
         "mobil_icon": mobilIcon,
@@ -95,5 +128,8 @@ class ServiceMainList {
         "cat_id": catId,
         "cod": cod,
         "sort_id": sortId,
+        "created_at": createdAt,
+        "updated_at": sortId,
+        "deleted": sortId,
       };
 }
