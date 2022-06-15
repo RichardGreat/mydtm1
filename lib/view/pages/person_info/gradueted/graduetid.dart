@@ -55,9 +55,11 @@ class _GraduatedState extends State<Graduated> {
                               providerGraduated: providerGraduated),
 
                           /// uzbek
-                          graduatedUzbek(
-                              context: context,
-                              providerGradueted: providerGraduated),
+                          Visibility(
+                              visible: providerGraduated.boolGraduatedType,
+                              child: graduatedUzbek(
+                                  context: context,
+                                  providerGradueted: providerGraduated)),
 
                           /// foreign
                           Visibility(

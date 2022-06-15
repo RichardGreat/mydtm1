@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/data/internet_connections/person_info/certificate/set_cert/get_lang.dart';
+import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/languange.dart';
 import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/widgets/model_botton_sheet.dart';
+import 'dart:developer';
 
 class ProviderForeignLang extends ChangeNotifier {
   bool imageChange = true;
@@ -39,4 +44,58 @@ class ProviderForeignLang extends ChangeNotifier {
     });
     notifyListeners();
   }
+
+
+  ///
+  NetworkGetLanguages networkGetLanguages = NetworkGetLanguages();
+  TextEditingController textEditingLangSearch = TextEditingController();
+  List<DataGetForeignLang> listDataForeignLang = [];
+  List<DataGetForeignLang> listDataForeignLangTemp = [];
+  bool boolCerGetLang = false;
+
+  Future getLanguage({required BuildContext context})async{
+    try{
+      boolCerGetLang = false;
+      String data = await networkGetLanguages.getForeignCert();
+      log(data);
+      ModelGetForeignLang modelGetForeignLang = ModelGetForeignLang.fromJson(jsonDecode(data));
+      listDataForeignLang = modelGetForeignLang.data;
+      listDataForeignLangTemp = listDataForeignLang;
+      boolCerGetLang = true;
+      notifyListeners();
+    }catch(e){
+      log(e.toString());
+    }
+
+  }
+
+  Future searchCertLang({required String value}) async {
+    listDataForeignLangTemp.clear();
+    for (var val in listDataForeignLang) {
+      if (val.name.trim().toLowerCase().contains(value.trim().toLowerCase())) {
+        listDataForeignLangTemp.add(val);
+      }
+    }
+    notifyListeners();
+  }
+
+  Future clearTextCerLang() async {
+    boolCerGetLang = false;
+    notifyListeners();
+    listDataForeignLangTemp.clear();
+    textEditingLangSearch.clear();
+    listDataForeignLangTemp.addAll(listDataForeignLang);
+    boolCerGetLang = true;
+    notifyListeners();
+  }
+
+  ///
+  String certLangName = '';
+  String certLangId = '';
+  Future setCertLang({required String distId, required String distName}) async {
+    certLangName = distName;
+    certLangId = distId;
+    notifyListeners();
+  }
+
 }

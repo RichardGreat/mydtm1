@@ -15,14 +15,20 @@ Widget graduatedUzbek(
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
+  //
+  //     if (graduatedEduTypeId == "4") {
+  //   boolGraduatedType = false;
+  // } else {
+  // boolGraduatedType = true;
+  // }
+  //     providerGradueted.boolSelectUzb && !providerGradueted.boolGraduatedType?
+      const SizedBox(height: 10),
+          // :SizedBox.shrink(),
 
-      providerGradueted.boolSelectUzb && providerGradueted.boolGraduatedType?
-      const SizedBox(height: 10):SizedBox.shrink(),
 
-
-      providerGradueted.boolSelectUzb && providerGradueted.boolGraduatedType?
+      // providerGradueted.boolSelectUzb && providerGradueted.boolGraduatedType?
       MyWidgets.robotoFontText(
-          text: "province".tr(), textColor: MyColors.appColorBlack(), textSize: 16):SizedBox.shrink(),
+          text: "province".tr(), textColor: MyColors.appColorBlack(), textSize: 16),//:SizedBox.shrink(),
       const SizedBox(height: 4),
       GestureDetector(
         child: Container(

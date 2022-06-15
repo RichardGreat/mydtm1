@@ -51,8 +51,9 @@ Widget bodyCertificate(
                               textSize: 15)),
                     ),
                   ),
-                  providerCertificate.boolCheckForeignLangNot?SizedBox.shrink():
+                  providerCertificate.boolCheckForeignLangNot?SizedBox(height: 20):
                   const SizedBox(height: 10),
+                  providerCertificate.boolCheckForeignLangNot?SizedBox(height: 20):
                   MyWidgets.robotoFontText(text:"foreignLang".tr()),
                   const SizedBox(height: 10),
                   providerCertificate.boolCheckForeignLangNot?SizedBox.shrink():
