@@ -27,12 +27,12 @@ class _ChooseEduState extends State<ChooseEdu> {
 
    double heightScreen(){
      if(MediaQuery.of(context).size.height >= 800){
-       return MediaQuery.of(context).size.height*1.2;
+       return MediaQuery.of(context).size.height*1.3;
      }else if(MediaQuery.of(context).size.height < 800 && MediaQuery.of(context).size.height >= 700){
-       return MediaQuery.of(context).size.height*1.4;
+       return MediaQuery.of(context).size.height*1.5;
      }
    else if(MediaQuery.of(context).size.height < 700 && MediaQuery.of(context).size.height >= 600){
-  return MediaQuery.of(context).size.height*1.5;
+  return MediaQuery.of(context).size.height*1.6;
   }
      else if(MediaQuery.of(context).size.height < 600 && MediaQuery.of(context).size.height >= 500){
        return MediaQuery.of(context).size.height*1.8;

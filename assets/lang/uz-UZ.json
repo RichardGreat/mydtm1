@@ -88,5 +88,7 @@
   "passwordNotMatch": "Parollar mos emas",
   "certificate": "Sertifikatlar",
   "foreignLang": "Chet tili",
-  "nationalCert": "Milliy sertifikat"
+  "nationalCert": "Milliy sertifikat",
+  "download": "Yuklab olish",
+  "editEdu": "Ma'lumotlarni tahrirlash"
 }

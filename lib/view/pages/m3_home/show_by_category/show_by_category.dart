@@ -67,7 +67,7 @@ myViewButton(
 
                           pushNewScreen(
                             context,
-                            screen:    ServicePage(serviceMainList: myList[index]),
+                            screen:  ServicePage(serviceMainList: myList[index]),
                             withNavBar: true, // OPTIONAL VALUE. True by default.
                             pageTransitionAnimation: PageTransitionAnimation.cupertino,
                           );
@@ -87,7 +87,8 @@ myViewButton(
                               left: 10, right: 10, top: 2, bottom: 2),
                           padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
                           decoration: BoxDecoration(
-                              color: providerMainHome.myColors.randomColor(),
+                              color: MyColors.appColorWhite(),
+                              boxShadow: [BoxShadow(color: MyColors.appColorGrey600(), blurRadius: 1, spreadRadius: 1)],
                               borderRadius: BorderRadius.circular(10)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -96,7 +97,7 @@ myViewButton(
                                 "${MainUrl.mainUrlImage}/${myList[index].mobilIcon}", // image storage file path
                                 scale: 1.0,
                                 width: 80,
-                                height: 80,
+                                height: 70,
                                 placeholder:const Center(child: CupertinoActivityIndicator()),
                               ),
                               SizedBox(

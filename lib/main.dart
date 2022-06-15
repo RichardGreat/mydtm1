@@ -4,6 +4,7 @@ import 'package:connection_notifier/connection_notifier.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
@@ -24,6 +25,12 @@ Future initialization(BuildContext? context) async {
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Plugin must be initialized before using
+  // await FlutterDownloader.initialize(
+  //     debug: true, // optional: set to false to disable printing logs to console (default: true)
+  //     ignoreSsl: true // option: set to false to disable working with http links (default: false)
+  // );
   FlutterNativeSplash.removeAfter(initialization);
   await EasyLocalization.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();

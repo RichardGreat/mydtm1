@@ -3,6 +3,7 @@ import 'package:mydtm/view/pages/person_info/privillage/provider_privilege.dart'
 import 'package:mydtm/view/pages/person_info/privillage/widgets1/app_bar_privilege.dart';
 import 'package:mydtm/view/pages/person_info/privillage/widgets1/body_no_privilege.dart';
 import 'package:mydtm/view/pages/person_info/privillage/widgets1/body_privilege.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class Privilege extends StatefulWidget {
@@ -28,6 +29,7 @@ class _PrivilegeState extends State<Privilege> {
       create: (context) => providerPrivilege,
       child: Consumer<ProviderPrivilege>(
         builder: (context, value, child) => Scaffold(
+          backgroundColor: MyColors.appColorWhite(),
           appBar: appBarPrivilege(context: context, providerPrivilege: providerPrivilege),
           body: providerPrivilege.boolPrivilegeNot?
                     bodyNoPrivilege(context: context, providerPrivilege: providerPrivilege)

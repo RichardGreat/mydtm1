@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/body_ariza.dart';
+import 'package:mydtm/view/pages/m4_arizalar/body_ariza1.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
+import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 class MainMyStatement extends StatefulWidget {
   const MainMyStatement({Key? key}) : super(key: key);
 
@@ -20,7 +24,20 @@ class _MainMyStatementState extends State<MainMyStatement> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(create: (context) => providerAriza,
     child: Consumer<ProviderAriza>(builder: (context, value, child) => Scaffold(
-      body: SafeArea(child: bodyAriza(context: context, providerAriza: providerAriza)),
+      backgroundColor: MyColors.appColorWhite(),
+      appBar: AppBar(
+
+        backgroundColor: MyColors.appColorWhite(),
+         elevation: 0,
+         title:
+          MyWidgets.robotoFontText(
+              text: "applications".tr(), textSize: 24),
+      ),
+      body:
+      providerAriza.boolQaydVaraqaDownload
+          ? providerAriza.boolQaydVaraqaDownloadNot
+          ? notInfoPerson(context: context, providerAriza: providerAriza):
+      SafeArea(child: bodyAriza1(context: context, providerAriza: providerAriza)):MyWidgets.loaderDownload(context: context),
       
     ),),
     );

@@ -15,7 +15,7 @@ Widget bodyCertificate(
           ? Container(
               margin: const EdgeInsets.all(10),
               width: double.infinity,
-              decoration: BoxDecoration(color: MyColors.appColorGrey100()),
+              decoration: BoxDecoration(color: MyColors.appColorWhite()),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -8,6 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'dart:developer';
+
 Widget bodyChooseEdu({
   required BuildContext context,
   required ProviderChooseEdu providerChooseEdu,
@@ -30,17 +31,19 @@ Widget bodyChooseEdu({
       return true;
     }
   }
+
   bool checkForeignLang() {
-    if( providerChooseEdu.listTitleEduDir[0].fLangId =="4" && !providerChooseEdu.boolSelectForeignLang ){
+    if (providerChooseEdu.listTitleEduDir[0].fLangId == "4" &&
+        !providerChooseEdu.boolSelectForeignLang) {
       return false;
-    }else if( providerChooseEdu.listTitleEduDir[0].fLangId =="4" && providerChooseEdu.boolSelectForeignLang ){
+    } else if (providerChooseEdu.listTitleEduDir[0].fLangId == "4" &&
+        providerChooseEdu.boolSelectForeignLang) {
       return true;
-    }else //if( providerChooseEdu.listTitleEduDir[0].fLangId =="0")
+    } else //if( providerChooseEdu.listTitleEduDir[0].fLangId =="0")
     {
       return true;
     }
-
-      }
+  }
 
   String textEduList({required int index}) {
     return providerChooseEdu.listTitleEduDir[index].nameEdu.length < 4
@@ -70,7 +73,6 @@ Widget bodyChooseEdu({
             itemCount: providerChooseEdu.listTitleEduDir.length,
             itemBuilder: (context, index) => GestureDetector(
               onTap: () {
-
                 if (checkFillSelected() && checkFillDir(index: index)) {
                   pushNewScreen(context,
                       screen: SelectDirection(
@@ -85,8 +87,9 @@ Widget bodyChooseEdu({
                 }
               },
               child: ListTile(
-                subtitle:
-                    Text(providerChooseEdu.listTitleEduDir[index].dirName),
+                subtitle: Text(
+                    providerChooseEdu.listTitleEduDir[index].dirName.isEmpty?"":
+                    "${providerChooseEdu.listTitleEduDir[index].emodeName} -> ${providerChooseEdu.listTitleEduDir[index].dirName}"),
                 title: MyWidgets.robotoFontText(
                   text: textEduList(index: index),
                   textColor: checkFillSelected()
@@ -107,7 +110,9 @@ Widget bodyChooseEdu({
           color: MyColors.appColorWhite(),
           child: ListTile(
             title: MyWidgets.robotoFontText(
-                text: providerChooseEdu.stringForeignLangName.isEmpty? "Chet tilini tanlang": providerChooseEdu.stringForeignLangName,
+                text: providerChooseEdu.stringForeignLangName.isEmpty
+                    ? "Chet tilini tanlang"
+                    : providerChooseEdu.stringForeignLangName,
                 textColor: MyColors.appColorBlack()),
             onTap: () {
               sheetForeignLang(
@@ -124,23 +129,21 @@ Widget bodyChooseEdu({
               checkFillDir(index: 1) &&
               providerChooseEdu.boolForeignLang) {
             // if(!providerChooseEdu.boolCheckUseCertificateDataNot && providerChooseEdu.mapCert.isNotEmpty){
-            if(providerChooseEdu.listCheckCertificate.isEmpty) {
+            if (providerChooseEdu.listCheckCertificate.isEmpty) {
               providerChooseEdu.setDataEduDir(context: context);
-            } else if(providerChooseEdu.mapCert.isNotEmpty){
+            } else if (providerChooseEdu.mapCert.isNotEmpty) {
               providerChooseEdu.setDataEduDir(context: context);
+            } else {
+              MyWidgets.scaffoldMessengerBottom(
+                  context: context, valueText: "Sertifikatni tanlang");
             }
-            else{
-              MyWidgets.scaffoldMessengerBottom(context: context, valueText: "Sertifikatni tanlang");
-             }
-
           } else {
             providerChooseEdu.setDataEduDir(context: context);
           }
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color: checkFillSelected() && checkFillDir(index: 1)
-            ?
-        checkForeignLang()
+            ? checkForeignLang()
                 ? MyColors.appColorBlue1()
                 : MyColors.appColorGrey400()
             : MyColors.appColorGrey400(),

@@ -7,6 +7,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_token.dart';
 import 'package:mydtm/data/model_parse/m1_model/authhorization/model_get_token.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
+import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
 import 'package:mydtm/view/pages/otm/widgets/edu_reg_success/success_edu_reg.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/edu/edu_reg_success.dart';
@@ -270,7 +271,7 @@ class ProviderSms extends ChangeNotifier {
     ModelEduSuccess modelEduSuccess = ModelEduSuccess.fromJson(jsonDecode(data));
     if (modelEduSuccess.status == 1) {
       // ignore: use_build_context_synchronously
-      pushNewScreen(context, screen: SuccessEduReg());
+      pushNewScreen(context, screen: MainMyStatement());
     } else {
       MyWidgets.awesomeDialogError(
           context: context,

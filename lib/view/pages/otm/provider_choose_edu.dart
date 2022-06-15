@@ -267,7 +267,8 @@ class ProviderChooseEdu extends ChangeNotifier {
           nameTitle: "",
           titleId: "$i",
           nameEdu: "",
-          emode: "",
+           emode: "",
+          emodeName: "",
           eduId: "",
           dirName: "",
           dirId: "",
@@ -280,7 +281,8 @@ class ProviderChooseEdu extends ChangeNotifier {
           nameTitle: "Oliy ta'lim muassasi",
           titleId: "$i",
           nameEdu: "",
-          emode: "",
+           emode: "",
+          emodeName: "",
           eduId: "",
           dirName: "",
           dirId: "",
@@ -302,7 +304,9 @@ class ProviderChooseEdu extends ChangeNotifier {
       id: "0",
       nameTitle: "Oliy ta'lim muassasi",
       titleId: "0",
-      emode: "",
+       emode: "",
+
+      emodeName: "",
       nameEdu: "",
       eduId: "",
       dirName: "",
@@ -313,7 +317,8 @@ class ProviderChooseEdu extends ChangeNotifier {
       id: "1",
       nameTitle: "Oliy ta'lim muassasi",
       titleId: "1",
-      emode: "",
+       emode: "",
+      emodeName: "",
       nameEdu: "",
       eduId: "",
       dirName: "",
@@ -325,7 +330,8 @@ class ProviderChooseEdu extends ChangeNotifier {
       nameTitle: "Oliy ta'lim muassasi",
       titleId: "2",
       nameEdu: "",
-      emode: "",
+       emode: "",
+      emodeName: "",
       eduId: "",
       dirName: "",
       dirId: "",
@@ -336,7 +342,8 @@ class ProviderChooseEdu extends ChangeNotifier {
       nameTitle: "Oliy ta'lim muassasi",
       titleId: "3",
       nameEdu: "",
-      emode: "",
+       emode: "",
+      emodeName: "",
       eduId: "",
       dirName: "",
       dirId: "",
@@ -347,7 +354,8 @@ class ProviderChooseEdu extends ChangeNotifier {
       nameTitle: "Oliy ta'lim muassasi",
       titleId: "4",
       nameEdu: "",
-      emode: "",
+       emode: "",
+      emodeName: "",
       eduId: "",
       dirName: "",
       dirId: "",
@@ -447,6 +455,8 @@ class ProviderChooseEdu extends ChangeNotifier {
     eModeName = name;
     eModeId = id;
     listTitleEduDir[titleEduDirId].emode = id;
+    listTitleEduDir[titleEduDirId].emodeName = eModeName;
+
     sheetOTMEdu(
         contexts: context,
         providerChooseEdu: providerChooseEdu,
@@ -651,7 +661,8 @@ class ProviderChooseEdu extends ChangeNotifier {
           nameTitle: listTitleName[i],
           titleId: i.toString(),
           nameEdu: "",
-          emode: "",
+           emode: "",
+          emodeName: "",
           eduId: "",
           dirName: "",
           dirId: "",
@@ -758,7 +769,7 @@ class ProviderChooseEdu extends ChangeNotifier {
           emodeId: mapEmode,
           eduId: mapOtm,
           planId: mapDir,
-          flangId: stringForeignLangId);
+          flangId: stringForeignLangId.isEmpty?"0": stringForeignLangId);
       log("send server");
       log(jsonEncode(modelSendServerInfo));
       String data = await networkSendServer.sendServerAll(allData: jsonEncode(modelSendServerInfo));

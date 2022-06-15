@@ -9,6 +9,7 @@ Widget bodyCertificateOTM(
     required ProviderChooseEdu providerChooseEdu}) {
   return  StatefulBuilder(builder: (context, setState) =>  SafeArea(
     child: Container(
+
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(color: MyColors.appColorWhite()),
       child: Column(

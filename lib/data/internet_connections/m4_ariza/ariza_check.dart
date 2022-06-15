@@ -11,7 +11,7 @@ class NetworkArizaCheck {
     Response response;
     response = await dio.get("${MainUrl.mainUrls}/v1/qabul/index",
 
-        options: Options(headers: {MainUrl.mainUrlHeader: "eaa2cc7cd2e80627bd69a65bc95ace16"})); // {MainUrl.mainUrlHeader: box.get("token")}));
+        options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")})); // {MainUrl.mainUrlHeader: box.get("token")}));
     return jsonEncode(response.data);
   }
 }

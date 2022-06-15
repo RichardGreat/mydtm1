@@ -66,38 +66,43 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
     return ChangeNotifierProvider(
       create: (context) => providerSms,
       child: Consumer<ProviderSms>(
-        builder: (context, value, child) => Scaffold(
+        builder: (context, value, child) => WillPopScope(
+            onWillPop: () async{
+
+              return true;
+            },
+          child: Scaffold(
           backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
           appBar: appBarSms(context: context),
           body: !providerSms.boolData
               ? const Center(child: CupertinoActivityIndicator())
               : SafeArea(
-                  child: !providerSms.boolRegistration
-                      ? Container(
-                          margin: const EdgeInsets.all(10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              uiText(
-                                  context: context,
-                                  phoneNum: widget.phoneNum,
-                                  providerSms: providerSms),
-                              const SizedBox(height: 10),
+              child: !providerSms.boolRegistration
+                  ? Container(
+                margin: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    uiText(
+                        context: context,
+                        phoneNum: widget.phoneNum,
+                        providerSms: providerSms),
+                    const SizedBox(height: 10),
 
-                              Expanded(
-                                  child: bottomUI(
-                                      context: context,
-                                      providerSms: providerSms))
+                    Expanded(
+                        child: bottomUI(
+                            context: context,
+                            providerSms: providerSms))
 
-                              // Text(providerSms.valueSignature ?? ""),
-                            ],
-                          ),
-                        )
-                      : registrated(
-                          context: context,
-                          providerSms: providerSms,
-                          message: providerSms.dataRegisSmsMessage)),
-        ),
+                    // Text(providerSms.valueSignature ?? ""),
+                  ],
+                ),
+              )
+                  : registrated(
+                  context: context,
+                  providerSms: providerSms,
+                  message: providerSms.dataRegisSmsMessage)),
+        ), ),
       ),
     );
   }

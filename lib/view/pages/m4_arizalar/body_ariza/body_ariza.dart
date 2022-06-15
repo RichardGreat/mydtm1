@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mydtm/view/pages/m4_arizalar/body_ariza/billing_money.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/downloads.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/info_ariza.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
@@ -11,30 +12,113 @@ Widget bodyAriza(
     {required BuildContext context, required ProviderAriza providerAriza}) {
   return providerAriza.boolQaydVaraqaDownload
       ? Container(
-          margin: EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 20),
-              MyWidgets.robotoFontText(text: "applications".tr(), textSize: 24),
-              const SizedBox(height: 10),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 1,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        downloads(context: context, providerAriza: providerAriza),
-                        const SizedBox(height: 20),
-                        infoAriza(context: context, providerAriza: providerAriza),
-                      ],
-                    );
-                  },
+          margin: const EdgeInsets.all(10),
+          child: providerAriza.boolQaydVaraqaDownloadNot
+              ? notInfoPerson(context: context, providerAriza: providerAriza)
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: 1,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              downloads(
+                                  context: context,
+                                  providerAriza: providerAriza),
+                              const SizedBox(height: 20),
+                              infoAriza(
+                                  context: context,
+                                  providerAriza: providerAriza),
+                              const SizedBox(height: 20),
+                              infoMoneyBilling(
+                                  context: context,
+                                  providerAriza: providerAriza)
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
         )
       : MyWidgets.loaderDownload(context: context);
+}
+
+Widget notInfoPerson(
+    {required BuildContext context, required ProviderAriza providerAriza}) {
+  return SafeArea(
+    child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [MyWidgets.robotoFontText(text: "Ariza mavjud emas")],
+          )
+        ]),
+  );
+}
+
+class ArizaEnter extends StatefulWidget {
+  ProviderAriza providerAriza;
+
+  ArizaEnter({Key? key, required this.providerAriza}) : super(key: key);
+
+  @override
+  State<ArizaEnter> createState() => _ArizaEnterState();
+}
+
+class _ArizaEnterState extends State<ArizaEnter> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: MyColors.appColorWhite(),
+      appBar: AppBar(
+          title: MyWidgets.robotoFontText(
+              text: "Oliy ta'lim muassasalariga qabul"),
+          elevation: 0,
+          backgroundColor: MyColors.appColorWhite(),
+          iconTheme: IconThemeData(color: MyColors.appColorBlack())),
+      body: SafeArea(
+          child: Container(
+        margin: const EdgeInsets.all(10),
+        child: widget.providerAriza.boolQaydVaraqaDownloadNot
+            ? notInfoPerson(
+                context: context, providerAriza: widget.providerAriza)
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: 1,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            downloads(
+                                context: context,
+                                providerAriza: widget.providerAriza),
+                            const SizedBox(height: 20),
+                            infoAriza(
+                                context: context,
+                                providerAriza: widget.providerAriza),
+                            const SizedBox(height: 20),
+                            infoMoneyBilling(
+                                context: context,
+                                providerAriza: widget.providerAriza)
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+      )),
+    );
+  }
 }

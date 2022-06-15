@@ -24,7 +24,7 @@ class _SuccessEduRegState extends State<SuccessEduReg> {
             Icon(Icons.check_circle, color: MyColors.appColorGreen2(), size: 140),
             const SizedBox(height: 20),
             MyWidgets.robotoFontText(text: "textSentSuccess".tr(),  textSize: 25),
-            const SizedBox(height: 10),
+            const SizedBox(height: 50),
             MyWidgets.robotoFontText(text: "goArizaSection".tr()),
           ],
         ),

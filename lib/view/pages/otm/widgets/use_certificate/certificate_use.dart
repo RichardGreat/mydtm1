@@ -45,6 +45,7 @@ class _CertificateUseCheckState extends State<CertificateUseCheck> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.appColorWhite(),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: MyColors.appColorWhite(),
