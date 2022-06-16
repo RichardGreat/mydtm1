@@ -5,22 +5,20 @@ import 'package:mydtm/view/pages/person_info/pasport_info_set/input_pasport.dart
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-Widget certificateGetYear({required BuildContext context,required Function ff, required ProviderCertificate providerCertificate}){
+Widget certificateGetSerNumber({required BuildContext context,required Function ff, required ProviderCertificate providerCertificate}){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
-    children: [      const SizedBox(height: 10),
+    children: [ const SizedBox(height: 10),
       MyWidgets.robotoFontText(
           text: "Hujjat seriyasi va raqami",
           textColor: MyColors.appColorBlack(),
           textSize: 16),
       const SizedBox(height: 4),
       TextFormField(
-        // controller: providerPersonInfo.txtPsNumController,
+        controller: providerCertificate.textForeignSertNumber,
         maxLines: 1,
         maxLength: 25,
-
         keyboardType: TextInputType.number,
-
         inputFormatters: [
           FilteringTextInputFormatter.allow(RegExp('[0-9]'))
         ],

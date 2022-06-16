@@ -34,7 +34,9 @@ class _CertificatesState extends State<Certificates> {
           backgroundColor: MyColors.appColorWhite(),
           appBar: appBarCertificate(
               context: context, providerCertificate: providerCertificate),
-          body: bodyCertificate(
+          body: 
+
+          bodyCertificate(
             func: function,
               context: context, providerCertificate: providerCertificate),
         ),

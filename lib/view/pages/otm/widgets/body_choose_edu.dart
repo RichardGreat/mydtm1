@@ -88,15 +88,22 @@ Widget bodyChooseEdu({
               },
               child: ListTile(
                 subtitle: Text(
-                    providerChooseEdu.listTitleEduDir[index].dirName.isEmpty?"":
-                    "${providerChooseEdu.listTitleEduDir[index].emodeName} -> ${providerChooseEdu.listTitleEduDir[index].dirName}"),
-                title: MyWidgets.robotoFontText(
-                  text: textEduList(index: index),
-                  textColor: checkFillSelected()
-                      ? checkFillDir(index: index)
-                          ? MyColors.appColorBlack()
-                          : MyColors.appColorGrey400()
-                      : MyColors.appColorGrey400(),
+                    providerChooseEdu.listTitleEduDir[index].dirName.isEmpty
+                        ? ""
+                        : "${providerChooseEdu.listTitleEduDir[index].emodeName} -> ${providerChooseEdu.listTitleEduDir[index].dirName}",
+                    maxLines: 1),
+                title: Text(
+                  textEduList(index: index),
+                  maxLines: 1,
+                  style: TextStyle(
+                      color: checkFillSelected()
+                          ? checkFillDir(index: index)
+                              ? MyColors.appColorBlack()
+                              : MyColors.appColorGrey400()
+                          : MyColors.appColorGrey400(),
+                      fontSize: 17,
+                      fontWeight: FontWeight.normal,
+                      fontFamily: 'Roboto-Medium'),
                 ),
                 trailing: const Icon(Icons.arrow_forward_ios_sharp),
               ),

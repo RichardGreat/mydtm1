@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 modelGetLangLevel(
     {required BuildContext context,
@@ -53,8 +54,11 @@ class _SheetGetSetLangLevelState extends State<SheetGetSetLangLevel> {
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    MyWidgets.robotoFontText(text: "certType".tr(), textSize: 20,
+                        textFontWeight: FontWeight.bold
+                    ),
                     // SizedBox(
                     //   width: MediaQuery.of(context).size.width * 0.8,
                     //   height: 50,
@@ -122,7 +126,7 @@ class _SheetGetSetLangLevelState extends State<SheetGetSetLangLevel> {
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: MyWidgets.robotoFontText(
-                        text:   widget.providerCertificate
+                        text: widget.providerCertificate
                             .listLangLevelTemp[index].name,
                       ),
                     ),

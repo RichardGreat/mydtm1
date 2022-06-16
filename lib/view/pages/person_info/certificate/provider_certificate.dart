@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/foreign_cert.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/national_certificate.dart';
+import 'package:mydtm/data/internet_connections/person_info/certificate/sent_server.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/set_cert/get_cert_level.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/set_cert/get_lang.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/set_cert/get_lang_type.dart';
@@ -13,7 +17,9 @@ import 'package:mydtm/data/model_parse/person_info/certificate/national_cert.dar
 import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/lang_level.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/lang_type.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/languange.dart';
+import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/set_server.dart';
 import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/widgets/model_botton_sheet.dart';
+import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 
 class ProviderCertificate extends ChangeNotifier {
   bool imageChange = true;
@@ -21,7 +27,7 @@ class ProviderCertificate extends ChangeNotifier {
 
   //
   NetworkNationalCert networkNationalCert = NetworkNationalCert();
-  List<DataCheckCertificate> listCheckCertificate =[];
+  List<DataCheckCertificate> listCheckCertificate = [];
   bool boolCheckCertificateData = false;
   bool boolCheckCertificateDataNot = false;
 
@@ -34,7 +40,6 @@ class ProviderCertificate extends ChangeNotifier {
       listCheckCertificate = modelCheckCertificate.data;
       boolCheckCertificateData = true;
       notifyListeners();
-
     } catch (e) {
       boolCheckCertificateData = true;
       boolCheckCertificateDataNot = true;
@@ -45,19 +50,22 @@ class ProviderCertificate extends ChangeNotifier {
   // lang cert
   NetworkForeignCert networkForeignCert = NetworkForeignCert();
   late ModelCheckForeignCertificate modelCheckForeignCertificate;
-  DataCheckForeignCertificate dataCheckForeignCertificate =DataCheckForeignCertificate() ;
+  DataCheckForeignCertificate dataCheckForeignCertificate =
+      DataCheckForeignCertificate();
+
   bool boolCheckForeignLang = false;
   bool boolCheckForeignLangNot = false;
 
-  Future getForeignCert()async{
-    try{
+  Future getForeignCert() async {
+    try {
       boolCheckForeignLang = false;
       String dataCertForeign = await networkForeignCert.getForeignCert();
-      modelCheckForeignCertificate = ModelCheckForeignCertificate.fromJson(jsonDecode(dataCertForeign));
+      modelCheckForeignCertificate =
+          ModelCheckForeignCertificate.fromJson(jsonDecode(dataCertForeign));
       dataCheckForeignCertificate = modelCheckForeignCertificate.data;
       boolCheckForeignLang = true;
       notifyListeners();
-    }catch(e){
+    } catch (e) {
       log(e.toString());
       boolCheckForeignLangNot = true;
       boolCheckForeignLang = true;
@@ -66,28 +74,31 @@ class ProviderCertificate extends ChangeNotifier {
     }
   }
 
+  // ignore: prefer_typing_uninitialized_variables
+  late File files;
   Future changeImage(
-      {required dynamic imageData, required String fileTypeName}) async {
+      {required dynamic imageData, required String fileTypeName, required var file}) async {
     imageChange = false;
     box.delete("image");
     box.delete("imageServer");
+    files = file;
+    notifyListeners();
     box.put("image", imageData!.replaceAll("\n", ""));
     box.put("imageServer",
-        "image:data:image/$fileTypeName;base64, ${imageData!.replaceAll("\n", "")}");
+        "data:image/$imageData;base64, ${imageData!.replaceAll("\n", "")}");
     await Future.delayed(const Duration(milliseconds: 400)).then((value) {
       imageChange = true;
     });
     notifyListeners();
   }
 
-
   /// Foreign Lang
   bool imageChange2 = true;
 
-
   addImageForeign(
       {required BuildContext context,
-        required ProviderCertificate providerCertificate}) {
+      required ProviderCertificate providerCertificate,
+      required Function fff}) {
     showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(
@@ -97,50 +108,66 @@ class ProviderCertificate extends ChangeNotifier {
       builder: (context) => Container(
           decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
-                topRight: Radius.circular(5),
-                topLeft: Radius.circular(5),
-              )),
+            topRight: Radius.circular(5),
+            topLeft: Radius.circular(5),
+          )),
           height: 200,
-          child: ChooseImageForeignLang(providerCertificate: providerCertificate)),
+          child: ChooseImageForeignLang(
+              providerCertificate: providerCertificate, f: fff)),
     );
   }
 
+  bool boolForeignImage = false;
+  File? fileToServer;
+  String? fileName;
   Future changeImageForeign(
-      {required dynamic imageData, required String fileTypeName}) async {
-    imageChange2= false;
-    box.delete("image");
-    box.delete("imageServer");
-    box.put("image", imageData!.replaceAll("\n", ""));
-    box.put("imageServer",
-        "image:data:image/$fileTypeName;base64, ${imageData!.replaceAll("\n", "")}");
-    await Future.delayed(const Duration(milliseconds: 400)).then((value) {
-      imageChange2 = true;
-    });
-    notifyListeners();
+      {required dynamic imageData,
+      required String fileTypeName,
+      required File imageFile,
+      required Function fff}) async {
+    try {
+      imageChange2 = false;
+      boolForeignImage = false;
+      fileToServer = imageFile;
+      fileName = fileTypeName;
+      box.delete("image");
+      box.delete("imageServer");
+      box.delete("imageServer");
+      box.put("image", imageData!.replaceAll("\n", ""));
+      box.put("imageServer",
+          "data:image/$fileTypeName;base64, ${imageData!.replaceAll("\n", "")}");
+      await Future.delayed(const Duration(milliseconds: 400)).then((value) {
+        imageChange2 = true;
+      });
+      boolForeignImage = true;
+      fff();
+      notifyListeners();
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
-
   ///
-  NetworkGetLanguages  networkGetLanguages = NetworkGetLanguages();
+  NetworkGetLanguages networkGetLanguages = NetworkGetLanguages();
   TextEditingController textEditingLangSearch = TextEditingController();
   List<DataGetForeignLang> listDataForeignLang = [];
   List<DataGetForeignLang> listDataForeignLangTemp = [];
   bool boolCerGetLang = false;
 
-  Future getLanguage({required BuildContext context})async{
-    try{
+  Future getLanguage({required BuildContext context}) async {
+    try {
       boolCerGetLang = false;
       String data = await networkGetLanguages.getForeignCert();
       log(data);
-      ModelGetForeignLang modelGetForeignLang = ModelGetForeignLang.fromJson(jsonDecode(data));
+      ModelGetForeignLang modelGetForeignLang =
+          ModelGetForeignLang.fromJson(jsonDecode(data));
       listDataForeignLang = modelGetForeignLang.data;
       listDataForeignLangTemp = listDataForeignLang;
       boolCerGetLang = true;
       notifyListeners();
-    }catch(e){
+    } catch (e) {
       log(e.toString());
     }
-
   }
 
   Future searchCertLang({required String value}) async {
@@ -165,9 +192,24 @@ class ProviderCertificate extends ChangeNotifier {
 
   String certLangName = '';
   String certLangId = '';
+
+  // langTypeIds = "";
+  // langTypeNames = "";
+  // langLevelIds = "";
+  // langNameLevel = "";
+  // dateYearMonthDay
+  // textForeignSertNumber.text
+
   Future setCertLang({required String distId, required String distName}) async {
     certLangName = distName;
     certLangId = distId;
+
+    langTypeIds = "";
+    langTypeNames = "";
+    langLevelIds = "";
+    langNameLevel = "";
+    dateYearMonthDay = "";
+    textForeignSertNumber.text = "";
     notifyListeners();
   }
 
@@ -175,29 +217,36 @@ class ProviderCertificate extends ChangeNotifier {
   List<DataGetLangType> listLangType = [];
   List<DataGetLangType> listLangTypeTemp = [];
   bool boolCertType = false;
-  NetworkGetLangType   networkGetLangType = NetworkGetLangType();
+  NetworkGetLangType networkGetLangType = NetworkGetLangType();
 
-  Future getLanguageCertType({required BuildContext context})async{
-    try{
+  Future getLanguageCertType({required BuildContext context}) async {
+    try {
       boolCertType = false;
-      String data = await networkGetLangType.getForeignCertType(langId: certLangId);
+      String data =
+          await networkGetLangType.getForeignCertType(langId: certLangId);
 
-      ModelGetLangType modelGetLangType = ModelGetLangType.fromJson(jsonDecode(data));
+      ModelGetLangType modelGetLangType =
+          ModelGetLangType.fromJson(jsonDecode(data));
       listLangType = modelGetLangType.data;
       listLangTypeTemp = listLangType;
       boolCertType = true;
       notifyListeners();
-    }catch(e){
+    } catch (e) {
       log(e.toString());
     }
-
   }
 
   String langTypeIds = "";
   String langTypeNames = "";
-  Future setLangType({required String langTypeId, required String  langTypeName})async{
+
+  Future setLangType(
+      {required String langTypeId, required String langTypeName}) async {
     langTypeIds = langTypeId;
     langTypeNames = langTypeName;
+    langLevelIds = "";
+    langNameLevel = "";
+    dateYearMonthDay = "";
+    textForeignSertNumber.text = "";
     notifyListeners();
   }
 
@@ -205,39 +254,44 @@ class ProviderCertificate extends ChangeNotifier {
   List<DataGetLangLevel> listLangLevel = [];
   List<DataGetLangLevel> listLangLevelTemp = [];
   bool boolCertLevel = false;
-  NetworkGetLangLevel   networkGetLangLevel = NetworkGetLangLevel();
+  NetworkGetLangLevel networkGetLangLevel = NetworkGetLangLevel();
 
-  Future getLanguageCertLevel({required BuildContext context})async{
-    try{
+  Future getLanguageCertLevel({required BuildContext context}) async {
+    try {
       boolCertLevel = false;
-
-      String data = await networkGetLangLevel.getForeignCertLevel(certType: langTypeIds);
-
-      ModelGetLangLevel modelGetLangLevel = ModelGetLangLevel.fromJson(jsonDecode(data));
+      String data =
+          await networkGetLangLevel.getForeignCertLevel(certType: langTypeIds);
+      log(data);
+      ModelGetLangLevel modelGetLangLevel =
+          ModelGetLangLevel.fromJson(jsonDecode(data));
       listLangLevel = modelGetLangLevel.data;
       log(jsonEncode(listLangLevel));
       listLangLevelTemp = listLangLevel;
       boolCertLevel = true;
       notifyListeners();
-    }catch(e){
+    } catch (e) {
       log(e.toString());
     }
-
   }
 
   String langLevelIds = "";
   String langNameLevel = "";
-  Future setLangLevel({required String langLevelId, required String  langLeveName})async{
+
+  Future setLangLevel(
+      {required String langLevelId, required String langLeveName}) async {
     langLevelIds = langLevelId;
     langNameLevel = langLeveName;
+    dateYearMonthDay = "";
+    textForeignSertNumber.text = "";
     notifyListeners();
   }
 
   ///
   DateTime currentDate = DateTime.now();
   String dateYearMonthDay = "";
-  Future<void> selectDate(BuildContext context) async {
 
+  Future<void> selectDate(
+      {required BuildContext context, required Function fff}) async {
     final DateTime? pickedDate = await showDatePicker(
         context: context,
         initialDate: currentDate,
@@ -247,9 +301,61 @@ class ProviderCertificate extends ChangeNotifier {
       currentDate = pickedDate;
       // log(DateFormat(currentDate)).YEAR_MONTH_DAY
       log(DateFormat('yyyy-MM-dd').format(currentDate));
+
       dateYearMonthDay = DateFormat('yyyy-MM-dd').format(currentDate);
+
+      fff();
       notifyListeners();
     }
   }
 
+  TextEditingController textForeignSertNumber = TextEditingController();
+
+  ///
+  NetworkSentServerCert networkSentServerCert = NetworkSentServerCert();
+  bool boolSentServerCertificate = false;
+  late MasseageSetServerCertificate setServerCertificate;
+
+  Future sentCertificateServer({required BuildContext context, required Function stateFunc}) async {
+    try{
+      // log( textForeignSertNumber.text);
+      // log( langTypeIds);
+      // log( dateYearMonthDay);
+      // log("dtm_${textForeignSertNumber.text}.$fileName");
+      boolSentServerCertificate = true;
+      stateFunc();
+      notifyListeners();
+      FormData formData =  FormData.fromMap({
+        "ser_num": textForeignSertNumber.text,
+        "flang_level_id": langLevelIds,
+        "given_date": dateYearMonthDay,
+        "image": await MultipartFile.fromFile(fileToServer!.path, filename: "dtm_${textForeignSertNumber.text}.$fileName")
+      });
+      String networkData = await networkSentServerCert.getNationalCert(formDate: formData);
+      ModelSetServerCertificate modelSetServerCertificate = ModelSetServerCertificate.fromJson(jsonDecode(networkData));
+      setServerCertificate = modelSetServerCertificate.masseage;
+      boolSentServerCertificate = false;
+      stateFunc();
+      notifyListeners();
+      MyWidgets.awesomeDialogInfo(context: context, valueText: "Ma'lumot saqlandi sertifikat tasdiqlanishini kuting");
+
+
+      getNationCertInfo();
+    }catch(e){
+
+      log("e.toString()");
+      log(e.toString());
+
+    }
+
+    // log(certLangName);
+    // log(certLangId);
+    // log(langTypeIds);
+    // log(langTypeNames);
+    // log(langLevelIds);
+    // log(langNameLevel);
+    // log(dateYearMonthDay);
+    // log(textForeignSertNumber.text);
+    // log(jsonEncode(mapSentCertServer));
+  }
 }

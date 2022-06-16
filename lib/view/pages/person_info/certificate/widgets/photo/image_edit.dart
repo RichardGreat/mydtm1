@@ -149,14 +149,15 @@ class _ChooseImagesAvatarState extends State<ChooseImagesAvatar> {
       final bytes = imageFile!.readAsBytesSync().lengthInBytes;
       final kb = bytes / 1024;
       final mb = kb / 1024;
-      // setState(() {
-      // });
+
+      setState(() {
+      });
       // final bytes = imageFile!.readAsBytesSync().lengthInBytes;
       // final kb = bytes / 1024;
       // final mb = kb / 1024;
       if (mb <= 2) {
         widget.providerCertificate
-            .changeImage(imageData: img64, fileTypeName: fileTypeName!);
+            .changeImage(imageData: img64, fileTypeName: fileTypeName!, file: bytess);
         Navigator.pop(context);
       } else {
         AwesomeDialog(

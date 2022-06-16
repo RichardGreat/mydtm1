@@ -250,6 +250,7 @@ class ProviderGraduated extends ChangeNotifier {
     textEditingSerNumber.text = "";
     graduatedCountryName = name;
     graduatedCountryId = id;
+
     if (graduatedCountryId == "860") {
       boolSelectUzb = true;
     } else {
@@ -320,6 +321,15 @@ class ProviderGraduated extends ChangeNotifier {
     graduatedRegionName = proName;
     graduatedDistrictName = "";
     graduatedDistrictId = "";
+    graduatedDistrictName = "";
+    graduatedDistrictId = "";
+    graduatedEduId = "";
+    graduatedEduName = "";
+    graduatedEduYear = "";
+    graduatedEduSerNum = "";
+    textEditingSerNumber.text = "";
+    txtControllerGraduatedName.text = "";
+    setGraduatedYear = "";
 
     notifyListeners();
   }
@@ -353,6 +363,7 @@ class ProviderGraduated extends ChangeNotifier {
         listGetDistrictTemp.add(val);
       }
     }
+
     notifyListeners();
   }
 
@@ -369,6 +380,13 @@ class ProviderGraduated extends ChangeNotifier {
   Future setDistrict({required String distId, required String distName}) async {
     graduatedDistrictName = distName;
     graduatedDistrictId = distId;
+    graduatedEduId = "";
+    graduatedEduName = "";
+    graduatedEduYear = "";
+    graduatedEduSerNum = "";
+    textEditingSerNumber.text = "";
+    txtControllerGraduatedName.text = "";
+    setGraduatedYear = "";
     notifyListeners();
   }
 

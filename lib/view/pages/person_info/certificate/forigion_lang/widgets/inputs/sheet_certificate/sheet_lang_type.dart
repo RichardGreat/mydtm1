@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
-
+import 'dart:developer';
+import 'package:easy_localization/easy_localization.dart';
 modelGetLangType(
     {required BuildContext context,
       required Function f,
@@ -54,8 +55,11 @@ class _SheetGetSetLangTypeState extends State<SheetGetSetLangType> {
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    MyWidgets.robotoFontText(text: "certType".tr(), textSize: 20,
+                        textFontWeight: FontWeight.bold
+                    ),
                     // SizedBox(
                     //   width: MediaQuery.of(context).size.width * 0.8,
                     //   height: 50,
@@ -129,7 +133,8 @@ class _SheetGetSetLangTypeState extends State<SheetGetSetLangType> {
                     ),
                   ),
                   onTap: () {
-                    widget.   providerCertificate.setLangType(
+
+                    widget.providerCertificate.setLangType(
                         langTypeId:  widget. providerCertificate
                             .listLangTypeTemp[index].code
                             .toString(),

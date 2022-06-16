@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 modelGetLang(
     {required BuildContext context,
-      required ProviderCertificate providerCertificate, required Function fff}) {
+      required ProviderCertificate providerCertificate,
+      required Function fff,
+      required String titleName
+    }) {
   showModalBottomSheet<void>(
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
@@ -13,14 +18,15 @@ modelGetLang(
       barrierColor: Colors.black.withOpacity(0.2),
       context: context,
       builder: (_) {
-        return SheetGetSetLang(providerCertificate: providerCertificate, f:fff);
+        return SheetGetSetLang(providerCertificate: providerCertificate, f:fff, titleName: titleName);
       });
 }
 // ignore: must_be_immutable
 class SheetGetSetLang extends StatefulWidget {
   ProviderCertificate providerCertificate;
+  String titleName;
   Function f;
-  SheetGetSetLang({Key? key, required this.providerCertificate, required this.f}) : super(key: key);
+  SheetGetSetLang({Key? key, required this.providerCertificate, required this.f, required this.titleName}) : super(key: key);
 
   @override
   State<SheetGetSetLang> createState() => _SheetGetSetLangState();
@@ -51,8 +57,10 @@ class _SheetGetSetLangState extends State<SheetGetSetLang> {
             Container(
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
+              padding: EdgeInsets.all(5),
+
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // SizedBox(
                     //   width: MediaQuery.of(context).size.width * 0.8,
@@ -100,6 +108,9 @@ class _SheetGetSetLangState extends State<SheetGetSetLang> {
                     //     ),
                     //   ),
                     // ),
+                    MyWidgets.robotoFontText(text: widget.titleName, textSize: 20,
+                    textFontWeight: FontWeight.bold
+                    ),
                     IconButton(
                         onPressed: () {
                           widget.    providerCertificate

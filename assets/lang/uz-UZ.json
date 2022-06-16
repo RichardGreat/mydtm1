@@ -87,6 +87,8 @@
   "newInputPassport": "Yangi parolni kiriting",
   "passwordNotMatch": "Parollar mos emas",
   "certificate": "Sertifikatlar",
+  "certType": "Sertifikat turi",
+  "certDegree": "Darajasi",
   "foreignLang": "Chet tili",
   "nationalCert": "Milliy sertifikat",
   "download": "Yuklab olish",

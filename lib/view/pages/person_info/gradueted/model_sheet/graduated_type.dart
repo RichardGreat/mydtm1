@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
-
+import 'dart:developer';
 modelSheetGraduatedType(
     {required BuildContext contexts,
     required ProviderGraduated providerGraduated}) {
@@ -34,6 +34,8 @@ modelSheetGraduatedType(
                         ),
                       ),
                       onTap: () {
+                        log(providerGraduated.listGeneralEduType[index].id
+                            .toString());
                         providerGraduated.setGraduatedType(
                             id: providerGraduated.listGeneralEduType[index].id
                                 .toString(),

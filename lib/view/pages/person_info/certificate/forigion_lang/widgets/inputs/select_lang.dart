@@ -12,7 +12,7 @@ Widget langSelect(
     children: [
       const SizedBox(height: 10),
       MyWidgets.robotoFontText(
-          text: "Chet tili", textColor: MyColors.appColorBlack(), textSize: 15),
+          text: "foreignLang".tr(), textColor: MyColors.appColorBlack(), textSize: 15),
       const SizedBox(height: 6),
       Container(
         height: 50,
@@ -27,6 +27,7 @@ Widget langSelect(
           onTap: () {
             modelGetLang(
               fff: ff,
+                titleName:"foreignLang".tr(),
                 context: context, providerCertificate: providerCertificate);
 
 

@@ -8,11 +8,12 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-
+import 'dart:developer';
+// ignore: must_be_immutable
 class ChooseImageForeignLang extends StatefulWidget {
   ProviderCertificate providerCertificate;
-
-  ChooseImageForeignLang({Key? key, required this.providerCertificate})
+  Function f;
+  ChooseImageForeignLang({Key? key, required this.providerCertificate, required this.f})
       : super(key: key);
 
   @override
@@ -152,6 +153,9 @@ class _ChooseImageForeignLangState extends State<ChooseImageForeignLang> {
       final bytes = imageFile!.readAsBytesSync().lengthInBytes;
       final kb = bytes / 1024;
       final mb = kb / 1024;
+      log(bytes.toString());
+      log(kb.toString());
+      log(mb.toString());
       // setState(() {
       // });
       // final bytes = imageFile!.readAsBytesSync().lengthInBytes;
@@ -159,7 +163,8 @@ class _ChooseImageForeignLangState extends State<ChooseImageForeignLang> {
       // final mb = kb / 1024;
       if (mb <= 2) {
         widget.providerCertificate
-            .changeImageForeign(imageData: img64, fileTypeName: fileTypeName!);
+            .changeImageForeign(imageData: img64, imageFile: imageFile!, fileTypeName: fileTypeName!, fff:widget.f);
+
         Navigator.pop(context);
       } else {
         AwesomeDialog(

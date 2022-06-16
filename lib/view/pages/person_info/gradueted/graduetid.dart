@@ -79,6 +79,11 @@ class _GraduatedState extends State<Graduated> {
                           const SizedBox(height: 4),
                           GestureDetector(
                             onTap: () {
+
+                              log(providerGraduated.graduatedEduTypeId);
+                              log(providerGraduated.graduatedCountryName);
+                              log(providerGraduated.txtControllerGraduatedName.text);
+
                               if (providerGraduated.graduatedEduTypeId == "4" &&
                                   providerGraduated
                                           .graduatedCountryName.length >=

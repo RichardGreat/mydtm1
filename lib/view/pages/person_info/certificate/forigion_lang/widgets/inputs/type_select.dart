@@ -13,7 +13,7 @@ Widget typeSelect({required BuildContext context,
     children: [      const SizedBox(height: 10),
 
       MyWidgets.robotoFontText(
-          text: "Sertifikat turi",
+          text: "certType".tr(),
           textColor: MyColors.appColorBlack(),
           textSize: 15),
       const SizedBox(height: 6),

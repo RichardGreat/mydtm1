@@ -26,7 +26,7 @@ Widget inputForeignCertificate(
       typeSelect(ff:f,context: context, providerCertificate: providerCertificate),
       degreeSelect(ff:f,context: context, providerCertificate: providerCertificate),
       dateSelect(ff:f,context: context, providerCertificate: providerCertificate),
-      certificateGetYear(ff:f,context: context, providerCertificate: providerCertificate),
+      certificateGetSerNumber(ff:f,context: context, providerCertificate: providerCertificate),
       imageCertificate(ff:f,context: context, providerCertificate: providerCertificate),
       buttonCertificate(ff:f,context: context, providerCertificate: providerCertificate)
     ],

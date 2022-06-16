@@ -18,9 +18,9 @@ Widget dateSelect({required BuildContext context, required Function ff,required 
             color: MyColors.appColorWhite(),
             borderRadius: BorderRadius.circular(10)),
         child: ListTile(
-          title: MyWidgets.robotoFontText(text: providerCertificate.dateYearMonthDay.length < 2? "choose".tr():providerCertificate.dateYearMonthDay),
+          title: MyWidgets.robotoFontText(text: providerCertificate.dateYearMonthDay.length < 2 ? "choose".tr():providerCertificate.dateYearMonthDay),
           onTap: () async{
-          providerCertificate.selectDate(context);
+          providerCertificate.selectDate(context: context, fff: ff);
           },
           shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
