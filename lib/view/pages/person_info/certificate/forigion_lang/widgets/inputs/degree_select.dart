@@ -5,7 +5,7 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 Widget degreeSelect(
-    {required BuildContext context, required ProviderCertificate providerCertificate}) {
+    {required BuildContext context,required Function ff, required ProviderCertificate providerCertificate}) {
   return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [ const SizedBox(height: 10),
@@ -21,7 +21,7 @@ Widget degreeSelect(
   child: ListTile(
   title: MyWidgets.robotoFontText(text: providerCertificate.langNameLevel.length < 2?"choose".tr():providerCertificate.langNameLevel ),
   onTap: (){
-  modelGetLangLevel(context: context, providerCertificate: providerCertificate);
+  modelGetLangLevel(f: ff , context: context, providerCertificate: providerCertificate);
   },
   shape:
   RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

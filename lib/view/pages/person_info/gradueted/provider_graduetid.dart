@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'dart:developer';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/state_choose.d
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_type.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_year.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:path_provider/path_provider.dart';
 
 class ProviderGraduated extends ChangeNotifier {
@@ -96,7 +98,7 @@ class ProviderGraduated extends ChangeNotifier {
       }
       else if (dataGraduatedInfo.eduTypeId != "4" && dataGraduatedInfo.eduTypeId != null ) {
         boolGraduatedType = true;
-        graduatedEduTypeName = listForGet[dataGraduatedInfo.eduTypeId??4-1].name.toString();
+        graduatedEduTypeName = listForGet[(dataGraduatedInfo.eduTypeId??4)-1].name.toString();
         graduatedCountryName = dataGraduatedInfo.countryName.toString();
         graduatedCountryId = dataGraduatedInfo.countryId.toString();
         graduatedRegionName = dataGraduatedInfo.regionName.toString();
@@ -107,6 +109,7 @@ class ProviderGraduated extends ChangeNotifier {
         graduatedEduId = dataGraduatedInfo.eduTypeId.toString();
         graduatedEduYear = dataGraduatedInfo.graduatedYear.toString();
         graduatedEduSerNum = dataGraduatedInfo.docSerNum.toString();
+        textEditingSerNumber.text = dataGraduatedInfo.docSerNum.toString();
         notifyListeners();
         log("#22");
         boolUzbekGraduated = true;
@@ -135,7 +138,7 @@ class ProviderGraduated extends ChangeNotifier {
         boolGraduatedType = false;
 
         graduatedEduTypeId = dataGraduatedInfo.eduTypeId.toString();
-        graduatedEduTypeName = listForGet[dataGraduatedInfo.eduTypeId??4-1].name.toString();
+        graduatedEduTypeName = listForGet[(dataGraduatedInfo.eduTypeId??4)-1].name.toString();
         graduatedCountryName = dataGraduatedInfo.countryName.toString();
         graduatedCountryId = dataGraduatedInfo.countryId.toString();
         graduatedRegionId = dataGraduatedInfo.regionId.toString();
@@ -551,11 +554,14 @@ class ProviderGraduated extends ChangeNotifier {
       "country_id":countryId??"0"
     };
     log(jsonEncode(sentEduMap));
+    boolAllInfoGraduated = false;
+    notifyListeners();
     String data = await networkSetServer.getSetAllGraduated(allData: jsonEncode(sentEduMap));
     log(data);
     ModelEduGraduated modelEduGraduated = ModelEduGraduated.fromJson(jsonDecode(data));
     dataEduGraduated = modelEduGraduated.data;
-
+    boolAllInfoGraduated = true;
+    notifyListeners();
 
 
   graduatedEduTypeName = listForGet[int.parse(dataEduGraduated.eduTypeId.toString()) -1].name;
@@ -572,8 +578,22 @@ class ProviderGraduated extends ChangeNotifier {
   txtControllerGraduatedName.text =dataEduGraduated.gName.toString();
   setGraduatedYear = dataEduGraduated.graduatedYear.toString();
 
-    MyWidgets.awesomeDialogInfo(context: context, valueText: "Ma'lumot saqlandi");
-
+    //MyWidgets.awesomeDialogInfo(context: context, valueText: "Ma'lumot saqlandi");
+    AwesomeDialog(
+        context: context,
+        dialogType: DialogType.INFO,
+        animType: AnimType.BOTTOMSLIDE,
+        title: "DTM",
+        desc: "Ma'lumot saqlandi",
+        titleTextStyle: TextStyle(
+            color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+        descTextStyle: TextStyle(
+            color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+        btnCancelOnPress: () {
+          Navigator.of(context).pop();
+        },
+        btnCancelText: "OK")
+        .show();
     notifyListeners();
     // {
     // "edu_type":2,

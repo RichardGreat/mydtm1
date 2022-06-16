@@ -3,7 +3,7 @@ import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.da
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
-Widget dateSelect({required BuildContext context, required ProviderCertificate providerCertificate}){
+Widget dateSelect({required BuildContext context, required Function ff,required ProviderCertificate providerCertificate}){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [      const SizedBox(height: 10),

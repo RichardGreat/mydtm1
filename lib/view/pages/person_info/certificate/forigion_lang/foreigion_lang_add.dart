@@ -6,13 +6,18 @@ import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.da
 // ignore: must_be_immutable
 class ForeignLanguageAdd extends StatefulWidget {
   ProviderCertificate providerCertificate;
-   ForeignLanguageAdd({Key? key, required this.providerCertificate}) : super(key: key);
+  Function function;
+   ForeignLanguageAdd({Key? key, required this.providerCertificate, required  this.function}) : super(key: key);
 
   @override
   State<ForeignLanguageAdd> createState() => _ForeignLanguageAddState();
 }
 
 class _ForeignLanguageAddState extends State<ForeignLanguageAdd> {
+
+  myState(){
+    setState((){});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,7 @@ class _ForeignLanguageAddState extends State<ForeignLanguageAdd> {
             autovalidateMode: AutovalidateMode.onUserInteraction ,
             child: Container(
                 margin: const EdgeInsets.all(10),
-                child: inputForeignCertificate(context: context, providerCertificate: widget.providerCertificate)),
+                child: inputForeignCertificate(f: myState,context: context, providerCertificate: widget.providerCertificate)),
           ),
         ),
       ),

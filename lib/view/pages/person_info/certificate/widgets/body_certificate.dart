@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/foreigion_lang_add.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
-import 'package:mydtm/view/pages/person_info/certificate/widgets/photo/image_choose.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -9,7 +8,9 @@ import 'package:easy_localization/easy_localization.dart';
 
 Widget bodyCertificate(
     {required BuildContext context,
-    required ProviderCertificate providerCertificate}) {
+    required ProviderCertificate providerCertificate,
+    required Function func
+    }) {
   return providerCertificate.boolCheckForeignLang
       ? providerCertificate.boolCheckCertificateData
           ? Container(
@@ -31,14 +32,16 @@ Widget bodyCertificate(
                               0 || providerCertificate.dataCheckForeignCertificate.status ==
                           1
                           ?{}
-                          :  pushNewScreen(context, screen: ForeignLanguageAdd(providerCertificate: providerCertificate,));
+                          :  pushNewScreen(context, screen: ForeignLanguageAdd(providerCertificate: providerCertificate, function: func,));
                     },
                     child: Container(
                       height: 50,
                       width: double.infinity,
                       decoration: BoxDecoration(
                           color: MyColors.appColorWhite(),
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10),
+
+                      ),
                       child: Center(
                           child: MyWidgets.robotoFontText(
                               text: "addCertificate".tr(),

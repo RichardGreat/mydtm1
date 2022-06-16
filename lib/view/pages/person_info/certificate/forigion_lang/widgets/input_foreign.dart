@@ -13,6 +13,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 Widget inputForeignCertificate(
     {required BuildContext context,
+      required Function f,
     required ProviderCertificate providerCertificate}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,13 +22,13 @@ Widget inputForeignCertificate(
           text: "addCertificate".tr(),
           textColor: MyColors.appColorBlack(),
           textSize: 30),
-      langSelect(context: context, providerCertificate: providerCertificate),
-      typeSelect(context: context, providerCertificate: providerCertificate),
-      degreeSelect(context: context, providerCertificate: providerCertificate),
-      dateSelect(context: context, providerCertificate: providerCertificate),
-      certificateGetYear(context: context, providerCertificate: providerCertificate),
-      imageCertificate(context: context, providerCertificate: providerCertificate),
-      buttonCertificate(context: context, providerCertificate: providerCertificate)
+      langSelect(ff:f,context: context, providerCertificate: providerCertificate),
+      typeSelect(ff:f,context: context, providerCertificate: providerCertificate),
+      degreeSelect(ff:f,context: context, providerCertificate: providerCertificate),
+      dateSelect(ff:f,context: context, providerCertificate: providerCertificate),
+      certificateGetYear(ff:f,context: context, providerCertificate: providerCertificate),
+      imageCertificate(ff:f,context: context, providerCertificate: providerCertificate),
+      buttonCertificate(ff:f,context: context, providerCertificate: providerCertificate)
     ],
   );
 }

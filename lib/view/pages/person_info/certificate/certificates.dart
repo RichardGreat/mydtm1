@@ -21,6 +21,10 @@ class _CertificatesState extends State<Certificates> {
     super.initState();
   }
 
+  function(){
+    setState((){});
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -31,6 +35,7 @@ class _CertificatesState extends State<Certificates> {
           appBar: appBarCertificate(
               context: context, providerCertificate: providerCertificate),
           body: bodyCertificate(
+            func: function,
               context: context, providerCertificate: providerCertificate),
         ),
       ),

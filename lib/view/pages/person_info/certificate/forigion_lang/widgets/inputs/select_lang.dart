@@ -6,7 +6,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 Widget langSelect(
     {required BuildContext context,
-    required ProviderCertificate providerCertificate}) {
+    required ProviderCertificate providerCertificate, required Function ff}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -26,7 +26,10 @@ Widget langSelect(
                   : providerCertificate.certLangName),
           onTap: () {
             modelGetLang(
+              fff: ff,
                 context: context, providerCertificate: providerCertificate);
+
+
           },
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

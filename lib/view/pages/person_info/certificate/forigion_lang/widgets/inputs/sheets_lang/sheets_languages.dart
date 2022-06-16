@@ -4,7 +4,7 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 
 modelGetLang(
     {required BuildContext context,
-      required ProviderCertificate providerCertificate}) {
+      required ProviderCertificate providerCertificate, required Function fff}) {
   showModalBottomSheet<void>(
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
@@ -13,13 +13,14 @@ modelGetLang(
       barrierColor: Colors.black.withOpacity(0.2),
       context: context,
       builder: (_) {
-        return SheetGetSetLang(providerCertificate: providerCertificate);
+        return SheetGetSetLang(providerCertificate: providerCertificate, f:fff);
       });
 }
 // ignore: must_be_immutable
 class SheetGetSetLang extends StatefulWidget {
   ProviderCertificate providerCertificate;
-  SheetGetSetLang({Key? key, required this.providerCertificate}) : super(key: key);
+  Function f;
+  SheetGetSetLang({Key? key, required this.providerCertificate, required this.f}) : super(key: key);
 
   @override
   State<SheetGetSetLang> createState() => _SheetGetSetLangState();
@@ -131,7 +132,7 @@ class _SheetGetSetLangState extends State<SheetGetSetLang> {
                             .toString(),
                         distName:  widget. providerCertificate
                             .listDataForeignLangTemp[index].name);
-                    setState((){});
+                    widget.f();
                     Navigator.of(context).pop();
                   },
                 ),

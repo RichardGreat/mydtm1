@@ -4,6 +4,7 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 
 modelGetLangLevel(
     {required BuildContext context,
+      required Function f,
       required ProviderCertificate providerCertificate}) {
   showModalBottomSheet(
       isScrollControlled: true,
@@ -13,13 +14,14 @@ modelGetLangLevel(
       barrierColor: Colors.black.withOpacity(0.2),
       context: context,
       builder: (_) {
-        return SheetGetSetLangLevel(providerCertificate: providerCertificate);
+        return SheetGetSetLangLevel(ff: f,providerCertificate: providerCertificate);
       });
 }
 // ignore: must_be_immutable
 class SheetGetSetLangLevel extends StatefulWidget {
   ProviderCertificate providerCertificate;
-  SheetGetSetLangLevel({Key? key, required this.providerCertificate}) : super(key: key);
+  Function ff;
+  SheetGetSetLangLevel({ Key? key,required  this.ff, required this.providerCertificate}) : super(key: key);
 
   @override
   State<SheetGetSetLangLevel> createState() => _SheetGetSetLangLevelState();
@@ -132,7 +134,7 @@ class _SheetGetSetLangLevelState extends State<SheetGetSetLangLevel> {
                             .toString(),
                         langLeveName:  widget. providerCertificate
                             .listLangLevelTemp[index].name);
-                    setState((){});
+                    widget.ff();
                     Navigator.of(context).pop();
                   },
                 ),

@@ -5,7 +5,9 @@ import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.da
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-Widget typeSelect({required BuildContext context, required ProviderCertificate providerCertificate}){
+Widget typeSelect({required BuildContext context,
+  required Function ff,
+  required ProviderCertificate providerCertificate}){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [      const SizedBox(height: 10),
@@ -23,7 +25,7 @@ Widget typeSelect({required BuildContext context, required ProviderCertificate p
         child: ListTile(
           leading: MyWidgets.robotoFontText(text:providerCertificate.langTypeNames.length < 2 ?"choose".tr():providerCertificate.langTypeNames),
           onTap: (){
-            modelGetLangType(context: context, providerCertificate: providerCertificate);
+            modelGetLangType( f: ff,context: context, providerCertificate: providerCertificate);
           },
           shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
