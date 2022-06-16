@@ -18,10 +18,8 @@ Widget certificateGetSerNumber({required BuildContext context,required Function 
         controller: providerCertificate.textForeignSertNumber,
         maxLines: 1,
         maxLength: 25,
-        keyboardType: TextInputType.number,
-        inputFormatters: [
-          FilteringTextInputFormatter.allow(RegExp('[0-9]'))
-        ],
+        keyboardType: TextInputType.text,
+
         decoration: InputDecoration(
           counter: const SizedBox.shrink(),
           contentPadding: const EdgeInsets.only(left: 8, right: 8),

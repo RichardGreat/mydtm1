@@ -1,7 +1,13 @@
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/change_number.dart';
+import 'package:mydtm/data/internet_connections/m6_profile/get_imie.dart';
+import 'package:mydtm/data/model_parse/m6_model/get_imie_info.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
+import 'package:mydtm/view/pages/person_info/pasport_info_set/provider_person_info.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'dart:developer';
 
@@ -16,10 +22,50 @@ class ProviderProfile extends ChangeNotifier{
   bool myBoolWidget = false;
   bool boolButtonColor1 = false;
 
+  ///
+  bool boolGetProfileData = false;
+  late ModelGetImieInfo modelGetImieInfo;
+  late DataGetImieInfo dataGetImieInfo;
+  NetworkGetIMie networkGetIMie = NetworkGetIMie();
+  var box = Hive.box("online");
+
+  late String psser,
+      psnum,
+      imie,
+      lname,
+      fname,
+      mname,
+      bdate,
+      sex,
+      nationId,
+      image;
+
+  Future getProfile()async{
+
+    boolGetProfileData = false;
+    late ProviderPersonInfo providerPersonInfo;
+    String dataInfo = await networkGetIMie.getIMieInformation();
+    modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
+    dataGetImieInfo = modelGetImieInfo.data;
+    psser = dataGetImieInfo.psser;
+    psnum = dataGetImieInfo.psnum.toString();
+    imie = dataGetImieInfo.imie.toString();
+    lname = dataGetImieInfo.lname;
+    fname = dataGetImieInfo.fname;
+    mname = dataGetImieInfo.mname;
+    bdate = dataGetImieInfo.bdate.toString();
+    sex = dataGetImieInfo.sex.toString();
+    nationId = dataGetImieInfo.nationId.toString();
+    image = dataGetImieInfo.image;
+    box.put("personImage", image);
+    boolGetProfileData = true;
+    notifyListeners();
+
+  }
+
   Future boolButtonCol1({required bool boolValue}) async {
     boolButtonColor1 = boolValue;
   }
-
 
   bool boolButtonColor2 = false;
 

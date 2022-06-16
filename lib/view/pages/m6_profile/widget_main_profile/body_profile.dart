@@ -13,79 +13,77 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 Widget bodyProfile({required BuildContext context, required ProviderProfile providerProfile}){
   var box = Hive.box("online");
-  List<Icon> myIcon = [
-    Icon(
-      CupertinoIcons.news_solid,
-      color: MyColors.appColorBlue1(),
-    ),
-    Icon(
-      Icons.book_outlined,
-      color: MyColors.appColorBlue1(),
-    ),
-    Icon(
-      Icons.settings,
-      color: MyColors.appColorBlue1(),
-    ),
-    Icon(
-      Icons.help,
-      color: MyColors.appColorBlue1(),
-    ),
-    Icon(
-      Icons.announcement_outlined,
-      color: MyColors.appColorBlue1(),
-    ),
-    Icon(
-      Icons.exit_to_app,
-      color: MyColors.appColorBlue1(),
-    ),
-  ];
-
-  List<String> myList = [
-    "news".tr(),
-    "advice".tr(),
-    "settings".tr(),
-    "help".tr(),
-    "system_infor".tr(),
-    "exet".tr(),
-  ];
+  // List<Icon> myIcon = [
+  //   Icon(
+  //     CupertinoIcons.news_solid,
+  //     color: MyColors.appColorBlue1(),
+  //   ),
+  //   Icon(
+  //     Icons.book_outlined,
+  //     color: MyColors.appColorBlue1(),
+  //   ),
+  //   Icon(
+  //     Icons.settings,
+  //     color: MyColors.appColorBlue1(),
+  //   ),
+  //   Icon(
+  //     Icons.help,
+  //     color: MyColors.appColorBlue1(),
+  //   ),
+  //   Icon(
+  //     Icons.announcement_outlined,
+  //     color: MyColors.appColorBlue1(),
+  //   ),
+  //   Icon(
+  //     Icons.exit_to_app,
+  //     color: MyColors.appColorBlue1(),
+  //   ),
+  // ];
+  //
+  // List<String> myList = [
+  //   "news".tr(),
+  //   "advice".tr(),
+  //   "settings".tr(),
+  //   "help".tr(),
+  //   "system_infor".tr(),
+  //   "exet".tr(),
+  // ];
 
   return SingleChildScrollView(
     child: Container(
       height: MediaQuery.of(context).size.height,
-      margin: const EdgeInsets.all(15),
+      margin: const EdgeInsets.only(left: 10, right: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              GestureDetector(
-                onTap: () {},
-                child: CircleAvatar(
-                  backgroundColor: MyColors.appColorWhite(),
-                  radius: 50,
-                  child: SizedBox.fromSize(
-                    size: const Size.fromRadius(45), // Image radius
-                    child: ClipOval(
-
-                      child: box.get("personImage") == null
-                         ?
-                        Image.asset("assets/images/splash_picture.png")
-                         : Image.memory(
-                           base64Decode(
-                               box.get("personImage").replaceAll("\n", "").toString().substring(23)),
-                           fit: BoxFit.cover,
-
-                      ),
-                    ),
-                  ),
+              Container(
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(color: MyColors.appColorWhite()),
+                child: Image.memory(
+                  base64Decode(
+                      box.get("personImage").replaceAll("\n", "").toString().substring(23)),
+                  fit: BoxFit.cover,
+                  height: 90,
                 ),
               ),
               const SizedBox(
                 width: 20,
               ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                MyWidgets.robotoFontText(text:providerProfile.dataGetImieInfo.lname),
+                const SizedBox(height: 5),
+                MyWidgets.robotoFontText(text:providerProfile.dataGetImieInfo.fname),
+                  const SizedBox(height: 5),
+                  MyWidgets.robotoFontText(text:providerProfile.dataGetImieInfo.mname),
+              ],)
               // Column(
               //   crossAxisAlignment: CrossAxisAlignment.end,
               //   mainAxisAlignment: MainAxisAlignment.end,
@@ -107,29 +105,29 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
               //     // ),
               //   ],
               // ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          // pushNewScreen(
-                          //   context,
-                          //   screen: const ChangeProfileName(),
-                          //   withNavBar: false,
-                          //   // OPTIONAL VALUE. True by default.
-                          //   pageTransitionAnimation:
-                          //   PageTransitionAnimation.cupertino,
-                          // );
-                        },
-                        icon: Icon(
-                          Icons.edit,
-                          size: 32,
-                          color: MyColors.appColorBlue1(),
-                        )),
-                  ],
-                ),
-              )
+              // Expanded(
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.end,
+              //     children: [
+              //       IconButton(
+              //           onPressed: () {
+              //             // pushNewScreen(
+              //             //   context,
+              //             //   screen: const ChangeProfileName(),
+              //             //   withNavBar: false,
+              //             //   // OPTIONAL VALUE. True by default.
+              //             //   pageTransitionAnimation:
+              //             //   PageTransitionAnimation.cupertino,
+              //             // );
+              //           },
+              //           icon: Icon(
+              //             Icons.edit,
+              //             size: 32,
+              //             color: MyColors.appColorBlue1(),
+              //           )),
+              //     ],
+              //   ),
+              // )
             ],
           ),
           Divider(
@@ -203,39 +201,39 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
           const SizedBox(
             height: 4,
           ),
-          MyWidgets.robotoFontText(
-            text: "Foydali",
-            textSize: 20,
-            textColor: MyColors.appColorBlue1(),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(
-              child: ListView.builder(
-                itemCount: myIcon.length,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) => Column(
-                  children: [
-                    ListTile(
-                      title: MyWidgets.robotoFontText(
-                          text: myList[index], textFontWeight: FontWeight.w400),
-                      leading: myIcon[index],
-                      trailing: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: MyColors.appColorGrey400(),
-                      ),
-                    ),
-                    Divider(
-                      indent: 2,
-                      color: MyColors.appColorGrey100(),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                  ],
-                ),
-              ))
+          // MyWidgets.robotoFontText(
+          //   text: "Foydali",
+          //   textSize: 20,
+          //   textColor: MyColors.appColorBlue1(),
+          // ),
+          // const SizedBox(
+          //   height: 10,
+          // ),
+          // Expanded(
+          //     child: ListView.builder(
+          //       itemCount: myIcon.length,
+          //       physics: const NeverScrollableScrollPhysics(),
+          //       itemBuilder: (context, index) => Column(
+          //         children: [
+          //           ListTile(
+          //             title: MyWidgets.robotoFontText(
+          //                 text: myList[index], textFontWeight: FontWeight.w400),
+          //             leading: myIcon[index],
+          //             trailing: Icon(
+          //               Icons.arrow_forward_ios_rounded,
+          //               color: MyColors.appColorGrey400(),
+          //             ),
+          //           ),
+          //           Divider(
+          //             indent: 2,
+          //             color: MyColors.appColorGrey100(),
+          //           ),
+          //           const SizedBox(
+          //             height: 8,
+          //           ),
+          //         ],
+          //       ),
+          //     ))
         ],
       ),
     ),

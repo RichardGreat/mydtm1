@@ -9,8 +9,7 @@ import 'package:easy_localization/easy_localization.dart';
 Widget bodyCertificate(
     {required BuildContext context,
     required ProviderCertificate providerCertificate,
-    required Function func
-    }) {
+    required Function func}) {
   return providerCertificate.boolCheckForeignLang
       ? providerCertificate.boolCheckCertificateData
           ? Container(
@@ -21,128 +20,188 @@ Widget bodyCertificate(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20),
-                  MyWidgets.robotoFontText(text: "certificate".tr(), textSize: 25),
+                  MyWidgets.robotoFontText(
+                      text: "certificate".tr(), textSize: 25),
                   const SizedBox(height: 20),
-                  providerCertificate.dataCheckForeignCertificate.status ==
-                      1?const SizedBox.shrink():
+                  providerCertificate.dataCheckForeignCertificate.status == 1
+                      ? const SizedBox.shrink()
+                      : GestureDetector(
+                          onTap: () {
 
-                  GestureDetector(
-                    onTap: () {
-                      providerCertificate.dataCheckForeignCertificate.status ==
-                              0 || providerCertificate.dataCheckForeignCertificate.status ==
-                          1
-                          ?{}
-                          :  pushNewScreen(context, screen: ForeignLanguageAdd(providerCertificate: providerCertificate, function: func,));
-                    },
-                    child: Container(
-                      height: 50,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: MyColors.appColorWhite(),
-                          borderRadius: BorderRadius.circular(10),
-
-                      ),
-                      child: Center(
-                          child: MyWidgets.robotoFontText(
-                              text: "addCertificate".tr(),
-                              textColor:
-                              providerCertificate.dataCheckForeignCertificate.status ==
-                                  0 || providerCertificate.dataCheckForeignCertificate.status ==
-                                  1
-                                  ? MyColors.appColorGrey400():
-                              MyColors.appColorBlue1(),
-                              textSize: 15)),
-                    ),
-                  ),
-                  providerCertificate.boolCheckForeignLangNot?SizedBox(height: 20):
+                                    providerCertificate
+                                            .dataCheckForeignCertificate
+                                            .status ==
+                                        1
+                                ? {}
+                                : pushNewScreen(context,
+                                    screen: ForeignLanguageAdd(
+                                      providerCertificate: providerCertificate,
+                                      function: func,
+                                    ));
+                          },
+                          child: Container(
+                            height: 50,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: MyColors.appColorWhite(),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                                child: MyWidgets.robotoFontText(
+                                    text: "addCertificate".tr(),
+                                    textColor:
+                                            providerCertificate
+                                                    .dataCheckForeignCertificate
+                                                    .status ==
+                                                1
+                                        ? MyColors.appColorGrey400()
+                                        : MyColors.appColorBlue1(),
+                                    textSize: 15)),
+                          ),
+                        ),
+                  providerCertificate.boolCheckForeignLangNot
+                      ? SizedBox(height: 20)
+                      : const SizedBox(height: 10),
+                  providerCertificate.boolCheckForeignLangNot
+                      ? SizedBox(height: 20)
+                      : MyWidgets.robotoFontText(text: "foreignLang".tr()),
                   const SizedBox(height: 10),
-                  providerCertificate.boolCheckForeignLangNot?SizedBox(height: 20):
-                  MyWidgets.robotoFontText(text:"foreignLang".tr()),
+                  providerCertificate.boolCheckForeignLangNot
+                      ? SizedBox.shrink()
+                      : Container(
+                          margin: const EdgeInsets.only(right: 3, bottom: 2, top: 2, left: 2),
+                          padding: const EdgeInsets.all(4),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: MyColors.appColorWhite(),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: MyColors.appColorGrey400(),
+                                    blurRadius: 1,
+                                    spreadRadius: 1)
+                              ],
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              MyWidgets.robotoFontText(
+                                  text: providerCertificate
+                                      .dataCheckForeignCertificate.flangName),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  MyWidgets.robotoFontText(
+                                      text: providerCertificate
+                                          .dataCheckForeignCertificate
+                                          .flangCertName),
+                                  Container(
+                                    padding: const EdgeInsets.all(1),
+                                    margin: const  EdgeInsets.only(left: 1, right: 2, top: 2, bottom: 2),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: providerCertificate
+                                        .dataCheckForeignCertificate
+                                        .status ==
+                                        1
+                                        ? MyColors.appColorGreen2()
+                                        : providerCertificate
+                                        .dataCheckForeignCertificate
+                                        .status ==
+                                        0
+                                        ? MyColors.appColorBlue1()
+                                        : MyColors.appColorRed(),),
+                                    child: MyWidgets.robotoFontText(
+                                        text: providerCertificate
+                                            .dataCheckForeignCertificate
+                                            .statusName),
+                                  ),
+                                ],
+                              ),
+
+
+                            ],
+                          )
+                          // ListTile(
+                          //   trailing: Icon(Icons.arrow_forward_ios_rounded),
+                          //   title: MyWidgets.robotoFontText(
+                          //           text: providerCertificate
+                          //               .dataCheckForeignCertificate.flangCertName),
+                          // subtitle: MyWidgets.robotoFontText(
+                          //           text: providerCertificate
+                          //               .dataCheckForeignCertificate.serNum),
+                          //
+                          //   onTap: (){
+                          //
+                          //   },
+                          // )
+                          // Column(
+                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //   crossAxisAlignment: CrossAxisAlignment.start,
+                          //   children: [
+                          //     const SizedBox(height: 10),
+                          //     MyWidgets.robotoFontText(
+                          //         text: providerCertificate
+                          //             .dataCheckForeignCertificate.flangCertName),
+                          //     MyWidgets.robotoFontText(
+                          //         text: providerCertificate
+                          //             .dataCheckForeignCertificate.flangLevelName),
+                          //     MyWidgets.robotoFontText(
+                          //         text: providerCertificate
+                          //             .dataCheckForeignCertificate.serNum.toString()),
+                          //     MyWidgets.robotoFontText(
+                          //         text: providerCertificate
+                          //             .dataCheckForeignCertificate.flangName.toString()),
+                          //     MyWidgets.robotoFontText(
+                          //         text: providerCertificate
+                          //             .dataCheckForeignCertificate.statusName??""),
+                          //     const SizedBox(height: 10),
+                          //   ],
+                          // ),
+                          ),
                   const SizedBox(height: 10),
-                  providerCertificate.boolCheckForeignLangNot?SizedBox.shrink():
-                  Container(
+                  providerCertificate.boolCheckCertificateDataNot
+                      ? const SizedBox.shrink()
+                      : MyWidgets.robotoFontText(text: "nationalCert".tr()),
+                  providerCertificate.boolCheckCertificateDataNot
+                      ? const SizedBox.shrink()
+                      : const Divider(),
+                  providerCertificate.boolCheckCertificateDataNot
+                      ? const SizedBox.shrink()
+                      : Expanded(
+                          child: ListView.builder(
+                          itemCount:
+                              providerCertificate.listCheckCertificate.length,
+                          itemBuilder: (context, index) => Container(
+                            margin: const EdgeInsets.only(top: 2, bottom: 2),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: MyColors.appColorWhite(),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: MyColors.appColorGrey400(),
+                                      blurRadius: 1,
+                                      spreadRadius: 1)
+                                ]),
+                            child: Container(
+                              margin: EdgeInsets.only(top: 2, bottom: 2),
+                              child: ListTile(
 
-                    margin: const EdgeInsets.all(4),
-
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: MyColors.appColorWhite(),
-                       boxShadow: [BoxShadow(
-                            color: MyColors.appColorGrey400(),
-                            blurRadius: 1,
-                            spreadRadius: 1)
-                        ],
-                        borderRadius: BorderRadius.circular(8)),
-                    child: ListTile(
-                      trailing: Icon(Icons.arrow_forward_ios_rounded),
-                      title: MyWidgets.robotoFontText(
-                              text: providerCertificate
-                                  .dataCheckForeignCertificate.flangCertName),
-                    subtitle: MyWidgets.robotoFontText(
-                              text: providerCertificate
-                                  .dataCheckForeignCertificate.serNum),
-
-                      onTap: (){
-
-                      },
-                    )
-                    // Column(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   crossAxisAlignment: CrossAxisAlignment.start,
-                    //   children: [
-                    //     const SizedBox(height: 10),
-                    //     MyWidgets.robotoFontText(
-                    //         text: providerCertificate
-                    //             .dataCheckForeignCertificate.flangCertName),
-                    //     MyWidgets.robotoFontText(
-                    //         text: providerCertificate
-                    //             .dataCheckForeignCertificate.flangLevelName),
-                    //     MyWidgets.robotoFontText(
-                    //         text: providerCertificate
-                    //             .dataCheckForeignCertificate.serNum.toString()),
-                    //     MyWidgets.robotoFontText(
-                    //         text: providerCertificate
-                    //             .dataCheckForeignCertificate.flangName.toString()),
-                    //     MyWidgets.robotoFontText(
-                    //         text: providerCertificate
-                    //             .dataCheckForeignCertificate.statusName??""),
-                    //     const SizedBox(height: 10),
-                    //   ],
-                    // ),
-                  ),
-                  const SizedBox(height: 10),
-                  providerCertificate.boolCheckCertificateDataNot?const SizedBox.shrink():MyWidgets.robotoFontText(text:"nationalCert".tr()),
-                  providerCertificate.boolCheckCertificateDataNot?const SizedBox.shrink():const Divider(),
-                  providerCertificate.boolCheckCertificateDataNot?const SizedBox.shrink():
-                  Expanded(
-                      child: ListView.builder(
-                    itemCount: providerCertificate.listCheckCertificate.length,
-                    itemBuilder: (context, index) => Container(
-                        margin: const EdgeInsets.only(top: 2, bottom: 2),
-
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: MyColors.appColorWhite(),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: MyColors.appColorGrey400(),
-                                  blurRadius: 1,
-                                  spreadRadius: 1)
-                            ]),
-                        child:
-
-                        ListTile(
-                            trailing: Icon(Icons.arrow_forward_ios_rounded),
-                            title: MyWidgets.robotoFontText(
-                                text: providerCertificate
-                                .listCheckCertificate[index].name??""),
-                            subtitle: MyWidgets.robotoFontText(
-                                text:  providerCertificate
-                                           .listCheckCertificate[index].certSernum??""),
-                            onTap: (){
-                            }),
-                    ),
-                  ))
+                                  trailing: Icon(Icons.arrow_forward_ios_rounded),
+                                  title: MyWidgets.robotoFontText(
+                                      text: providerCertificate
+                                              .listCheckCertificate[index].name ??
+                                          ""),
+                                  subtitle: MyWidgets.robotoFontText(
+                                      text: providerCertificate
+                                              .listCheckCertificate[index]
+                                              .certSernum ??
+                                          ""),
+                                  onTap: () {}),
+                            ),
+                          ),
+                        ))
                 ],
               ),
             )
