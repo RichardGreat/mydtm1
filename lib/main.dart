@@ -1,14 +1,10 @@
 import 'dart:io';
-
 import 'package:connection_notifier/connection_notifier.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
-import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_password.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -20,22 +16,17 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 Future initialization(BuildContext? context) async {
-  await Future.delayed(const Duration(milliseconds: 2500));
+  await Future.delayed(const Duration(milliseconds: 1900));
 }
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // Plugin must be initialized before using
-  // await FlutterDownloader.initialize(
-  //     debug: true, // optional: set to false to disable printing logs to console (default: true)
-  //     ignoreSsl: true // option: set to false to disable working with http links (default: false)
-  // );
-  FlutterNativeSplash.removeAfter(initialization);
+  // FlutterNativeSplash.removeAfter(initialization);
   await EasyLocalization.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
   await Hive.initFlutter();
   await Hive.openBox("online");
+  await initialization(null);
   SystemChrome.setPreferredOrientations(
       // [DeviceOrientation.portraitDown]).then(
       [
@@ -57,6 +48,10 @@ Future main() async {
     ),
   );
 }
+//
+// Future initializations()async{
+// await Future.delayed(const Duration(milliseconds: 1800));
+// }
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
