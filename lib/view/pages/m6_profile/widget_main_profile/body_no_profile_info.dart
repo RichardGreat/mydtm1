@@ -10,21 +10,29 @@ Widget bodyNoProfileInfo({required BuildContext context, required ProviderProfil
     margin: const EdgeInsets.all(10),
     child: Center(child:  Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
 
-        Icon(CupertinoIcons.home, color: MyColors.appColorBlue1(),size: 64,),
-        const SizedBox(height: 20),
-        MyWidgets.robotoFontText(text: "noAccount".tr()),
-        const SizedBox(height: 10),
-        MaterialButton(
-          height: 50,
-          minWidth: double.infinity,
-          color: MyColors.appColorBlue1(),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          onPressed: (){
-            providerProfile.goLoginPage(context: context);
-          }, child: MyWidgets.robotoFontText(text: "enterSystem".tr(), textColor: MyColors.appColorWhite()),)
+        Image.asset("assets/images/dtm.png", height: 70),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+            const SizedBox(height: 20),
+            MyWidgets.robotoFontText(text: "noAccount".tr()),
+            const SizedBox(height: 10),
+            MaterialButton(
+              height: 50,
+              minWidth: double.infinity,
+              color: MyColors.appColorBlue1(),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              onPressed: (){
+                providerProfile.goLoginPage(context: context);
+              }, child: MyWidgets.robotoFontText(text: "enterSystem".tr(), textColor: MyColors.appColorWhite()),)
+          ],),
+        )
+
       ],
     )),);
 

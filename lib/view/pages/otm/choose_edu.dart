@@ -58,6 +58,7 @@ class _ChooseEduState extends State<ChooseEdu> {
                   margin: const EdgeInsets.all(15),
                   child: 
                   providerChooseEdu.boolCheckUseCertificateData ?
+
                   bodyChooseEdu(
                       context: context, providerChooseEdu: providerChooseEdu):MyWidgets.loaderDownload(context: context),
                 ),

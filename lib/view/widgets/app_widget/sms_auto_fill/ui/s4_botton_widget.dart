@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/state_menegment/provider_sms.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -22,28 +21,26 @@ Widget bottomUI(
           ),
         ],
       ),
-      providerSms.timeFormatString == "00:00"?const SizedBox.shrink():
+      providerSms.timeFormatString == "00:00" ? const SizedBox.shrink() :
       MaterialButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         minWidth: double.infinity,
         height: 45,
-        color:MyColors.appColorBlue1(),
+        color: MyColors.appColorBlue1(),
         onPressed: () {
           // providerSms.sentServer(
           //     appId: providerSms.smsIdActivate,
           //     smsCode: providerSms.controller.text);
           if (providerSms.controller.text.length > 4) {
-           if(providerSms.smsSentStatus == 7){
-
-             providerSms.sentServer2Edu(context: context);
-           }else{
-             providerSms.sentServer2Edu(context: context);
-             log("7");
-            // providerSms.sentServer(
-            //   context: context,
-            //     appId: providerSms.smsIdActivate,
-            //     smsCode: providerSms.controller.text);
-           }
+            if (providerSms.smsSentStatus == 7) {
+              providerSms.sentServer2Edu(context: context);
+            } else if (providerSms.smsSentStatus == 1) {
+              providerSms.sendRegistrationServer(
+                  userName: providerSms.numberPhones,
+                  password: providerSms.passwords,
+                  captchaKey: providerSms.captchaKeys,
+                  captchaVal: providerSms.captchaValues);
+            }
           }
 
           ///

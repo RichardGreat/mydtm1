@@ -54,13 +54,11 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     if (providerSms.boolData) {
       providerSms.timer.cancel();
     }
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -68,7 +66,6 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
       child: Consumer<ProviderSms>(
         builder: (context, value, child) => WillPopScope(
             onWillPop: () async{
-
               return true;
             },
           child: Scaffold(

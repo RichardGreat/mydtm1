@@ -22,9 +22,9 @@ class _MainProfileState extends State<MainProfile> {
 
 
   Future getProfileInfo()async{
-    if(box.get("token").toString().length > 30){
+    // if(box.get("token").toString().length > 30){
     await providerProfile.getProfile();
-    }else{}
+    // }else{}
   }
   @override
   initState() {
@@ -40,6 +40,7 @@ class _MainProfileState extends State<MainProfile> {
       child: Consumer<ProviderProfile>(
         builder: (context, value, child) => Scaffold(
             appBar: appBarProfile(
+
                 context: context, providerProfile: providerProfile),
             backgroundColor: MyColors.appColorWhite(),
             body: 

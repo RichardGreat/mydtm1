@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_token.dart';
+import 'package:mydtm/data/internet_connections/m1_internet/registration.dart';
 import 'package:mydtm/data/model_parse/m1_model/authhorization/model_get_token.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
@@ -34,6 +35,8 @@ class ProviderSms extends ChangeNotifier {
   bool boolData = false;
   dynamic smsId;
 
+    /// Registratiya
+
   late ModelRegistrationHave modelRegistrationHave;
   late ModelRegistrationCaptchaError modelRegistrationCaptchaError;
   NetworkSmsAutoFill networkSmsAutoFill = NetworkSmsAutoFill();
@@ -49,7 +52,6 @@ class ProviderSms extends ChangeNotifier {
     required String captchaKey,
   }) async {
     boolData = false;
-    log(valueSignature!);
     if (valueSignature != null) {
       dataSms = await networkSmsAutoFill.registrationSms(
           userName: userName,
@@ -83,19 +85,38 @@ class ProviderSms extends ChangeNotifier {
         dataRegisSmsMessage = modelRegistrationHave.errors.username[0];
         boolData = true;
         notifyListeners();
+
         /// ro'yxatdan o'tgan polzovitl
       } catch (e) {
         /// Captchada xato
 
         modelRegistrationCaptchaError =
             ModelRegistrationCaptchaError.fromJson(jsonDecode(dataSms));
-        MyWidgets.scaffoldMessengerBottom(context: context, valueText: modelRegistrationCaptchaError.errors);
-          Navigator.of(context).pop();
+        MyWidgets.scaffoldMessengerBottom(
+            context: context, valueText: modelRegistrationCaptchaError.errors);
+        Navigator.of(context).pop();
 
         log("catch");
         log(e.toString());
       }
     }
+  }
+
+  /// registratsiya
+  Future sendRegistrationServer(
+      {required String userName,
+      required String password,
+      required String captchaKey,
+      required String captchaVal}) async {
+    Map<String, String> mapRegistration = {
+      "username": userName,
+      "password": password,
+      "captcha_key": captchaKey,
+      "captcha_val": captchaVal
+    };
+    String data = await NetworkRegistration.getRegistration(
+        mapRegistration: mapRegistration);
+    log(data);
   }
 
   late String dataResetPassword;
@@ -122,7 +143,6 @@ class ProviderSms extends ChangeNotifier {
         ModelRegistrationSms modelRegistrationSms12 =
             ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
         smsId = modelRegistrationSms12.data.smsId.toString();
-
       } else {
         log(code1);
       }
@@ -139,7 +159,6 @@ class ProviderSms extends ChangeNotifier {
     boolData = true;
     notifyListeners();
   }
-
 
   Future changePhone(
       {required String userName,
@@ -164,12 +183,10 @@ class ProviderSms extends ChangeNotifier {
     }
   }
 
-  Future sendServerALLEdu( {
-    required String userName,
-    required String smsHash,
-    required BuildContext context})async{
-
-  }
+  Future sendServerALLEdu(
+      {required String userName,
+      required String smsHash,
+      required BuildContext context}) async {}
 
   /// Timer
   /// Begin
@@ -184,10 +201,8 @@ class ProviderSms extends ChangeNotifier {
     mm = ((timeCount ~/ 60) % 60).toStringAsFixed(0);
     hh = ((timeCount ~/ 3600).toStringAsFixed(0));
     hh = hh.length < 2 ? ("0$hh").substring(0, 2) : "00";
-    mm =
-        mm.length < 2 ? ("0$mm").substring(0, 2) : ("0$mm").substring(1, 3);
-    ss =
-        ss.length < 2 ? ("0$ss").substring(0, 2) : ("0$ss").substring(1, 3);
+    mm = mm.length < 2 ? ("0$mm").substring(0, 2) : ("0$mm").substring(1, 3);
+    ss = ss.length < 2 ? ("0$ss").substring(0, 2) : ("0$ss").substring(1, 3);
     timeFormatString = "$mm:$ss";
   }
 
@@ -207,18 +222,16 @@ class ProviderSms extends ChangeNotifier {
 
   Future endTime() async {}
 
-  /// end;
-
   /// Begin
   late String code1;
-/// registratsiya qilgan sms activate qilmagan
+
+  /// registratsiya qilgan sms activate qilmagan
   String smsIdActivate = "";
 
-  Future regNotActivated({
-  required String smsId,
-  required int endTime,
-    required BuildContext context
-})async  {
+  Future regNotActivated(
+      {required String smsId,
+      required int endTime,
+      required BuildContext context}) async {
     boolRegistration = false;
     smsIdActivate = smsId;
     smsTimer(timers: endTime, context: context);
@@ -226,24 +239,24 @@ class ProviderSms extends ChangeNotifier {
     notifyListeners();
   }
 
-
   var box = Hive.box("online");
-  Future sentServer({required BuildContext context, required String appId, required String smsCode})async{
-    try{
 
-      String data = await NetworkSmsAutoFill.sentServerSms(smsCode: smsCode, smsId: smsId, appId: "1");
-      try{
+  Future sentServer(
+      {required BuildContext context,
+      required String appId,
+      required String smsCode}) async {
+    try {
+      String data = await NetworkSmsAutoFill.sentServerSms(
+          smsCode: smsCode, smsId: smsId, appId: "1");
+      try {
         ModelAuthSms modelAuthSms = ModelAuthSms.fromJson(jsonDecode(data));
-            String token = await NetworkGetToken.getTokenModel(
+        String token = await NetworkGetToken.getTokenModel(
             authCode: modelAuthSms.data.authorizationCode);
         ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(token));
 
         box.put("token", modelGetToken.data.accessToken);
         log(box.get("token"));
-        if (box
-            .get("token")
-            .toString()
-            .length > 30) {
+        if (box.get("token").toString().length > 30) {
           // ignore: use_build_context_synchronously
           box.delete("phoneNumber");
           box.put("phoneNumber", phoneNumber);
@@ -252,23 +265,29 @@ class ProviderSms extends ChangeNotifier {
               context,
               CupertinoPageRoute(
                 builder: (context) => const MainPages(),
-              ), (route) => false);
+              ),
+              (route) => false);
         }
-      }catch(e){}
+      } catch (e) {}
 
       log(data);
       log(smsCode);
       log(smsId);
-    }catch(e){}
+    } catch (e) {}
   }
-  String resiviedSms= '';
-  String smsIds = '';
-  String logId= '';
 
-  Future  sentServer2Edu({required BuildContext context})async  {
+  String resiviedSms = '';
+  String smsIds = '';
+  String logId = '';
+
+  Future sentServer2Edu({required BuildContext context}) async {
     log("resivied_sms: ${controller.text.toString()}, sms_id:$smsId7, logId:$logId7");
-    String data = await networkSmsAutoFill.sentServer2Edu(resiviedSms: controller.text, smsId: smsId7.toString(), logId: logId7.toString());
-    ModelEduSuccess modelEduSuccess = ModelEduSuccess.fromJson(jsonDecode(data));
+    String data = await networkSmsAutoFill.sentServer2Edu(
+        resiviedSms: controller.text,
+        smsId: smsId7.toString(),
+        logId: logId7.toString());
+    ModelEduSuccess modelEduSuccess =
+        ModelEduSuccess.fromJson(jsonDecode(data));
     if (modelEduSuccess.status == 1) {
       // ignore: use_build_context_synchronously
       pushNewScreen(context, screen: MainMyStatement());
@@ -278,22 +297,18 @@ class ProviderSms extends ChangeNotifier {
           valueText: "Ma'lumot kiritishda xatolik qayta urinib ko'ring ");
       Navigator.of(context).pop();
     }
-
-    log(controller.text);
-    log(smsId7);
-    log(logId7);
-    log(data);
   }
-  String phoneNumber = "";
-  String logId7 ="";
-  String smsId7 ="";
-  int smsSentStatus = 0;
-  // SmsAutoFillUi(phoneNum: modelSms2.data.phone,
-  //     password: "",
-  //     captchaKey: modelSms2.data.logId.toString(),
-  //     captchaValue: modelSms2.data.smsId.toString(),
-  //     registration: 7)
 
+  String phoneNumber = "";
+  String logId7 = "";
+  String smsId7 = "";
+  int smsSentStatus = 0;
+
+
+  String numberPhones = "";
+  String passwords = "";
+  String captchaKeys = "";
+  String captchaValues = "";
 
   Future getSmsCode(
       {required BuildContext context,
@@ -303,25 +318,13 @@ class ProviderSms extends ChangeNotifier {
       required String captchaKey,
       required String captchaValue}) async {
 
-    OTPInteractor otpInteract = OTPInteractor();
-    valueSignature = await otpInteract.getAppSignature();
-    code1 = valueSignature!;
-    controller = OTPTextEditController(
-        codeLength: 5,
-        onCodeReceive: (code) => {
-              code1 = code,
-              log('Your Application receive code - $code'),
-            })
-      ..startListenUserConsent(
-        (code) {
-          final exp = RegExp(r'(\d{5})');
-          return exp.stringMatch(code ?? '') ?? '';
-        },
-        strategies: [
-          // SampleStrategy(),
-        ],
-      );
+    numberPhones = phoneNum;
+    passwords = password;
+    captchaKeys = captchaKey;
+    captchaValues = captchaValue;
+    smsSentStatus = numbers;
 
+    getOTPCode();
     if (numbers == 1) {
       /// registratsiya
       phoneNumber = phoneNum;
@@ -350,15 +353,15 @@ class ProviderSms extends ChangeNotifier {
           context: context);
 
       /// OTM ro'yxatdan o'tish
-    }else if(numbers == 7){
+    } else if (numbers == 7) {
       boolData = true;
       notifyListeners();
       smsSentStatus = numbers;
-       logId7 = captchaKey;
-       smsId7 = captchaValue;
+      logId7 = captchaKey;
+      smsId7 = captchaValue;
       smsTimer(timers: 180, context: context);
       boolData = true;
-       notifyListeners();
+      notifyListeners();
       log("7");
       // SmsAutoFillUi(phoneNum: modelSms2.data.phone,
       //     password: "",
@@ -367,5 +370,28 @@ class ProviderSms extends ChangeNotifier {
       //     registration: 7)
     }
   }
+
+
+  Future getOTPCode()async{
+    OTPInteractor otpInteract = OTPInteractor();
+    valueSignature = await otpInteract.getAppSignature();
+    code1 = valueSignature!;
+    controller = OTPTextEditController(
+        codeLength: 5,
+        onCodeReceive: (code) => {
+          code1 = code,
+          log('Your Application receive code - $code'),
+        })
+      ..startListenUserConsent(
+            (code) {
+          final exp = RegExp(r'(\d{5})');
+          return exp.stringMatch(code ?? '') ?? '';
+        },
+        strategies: [
+          // SampleStrategy(),
+        ],
+      );
+  }
+
   ///end
 }

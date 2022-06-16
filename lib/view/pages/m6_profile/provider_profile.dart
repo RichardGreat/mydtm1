@@ -41,26 +41,29 @@ class ProviderProfile extends ChangeNotifier{
       image;
 
   Future getProfile()async{
-
-    boolGetProfileData = false;
-    late ProviderPersonInfo providerPersonInfo;
-    String dataInfo = await networkGetIMie.getIMieInformation();
-    modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
-    dataGetImieInfo = modelGetImieInfo.data;
-    psser = dataGetImieInfo.psser;
-    psnum = dataGetImieInfo.psnum.toString();
-    imie = dataGetImieInfo.imie.toString();
-    lname = dataGetImieInfo.lname;
-    fname = dataGetImieInfo.fname;
-    mname = dataGetImieInfo.mname;
-    bdate = dataGetImieInfo.bdate.toString();
-    sex = dataGetImieInfo.sex.toString();
-    nationId = dataGetImieInfo.nationId.toString();
-    image = dataGetImieInfo.image;
-    box.put("personImage", image);
-    boolGetProfileData = true;
-    notifyListeners();
-
+    try{
+      boolGetProfileData = false;
+      String dataInfo = await networkGetIMie.getIMieInformation();
+      modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
+      dataGetImieInfo = modelGetImieInfo.data;
+      psser = dataGetImieInfo.psser;
+      psnum = dataGetImieInfo.psnum.toString();
+      imie = dataGetImieInfo.imie.toString();
+      lname = dataGetImieInfo.lname;
+      fname = dataGetImieInfo.fname;
+      mname = dataGetImieInfo.mname;
+      bdate = dataGetImieInfo.bdate.toString();
+      sex = dataGetImieInfo.sex.toString();
+      nationId = dataGetImieInfo.nationId.toString();
+      image = dataGetImieInfo.image;
+      box.put("personImage", image);
+      boolGetProfileData = true;
+      notifyListeners();
+    }catch(e){
+      // no profile
+      boolGetProfileData = true;
+      notifyListeners();
+    }
   }
 
   Future boolButtonCol1({required bool boolValue}) async {

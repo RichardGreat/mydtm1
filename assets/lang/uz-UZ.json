@@ -8,7 +8,7 @@
   "fillInField": "Maydonlarni to'ldiring",
   "noInfoCheck": "Ma'lumotlar to'liq emas",
   "aboutService": "Xizmat haqida",
-  "noAccount": "Siz identifikatsiya tizimidan o'ting",
+  "noAccount": "Identifikatsiya tizimidan o'ting",
   "choose": "Tanlang",
   "state": "Davlat",
   "province": "Hudud",
@@ -92,5 +92,9 @@
   "foreignLang": "Chet tili",
   "nationalCert": "Milliy sertifikat",
   "download": "Yuklab olish",
-  "editEdu": "Ma'lumotlarni tahrirlash"
+  "editEdu": "Ma'lumotlarni tahrirlash",
+  "personalInfo": "Shaxsiy ma'lumotlar",
+  "logUot": "Tizimdan chiqmoqchimisiz",
+  "yes": "Xa",
+  "no": "Yoq"
 }

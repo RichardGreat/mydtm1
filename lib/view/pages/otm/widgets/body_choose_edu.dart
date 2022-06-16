@@ -67,19 +67,36 @@ Widget bodyChooseEdu({
             ),
           ),
           child: ListView.builder(
-            // primary: true,
-            // shrinkWrap: true,
+
             physics: const NeverScrollableScrollPhysics(),
             itemCount: providerChooseEdu.listTitleEduDir.length,
             itemBuilder: (context, index) => GestureDetector(
               onTap: () {
                 if (checkFillSelected() && checkFillDir(index: index)) {
-                  pushNewScreen(context,
-                      screen: SelectDirection(
-                        providerChooseEdu: providerChooseEdu,
-                        indexEduDir: int.parse(
-                            providerChooseEdu.listTitleEduDir[index].id),
-                      ));
+            if(providerChooseEdu.boolCheckUseCertificateDataNot) {
+                    pushNewScreen(context,
+                        screen: SelectDirection(
+                          providerChooseEdu: providerChooseEdu,
+                          indexEduDir: int.parse(
+                              providerChooseEdu.listTitleEduDir[index].id),
+                        ));
+                  }else{
+                  if(providerChooseEdu.boolSetUserNationCert){
+                    pushNewScreen(context,
+                        screen: SelectDirection(
+                          providerChooseEdu: providerChooseEdu,
+                          indexEduDir: int.parse(
+                              providerChooseEdu.listTitleEduDir[index].id),
+                        ));
+                  }else{
+                    MyWidgets.scaffoldMessengerBottom(
+                        context: context,
+                        valueText: "Sertifikat tanlang");
+
+                  }
+                }
+
+
                 } else {
                   MyWidgets.scaffoldMessengerBottom(
                       context: context,

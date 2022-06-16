@@ -72,6 +72,8 @@ class ProviderChooseEdu extends ChangeNotifier {
     }
   }
    Map<String, String> mapCert = {};
+  bool boolSetUserNationCert = false;
+
   Future setUserNationCert(
       {required int indexId,required String certId, required int userVal}) async {
     log("certId $certId");
@@ -79,11 +81,17 @@ class ProviderChooseEdu extends ChangeNotifier {
     log("indexId $indexId");
     listCertificateCheckUse[indexId].certId =  userVal.toString();
     mapCert = {for (var item in listCertificateCheckUse) item.cerId : item.certId};
-    log(jsonEncode(mapCert));
-    // for(var l in listCertificateCheckUse){
-    //   log(l.cerId);
-    //   log(l.certId);
-    // }
+    for(var val in listCertificateCheckUse){
+    if(val.certId == "-1"){
+      boolSetUserNationCert = false;
+      break;
+    }else{
+      boolSetUserNationCert = true;
+    }
+    }
+
+    // log(boolSetUserNationCert.toString());
+    // log(jsonEncode(mapCert));
     notifyListeners();
   }
 
