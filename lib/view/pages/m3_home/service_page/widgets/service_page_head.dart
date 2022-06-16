@@ -32,6 +32,7 @@ Widget servicePageHead(
           MaterialButton(
               onPressed: () {
                 providerServicePage.checkUserStatus(
+                  categoryId:serviceMainList.id.toString(),
                     context: context,
                     status: serviceMainList.status,
                     categoryName: serviceMainList.serviceName);

@@ -67,7 +67,7 @@ class _GraduatedState extends State<Graduated> {
                               visible: !providerGraduated.boolGraduatedType,
                               child: graduatedForeign(
                                   context: context,
-                                  providerGraduated: providerGraduated)),
+                                  providerGradueted: providerGraduated)),
 
                           /// button
 

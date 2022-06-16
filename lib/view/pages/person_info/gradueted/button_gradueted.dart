@@ -35,7 +35,9 @@ Widget buttonGraduated(
         if(providerGradueted.txtControllerGraduatedName.text.length >= 4){
           /// Chet el
           log("Chet el server");
-          providerGradueted.sentServerGraduatedAll(eduType: providerGradueted.graduatedEduTypeId,
+          providerGradueted.sentServerGraduatedAll(
+              context: context,
+              eduType: providerGradueted.graduatedEduTypeId,
               regionId: providerGradueted.graduatedRegionId,
               districtId: providerGradueted.graduatedDistrictId,
               eduListId:  providerGradueted.graduatedEduId,
@@ -50,14 +52,16 @@ Widget buttonGraduated(
         if(providerGradueted.setGraduatedYear.length >= 3 &&
             providerGradueted.textEditingSerNumber.text.length >= 5){
   log("o'zbek server");
-  providerGradueted.sentServerGraduatedAll(eduType: providerGradueted.graduatedEduTypeId,
+  providerGradueted.sentServerGraduatedAll(
+      context: context,
+      eduType: providerGradueted.graduatedEduTypeId,
       regionId: providerGradueted.graduatedRegionId,
       districtId: providerGradueted.graduatedDistrictId,
       eduListId:  providerGradueted.graduatedEduId,
       graduatedYear: providerGradueted.setGraduatedYear,
       docSerNum: providerGradueted.textEditingSerNumber.text,
-      eduName: providerGradueted.txtControllerGraduatedName.text,
-      countryId: providerGradueted.graduatedCountryId);
+      eduName: providerGradueted.graduatedEduName,
+      countryId: "860");
         }
       }
       // Navigator.push(

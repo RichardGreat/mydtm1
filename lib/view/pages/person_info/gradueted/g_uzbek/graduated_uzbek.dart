@@ -9,10 +9,32 @@ import 'package:mydtm/view/pages/person_info/pasport_info_set/input_pasport.dart
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
+bool functionUzbAnother({ required ProviderGraduated providerGradueted}){
+
+  if(!providerGradueted.boolGraduatedType){
+
+    if(providerGradueted.graduatedCountryId == "860"){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }else{
+    return true;
+  }
+
+
+}
+
 Widget graduatedUzbek(
     {required BuildContext context,
     required ProviderGraduated providerGradueted}) {
-  return Column(
+
+
+  return
+
+    functionUzbAnother(providerGradueted: providerGradueted)?
+    Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
   //
@@ -21,14 +43,14 @@ Widget graduatedUzbek(
   // } else {
   // boolGraduatedType = true;
   // }
-  //     providerGradueted.boolSelectUzb && !providerGradueted.boolGraduatedType?
-      const SizedBox(height: 10),
-          // :SizedBox.shrink(),
+functionUzbAnother(providerGradueted: providerGradueted)?
+      const SizedBox(height: 10)
+          :SizedBox.shrink(),
 
 
-      // providerGradueted.boolSelectUzb && providerGradueted.boolGraduatedType?
+      functionUzbAnother(providerGradueted: providerGradueted)?
       MyWidgets.robotoFontText(
-          text: "province".tr(), textColor: MyColors.appColorBlack(), textSize: 16),//:SizedBox.shrink(),
+          text: "province".tr(), textColor: MyColors.appColorBlack(), textSize: 16):SizedBox.shrink(),
       const SizedBox(height: 4),
       GestureDetector(
         child: Container(
@@ -69,14 +91,15 @@ Widget graduatedUzbek(
       const SizedBox(height: 10),
 
       ///
+      functionUzbAnother(providerGradueted: providerGradueted)?
       MyWidgets.robotoFontText(
           text:"district".tr()
              ,
           textColor: MyColors.appColorGrey400(),
-          textSize: 16),
+          textSize: 16):SizedBox.shrink(),
       const SizedBox(height: 4),
-      GestureDetector(
 
+      GestureDetector(
         child: Container(
           height: 50,
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -102,11 +125,13 @@ Widget graduatedUzbek(
       const SizedBox(height: 10),
 
       ///
+      providerGradueted.boolGraduatedType?
       MyWidgets.robotoFontText(
           text: "Muassasa",
           textColor: MyColors.appColorGrey400(),
-          textSize: 16),
+          textSize: 16):SizedBox.shrink(),
       const SizedBox(height: 4),
+      providerGradueted.boolGraduatedType?
       GestureDetector(
         child: Container(
           height: 50,
@@ -142,7 +167,7 @@ Widget graduatedUzbek(
           providerGradueted.graduatedDistrictName.length > 5?
           modelSheetGraduatedName(context: context, providerGraduated: providerGradueted):{};
         },
-      ),
+      ):SizedBox.shrink(),
     ],
-  );
+  ):SizedBox.shrink();
 }

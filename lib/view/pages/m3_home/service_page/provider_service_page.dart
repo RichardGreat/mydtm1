@@ -7,6 +7,7 @@ import 'package:mydtm/view/pages/m3_home/check_information_page/check_informatio
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'dart:developer';
 
 class ProviderServicePage extends ChangeNotifier{
   var box = Hive.box("online");
@@ -14,7 +15,10 @@ class ProviderServicePage extends ChangeNotifier{
 
   ///
   /// Button
-  Future checkUserStatus({required BuildContext context, required bool status, required String categoryName})async{
+  Future checkUserStatus({required BuildContext context,
+    required bool status,
+    required String categoryName,
+    required String categoryId })async{
     status
         ? {
       if(box.get("token").toString().length < 30){
@@ -40,13 +44,31 @@ class ProviderServicePage extends ChangeNotifier{
 
       }else{
 
-      pushNewScreen(
-        context,
-        screen: CheckInformation(serviceName: categoryName),
-        withNavBar: false,
-        pageTransitionAnimation: PageTransitionAnimation.cupertino,
-      )
-      }
+        if(categoryId == "42")
+                  {
+                    pushNewScreen(
+                      context,
+                      screen: CheckInformation(serviceName: categoryName),
+                      withNavBar: false,
+                      pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
+                    )
+                  }else{
+          AwesomeDialog(
+              context: context,
+              dialogType: DialogType.INFO,
+              animType: AnimType.BOTTOMSLIDE,
+              title: "DTM",
+              desc: "Xizmat yaqinda vaqtda ishga tushadi",
+              titleTextStyle:TextStyle(color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+              btnOkOnPress: () {
+                // Navigator.of(context).pop();
+              },
+              btnOkText: "enter".tr()
+          )..show(),
+        }
+              }
 
     }:{
 
