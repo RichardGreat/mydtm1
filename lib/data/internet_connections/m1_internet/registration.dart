@@ -8,7 +8,7 @@ class NetworkRegistration {
       {required Map<String, String> mapRegistration}) async {
     var dio = Dio();
     Response response;
-    response = await dio.post("${MainUrl.mainUrls}/auth/register",
+    response = await dio.post("${MainUrl.mainUrls}/auth/check-sms",
         data: mapRegistration);
     return jsonEncode(response.data).toString();
   }

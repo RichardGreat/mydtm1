@@ -67,21 +67,32 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     // box.put("token", "ae365911b49f6137e195dcb874cb0c4f");
+    dura();
     super.initState();
+  }
+
+  Future dura()async{
+    await Future.delayed(Duration.zero);
+    box.put("language", "1");
   }
 
   @override
   Widget build(BuildContext context) {
-    return ConnectionNotifier(
-      disconnectedContent:
-          const Center(child: Text("Internet bilan oloqa yoq")),
-      connectedContent: const Center(child: Text("Aloqa tiklandi")),
-      child: MaterialApp(
+    return
+
+      // ConnectionNotifier(
+      // disconnectedContent:
+      //     const Center(child: Text("Internet bilan oloqa yoq")),
+      // connectedContent: const Center(child: Text("Aloqa tiklandi")),
+    //  child:
+    MaterialApp(
           debugShowCheckedModeBanner: false,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          home: const MainPages()),
+          home:const MainPages(),
+
+    //),
 
     );
   }

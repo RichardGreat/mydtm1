@@ -1,5 +1,5 @@
 {
-  "uz": "uzbek",
+
   "registration": "Ro'yxatdan o'tish",
   "identification": "Xizmatdan foydalanish uchun identifikatsiya tizimi orqali kirishingiz kerak",
   "serviceNot": "Xizmat vaqtingcha yopiq",
@@ -96,5 +96,10 @@
   "personalInfo": "Shaxsiy ma'lumotlar",
   "logUot": "Tizimdan chiqmoqchimisiz",
   "yes": "Xa",
-  "no": "Yoq"
+  "no": "Yoq",
+  "languageApp": "Interfeys tili",
+  "uz": "O'zbek tili",
+  "qq": "Qoraqalpoq tili",
+  "ru": "Rus tili"
+
 }

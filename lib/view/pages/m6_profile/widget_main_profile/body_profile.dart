@@ -7,48 +7,13 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_password.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/phone_change.dart';
+import 'package:mydtm/view/pages/m6_profile/widget_main_profile/sheet_lang/sheets_lang.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 Widget bodyProfile({required BuildContext context, required ProviderProfile providerProfile}){
   var box = Hive.box("online");
-  // List<Icon> myIcon = [
-  //   Icon(
-  //     CupertinoIcons.news_solid,
-  //     color: MyColors.appColorBlue1(),
-  //   ),
-  //   Icon(
-  //     Icons.book_outlined,
-  //     color: MyColors.appColorBlue1(),
-  //   ),
-  //   Icon(
-  //     Icons.settings,
-  //     color: MyColors.appColorBlue1(),
-  //   ),
-  //   Icon(
-  //     Icons.help,
-  //     color: MyColors.appColorBlue1(),
-  //   ),
-  //   Icon(
-  //     Icons.announcement_outlined,
-  //     color: MyColors.appColorBlue1(),
-  //   ),
-  //   Icon(
-  //     Icons.exit_to_app,
-  //     color: MyColors.appColorBlue1(),
-  //   ),
-  // ];
-  //
-  // List<String> myList = [
-  //   "news".tr(),
-  //   "advice".tr(),
-  //   "settings".tr(),
-  //   "help".tr(),
-  //   "system_infor".tr(),
-  //   "exet".tr(),
-  // ];
-
   return SingleChildScrollView(
     child: Container(
       height: MediaQuery.of(context).size.height,
@@ -156,12 +121,12 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
               color: MyColors.appColorBlue1(),
               size: 24,
             ),
-            title: MyWidgets.robotoFontText(text: box.get("phoneNumber")),
-            subtitle: MyWidgets.robotoFontText(
-                text: "nomer o'zgatirish",
-                textColor: MyColors.appColorGrey400(),
-                textSize: 14,
-                textFontWeight: FontWeight.w100),
+              subtitle: MyWidgets.robotoFontText(text: box.get("phoneNumber"),textSize: 14,   textColor: MyColors.appColorGrey400(),
+
+                  textFontWeight: FontWeight.w100),
+           title : MyWidgets.robotoFontText(
+                text: "Nomer o'zgatirish",
+              ),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
               color: MyColors.appColorGrey400(),
@@ -186,54 +151,40 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
               size: 24,
             ),
             title: MyWidgets.robotoFontText(text: "changePassport".tr()),
+            subtitle: MyWidgets.robotoFontText(text: "*******",textSize: 14,   textColor: MyColors.appColorGrey400(),
+
+                textFontWeight: FontWeight.w100),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
               color: MyColors.appColorGrey400(),
             ),
           ),
           const SizedBox(
-            height: 5,
+            height: 2,
+          ),
+          const Divider(
+            thickness: 0.4,
+          ),
+          ListTile(
+            onTap: () {
+              sheetAppLanguageInterface(context: context, providerProfile: providerProfile);
+            },
+            leading: Icon(
+              Icons.language,
+              color: MyColors.appColorBlue1(),
+              size: 24,
+            ),
+            title: MyWidgets.robotoFontText(text: "languageApp".tr()),
+              subtitle: Text(""),
+            trailing: Icon(
+              Icons.arrow_forward_ios_rounded,
+              color: MyColors.appColorGrey400(),
+            ),
           ),
           Divider(
             color: MyColors.appColorGrey100(),
             thickness: 3,
           ),
-          const SizedBox(
-            height: 4,
-          ),
-          // MyWidgets.robotoFontText(
-          //   text: "Foydali",
-          //   textSize: 20,
-          //   textColor: MyColors.appColorBlue1(),
-          // ),
-          // const SizedBox(
-          //   height: 10,
-          // ),
-          // Expanded(
-          //     child: ListView.builder(
-          //       itemCount: myIcon.length,
-          //       physics: const NeverScrollableScrollPhysics(),
-          //       itemBuilder: (context, index) => Column(
-          //         children: [
-          //           ListTile(
-          //             title: MyWidgets.robotoFontText(
-          //                 text: myList[index], textFontWeight: FontWeight.w400),
-          //             leading: myIcon[index],
-          //             trailing: Icon(
-          //               Icons.arrow_forward_ios_rounded,
-          //               color: MyColors.appColorGrey400(),
-          //             ),
-          //           ),
-          //           Divider(
-          //             indent: 2,
-          //             color: MyColors.appColorGrey100(),
-          //           ),
-          //           const SizedBox(
-          //             height: 8,
-          //           ),
-          //         ],
-          //       ),
-          //     ))
         ],
       ),
     ),

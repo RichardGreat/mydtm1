@@ -34,12 +34,14 @@ Widget bottomUI(
           if (providerSms.controller.text.length > 4) {
             if (providerSms.smsSentStatus == 7) {
               providerSms.sentServer2Edu(context: context);
-            } else if (providerSms.smsSentStatus == 1) {
+            }
+            else if (providerSms.smsSentStatus == 1) {
+
               providerSms.sendRegistrationServer(
-                  userName: providerSms.numberPhones,
-                  password: providerSms.passwords,
-                  captchaKey: providerSms.captchaKeys,
-                  captchaVal: providerSms.captchaValues);
+              smsCode:  providerSms.controller.text,
+              smsId:   providerSms.smsId,
+                context: context
+              );
             }
           }
 

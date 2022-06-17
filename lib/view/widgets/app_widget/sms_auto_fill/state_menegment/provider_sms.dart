@@ -6,9 +6,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_token.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/registration.dart';
+import 'package:mydtm/data/model_parse/m1_model/authhorization/model_auth_success.dart';
 import 'package:mydtm/data/model_parse/m1_model/authhorization/model_get_token.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
+import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/pages/otm/widgets/edu_reg_success/success_edu_reg.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/edu/edu_reg_success.dart';
@@ -60,12 +62,12 @@ class ProviderSms extends ChangeNotifier {
           captchaKey: captchaKey,
           smsHash: valueSignature!);
     } else {
-      // dataSms = await networkSmsAutoFill.registrationSms(
-      //     userName: userName,
-      //     password: password,
-      //     captchaValue: captchaValue,
-      //     captchaKey: captchaKey,
-      //     smsHash: "76892");
+      dataSms = await networkSmsAutoFill.registrationSms(
+          userName: userName,
+          password: password,
+          captchaValue: captchaValue,
+          captchaKey: captchaKey,
+          smsHash: "a76892");
     }
     try {
       ModelRegistrationSms modelRegistrationSms =
@@ -78,6 +80,7 @@ class ProviderSms extends ChangeNotifier {
         notifyListeners();
       }
     } catch (e) {
+
       try {
         boolRegistration = true;
         modelRegistrationHave =
@@ -104,18 +107,27 @@ class ProviderSms extends ChangeNotifier {
 
   /// registratsiya
   Future sendRegistrationServer(
-      {required String userName,
-      required String password,
-      required String captchaKey,
-      required String captchaVal}) async {
+      {required String smsCode,
+      required String smsId,
+        required BuildContext context
+}) async {
     Map<String, String> mapRegistration = {
-      "username": userName,
-      "password": password,
-      "captcha_key": captchaKey,
-      "captcha_val": captchaVal
+      "sms_code": smsCode,
+      "sms_id": smsId,
+      "app_id": "1",
+
     };
     String data = await NetworkRegistration.getRegistration(
         mapRegistration: mapRegistration);
+    ModelAuthorizationParse modelAuthorizationParse = ModelAuthorizationParse.fromJson(jsonDecode(data));
+    String dataToken = await NetworkGetToken.getTokenModel(authCode: modelAuthorizationParse.data.authorizationCode);
+    ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(dataToken));
+    box.delete("token");
+    box.put("token", modelGetToken.data.accessToken);
+    // ignore: use_build_context_synchronously
+    Navigator.pushAndRemoveUntil(context,
+        CupertinoPageRoute(builder: (context) =>
+        const MainPages(),), (route) => false);
     log(data);
   }
 
@@ -290,7 +302,9 @@ class ProviderSms extends ChangeNotifier {
         ModelEduSuccess.fromJson(jsonDecode(data));
     if (modelEduSuccess.status == 1) {
       // ignore: use_build_context_synchronously
-      pushNewScreen(context, screen: MainMyStatement());
+      ProviderAriza providerAriza = ProviderAriza();
+      // ignore: use_build_context_synchronously
+      pushNewScreen(context, screen: MainMyStatement(numberParam: "2",));
     } else {
       MyWidgets.awesomeDialogError(
           context: context,

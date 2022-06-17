@@ -39,47 +39,49 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
       ),
       body: SafeArea(child: Container(child:
     widget.providerAriza.boolDataDownload1 ?
-    Column(children: [
-      SizedBox(height: MediaQuery.of(context).size.height*0.7,
-          child:const    PDF(
-            autoSpacing: false,
-            fitEachPage: true,
+    SingleChildScrollView(
+      child: Column(children: [
+        SizedBox(height: MediaQuery.of(context).size.height*0.6,
+            child:const    PDF(
+              autoSpacing: false,
+              fitEachPage: true,
 
-          ).fromUrl(
+            ).fromUrl(
 
-            widget.providerAriza.modelGetDownloads1.src,
+              widget.providerAriza.modelGetDownloads1.src,
 
-            placeholder: (progress) => Center(child: Text('$progress %')),
-            errorWidget: (error) => Center(child: Text(error.toString())),
-          )
-      ),
+              placeholder: (progress) => Center(child: Text('$progress %')),
+              errorWidget: (error) => Center(child: Text(error.toString())),
+            )
+        ),
 
-      Container(
-        margin: EdgeInsets.all(15),
-        child:
-        Column(children: [
-          MaterialButton(onPressed: () {
-            widget.providerAriza.openFile(url:  widget.providerAriza.modelGetDownloads1.src, fileName: "dtm1");
-          },
-          height: 50,
-            minWidth: double.infinity,color: MyColors.appColorBlue1(),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-
-
-          child: MyWidgets.robotoFontText(text: "download".tr(), textColor: MyColors.appColorWhite()),
-          ),
-          const SizedBox(height: 10),
-          MaterialButton(onPressed: () {
-            pushNewScreen(context, screen: ChooseEdu());
-          },
+        Container(
+          margin: EdgeInsets.all(15),
+          child:
+          Column(children: [
+            MaterialButton(onPressed: () {
+              widget.providerAriza.openFile(url:  widget.providerAriza.modelGetDownloads1.src, fileName: "dtm1");
+            },
             height: 50,
-            minWidth: double.infinity,color: MyColors.appColorWhite(),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side: BorderSide(color: MyColors.appColorBlack())),
-            child: MyWidgets.robotoFontText(text: "editEdu".tr(), textColor: MyColors.appColorBlack()),
-          ),
+              minWidth: double.infinity,color: MyColors.appColorBlue1(),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
 
-        ]),),
 
-    ]):MyWidgets.loaderDownload(context: context),)),);
+            child: MyWidgets.robotoFontText(text: "download".tr(), textColor: MyColors.appColorWhite()),
+            ),
+            const SizedBox(height: 10),
+            MaterialButton(onPressed: () {
+              pushNewScreen(context, screen: ChooseEdu());
+            },
+              height: 50,
+              minWidth: double.infinity,color: MyColors.appColorWhite(),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side: BorderSide(color: MyColors.appColorBlack())),
+              child: MyWidgets.robotoFontText(text: "editEdu".tr(), textColor: MyColors.appColorBlack()),
+            ),
+
+          ]),),
+
+      ]),
+    ):MyWidgets.loaderDownload(context: context),)),);
   }
 }

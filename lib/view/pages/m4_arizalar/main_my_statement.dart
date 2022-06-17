@@ -7,7 +7,9 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 class MainMyStatement extends StatefulWidget {
-  const MainMyStatement({Key? key}) : super(key: key);
+
+   String numberParam;
+   MainMyStatement({Key? key, required this.numberParam}) : super(key: key);
 
   @override
   State<MainMyStatement> createState() => _MainMyStatementState();
@@ -23,10 +25,18 @@ class _MainMyStatementState extends State<MainMyStatement> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(create: (context) => providerAriza,
-    child: Consumer<ProviderAriza>(builder: (context, value, child) => Scaffold(
+    child: Consumer<ProviderAriza>(builder: (context, value, child) => WillPopScope(
+    onWillPop: () async {
+      if(widget.numberParam == "2"){
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
+      }
+    return true;
+    },
+    child: Scaffold(
       backgroundColor: MyColors.appColorWhite(),
       appBar: AppBar(
-
+        iconTheme: IconThemeData(color: MyColors.appColorBlack()),
         backgroundColor: MyColors.appColorWhite(),
          elevation: 0,
          title:
@@ -40,6 +50,6 @@ class _MainMyStatementState extends State<MainMyStatement> {
       SafeArea(child: bodyAriza1(context: context, providerAriza: providerAriza)):MyWidgets.loaderDownload(context: context),
       
     ),),
-    );
+    ),);
   }
 }

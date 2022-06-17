@@ -17,7 +17,7 @@ class MainPages extends StatefulWidget {
 class _MainPagesState extends State<MainPages> {
   List<Widget> myPages() => [
         const MainHome(),
-        const MainMyStatement(),
+         MainMyStatement(numberParam: "0"),
         const MainMessages(),
         const MainProfile(),
       ];

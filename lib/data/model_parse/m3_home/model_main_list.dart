@@ -1,4 +1,6 @@
 
+import 'package:hive_flutter/adapters.dart';
+
 class ModelServiceList {
 
   ModelServiceList({
@@ -22,6 +24,7 @@ class ModelServiceList {
 }
 
 class DataServiceList {
+  var box = Hive.box("online");
   DataServiceList({
    required this.id,
    required this.categoryName,
