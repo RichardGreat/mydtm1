@@ -4,7 +4,9 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-Widget buttonCertificate({required BuildContext context,required Function ff,
+Widget buttonCertificate({required BuildContext context,
+  required Function ff,
+  required Function ff2,
   required ProviderCertificate providerCertificate}){
   return MaterialButton(
     height: 50,
@@ -13,7 +15,7 @@ Widget buttonCertificate({required BuildContext context,required Function ff,
     color: MyColors.appColorBlue1(),
     onPressed: () {
 
-      providerCertificate.sentCertificateServer(context: context,stateFunc:ff);
+      providerCertificate.sentCertificateServer(context: context,stateFunc:ff, stateFunc2: ff2);
 
     },
     child: MyWidgets.robotoFontText(

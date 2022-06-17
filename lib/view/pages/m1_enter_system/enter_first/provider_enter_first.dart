@@ -46,15 +46,15 @@ class ProviderEnterFirst extends ChangeNotifier {
         ));
   }
 
-  Future enterPersonPassport({required BuildContext context}) async {
-
-
-    Navigator.push(
-        context,
-        CupertinoPageRoute(
-          builder: (context) => const PersonInformation(),
-        ));
-  }
+  // Future enterPersonPassport({required BuildContext context}) async {
+  //
+  //
+  //   Navigator.push(
+  //       context,
+  //       CupertinoPageRoute(
+  //         builder: (context) => PersonInformation(),
+  //       ));
+  // }
 
   /// #offline
 

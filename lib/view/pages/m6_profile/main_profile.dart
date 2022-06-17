@@ -48,7 +48,9 @@ class _MainProfileState extends State<MainProfile> {
             SafeArea(
                 child: box.get("token").toString().length > 30
                     ? bodyProfile(
-                        context: context, providerProfile: providerProfile)
+                        context: context, providerProfile: providerProfile,
+                functions: getProfileInfo
+                )
                     : bodyNoProfileInfo(
                         context: context, providerProfile: providerProfile)):MyWidgets.loaderDownload(context: context)
                 

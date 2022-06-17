@@ -43,6 +43,12 @@ Widget bottomUI(
                 context: context
               );
             }
+            else if(providerSms.smsSentStatus == 3){
+              providerSms.changePhoneNumber(phoneNum: providerSms.numberPhones, smsId: providerSms.captchaKeys, smsCode: providerSms.controller.text, context: context);
+            }
+            else if(providerSms.smsSentStatus == 2){
+
+            }
           }
 
           ///

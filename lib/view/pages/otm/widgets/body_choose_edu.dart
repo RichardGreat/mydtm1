@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/pages/otm/widgets/choose_direction/choose_direct.dart';
+import 'package:mydtm/view/pages/otm/widgets/choose_direction/sheet_fan_majmua.dart';
 import 'package:mydtm/view/pages/otm/widgets/select_direction/otm/foreign_lang.dart';
 import 'package:mydtm/view/pages/otm/widgets/select_direction/select_direction.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -146,7 +147,21 @@ Widget bodyChooseEdu({
           ),
         ),
       ),
-      const SizedBox(height: 10),
+      const SizedBox(height: 15),
+
+      providerChooseEdu.boolFanmajuasi ?
+      Card(
+        color: MyColors.appColorWhite(),
+        child: ListTile(
+
+          title: MyWidgets.robotoFontText(text: "Test topshiriladigan fanlar majmuasi", textSize: 15),onTap:() {
+            sheetFanMajmuaTest(context: context, providerChooseEdu: providerChooseEdu);
+        },trailing:const Icon(Icons.arrow_forward_ios_sharp),),
+      )
+
+          :const SizedBox.shrink(),
+      const SizedBox(height: 15),
+
       MaterialButton(
         onPressed: () {
           if (checkFillSelected() &&
@@ -154,14 +169,17 @@ Widget bodyChooseEdu({
               providerChooseEdu.boolForeignLang) {
             // if(!providerChooseEdu.boolCheckUseCertificateDataNot && providerChooseEdu.mapCert.isNotEmpty){
             if (providerChooseEdu.listCheckCertificate.isEmpty) {
-              providerChooseEdu.setDataEduDir(context: context);
+              providerChooseEdu.stringForeignLangName.length >=4?
+              providerChooseEdu.setDataEduDir(context: context):{};
             } else if (providerChooseEdu.mapCert.isNotEmpty) {
-              providerChooseEdu.setDataEduDir(context: context);
+              providerChooseEdu.stringForeignLangName.length >=4?
+              providerChooseEdu.setDataEduDir(context: context):{};
             } else {
               MyWidgets.scaffoldMessengerBottom(
                   context: context, valueText: "Sertifikatni tanlang");
             }
           } else {
+
             providerChooseEdu.setDataEduDir(context: context);
           }
         },

@@ -118,7 +118,7 @@ class ProviderPersonInfo extends ChangeNotifier {
     Navigator.push(
         context,
         CupertinoPageRoute(
-          builder: (context) => const AddressInfo(),
+          builder: (context) =>  AddressInfo(funcState:functionBosh ),
         ));
   }
 
@@ -156,8 +156,7 @@ class ProviderPersonInfo extends ChangeNotifier {
     boolChooseNation = boolNation;
   }
 
-// Future boolPasswordVisibleMethod() async {
-//   boolPasswordVisible = !boolPasswordVisible;
-//   notifyListeners();
-// }
+Future functionBosh() async {
+
+}
 }

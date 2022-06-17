@@ -23,7 +23,12 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
     super.initState();
   }
 
+
   Future getDownload()async  {
+    await widget.providerAriza.getDownloads(categoryId: 1);
+    setState((){});
+  }
+  Future getBoshFunc()async  {
     await widget.providerAriza.getDownloads(categoryId: 1);
     setState((){});
   }
@@ -71,7 +76,7 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
             ),
             const SizedBox(height: 10),
             MaterialButton(onPressed: () {
-              pushNewScreen(context, screen: ChooseEdu());
+              pushNewScreen(context, screen: ChooseEdu(funcState: getBoshFunc));
             },
               height: 50,
               minWidth: double.infinity,color: MyColors.appColorWhite(),

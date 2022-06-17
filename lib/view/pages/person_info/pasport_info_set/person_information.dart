@@ -10,7 +10,8 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class PersonInformation extends StatefulWidget {
-  const PersonInformation({Key? key}) : super(key: key);
+  Function funcState;
+  PersonInformation({Key? key, required this.funcState}) : super(key: key);
 
   @override
   State<PersonInformation> createState() => _PersonInformationState();
@@ -21,8 +22,13 @@ class _PersonInformationState extends State<PersonInformation> {
 
   @override
   void initState() {
-    providerPersonInfo.getPersonInformation(context: context);
+    getPersonInfo();
     super.initState();
+  }
+
+  Future getPersonInfo()async{
+    await providerPersonInfo.getPersonInformation(context: context);
+
   }
 
   @override
@@ -30,45 +36,49 @@ class _PersonInformationState extends State<PersonInformation> {
     return ChangeNotifierProvider(
       create: (context) => providerPersonInfo,
       child: Consumer<ProviderPersonInfo>(
-        builder: (context, value, child) => Scaffold(
+        builder: (context, value, child) => WillPopScope(child: Scaffold(
             backgroundColor: MyColors.appColorWhite(),
             appBar: appBarPersonInfo(),
             body:
             !providerPersonInfo.boolNetworkGetData
                 ?
-           ! providerPersonInfo.boolCheckImieHas?
+            ! providerPersonInfo.boolCheckImieHas?
             personReceived2(providerPersonInfo: providerPersonInfo, context: context)
                 :
             Form(
                 key: providerPersonInfo.formKey123,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child:  SafeArea(
-                        child: SingleChildScrollView(
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          height: MediaQuery.of(context).size.height * 0.95 -
-                              appBarPersonInfo().preferredSize.height,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              inputPassportInfo(
-                                  context: context,
-                                  providerPersonInfo: providerPersonInfo),
-                              const SizedBox(height: 10),
-                                MyWidgets.robotoFontText(text: "nation".tr()),
-                                const SizedBox(height: 4),
-                                Expanded(
-                                    child: buttonsPersonInfo(
-                                        context: context,
-                                        providerPersonInfo: providerPersonInfo)),
-                              ],
-                            ),
-                          ),
-                        ))
+                    child: SingleChildScrollView(
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        height: MediaQuery.of(context).size.height * 0.95 -
+                            appBarPersonInfo().preferredSize.height,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            inputPassportInfo(
+                                context: context,
+                                providerPersonInfo: providerPersonInfo),
+                            const SizedBox(height: 10),
+                            MyWidgets.robotoFontText(text: "nation".tr()),
+                            const SizedBox(height: 4),
+                            Expanded(
+                                child: buttonsPersonInfo(
+                                    context: context,
+                                    providerPersonInfo: providerPersonInfo)),
+                          ],
+                        ),
+                      ),
+                    ))
 
-                ): const Center(child: CupertinoActivityIndicator(),)
+            ): const Center(child: CupertinoActivityIndicator(),)
 
-            )
+        ), onWillPop: ()async{
+          Navigator.of(context).pop();
+          widget.funcState;
+          return true;
+        })
         ,
       ),
     );

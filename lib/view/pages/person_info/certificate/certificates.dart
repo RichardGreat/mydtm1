@@ -6,7 +6,8 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class Certificates extends StatefulWidget {
-  const Certificates({Key? key}) : super(key: key);
+  Function funcState;
+   Certificates({Key? key, required this.funcState}) : super(key: key);
 
   @override
   State<Certificates> createState() => _CertificatesState();
@@ -16,12 +17,13 @@ class _CertificatesState extends State<Certificates> {
   ProviderCertificate providerCertificate = ProviderCertificate();
   @override
   initState(){
-    providerCertificate.getForeignCert();
-    providerCertificate.getNationCertInfo();
+    functionCert();
     super.initState();
   }
 
-  function(){
+  functionCert()async{
+   await providerCertificate.getForeignCert();
+   await providerCertificate.getNationCertInfo();
     setState((){});
   }
 
@@ -30,16 +32,23 @@ class _CertificatesState extends State<Certificates> {
     return ChangeNotifierProvider(
       create: (context) => providerCertificate,
       child: Consumer<ProviderCertificate>(
-        builder: (context, value, child) => Scaffold(
+        builder: (context, value, child) => WillPopScope(
+          onWillPop: ()async{
+            await widget.funcState();
+            Navigator.of(context).pop();
+            return true;
+          },
+          child: Scaffold(
           backgroundColor: MyColors.appColorWhite(),
           appBar: appBarCertificate(
               context: context, providerCertificate: providerCertificate),
-          body: 
+          body:
 
           bodyCertificate(
-            func: function,
+              func: functionCert,
               context: context, providerCertificate: providerCertificate),
         ),
+        )
       ),
     );
   }

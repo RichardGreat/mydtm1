@@ -59,7 +59,7 @@ class ProviderServicePage extends ChangeNotifier{
               dialogType: DialogType.INFO,
               animType: AnimType.BOTTOMSLIDE,
               title: "DTM",
-              desc: "Xizmat yaqinda vaqtda ishga tushadi",
+              desc: "Xizmat yaqin vaqtda ishga tushadi",
               titleTextStyle:TextStyle(color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
               descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
               btnOkOnPress: () {

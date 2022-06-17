@@ -14,6 +14,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 Widget inputForeignCertificate(
     {required BuildContext context,
       required Function f,
+      required Function f2,
     required ProviderCertificate providerCertificate}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +29,9 @@ Widget inputForeignCertificate(
       dateSelect(ff:f,context: context, providerCertificate: providerCertificate),
       certificateGetSerNumber(ff:f,context: context, providerCertificate: providerCertificate),
       imageCertificate(ff:f,context: context, providerCertificate: providerCertificate),
-      buttonCertificate(ff:f,context: context, providerCertificate: providerCertificate)
+      buttonCertificate(ff:f,
+          ff2: f2,
+          context: context, providerCertificate: providerCertificate)
     ],
   );
 }

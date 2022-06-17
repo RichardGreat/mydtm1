@@ -55,35 +55,49 @@ class _ForeignLangTestState extends State<ForeignLangTest> {
               height: MediaQuery.of(context).size.height * 0.5,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
-              child: ListView.builder(
-                itemCount:
-                    widget.providerChooseEdu.listDataForeignLangTemp.length,
-                itemBuilder: (context, index) => GestureDetector(
-                  child: Card(
-                    margin: const EdgeInsets.all(8),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        widget.providerChooseEdu.listDataForeignLangTemp[index]
-                            .name,
-                        overflow: TextOverflow.fade,
-                        softWrap: true,
-                        maxLines: 3,
-                        textAlign: TextAlign.start,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MyWidgets.robotoFontText(text: "Chet tilini tanlang", textFontWeight: FontWeight.w500, textSize: 20),
+                  ),
+                  const  SizedBox(height: 10),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount:
+                          widget.providerChooseEdu.listDataForeignLangTemp.length,
+                      itemBuilder: (context, index) => GestureDetector(
+                        child: Card(
+                          margin: const EdgeInsets.all(8),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              widget.providerChooseEdu.listDataForeignLangTemp[index]
+                                  .name,
+                              overflow: TextOverflow.fade,
+                              softWrap: true,
+                              maxLines: 3,
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          log(widget.providerChooseEdu
+                              .listDataForeignLangTemp[index].id.toString());
+                          widget.providerChooseEdu.setForeignLang(
+                              id: widget.providerChooseEdu
+                                  .listDataForeignLangTemp[index].id,
+                              name: widget.providerChooseEdu
+                                  .listDataForeignLangTemp[index].name);
+                          Navigator.of(context).pop();
+                        },
                       ),
                     ),
                   ),
-                  onTap: () {
-                    log(widget.providerChooseEdu
-                        .listDataForeignLangTemp[index].id.toString());
-                    widget.providerChooseEdu.setForeignLang(
-                        id: widget.providerChooseEdu
-                            .listDataForeignLangTemp[index].id,
-                        name: widget.providerChooseEdu
-                            .listDataForeignLangTemp[index].name);
-                    Navigator.of(context).pop();
-                  },
-                ),
+                ],
               ))
           : MyWidgets.loaderDownload(context: context),
     );

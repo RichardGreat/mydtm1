@@ -7,7 +7,8 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class Privilege extends StatefulWidget {
-  const Privilege({Key? key}) : super(key: key);
+  Function funcState;
+  Privilege({Key? key, required this.funcState}) : super(key: key);
 
   @override
   State<Privilege> createState() => _PrivilegeState();

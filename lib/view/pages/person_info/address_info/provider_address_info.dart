@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_address.dart';
@@ -11,6 +12,7 @@ import 'package:mydtm/data/model_parse/m6_model/get_address.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_country.dart';
 import 'package:mydtm/data/model_parse/person_info/model_address.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 class ProviderAddressInfo extends ChangeNotifier {
   final keyAddressInfo = GlobalKey<FormState>();
@@ -196,7 +198,22 @@ class ProviderAddressInfo extends ChangeNotifier {
       notifyListeners();
 
       boolGetAddressInfo = true;
-      MyWidgets.awesomeDialogInfo(context: context, valueText: "saved".tr());
+          AwesomeDialog(
+          context: context,
+          dialogType: DialogType.INFO,
+          animType: AnimType.BOTTOMSLIDE,
+          title: "DTM",
+          desc: "saved".tr(),
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () {
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
+          },
+          btnCancelText: "OK")
+          .show();
 
       notifyListeners();
     } catch (e) {

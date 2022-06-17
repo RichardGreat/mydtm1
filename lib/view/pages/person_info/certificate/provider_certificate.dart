@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/languang
 import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/set_server.dart';
 import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/widgets/model_botton_sheet.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 class ProviderCertificate extends ChangeNotifier {
   bool imageChange = true;
@@ -316,7 +318,7 @@ class ProviderCertificate extends ChangeNotifier {
   bool boolSentServerCertificate = false;
   late MasseageSetServerCertificate setServerCertificate;
 
-  Future sentCertificateServer({required BuildContext context, required Function stateFunc}) async {
+  Future sentCertificateServer({required BuildContext context, required Function stateFunc, required Function stateFunc2}) async {
     try{
       // log( textForeignSertNumber.text);
       // log( langTypeIds);
@@ -337,7 +339,25 @@ class ProviderCertificate extends ChangeNotifier {
       boolSentServerCertificate = false;
       stateFunc();
       notifyListeners();
-      MyWidgets.awesomeDialogInfo(context: context, valueText: "Ma'lumot saqlandi sertifikat tasdiqlanishini kuting");
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.INFO,
+          animType: AnimType.BOTTOMSLIDE,
+          title: "DTM",
+          desc: "Ma'lumot saqlandi sertifikat tasdiqlanishini kuting",
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () async{
+            await stateFunc2();
+            Navigator.of(context).pop();
+            // Navigator.of(context).pop();
+            // Navigator.of(context).pop();
+          },
+          btnCancelText: "OK")
+          .show();
+
 
 
       getNationCertInfo();

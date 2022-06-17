@@ -22,21 +22,28 @@ class _ForeignLanguageAddState extends State<ForeignLanguageAdd> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: ()async{
+          widget.function();
+          return true;
+        },
+      child: Scaffold(
       appBar: appBarForeignLang(context: context, providerCertificate: widget.providerCertificate),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Form(
             autovalidateMode: AutovalidateMode.onUserInteraction ,
-            child: widget.providerCertificate.boolSentServerCertificate ? 
-          Center(child:  MyWidgets.loaderDownload(context: context))
+            child: widget.providerCertificate.boolSentServerCertificate ?
+            Center(child:  MyWidgets.loaderDownload(context: context))
                 :
             Container(
                 margin: const EdgeInsets.all(10),
-                child: inputForeignCertificate(f: myState,context: context, providerCertificate: widget.providerCertificate)),
+                child: inputForeignCertificate(f: myState,context: context,
+                    f2: widget.function,
+                    providerCertificate: widget.providerCertificate)),
           ),
         ),
       ),
-    );
+    ),);
   }
 }

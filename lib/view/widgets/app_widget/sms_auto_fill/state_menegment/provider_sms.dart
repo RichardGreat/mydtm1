@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_token.dart';
@@ -16,9 +17,11 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/edu/edu_reg_success.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_auth.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_captcha_error.dart';
+import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_phonechange_saved.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_registrated.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/networks/network_sms.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:otp_autofill/otp_autofill.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
@@ -132,65 +135,124 @@ class ProviderSms extends ChangeNotifier {
   }
 
   late String dataResetPassword;
-
+  //   phoneNum:  box.get("phoneNumber"),
+  // password: "",
+  // captchaKey: modelResetPassSms.data.smsId.toString(),
+  // captchaValue: modelResetPassSms.data.endDate.toString(),
+  // registration: "2")
   Future resetPassword(
       {required String userName,
       required String captchaKey,
       required String captchaVal,
       required BuildContext context}) async {
     boolData = false;
-    try {
-      if (valueSignature != null) {
-        ///
-        dataResetPassword = await networkSmsAutoFill.resetPasswordSms(
-            userName: userName,
-            captchaKey: captchaKey,
-            captchaVal: captchaVal,
-            smsHash: valueSignature!);
+    // try {
+    //   if (valueSignature != null) {
 
-        ModelRegistrationSms modelRegistrationSms =
-            ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
-
-        smsTimer(timers: modelRegistrationSms.data.endDate, context: context);
-        ModelRegistrationSms modelRegistrationSms12 =
-            ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
-        smsId = modelRegistrationSms12.data.smsId.toString();
-      } else {
-        log(code1);
-      }
-      boolData = true;
-
-      ///
-      /// Navigator.push(context, CupertinoPageRoute(builder: (context) => const NewPassword(),));
-      ///
-      log("#3");
-      notifyListeners();
-    } catch (e) {
-      log(e.toString());
-    }
-    boolData = true;
+        // dataResetPassword = await networkSmsAutoFill.resetPasswordSms(
+        //     userName: userName,
+        //     captchaKey: captchaKey,
+        //     captchaVal: captchaVal,
+        //     smsHash: valueSignature!);
+        //
+        // ModelRegistrationSms modelRegistrationSms =
+        //     ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
+        //
+        // smsTimer(timers: modelRegistrationSms.data.endDate, context: context);
+        // ModelRegistrationSms modelRegistrationSms12 =
+        //     ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
+        // smsId = modelRegistrationSms12.data.smsId.toString();
+      // } else {
+      //   log(code1);
+      // }
+    //   boolData = true;
+    //
+    //   ///
+    //   /// Navigator.push(context, CupertinoPageRoute(builder: (context) => const NewPassword(),));
+    //   ///
+    //   log("#3");
+    //   notifyListeners();
+    // } catch (e) {
+    //   log(e.toString());
+    // }
+    smsTimer(context: context, timers: int.parse(captchaValues));
+    // boolData = false;
     notifyListeners();
   }
 
+  /// Change phone
   Future changePhone(
       {required String userName,
       required String smsHash,
       required BuildContext context}) async {
+    boolData = true;
+    try {
+      smsTimer(timers: 180, context: context);
+    } catch (e) {
+      log(e.toString());
+      boolData = false;
+      notifyListeners();
+    }
+  }
+  Future changePhoneNumber(
+      {required String phoneNum,
+        required String smsId,
+        required String smsCode,
+        required BuildContext context}) async {
     boolData = false;
     try {
-      // NetworkChangePhone networkChangePhone = NetworkChangePhone();
-      // String data = await networkChangePhone.getContact(
-      //     userName: userName, smsHash: smsHash);
-      // log(data);
-      // ModelRegistrationSms modelRegistrationSms =
-      //     ModelRegistrationSms.fromJson(jsonDecode(data));
-      // smsId = modelRegistrationSms.data.username.toString();
-      // // log(data);
-      // boolData = true;
-      // notifyListeners();
+      Map<String, dynamic> mapPhoneChange = {
+
+        "sms_id":smsId,
+        "sms_code":smsCode,
+        "phone":phoneNum,
+      };
+      String dataChangePhone = await networkSmsAutoFill.changePhoneNumber(mapChangePhone: mapPhoneChange);
+
+      ModelPhoneChangeSaved  modelPhoneChangeSaved = ModelPhoneChangeSaved.fromJson(jsonDecode(dataChangePhone));
+
+      log(dataChangePhone);
+      boolData = true;
+      if(modelPhoneChangeSaved.status == 1){
+        box.delete("phoneNumber");
+        box.put("phoneNumber",phoneNum );
+        AwesomeDialog(
+            context: context,
+            dialogType: DialogType.INFO,
+            animType: AnimType.BOTTOMSLIDE,
+            title: "DTM",
+            desc: "Telefon raqam o'zgardi",
+            titleTextStyle: TextStyle(
+                color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+            descTextStyle: TextStyle(
+                color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+            btnCancelOnPress: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
+            },
+            btnCancelText: "OK")
+            .show();
+      }
+      notifyListeners();
     } catch (e) {
       log(e.toString());
       boolData = true;
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.INFO,
+          animType: AnimType.BOTTOMSLIDE,
+          title: "DTM",
+          desc: "Qayta urinib ko'ring",
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () {
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
+          },
+          btnCancelText: "OK")
+          .show();
       notifyListeners();
     }
   }
@@ -331,7 +393,11 @@ class ProviderSms extends ChangeNotifier {
       required String password,
       required String captchaKey,
       required String captchaValue}) async {
-
+    //   phoneNum:  box.get("phoneNumber"),
+    // password: "",
+    // captchaKey: modelResetPassSms.data.smsId.toString(),
+    // captchaValue: modelResetPassSms.data.endDate.toString(),
+    // registration: "2")
     numberPhones = phoneNum;
     passwords = password;
     captchaKeys = captchaKey;

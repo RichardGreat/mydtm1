@@ -6,12 +6,11 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
 
 class NetworkSmsAutoFill {
-  Future<String> registrationSms(
-      {required String userName,
-      required String password,
-      required String captchaKey,
-      required String captchaValue,
-      required String smsHash}) async {
+  Future<String> registrationSms({required String userName,
+    required String password,
+    required String captchaKey,
+    required String captchaValue,
+    required String smsHash}) async {
     Response response;
     var dio = Dio();
     response = await dio.post("${MainUrl.mainUrls}/auth/register", data: {
@@ -25,11 +24,10 @@ class NetworkSmsAutoFill {
   }
 
   ///
-  Future<String> resetPasswordSms(
-      {required String userName,
-      required String captchaKey,
-      required String captchaVal,
-      required String smsHash}) async {
+  Future<String> resetPasswordSms({required String userName,
+    required String captchaKey,
+    required String captchaVal,
+    required String smsHash}) async {
     Response response;
     var dio = Dio();
     log(userName);
@@ -43,10 +41,9 @@ class NetworkSmsAutoFill {
     return jsonEncode(response.data);
   }
 
-  static Future<String> sentServerSms(
-      {required String smsCode,
-      required String smsId,
-      required String appId}) async {
+  static Future<String> sentServerSms({required String smsCode,
+    required String smsId,
+    required String appId}) async {
     var dio = Dio();
     Response response;
     log("sms_code: $smsCode, sms_id:$smsId");
@@ -58,10 +55,9 @@ class NetworkSmsAutoFill {
 
   var box = Hive.box("online");
 
-  Future<String> sentServer2Edu(
-      {required String resiviedSms,
-      required String smsId,
-      required String logId}) async {
+  Future<String> sentServer2Edu({required String resiviedSms,
+    required String smsId,
+    required String logId}) async {
     var dio = Dio();
     Response response;
     log(box.get("token"));
@@ -72,4 +68,18 @@ class NetworkSmsAutoFill {
 
     return jsonEncode(response.data);
   }
+
+
+  Future changePhoneNumber(
+      {required Map<String, dynamic> mapChangePhone}) async {
+    var dio = Dio();
+    Response response;
+    response =
+    await dio.post("${MainUrl.mainUrls}/v1/person-data/change-phone-check-sms",
+        data: mapChangePhone,
+        options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")})
+    );
+    return jsonEncode(response.data).toString();
+  }
+
 }

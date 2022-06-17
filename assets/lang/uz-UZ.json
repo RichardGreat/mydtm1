@@ -100,6 +100,10 @@
   "languageApp": "Interfeys tili",
   "uz": "O'zbek tili",
   "qq": "Qoraqalpoq tili",
-  "ru": "Rus tili"
+  "ru": "Rus tili",
+  "passportFillInfo": "Pasport ma'lumotlarni kiriting",
+  "addressFillInfo": "Doimiy yashash manzilni kiriting",
+  "eduEndSchool": "Tugatgan ta'lim muassasaini kiriting"
+
 
 }

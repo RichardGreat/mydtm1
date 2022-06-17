@@ -36,6 +36,11 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
   @override
   void initState() {
     if (widget.registration != "99") {
+    //   phoneNum:  box.get("phoneNumber"),
+    // password: "",
+    // captchaKey: modelResetPassSms.data.smsId.toString(),
+    // captchaValue: modelResetPassSms.data.endDate.toString(),
+    // registration: "2")
       providerSms.getSmsCode(
           context: context,
           captchaKey: widget.captchaKey,

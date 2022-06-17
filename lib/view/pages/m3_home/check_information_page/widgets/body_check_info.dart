@@ -7,6 +7,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 Widget bodyCheckInformation(
     {required BuildContext context,
+      required Function functions,
     required ProviderCheckInformation providerCheckInformation,
     required String serviceName}) {
   var box = Hive.box("online");
@@ -25,7 +26,8 @@ Widget bodyCheckInformation(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
-            providerCheckInformation.checkInfo(index: 0, context: context);
+
+            providerCheckInformation.checkInfo(index: 0, context: context, func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           leading: MyWidgets.robotoFontText(
@@ -51,7 +53,7 @@ Widget bodyCheckInformation(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
-            providerCheckInformation.checkInfo(index: 1, context: context);
+            providerCheckInformation.checkInfo(index: 1, context: context, func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           leading: MyWidgets.robotoFontText(
@@ -76,7 +78,7 @@ Widget bodyCheckInformation(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
-            providerCheckInformation.checkInfo(index: 2, context: context);
+            providerCheckInformation.checkInfo(index: 2, context: context, func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           leading: MyWidgets.robotoFontText(
@@ -101,7 +103,7 @@ Widget bodyCheckInformation(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
-            providerCheckInformation.checkInfo(index: 3, context: context);
+            providerCheckInformation.checkInfo(index: 3, context: context, func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           leading: MyWidgets.robotoFontText(
@@ -126,7 +128,7 @@ Widget bodyCheckInformation(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
-            providerCheckInformation.checkInfo(index: 4, context: context);
+            providerCheckInformation.checkInfo(index: 4, context: context, func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           leading: MyWidgets.robotoFontText(
@@ -151,7 +153,7 @@ Widget bodyCheckInformation(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
-            providerCheckInformation.checkInfo(index: 5, context: context);
+            providerCheckInformation.checkInfo(index: 5, context: context, func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp),
           leading: MyWidgets.robotoFontText(

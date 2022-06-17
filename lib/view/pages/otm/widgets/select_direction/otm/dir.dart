@@ -156,6 +156,7 @@ class _DIREduState extends State<DIREdu> {
                               idDir:  widget.providerChooseEdu.listDirTemp[index].id.toString(),
                               fLang: widget.providerChooseEdu.listDirTemp[index].flangId.toString(),
                               titleEduDirId: widget.titleEduDirId,
+                            context: context
                           );
                           setState((){});
                           // setData(
@@ -164,9 +165,7 @@ class _DIREduState extends State<DIREdu> {
                           //     id: widget.providerChooseEdu
                           //         .listEduChooseRegionTemp[index].regionId);
                           // setState((){});
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pop();
+
                         },
                       ),
                 ),

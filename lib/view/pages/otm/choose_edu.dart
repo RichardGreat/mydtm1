@@ -5,10 +5,10 @@ import 'package:mydtm/view/pages/otm/widgets/app_bar_choose_edu.dart';
 import 'package:mydtm/view/pages/otm/widgets/body_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:provider/provider.dart';
-import 'dart:developer';
 
 class ChooseEdu extends StatefulWidget {
-  const ChooseEdu({Key? key}) : super(key: key);
+  Function funcState;
+  ChooseEdu({Key? key,  required this.funcState}) : super(key: key);
 
   @override
   State<ChooseEdu> createState() => _ChooseEduState();
@@ -27,18 +27,18 @@ class _ChooseEduState extends State<ChooseEdu> {
 
    double heightScreen(){
      if(MediaQuery.of(context).size.height >= 800){
-       return MediaQuery.of(context).size.height*1.3;
+       return MediaQuery.of(context).size.height*1.33;
      }else if(MediaQuery.of(context).size.height < 800 && MediaQuery.of(context).size.height >= 700){
-       return MediaQuery.of(context).size.height*1.5;
+       return MediaQuery.of(context).size.height*1.53;
      }
    else if(MediaQuery.of(context).size.height < 700 && MediaQuery.of(context).size.height >= 600){
-  return MediaQuery.of(context).size.height*1.6;
+  return MediaQuery.of(context).size.height*1.63;
   }
      else if(MediaQuery.of(context).size.height < 600 && MediaQuery.of(context).size.height >= 500){
-       return MediaQuery.of(context).size.height*1.8;
+       return MediaQuery.of(context).size.height*1.83;
      }
      else if(MediaQuery.of(context).size.height < 500 && MediaQuery.of(context).size.height >= 400){
-       return MediaQuery.of(context).size.height*2.5;
+       return MediaQuery.of(context).size.height*2.53;
      }
     return 700;
    }
@@ -48,7 +48,12 @@ class _ChooseEduState extends State<ChooseEdu> {
     return ChangeNotifierProvider(
       create: (context) => providerChooseEdu,
       child: Consumer<ProviderChooseEdu>(
-        builder: (contexts, value, child) => Scaffold(
+        builder: (contexts, value, child) => WillPopScope(
+            onWillPop: ()async{
+              widget.funcState();
+              return true;
+            },
+          child: Scaffold(
             appBar: appBarEduChoose(
                 context: contexts, providerChooseEdu: providerChooseEdu),
             body: SafeArea(
@@ -56,14 +61,14 @@ class _ChooseEduState extends State<ChooseEdu> {
                 child: Container(
                   height: heightScreen(),
                   margin: const EdgeInsets.all(15),
-                  child: 
+                  child:
                   providerChooseEdu.boolCheckUseCertificateData ?
 
                   bodyChooseEdu(
                       context: context, providerChooseEdu: providerChooseEdu):MyWidgets.loaderDownload(context: context),
                 ),
               ),
-            )),
+            )),),
       ),
     );
   }
