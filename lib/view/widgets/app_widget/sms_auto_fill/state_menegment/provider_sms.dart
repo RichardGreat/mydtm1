@@ -19,6 +19,7 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_auth.dar
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_captcha_error.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_phonechange_saved.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_registrated.dart';
+import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_reset_password2.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/networks/network_sms.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -145,7 +146,9 @@ class ProviderSms extends ChangeNotifier {
       required String captchaKey,
       required String captchaVal,
       required BuildContext context}) async {
-    boolData = false;
+    boolData = true;
+    notifyListeners();
+
     // try {
     //   if (valueSignature != null) {
 
@@ -178,6 +181,26 @@ class ProviderSms extends ChangeNotifier {
     smsTimer(context: context, timers: int.parse(captchaValues));
     // boolData = false;
     notifyListeners();
+  }
+
+  Future getResetPass({required String smsCode,
+    required BuildContext context,
+    required String smsId})async {
+    try{
+      boolData = false;
+      notifyListeners();
+      String dataSms = await NetworkSmsAutoFill.sentServerSms(smsId: smsId, appId: "1", smsCode: smsCode);
+      ModelResetPassToken2 modelResetPassToken2 = ModelResetPassToken2.fromJson(jsonDecode(dataSms));
+      
+      log(dataSms);
+      boolData = true;
+      timer.cancel();
+      notifyListeners();
+    }catch(e){
+      boolData = true;
+      timer.cancel();
+      log(e.toString());
+    }
   }
 
   /// Change phone

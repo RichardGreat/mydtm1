@@ -44,10 +44,15 @@ Widget bottomUI(
               );
             }
             else if(providerSms.smsSentStatus == 3){
-              providerSms.changePhoneNumber(phoneNum: providerSms.numberPhones, smsId: providerSms.captchaKeys, smsCode: providerSms.controller.text, context: context);
+              providerSms.changePhoneNumber(
+                  phoneNum: providerSms.numberPhones,
+                  smsId: providerSms.captchaKeys,
+                  smsCode: providerSms.controller.text, context: context);
             }
             else if(providerSms.smsSentStatus == 2){
-
+                  providerSms.getResetPass(smsCode:providerSms.controller.text,
+                      context:context,
+                      smsId:providerSms.captchaKeys );
             }
           }
 

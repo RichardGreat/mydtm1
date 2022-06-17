@@ -49,7 +49,7 @@ class ProviderCheckInformation extends ChangeNotifier {
   }
 
   Future checkInfo({required int index, required BuildContext context, required Function func}) async {
-    if(box.get("imie").toString().length >= 13){
+    if(modelCheckUserInfo.person){
       if (index == 0) {
         pushNewScreen(
           context,
