@@ -74,8 +74,11 @@ class ProviderSms extends ChangeNotifier {
           smsHash: "a76892");
     }
     try {
+
       ModelRegistrationSms modelRegistrationSms =
           ModelRegistrationSms.fromJson(jsonDecode(dataSms));
+      box.delete("phoneNumber");
+      box.put("phoneNumber", userName);
       if (modelRegistrationSms.status == 1) {
         boolRegistration = false;
         smsId = modelRegistrationSms.data.smsId.toString();
@@ -119,20 +122,27 @@ class ProviderSms extends ChangeNotifier {
       "sms_code": smsCode,
       "sms_id": smsId,
       "app_id": "1",
-
     };
-    String data = await NetworkRegistration.getRegistration(
-        mapRegistration: mapRegistration);
-    ModelAuthorizationParse modelAuthorizationParse = ModelAuthorizationParse.fromJson(jsonDecode(data));
-    String dataToken = await NetworkGetToken.getTokenModel(authCode: modelAuthorizationParse.data.authorizationCode);
-    ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(dataToken));
-    box.delete("token");
-    box.put("token", modelGetToken.data.accessToken);
-    // ignore: use_build_context_synchronously
-    Navigator.pushAndRemoveUntil(context,
-        CupertinoPageRoute(builder: (context) =>
-        const MainPages(),), (route) => false);
-    log(data);
+    try{
+      boolSentServerRequest = false;
+      notifyListeners();
+      String data = await NetworkRegistration.getRegistration(
+          mapRegistration: mapRegistration);
+      ModelAuthorizationParse modelAuthorizationParse = ModelAuthorizationParse.fromJson(jsonDecode(data));
+      String dataToken = await NetworkGetToken.getTokenModel(authCode: modelAuthorizationParse.data.authorizationCode);
+      ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(dataToken));
+      box.delete("token");
+      box.put("token", modelGetToken.data.accessToken);
+      // ignore: use_build_context_synchronously
+      Navigator.pushAndRemoveUntil(context,
+          CupertinoPageRoute(builder: (context) =>
+          const MainPages(),), (route) => false);
+      log(data);
+    }catch(e){
+      boolSentServerRequest = true;
+      notifyListeners();
+    }
+
   }
 
   late String dataResetPassword;
@@ -187,6 +197,8 @@ class ProviderSms extends ChangeNotifier {
     required BuildContext context,
     required String smsId})async {
     try{
+      boolSentServerRequest = false;
+
       boolData = false;
       notifyListeners();
       String dataSms = await NetworkSmsAutoFill.sentServerSms(smsId: smsId, appId: "1", smsCode: smsCode);
@@ -195,10 +207,13 @@ class ProviderSms extends ChangeNotifier {
       log(dataSms);
       boolData = true;
       timer.cancel();
+      boolSentServerRequest = true;
       notifyListeners();
     }catch(e){
       boolData = true;
       timer.cancel();
+      boolSentServerRequest = true;
+      notifyListeners();
       log(e.toString());
     }
   }
@@ -224,6 +239,8 @@ class ProviderSms extends ChangeNotifier {
         required BuildContext context}) async {
     boolData = false;
     try {
+      boolSentServerRequest = false;
+      notifyListeners();
       Map<String, dynamic> mapPhoneChange = {
 
         "sms_id":smsId,
@@ -257,6 +274,8 @@ class ProviderSms extends ChangeNotifier {
             .show();
       }
       notifyListeners();
+      boolSentServerRequest = true;
+      notifyListeners();
     } catch (e) {
       log(e.toString());
       boolData = true;
@@ -276,6 +295,7 @@ class ProviderSms extends ChangeNotifier {
           },
           btnCancelText: "OK")
           .show();
+      boolSentServerRequest = true;
       notifyListeners();
     }
   }
@@ -377,25 +397,38 @@ class ProviderSms extends ChangeNotifier {
   String smsIds = '';
   String logId = '';
 
+  bool boolSentServerRequest = true;
+
   Future sentServer2Edu({required BuildContext context}) async {
     log("resivied_sms: ${controller.text.toString()}, sms_id:$smsId7, logId:$logId7");
-    String data = await networkSmsAutoFill.sentServer2Edu(
-        resiviedSms: controller.text,
-        smsId: smsId7.toString(),
-        logId: logId7.toString());
-    ModelEduSuccess modelEduSuccess =
-        ModelEduSuccess.fromJson(jsonDecode(data));
-    if (modelEduSuccess.status == 1) {
-      // ignore: use_build_context_synchronously
-      ProviderAriza providerAriza = ProviderAriza();
-      // ignore: use_build_context_synchronously
-      pushNewScreen(context, screen: MainMyStatement(numberParam: "2",));
-    } else {
-      MyWidgets.awesomeDialogError(
-          context: context,
-          valueText: "Ma'lumot kiritishda xatolik qayta urinib ko'ring ");
-      Navigator.of(context).pop();
-    }
+    boolSentServerRequest = false;
+    notifyListeners();
+   try{
+     String data = await networkSmsAutoFill.sentServer2Edu(
+       resiviedSms: controller.text,
+       smsId: smsId7.toString(),
+       logId: logId7.toString());
+   ModelEduSuccess modelEduSuccess =
+   ModelEduSuccess.fromJson(jsonDecode(data));
+
+   if (modelEduSuccess.status == 1) {
+     // ignore: use_build_context_synchronously
+     ProviderAriza providerAriza = ProviderAriza();
+     // ignore: use_build_context_synchronously
+     pushNewScreen(context, screen: MainMyStatement(numberParam: "2",));
+   } else {
+     MyWidgets.awesomeDialogError(
+         context: context,
+         valueText: "Ma'lumot kiritishda xatolik qayta urinib ko'ring ");
+     Navigator.of(context).pop();
+   }
+     boolSentServerRequest = true;
+   notifyListeners();
+   }catch(e){
+     boolSentServerRequest = true;
+     notifyListeners();
+   }
+
   }
 
   String phoneNumber = "";

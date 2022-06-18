@@ -56,11 +56,13 @@ class ProviderChooseEdu extends ChangeNotifier {
       for (int i = 0; i < listCheckCertificate.length; i++) {
         listCertificateCheckUse.add(ModelCertificateForServer(
             certId: "-1",
-            userValue: listCheckCertificate[i].certSernum.toString(),
+            userValue: "123",
             certBall: listCheckCertificate[i].percent.toString(),
             certName: listCheckCertificate[i].name.toString(),
             cerId: listCheckCertificate[i].id.toString(),
-            isChecked: listCheckCertificate[i].isCheck.toString()));
+            isChecked: "1"
+        )
+        );
       }
       log(jsonEncode(listCertificateCheckUse));
       boolCheckUseCertificateData = true;

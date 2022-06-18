@@ -28,33 +28,31 @@ Widget bottomUI(
         height: 45,
         color: MyColors.appColorBlue1(),
         onPressed: () {
-          // providerSms.sentServer(
-          //     appId: providerSms.smsIdActivate,
-          //     smsCode: providerSms.controller.text);
+          providerSms.boolSentServerRequest ? {
           if (providerSms.controller.text.length > 4) {
             if (providerSms.smsSentStatus == 7) {
-              providerSms.sentServer2Edu(context: context);
+              providerSms.sentServer2Edu(context: context),
             }
             else if (providerSms.smsSentStatus == 1) {
-
               providerSms.sendRegistrationServer(
-              smsCode:  providerSms.controller.text,
-              smsId:   providerSms.smsId,
-                context: context
-              );
+                  smsCode: providerSms.controller.text,
+                  smsId: providerSms.smsId,
+                  context: context
+              ),
             }
-            else if(providerSms.smsSentStatus == 3){
+            else if (providerSms.smsSentStatus == 3) {
               providerSms.changePhoneNumber(
                   phoneNum: providerSms.numberPhones,
                   smsId: providerSms.captchaKeys,
-                  smsCode: providerSms.controller.text, context: context);
+                  smsCode: providerSms.controller.text, context: context),
             }
-            else if(providerSms.smsSentStatus == 2){
-                  providerSms.getResetPass(smsCode:providerSms.controller.text,
-                      context:context,
-                      smsId:providerSms.captchaKeys );
+            else if (providerSms.smsSentStatus == 2) {
+              providerSms.getResetPass(smsCode: providerSms.controller.text,
+                  context: context,
+                  smsId: providerSms.captchaKeys),
             }
           }
+        }:{};
 
           ///
         },

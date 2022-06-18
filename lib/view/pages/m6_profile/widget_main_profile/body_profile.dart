@@ -80,7 +80,7 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
               color: MyColors.appColorBlue1(),
               size: 24,
             ),
-              subtitle: MyWidgets.robotoFontText(text: box.get("phoneNumber"),textSize: 14,   textColor: MyColors.appColorGrey400(),
+              subtitle: MyWidgets.robotoFontText(text: box.get("phoneNumber").toString(),textSize: 14,   textColor: MyColors.appColorGrey400(),
 
                   textFontWeight: FontWeight.w100),
            title : MyWidgets.robotoFontText(

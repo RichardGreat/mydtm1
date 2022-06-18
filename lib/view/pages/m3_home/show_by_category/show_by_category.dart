@@ -109,7 +109,7 @@ myViewButton(
                                   overflow: TextOverflow.fade,
                                   style: TextStyle(
                                       color: MyColors.appColorBlack(),
-                                      fontSize: 17,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                       fontFamily: 'Roboto-Medium'),
                                 ),

@@ -18,7 +18,7 @@ class _MainPagesState extends State<MainPages> {
   List<Widget> myPages() => [
         const MainHome(),
          MainMyStatement(numberParam: "0"),
-        const MainMessages(),
+       const MainMessages(),
         const MainProfile(),
       ];
   int index = 0;
@@ -94,15 +94,7 @@ List<PersistentBottomNavBarItem> navBarsItems() {
       activeColorSecondary: MyColors.appColorBlue1(),
       inactiveColorPrimary: MyColors.appColorGrey400(),
     ),
-    // PersistentBottomNavBarItem(
-    //   icon: const Icon(Icons.group, size: 36,),
-    //   inactiveIcon: const Icon(Icons.group_outlined,  size: 36,),
-    //   // title: ("Home"),
-    //   activeColorPrimary: MyColors.appColorBlue1(),
-    //   activeColorSecondary:MyColors.appColorBlue1(),
-    //   inactiveColorPrimary:MyColors.appColorGrey400(),
-    //
-    // ),
+
 
     PersistentBottomNavBarItem(
       icon: const Icon(

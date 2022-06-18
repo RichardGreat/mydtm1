@@ -10,7 +10,7 @@ class NetworkNationalCert {
   Future<String> getNationalCert() async {
     var dio = Dio();
     Response response;
-    response = await dio.get("${MainUrl.mainUrls}/v1/imtiyoz/get-national-cert",
+    response = await dio.get("${MainUrl.mainUrls}/v1/qabul/nation-cert-list",
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
     return jsonEncode(response.data);
   }

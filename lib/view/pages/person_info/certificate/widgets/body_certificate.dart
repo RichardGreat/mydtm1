@@ -185,19 +185,18 @@ Widget bodyCertificate(
                                       spreadRadius: 1)
                                 ]),
                             child: Container(
-                              margin: EdgeInsets.only(top: 2, bottom: 2),
+                              margin: const EdgeInsets.only(top: 2, bottom: 2),
                               child: ListTile(
 
-                                  trailing: Icon(Icons.arrow_forward_ios_rounded),
+                                  trailing:const Icon(Icons.arrow_forward_ios_rounded),
                                   title: MyWidgets.robotoFontText(
                                       text: providerCertificate
-                                              .listCheckCertificate[index].name ??
-                                          ""),
+                                              .listCheckCertificate[index].name.toString() ),
                                   subtitle: MyWidgets.robotoFontText(
-                                      text: providerCertificate
+                                      text: "${providerCertificate
                                               .listCheckCertificate[index]
-                                              .certSernum ??
-                                          ""),
+                                              .percent.toString()} %"
+                                  ),
                                   onTap: () {}),
                             ),
                           ),

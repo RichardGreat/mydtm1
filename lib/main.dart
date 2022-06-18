@@ -81,11 +81,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return
 
-      // ConnectionNotifier(
-      // disconnectedContent:
-      //     const Center(child: Text("Internet bilan oloqa yoq")),
-      // connectedContent: const Center(child: Text("Aloqa tiklandi")),
-    //  child:
+      ConnectionNotifier(
+      disconnectedContent:
+          const Center(child: Text("Internet bilan oloqa yoq")),
+      connectedContent: const Center(child: Text("Aloqa tiklandi")),
+     child:
     MaterialApp(
           debugShowCheckedModeBanner: false,
           localizationsDelegates: context.localizationDelegates,
@@ -93,7 +93,7 @@ class _MyAppState extends State<MyApp> {
           locale: context.locale,
           home:const MainPages(),
 
-    //),
+    ),
 
     );
   }

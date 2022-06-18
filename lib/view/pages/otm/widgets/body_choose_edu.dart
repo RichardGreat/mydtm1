@@ -68,13 +68,13 @@ Widget bodyChooseEdu({
             ),
           ),
           child: ListView.builder(
-
             physics: const NeverScrollableScrollPhysics(),
             itemCount: providerChooseEdu.listTitleEduDir.length,
             itemBuilder: (context, index) => GestureDetector(
               onTap: () {
                 if (checkFillSelected() && checkFillDir(index: index)) {
             if(providerChooseEdu.boolCheckUseCertificateDataNot) {
+
                     pushNewScreen(context,
                         screen: SelectDirection(
                           providerChooseEdu: providerChooseEdu,
@@ -83,6 +83,7 @@ Widget bodyChooseEdu({
                         ));
                   }else{
                   if(providerChooseEdu.boolSetUserNationCert){
+
                     pushNewScreen(context,
                         screen: SelectDirection(
                           providerChooseEdu: providerChooseEdu,

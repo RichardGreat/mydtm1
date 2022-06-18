@@ -12,7 +12,7 @@ class NetworkServiceList {
     Response response;
 
     response = await dio.get("${MainUrl.mainUrls}/home/service-list",
-      options: Options(receiveTimeout: 5000),
+      options: Options(receiveTimeout: 6000),
       );
     return jsonEncode(response.data);
   }
