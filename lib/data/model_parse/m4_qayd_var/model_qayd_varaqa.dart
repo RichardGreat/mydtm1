@@ -4,7 +4,7 @@ class ModelArizaQadVaraqa {
   required  this.data,
   });
 
-  int status;
+  dynamic status;
   DataArizaQadVaraqa data;
 
   factory ModelArizaQadVaraqa.fromJson(Map<String, dynamic> json) => ModelArizaQadVaraqa(
@@ -69,9 +69,9 @@ class Address {
    required this.address,
   });
 
-  String regionName;
-  String districtName;
-  String address;
+  dynamic regionName;
+  dynamic districtName;
+  dynamic address;
 
   factory Address.fromJson(Map<String, dynamic> json) => Address(
     regionName: json["region_name"],
@@ -96,12 +96,12 @@ class CertNation {
   required  this.sName,
   });
 
-  int isCheck;
-  int id;
-  String ball;
-  String percent;
-  String startAt;
-  String sName;
+ dynamic isCheck;
+ dynamic id;
+ dynamic ball;
+ dynamic percent;
+ dynamic startAt;
+ dynamic sName;
 
   factory CertNation.fromJson(Map<String, dynamic> json) => CertNation(
     isCheck: json["is_check"],
@@ -128,8 +128,8 @@ class Dir {
   required this.b2,
   });
 
-  String b1;
-  String b2;
+ dynamic b1;
+ dynamic b2;
 
   factory Dir.fromJson(Map<String, dynamic> json) => Dir(
     b1: json["b1"],
@@ -155,15 +155,15 @@ class Education {
  required  this.countryId,
   });
 
-  String countryName;
-  String regionName;
-  String districtName;
-  String generalEduListName;
-  String gEduTypeName;
-  dynamic eduName;
-  int graduatedYear;
-  String docSerNum;
-  int countryId;
+ dynamic countryName;
+ dynamic regionName;
+ dynamic districtName;
+ dynamic generalEduListName;
+ dynamic gEduTypeName;
+ dynamic eduName;
+ dynamic graduatedYear;
+ dynamic docSerNum;
+ dynamic countryId;
 
   factory Education.fromJson(Map<String, dynamic> json) => Education(
     countryName: json["country_name"],
@@ -217,29 +217,29 @@ class Model {
   required  this.eduLangName,
   });
 
-  int id;
-  int imie;
-  int testRegionId;
-  int flangId;
-  bool testGraph;
-  int logId;
-  int langId;
-  int dirId;
-  int appId;
-  bool isGrand;
-  bool isMaqsad;
-  String createdAt;
-  String updatedAt;
-  int invoice;
-  String hash;
-  int status;
-  int serial;
-  int pay;
-  int fee;
-  String balance;
-  String tregion;
-  String flangName;
-  String eduLangName;
+ dynamic id;
+ dynamic imie;
+ dynamic testRegionId;
+ dynamic flangId;
+ dynamic testGraph;
+ dynamic logId;
+ dynamic langId;
+ dynamic dirId;
+ dynamic appId;
+ dynamic isGrand;
+ dynamic isMaqsad;
+ dynamic createdAt;
+ dynamic updatedAt;
+ dynamic invoice;
+ dynamic hash;
+ dynamic status;
+ dynamic serial;
+ dynamic pay;
+ dynamic fee;
+ dynamic balance;
+ dynamic tregion;
+ dynamic flangName;
+ dynamic eduLangName;
 
   factory Model.fromJson(Map<String, dynamic> json) => Model(
     id: json["id"],
@@ -308,16 +308,16 @@ class Person {
   required  this.data,
   });
 
-  int id;
-  String psser;
-  int psnum;
-  int imie;
-  String lname;
-  String fname;
-  String mname;
-  String bdate;
-  bool sex;
-  String data;
+ dynamic id;
+ dynamic psser;
+ dynamic psnum;
+ dynamic imie;
+ dynamic lname;
+ dynamic fname;
+ dynamic mname;
+ dynamic bdate;
+ dynamic sex;
+ dynamic data;
 
   factory Person.fromJson(Map<String, dynamic> json) => Person(
     id: json["id"],
@@ -355,11 +355,11 @@ class Plan {
   required  this.dirName,
   });
 
-  int id;
-  int orderId;
-  String emodeName;
-  String eduName;
-  String dirName;
+ dynamic id;
+ dynamic orderId;
+ dynamic emodeName;
+ dynamic eduName;
+ dynamic dirName;
 
   factory Plan.fromJson(Map<String, dynamic> json) => Plan(
     id: json["id"],
@@ -384,8 +384,8 @@ class Xarbiy {
  required   this.dirName,
   });
 
-  String eduName;
-  String dirName;
+  dynamic eduName;
+  dynamic dirName;
 
   factory Xarbiy.fromJson(Map<String, dynamic> json) => Xarbiy(
     eduName: json["edu_name"],

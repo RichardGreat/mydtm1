@@ -14,9 +14,12 @@ class _MainHomeState extends State<MainHome> {
   ProviderMainHome providerMainHome = ProviderMainHome();
   @override
   void initState() {
-    providerMainHome.getDateService();
+    getServiceList();
     // TODO: implement initState
     super.initState();
+  }
+  Future getServiceList()async{
+    await providerMainHome.getDateService(context: context);
   }
 
   @override

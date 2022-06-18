@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mydtm/data/internet_connections/m3_home/service_list.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
+import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'dart:developer';
@@ -23,7 +25,7 @@ class ProviderMainHome extends ChangeNotifier {
   MyColors myColors = MyColors();
   late NetworkServiceList networkServiceList = NetworkServiceList();
 
-  Future getDateService() async {
+  Future getDateService({required BuildContext context}) async {
     boolParseData = false;
 
     try {
@@ -47,9 +49,27 @@ class ProviderMainHome extends ChangeNotifier {
 
       boolParseData = true;
     } catch (e) {
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.ERROR,
+          animType: AnimType.BOTTOMSLIDE,
+          title: "DTM",
+          desc: "internet bilan aloqani tekshiring",
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () {
+            getDateService(context: context);
+            Navigator.of(context).pop();
+
+          },
+          btnCancelText: "OK")
+          .show();
       log("@@@message");
       log(e.toString());
     }
+
     // StaticListForDelete staticListForDelete = StaticListForDelete();
     // modelListForDelete.addAll(staticListForDelete.getListDelete());
     // log(jsonEncode(modelListForDelete));
