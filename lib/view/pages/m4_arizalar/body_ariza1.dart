@@ -11,8 +11,8 @@ Widget bodyAriza1(
   return GestureDetector(
     child: Container(
       height: 150,
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
+      margin: const  EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: MyColors.appColorWhite(),
           borderRadius: BorderRadius.circular(10),

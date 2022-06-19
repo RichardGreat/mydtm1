@@ -15,7 +15,7 @@ class NetworkEduChooseRegion{
   ,options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")})
   );
 
-    log(response.data);
+    log(jsonEncode(response.data));
     return   jsonEncode(response.data);
   }
 }

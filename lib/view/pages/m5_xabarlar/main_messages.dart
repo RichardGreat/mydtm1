@@ -25,6 +25,8 @@ class _MainMessagesState extends State<MainMessages> {
     super.initState();
   }
 
+
+
   Future getDtmNews() async {
     await providerDtmNews.getAllDtmNews();
   }
