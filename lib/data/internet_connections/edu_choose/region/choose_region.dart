@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
-
+import 'dart:developer';
 class NetworkEduChooseRegion{
   var box = Hive.box("online");
 
@@ -15,6 +15,7 @@ class NetworkEduChooseRegion{
   ,options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")})
   );
 
+    log(response.data);
     return   jsonEncode(response.data);
   }
 }

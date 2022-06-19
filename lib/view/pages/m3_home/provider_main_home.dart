@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m3_home/service_list.dart';
+import 'package:mydtm/data/internet_connections/person_info/set_lang.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -19,11 +21,37 @@ class ProviderMainHome extends ChangeNotifier {
   List<DataServiceList> listDataServiceList = [];
   List<ServiceMainList> listDataServiceListTemp = [];
   List<ServiceMainList> listDataServiceListTemp2 = [];
-
+  var box = Hive.box("online");
   bool boolParseData = false;
 
   MyColors myColors = MyColors();
   late NetworkServiceList networkServiceList = NetworkServiceList();
+  NetworkSetLanguage networkSetLanguage = NetworkSetLanguage();
+  String dataLang = "";
+
+  Future setLangUser() async {
+    try{
+      if (box.get("token").toString().length > 30) {
+        box.get("language") == "1"
+            ? {
+                dataLang =
+                    await networkSetLanguage.setLanguageUser(setLang: "uz")
+              }
+            : box.get("language") == "2"
+                ? {
+                    dataLang =
+                        await networkSetLanguage.setLanguageUser(setLang: "kk")
+                  }
+                : {
+                    dataLang =
+                        await networkSetLanguage.setLanguageUser(setLang: "ru")
+                  };
+        log(dataLang);
+      }
+    }catch(e){
+      log(e.toString());
+    }
+  }
 
   Future getDateService({required BuildContext context}) async {
     boolParseData = false;
@@ -32,7 +60,7 @@ class ProviderMainHome extends ChangeNotifier {
       String dataServiceList = await networkServiceList.getServiceList();
       log(dataServiceList);
       ModelServiceList modelServiceList =
-          ModelServiceList.fromJson(jsonDecode(dataServiceList));
+      ModelServiceList.fromJson(jsonDecode(dataServiceList));
       log(jsonEncode(modelServiceList));
 
       listDataServiceList.addAll(modelServiceList.data);
@@ -62,7 +90,6 @@ class ProviderMainHome extends ChangeNotifier {
           btnCancelOnPress: () {
             getDateService(context: context);
             Navigator.of(context).pop();
-
           },
           btnCancelText: "OK")
           .show();
@@ -86,10 +113,8 @@ class ProviderMainHome extends ChangeNotifier {
 
   /// Go service page
 
-  Future goServicePage(
-      {required BuildContext context,
-      required ServiceMainList serviceMainList}) async {
-
+  Future goServicePage({required BuildContext context,
+    required ServiceMainList serviceMainList}) async {
     pushNewScreen(
       context,
       screen: ServicePage(
@@ -106,13 +131,42 @@ class ProviderMainHome extends ChangeNotifier {
 
   Future searchServicesItem({required String searchValue}) async {
     listDataServiceListTemp.clear();
-    for (var element in listDataServiceListTemp2) {
-      if (element.serviceName
-          .toLowerCase()
-          .contains(searchValue.toLowerCase())) {
-        listDataServiceListTemp.add(element);
-      }
+
+    box.get("language") == "1"
+        ? {
+      for (var element in listDataServiceListTemp2)
+        {
+          if (element.serviceName
+              .toLowerCase()
+              .contains(searchValue.toLowerCase()))
+            {
+              listDataServiceListTemp.add(element),
+            }
+        }
     }
+        : box.get("language") == "2"
+        ? {
+      for (var element in listDataServiceListTemp2)
+        {
+          if (element.serviceNameQQ
+              .toLowerCase()
+              .contains(searchValue.toLowerCase()))
+            {
+              listDataServiceListTemp.add(element),
+            }
+        }
+    }
+        : {
+      for (var element in listDataServiceListTemp2)
+        {
+          if (element.serviceNameRu
+              .toLowerCase()
+              .contains(searchValue.toLowerCase()))
+            {
+              listDataServiceListTemp.add(element),
+            }
+        }
+    };
   }
 
   Future closeSearchMain() async {
@@ -123,5 +177,5 @@ class ProviderMainHome extends ChangeNotifier {
     notifyListeners();
   }
 
-  ///
+///
 }

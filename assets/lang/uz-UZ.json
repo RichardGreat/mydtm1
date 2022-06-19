@@ -8,7 +8,10 @@
   "fillInField": "Maydonlarni to'ldiring",
   "noInfoCheck": "Ma'lumotlar to'liq emas",
   "aboutService": "Xizmat haqida",
+  "arizaNo": "Ariza mavjud emas",
+  "serviceArizlar": "Xizmat bo'yicha arizalarim",
   "noAccount": "Identifikatsiya tizimidan o'ting",
+  "addInfo": "Qo'shimcha ma'lumotlar",
   "choose": "Tanlang",
   "state": "Davlat",
   "province": "Hudud",
@@ -61,8 +64,10 @@
   "telephone":"Telefon",
   "kodError": "Telefon nomer kodida xato",
   "kodLength": "Telefon nomer uzunligi yetarli emas",
+  "kodLength6":"Ma'lumot 6 birlikdan ko'p bo'lishi kerak",
   "password": "Parol",
-  "passwordLength": "Parol uzunligi kam",
+  "resetPassword": "Parolni tiklash",
+  "passwordLength": "Parol uzunligi 8 birlikdan ko'p bo'lishi kerak",
   "nation": "Millati",
   "fillAllRows": "Barcha qatorlarni to'ldiring",
   "personCode": "JSHSHIR",
@@ -103,7 +108,17 @@
   "ru": "Rus tili",
   "passportFillInfo": "Pasport ma'lumotlarni kiriting",
   "addressFillInfo": "Doimiy yashash manzilni kiriting",
-  "eduEndSchool": "Tugatgan ta'lim muassasaini kiriting"
-
+  "eduEndSchool": "Tugatgan ta'lim muassasaini kiriting",
+  "infoNotAll": "Ma'lumotlar to'liq kiritilmagan",
+  "reTry": "Qayta urinib ko'ring",
+  "passwordChange": "Parol o'zgardi",
+  "solve": "Arfimetik amalni bajaring",
+  "searchService":"Xizmat nomini kiriting",
+  "all": "Barchasi",
+  "services": "Xizmatlar",
+  "school": "O'rta makab",
+  "lyceum": "Akademik litsey",
+  "collage": "Kasb-hunar kollei",
+  "othersEdu": "Boshqa o'quv yurti"
 
 }

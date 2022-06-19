@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/view/pages/m3_home/carousel.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
@@ -7,11 +9,12 @@ import 'package:mydtm/view/pages/m3_home/serch_main.dart';
 import 'package:mydtm/view/pages/m3_home/show_by_category/show_by_category.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:universal_image/universal_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 Widget bodyMainHome(
     {required BuildContext context,
     required ProviderMainHome providerMainHome}) {
+  var box = Hive.box("online");
   return providerMainHome.boolParseData
       ? NestedScrollView(
           floatHeaderSlivers: true,
@@ -23,7 +26,7 @@ Widget bodyMainHome(
                 elevation: 0,
                 expandedHeight: 10,
                 flexibleSpace: searchMain(
-                context: context, providerMainHome: providerMainHome),
+                    context: context, providerMainHome: providerMainHome),
                 foregroundColor: MyColors.appColorWhite(),
                 excludeHeaderSemantics: true,
               ),
@@ -54,8 +57,17 @@ Widget bodyMainHome(
                                   width:
                                       MediaQuery.of(context).size.width * 0.6,
                                   child: Text(
-                                    providerMainHome.listDataServiceList[index]
-                                        .categoryName,
+                                    box.get("language") == "1"
+                                        ? providerMainHome
+                                            .listDataServiceList[index]
+                                            .categoryName
+                                        : box.get("language") == "2"
+                                            ? providerMainHome
+                                                .listDataServiceList[index]
+                                                .categoryNameQQ
+                                            : providerMainHome
+                                                .listDataServiceList[index]
+                                                .categoryNameRu,
                                     style: TextStyle(
                                         color: MyColors.appColorBlack(),
                                         fontSize: 17,
@@ -75,13 +87,17 @@ Widget bodyMainHome(
                                       myViewButton(
                                           context: context,
                                           providerMainHome: providerMainHome,
-                                          myList: providerMainHome
+                                          myList:
+
+
+
+                                          providerMainHome
                                               .listDataServiceList[index]
                                               .service);
                                     }
                                   },
                                   child: MyWidgets.robotoFontText(
-                                      text: "Barchasi",
+                                      text: "all".tr(),
                                       textColor: MyColors.appColorBlue1(),
                                       textSize: 15),
                                 ),
@@ -105,7 +121,7 @@ Widget bodyMainHome(
                                     );
                                   },
                                   child: Container(
-                                    height: 100,
+                                    height: 140,
                                     width: 120,
                                     padding: const EdgeInsets.all(10),
                                     margin: const EdgeInsets.all(5),
@@ -126,40 +142,37 @@ Widget bodyMainHome(
                                           CrossAxisAlignment.center,
                                       children: [
                                         const SizedBox(height: 1),
-                                        UniversalImage(
-                                          "${MainUrl.mainUrlImage}/${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
-                                          // image storage file path
-                                          scale: 1.0,
-                                          width: 30,
+                                        CachedNetworkImage(
                                           height: 30,
-                                          // frameBuilder: null,
-                                          // errorBuilder: null,
-                                          // semanticLabel: null,
-                                          // excludeFromSemantics: false,
-                                          // colorBlendMode: BlendMode.clear,
-                                          // fit: BoxFit.cover,
-                                          // alignment: Alignment.center,
-                                          // repeat: ImageRepeat.noRepeat,
-                                          // centerSlice: Rect.fromLTWH(0, 0, 100, 100),
-                                          // gaplessPlayback: false,
-                                          // isAntiAlias: false,
-                                          // filterQuality: FilterQuality.high,
-                                          // cacheWidth: 30,
-                                          // cacheHeight: 30,
-                                          // allowDrawingOutsideViewBox: false,
-                                          // svgSkiaMode: false,
-                                          placeholder: Container(
-                                              child:
-                                                  CupertinoActivityIndicator()),
+                                          width: 30,
+                                          fit: BoxFit.fill,
+                                          imageUrl:  "${MainUrl.mainUrlImage}/${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
+                                          progressIndicatorBuilder:
+                                              (context, url, downloadProgress) =>
+                                          const   CupertinoActivityIndicator(),
+                                          errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
                                         ),
+
                                         Text(
-                                          providerMainHome
+                                          box.get("language") == "1"
+                                              ?   providerMainHome
                                               .listDataServiceList[index]
                                               .service[index2]
-                                              .serviceName,
+                                              .serviceName
+                                              : box.get("language") == "2"
+                                              ? providerMainHome
+                                              .listDataServiceList[index]
+                                              .service[index2]
+                                              .serviceNameQQ
+                                              :providerMainHome
+                                              .listDataServiceList[index]
+                                              .service[index2]
+                                              .serviceNameRu,
+
                                           textAlign: TextAlign.center,
-                                          overflow: TextOverflow.fade,
-                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines:3,
                                           // softWrap: true,
                                           style: const TextStyle(
                                               fontFamily: 'Roboto-Medium'),

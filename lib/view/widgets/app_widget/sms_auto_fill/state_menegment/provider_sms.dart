@@ -12,6 +12,7 @@ import 'package:mydtm/data/model_parse/m1_model/authhorization/model_get_token.d
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
+import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_passport/change_password_in/change_password_input.dart';
 import 'package:mydtm/view/pages/otm/widgets/edu_reg_success/success_edu_reg.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/edu/edu_reg_success.dart';
@@ -41,7 +42,7 @@ class ProviderSms extends ChangeNotifier {
   bool boolData = false;
   dynamic smsId;
 
-    /// Registratiya
+  /// Registratiya
 
   late ModelRegistrationHave modelRegistrationHave;
   late ModelRegistrationCaptchaError modelRegistrationCaptchaError;
@@ -74,7 +75,6 @@ class ProviderSms extends ChangeNotifier {
           smsHash: "a76892");
     }
     try {
-
       ModelRegistrationSms modelRegistrationSms =
           ModelRegistrationSms.fromJson(jsonDecode(dataSms));
       box.delete("phoneNumber");
@@ -87,7 +87,6 @@ class ProviderSms extends ChangeNotifier {
         notifyListeners();
       }
     } catch (e) {
-
       try {
         boolRegistration = true;
         modelRegistrationHave =
@@ -116,36 +115,41 @@ class ProviderSms extends ChangeNotifier {
   Future sendRegistrationServer(
       {required String smsCode,
       required String smsId,
-        required BuildContext context
-}) async {
+      required BuildContext context}) async {
     Map<String, String> mapRegistration = {
       "sms_code": smsCode,
       "sms_id": smsId,
       "app_id": "1",
     };
-    try{
+    try {
       boolSentServerRequest = false;
       notifyListeners();
       String data = await NetworkRegistration.getRegistration(
           mapRegistration: mapRegistration);
-      ModelAuthorizationParse modelAuthorizationParse = ModelAuthorizationParse.fromJson(jsonDecode(data));
-      String dataToken = await NetworkGetToken.getTokenModel(authCode: modelAuthorizationParse.data.authorizationCode);
-      ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(dataToken));
+      ModelAuthorizationParse modelAuthorizationParse =
+          ModelAuthorizationParse.fromJson(jsonDecode(data));
+      String dataToken = await NetworkGetToken.getTokenModel(
+          authCode: modelAuthorizationParse.data.authorizationCode);
+      ModelGetToken modelGetToken =
+          ModelGetToken.fromJson(jsonDecode(dataToken));
       box.delete("token");
       box.put("token", modelGetToken.data.accessToken);
       // ignore: use_build_context_synchronously
-      Navigator.pushAndRemoveUntil(context,
-          CupertinoPageRoute(builder: (context) =>
-          const MainPages(),), (route) => false);
+      Navigator.pushAndRemoveUntil(
+          context,
+          CupertinoPageRoute(
+            builder: (context) => const MainPages(),
+          ),
+          (route) => false);
       log(data);
-    }catch(e){
+    } catch (e) {
       boolSentServerRequest = true;
       notifyListeners();
     }
-
   }
 
   late String dataResetPassword;
+
   //   phoneNum:  box.get("phoneNumber"),
   // password: "",
   // captchaKey: modelResetPassSms.data.smsId.toString(),
@@ -162,22 +166,22 @@ class ProviderSms extends ChangeNotifier {
     // try {
     //   if (valueSignature != null) {
 
-        // dataResetPassword = await networkSmsAutoFill.resetPasswordSms(
-        //     userName: userName,
-        //     captchaKey: captchaKey,
-        //     captchaVal: captchaVal,
-        //     smsHash: valueSignature!);
-        //
-        // ModelRegistrationSms modelRegistrationSms =
-        //     ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
-        //
-        // smsTimer(timers: modelRegistrationSms.data.endDate, context: context);
-        // ModelRegistrationSms modelRegistrationSms12 =
-        //     ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
-        // smsId = modelRegistrationSms12.data.smsId.toString();
-      // } else {
-      //   log(code1);
-      // }
+    // dataResetPassword = await networkSmsAutoFill.resetPasswordSms(
+    //     userName: userName,
+    //     captchaKey: captchaKey,
+    //     captchaVal: captchaVal,
+    //     smsHash: valueSignature!);
+    //
+    // ModelRegistrationSms modelRegistrationSms =
+    //     ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
+    //
+    // smsTimer(timers: modelRegistrationSms.data.endDate, context: context);
+    // ModelRegistrationSms modelRegistrationSms12 =
+    //     ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
+    // smsId = modelRegistrationSms12.data.smsId.toString();
+    // } else {
+    //   log(code1);
+    // }
     //   boolData = true;
     //
     //   ///
@@ -193,26 +197,33 @@ class ProviderSms extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future getResetPass({required String smsCode,
-    required BuildContext context,
-    required String smsId})async {
-    try{
+  Future getResetPass(
+      {required String smsCode,
+      required BuildContext context,
+      required String smsId}) async {
+    try {
       boolSentServerRequest = false;
 
       boolData = false;
       notifyListeners();
-      String dataSms = await NetworkSmsAutoFill.sentServerSms(smsId: smsId, appId: "1", smsCode: smsCode);
-      ModelResetPassToken2 modelResetPassToken2 = ModelResetPassToken2.fromJson(jsonDecode(dataSms));
-      
+      String dataSms = await NetworkSmsAutoFill.sentServerSms(
+          smsId: smsId, appId: "1", smsCode: smsCode);
+      ModelResetPassToken2 modelResetPassToken2 =
+          ModelResetPassToken2.fromJson(jsonDecode(dataSms));
+      // ignore: use_build_context_synchronously
+      pushNewScreen(context,
+          screen: ChangePasswordInput(
+              passResetToken: modelResetPassToken2.data.passwordResetToken));
       log(dataSms);
       boolData = true;
       timer.cancel();
       boolSentServerRequest = true;
       notifyListeners();
-    }catch(e){
+    } catch (e) {
       boolData = true;
       timer.cancel();
       boolSentServerRequest = true;
+
       notifyListeners();
       log(e.toString());
     }
@@ -232,45 +243,49 @@ class ProviderSms extends ChangeNotifier {
       notifyListeners();
     }
   }
+
   Future changePhoneNumber(
       {required String phoneNum,
-        required String smsId,
-        required String smsCode,
-        required BuildContext context}) async {
+      required String smsId,
+      required String smsCode,
+      required BuildContext context}) async {
     boolData = false;
     try {
       boolSentServerRequest = false;
       notifyListeners();
       Map<String, dynamic> mapPhoneChange = {
-
-        "sms_id":smsId,
-        "sms_code":smsCode,
-        "phone":phoneNum,
+        "sms_id": smsId,
+        "sms_code": smsCode,
+        "phone": phoneNum,
       };
-      String dataChangePhone = await networkSmsAutoFill.changePhoneNumber(mapChangePhone: mapPhoneChange);
+      String dataChangePhone = await networkSmsAutoFill.changePhoneNumber(
+          mapChangePhone: mapPhoneChange);
 
-      ModelPhoneChangeSaved  modelPhoneChangeSaved = ModelPhoneChangeSaved.fromJson(jsonDecode(dataChangePhone));
+      ModelPhoneChangeSaved modelPhoneChangeSaved =
+          ModelPhoneChangeSaved.fromJson(jsonDecode(dataChangePhone));
 
       log(dataChangePhone);
       boolData = true;
-      if(modelPhoneChangeSaved.status == 1){
+      if (modelPhoneChangeSaved.status == 1) {
         box.delete("phoneNumber");
-        box.put("phoneNumber",phoneNum );
+        box.put("phoneNumber", phoneNum);
         AwesomeDialog(
-            context: context,
-            dialogType: DialogType.INFO,
-            animType: AnimType.BOTTOMSLIDE,
-            title: "DTM",
-            desc: "Telefon raqam o'zgardi",
-            titleTextStyle: TextStyle(
-                color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
-            descTextStyle: TextStyle(
-                color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-            btnCancelOnPress: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pop();
-            },
-            btnCancelText: "OK")
+                context: context,
+                dialogType: DialogType.INFO,
+                animType: AnimType.BOTTOMSLIDE,
+                title: "DTM",
+                desc: "Telefon raqam o'zgardi",
+                titleTextStyle: TextStyle(
+                    color: MyColors.appColorBlue1(),
+                    fontWeight: FontWeight.bold),
+                descTextStyle: TextStyle(
+                    color: MyColors.appColorBlack(),
+                    fontWeight: FontWeight.bold),
+                btnCancelOnPress: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
+                btnCancelText: "OK")
             .show();
       }
       notifyListeners();
@@ -280,20 +295,20 @@ class ProviderSms extends ChangeNotifier {
       log(e.toString());
       boolData = true;
       AwesomeDialog(
-          context: context,
-          dialogType: DialogType.INFO,
-          animType: AnimType.BOTTOMSLIDE,
-          title: "DTM",
-          desc: "Qayta urinib ko'ring",
-          titleTextStyle: TextStyle(
-              color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
-          descTextStyle: TextStyle(
-              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-          btnCancelOnPress: () {
-            Navigator.of(context).pop();
-            Navigator.of(context).pop();
-          },
-          btnCancelText: "OK")
+              context: context,
+              dialogType: DialogType.INFO,
+              animType: AnimType.BOTTOMSLIDE,
+              title: "DTM",
+              desc: "Qayta urinib ko'ring",
+              titleTextStyle: TextStyle(
+                  color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(
+                  color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+              btnCancelOnPress: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              },
+              btnCancelText: "OK")
           .show();
       boolSentServerRequest = true;
       notifyListeners();
@@ -403,39 +418,40 @@ class ProviderSms extends ChangeNotifier {
     log("resivied_sms: ${controller.text.toString()}, sms_id:$smsId7, logId:$logId7");
     boolSentServerRequest = false;
     notifyListeners();
-   try{
-     String data = await networkSmsAutoFill.sentServer2Edu(
-       resiviedSms: controller.text,
-       smsId: smsId7.toString(),
-       logId: logId7.toString());
-   ModelEduSuccess modelEduSuccess =
-   ModelEduSuccess.fromJson(jsonDecode(data));
+    try {
+      String data = await networkSmsAutoFill.sentServer2Edu(
+          resiviedSms: controller.text,
+          smsId: smsId7.toString(),
+          logId: logId7.toString());
+      ModelEduSuccess modelEduSuccess =
+          ModelEduSuccess.fromJson(jsonDecode(data));
 
-   if (modelEduSuccess.status == 1) {
-     // ignore: use_build_context_synchronously
-     ProviderAriza providerAriza = ProviderAriza();
-     // ignore: use_build_context_synchronously
-     pushNewScreen(context, screen: MainMyStatement(numberParam: "2",));
-   } else {
-     MyWidgets.awesomeDialogError(
-         context: context,
-         valueText: "Ma'lumot kiritishda xatolik qayta urinib ko'ring ");
-     Navigator.of(context).pop();
-   }
-     boolSentServerRequest = true;
-   notifyListeners();
-   }catch(e){
-     boolSentServerRequest = true;
-     notifyListeners();
-   }
-
+      if (modelEduSuccess.status == 1) {
+        // ignore: use_build_context_synchronously
+        ProviderAriza providerAriza = ProviderAriza();
+        // ignore: use_build_context_synchronously
+        pushNewScreen(context,
+            screen: MainMyStatement(
+              numberParam: "2",
+            ));
+      } else {
+        MyWidgets.awesomeDialogError(
+            context: context,
+            valueText: "Ma'lumot kiritishda xatolik qayta urinib ko'ring ");
+        Navigator.of(context).pop();
+      }
+      boolSentServerRequest = true;
+      notifyListeners();
+    } catch (e) {
+      boolSentServerRequest = true;
+      notifyListeners();
+    }
   }
 
   String phoneNumber = "";
   String logId7 = "";
   String smsId7 = "";
   int smsSentStatus = 0;
-
 
   String numberPhones = "";
   String passwords = "";
@@ -507,19 +523,18 @@ class ProviderSms extends ChangeNotifier {
     }
   }
 
-
-  Future getOTPCode()async{
+  Future getOTPCode() async {
     OTPInteractor otpInteract = OTPInteractor();
     valueSignature = await otpInteract.getAppSignature();
     code1 = valueSignature!;
     controller = OTPTextEditController(
         codeLength: 5,
         onCodeReceive: (code) => {
-          code1 = code,
-          log('Your Application receive code - $code'),
-        })
+              code1 = code,
+              log('Your Application receive code - $code'),
+            })
       ..startListenUserConsent(
-            (code) {
+        (code) {
           final exp = RegExp(r'(\d{5})');
           return exp.stringMatch(code ?? '') ?? '';
         },

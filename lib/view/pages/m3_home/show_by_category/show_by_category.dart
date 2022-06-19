@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
@@ -7,11 +9,13 @@ import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:universal_image/universal_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 myViewButton(
     {required BuildContext context,
     required List<ServiceMainList> myList,
     required ProviderMainHome providerMainHome}) {
+  var box = Hive.box("online");
   showModalBottomSheet(
       context: context,
       enableDrag: true,
@@ -34,7 +38,7 @@ myViewButton(
                     children: [
                       Flexible(
                         child: Text(
-                          myList[0].serviceName,
+                  "services".tr(),
                           style: TextStyle(
                               color: MyColors.appColorBlack(),
                               fontSize: 17,
@@ -83,6 +87,7 @@ myViewButton(
                           //     ));
                         },
                         child: Container(
+
                           margin: const EdgeInsets.only(
                               left: 10, right: 10, top: 2, bottom: 2),
                           padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
@@ -93,20 +98,30 @@ myViewButton(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              UniversalImage(
-                                "${MainUrl.mainUrlImage}/${myList[index].mobilIcon}", // image storage file path
-                                scale: 1.0,
-                                width: 80,
-                                height: 70,
-                                placeholder:const Center(child: CupertinoActivityIndicator()),
+                              CachedNetworkImage(
+                                width: 60,
+                                height: 50,
+                                fit: BoxFit.fill,
+                                imageUrl: "${MainUrl.mainUrlImage}/${myList[index].mobilIcon}",
+                                progressIndicatorBuilder:
+                                    (context, url, downloadProgress) =>
+                                const   CupertinoActivityIndicator(),
+                                errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
                               ),
+
                               SizedBox(
                                 child: Text(
-                                  myList[index].serviceName,
+                                  box.get("language") == "1"
+                                      ?   myList[index].serviceName
+                                      : box.get("language") == "2"
+                                      ?   myList[index].serviceNameQQ
+                                      :   myList[index].serviceNameRu,
+
                                   textAlign: TextAlign.center,
-                                  maxLines: 2,
+                                  maxLines: 3,
                                   softWrap: true,
-                                  overflow: TextOverflow.fade,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: MyColors.appColorBlack(),
                                       fontSize: 14,

@@ -16,4 +16,22 @@ class NetworkChangePassword{
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
     return jsonEncode(response.data);
   }
+
+
+  static Future<String> newPassport({required String resToken, required String passport})async{
+
+    var dio = Dio();
+    Response response;
+
+    response = await dio.post(
+        "${MainUrl.mainUrls}/auth/reset-password",
+        data: {
+          "password_reset_token":resToken,
+          "password": passport,
+          "app_id":"1"
+        });
+
+    return jsonEncode(response.data);
+
+  }
 }

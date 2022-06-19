@@ -1,40 +1,34 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
-import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_passport/password_captcha.dart';
+import 'package:mydtm/view/pages/m1_enter_system/enter_first/captcha.dart';
+import 'package:mydtm/view/pages/m1_enter_system/enter_first/provider_enter_first.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-// ignore: must_be_immutable
-class ChangeAccountPasswords extends StatefulWidget {
-  ProviderProfile providerProfile;
+class ResetPasswords extends StatefulWidget {
+  ProviderEnterFirst providerEnterFirst;
 
-  ChangeAccountPasswords({Key? key, required this.providerProfile})
+  ResetPasswords({Key? key, required this.providerEnterFirst})
       : super(key: key);
 
   @override
-  State<ChangeAccountPasswords> createState() => _ChangeAccountPasswordsState();
+  State<ResetPasswords> createState() => _ResetPasswordsState();
 }
 
-class _ChangeAccountPasswordsState extends State<ChangeAccountPasswords> {
+class _ResetPasswordsState extends State<ResetPasswords> {
   @override
   initState() {
     getPhoneNum();
     super.initState();
   }
 
-  var box = Hive.box("online");
-
   Future getPhoneNum() async {
-    await widget.providerProfile.getCaptcha();
-
-    widget.providerProfile.textPhoneChangePassport.text =
-        box.get("phoneNumber");
-    setState(() {});
+    await widget.providerEnterFirst.getCaptcha();
+    setState((){});
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +39,7 @@ class _ChangeAccountPasswordsState extends State<ChangeAccountPasswords> {
           elevation: 0,
           backgroundColor: MyColors.appColorWhite()),
       body: Form(
-        key: widget.providerProfile.formKeyChangePassword,
+        key: widget.providerEnterFirst.formKeyChangePasswords,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: SafeArea(
           child: Container(
@@ -59,9 +53,8 @@ class _ChangeAccountPasswordsState extends State<ChangeAccountPasswords> {
                   const SizedBox(height: 10),
                   TextFormField(
                       controller:
-                          widget.providerProfile.textPhoneChangePassport,
+                          widget.providerEnterFirst.textPhoneChangePassport,
                       maxLines: 1,
-                      enabled: false,
                       textAlignVertical: TextAlignVertical.center,
                       maxLength: 9,
                       keyboardType: TextInputType.number,
@@ -73,7 +66,8 @@ class _ChangeAccountPasswordsState extends State<ChangeAccountPasswords> {
                         suffixIcon: GestureDetector(
                           child: const Icon(Icons.clear, size: 12),
                           onTap: () {
-                            widget.providerProfile.textChangePhoneNum.clear();
+                            widget.providerEnterFirst.textPhoneChangePassport
+                                .clear();
                           },
                         ),
                         contentPadding: const EdgeInsets.all(8),
@@ -120,13 +114,13 @@ class _ChangeAccountPasswordsState extends State<ChangeAccountPasswords> {
                             for (var element
                                 in MyWidgets.checkTelephoneCompanyCode) {
                               if (element.contains(kod)) {
-                                widget.providerProfile.myBoolWidget = true;
+                                widget.providerEnterFirst.myBoolWidget = true;
                                 break;
                               } else {
-                                widget.providerProfile.myBoolWidget = false;
+                                widget.providerEnterFirst.myBoolWidget = false;
                               }
                             }
-                            if (!widget.providerProfile.myBoolWidget &&
+                            if (!widget.providerEnterFirst.myBoolWidget &&
                                 value.length < 3) {
                               return "kodError".tr();
                             } else {
@@ -140,42 +134,53 @@ class _ChangeAccountPasswordsState extends State<ChangeAccountPasswords> {
                           for (var element
                               in MyWidgets.checkTelephoneCompanyCode) {
                             if (element.contains(kod)) {
-                              widget.providerProfile.myBoolWidget = true;
-                              widget.providerProfile
+                              widget.providerEnterFirst.myBoolWidget = true;
+                              widget.providerEnterFirst
                                   .boolButtonCol1(boolValue: true);
                               break;
                             } else {
-                              widget.providerProfile
+                              widget.providerEnterFirst
                                   .boolButtonCol1(boolValue: false);
-                              widget.providerProfile.myBoolWidget = false;
+                              widget.providerEnterFirst.myBoolWidget = false;
                             }
                           }
-                          if (!widget.providerProfile.myBoolWidget) {
-                            widget.providerProfile
+                          if (!widget.providerEnterFirst.myBoolWidget) {
+                            widget.providerEnterFirst
                                 .boolButtonCol1(boolValue: false);
                             return "kodError".tr();
                           } else {
-                            widget.providerProfile
+                            widget.providerEnterFirst
                                 .boolButtonCol1(boolValue: true);
                           }
                         }
                         return null;
                       }),
                   const SizedBox(height: 20),
-                  captchaGetPassport(
+                  captchaGet(
                       context: context,
-                      providerProfile: widget.providerProfile),
+                      providerEnterFirst: widget.providerEnterFirst),
                   const SizedBox(height: 20),
                   MaterialButton(
                       onPressed: () {
-                        if (widget
-                            .providerProfile
-                            .textCaptchaEditingControllerPassport
-                            .text
-                            .isNotEmpty) {
+                        if (widget.providerEnterFirst.textPhoneChangePassport
+                                .text.length == 9 &&
+                            widget.providerEnterFirst
+                                .textCaptchaEditingController.text.isNotEmpty) {
 
-                          widget.providerProfile
-                              .getNewPassport(context: context);
+                          if(widget.providerEnterFirst.formKeyChangePasswords.currentState!.validate()){
+                            widget.providerEnterFirst.getNewPassport(
+                              context: context,
+                              captchaVal: widget.providerEnterFirst
+                                  .textCaptchaEditingController.text,
+                              phoneNumber: widget.providerEnterFirst
+                                  .textPhoneChangePassport.text,
+                            );
+                            getPhoneNum();
+                          }else{
+                            MyWidgets.scaffoldMessengerBottom(
+                                context: context, valueText: "infoNotAll".tr());
+                          }
+
 
                         } else {
                           MyWidgets.scaffoldMessengerBottom(

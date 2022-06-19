@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/main.dart';
+import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -32,10 +35,11 @@ sheetAppLanguageInterface({required BuildContext context,
                           Divider(height: 0.4, color: MyColors.appColorGrey400()),
                           ListTile(
                             onTap: (){
-                              // context.locale = const Locale("uz", "UZ");
+                              context.locale = const Locale("uz", "UZ");
                               //context.setLocale(const Locale('uz', 'UZ'));
                               box.delete("language");
                               box.put("language", "1");
+                              // Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MyApp()),(route) => false,);
                               setState((){});
                             },
                             title: MyWidgets.robotoFontText(text: "uz".tr()),
@@ -44,9 +48,10 @@ sheetAppLanguageInterface({required BuildContext context,
                           Divider(height: 0.4, color: MyColors.appColorGrey400()),
                           ListTile(
                             onTap: (){
-                              // context.locale = const Locale("qq", "QQ");
+                              context.locale = const Locale("kk", "KK");
                               box.delete("language");
                               box.put("language", "2");
+                              // Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) =>  MyApp ()),(route) => false,);
                               setState((){});
                             },
                             title: MyWidgets.robotoFontText(text: "qq".tr()),
@@ -55,10 +60,11 @@ sheetAppLanguageInterface({required BuildContext context,
                           Divider(height: 0.4, color: MyColors.appColorGrey400()),
                           ListTile(
                             onTap: (){
-                              // context.locale = const Locale("ru", "RU");
+                              context.locale = const Locale("ru", "RU");
                               // context.setLocale(const Locale('ru', 'RU'));
                               box.delete("language");
                               box.put("language", "3");
+                              // Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MyApp()),(route) => false,);
                               setState((){});
                             },
                             title: MyWidgets.robotoFontText(text: "ru".tr()),

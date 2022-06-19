@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 PreferredSizeWidget searchMain(
     {required BuildContext context,
     required ProviderMainHome providerMainHome}) {
+
   return AppBar(
     backgroundColor: MyColors.appColorWhite(),
     elevation: 0,
@@ -29,7 +31,7 @@ PreferredSizeWidget searchMain(
               color: MyColors.appColorGrey400(),
             ),
             MyWidgets.robotoFontText(
-                text: "Xizmat nomini kiriting",
+                text: "searchService".tr(),
                 textColor: MyColors.appColorGrey400())
           ],
         ),
@@ -38,6 +40,7 @@ PreferredSizeWidget searchMain(
     //MyWidgets.robotoFontText(text:"search", ),
   );
 }
+var box = Hive.box("online");
 mainSearchBottomSheet(
     {required BuildContext context,
     required ProviderMainHome providerMainHome}) {
@@ -125,8 +128,16 @@ mainSearchBottomSheet(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                           child: MyWidgets.robotoFontText(
-                              text: providerMainHome
-                                  .listDataServiceListTemp[index].serviceName,
+                              text:
+                              box.get("language") == "1"
+                                  ?   providerMainHome
+                                  .listDataServiceListTemp[index].serviceName
+                                  : box.get("language") == "2"
+                                  ?    providerMainHome
+                                  .listDataServiceListTemp[index].serviceNameQQ
+                                  :  providerMainHome
+                                  .listDataServiceListTemp[index].serviceNameRu,
+
                               textColor: Colors.black.withOpacity(0.9),
                               textSize: 20),
                         ),

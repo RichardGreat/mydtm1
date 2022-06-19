@@ -1,10 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/address_info/provider_address_info.dart';
-import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'dart:developer';
 
 Widget buttonAddressInfo(
     {required BuildContext context,
@@ -19,14 +18,12 @@ Widget buttonAddressInfo(
         margin: const EdgeInsets.all(10),
         child: MaterialButton(
           onPressed: () {
-              if( providerAddressInfo.boolAddressText &&
-                  providerAddressInfo.districtName.length > 4 &&
-                  providerAddressInfo.provinceName.length > 4){
-                // Navigator.push(context,CupertinoPageRoute(builder: (context) => const Graduated(),));
-                providerAddressInfo.setAddress(context: context);
-              }
-
-
+            if (providerAddressInfo.boolAddressText &&
+                providerAddressInfo.districtName.length > 4 &&
+                providerAddressInfo.provinceName.length > 4) {
+              // Navigator.push(context,CupertinoPageRoute(builder: (context) => const Graduated(),));
+              providerAddressInfo.setAddress(context: context);
+            }
           },
           minWidth: double.infinity,
           color: providerAddressInfo.boolAddressText &&
@@ -38,7 +35,7 @@ Widget buttonAddressInfo(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           child: MyWidgets.robotoFontText(
-              text: "Tasdiqlash", textColor: MyColors.appColorWhite()),
+              text: "access".tr(), textColor: MyColors.appColorWhite()),
         )),
   );
 }

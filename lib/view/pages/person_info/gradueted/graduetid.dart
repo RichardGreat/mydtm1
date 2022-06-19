@@ -37,7 +37,15 @@ class _GraduatedState extends State<Graduated> {
     return ChangeNotifierProvider(
       create: (context) => providerGraduated,
       child: Consumer<ProviderGraduated>(
-        builder: (context, value, child) => WillPopScope(child: Scaffold(
+        builder: (context, value, child) => WillPopScope(
+            onWillPop: ()async{
+              widget.funcState();
+              Navigator.of(context).pop();
+
+              return true;
+
+            },
+          child: Scaffold(
           backgroundColor: MyColors.appColorWhite(),
           appBar: appBarGradueted(
               context: context, providerGradueted: providerGraduated),
@@ -183,7 +191,7 @@ class _GraduatedState extends State<Graduated> {
                         validator: (value3) {
                           if (value3!.isEmpty || value3.length < 6) {
                             // providerPersonInfo.boolPsNumber(boolNum: false);
-                            return "Uzunlik 6 birlikdan ko'p bo'lishi kerak";
+                            return "kodLength6".tr();
                           } else {
                             // providerPersonInfo.boolPsNumber(boolNum: true);
                             return null;
@@ -199,12 +207,7 @@ class _GraduatedState extends State<Graduated> {
                 ),
               ))
               : MyWidgets.loaderDownload(context: context),
-        ), onWillPop: ()async{
-          Navigator.of(context).pop();
-          widget.funcState();
-          return true;
-
-        }),
+        ),),
       ),
     );
   }

@@ -5,13 +5,13 @@ import 'package:mydtm/view/pages/m1_enter_system/enter_first/provider_enter_firs
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'dart:convert';
-
+import 'package:easy_localization/easy_localization.dart';
 Widget captchaGet(
     {required BuildContext context,
     required ProviderEnterFirst providerEnterFirst}) {
   return Column(
     children: [
-      MyWidgets.robotoFontText(text: "Arfimetik amalni bajaring"),
+      MyWidgets.robotoFontText(text: "solve".tr()),
       const SizedBox(height: 2),
       Container(
         height: 50,

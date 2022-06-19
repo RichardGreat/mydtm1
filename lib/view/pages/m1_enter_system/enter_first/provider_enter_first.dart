@@ -6,6 +6,8 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/authorize.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_captcha.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_token.dart';
+import 'package:mydtm/data/internet_connections/m6_profile/change_password.dart';
+import 'package:mydtm/data/internet_connections/m6_profile/sms_model_reset_pass.dart';
 import 'package:mydtm/data/model_parse/m1_model/authhorization/model_auth_token.dart';
 import 'package:mydtm/data/model_parse/m1_model/authhorization/model_auth_captcha_error.dart';
 import 'package:mydtm/data/model_parse/m1_model/authhorization/model_auth_error.dart';
@@ -16,6 +18,7 @@ import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_captcha_error.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -101,8 +104,8 @@ class ProviderEnterFirst extends ChangeNotifier {
     boolAuthorization = true;
     notifyListeners();
     String data =
-    await NetworkAuthorize.getAuthorize(mapAuthorize: getAuthorizationData);
-  log(data);
+        await NetworkAuthorize.getAuthorize(mapAuthorize: getAuthorizationData);
+    log(data);
     try {
       ModelUserToken modelUserToken = ModelUserToken.fromJson(jsonDecode(data));
       String token = await NetworkGetToken.getTokenModel(
@@ -111,10 +114,7 @@ class ProviderEnterFirst extends ChangeNotifier {
 
       box.put("token", modelGetToken.data.accessToken);
       log(box.get("token"));
-      if (box
-          .get("token")
-          .toString()
-          .length > 30) {
+      if (box.get("token").toString().length > 30) {
         // ignore: use_build_context_synchronously
         box.delete("phoneNumber");
         box.put("phoneNumber", textAuthLogin.text);
@@ -123,7 +123,8 @@ class ProviderEnterFirst extends ChangeNotifier {
             context,
             CupertinoPageRoute(
               builder: (context) => const MainPages(),
-            ), (route) => false);
+            ),
+            (route) => false);
       }
       boolAuthorization = false;
       modelAuthorizationParse =
@@ -131,8 +132,7 @@ class ProviderEnterFirst extends ChangeNotifier {
     } catch (e) {
       try {
         boolAuthorization = false;
-        modelAuthorizationError =
-            ModelErrorUserName.fromJson(jsonDecode(data));
+        modelAuthorizationError = ModelErrorUserName.fromJson(jsonDecode(data));
         MyWidgets.scaffoldMessengerBottom(
             context: context,
             valueText: modelAuthorizationError.errors.password[0]);
@@ -146,24 +146,73 @@ class ProviderEnterFirst extends ChangeNotifier {
               valueText: modelAuthorizationCaptchaError.errors);
         } catch (e) {
           // smsId: widget.captchaValue, endTime: int.parse(widget.captchaKey), context: context);
-          ModelRegistrationSms modelRegistrationSms = ModelRegistrationSms.fromJson(jsonDecode(data));
+          ModelRegistrationSms modelRegistrationSms =
+              ModelRegistrationSms.fromJson(jsonDecode(data));
 
-            log(data);
-            log("::");
+          log(data);
+          log("::");
 
           // ignore: use_build_context_synchronously
-          pushNewScreen(context, screen: SmsAutoFillUi(
-              phoneNum: textAuthLogin.text,
-              password: textAuthPassword.text,
-              captchaKey: modelRegistrationSms.data.endDate.toString(),
-              captchaValue: modelRegistrationSms.data.smsId.toString(),
-              registration: "99"));
+          pushNewScreen(context,
+              screen: SmsAutoFillUi(
+                  phoneNum: textAuthLogin.text,
+                  password: textAuthPassword.text,
+                  captchaKey: modelRegistrationSms.data.endDate.toString(),
+                  captchaValue: modelRegistrationSms.data.smsId.toString(),
+                  registration: "99"));
         }
       }
     }
     notifyListeners();
   }
 
-/// #1
+  /// #1
 
+  TextEditingController textPhoneChangePassport = TextEditingController();
+  final formKeyChangePasswords = GlobalKey<FormState>();
+  NetworkChangePassword networkChangePassword = NetworkChangePassword();
+
+  Future getNewPassport(
+      {required BuildContext context,
+      required String phoneNumber,
+      required String captchaVal}) async {
+    Map<String, dynamic> mapForNewPassword = {
+      "username": phoneNumber,
+      "captcha_key": modelParseCaptcha.data.captchaKey,
+      "captcha_val": captchaVal,
+    };
+
+    try {
+      String dataNet = await networkChangePassword.getChangePhoneNumber(
+          mapChangePassword: mapForNewPassword);
+      ModelResetPassSms modelResetPassSms =
+          ModelResetPassSms.fromJson(jsonDecode(dataNet));
+      textCaptchaEditingController.clear();
+      // ignore: use_build_context_synchronously
+      pushNewScreen(context,
+          screen: SmsAutoFillUi(
+              phoneNum: phoneNumber,
+              password: "",
+              captchaKey: modelResetPassSms.data.smsId.toString(),
+              captchaValue: modelResetPassSms.data.endDate.toString(),
+              registration: "2"));
+      notifyListeners();
+    } catch (e) {
+      try {
+
+        textCaptchaEditingController.clear();
+        String dataNet = await networkChangePassword.getChangePhoneNumber(
+            mapChangePassword: mapForNewPassword);
+        ModelRegistrationCaptchaError modelRegistrationCaptchaError =
+            ModelRegistrationCaptchaError.fromJson(jsonDecode(dataNet));
+        print(dataNet);
+        MyWidgets.awesomeDialogInfo(context: context, valueText: modelRegistrationCaptchaError.errors);
+
+      } catch (e) {
+        MyWidgets.awesomeDialogInfo(context: context, valueText: "reTry".tr());
+      }
+
+      log(e.toString());
+    }
+  }
 }

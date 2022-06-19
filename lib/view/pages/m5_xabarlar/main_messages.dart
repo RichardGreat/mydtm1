@@ -61,13 +61,13 @@ class _MainMessagesState extends State<MainMessages> {
                               onTap: (){
                                 pushNewScreen(context, screen: NewsSee(
                                     id: providerDtmNews
-                                    .modelDtmNews2[index].id,
+                                    .modelDtmNews2[index].id.toString(),
                                     date: providerDtmNews
-                                    .modelDtmNews2[index].updateDate,
+                                    .modelDtmNews2[index].updateDate.toString(),
                                     titleName: providerDtmNews
-                                        .modelDtmNews2[index].title,
+                                        .modelDtmNews2[index].title.toString(),
                                     imgUrl: providerDtmNews
-                                    .modelDtmNews2[index].imageUrl,
+                                    .modelDtmNews2[index].imageUrl.toString(),
                                     providerDtmNews: providerDtmNews));
                               },
                               leading: CachedNetworkImage(

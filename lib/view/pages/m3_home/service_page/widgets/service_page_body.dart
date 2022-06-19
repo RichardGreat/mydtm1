@@ -14,8 +14,8 @@ Widget servicePageBody(
     required ServiceMainList serviceMainList,
     required ProviderServicePage providerServicePage}) {
   List<String> myList = [
-    "Xizmat haqida",
-    "Xizmat bo'yicha arizalarim",
+    "aboutService".tr(),
+    "serviceArizlar".tr(),
   ];
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,7 +23,7 @@ Widget servicePageBody(
       Container(
         margin: const EdgeInsets.all(10),
         child: MyWidgets.robotoFontText(
-            text: "Qo'shimcha ma'lumotlar",
+            text: "addInfo".tr(),
             textSize: 15,
             textColor: MyColors.appColorGrey600()),
       ),
@@ -49,7 +49,7 @@ Widget servicePageBody(
                       screen: MainMyStatement(numberParam: "0"));
                 }
                 else{
-                  MyWidgets.awesomeDialogError(context: context, valueText:"Ariza mavjud emas");
+                  MyWidgets.awesomeDialogError(context: context, valueText:"arizaNo".tr());
                 }
               }
             },

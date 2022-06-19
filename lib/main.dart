@@ -4,6 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
+import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_passport/change_password_in/change_password_input.dart';
 
@@ -22,29 +24,24 @@ Future initialization(BuildContext? context) async {
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.removeAfter(initialization);
   await EasyLocalization.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
   await Hive.initFlutter();
   await Hive.openBox("online");
   await initialization(null);
-  SystemChrome.setPreferredOrientations(
-      // [DeviceOrientation.portraitDown]).then(
-      [
-        DeviceOrientation.portraitUp, // DeviceOrientation.portraitDown
-      ]).then(
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then(
     (_) => runApp(
       EasyLocalization(
-        supportedLocales: const [
-          Locale('qq', 'QQ'),
+        supportedLocales: [
+          Locale('kk', 'KK'),
           Locale('ru', 'RU'),
           Locale('uz', 'UZ'),
         ],
-        path: 'assets/lang', // <-- change the path of the translation files
+        path: 'assets/lang',
         fallbackLocale: const Locale('uz', 'UZ'),
-        // child: const GoFreeExamResult(),
         child: const MyApp(),
-        // boxs.get("langId") == null ? ChooseLoginRegister() :MyApp(),
       ),
     ),
   );
@@ -66,35 +63,23 @@ class _MyAppState extends State<MyApp> {
   var box = Hive.box("online");
 
   @override
-  void initState() {
-    // box.put("token", "ae365911b49f6137e195dcb874cb0c4f");
-    dura();
-    super.initState();
-  }
-
-  Future dura()async{
-    await Future.delayed(Duration.zero);
-    box.put("language", "1");
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return
-
-      ConnectionNotifier(
+    return ConnectionNotifier(
       disconnectedContent:
           const Center(child: Text("Internet bilan oloqa yoq")),
       connectedContent: const Center(child: Text("Aloqa tiklandi")),
-     child:
-    MaterialApp(
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          home:const MainPages(),
-
-    ),
-
+      child: MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        debugShowCheckedModeBanner: false,
+        home: box.get("language") == "1" ||
+                box.get("language") == "2" ||
+                box.get("language") == "3"
+            ? const MainPages()
+            :
+           const EnterFirst0(),
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/provider_service_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -9,6 +10,7 @@ Widget servicePageHead(
     required ProviderServicePage providerServicePage,
     required ServiceMainList serviceMainList ,
    }) {
+  var box = Hive.box("online");
   return Container(
     decoration: BoxDecoration(color: MyColors.appColorWhite()),
     child: Container(
@@ -17,7 +19,12 @@ Widget servicePageHead(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            serviceMainList.serviceName,
+            box.get("language") == "1"
+                ?     serviceMainList.serviceName
+                : box.get("language") == "2"
+                ?  serviceMainList.serviceNameQQ
+                : serviceMainList.serviceNameRu,
+
             textAlign: TextAlign.start,
 
             style: TextStyle(
@@ -35,7 +42,13 @@ Widget servicePageHead(
                   categoryId:serviceMainList.id.toString(),
                     context: context,
                     status: serviceMainList.status,
-                    categoryName: serviceMainList.serviceName);
+                    categoryName:
+                    box.get("language") == "1"
+                        ?    serviceMainList.serviceName
+                        : box.get("language") == "2"
+                        ?    serviceMainList.serviceNameQQ
+                        :    serviceMainList.serviceNameRu,
+                 );
               },
               minWidth: double.infinity,
               height: 50,

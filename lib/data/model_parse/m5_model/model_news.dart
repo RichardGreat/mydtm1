@@ -9,13 +9,13 @@ class ModelDtmNews {
   required  this.updateDate,
   });
 
- String id;
- String title;
- String imageUrl;
- String summary;
- String views;
- String createdDate;
- String updateDate;
+  dynamic id;
+  dynamic title;
+  dynamic imageUrl;
+  dynamic summary;
+  dynamic views;
+  dynamic createdDate;
+  dynamic updateDate;
 
   factory ModelDtmNews.fromJson(Map<String, dynamic> json) => ModelDtmNews(
     id: json["id"],
@@ -24,7 +24,7 @@ class ModelDtmNews {
     summary: json["summary"],
     views: json["views"],
     createdDate: json["created_date"],
-    updateDate: json["update_date"],
+    updateDate:json["update_date"],
   );
 
   Map<String, dynamic> toJson() => {

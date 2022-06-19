@@ -48,8 +48,13 @@ class _CheckInformationState extends State<CheckInformation> {
                 child: bodyCheckInformation(
                   functions: getCheckUserInfo,
                     context: context,
-                    providerCheckInformation: providerCheckInformation,
-                    serviceName: widget.serviceName),
+                    providerCheckInformation:
+
+
+                    providerCheckInformation,
+                    serviceName:
+
+                    widget.serviceName),
               ),
             ),
           ):MyWidgets.loaderDownload(context: context),

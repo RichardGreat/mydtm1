@@ -24,6 +24,7 @@ class ProviderProfile extends ChangeNotifier {
 
   final formKeyChangePhone = GlobalKey<FormState>();
   final formKeyChangePassword = GlobalKey<FormState>();
+
   bool myBoolWidget = false;
   bool boolButtonColor1 = false;
 

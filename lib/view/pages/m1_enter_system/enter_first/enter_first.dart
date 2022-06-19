@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/app_bar.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/captcha.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_button.dart';
+import 'package:mydtm/view/pages/m1_enter_system/enter_first/forgot_pasword.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/inputs.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/provider_enter_first.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
@@ -55,10 +56,15 @@ class _EnterFirstState extends State<EnterFirst> {
                                           providerEnterFirst:
                                               providerEnterFirst),
                                       const SizedBox(height: 20),
+
+                                      forgotPassword(context: context, providerEnterFirst: providerEnterFirst),
+                                      const SizedBox(height: 20),
                                       captchaGet(
                                           context: context,
                                           providerEnterFirst:
                                               providerEnterFirst),
+
+
                                       const SizedBox(height: 20),
                                       enterButton(
                                           context: context,

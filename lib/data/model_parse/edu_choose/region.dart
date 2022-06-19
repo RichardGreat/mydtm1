@@ -21,8 +21,8 @@ class ModelEduChooseRegion {
 }
 
 class ListModelEduChooseRegion {
-  String regionId;
-  String regionName;
+   dynamic regionId;
+   dynamic regionName;
 
   ListModelEduChooseRegion({required this.regionId, required this.regionName});
 
