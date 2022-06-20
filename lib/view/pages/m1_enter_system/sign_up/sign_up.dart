@@ -7,6 +7,7 @@ import 'package:mydtm/view/pages/m1_enter_system/sign_up/provider_sign_up.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -51,6 +52,7 @@ class _SignUpState extends State<SignUp> {
                             context: context, providerSignUp: providerSignUp),
                         inputsSignUp(
                             context: context, providerSignUp: providerSignUp),
+                        const SizedBox(height: 10),
                         captchaSignUp(context: context, providerSignUp: providerSignUp),
                         buttonSignUp(
                             context: context, providerSignUp: providerSignUp)
@@ -69,14 +71,14 @@ class _SignUpState extends State<SignUp> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         MyWidgets.robotoFontText(
-            text: "Ro'yxatdan o'tish",
+            text: "registration".tr(),
             textColor: MyColors.appColorBlack(),
             textFontWeight: FontWeight.bold,
             textSize: 22),
         const SizedBox(height: 10),
         FittedBox(
           child: MyWidgets.robotoFontText(
-              text: "Telefon raqam va yangi parol",
+              text: "phoneNumberNewPassword".tr(),
               textColor: MyColors.appColorGrey600(),
               textSize: 14),
         ),

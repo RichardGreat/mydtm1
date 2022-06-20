@@ -22,7 +22,7 @@ class ProviderSignUp extends ChangeNotifier {
     boolButtonColor2 = boolValue;
   }
 
-  bool boolPasswordVisible = false;
+  bool boolPasswordVisible = true;
 
   Future boolPasswordVisibleMethod() async {
     boolPasswordVisible = !boolPasswordVisible;

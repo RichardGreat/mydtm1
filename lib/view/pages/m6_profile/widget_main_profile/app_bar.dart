@@ -27,11 +27,10 @@ PreferredSizeWidget appBarProfile(
                 animType: AnimType.BOTTOMSLIDE,
                 title: "DTM",
                 desc: "logUot".tr(),
-
                 titleTextStyle: TextStyle(
                     color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
                 descTextStyle: TextStyle(
-                    color: MyColors.appColorBlack(), fontSize: 20, fontWeight: FontWeight.bold),
+                    color: MyColors.appColorBlack(), fontSize: 18, fontWeight: FontWeight.w500),
               btnOkOnPress:(){
                 box.delete("token");
                 pushNewScreenWithRouteSettings(context,
@@ -40,6 +39,7 @@ PreferredSizeWidget appBarProfile(
                     withNavBar: false);
               } ,
               btnOkText: "yes".tr(),
+              btnOkColor: MyColors.appColorBlue1(),
               btnCancelColor: MyColors.appColorGrey600(),
               btnCancelOnPress: () {
 

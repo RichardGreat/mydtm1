@@ -19,6 +19,7 @@ Widget enterButton(
             // providerEnterFirst.enterPersonPassport(context: context);
             if(providerEnterFirst.formKey.currentState!.validate() && providerEnterFirst.textCaptchaEditingController.text.isNotEmpty){
               providerEnterFirst.getAuthorization(context: context);
+              providerEnterFirst.textCaptchaEditingController.clear();
             }else{
               MyWidgets.scaffoldMessengerBottom(context: context, valueText: "fillInField".tr());
             }
@@ -46,6 +47,7 @@ Widget enterButton(
       ),
       GestureDetector(
         onTap: () {
+          providerEnterFirst.textCaptchaEditingController.clear();
           providerEnterFirst.enterSignUp(context: context);
         },
         child: Container(

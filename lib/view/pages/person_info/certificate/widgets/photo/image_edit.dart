@@ -7,6 +7,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ChooseImagesAvatar extends StatefulWidget {
   ProviderCertificate providerCertificate;
@@ -155,7 +156,7 @@ class _ChooseImagesAvatarState extends State<ChooseImagesAvatar> {
       // final bytes = imageFile!.readAsBytesSync().lengthInBytes;
       // final kb = bytes / 1024;
       // final mb = kb / 1024;
-      if (mb <= 2) {
+      if (mb <= 8) {
         widget.providerCertificate
             .changeImage(imageData: img64, fileTypeName: fileTypeName!, file: bytess);
         Navigator.pop(context);
@@ -165,7 +166,7 @@ class _ChooseImagesAvatarState extends State<ChooseImagesAvatar> {
           dialogType: DialogType.INFO,
           animType: AnimType.TOPSLIDE,
           title:
-          "$nameImg Rasm hajmi 2 MB kam bo'lishi shart ${mb.toString().substring(0, 4)}",
+          "${"imageMaxSize".tr()}" "${mb.toString().substring(0, 4)}",
           closeIcon: const Icon(Icons.build),
           btnOkColor: Colors.blueAccent,
           btnOkOnPress: () {

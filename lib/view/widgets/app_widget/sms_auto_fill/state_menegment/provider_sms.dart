@@ -26,6 +26,7 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/networks/network_sms
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:otp_autofill/otp_autofill.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProviderSms extends ChangeNotifier {
   late OTPTextEditController controller = OTPTextEditController(codeLength: 5);
@@ -437,7 +438,7 @@ class ProviderSms extends ChangeNotifier {
       } else {
         MyWidgets.awesomeDialogError(
             context: context,
-            valueText: "Ma'lumot kiritishda xatolik qayta urinib ko'ring ");
+            valueText: "infoFillError".tr());
         Navigator.of(context).pop();
       }
       boolSentServerRequest = true;

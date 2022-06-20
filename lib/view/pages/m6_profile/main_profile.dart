@@ -40,7 +40,6 @@ class _MainProfileState extends State<MainProfile> {
       child: Consumer<ProviderProfile>(
         builder: (context, value, child) => Scaffold(
             appBar: appBarProfile(
-
                 context: context, providerProfile: providerProfile),
             backgroundColor: MyColors.appColorWhite(),
             body: 

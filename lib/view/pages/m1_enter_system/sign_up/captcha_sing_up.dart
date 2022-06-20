@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/provider_sign_up.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 Widget captchaSignUp(
     {required BuildContext context, required ProviderSignUp providerSignUp}) {
@@ -15,7 +16,7 @@ Widget captchaSignUp(
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          MyWidgets.robotoFontText(text: "Arfimetik amalni bajaring"),
+          MyWidgets.robotoFontText(text: "solve".tr()),
           const SizedBox(height: 2),
           Container(
             height: 50,

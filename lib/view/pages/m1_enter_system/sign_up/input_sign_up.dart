@@ -165,13 +165,14 @@ Widget inputsSignUp(
       validator: (value){
   if (value == null || value.length < 8) {
     providerSignUp.boolButtonCol2(boolValue: false);
-    return "length";
+    return "passwordLength".tr();
   }else{
     providerSignUp.boolButtonCol2(boolValue: true);
     return "";
   }
       },
-      ),
+      )
+
     ],
   );
 }
