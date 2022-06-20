@@ -15,13 +15,11 @@ sheetAppLanguageInterface({required BuildContext context,
       backgroundColor: MyColors.appColorWhite(),
       enableDrag: false,
 
-
       context: context,
       builder: (context) {
         var box = Hive.box("online");
         return StatefulBuilder(
             builder: (context, setState) =>
-
                 Column(children: [
                   const SizedBox(height: 10),
                   MyWidgets.robotoFontText(text: "languageApp".tr()),

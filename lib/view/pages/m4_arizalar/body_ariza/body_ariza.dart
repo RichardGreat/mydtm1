@@ -57,7 +57,7 @@ Widget notInfoPerson(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [MyWidgets.robotoFontText(text: "Ariza mavjud emas")],
+            children: [MyWidgets.robotoFontText(text: "arizaNo".tr())],
           )
         ]),
   );

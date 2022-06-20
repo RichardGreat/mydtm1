@@ -59,7 +59,7 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
             thickness: 3,
           ),
           MyWidgets.robotoFontText(
-              text: "Akaunt",
+              text: "account".tr(),
               textColor: MyColors.appColorBlue1(),
               textSize: 20),
           const SizedBox(
@@ -84,7 +84,7 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
 
                   textFontWeight: FontWeight.w100),
            title : MyWidgets.robotoFontText(
-                text: "Nomer o'zgatirish",
+                text: "phoneNumberChange".tr(),
               ),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
