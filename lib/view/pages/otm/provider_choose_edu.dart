@@ -243,6 +243,7 @@ class ProviderChooseEdu extends ChangeNotifier {
 //#Bloc3
 // Choose Grant Contract
   List<String> listGrantContract = ["grant".tr(), "contract".tr()];
+  List<String> listGrantContractText = ["grantText".tr(), "contractText".tr()];
 
   String grantContractName = "";
   String grantContractId = "";
@@ -257,8 +258,14 @@ class ProviderChooseEdu extends ChangeNotifier {
   //#Bloc31
   // Maqsadli maqsadsiz
   List<String> listmaqsadli = [
-    "aimless".tr(),
+
     "targeted".tr(),
+    "aimless".tr(),
+  ];
+  List<String> listmaqsadliText = [
+
+    "targetedText".tr(),
+    "aimlessText".tr(),
   ];
   String maqsadliId = "";
   String maqsadliName = "";

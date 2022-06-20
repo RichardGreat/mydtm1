@@ -122,6 +122,12 @@
  "lyceum": "*Akademik litsey",
  "collage": "*Kasb-hunar kollei",
  "othersEdu": "*Boshqa o'quv yurti",
- "lang": "*Uz"
+ "lang": "*Uz",
+ "grantText": "* O‘zbekiston oliy ta’lim muassasalariga kirishda abituriyentlarning ayrim toifalariga beriladigan imtiyozlar qayta ko‘rib chiqiladi. Bu haqda oliy va o‘rta maxsus ta’lim vaziri Abduqodir Toshqulov 16 iyun kuni AOKAda o‘tkazilgan matbuot anjumanida ma’lum qildi.\n\nUning so‘zlariga ko‘ra, hozirgi kunda maktabni bitirgan har 10 nafar o‘quvchining 4 nafari O‘zbekistondagi oliy ta’lim muassasida, xorijga ketayotganlar bilan hisoblaganda bitiruvchilarning har ikkitadan bittasi oliy ta’lim olish imkoniyatiga ega bo‘ldi.",
+ "contractText": "* O‘zbekiston oliy ta’lim muassasalariga kirishda abituriyentlarning ayrim toifalariga beriladigan imtiyozlar qayta ko‘rib chiqiladi. Bu haqda oliy va o‘rta maxsus ta’lim vaziri Abduqodir Toshqulov 16 iyun kuni AOKAda o‘tkazilgan matbuot anjumanida ma’lum qildi.\n\nUning so‘zlariga ko‘ra, hozirgi kunda maktabni bitirgan har 10 nafar o‘quvchining 4 nafari O‘zbekistondagi oliy ta’lim muassasida, xorijga ketayotganlar bilan hisoblaganda bitiruvchilarning har ikkitadan bittasi oliy ta’lim olish imkoniyatiga ega bo‘ldi.",
+ "targetedText": "* Maqsadsiz O‘zbekiston oliy ta’lim muassasalariga kirishda abituriyentlarning ayrim toifalariga beriladigan imtiyozlar qayta ko‘rib chiqiladi. Bu haqda oliy va o‘rta maxsus ta’lim vaziri Abduqodir Toshqulov 16 iyun kuni AOKAda o‘tkazilgan matbuot anjumanida ma’lum qildi.\n\nUning so‘zlariga ko‘ra, hozirgi kunda maktabni bitirgan har 10 nafar o‘quvchining 4 nafari O‘zbekistondagi oliy ta’lim muassasida, xorijga ketayotganlar bilan hisoblaganda bitiruvchilarning har ikkitadan bittasi oliy ta’lim olish imkoniyatiga ega bo‘ldi.",
+ "aimlessText": "* MaqsadLi O‘zbekiston oliy ta’lim muassasalariga kirishda abituriyentlarning ayrim toifalariga beriladigan imtiyozlar qayta ko‘rib chiqiladi. Bu haqda oliy va o‘rta maxsus ta’lim vaziri Abduqodir Toshqulov 16 iyun kuni AOKAda o‘tkazilgan matbuot anjumanida ma’lum qildi.\n\nUning so‘zlariga ko‘ra, hozirgi kunda maktabni bitirgan har 10 nafar o‘quvchining 4 nafari O‘zbekistondagi oliy ta’lim muassasida, xorijga ketayotganlar bilan hisoblaganda bitiruvchilarning har ikkitadan bittasi oliy ta’lim olish imkoniyatiga ega bo‘ldi.",
+ "requestExamTest": "* Test sinovlarida qatnashish uchun ro‘yxatdan o‘tish to‘g‘risida oferta shartnomasi",
+ "afertaAccept": "Tanishdim"
 
 }

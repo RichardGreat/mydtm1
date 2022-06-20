@@ -13,6 +13,7 @@ sheetRegionTest(
 
   showModalBottomSheet(
       context: context,
+      enableDrag: true,
       builder: (contexts) {
         return  ChooseRegion(
                 providerChooseEdu: providerChooseEdu, contexts: contexts);
@@ -62,7 +63,7 @@ class _ChooseRegionState extends State<ChooseRegion> {
     return Container(
       child: widget.providerChooseEdu.boolEduChoose
           ? Container(
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.7,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Column(
