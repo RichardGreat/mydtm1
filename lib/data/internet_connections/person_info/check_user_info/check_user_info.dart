@@ -9,7 +9,7 @@ class NetworkCheckUserInfo {
     var box = Hive.box("online");
     var dio = Dio();
     Response response;
-    response = await dio.get("https://api.dtm.uz/v1/imtiyoz/check-data?username=$phoneNumber",
+    response = await dio.get("${MainUrl.mainUrls}/v1/imtiyoz/check-data?username=$phoneNumber",
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
     return jsonEncode(response.data);
   }

@@ -45,6 +45,9 @@ sheetGrantContractChoose(
                                       fontWeight: FontWeight.bold),
 
                                   ///
+                                  btnOkColor: MyColors.appColorBlue1(),
+                                  btnCancelColor: MyColors.appColorGreen2(),
+
                                   btnCancelText: "no".tr(),
                                   btnOkText: "yes".tr(),
 

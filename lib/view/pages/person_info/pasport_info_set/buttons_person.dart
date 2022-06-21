@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/model_sheet_nation.dart';
-import 'package:mydtm/view/pages/person_info/pasport_info_set/person_received/person_received.dart';
+import 'package:mydtm/view/pages/person_info/pasport_info_set/person_received/passport_againperson_received.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/provider_person_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -77,7 +77,8 @@ Widget buttonsPersonInfo(
             : MyColors.appColorGrey400(),
         child: MyWidgets.robotoFontText(
             text: "continue".tr(), textColor: MyColors.appColorWhite()),
-      )
+      ),
+
     ],
   );
 }

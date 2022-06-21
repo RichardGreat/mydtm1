@@ -208,10 +208,10 @@ class ProviderAddressInfo extends ChangeNotifier {
               color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
           descTextStyle: TextStyle(
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-          btnCancelOnPress: () {
-            Navigator.of(context).pop();
-            Navigator.of(context).pop();
+
+              btnCancelOnPress: () {
           },
+              btnCancelColor: MyColors.appColorBlue1(),
           btnCancelText: "OK")
           .show();
 

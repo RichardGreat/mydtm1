@@ -113,6 +113,11 @@ class ProviderPersonInfo extends ChangeNotifier {
     log(imieInfo);
   }
 
+
+  Future setPersonAgain()async{
+
+  }
+
   Future getWindow({required BuildContext context}) async {
     Navigator.of(context).pop();
     Navigator.push(

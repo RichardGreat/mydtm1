@@ -37,7 +37,7 @@ Widget bodyCheckInformation(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
 
-                providerCheckInformation.modelCheckUserInfo.person || box.get("imie").toString().length >=14
+                providerCheckInformation.modelCheckUserInfo.person
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : Icon(Icons.error, color: MyColors.appColorRed()),
               ]),

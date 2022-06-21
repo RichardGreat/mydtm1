@@ -50,6 +50,8 @@ sheetMaqsadli({required BuildContext context,
                                     ///
                                     btnCancelText: "no".tr(),
                                     btnOkText: "yes".tr(),
+                                    btnOkColor: MyColors.appColorBlue1(),
+                                    btnCancelColor: MyColors.appColorGreen2(),
                                     ///
                                     btnOkOnPress: () {
                                       providerChooseEdu.setMaqsadli(

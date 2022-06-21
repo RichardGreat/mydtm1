@@ -15,13 +15,7 @@ Widget bottomCheckInfo(
         height: 50,
         minWidth: double.infinity,
         onPressed: () {
-          for (var element in providerCheckInformation.myList) {
-            if(element.status == 0){
 
-             MyWidgets.awesomeDialogError(context: context, valueText: "noInfoCheck".tr());
-             break;
-            }
-          }
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color:  MyColors.appColorBlue1(),

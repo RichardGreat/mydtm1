@@ -54,6 +54,8 @@ Widget buttonGraduated(
             providerGradueted.textEditingSerNumber.text.length >= 5){
   log("o'zbek server");
   providerGradueted.sentServerGraduatedAll(
+      // graduatedEduId
+      // graduatedEduName
       context: context,
       eduType: providerGradueted.graduatedEduTypeId,
       regionId: providerGradueted.graduatedRegionId,

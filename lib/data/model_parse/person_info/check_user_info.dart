@@ -8,12 +8,12 @@ class ModelCheckUserInfo {
     required this.bakalavr,
   });
 
-  bool person;
-  bool personAddress;
-  bool personGeneralEdu;
-  bool certificate;
-  bool imtiyoz;
-  bool bakalavr;
+  bool person = false;
+  bool personAddress = false;
+  bool personGeneralEdu = false;
+  bool certificate = false;
+  bool imtiyoz = false;
+  bool bakalavr = false;
 
   factory ModelCheckUserInfo.fromJson(Map<String, dynamic> json) => ModelCheckUserInfo(
     person: json["person"],

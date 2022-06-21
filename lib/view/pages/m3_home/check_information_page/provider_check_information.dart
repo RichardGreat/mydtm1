@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -14,18 +14,18 @@ import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 class ProviderCheckInformation extends ChangeNotifier {
   List<ModelCheckInformationForDelete> myList = [
     ModelCheckInformationForDelete(
-        id: 1, name: "personInformation".tr(), status: 0),
+        id: 1, name: "personInformation".tr(), ),
     ModelCheckInformationForDelete(
-        id: 2, name: "addressAlways".tr(), status: 0),
-    ModelCheckInformationForDelete(id: 3, name: "schoolInfo".tr(), status: 1),
-    ModelCheckInformationForDelete(id: 4, name: "certificates".tr(), status: 1),
-    ModelCheckInformationForDelete(id: 5, name: "privileges".tr(), status: 1),
+        id: 2, name: "addressAlways".tr(),),
+    ModelCheckInformationForDelete(id: 3, name: "schoolInfo".tr(),),
+    ModelCheckInformationForDelete(id: 4, name: "certificates".tr(),),
+    ModelCheckInformationForDelete(id: 5, name: "privileges".tr(),),
     ModelCheckInformationForDelete(
-        id: 6, name: "chooseDirection".tr(), status: 1),
+        id: 6, name: "chooseDirection".tr(), ),
   ];
 
   NetworkCheckUserInfo networkCheckUserInfo = NetworkCheckUserInfo();
@@ -38,8 +38,10 @@ class ProviderCheckInformation extends ChangeNotifier {
       boolCheckUserInfo = false;
       String dataCheckInfo = await networkCheckUserInfo.getUserInfo(
           phoneNumber: box.get("phoneNumber"));
+      log(dataCheckInfo);
       modelCheckUserInfo =
           ModelCheckUserInfo.fromJson(jsonDecode(dataCheckInfo));
+
       boolCheckUserInfo = true;
       notifyListeners();
     } catch (e) {}
@@ -134,50 +136,7 @@ class ProviderCheckInformation extends ChangeNotifier {
     }
   }
 
-  //
-  //
-  // Future infoAferta({required BuildContext context, required Function function})async{
-  //   AwesomeDialog(
-  //     context: context,
-  //     dialogType: DialogType.NO_HEADER,
-  //     animType: AnimType.BOTTOMSLIDE,
-  //     title: "DTM",
-  //     body: SingleChildScrollView(child: Container(
-  //       margin: EdgeInsets.all(5),
-  //       child: Column(
-  //         children: [
-  //           Text("requestExamTest".tr(),
-  //               textAlign: TextAlign.center,
-  //               style: TextStyle(fontWeight: FontWeight.w600, )),
-  //           const SizedBox(height: 20),
-  //           CheckboxListTile(value: false,
-  //               title: Text("afertaAccept".tr()),
-  //               onChanged:(val){
-  //
-  //               }),
-  //           ListTile(title: Text("afertaAccept".tr(),
-  //             textAlign: TextAlign.center,
-  //             style: TextStyle(fontWeight: FontWeight.w600), ),
-  //           onTap: (){
-  //             inFoAferta(context: context);
-  //           },
-  //           )
-  //         ],
-  //       ),)),
-  //     titleTextStyle: TextStyle(
-  //         color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
-  //     descTextStyle: TextStyle(
-  //         color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-  //
-  //     btnCancelOnPress: () {},
-  //
-  //     btnOkOnPress: (){
-  //
-  //
-  //     },
-  //   )
-  //       .show();
-  // }
+
 
   Future<void> inFoAferta(
       {required BuildContext context, required Function function}) async {
@@ -186,15 +145,44 @@ class ProviderCheckInformation extends ChangeNotifier {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title:          Text("requestExamTest".tr(),
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontWeight: FontWeight.w600, )),
+          title: Column(
+            children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+              GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).pop();
+                  },
+                  child: Icon(Icons.close))
+            ],),
+              SizedBox(height: 10),
+              Text("requestExamTest".tr(),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontWeight: FontWeight.w600, )),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Icon(Icons.arrow_downward_outlined, size: 14, color: MyColors.appColorRed()),),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Icon(Icons.arrow_downward_outlined, size: 14, color: MyColors.appColorRed()),),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Icon(Icons.arrow_downward_outlined, size: 14, color: MyColors.appColorRed()),),
+                ],
+              ),
+              SizedBox(height: 5),
+            ],
+          ),
           content: SingleChildScrollView(
             child: ListBody(
               children: [
-                Align(
-                    alignment: Alignment.bottomRight,
-                  child: Icon(Icons.arrow_downward_outlined, size: 14, color: MyColors.appColorBlack()),),
+
                 Text("aferta".tr()),
                 MaterialButton(
                   minWidth: double.infinity,
@@ -225,18 +213,17 @@ class ProviderCheckInformation extends ChangeNotifier {
 class ModelCheckInformationForDelete {
   String name;
   int id;
-  int status;
 
   ModelCheckInformationForDelete(
-      {required this.id, required this.name, required this.status});
+      {required this.id, required this.name,});
 
   factory ModelCheckInformationForDelete.fromJson(Map<String, dynamic> json) =>
       ModelCheckInformationForDelete(
-          id: json["id"], name: json["name"], status: json["status"]);
+          id: json["id"], name: json["name"],);
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
-        "status": status,
+
       };
 }

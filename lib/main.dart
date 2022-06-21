@@ -66,8 +66,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ConnectionNotifier(
       disconnectedContent:
-          const Center(child: Text("Internet bilan oloqa yoq")),
-      connectedContent: const Center(child: Text("Aloqa tiklandi")),
+           Center(child: Text("noInternetConn".tr())),
+      connectedContent:  Center(child: Text("internetConn".tr())),
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,

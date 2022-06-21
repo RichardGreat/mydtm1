@@ -571,7 +571,7 @@ class ProviderGraduated extends ChangeNotifier {
       "edu_name":eduName??"0",
       "country_id":countryId??"0"
     };
-    log(jsonEncode(sentEduMap));
+
     boolAllInfoGraduated = false;
     notifyListeners();
     String data = await networkSetServer.getSetAllGraduated(allData: jsonEncode(sentEduMap));

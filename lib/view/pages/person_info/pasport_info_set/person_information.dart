@@ -76,7 +76,7 @@ class _PersonInformationState extends State<PersonInformation> {
 
         ), onWillPop: ()async{
           Navigator.of(context).pop();
-          widget.funcState;
+          widget.funcState();
           return true;
         })
         ,

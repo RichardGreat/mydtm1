@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:mydtm/view/pages/person_info/pasport_info_set/person_received/passport_againperson_received.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/provider_person_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -9,6 +10,7 @@ Widget personReceived2(
     {required BuildContext context,
     required ProviderPersonInfo providerPersonInfo}) {
   return Container(
+
       height: MediaQuery.of(context).size.height -
           MediaQuery.of(context).padding.top,
       decoration: BoxDecoration(
@@ -95,13 +97,13 @@ Widget personReceived2(
                 minWidth: double.infinity,
                 color: MyColors.appColorBlue1(),
                 onPressed: () {
-                  log("123");
-                      Navigator.of(context).pop();
+
+                  modelSheetPersonReceived(context: context, providerPersonInfo: providerPersonInfo, imie: providerPersonInfo.imie );
                   // providerPersonInfo.getWindow(context: context);
                 },
                 height: 50,
                 child: MyWidgets.robotoFontText(
-                    text: "access".tr(), textColor: MyColors.appColorWhite()),
+                    text: "passportAgain".tr(), textColor: MyColors.appColorWhite()),
               ),
             ),
           ))

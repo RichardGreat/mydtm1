@@ -444,6 +444,7 @@ class ProviderSms extends ChangeNotifier {
       boolSentServerRequest = true;
       notifyListeners();
     } catch (e) {
+      log(e.toString());
       boolSentServerRequest = true;
       notifyListeners();
     }
