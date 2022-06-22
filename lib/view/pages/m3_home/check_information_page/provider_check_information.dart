@@ -14,7 +14,7 @@ import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:easy_localization/easy_localization.dart';
+
 class ProviderCheckInformation extends ChangeNotifier {
   List<ModelCheckInformationForDelete> myList = [
     ModelCheckInformationForDelete(
@@ -143,8 +143,13 @@ class ProviderCheckInformation extends ChangeNotifier {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
+
       builder: (BuildContext context) {
         return AlertDialog(
+            backgroundColor: Colors.white,
+            insetPadding: EdgeInsets.all(10),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Column(
             children: [
             Row(
@@ -179,7 +184,13 @@ class ProviderCheckInformation extends ChangeNotifier {
               SizedBox(height: 5),
             ],
           ),
-          content: SingleChildScrollView(
+          content:
+        SizedBox.expand(
+
+          child:
+
+        SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
             child: ListBody(
               children: [
 
@@ -203,7 +214,7 @@ class ProviderCheckInformation extends ChangeNotifier {
                 ),
               ],
             ),
-          ),
+          ),)
         );
       },
     );
