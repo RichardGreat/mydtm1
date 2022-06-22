@@ -48,8 +48,8 @@ var box = Hive.box("online");
                         children: [
                           const SizedBox(height: 10),
                           CachedNetworkImage(
-
-                            width: 100,
+                            filterQuality: FilterQuality.high,
+                            width: 80,
                             height: 80,
                             fit: BoxFit.fill,
                             imageUrl:   "${MainUrl.mainUrlImage}/${i.mobilIcon}",

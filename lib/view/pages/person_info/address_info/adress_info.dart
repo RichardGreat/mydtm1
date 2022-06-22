@@ -48,7 +48,7 @@ class _AddressInfoState extends State<AddressInfo> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             MyWidgets.robotoFontText(
-                                text: "address2".tr(),
+                                text: "addressAlways".tr(),
                                 textColor: MyColors.appColorBlack(),
                                 textSize: 26),
                             const SizedBox(height: 5),

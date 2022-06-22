@@ -87,7 +87,7 @@ class ProviderAriza extends ChangeNotifier {
       String dataDownloads = await networkDownloadsAnswerSheet.getCheckAnswerSheet();
       modelGetDownloadsData3 = ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
       modelGetDownloads3 = modelGetDownloadsData3.data;
-      
+
       boolDataDownload3 = true;
       notifyListeners();
       log(modelGetDownloadsData3.data.src);

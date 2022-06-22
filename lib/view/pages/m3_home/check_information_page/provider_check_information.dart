@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -14,6 +15,7 @@ import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProviderCheckInformation extends ChangeNotifier {
   List<ModelCheckInformationForDelete> myList = [
@@ -47,19 +49,21 @@ class ProviderCheckInformation extends ChangeNotifier {
     } catch (e) {}
     // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
   }
-
+  final Uri _url = Uri.parse("https://lex.uz/docs/-4396419");
   Future checkInfo(
       {required int index,
       required BuildContext context,
       required Function func}) async {
     if (modelCheckUserInfo.person) {
       if (index == 0) {
+
         pushNewScreen(
           context,
           screen: PersonInformation(funcState: func),
           withNavBar: false,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
+
       } else if (modelCheckUserInfo.personAddress) {
         if (index == 1) {
           pushNewScreen(
@@ -123,20 +127,56 @@ class ProviderCheckInformation extends ChangeNotifier {
       }
     } else {
       if (index == 0) {
-        pushNewScreen(
-          context,
-          screen: PersonInformation(funcState: func),
-          withNavBar: false,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+        AwesomeDialog(
+            context: context,
+            dialogType: DialogType.NO_HEADER,
+            animType: AnimType.BOTTOMSLIDE,
+            title: "DTM",
+
+            body: GestureDetector(
+              onTap: (){
+                _launchInBrowser(_url);
+              },
+              child: Container(
+                margin:const  EdgeInsets.all(10),
+                child: Text("personalInfoAccess".tr(),
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                  decoration: TextDecoration.underline,
+
+                  fontWeight: FontWeight.w500, color: MyColors.appColorBlue1(), )),
+
+              ),
+            ),
+            titleTextStyle: TextStyle(
+                color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold, fontSize: 20),
+            descTextStyle: TextStyle(
+                color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+
+           btnOkOnPress: (){
+             pushNewScreen(
+               context,
+               screen: PersonInformation(funcState: func),
+               withNavBar: false,
+               pageTransitionAnimation: PageTransitionAnimation.cupertino,
+             );
+           },
+            btnCancelOnPress: () {
+            },
+            btnCancelColor: MyColors.appColorBlue1(),
+            btnCancelText: "notAgree".tr(),
+            btnOkText: "iAgree".tr(),
+
+
+        )
+            .show();
+
       } else {
         MyWidgets.awesomeDialogError(
             context: context, valueText: "passportFillInfo".tr());
       }
     }
   }
-
-
 
   Future<void> inFoAferta(
       {required BuildContext context, required Function function}) async {
@@ -219,6 +259,21 @@ class ProviderCheckInformation extends ChangeNotifier {
       },
     );
   }
+  // final Uri urls = Uri.parse("https://lex.uz/docs/-4396419");
+  Future<void> _launchInBrowser(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Could not launch $url';
+    }
+  }
+ 
+
+
+  // void _launchUrl() async {
+  //   if (!await launchUrl(urls)) throw 'Sahifa ochilmadi $urls';
+  // }
 }
 
 class ModelCheckInformationForDelete {

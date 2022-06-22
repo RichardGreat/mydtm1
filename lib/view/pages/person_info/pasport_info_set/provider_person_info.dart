@@ -70,7 +70,7 @@ class ProviderPersonInfo extends ChangeNotifier {
       "imie": txtJShShIRController.text,
       "ps_ser": txtPsSerController.text,
       "ps_num": txtPsNumController.text,
-      "nation": nationIds,
+      "nation": "1",
     };
     log(jsonEncode(myMapsImie));
     boolNetworkGetData = true;

@@ -9,36 +9,36 @@ Widget buttonsPersonInfo(
     {required BuildContext context,
     required ProviderPersonInfo providerPersonInfo}) {
   return Column(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    mainAxisAlignment: MainAxisAlignment.end,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      GestureDetector(
-        child: Container(
-            height: 50,
-            padding: const EdgeInsets.only(left: 10, right: 5),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border:
-                    Border.all(color: MyColors.appColorGrey400(), width: 1.5)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                MyWidgets.robotoFontText(
-                    text: providerPersonInfo.nationNames.length < 2
-                        ? "choose".tr()
-                        : providerPersonInfo.nationNames,
-                    textColor: providerPersonInfo.nationNames.length < 2
-                        ? MyColors.appColorGrey400()
-                        : MyColors.appColorBlack(),
-                    textSize: 16),
-                const Icon(Icons.arrow_drop_down, size: 32)
-              ],
-            )),
-        onTap: () {
-          modelSheetNation(
-              context: context, providerPersonInfo: providerPersonInfo);
-        },
-      ),
+      // GestureDetector(
+      //   child: Container(
+      //       height: 50,
+      //       padding: const EdgeInsets.only(left: 10, right: 5),
+      //       decoration: BoxDecoration(
+      //           borderRadius: BorderRadius.circular(8),
+      //           border:
+      //               Border.all(color: MyColors.appColorGrey400(), width: 1.5)),
+      //       child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //         children: [
+      //           MyWidgets.robotoFontText(
+      //               text: providerPersonInfo.nationNames.length < 2
+      //                   ? "choose".tr()
+      //                   : providerPersonInfo.nationNames,
+      //               textColor: providerPersonInfo.nationNames.length < 2
+      //                   ? MyColors.appColorGrey400()
+      //                   : MyColors.appColorBlack(),
+      //               textSize: 16),
+      //           const Icon(Icons.arrow_drop_down, size: 32)
+      //         ],
+      //       )),
+      //   onTap: () {
+      //     modelSheetNation(
+      //         context: context, providerPersonInfo: providerPersonInfo);
+      //   },
+      // ),
       MaterialButton(
         minWidth: double.infinity,
         height: 50,
@@ -48,8 +48,7 @@ Widget buttonsPersonInfo(
         onPressed: () {
           providerPersonInfo.boolJShShIR &&
                   providerPersonInfo.boolPsSer &&
-                  providerPersonInfo.boolPsNum &&
-                  providerPersonInfo.boolChooseNation
+                  providerPersonInfo.boolPsNum
               ? {
             if(providerPersonInfo.formKey123.currentState!.validate()){
               providerPersonInfo.setPersonInfoServer(context: context)

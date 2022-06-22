@@ -44,7 +44,7 @@ Widget bodyMainHome(
                 itemBuilder: (context, index) => providerMainHome
                         .listDataServiceList[index].service.isNotEmpty
                     ? SizedBox(
-                        height: 160,
+                        height: 170,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +121,7 @@ Widget bodyMainHome(
                                     );
                                   },
                                   child: Container(
-                                    height: 140,
+                                    height: 150,
                                     width: 120,
                                     padding: const EdgeInsets.all(10),
                                     margin: const EdgeInsets.all(5),
@@ -145,6 +145,7 @@ Widget bodyMainHome(
                                         CachedNetworkImage(
                                           height: 30,
                                           width: 30,
+                                          filterQuality: FilterQuality.high,
                                           fit: BoxFit.fill,
                                           imageUrl:  "${MainUrl.mainUrlImage}/${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
                                           progressIndicatorBuilder:
@@ -172,7 +173,7 @@ Widget bodyMainHome(
 
                                           textAlign: TextAlign.center,
                                           overflow: TextOverflow.ellipsis,
-                                          maxLines:3,
+                                          maxLines:4,
                                           // softWrap: true,
                                           style: const TextStyle(
                                               fontFamily: 'Roboto-Medium'),

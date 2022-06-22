@@ -57,6 +57,7 @@
   "access": "-Tasdiqlash",
   "targeted": "-Maqsadli tanlovga roziman",
   "aimless": "-Maqsadli tanlovga rozi emasman",
+
   "personInformation": "-Shaxsiy ma'lumotlar",
   "addressAlways": "-Doimiy yashash manzili",
   "schoolInfo": "-Umumta'lim muassasasi",
@@ -156,8 +157,10 @@
   "lastChange": "-Oxirgi o'zgartirish kiritilgan sana",
   "testRegion": "-Test topshirish hududi",
   "balance": "-Balans",
-  "infoNotFind": "-Ma'lumot topilmadi"
-
+  "infoNotFind": "-Ma'lumot topilmadi",
+  "personalInfoAccess": "QONUN TALABLARI DOIRASIDA SHAXSGA DOIR MAʼLUMOTLARIMDAN FOYDALANISHGA VA ISHLOV BERISHGA ROZILIK BILDIRAMAN.",
+  "iAgree":"Roziman",
+  "notAgree": "Roziemasman"
 
 
 }
