@@ -79,7 +79,7 @@ class _ArizaEnterState extends State<ArizaEnter> {
       backgroundColor: MyColors.appColorWhite(),
       appBar: AppBar(
           title: MyWidgets.robotoFontText(
-              text: "Oliy ta'lim muassasalariga qabul"),
+              text: "otmQabul".tr()),
           elevation: 0,
           backgroundColor: MyColors.appColorWhite(),
           iconTheme: IconThemeData(color: MyColors.appColorBlack())),

@@ -5,6 +5,7 @@ import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 Widget bodyAriza1(
     {required BuildContext context, required ProviderAriza providerAriza}) {
@@ -35,7 +36,7 @@ Widget bodyAriza1(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MyWidgets.robotoFontText(text: "Oliy ta'lim muassasalariga qabul"),
+                MyWidgets.robotoFontText(text: "otmQabul".tr()),
                 const SizedBox(height: 10),
                 MyWidgets.robotoFontText(text: "№ ${providerAriza.person.id}"),
                 const SizedBox(height: 10),
@@ -56,8 +57,8 @@ Widget bodyAriza1(
                   child: Center(
                     child: MyWidgets.robotoFontText(
                         text: providerAriza.model.pay == 0
-                            ? "To'lanmagan"
-                            : "To'langan",
+                            ? "noPayed".tr()
+                            : "payed".tr(),
                         textColor: MyColors.appColorWhite(),
                     textSize: 14
                     ),

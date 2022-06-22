@@ -5,8 +5,11 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:mydtm/data/internet_connections/m4_ariza/answersheet.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/ariza_check.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/downloads_url.dart';
+import 'package:mydtm/data/internet_connections/m4_ariza/qayd_varaqa.dart';
+import 'package:mydtm/data/internet_connections/m4_ariza/ruxsanoma.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/model_qayd_varaqa.dart';
 import 'package:open_file/open_file.dart';
@@ -38,7 +41,13 @@ class ProviderAriza extends ChangeNotifier {
     }
   }
 
-  NetworkDownloads networkDownloads = NetworkDownloads();
+  NetworkDownloadsQaydVaraqa networkDownloadsQaydVaraqa = NetworkDownloadsQaydVaraqa();
+  NetworkDownloadsRuxsatnoma networkDownloadsRuxsatnoma = NetworkDownloadsRuxsatnoma();
+  NetworkDownloadsAnswerSheet networkDownloadsAnswerSheet = NetworkDownloadsAnswerSheet();
+  late ModelGetDownloads modelGetDownloadsData1;
+  late ModelGetDownloads modelGetDownloadsData2;
+  late ModelGetDownloads modelGetDownloadsData3;
+
   late DataGetDownloads modelGetDownloads1;
   late DataGetDownloads modelGetDownloads2;
   late DataGetDownloads modelGetDownloads3;
@@ -51,35 +60,44 @@ class ProviderAriza extends ChangeNotifier {
     if (categoryId == 1) {
      try {
         boolDataDownload1 = false;
-        String dataDownloads = await networkDownloads.getCheckDownloads();
-        ModelGetDownloads modelGetDownloads =
+        String dataDownloads = await networkDownloadsQaydVaraqa.getCheckDownloads();
+        modelGetDownloadsData1 =
             ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
-        modelGetDownloads1 = modelGetDownloads.data;
+        modelGetDownloads1 = modelGetDownloadsData1.data;
         boolDataDownload1 = true;
         notifyListeners();
-        log(modelGetDownloads.data.src);
+        log(modelGetDownloadsData1.data.src);
       }catch(e){log(e.toString());}
     } else if (categoryId == 2) {
-      boolDataDownload2 = false;
-      String dataDownloads = await networkDownloads.getCheckDownloads();
-      ModelGetDownloads modelGetDownloads = ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
-      modelGetDownloads2 = modelGetDownloads.data;
-      boolDataDownload2 = true;
-      notifyListeners();
-      log(modelGetDownloads.data.src);
+      try{
+        boolDataDownload2 = false;
+        String dataDownloads = await networkDownloadsRuxsatnoma.getCheckDownloads();
+        modelGetDownloadsData2 = ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
+        modelGetDownloads2 = modelGetDownloadsData2.data;
+        boolDataDownload2 = true;
+        notifyListeners();
+        log(modelGetDownloadsData2.data.src);
+      }catch(e){
+
+      }
+
     } else if (categoryId == 3) {
+    try{
       boolDataDownload3 = false;
-      String dataDownloads = await networkDownloads.getCheckDownloads();
-      ModelGetDownloads modelGetDownloads = ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
-      modelGetDownloads3 = modelGetDownloads.data;
+      String dataDownloads = await networkDownloadsAnswerSheet.getCheckAnswerSheet();
+      modelGetDownloadsData3 = ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
+      modelGetDownloads3 = modelGetDownloadsData3.data;
+      
       boolDataDownload3 = true;
       notifyListeners();
-      log(modelGetDownloads.data.src);
+      log(modelGetDownloadsData3.data.src);
+    }catch(e){
+      modelGetDownloadsData3.status = 0;
+      notifyListeners();
+    }
 
     }
   }
-
-
 
   Future openFile({required String url, required String fileName})async{
     try{

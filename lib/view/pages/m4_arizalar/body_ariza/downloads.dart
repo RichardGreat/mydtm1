@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mydtm/view/pages/m4_arizalar/downloads/accessPapaer.dart';
+import 'package:mydtm/view/pages/m4_arizalar/downloads/answerSheet.dart';
 import 'package:mydtm/view/pages/m4_arizalar/downloads/qayd_varaqa.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 Widget downloads({required BuildContext context, required ProviderAriza providerAriza}){
   return    Container(
@@ -23,7 +26,7 @@ Widget downloads({required BuildContext context, required ProviderAriza provider
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
-          title: Text("Qayd varaqa"),
+          title: Text("notePaper".tr()),
           onTap: () {
             pushNewScreen(
               context,
@@ -31,26 +34,34 @@ Widget downloads({required BuildContext context, required ProviderAriza provider
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
-
+          },
+          trailing:const  Icon(Icons.arrow_forward_ios_sharp),
+        ),
+        ListTile(
+          title: Text("accessPaper".tr()),
+          onTap: () {
+            pushNewScreen(
+              context,
+              screen:    AccessPaperDownload(providerAriza: providerAriza),
+              withNavBar: false,
+              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+            );
+          },
+          trailing: const  Icon(Icons.arrow_forward_ios_sharp),
+        ),
+        ListTile(
+          title: Text("answerSheet".tr()),
+          onTap: () {
+            pushNewScreen(
+              context,
+              screen:  AnswerSheetDownload(providerAriza: providerAriza),
+              withNavBar: false,
+              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+            );
 
           },
-          trailing: Icon(Icons.arrow_forward_ios_sharp),
-        ),
-        ListTile(
-          title: Text("Ruxsatnoma"),
-          onTap: () {},
-          trailing: Icon(Icons.arrow_forward_ios_sharp),
-        ),
-        ListTile(
-          title: Text("Javob varaqa"),
-          onTap: () {},
-          trailing: Icon(Icons.arrow_forward_ios_sharp),
+          trailing:const   Icon(Icons.arrow_forward_ios_sharp),
         )
-
-        // MyWidgets.robotoFontText(text: "Oliy ta'lim muassasalariga qabul"),
-        // MyWidgets.robotoFontText(text: providerAriza.model.imie.toString()),
-        // MyWidgets.robotoFontText(text: providerAriza.model.invoice.toString()),
-        // MyWidgets.robotoFontText(text: providerAriza.model.status.toString()),
       ],
     ),
   );

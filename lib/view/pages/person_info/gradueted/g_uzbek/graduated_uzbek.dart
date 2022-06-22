@@ -95,8 +95,8 @@ functionUzbAnother(providerGradueted: providerGradueted)?
       MyWidgets.robotoFontText(
           text:"district".tr()
              ,
-          textColor: MyColors.appColorGrey400(),
-          textSize: 16):SizedBox.shrink(),
+          textColor: MyColors.appColorBlack(),
+          textSize: 16):const SizedBox.shrink(),
       const SizedBox(height: 4),
 
       GestureDetector(
@@ -128,7 +128,7 @@ functionUzbAnother(providerGradueted: providerGradueted)?
       providerGradueted.boolGraduatedType?
       MyWidgets.robotoFontText(
           text: "muassasa".tr(),
-          textColor: MyColors.appColorGrey400(),
+          textColor:  MyColors.appColorBlack(),
           textSize: 16): const SizedBox.shrink(),
       const SizedBox(height: 4),
       providerGradueted.boolGraduatedType?

@@ -36,7 +36,7 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:  MyWidgets.robotoFontText(text:"Abituriyent qayd varaqasi", textSize: 18),
+      appBar: AppBar(title:  MyWidgets.robotoFontText(text:"notePaper".tr(), textSize: 18),
       centerTitle: true,
       backgroundColor: MyColors.appColorWhite(),
         iconTheme: IconThemeData(color: MyColors.appColorBlack()),
@@ -44,6 +44,7 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
       ),
       body: SafeArea(child: Container(child:
     widget.providerAriza.boolDataDownload1 ?
+        widget.providerAriza.modelGetDownloadsData1.status == 1?
     SingleChildScrollView(
       child: Column(children: [
         SizedBox(height: MediaQuery.of(context).size.height*0.6,
@@ -87,6 +88,6 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
           ]),),
 
       ]),
-    ):MyWidgets.loaderDownload(context: context),)),);
+    ):MyWidgets.loaderDownload(context: context):Center(child: MyWidgets.robotoFontText(text: "infoNotFind".tr()),),)),);
   }
 }

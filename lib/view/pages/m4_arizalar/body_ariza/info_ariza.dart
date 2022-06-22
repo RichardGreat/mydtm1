@@ -1,15 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 Widget infoAriza({required BuildContext context, required ProviderAriza providerAriza}){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
     MyWidgets.robotoFontText(
-        text: "Ariza to'g'risida ma'lumot"),
+        text: "aboutApplication".tr()),
     const SizedBox(height: 20),
     Container(
       width: double.infinity,
@@ -29,24 +29,24 @@ Widget infoAriza({required BuildContext context, required ProviderAriza provider
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
-              title:const Text("Ariza raqami"),
+              title: Text("numberApplication".tr()),
               onTap: () {},
-              trailing:Text(providerAriza.person.psnum.toString())),
+              trailing:Text(providerAriza.person.id.toString())),
           ListTile(
-            title: Text("Arizachi"),
+            title: Text("applicent".tr()),
             onTap: () {},
             trailing: Text(
                 "${providerAriza.person.lname}.${providerAriza.person.fname.substring(0, 1)}.${providerAriza.person.mname.substring(0, 1)}"),
           ),
           ListTile(
-              title: Text("Holati"),
+              title: Text("holat".tr()),
               onTap: () {},
               trailing: Text(providerAriza.model.status == 1
-                  ? "Tasdiqlandi"
-                  : "Kutulmoqda")),
+                  ? "accessed".tr()
+                  : "waiting".tr())),
           ListTile(
             title:
-            Text("Oxirgi o'zgartirish kiritilgan sana"),
+            Text("lastChange".tr()),
             onTap: () {},
             trailing: Text(providerAriza.model.createdAt
                 .toString()
@@ -56,7 +56,7 @@ Widget infoAriza({required BuildContext context, required ProviderAriza provider
 
           ListTile(
             title:
-            Text("Test topshirish hududi"),
+            Text("testRegion".tr()),
             onTap: () {},
             trailing: Text(providerAriza.model.tregion.toString()
             ),
