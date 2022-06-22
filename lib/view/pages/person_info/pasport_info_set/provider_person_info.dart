@@ -122,21 +122,21 @@ class ProviderPersonInfo extends ChangeNotifier {
       String data = await networkSetPassportAgain.setPassportInfo(passSer: psSer, passNum: psNum);
       PassportAgainStatus passportAgainStatus = PassportAgainStatus.fromJson(jsonDecode(data));
       if(passportAgainStatus.data.status == 1){
-        modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(data));
-        dataGetImieInfo = modelGetImieInfo.data;
-        psser = dataGetImieInfo.psser;
-        psnum = dataGetImieInfo.psnum.toString();
-        imie = dataGetImieInfo.imie.toString();
-        lname = dataGetImieInfo.lname;
-        fname = dataGetImieInfo.fname;
-        mname = dataGetImieInfo.mname;
-        bdate = dataGetImieInfo.bdate.toString();
-        sex = dataGetImieInfo.sex.toString();
-        nationId = dataGetImieInfo.nationId.toString();
-        image = dataGetImieInfo.image;
-        box.put("personImage", image);
-        boolNetworkGetData = false;
-
+        // modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(data));
+        // dataGetImieInfo = modelGetImieInfo.data;
+        // psser = dataGetImieInfo.psser;
+        // psnum = dataGetImieInfo.psnum.toString();
+        // imie = dataGetImieInfo.imie.toString();
+        // lname = dataGetImieInfo.lname;
+        // fname = dataGetImieInfo.fname;
+        // mname = dataGetImieInfo.mname;
+        // bdate = dataGetImieInfo.bdate.toString();
+        // sex = dataGetImieInfo.sex.toString();
+        // nationId = dataGetImieInfo.nationId.toString();
+        // image = dataGetImieInfo.image;
+        // box.put("personImage", image);
+        // boolNetworkGetData = false;
+        getPersonInformation(context: context);
         Navigator.of(context).pop();
         notifyListeners();
       }
