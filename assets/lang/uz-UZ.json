@@ -94,7 +94,7 @@
   "changePassport": "Parolni o'zgartirish",
   "newInputPassport": "Yangi parolni kiriting",
   "passwordNotMatch": "Parollar mos emas",
-  "certificate": "Sertifikatlar",
+  "certificate": "Sertifikat",
   "certType": "Sertifikat turi",
   "certDegree": "Darajasi",
   "foreignLang": "Chet tili",
@@ -158,5 +158,7 @@
   "infoNotFind": "Ma'lumot topilmadi",
   "personalInfoAccess": "QONUN TALABLARI DOIRASIDA SHAXSGA DOIR MAʼLUMOTLARIMDAN FOYDALANISHGA VA ISHLOV BERISHGA ROZILIK BILDIRAMAN.",
   "iAgree": "Roziman",
-  "notAgree": "Roziemasman"
+  "notAgree": "Roziemasman",
+  "oliytalim": "Oliy ta'lim muassasasi",
+  "chooseOther": "Mos yo'nalish topilmadi, qayta tanlan"
 }

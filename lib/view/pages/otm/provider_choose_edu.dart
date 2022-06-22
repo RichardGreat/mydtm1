@@ -301,7 +301,7 @@ class ProviderChooseEdu extends ChangeNotifier {
     for (int i = 0; i < listTitleEduDir.length; i++) {
       listTitleEduDir[i] = ListModelEduDir(
           id: "$i",
-          nameTitle: "Oliy ta'lim muassasi",
+          nameTitle: "oliytalim".tr(),
           titleId: "$i",
           nameEdu: "",
           emode: "",
@@ -315,17 +315,17 @@ class ProviderChooseEdu extends ChangeNotifier {
   }
 
   List<String> listTitleName = [
-    "Oliy ta'lim muassasi",
-    "Oliy ta'lim muassasi",
-    "Oliy ta'lim muassasi",
-    "Oliy ta'lim muassasi",
-    "Oliy ta'lim muassasi"
+    "oliytalim".tr(),
+    "oliytalim".tr(),
+    "oliytalim".tr(),
+    "oliytalim".tr(),
+    "oliytalim".tr()
   ];
 
   List<ListModelEduDir> listTitleEduDir = [
     ListModelEduDir(
       id: "0",
-      nameTitle: "Oliy ta'lim muassasi",
+      nameTitle: "oliytalim".tr(),
       titleId: "0",
       emode: "",
       emodeName: "",
@@ -337,7 +337,7 @@ class ProviderChooseEdu extends ChangeNotifier {
     ),
     ListModelEduDir(
       id: "1",
-      nameTitle: "Oliy ta'lim muassasi",
+      nameTitle: "oliytalim".tr(),
       titleId: "1",
       emode: "",
       emodeName: "",
@@ -349,7 +349,7 @@ class ProviderChooseEdu extends ChangeNotifier {
     ),
     ListModelEduDir(
       id: "2",
-      nameTitle: "Oliy ta'lim muassasi",
+      nameTitle: "oliytalim".tr(),
       titleId: "2",
       nameEdu: "",
       emode: "",
@@ -361,7 +361,7 @@ class ProviderChooseEdu extends ChangeNotifier {
     ),
     ListModelEduDir(
       id: "3",
-      nameTitle: "Oliy ta'lim muassasi",
+      nameTitle: "oliytalim".tr(),
       titleId: "3",
       nameEdu: "",
       emode: "",
@@ -373,7 +373,7 @@ class ProviderChooseEdu extends ChangeNotifier {
     ),
     ListModelEduDir(
       id: "4",
-      nameTitle: "Oliy ta'lim muassasi",
+      nameTitle: "oliytalim".tr(),
       titleId: "4",
       nameEdu: "",
       emode: "",
@@ -796,7 +796,7 @@ class ProviderChooseEdu extends ChangeNotifier {
               dialogType: DialogType.ERROR,
               animType: AnimType.BOTTOMSLIDE,
               title: "DTM",
-              desc: "Mos yo'nalish topilmadi, qayta tanlang",
+              desc: "chooseOther".tr(),
               titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
               descTextStyle: TextStyle(

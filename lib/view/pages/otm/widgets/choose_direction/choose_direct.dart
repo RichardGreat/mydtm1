@@ -120,7 +120,7 @@ Widget chooseDirect(
           decoration: BoxDecoration(color: MyColors.appColorWhite()),
           child: ListTile(
             title:
-            MyWidgets.robotoFontText(text: "Sertifikat", textSize: 19),
+            MyWidgets.robotoFontText(text: "certificate".tr(), textSize: 19),
             trailing: const Icon(Icons.arrow_forward_ios_sharp),
             onTap: () {
               sheetCertificateUse(
