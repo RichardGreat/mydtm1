@@ -8,7 +8,9 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 Widget personReceived2(
     {required BuildContext context,
-    required ProviderPersonInfo providerPersonInfo}) {
+    required ProviderPersonInfo providerPersonInfo,
+
+    }) {
   return Container(
 
       height: MediaQuery.of(context).size.height -

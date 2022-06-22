@@ -5,7 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_imie.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/network_set_imie.dart';
+import 'package:mydtm/data/internet_connections/person_info/passport_info/set_passport_again.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_imie_info.dart';
+import 'package:mydtm/data/model_parse/person_info/passport_info/model_passport_again.dart';
 import 'package:mydtm/data/model_parse/person_info/passport_info/model_set_passport.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -113,9 +115,35 @@ class ProviderPersonInfo extends ChangeNotifier {
     log(imieInfo);
   }
 
+  NetworkSetPassportAgain networkSetPassportAgain = NetworkSetPassportAgain();
+  Future setPersonAgain({required BuildContext context , required String psSer, required String psNum})async{
+    // https://api.dtm.uz/v1/qabul/pasport-change
+    try{
+      String data = await networkSetPassportAgain.setPassportInfo(passSer: psSer, passNum: psNum);
+      PassportAgainStatus passportAgainStatus = PassportAgainStatus.fromJson(jsonDecode(data));
+      if(passportAgainStatus.data.status == 1){
+        modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(data));
+        dataGetImieInfo = modelGetImieInfo.data;
+        psser = dataGetImieInfo.psser;
+        psnum = dataGetImieInfo.psnum.toString();
+        imie = dataGetImieInfo.imie.toString();
+        lname = dataGetImieInfo.lname;
+        fname = dataGetImieInfo.fname;
+        mname = dataGetImieInfo.mname;
+        bdate = dataGetImieInfo.bdate.toString();
+        sex = dataGetImieInfo.sex.toString();
+        nationId = dataGetImieInfo.nationId.toString();
+        image = dataGetImieInfo.image;
+        box.put("personImage", image);
+        boolNetworkGetData = false;
 
-  Future setPersonAgain()async{
+        Navigator.of(context).pop();
+        notifyListeners();
+      }
 
+    }catch(e){
+      log(e.toString());
+    }
   }
 
   Future getWindow({required BuildContext context}) async {

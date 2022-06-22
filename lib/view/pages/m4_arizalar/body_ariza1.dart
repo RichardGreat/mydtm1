@@ -11,46 +11,60 @@ Widget bodyAriza1(
     {required BuildContext context, required ProviderAriza providerAriza}) {
   return GestureDetector(
     child: Container(
-      height: 150,
+      height: 180,
       padding: const EdgeInsets.all(10),
-      margin: const  EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: MyColors.appColorWhite(),
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-                color: MyColors.appColorGrey400(), spreadRadius: 1, blurRadius: 1)
+                color: MyColors.appColorGrey400(),
+                spreadRadius: 1,
+                blurRadius: 1)
           ]),
-      child: Flexible(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-                width: MediaQuery.of(context).size.width * 0.2,
-                child:  Image.asset("assets/images/icon_person.png", height: 60,
-                  width: 30,
-                  fit:BoxFit.fitHeight,
-                    ),),
-            const SizedBox(width: 20),
-            SingleChildScrollView(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only  (right: 20),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.2,
+              child: Image.asset(
+                "assets/images/icon_person.png",
+                height: 60,
+                width: 30,
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+          ),
+
+          Flexible(
+            child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                  MyWidgets.robotoFontText(text: "otmQabul".tr()),
-                  const SizedBox(height: 10),
-                  MyWidgets.robotoFontText(text: "№ ${providerAriza.person.id}"),
+                  // MyWidgets.robotoFontText(text: "otmQabul".tr()),
+                  Text(
+                    "otmQabul".tr(),
+                    // maxLines: 3,
+                    overflow: TextOverflow.fade,
+                    softWrap: true,
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+                  ),
                   const SizedBox(height: 10),
                   MyWidgets.robotoFontText(
-                      text: providerAriza.model.updatedAt.toString().substring(0, 16),
+                      text: "№ ${providerAriza.person.id}"),
+                  const SizedBox(height: 10),
+                  MyWidgets.robotoFontText(
+                      text: providerAriza.model.updatedAt
+                          .toString()
+                          .substring(0, 16),
                       textSize: 14),
                   const SizedBox(height: 10),
                   Container(
-
-
-                    padding:const EdgeInsets.fromLTRB(10,5,10,5),
-
+                    padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: providerAriza.model.pay == 0
@@ -62,18 +76,17 @@ Widget bodyAriza1(
                               ? "noPayed".tr()
                               : "payed".tr(),
                           textColor: MyColors.appColorWhite(),
-                      textSize: 14
-                      ),
+                          textSize: 14),
                     ),
                   )
                 ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     ),
-    onTap: (){
+    onTap: () {
       pushNewScreen(context, screen: ArizaEnter(providerAriza: providerAriza));
     },
   );

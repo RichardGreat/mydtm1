@@ -198,11 +198,21 @@ modelSheetPersonReceived(
                     child: Container(
                       margin: const EdgeInsets.all(15),
                       child: MaterialButton(
+
+                        onPressed: () {
+                          if(providerPersonInfo.txtPsSerController.text.length == 2 && providerPersonInfo.txtPsNumController.text.length == 7) {
+                            providerPersonInfo.setPersonAgain(
+                              context: context,
+                                psSer: providerPersonInfo.txtPsSerController.text, psNum: providerPersonInfo.txtPsNumController.text);
+                          }else{
+                            log("##");
+                          }
+                        },
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         minWidth: double.infinity,
                         color: MyColors.appColorBlue1(),
-                        onPressed: () {},
+
                         height: 50,
                         child: MyWidgets.robotoFontText(
                             text: "access".tr(),

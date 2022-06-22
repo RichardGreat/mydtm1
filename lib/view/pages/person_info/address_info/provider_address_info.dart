@@ -185,7 +185,7 @@ class ProviderAddressInfo extends ChangeNotifier {
     log(jsonEncode(mapAddress));
     try {
       String dataSetAddress = await networkSetAddress.setAddressInfo(
-          setAddressInfo: jsonEncode(mapAddress));
+          setAddressInfos: jsonEncode(mapAddress));
       ModelGetAddress modelGetAddress =
           ModelGetAddress.fromJson(jsonDecode(dataSetAddress));
       provinceId = modelGetAddress.data.regionId.toString();
