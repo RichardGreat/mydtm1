@@ -116,7 +116,7 @@ class _LangEduChooseTestState extends State<LangEduChooseTest> {
                                     .clear();
                                 Navigator.of(context).pop();
                               },
-                              icon: const Icon(Icons.arrow_downward_outlined))
+                              icon: const Icon(CupertinoIcons.chevron_down))
                         ]),
                   ),
                   Expanded(

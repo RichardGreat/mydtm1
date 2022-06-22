@@ -128,7 +128,7 @@ class _DIREduState extends State<DIREdu> {
                                 .clear();
                             Navigator.of(context).pop();
                           },
-                          icon: const Icon(Icons.arrow_downward_outlined))
+                          icon: const Icon(CupertinoIcons.chevron_down))
                     ]),
               ),
               Expanded(

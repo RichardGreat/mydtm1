@@ -19,7 +19,9 @@ class ProviderDtmNews extends ChangeNotifier {
       boolDtmNews = false;
       getLang(); /// get local lang
       String dataNews = await NetworkDtmNews.getCheckDownloads(langName: langNames.isEmpty ?"uz": langNames);
-      modelDtmNews2 = (jsonDecode(dataNews) as List).map((e)=>ModelDtmNews.fromJson(e)).toList();
+      modelDtmNews2 = (jsonDecode(dataNews) as List).
+      map((e)=>ModelDtmNews.fromJson(e)).toList();
+      // modelDtmNews2.sort((b,a) => a.createdDate.compareTo(b.createdDate));
       boolDtmNews = true;
       notifyListeners();
     } catch (e) {

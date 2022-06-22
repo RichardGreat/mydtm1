@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/person_info/address_info/provider_address_info.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -109,7 +108,8 @@ class _SheetProvinceState extends State<SheetProvince> {
                           Navigator.of(context).pop();
 
                         },
-                        icon: const Icon(Icons.arrow_downward_outlined))
+                        icon:  Icon(CupertinoIcons.chevron_down,
+                            color: MyColors.appColorBlack()),)
                   ]),
             ),
             Expanded(

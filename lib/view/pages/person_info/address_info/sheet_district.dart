@@ -109,7 +109,7 @@ class _SheetDistrictState extends State<SheetDistrict> {
                                     .txtDistrictController.clear();
                                 Navigator.of(context).pop();
                               },
-                              icon: const Icon(Icons.arrow_downward_outlined))
+                              icon: const Icon(CupertinoIcons.chevron_down))
                         ]),
                   ),
                   Expanded(

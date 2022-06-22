@@ -65,7 +65,7 @@ class _MainMessagesState extends State<MainMessages> {
                                     id: providerDtmNews
                                     .modelDtmNews2[index].id.toString(),
                                     date: providerDtmNews
-                                    .modelDtmNews2[index].updateDate.toString(),
+                                    .modelDtmNews2[index].createdDate.toString(),
                                     titleName: providerDtmNews
                                         .modelDtmNews2[index].title.toString(),
                                     imgUrl: providerDtmNews
@@ -88,7 +88,7 @@ class _MainMessagesState extends State<MainMessages> {
                                   .modelDtmNews2[index].title
                                   .toString(), maxLines: 3),
                               trailing: Text(providerDtmNews
-                                  .modelDtmNews2[index].updateDate
+                                  .modelDtmNews2[index].createdDate
                                   .toString()),
                             ))),
                   )

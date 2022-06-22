@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -130,7 +130,7 @@ class _ChooseRegionState extends State<ChooseRegion> {
                                     .clear();
                                 Navigator.of(context).pop();
                               },
-                              icon: const Icon(Icons.arrow_downward_outlined))
+                              icon: const Icon(CupertinoIcons.chevron_down))
                         ]),
                   ),
                   Expanded(

@@ -22,9 +22,8 @@ import 'package:mydtm/data/model_parse/person_info/graduated/model_get_graduated
 import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/state_choose.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_type.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_year.dart';
-import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:path_provider/path_provider.dart';
+
 
 class ProviderGraduated extends ChangeNotifier {
   final formKeyGraduated = GlobalKey<FormState>();
@@ -475,9 +474,11 @@ class ProviderGraduated extends ChangeNotifier {
       String dataGraduated = await networkGraduatedYear.getYear();
       ModelGraduatedYear modelGraduatedYear =
           ModelGraduatedYear.fromJson(jsonDecode(dataGraduated));
+      listGraduatedYear.clear();
       for (int i = int.parse(modelGraduatedYear.data.endYear);
           i >= int.parse(modelGraduatedYear.data.beginYear);
           i--) {
+
         listGraduatedYear.add("$i-${"year".tr()}");
       }
       // listGraduatedYearTemp.clear();
