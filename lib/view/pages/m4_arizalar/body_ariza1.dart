@@ -21,53 +21,56 @@ Widget bodyAriza1(
             BoxShadow(
                 color: MyColors.appColorGrey400(), spreadRadius: 1, blurRadius: 1)
           ]),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-              width: MediaQuery.of(context).size.width * 0.2,
-              child:  Image.asset("assets/images/icon_person.png", height: 60,
-                width: 30,
-                fit:BoxFit.fitHeight,
-                  ),),
-          const SizedBox(width: 20),
-          SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                MyWidgets.robotoFontText(text: "otmQabul".tr()),
-                const SizedBox(height: 10),
-                MyWidgets.robotoFontText(text: "№ ${providerAriza.person.id}"),
-                const SizedBox(height: 10),
-                MyWidgets.robotoFontText(
-                    text: providerAriza.model.updatedAt.toString().substring(0, 16),
-                    textSize: 14),
-                const SizedBox(height: 10),
-                Container(
+      child: Flexible(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+                width: MediaQuery.of(context).size.width * 0.2,
+                child:  Image.asset("assets/images/icon_person.png", height: 60,
+                  width: 30,
+                  fit:BoxFit.fitHeight,
+                    ),),
+            const SizedBox(width: 20),
+            SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  MyWidgets.robotoFontText(text: "otmQabul".tr()),
+                  const SizedBox(height: 10),
+                  MyWidgets.robotoFontText(text: "№ ${providerAriza.person.id}"),
+                  const SizedBox(height: 10),
+                  MyWidgets.robotoFontText(
+                      text: providerAriza.model.updatedAt.toString().substring(0, 16),
+                      textSize: 14),
+                  const SizedBox(height: 10),
+                  Container(
 
 
-                  padding:const EdgeInsets.fromLTRB(10,5,10,5),
+                    padding:const EdgeInsets.fromLTRB(10,5,10,5),
 
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: providerAriza.model.pay == 0
-                          ? MyColors.appColorRed()
-                          : MyColors.appColorGreen2()),
-                  child: Center(
-                    child: MyWidgets.robotoFontText(
-                        text: providerAriza.model.pay == 0
-                            ? "noPayed".tr()
-                            : "payed".tr(),
-                        textColor: MyColors.appColorWhite(),
-                    textSize: 14
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: providerAriza.model.pay == 0
+                            ? MyColors.appColorRed()
+                            : MyColors.appColorGreen2()),
+                    child: Center(
+                      child: MyWidgets.robotoFontText(
+                          text: providerAriza.model.pay == 0
+                              ? "noPayed".tr()
+                              : "payed".tr(),
+                          textColor: MyColors.appColorWhite(),
+                      textSize: 14
+                      ),
                     ),
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     ),
     onTap: (){

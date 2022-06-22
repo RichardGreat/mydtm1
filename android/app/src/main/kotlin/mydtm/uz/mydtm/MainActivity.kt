@@ -1,4 +1,4 @@
-package www.my_dtm.uz
+package www.qabuldtm.uz
 
 import io.flutter.embedding.android.FlutterActivity
 
