@@ -17,7 +17,6 @@ class _MainHomeState extends State<MainHome> {
   @override
   void initState() {
     getServiceList();
-    // TODO: implement initState
     super.initState();
   }
 

@@ -30,6 +30,7 @@ class ProviderMainHome extends ChangeNotifier {
   String dataLang = "";
 
   Future setLangUser() async {
+    log(box.get("token").toString());
     try{
       if (box.get("token").toString().length > 30) {
         box.get("language") == "1"

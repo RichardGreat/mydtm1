@@ -11,6 +11,8 @@ import 'package:easy_localization/easy_localization.dart';
 
 sheetAppLanguageInterface({required BuildContext context,
   required ProviderProfile providerProfile}) {
+
+
   showModalBottomSheet(
       backgroundColor: MyColors.appColorWhite(),
       enableDrag: false,
@@ -41,6 +43,7 @@ sheetAppLanguageInterface({required BuildContext context,
                                 //context.setLocale(const Locale('uz', 'UZ'));
                                 box.delete("language");
                                 box.put("language", "1");
+                                providerProfile.setLangUser();
                                 // Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MyApp()),(route) => false,);
                                 setState((){});
                               },
@@ -54,6 +57,7 @@ sheetAppLanguageInterface({required BuildContext context,
                             //     box.delete("language");
                             //     box.put("language", "2");
                             //     // Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) =>  MyApp ()),(route) => false,);
+                          //providerProfile.setLangUser();
                             //     setState((){});
                             //   },
                             //   title: MyWidgets.robotoFontText(text: "qq".tr()),
@@ -66,6 +70,7 @@ sheetAppLanguageInterface({required BuildContext context,
                                 // context.setLocale(const Locale('ru', 'RU'));
                                 box.delete("language");
                                 box.put("language", "3");
+                                providerProfile.setLangUser();
                                 // Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MyApp()),(route) => false,);
                                 setState((){});
                               },

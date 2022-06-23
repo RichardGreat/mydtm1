@@ -180,7 +180,9 @@ class ProviderGraduated extends ChangeNotifier {
           contexts: context, providerGraduated: providerGraduated);
       boolGEduType = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
 
     notifyListeners();
   }

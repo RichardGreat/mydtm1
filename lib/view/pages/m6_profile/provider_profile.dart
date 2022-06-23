@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_captcha.dart';
+import 'package:mydtm/data/internet_connections/m3_home/service_list.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/change_number.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/change_password.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_imie.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/sms_model_reset_pass.dart';
+import 'package:mydtm/data/internet_connections/person_info/set_lang.dart';
 import 'package:mydtm/data/model_parse/m1_model/parse_captche.dart';
 import 'package:mydtm/data/model_parse/m6_model/change_phone/phone_changes.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_imie_info.dart';
@@ -157,7 +159,39 @@ class ProviderProfile extends ChangeNotifier {
       /// error
     }
   }
+  ///
 
+
+ // MyColors myColors = MyColors();
+  late NetworkServiceList networkServiceList = NetworkServiceList();
+  NetworkSetLanguage networkSetLanguage = NetworkSetLanguage();
+  String dataLang = "";
+  Future setLangUser() async {
+    try{
+      if (box.get("token").toString().length > 30) {
+        box.get("language") == "1"
+            ? {
+          dataLang =
+          await networkSetLanguage.setLanguageUser(setLang: "uz")
+        }
+            : box.get("language") == "2"
+            ? {
+          dataLang =
+          await networkSetLanguage.setLanguageUser(setLang: "kk")
+        }
+            : {
+          dataLang =
+          await networkSetLanguage.setLanguageUser(setLang: "ru")
+        };
+        log(dataLang);
+      }
+    }catch(e){
+      log(e.toString());
+    }
+  }
+
+
+///
   NetworkChangePassword networkChangePassword = NetworkChangePassword();
 
   Future getNewPassport({required BuildContext context}) async {

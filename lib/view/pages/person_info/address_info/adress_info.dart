@@ -52,11 +52,11 @@ class _AddressInfoState extends State<AddressInfo> {
                                 textColor: MyColors.appColorBlack(),
                                 textSize: 26),
                             const SizedBox(height: 5),
+
                             MyWidgets.robotoFontText(
-                                text: "fillAllRows".tr(),
+                                text: "fillAll".tr(),
                                 textColor: MyColors.appColorGrey400(),
-                                textFontWeight: FontWeight.w400,
-                                textSize: 15),
+                                textSize: 16),
                             regionSetInput(
                                 context: context,
                                 providerAddressInfo: providerAddressInfo),
