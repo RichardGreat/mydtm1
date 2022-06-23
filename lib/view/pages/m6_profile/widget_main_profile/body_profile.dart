@@ -12,7 +12,9 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-Widget bodyProfile({required BuildContext context, required ProviderProfile providerProfile,  required Function functions}){
+Widget bodyProfile({required BuildContext context,
+  required Function function,
+  required ProviderProfile providerProfile,  required Function functions}){
   var box = Hive.box("online");
   return SingleChildScrollView(
     child: Container(
@@ -126,7 +128,7 @@ Widget bodyProfile({required BuildContext context, required ProviderProfile prov
           ),
           ListTile(
             onTap: () {
-              sheetAppLanguageInterface(context: context, providerProfile: providerProfile);
+              sheetAppLanguageInterface(context: context, providerProfile: providerProfile, functions: function);
             },
             leading: Icon(
               Icons.language,

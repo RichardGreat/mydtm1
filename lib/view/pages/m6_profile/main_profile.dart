@@ -9,7 +9,8 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class MainProfile extends StatefulWidget {
-  const MainProfile({Key? key}) : super(key: key);
+  late Function myFunction;
+   MainProfile({Key? key, required this.myFunction}) : super(key: key);
 
   @override
   State<MainProfile> createState() => _MainProfileState();
@@ -47,6 +48,7 @@ class _MainProfileState extends State<MainProfile> {
             SafeArea(
                 child: box.get("token").toString().length > 30
                     ? bodyProfile(
+                  function: widget.myFunction,
                         context: context, providerProfile: providerProfile,
                 functions: getProfileInfo
                 )

@@ -19,10 +19,14 @@ class _MainPagesState extends State<MainPages> {
         const MainHome(),
          MainMyStatement(numberParam: "0"),
        const MainMessages(),
-        const MainProfile(),
+         MainProfile(myFunction: getFunction),
       ];
   int index = 0;
   PersistentTabController controller = PersistentTabController(initialIndex: 0);
+
+     getFunction(){
+      setState((){});
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +57,7 @@ class _MainPagesState extends State<MainPages> {
 List<PersistentBottomNavBarItem> navBarsItems() {
   return [
     PersistentBottomNavBarItem(
+
       icon: const Icon(
         Icons.home,
         size: 36,
@@ -68,7 +73,9 @@ List<PersistentBottomNavBarItem> navBarsItems() {
     ),
     PersistentBottomNavBarItem(
       // title: ("Settings"),
+
       icon: const Icon(
+
         Icons.article,
         size: 36,
       ),

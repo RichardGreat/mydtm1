@@ -1,13 +1,12 @@
 import 'dart:io';
+
 import 'package:connection_notifier/connection_notifier.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
-import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
-import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_passport/change_password_in/change_password_input.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -65,9 +64,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ConnectionNotifier(
-      disconnectedContent:
-           Center(child: Text("noInternetConn".tr())),
-      connectedContent:  Center(child: Text("internetConn".tr())),
+      disconnectedContent: Center(child: Text("noInternetConn".tr())),
+      connectedContent: Center(child: Text("internetConn".tr())),
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
@@ -77,8 +75,7 @@ class _MyAppState extends State<MyApp> {
                 box.get("language") == "2" ||
                 box.get("language") == "3"
             ? const MainPages()
-            :
-           const EnterFirst0(),
+            : const EnterFirst0(),
       ),
     );
   }

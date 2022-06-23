@@ -10,7 +10,8 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 sheetAppLanguageInterface({required BuildContext context,
-  required ProviderProfile providerProfile}) {
+
+  required ProviderProfile providerProfile, required Function functions}) {
 
 
   showModalBottomSheet(
@@ -44,25 +45,28 @@ sheetAppLanguageInterface({required BuildContext context,
                                 box.delete("language");
                                 box.put("language", "1");
                                 providerProfile.setLangUser();
+                                functions();
                                 // Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MyApp()),(route) => false,);
                                 setState((){});
                               },
                               title: MyWidgets.robotoFontText(text: "uz".tr()),
                               leading: Icon(Icons.language,  color: MyColors.appColorBlue1(),),
                             ),
-                            // Divider(height: 0.4, color: MyColors.appColorGrey400()),
-                            // ListTile(
-                            //   onTap: (){
-                            //     context.locale = const Locale("kk", "KK");
-                            //     box.delete("language");
-                            //     box.put("language", "2");
-                            //     // Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) =>  MyApp ()),(route) => false,);
-                          //providerProfile.setLangUser();
-                            //     setState((){});
-                            //   },
-                            //   title: MyWidgets.robotoFontText(text: "qq".tr()),
-                            //   leading: Icon(Icons.language,  color: MyColors.appColorBlue1(),),
-                            // ),
+                            Divider(height: 0.4, color: MyColors.appColorGrey400()),
+                            ListTile(
+                              onTap: (){
+                                context.locale = const Locale("kk", "KK");
+                                box.delete("language");
+                                box.put("language", "2");
+
+                                
+
+                          providerProfile.setLangUser();
+                                setState((){});
+                              },
+                              title: MyWidgets.robotoFontText(text: "qq".tr()),
+                              leading: Icon(Icons.language,  color: MyColors.appColorBlue1(),),
+                            ),
                             Divider(height: 0.4, color: MyColors.appColorGrey400()),
                             ListTile(
                               onTap: (){
@@ -70,7 +74,9 @@ sheetAppLanguageInterface({required BuildContext context,
                                 // context.setLocale(const Locale('ru', 'RU'));
                                 box.delete("language");
                                 box.put("language", "3");
+
                                 providerProfile.setLangUser();
+                                functions();
                                 // Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MyApp()),(route) => false,);
                                 setState((){});
                               },

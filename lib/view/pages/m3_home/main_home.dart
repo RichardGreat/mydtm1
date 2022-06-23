@@ -3,8 +3,9 @@ import 'package:mydtm/view/pages/m3_home/body_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
-
+import 'dart:developer';
 class MainHome extends StatefulWidget {
+
   const MainHome({Key? key}) : super(key: key);
 
   @override
@@ -24,6 +25,20 @@ class _MainHomeState extends State<MainHome> {
     await providerMainHome.setLangUser();
     await providerMainHome.getDateService(context: context);
   }
+
+
+  @override
+  void didChangeDependencies(){
+    log("3333333333333333333333333333333");
+    super.didChangeDependencies();
+  }
+  @override
+  void dispose(){
+    log("3333333333333333333333333333333");
+    super.dispose();
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
