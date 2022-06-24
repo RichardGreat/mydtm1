@@ -99,7 +99,7 @@ Widget bodyCertificateOTM(
                           Expanded(
                               child: RadioListTile(
                                   title: Text("rejection".tr(),
-                                      style: TextStyle(fontSize: 14)),
+                                      style: const TextStyle(fontSize: 14)),
                                   value: 0,
                                   groupValue: int.parse(providerChooseEdu
                                       .listCertificateCheckUse[index].certId),
