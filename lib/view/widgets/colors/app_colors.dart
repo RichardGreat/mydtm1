@@ -69,7 +69,7 @@ class MyColors {
   }
 
   static Color appColorGreen1() {
-    return Colors.green;
+    return  Color.fromRGBO(25,178,141, 1);
   }
 
   static Color appColorGreen2() {

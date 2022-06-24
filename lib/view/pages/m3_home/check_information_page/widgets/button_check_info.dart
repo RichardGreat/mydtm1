@@ -17,10 +17,10 @@ Widget bottomCheckInfo(
         onPressed: () {
 
         },
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         color:  MyColors.appColorBlue1(),
         child: MyWidgets.robotoFontText(
-            text: "Yuborish", textColor: MyColors.appColorWhite()),
+            text: "send".tr(), textColor: MyColors.appColorWhite()),
       ),
       const SizedBox(height: 20),
     ],

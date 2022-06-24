@@ -20,16 +20,16 @@ class _CheckInformationState extends State<CheckInformation> {
       ProviderCheckInformation();
 
   @override
-  initState(){
+  initState() {
     // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
     getCheckUserInfo();
     super.initState();
   }
-  Future getCheckUserInfo()async{
-    await providerCheckInformation.getInfoUser();
-    setState((){});
-  }
 
+  Future getCheckUserInfo() async {
+    await providerCheckInformation.getInfoUser();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,25 +39,20 @@ class _CheckInformationState extends State<CheckInformation> {
         builder: (context, value, child) => Scaffold(
           backgroundColor: MyColors.appColorGrey100(),
           appBar: appBarCheckInfo(context: context),
-          body:
-          providerCheckInformation.boolCheckUserInfo?
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Container(
-                margin: const EdgeInsets.all(10),
-                child: bodyCheckInformation(
-                  functions: getCheckUserInfo,
-                    context: context,
-                    providerCheckInformation:
-
-
-                    providerCheckInformation,
-                    serviceName:
-
-                    widget.serviceName),
-              ),
-            ),
-          ):MyWidgets.loaderDownload(context: context),
+          body: providerCheckInformation.boolCheckUserInfo
+              ? SafeArea(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      margin: const EdgeInsets.all(15),
+                      child: bodyCheckInformation(
+                          functions: getCheckUserInfo,
+                          context: context,
+                          providerCheckInformation: providerCheckInformation,
+                          serviceName: widget.serviceName),
+                    ),
+                  ),
+                )
+              : MyWidgets.loaderDownload(context: context),
         ),
       ),
     );
