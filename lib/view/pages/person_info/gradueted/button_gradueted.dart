@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
+
 Widget buttonGraduated(
     {required BuildContext context,
     required ProviderGraduated providerGradueted}) {

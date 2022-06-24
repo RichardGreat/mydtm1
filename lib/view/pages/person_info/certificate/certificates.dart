@@ -39,7 +39,7 @@ class _CertificatesState extends State<Certificates> {
             return true;
           },
           child: Scaffold(
-          backgroundColor: MyColors.appColorWhite(),
+          backgroundColor: MyColors.appColorGrey100(),
           appBar: appBarCertificate(
               context: context, providerCertificate: providerCertificate),
           body:

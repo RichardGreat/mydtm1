@@ -88,27 +88,27 @@ Widget personReceived2(
               ),
             ],
           ),
-          Expanded(
-              child: Align(
+          const SizedBox(height: 30),
+          Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              margin: const EdgeInsets.all(15),
-              child: MaterialButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                minWidth: double.infinity,
-                color: MyColors.appColorBlue1(),
-                onPressed: () {
+          margin: const EdgeInsets.all(15),
+          child: MaterialButton(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)),
+            minWidth: double.infinity,
+            color: MyColors.appColorBlue1(),
+            onPressed: () {
 
-                  modelSheetPersonReceived(context: context, providerPersonInfo: providerPersonInfo, imie: providerPersonInfo.imie );
-                  // providerPersonInfo.getWindow(context: context);
-                },
-                height: 50,
-                child: MyWidgets.robotoFontText(
-                    text: "passportAgain".tr(), textColor: MyColors.appColorWhite()),
-              ),
+              modelSheetPersonReceived(context: context, providerPersonInfo: providerPersonInfo, imie: providerPersonInfo.imie );
+              // providerPersonInfo.getWindow(context: context);
+            },
+            height: 50,
+            child: MyWidgets.robotoFontText(
+                text: "passportAgain".tr(), textColor: MyColors.appColorWhite()),
+          ),
             ),
-          ))
+          )
         ],
       ));
 }

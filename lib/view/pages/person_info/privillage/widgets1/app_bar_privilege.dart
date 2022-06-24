@@ -6,7 +6,7 @@ PreferredSizeWidget appBarPrivilege(
     {required BuildContext context,
     required ProviderPrivilege providerPrivilege}) {
   return AppBar(
-    backgroundColor: MyColors.appColorWhite(),
+    backgroundColor: MyColors.appColorGrey100(),
     iconTheme: IconThemeData(color: MyColors.appColorBlack()),
     elevation: 0,
 

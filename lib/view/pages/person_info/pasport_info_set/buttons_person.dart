@@ -73,7 +73,7 @@ Widget buttonsPersonInfo(
                 providerPersonInfo.boolPsNum &&
                 providerPersonInfo.boolChooseNation
             ? MyColors.appColorBlue1()
-            : MyColors.appColorGrey400(),
+            : MyColors.appColorBlue1(),
         child: MyWidgets.robotoFontText(
             text: "continue".tr(), textColor: MyColors.appColorWhite()),
       ),

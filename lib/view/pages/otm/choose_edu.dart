@@ -4,6 +4,7 @@ import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/pages/otm/widgets/app_bar_choose_edu.dart';
 import 'package:mydtm/view/pages/otm/widgets/body_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class ChooseEdu extends StatefulWidget {
@@ -54,6 +55,7 @@ class _ChooseEduState extends State<ChooseEdu> {
               return true;
             },
           child: Scaffold(
+            backgroundColor: MyColors.appColorGrey100(),
             appBar: appBarEduChoose(
                 context: contexts, providerChooseEdu: providerChooseEdu),
             body: SafeArea(

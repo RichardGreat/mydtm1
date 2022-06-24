@@ -116,6 +116,7 @@ class MyWidgets {
             descTextStyle: TextStyle(
                 color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
             btnCancelOnPress: () {},
+            btnCancelColor: MyColors.appColorBlue1(),
             btnCancelText: "OK")
         .show();
   }

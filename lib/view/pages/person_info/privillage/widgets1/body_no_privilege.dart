@@ -13,14 +13,14 @@ Widget bodyNoPrivilege({required BuildContext context, required ProviderPrivileg
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
       const SizedBox(height: 20),
-      MyWidgets.robotoFontText(text: "privileges".tr(), textSize: 25),
-      const SizedBox(height: 20),
+      MyWidgets.robotoFontText(text: "privileges".tr(), textSize: 28),
+      const SizedBox(height: 15),
       Container(
         padding: const EdgeInsets.all(10),
 
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
         color: MyColors.appColorWhite(),
-          boxShadow: [BoxShadow(color: MyColors.appColorGrey400(), spreadRadius: 1, blurRadius: 1)]
+          boxShadow: [BoxShadow(color: MyColors.appColorGrey400(), spreadRadius: 0.5, blurRadius: 0.5)]
         ),
         child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

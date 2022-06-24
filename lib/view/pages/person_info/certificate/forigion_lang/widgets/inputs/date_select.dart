@@ -6,16 +6,17 @@ import 'package:easy_localization/easy_localization.dart';
 Widget dateSelect({required BuildContext context, required Function ff,required ProviderCertificate providerCertificate}){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
-    children: [      const SizedBox(height: 10),
+    children: [      const SizedBox(height: 25),
       MyWidgets.robotoFontText(
-          text: "Hujjat berilgan sana",
+          text: "documentDate".tr(),
           textColor: MyColors.appColorBlack(),
           textSize: 16),
-      const SizedBox(height: 10),
+      const SizedBox(height: 6),
       Container(
         height: 50,
         decoration: BoxDecoration(
             color: MyColors.appColorWhite(),
+            boxShadow: [BoxShadow(spreadRadius: 0.1, blurRadius: 0.1, color: MyColors.appColorGrey600())],
             borderRadius: BorderRadius.circular(10)),
         child: ListTile(
           title: MyWidgets.robotoFontText(text: providerCertificate.dateYearMonthDay.length < 2 ? "choose".tr():providerCertificate.dateYearMonthDay),
@@ -29,7 +30,7 @@ Widget dateSelect({required BuildContext context, required Function ff,required 
           trailing: const Icon(Icons.arrow_drop_down, size: 32),
         ),
       ),
-      const SizedBox(height: 10),
+
 
     ],);
 }

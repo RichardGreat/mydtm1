@@ -18,7 +18,12 @@ Widget bottomCheckInfo(
 
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        color:  MyColors.appColorBlue1(),
+        color:
+  providerCheckInformation.modelCheckUserInfo.person &&
+  providerCheckInformation.modelCheckUserInfo.personAddress&&
+  providerCheckInformation.modelCheckUserInfo.personGeneralEdu?
+
+        MyColors.appColorBlue1(): Color.fromRGBO(66, 112, 218,0.4),
         child: MyWidgets.robotoFontText(
             text: "send".tr(), textColor: MyColors.appColorWhite()),
       ),

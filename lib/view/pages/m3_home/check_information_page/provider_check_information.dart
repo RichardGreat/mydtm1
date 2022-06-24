@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/person_info/check_user_info/check_user_info.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
+import 'package:mydtm/view/pages/m3_home/check_information_page/aferta.dart';
 import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
@@ -45,6 +46,7 @@ class ProviderCheckInformation extends ChangeNotifier {
     ),
   ];
 
+
   NetworkCheckUserInfo networkCheckUserInfo = NetworkCheckUserInfo();
   late ModelCheckUserInfo modelCheckUserInfo;
   bool boolCheckUserInfo = false;
@@ -70,6 +72,7 @@ class ProviderCheckInformation extends ChangeNotifier {
   Future checkInfo(
       {required int index,
       required BuildContext context,
+        required ProviderCheckInformation providerCheckInformation,
       required Function func}) async {
     if (modelCheckUserInfo.person) {
       if (index == 0) {
@@ -112,7 +115,7 @@ class ProviderCheckInformation extends ChangeNotifier {
             );
           } else if (index == 5) {
             // infoAferta(context: context, function: func);
-            inFoAferta(context: context, function: func);
+            inFoAferta(context: context, function: func, providerCheckInformation: providerCheckInformation);
           }
         } else {
           if (index == 2) {
@@ -143,44 +146,50 @@ class ProviderCheckInformation extends ChangeNotifier {
     } else {
       if (index == 0) {
         AwesomeDialog(
-          context: context,
-          dialogType: DialogType.NO_HEADER,
-          animType: AnimType.BOTTOMSLIDE,
-          title: "DTM",
-          body: GestureDetector(
-            onTap: () {
-              _launchInBrowser(_url);
-            },
-            child: Container(
-              margin: const EdgeInsets.all(10),
-              child: Text("personalInfoAccess".tr(),
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    fontWeight: FontWeight.w500,
-                    color: MyColors.appColorBlue1(),
-                  )),
+            context: context,
+            dialogType: DialogType.NO_HEADER,
+            animType: AnimType.BOTTOMSLIDE,
+            body: GestureDetector(
+              onTap: () {
+                _launchInBrowser(_url);
+              },
+              child: Container(
+                margin: const EdgeInsets.all(10),
+                child: Text("personalInfoAccess".tr(),
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontWeight: FontWeight.w500,
+                      color: MyColors.appColorBlue1(),
+                    )),
+              ),
             ),
-          ),
-          titleTextStyle: TextStyle(
-              color: MyColors.appColorBlue1(),
-              fontWeight: FontWeight.bold,
-              fontSize: 20),
-          descTextStyle: TextStyle(
-              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-          btnOkOnPress: () {
-            pushNewScreen(
-              context,
-              screen: PersonInformation(funcState: func),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
-          },
-          btnCancelOnPress: () {},
-          btnCancelColor: MyColors.appColorBlue1(),
-          btnCancelText: "notAgree".tr(),
-          btnOkText: "iAgree".tr(),
-        ).show();
+            titleTextStyle: TextStyle(
+                color: MyColors.appColorBlue1(),
+                fontWeight: FontWeight.bold,
+                fontSize: 20),
+            descTextStyle: TextStyle(
+                color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+            btnOkOnPress: () {
+              pushNewScreen(
+                context,
+                screen: PersonInformation(funcState: func),
+                withNavBar: false,
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
+            },
+            btnOkText: "iAgree".tr(),
+            btnOkColor: MyColors.appColorBlue1(),
+            btnCancel: MaterialButton(
+              onPressed: () {},
+              color: MyColors.appColorWhite(),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              child: Text(
+                "notAgree".tr(),
+                style: TextStyle(color: MyColors.appColorBlack()),
+              ),
+            )).show();
       } else {
         MyWidgets.awesomeDialogError(
             context: context, valueText: "passportFillInfo".tr());
@@ -188,89 +197,104 @@ class ProviderCheckInformation extends ChangeNotifier {
     }
   }
 
+  bool boolAfertaButton = false;
+Future getButtonColor({required bool myBool})async{
+  boolAfertaButton = myBool;
+  // notifyListeners();
+}
   Future<void> inFoAferta(
-      {required BuildContext context, required Function function}) async {
-    return showDialog<void>(
+      {required BuildContext context, required Function function, required ProviderCheckInformation providerCheckInformation,}) async {
+    return //AwesomeDialog(
+    //   context: context,
+    //   dialogType: DialogType.NO_HEADER,
+    //   animType: AnimType.BOTTOMSLIDE,
+    //   title: "requestExamTest".tr(),
+    //   body: GestureDetector(
+    //     onTap: () {
+    //       // _launchInBrowser(_url);
+    //     },
+    //     child: Column(
+    //       children: [
+    //         const SizedBox(height: 10),
+    //         Text("requestExamTest".tr(),
+    //             textAlign: TextAlign.center,
+    //             style: const TextStyle(
+    //               fontWeight: FontWeight.w600,
+    //             )),
+    //         Container(
+    //           padding: EdgeInsets.all(8),
+    //           height: MediaQuery.of(context).size.height * 0.75,
+    //           child: ListView.builder(
+    //               itemCount: 2,
+    //               itemBuilder: (context, index) {
+    //                 if (index == 0) {
+    //                   boolAfertaButton = false;
+    //                   return Text(myAfertaList[index]);
+    //                 } else {
+    //                   boolAfertaButton = true;
+    //                   notifyListeners();
+    //                   return const SizedBox.shrink();
+    //                 }
+    //               }),
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    //   titleTextStyle: TextStyle(
+    //       color: MyColors.appColorBlue1(),
+    //       fontWeight: FontWeight.bold,
+    //       fontSize: 20),
+    //   descTextStyle: TextStyle(
+    //       color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+    //   btnOkOnPress: () {
+    //     // pushNewScreen(
+    //     //   context,
+    //     //   screen: PersonInformation(funcState: func),
+    //     //   withNavBar: false,
+    //     //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    //     // );
+    //   },
+    //   btnOkText: "iAgree".tr(),
+    //   btnOkColor: boolAfertaButton
+    //       ? MyColors.appColorBlue1()
+    //       : Colors.blue.withOpacity(0.3),
+    // ).show();
+      showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
-
       builder: (BuildContext context) {
-        return AlertDialog(
+        return
+          AlertDialog(
             backgroundColor: Colors.white,
             insetPadding: const EdgeInsets.all(10),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            title: Column(
+            title:Column(children: [  Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child:const Icon(Icons.close))
-                  ],
-                ),
-              const  SizedBox(height: 10),
-                Text("requestExamTest".tr(),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                    )),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Icon(Icons.arrow_downward_outlined,
-                          size: 14, color: MyColors.appColorRed()),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Icon(Icons.arrow_downward_outlined,
-                          size: 14, color: MyColors.appColorRed()),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Icon(Icons.arrow_downward_outlined,
-                          size: 14, color: MyColors.appColorRed()),
-                    ),
-                  ],
-                ),
-               const SizedBox(height: 5),
+                GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child:const Icon(Icons.close))
               ],
             ),
-            content: SizedBox.expand(
-              child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                child: ListBody(
-                  children: [
-                    Text("aferta".tr()),
-                    MaterialButton(
-                      minWidth: double.infinity,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      color: MyColors.appColorBlue1(),
-                      child: Text("afertaAccept".tr(),
-                          style: TextStyle(color: MyColors.appColorWhite())),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        pushNewScreen(
-                          context,
-                          screen: ChooseEdu(funcState: function),
-                          withNavBar: false,
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ));
+              const  SizedBox(height: 10),
+              Text("requestExamTest".tr(),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                  )),]),
+            content:SizedBox(
+                height: MediaQuery.of(context).size.height*0.75,
+                child:Aferta(
+                    providerCheckInformation:providerCheckInformation,
+                function: function),
+            ),
+
+        );
+
       },
     );
   }

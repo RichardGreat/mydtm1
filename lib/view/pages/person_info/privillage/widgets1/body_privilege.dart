@@ -10,25 +10,25 @@ Widget bodyPrivilege(
   if (providerPrivilege.boolGetDataPrivilege) {
     return Container(
       margin: const EdgeInsets.all(10),
-      decoration: BoxDecoration(color: MyColors.appColorWhite()),
+      decoration: BoxDecoration(color: MyColors.appColorGrey100()),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const SizedBox(height: 20),
-        MyWidgets.robotoFontText(text: "privileges".tr(), textSize: 25),
-        const SizedBox(height: 20),
+        MyWidgets.robotoFontText(text: "privileges".tr(), textSize: 28),
+        const SizedBox(height: 15),
         Expanded(
           child: ListView.builder(
             itemCount: providerPrivilege.listCheckPrivilege.length,
             itemBuilder: (context, index) => Container(
-                padding: const EdgeInsets.all(5),
-                margin: const EdgeInsets.all(5),
+                padding: const EdgeInsets.all(12),
+
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: MyColors.appColorWhite(),
                     boxShadow: [
                       BoxShadow(
                           color: MyColors.appColorGrey400(),
-                          blurRadius: 1,
-                          spreadRadius: 1)
+                          blurRadius: 0.5,
+                          spreadRadius: 0.5)
                     ]),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

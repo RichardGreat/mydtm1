@@ -3,6 +3,7 @@ import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/widgets/a
 import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/widgets/input_foreign.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 // ignore: must_be_immutable
 class ForeignLanguageAdd extends StatefulWidget {
@@ -28,6 +29,7 @@ class _ForeignLanguageAddState extends State<ForeignLanguageAdd> {
           return true;
         },
       child: Scaffold(
+        backgroundColor: MyColors.appColorGrey100(),
       appBar: appBarForeignLang(context: context, providerCertificate: widget.providerCertificate),
       body: SingleChildScrollView(
         child: SafeArea(

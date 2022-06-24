@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'dart:developer';
+import 'package:easy_localization/easy_localization.dart';
 // ignore: must_be_immutable
 class ChooseImageForeignLang extends StatefulWidget {
   ProviderCertificate providerCertificate;
@@ -61,7 +62,7 @@ class _ChooseImageForeignLangState extends State<ChooseImageForeignLang> {
                             icon: Icon(Icons.add_a_photo_outlined,
                                 color: MyColors.appColorBlue1(), size: 25)),
                         Text(
-                          "Camera",
+                          "camera".tr(),
                           style: TextStyle(color: MyColors.appColorBlue1()),
                         )
                       ],
@@ -84,7 +85,7 @@ class _ChooseImageForeignLangState extends State<ChooseImageForeignLang> {
                               size: 25,
                             )),
                         Text(
-                          "Galery",
+                          "gallery".tr(),
                           style: TextStyle(color: MyColors.appColorBlue1()),
                         )
                       ],
@@ -132,14 +133,14 @@ class _ChooseImageForeignLangState extends State<ChooseImageForeignLang> {
               ],
         uiSettings: [
           AndroidUiSettings(
-              toolbarTitle: 'Rasm tahrirlash',
+              toolbarTitle: "editImage".tr(),
               activeControlsWidgetColor: MyColors.appColorBlue1(),
               toolbarColor: MyColors.appColorBlue1(),
               toolbarWidgetColor: Colors.white,
               initAspectRatio: CropAspectRatioPreset.original,
               lockAspectRatio: false),
           IOSUiSettings(
-            title: 'Rasm tahrirlash',
+            title: "editImage".tr(),
           )
         ]);
     if (croppedFile != null) {
@@ -161,7 +162,7 @@ class _ChooseImageForeignLangState extends State<ChooseImageForeignLang> {
       // final bytes = imageFile!.readAsBytesSync().lengthInBytes;
       // final kb = bytes / 1024;
       // final mb = kb / 1024;
-      if (mb <= 2) {
+      if (mb <= 8) {
         widget.providerCertificate
             .changeImageForeign(imageData: img64, imageFile: imageFile!, fileTypeName: fileTypeName!, fff:widget.f);
 
@@ -172,7 +173,7 @@ class _ChooseImageForeignLangState extends State<ChooseImageForeignLang> {
           dialogType: DialogType.INFO,
           animType: AnimType.TOPSLIDE,
           title:
-              "$nameImg Rasm hajmi 2 MB kam bo'lishi shart ${mb.toString().substring(0, 4)}",
+              "${"imageSize".tr()} ${mb.toString().substring(0, 4)}",
           closeIcon: const Icon(Icons.build),
           btnOkColor: Colors.blueAccent,
           btnOkOnPress: () {

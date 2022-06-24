@@ -30,7 +30,7 @@ class _PrivilegeState extends State<Privilege> {
       create: (context) => providerPrivilege,
       child: Consumer<ProviderPrivilege>(
         builder: (context, value, child) => Scaffold(
-          backgroundColor: MyColors.appColorWhite(),
+          backgroundColor: MyColors.appColorGrey100(),
           appBar: appBarPrivilege(context: context, providerPrivilege: providerPrivilege),
           body: providerPrivilege.boolPrivilegeNot?
                     bodyNoPrivilege(context: context, providerPrivilege: providerPrivilege)

@@ -1,10 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 Widget imageCertificate({required BuildContext context, required Function ff, required ProviderCertificate providerCertificate}){
   var box = Hive.box("online");
@@ -23,6 +23,7 @@ Widget imageCertificate({required BuildContext context, required Function ff, re
               borderRadius: BorderRadius.circular(10),
               color: MyColors.appColorWhite()),
           child: Align(
+
             alignment: Alignment.topCenter,
             child: providerCertificate.boolForeignImage? Image.memory(
               base64Decode(
@@ -31,11 +32,11 @@ Widget imageCertificate({required BuildContext context, required Function ff, re
             ): Column(
               children: [
                 const SizedBox(height: 10),
-                const Icon(Icons.image),
-                MyWidgets.robotoFontText(text: "Hujjat rasmi", textSize: 14),
+                const Icon(Icons.image_search),
+                MyWidgets.robotoFontText(text: "imageDoc".tr(), textSize: 14),
                 MyWidgets.robotoFontText(
-                    text: "jpg, png, 2 MBdan oshmasligi zarur",
-                    textColor: MyColors.appColorGrey400(),
+                    text: "imageTypes".tr(),
+                    textColor: MyColors.appColorGrey600(),
                     textSize: 14),
               ],
             ),

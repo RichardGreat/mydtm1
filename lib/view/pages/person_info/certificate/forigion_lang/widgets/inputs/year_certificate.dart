@@ -1,16 +1,19 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
-import 'package:mydtm/view/pages/person_info/pasport_info_set/input_pasport.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-Widget certificateGetSerNumber({required BuildContext context,required Function ff, required ProviderCertificate providerCertificate}){
+Widget certificateGetSerNumber(
+    {required BuildContext context,
+    required Function ff,
+    required ProviderCertificate providerCertificate}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
-    children: [ const SizedBox(height: 10),
+    children: [
+      const SizedBox(height: 25),
       MyWidgets.robotoFontText(
-          text: "Hujjat seriyasi va raqami",
+          text: "documentSerNum".tr(),
           textColor: MyColors.appColorBlack(),
           textSize: 16),
       const SizedBox(height: 4),
@@ -19,22 +22,21 @@ Widget certificateGetSerNumber({required BuildContext context,required Function 
         maxLines: 1,
         maxLength: 25,
         keyboardType: TextInputType.text,
-
         decoration: InputDecoration(
-          counter: const SizedBox.shrink(),
           contentPadding: const EdgeInsets.only(left: 8, right: 8),
           fillColor: Colors.white,
+          filled: true,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
-              color: MyColors.appColorGreen2(),
+              color: MyColors.appColorWhite(),
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
               color: MyColors.appColorGrey400(),
-              width: 1.5,
+              width: 1,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
@@ -62,14 +64,14 @@ Widget certificateGetSerNumber({required BuildContext context,required Function 
         validator: (value3) {
           if (value3!.isEmpty || value3.length < 7) {
             // providerPersonInfo.boolPsNumber(boolNum: false);
-            return "uzunlikda xato";
+            return "docLength7".tr();
           } else {
             // providerPersonInfo.boolPsNumber(boolNum: true);
             return null;
           }
         },
       ),
-      const SizedBox(height: 20),
 
-    ],);
+    ],
+  );
 }

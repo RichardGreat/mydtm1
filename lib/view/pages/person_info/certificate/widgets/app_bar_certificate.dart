@@ -7,7 +7,7 @@ PreferredSizeWidget appBarCertificate(
     required ProviderCertificate providerCertificate}) {
   return AppBar(
     elevation: 0,
-    backgroundColor: MyColors.appColorWhite(),
+    backgroundColor: MyColors.appColorGrey100(),
     iconTheme: IconThemeData(
       color: MyColors.appColorBlack(),
     ),

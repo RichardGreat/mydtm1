@@ -12,7 +12,7 @@ Widget degreeSelect(
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      const SizedBox(height: 10),
+      const SizedBox(height: 25),
       MyWidgets.robotoFontText(
           text: "certDegree".tr(), textColor: MyColors.appColorBlack(), textSize: 15),
       const SizedBox(height: 6),
@@ -20,6 +20,7 @@ Widget degreeSelect(
         height: 50,
         decoration: BoxDecoration(
             color: MyColors.appColorWhite(),
+            boxShadow: [BoxShadow(spreadRadius: 0.1, blurRadius: 0.1, color: MyColors.appColorGrey600())],
             borderRadius: BorderRadius.circular(10)),
         child: ListTile(
           title: MyWidgets.robotoFontText(
@@ -39,7 +40,7 @@ Widget degreeSelect(
           trailing: const Icon(Icons.arrow_drop_down, size: 32),
         ),
       ),
-      const SizedBox(height: 10),
+
     ],
   );
 }

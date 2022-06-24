@@ -30,6 +30,7 @@ Widget bodyCheckInformation(
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
             providerCheckInformation.checkInfo(
+              providerCheckInformation: providerCheckInformation,
                 index: 0, context: context, func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
@@ -55,6 +56,7 @@ Widget bodyCheckInformation(
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
             providerCheckInformation.checkInfo(
+                providerCheckInformation: providerCheckInformation,
                 index: 1, context: context, func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
@@ -80,6 +82,7 @@ Widget bodyCheckInformation(
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
             providerCheckInformation.checkInfo(
+                providerCheckInformation: providerCheckInformation,
                 index: 2, context: context, func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
@@ -105,6 +108,7 @@ Widget bodyCheckInformation(
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
             providerCheckInformation.checkInfo(
+                providerCheckInformation: providerCheckInformation,
                 index: 3, context: context, func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
@@ -130,6 +134,7 @@ Widget bodyCheckInformation(
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
             providerCheckInformation.checkInfo(
+                providerCheckInformation: providerCheckInformation,
                 index: 4, context: context, func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
@@ -155,6 +160,7 @@ Widget bodyCheckInformation(
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
             providerCheckInformation.checkInfo(
+                providerCheckInformation: providerCheckInformation,
                 index: 5, context: context, func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14,),
@@ -166,7 +172,7 @@ Widget bodyCheckInformation(
               children: [
                 providerCheckInformation.modelCheckUserInfo.bakalavr
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
               ]),
         ),
       ),

@@ -31,6 +31,7 @@ class DataGraduatedInfo {
   required this.docSerNum,
   required this.graduatedYear,
   required this.eduName,
+  required this.oldEduId,
   required this.eduTypeId,
   required this.gName,
   });
@@ -45,6 +46,7 @@ class DataGraduatedInfo {
   dynamic docSerNum;
   dynamic graduatedYear;
   dynamic eduName;
+  dynamic oldEduId;
   dynamic eduTypeId;
   dynamic gName;
 
@@ -59,6 +61,7 @@ class DataGraduatedInfo {
     docSerNum: json["doc_ser_num"],
     graduatedYear: json["graduated_year"],
     eduName: json["edu_name"],
+    oldEduId: json["oldedu_id"],
     eduTypeId: json["edu_type_id"],
     gName: json["g_name"],
   );

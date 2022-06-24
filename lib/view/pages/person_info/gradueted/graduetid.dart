@@ -41,9 +41,7 @@ class _GraduatedState extends State<Graduated> {
             onWillPop: ()async{
               widget.funcState();
               Navigator.of(context).pop();
-
               return true;
-
             },
           child: Scaffold(
           backgroundColor: MyColors.appColorWhite(),
@@ -63,24 +61,20 @@ class _GraduatedState extends State<Graduated> {
                       constGraduated(
                           context: context,
                           providerGraduated: providerGraduated),
-
                       /// uzbek
                       Visibility(
                           visible: providerGraduated.boolGraduatedType,
                           child: graduatedUzbek(
                               context: context,
                               providerGradueted: providerGraduated)),
-
                       /// foreign
                       Visibility(
                           visible: !providerGraduated.boolGraduatedType,
                           child: graduatedForeign(
                               context: context,
                               providerGradueted: providerGraduated)),
-
                       /// button
-
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 20),
                       MyWidgets.robotoFontText(
                           text: "bYear".tr(),
                           textColor: MyColors.appColorBlack(),
@@ -137,7 +131,7 @@ class _GraduatedState extends State<Graduated> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 20),
                       MyWidgets.robotoFontText(
                           text: "document".tr(),
                           textColor: MyColors.appColorBlack(),

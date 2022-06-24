@@ -263,10 +263,11 @@ class ProviderChooseEdu extends ChangeNotifier {
     "aimless".tr(),
   ];
   List<String> listmaqsadliText = [
-
     "targetedText".tr(),
     "aimlessText".tr(),
   ];
+
+
   String maqsadliId = "";
   String maqsadliName = "";
 

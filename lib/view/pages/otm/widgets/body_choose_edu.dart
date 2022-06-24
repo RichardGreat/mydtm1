@@ -56,7 +56,7 @@ Widget bodyChooseEdu({
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       chooseDirect(context: context, providerChooseEdu: providerChooseEdu),
-      MyWidgets.robotoFontText(text: "selectedDirection".tr(), textSize: 20),
+      MyWidgets.robotoFontText(text: "selectedDirection".tr(), textSize: 18),
       const SizedBox(height: 20),
       Expanded(
         child: Container(
@@ -73,36 +73,29 @@ Widget bodyChooseEdu({
             itemBuilder: (context, index) => GestureDetector(
               onTap: () {
                 if (checkFillSelected() && checkFillDir(index: index)) {
-            if(providerChooseEdu.boolCheckUseCertificateDataNot) {
-
+                  if (providerChooseEdu.boolCheckUseCertificateDataNot) {
                     pushNewScreen(context,
                         screen: SelectDirection(
                           providerChooseEdu: providerChooseEdu,
                           indexEduDir: int.parse(
                               providerChooseEdu.listTitleEduDir[index].id),
                         ));
-                  }else{
-                  if(providerChooseEdu.boolSetUserNationCert){
-
-                    pushNewScreen(context,
-                        screen: SelectDirection(
-                          providerChooseEdu: providerChooseEdu,
-                          indexEduDir: int.parse(
-                              providerChooseEdu.listTitleEduDir[index].id),
-                        ));
-                  }else{
-                    MyWidgets.scaffoldMessengerBottom(
-                        context: context,
-                        valueText: "Sertifikat tanlang");
-
+                  } else {
+                    if (providerChooseEdu.boolSetUserNationCert) {
+                      pushNewScreen(context,
+                          screen: SelectDirection(
+                            providerChooseEdu: providerChooseEdu,
+                            indexEduDir: int.parse(
+                                providerChooseEdu.listTitleEduDir[index].id),
+                          ));
+                    } else {
+                      MyWidgets.scaffoldMessengerBottom(
+                          context: context, valueText: "chooseCert".tr());
+                    }
                   }
-                }
-
-
                 } else {
                   MyWidgets.scaffoldMessengerBottom(
-                      context: context,
-                      valueText: "Yuqoridagilarni to'ldiring");
+                      context: context, valueText: "fillUpRow".tr());
                 }
               },
               child: ListTile(
@@ -124,7 +117,7 @@ Widget bodyChooseEdu({
                       fontWeight: FontWeight.normal,
                       fontFamily: 'Roboto-Medium'),
                 ),
-                trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
               ),
             ),
           ),
@@ -137,32 +130,33 @@ Widget bodyChooseEdu({
           child: ListTile(
             title: MyWidgets.robotoFontText(
                 text: providerChooseEdu.stringForeignLangName.isEmpty
-                    ? "Chet tilini tanlang"
+                    ? "chooseForeignLang".tr()
                     : providerChooseEdu.stringForeignLangName,
                 textColor: MyColors.appColorBlack()),
             onTap: () {
               sheetForeignLang(
                   contexts: context, providerChooseEdu: providerChooseEdu);
             },
-            trailing: const Icon(Icons.arrow_forward_ios_sharp),
+            trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
           ),
         ),
       ),
       const SizedBox(height: 15),
-
-      providerChooseEdu.boolFanmajuasi ?
-      Card(
-        color: MyColors.appColorWhite(),
-        child: ListTile(
-
-          title: MyWidgets.robotoFontText(text: "Test topshiriladigan fanlar majmuasi", textSize: 15),onTap:() {
-            sheetFanMajmuaTest(context: context, providerChooseEdu: providerChooseEdu);
-        },trailing:const Icon(Icons.arrow_forward_ios_sharp),),
-      )
-
-          :const SizedBox.shrink(),
+      providerChooseEdu.listTitleEduDir[0].dirId.length > 2
+          ? Card(
+              color: MyColors.appColorWhite(),
+              child: ListTile(
+                title: MyWidgets.robotoFontText(
+                    text: "testSubjects".tr(), textSize: 15),
+                onTap: () {
+                  sheetFanMajmuaTest(
+                      context: context, providerChooseEdu: providerChooseEdu);
+                },
+                trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
+              ),
+            )
+          : const SizedBox.shrink(),
       const SizedBox(height: 15),
-
       MaterialButton(
         onPressed: () {
           if (checkFillSelected() &&
@@ -170,17 +164,18 @@ Widget bodyChooseEdu({
               providerChooseEdu.boolForeignLang) {
             // if(!providerChooseEdu.boolCheckUseCertificateDataNot && providerChooseEdu.mapCert.isNotEmpty){
             if (providerChooseEdu.listCheckCertificate.isEmpty) {
-              providerChooseEdu.stringForeignLangName.length >=4?
-              providerChooseEdu.setDataEduDir(context: context):{};
+              providerChooseEdu.stringForeignLangName.length >= 4
+                  ? providerChooseEdu.setDataEduDir(context: context)
+                  : {};
             } else if (providerChooseEdu.mapCert.isNotEmpty) {
-              providerChooseEdu.stringForeignLangName.length >=4?
-              providerChooseEdu.setDataEduDir(context: context):{};
+              providerChooseEdu.stringForeignLangName.length >= 4
+                  ? providerChooseEdu.setDataEduDir(context: context)
+                  : {};
             } else {
               MyWidgets.scaffoldMessengerBottom(
-                  context: context, valueText: "Sertifikatni tanlang");
+                  context: context, valueText: "chooseCert".tr());
             }
           } else {
-
             providerChooseEdu.setDataEduDir(context: context);
           }
         },

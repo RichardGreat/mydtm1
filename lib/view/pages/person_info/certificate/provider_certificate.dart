@@ -341,12 +341,12 @@ class ProviderCertificate extends ChangeNotifier {
       notifyListeners();
       AwesomeDialog(
           context: context,
-          dialogType: DialogType.INFO,
+          dialogType: DialogType.NO_HEADER,
           animType: AnimType.BOTTOMSLIDE,
           title: "DTM",
-          desc: "Ma'lumot saqlandi sertifikat tasdiqlanishini kuting",
+          desc: "infoAccessWait".tr(),
           titleTextStyle: TextStyle(
-              color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+              color: MyColors.appColorBlue1(), fontSize: 24, fontWeight: FontWeight.bold),
           descTextStyle: TextStyle(
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
           btnCancelOnPress: () async{
@@ -355,6 +355,7 @@ class ProviderCertificate extends ChangeNotifier {
             // Navigator.of(context).pop();
             // Navigator.of(context).pop();
           },
+          btnCancelColor: MyColors.appColorBlue1(),
           btnCancelText: "OK")
           .show();
 
@@ -362,7 +363,7 @@ class ProviderCertificate extends ChangeNotifier {
 
       getNationCertInfo();
     }catch(e){
-
+      boolSentServerCertificate = false;
       log("e.toString()");
       log(e.toString());
 

@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/foreigion_lang_add.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
@@ -15,23 +16,21 @@ Widget bodyCertificate(
           ? Container(
               margin: const EdgeInsets.all(10),
               width: double.infinity,
-              decoration: BoxDecoration(color: MyColors.appColorWhite()),
+              decoration: BoxDecoration(color: MyColors.appColorGrey100()),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20),
                   MyWidgets.robotoFontText(
-                      text: "certificate".tr(), textSize: 25),
+                      text: "certificate".tr(), textSize: 28),
                   const SizedBox(height: 20),
                   providerCertificate.dataCheckForeignCertificate.status == 1
                       ? const SizedBox.shrink()
                       : GestureDetector(
                           onTap: () {
-
-                                    providerCertificate
-                                            .dataCheckForeignCertificate
-                                            .status ==
-                                        1
+                            providerCertificate
+                                        .dataCheckForeignCertificate.status ==
+                                    1
                                 ? {}
                                 : pushNewScreen(context,
                                     screen: ForeignLanguageAdd(
@@ -43,42 +42,57 @@ Widget bodyCertificate(
                             height: 50,
                             width: double.infinity,
                             decoration: BoxDecoration(
+                              // border: Border.all(color: MyColors.appColorGrey600(), width: 1),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: MyColors.appColorGrey600(),
+                                    blurRadius: 0.1,
+                                    spreadRadius: 0.1)
+                              ],
                               color: MyColors.appColorWhite(),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Center(
-                                child: MyWidgets.robotoFontText(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.add_circle,
+                                    color: MyColors.appColorBlue1()),
+                                MyWidgets.robotoFontText(
                                     text: "addCertificate".tr(),
-                                    textColor:
-                                            providerCertificate
-                                                    .dataCheckForeignCertificate
-                                                    .status ==
-                                                1
+                                    textColor: providerCertificate
+                                                .dataCheckForeignCertificate
+                                                .status ==
+                                            1
                                         ? MyColors.appColorGrey400()
                                         : MyColors.appColorBlue1(),
-                                    textSize: 15)),
+                                    textSize: 15),
+                              ],
+                            ),
                           ),
                         ),
                   providerCertificate.boolCheckForeignLangNot
-                      ? SizedBox(height: 20)
-                      : const SizedBox(height: 10),
+                      ? const SizedBox(height: 20)
+                      : const SizedBox(height: 30),
                   providerCertificate.boolCheckForeignLangNot
-                      ? SizedBox(height: 20)
-                      : MyWidgets.robotoFontText(text: "foreignLang".tr()),
+                      ? const SizedBox(height: 20)
+                      : MyWidgets.robotoFontText(
+                          text: "foreignLang".tr(), textSize: 24),
                   const SizedBox(height: 10),
                   providerCertificate.boolCheckForeignLangNot
-                      ? SizedBox.shrink()
+                      ? const SizedBox.shrink()
                       : Container(
-                          margin: const EdgeInsets.only(right: 3, bottom: 2, top: 2, left: 2),
-                          padding: const EdgeInsets.all(4),
+                          margin: const EdgeInsets.only(
+                              right: 3, bottom: 2, top: 2, left: 2),
+                          padding: const EdgeInsets.all(10),
                           width: double.infinity,
                           decoration: BoxDecoration(
                               color: MyColors.appColorWhite(),
                               boxShadow: [
                                 BoxShadow(
                                     color: MyColors.appColorGrey400(),
-                                    blurRadius: 1,
-                                    spreadRadius: 1)
+                                    blurRadius: 0.5,
+                                    spreadRadius: 0.5)
                               ],
                               borderRadius: BorderRadius.circular(8)),
                           child: Column(
@@ -88,39 +102,68 @@ Widget bodyCertificate(
                               MyWidgets.robotoFontText(
                                   text: providerCertificate
                                       .dataCheckForeignCertificate.flangName),
-
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   MyWidgets.robotoFontText(
                                       text: providerCertificate
                                           .dataCheckForeignCertificate
                                           .flangCertName),
                                   Container(
-                                    padding: const EdgeInsets.all(1),
-                                    margin: const  EdgeInsets.only(left: 1, right: 2, top: 2, bottom: 2),
+                                    padding: const EdgeInsets.all(5),
+                                    margin: const EdgeInsets.only(
+                                        left: 1, right: 2, top: 2, bottom: 2),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
                                       color: providerCertificate
-                                        .dataCheckForeignCertificate
-                                        .status ==
-                                        1
-                                        ? MyColors.appColorGreen2()
-                                        : providerCertificate
-                                        .dataCheckForeignCertificate
-                                        .status ==
-                                        0
-                                        ? MyColors.appColorBlue1()
-                                        : MyColors.appColorRed(),),
-                                    child: MyWidgets.robotoFontText(
-                                        text: providerCertificate
-                                            .dataCheckForeignCertificate
-                                            .statusName),
+                                                  .dataCheckForeignCertificate
+                                                  .status ==
+                                              1
+                                          ? MyColors.appColorGreen2()
+                                          : providerCertificate
+                                                      .dataCheckForeignCertificate
+                                                      .status ==
+                                                  0
+                                              ? MyColors.appColorBlue1()
+                                              : MyColors.appColorRed(),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        providerCertificate
+                                                    .dataCheckForeignCertificate
+                                                    .status ==
+                                                0
+                                            ? Icon(
+                                                Icons.watch_later_outlined,
+                                                color: MyColors.appColorWhite(),
+                                              )
+                                            : providerCertificate
+                                                        .dataCheckForeignCertificate
+                                                        .status ==
+                                                    1
+                                                ? Icon(
+                                                    Icons.check_circle,
+                                                    color: MyColors
+                                                        .appColorWhite(),
+                                                  )
+                                                : Icon(
+                                                    Icons.close,
+                                                    color: MyColors
+                                                        .appColorWhite(),
+                                                  ),
+                                        const SizedBox(width: 3),
+                                        MyWidgets.robotoFontText(
+                                            text: providerCertificate
+                                                .dataCheckForeignCertificate
+                                                .statusName,
+                                            textColor:
+                                                MyColors.appColorWhite()),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
-
-
                             ],
                           )
                           // ListTile(
@@ -160,13 +203,12 @@ Widget bodyCertificate(
                           //   ],
                           // ),
                           ),
+                  const SizedBox(height: 30),
+                  providerCertificate.boolCheckCertificateDataNot
+                      ? const SizedBox.shrink()
+                      : MyWidgets.robotoFontText(
+                          text: "nationalCert".tr(), textSize: 22),
                   const SizedBox(height: 10),
-                  providerCertificate.boolCheckCertificateDataNot
-                      ? const SizedBox.shrink()
-                      : MyWidgets.robotoFontText(text: "nationalCert".tr()),
-                  providerCertificate.boolCheckCertificateDataNot
-                      ? const SizedBox.shrink()
-                      : const Divider(),
                   providerCertificate.boolCheckCertificateDataNot
                       ? const SizedBox.shrink()
                       : Expanded(
@@ -174,31 +216,51 @@ Widget bodyCertificate(
                           itemCount:
                               providerCertificate.listCheckCertificate.length,
                           itemBuilder: (context, index) => Container(
-                            margin: const EdgeInsets.only(top: 2, bottom: 2),
+                            margin: const EdgeInsets.only(top: 4, bottom: 4),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 color: MyColors.appColorWhite(),
                                 boxShadow: [
                                   BoxShadow(
                                       color: MyColors.appColorGrey400(),
-                                      blurRadius: 1,
-                                      spreadRadius: 1)
+                                      blurRadius: 0.1,
+                                      spreadRadius: 0.1)
                                 ]),
-                            child: Container(
-                              margin: const EdgeInsets.only(top: 2, bottom: 2),
-                              child: ListTile(
-
-                                  trailing:const Icon(Icons.arrow_forward_ios_rounded),
-                                  title: MyWidgets.robotoFontText(
-                                      text: providerCertificate
-                                              .listCheckCertificate[index].name.toString() ),
-                                  subtitle: MyWidgets.robotoFontText(
-                                      text: "${providerCertificate
-                                              .listCheckCertificate[index]
-                                              .percent.toString()} %"
-                                  ),
-                                  onTap: () {}),
-                            ),
+                            child: ListTile(
+                                trailing:
+                                    const Icon(Icons.arrow_forward_ios_rounded),
+                                title: MyWidgets.robotoFontText(
+                                    text: providerCertificate
+                                        .listCheckCertificate[index].name
+                                        .toString()),
+                                subtitle: MyWidgets.robotoFontText(
+                                    text:
+                                        "${providerCertificate.listCheckCertificate[index].percent.toString()} %"),
+                                onTap: () {
+                                  AwesomeDialog(
+                                          context: context,
+                                          dialogType: DialogType.NO_HEADER,
+                                          animType: AnimType.BOTTOMSLIDE,
+                                          title: "DTM",
+                                          desc: "certSubjectName".tr(args: [
+                                            providerCertificate
+                                                .listCheckCertificate[index]
+                                                .name
+                                                .toString()
+                                          ]),
+                                          titleTextStyle: TextStyle(
+                                              color: MyColors.appColorBlue1(),
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold),
+                                          descTextStyle: TextStyle(
+                                              color: MyColors.appColorBlack(),
+                                              fontWeight: FontWeight.bold),
+                                          btnCancelOnPress: () {},
+                                          btnCancelText: "OK",
+                                          btnCancelColor:
+                                              MyColors.appColorBlue1())
+                                      .show();
+                                }),
                           ),
                         ))
                 ],

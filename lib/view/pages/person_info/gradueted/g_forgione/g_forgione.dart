@@ -29,10 +29,10 @@ Widget graduatedForeign(
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      const SizedBox(height: 10),
+      const SizedBox(height: 20),
       MyWidgets.robotoFontText(
           text: "state".tr(),
-          textColor: MyColors.appColorGrey400(),
+          textColor: MyColors.appColorBlack(),
           textSize: 16),
       const SizedBox(height: 4),
       GestureDetector(
@@ -77,13 +77,11 @@ Widget graduatedForeign(
       ),
 
       functionUzbAnother(providerGradueted: providerGradueted)?
-      const SizedBox(height: 10)
-          :SizedBox.shrink(),
-
-
+      const SizedBox(height: 20)
+          :const SizedBox.shrink(),
       functionUzbAnother(providerGradueted: providerGradueted)?
       MyWidgets.robotoFontText(
-          text: "province".tr(), textColor: MyColors.appColorBlack(), textSize: 16):SizedBox.shrink(),
+          text: "province".tr(), textColor: MyColors.appColorBlack(), textSize: 16):const SizedBox.shrink(),
       const SizedBox(height: 4),
       functionUzbAnother(providerGradueted: providerGradueted)?
       GestureDetector(
@@ -121,18 +119,16 @@ Widget graduatedForeign(
           providerGradueted.graduatedEduTypeName.length > 4?
           modelSheetProvinceGraduated(context: context, providerGraduated: providerGradueted):{};
         },
-      ):SizedBox.shrink(),
-      const SizedBox(height: 10),
-
+      ):const SizedBox.shrink(),
+      functionUzbAnother(providerGradueted: providerGradueted)? const SizedBox(height: 20):const SizedBox.shrink(),
       ///
       functionUzbAnother(providerGradueted: providerGradueted)?
       MyWidgets.robotoFontText(
-          text:"district".tr()
-          ,
-          textColor: MyColors.appColorGrey400(),
-          textSize: 16):SizedBox.shrink(),
+          text:"district".tr(),
+          textColor: MyColors.appColorBlack(),
+          textSize: 16):const SizedBox.shrink(),
       functionUzbAnother(providerGradueted: providerGradueted)?
-      const SizedBox(height: 4):SizedBox.shrink(),
+      const SizedBox(height: 4):const SizedBox.shrink(),
       functionUzbAnother(providerGradueted: providerGradueted)?
       GestureDetector(
         child: Container(
@@ -156,22 +152,18 @@ Widget graduatedForeign(
           modelSheetGraduatedDistrict(context: context, providerGraduateds: providerGradueted):{};
         },
 
-      ):SizedBox.shrink(),
+      ):const SizedBox.shrink(),
       functionUzbAnother(providerGradueted: providerGradueted)?
-      const SizedBox(height: 10):SizedBox.shrink(),
-
-      ///
+      const SizedBox(height: 10):const SizedBox.shrink(),
       providerGradueted.boolGraduatedType?
       MyWidgets.robotoFontText(
-          text: "Muassasa",
-          textColor: MyColors.appColorGrey400(),
-          textSize: 16):SizedBox.shrink(),
-      const SizedBox(height: 4),
-
-      const SizedBox(height: 10),
+          text: "muassasa".tr(),
+          textColor: MyColors.appColorBlack(),
+          textSize: 16):const SizedBox.shrink(),
+      const SizedBox(height: 20),
       MyWidgets.robotoFontText(
           text: "gName".tr(),
-          textColor: MyColors.appColorGrey400(),
+          textColor: MyColors.appColorBlack(),
           textSize: 16),
       const SizedBox(height: 4),
       TextFormField(
@@ -223,7 +215,7 @@ Widget graduatedForeign(
         validator: (value3) {
           if (value3!.isEmpty || value3.length < 4) {
             // providerPersonInfo.boolPsNumber(boolNum: false);
-            return "Uzunlik 4 dan ko'p bo'lishi kerak";
+            return "length4".tr();
           } else {
             // providerPersonInfo.boolPsNumber(boolNum: true);
             return null;

@@ -24,7 +24,6 @@ import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_typ
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_year.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-
 class ProviderGraduated extends ChangeNotifier {
   final formKeyGraduated = GlobalKey<FormState>();
 
@@ -36,18 +35,15 @@ class ProviderGraduated extends ChangeNotifier {
   late DataGraduatedInfo dataGraduatedInfo;
   bool boolAllInfoGraduated = false;
 
-
-
   TextEditingController textEditingSerNumber = TextEditingController();
 
   bool boolAllInfoGraduatedNot = false;
 
   Future getAllInfoGraduated() async {
-
     try {
       boolAllInfoGraduated = false;
       String data = await networkGetGraduated.getAllGraduated();
-     log(data);
+      log(data);
       modelGraduatedInfo = ModelGraduatedInfo.fromJson(jsonDecode(data));
       // if(modelGraduatedInfo.data.countryId != "860"){
       //   boolGraduatedType = false;
@@ -64,54 +60,78 @@ class ProviderGraduated extends ChangeNotifier {
       log(e.toString());
     }
   }
+
   List<DataGeneralEduType> listForGet = [
-    DataGeneralEduType(name: "O'rta maktab" , id:1 ),
-    DataGeneralEduType(name: "Akademik litsey" , id:2 ),
-    DataGeneralEduType(name: "Kasb-hunar kolleji", id:3 ),
-    DataGeneralEduType(name: "Boshqa o'quv yurti" , id:4 )
+    DataGeneralEduType(name: "school".tr(), id: 1),
+    DataGeneralEduType(name: "lyceum".tr(), id: 2),
+    DataGeneralEduType(name: "collage".tr(), id: 3),
+    DataGeneralEduType(name: "othersEdu".tr(), id: 4)
   ];
 
   Future checkAllInfo({required DataGraduatedInfo dataGraduatedInfo}) async {
     try {
       log(jsonEncode(dataGraduatedInfo));
 
-      if (dataGraduatedInfo.countryId == "860" &&
-          dataGraduatedInfo.eduTypeId == "4") {
-        boolUzbekGraduated = true;
-        boolGraduatedType = false;
+      if (dataGraduatedInfo.countryId.toString() == "860" &&
+          dataGraduatedInfo.eduTypeId.toString() == "4" &&
+          dataGraduatedInfo.districtName != null) {
+        log("#11");
+        log(listForGet[(dataGraduatedInfo.eduTypeId ?? 4) - 1].name.toString());
+        try {
+          boolUzbekGraduated = true;
+          boolGraduatedType = false;
 
-        graduatedEduTypeId = dataGraduatedInfo.eduTypeId??"4";
+          graduatedEduTypeId = dataGraduatedInfo.eduTypeId.toString();
+          graduatedEduTypeName =
+              listForGet[(dataGraduatedInfo.eduTypeId ?? 4) - 1]
+                  .name
+                  .toString();
+          graduatedCountryName = dataGraduatedInfo.countryName.toString();
+          graduatedCountryId = dataGraduatedInfo.countryId.toString();
+          graduatedRegionName = dataGraduatedInfo.regionName.toString();
+          graduatedRegionId = dataGraduatedInfo.regionId.toString();
+          graduatedDistrictName = dataGraduatedInfo.districtName.toString();
+          graduatedDistrictId = dataGraduatedInfo.districtId.toString();
 
-        graduatedEduTypeName = listForGet[dataGraduatedInfo.eduTypeId??4-1].name.toString();
-        graduatedCountryName = dataGraduatedInfo.countryName.toString();
-        graduatedCountryId = dataGraduatedInfo.countryId.toString();
-        graduatedRegionName = dataGraduatedInfo.regionName.toString();
-        graduatedRegionId = dataGraduatedInfo.regionId.toString();
-        graduatedDistrictName = dataGraduatedInfo.districtName.toString();
-        graduatedDistrictId = dataGraduatedInfo.districtId.toString();
-        graduatedEduName = dataGraduatedInfo.gName.toString();
-        graduatedEduId = dataGraduatedInfo.eduTypeId.toString();
-        graduatedEduYear = dataGraduatedInfo.graduatedYear.toString();
-        graduatedEduSerNum = dataGraduatedInfo.docSerNum.toString();
-        notifyListeners();
-      }
-      else if (dataGraduatedInfo.eduTypeId != "4" && dataGraduatedInfo.eduTypeId != null ) {
+          graduatedEduName = dataGraduatedInfo.gName.toString();
+          txtControllerGraduatedName.text =
+              dataGraduatedInfo.eduName.toString();
+          graduatedEduId = dataGraduatedInfo.eduTypeId.toString();
+          graduatedEduYear = dataGraduatedInfo.graduatedYear.toString();
+          setGraduatedYear = dataGraduatedInfo.graduatedYear.toString();
+          graduatedEduSerNum = dataGraduatedInfo.docSerNum.toString();
+          textEditingSerNumber.text = dataGraduatedInfo.docSerNum.toString();
+          notifyListeners();
+        } catch (e) {
+          log(e.toString());
+        }
+      } else if (
+      dataGraduatedInfo.countryId.toString() == "860" &&
+      dataGraduatedInfo.eduTypeId != "4") {
         boolGraduatedType = true;
-        graduatedEduTypeName = listForGet[(dataGraduatedInfo.eduTypeId??4)-1].name.toString();
+        boolUzbekGraduated = true;
+        graduatedEduTypeName =
+            listForGet[(dataGraduatedInfo.eduTypeId ?? 4) - 1].name.toString();
+        graduatedEduTypeId = dataGraduatedInfo.eduTypeId.toString();
+
         graduatedCountryName = dataGraduatedInfo.countryName.toString();
         graduatedCountryId = dataGraduatedInfo.countryId.toString();
         graduatedRegionName = dataGraduatedInfo.regionName.toString();
         graduatedRegionId = dataGraduatedInfo.regionId.toString();
         graduatedDistrictName = dataGraduatedInfo.districtName.toString();
         graduatedDistrictId = dataGraduatedInfo.districtId.toString();
+
+        txtControllerGraduatedName.text = dataGraduatedInfo.eduName.toString();
         graduatedEduName = dataGraduatedInfo.gName.toString();
-        graduatedEduId = dataGraduatedInfo.eduTypeId.toString();
+
+        graduatedEduId = dataGraduatedInfo.oldEduId.toString();
         graduatedEduYear = dataGraduatedInfo.graduatedYear.toString();
+        setGraduatedYear = dataGraduatedInfo.graduatedYear.toString();
         graduatedEduSerNum = dataGraduatedInfo.docSerNum.toString();
         textEditingSerNumber.text = dataGraduatedInfo.docSerNum.toString();
         notifyListeners();
         log("#22");
-        boolUzbekGraduated = true;
+
         // if (dataGraduatedInfo.eduTypeId == "4") {
         //   boolGraduatedType = false;
         // } else {
@@ -137,25 +157,25 @@ class ProviderGraduated extends ChangeNotifier {
         boolGraduatedType = false;
 
         graduatedEduTypeId = dataGraduatedInfo.eduTypeId.toString();
-        graduatedEduTypeName = listForGet[(dataGraduatedInfo.eduTypeId??4)-1].name.toString();
+
+        graduatedEduTypeName =
+            listForGet[(dataGraduatedInfo.eduTypeId ?? 4) - 1].name.toString();
         graduatedCountryName = dataGraduatedInfo.countryName.toString();
         graduatedCountryId = dataGraduatedInfo.countryId.toString();
         graduatedRegionId = dataGraduatedInfo.regionId.toString();
         graduatedRegionName = dataGraduatedInfo.regionName.toString();
-        txtControllerGraduatedName.text =  dataGraduatedInfo.gName.toString();
-
-        graduatedDistrictId = dataGraduatedInfo.id.toString();
+        txtControllerGraduatedName.text = dataGraduatedInfo.gName.toString();
+        graduatedDistrictId = dataGraduatedInfo.districtId.toString();
         graduatedDistrictName = dataGraduatedInfo.districtName.toString();
-        graduatedEduId = "";
+        graduatedEduId = dataGraduatedInfo.oldEduId.toString();
         graduatedEduName = dataGraduatedInfo.gName.toString();
         graduatedId = dataGraduatedInfo.eduTypeId.toString();
         graduatedEduYear = dataGraduatedInfo.graduatedYear.toString();
+        setGraduatedYear = dataGraduatedInfo.graduatedYear.toString();
         textEditingSerNumber.text = dataGraduatedInfo.docSerNum.toString();
         notifyListeners();
       }
     } catch (e) {
-
-
       log(e.toString());
     }
   }
@@ -231,10 +251,10 @@ class ProviderGraduated extends ChangeNotifier {
     }
     notifyListeners();
   }
+
   bool boolSelectUzb = false;
 
   Future setForeign({required String name, required String id}) async {
-
     // graduatedEduTypeId = "";
     // graduatedEduTypeName = "";
     graduatedCountryId = "";
@@ -247,7 +267,7 @@ class ProviderGraduated extends ChangeNotifier {
     graduatedEduName = "";
     graduatedEduYear = "";
     graduatedEduSerNum = "";
-    txtControllerGraduatedName.text =  "";
+    txtControllerGraduatedName.text = "";
     textEditingSerNumber.text = "";
     graduatedCountryName = name;
     graduatedCountryId = id;
@@ -258,7 +278,6 @@ class ProviderGraduated extends ChangeNotifier {
       boolSelectUzb = false;
     }
     notifyListeners();
-
   }
 
   ///
@@ -404,8 +423,6 @@ class ProviderGraduated extends ChangeNotifier {
 
   Future getGraduatedName() async {
     try {
-
-
       boolGetGraduatedName = false;
       boolGetGraduatedNameError = false;
       String data = await networkGetGraduatedNames.getAllGraduatedName(
@@ -421,10 +438,9 @@ class ProviderGraduated extends ChangeNotifier {
       String data = await networkGetGraduatedNames.getAllGraduatedName(
           districtId: graduatedDistrictId, gEduType: graduatedEduTypeId);
       modelGetGraduatedNameError =
-      ModelGetGraduatedNameError.fromJson(jsonDecode(data));
+          ModelGetGraduatedNameError.fromJson(jsonDecode(data));
       boolGetGraduatedNameError = true;
       boolGetGraduatedName = true;
-
 
       log(e.toString());
     }
@@ -471,7 +487,6 @@ class ProviderGraduated extends ChangeNotifier {
       {required BuildContext contexts,
       required ProviderGraduated providerGraduated}) async {
     try {
-
       boolGraduatedYear = false;
       String dataGraduated = await networkGraduatedYear.getYear();
       ModelGraduatedYear modelGraduatedYear =
@@ -480,7 +495,6 @@ class ProviderGraduated extends ChangeNotifier {
       for (int i = int.parse(modelGraduatedYear.data.endYear);
           i >= int.parse(modelGraduatedYear.data.beginYear);
           i--) {
-
         listGraduatedYear.add("$i-${"year".tr()}");
       }
       // listGraduatedYearTemp.clear();
@@ -522,7 +536,6 @@ class ProviderGraduated extends ChangeNotifier {
   }
 
   Future setGraduatedType({required String name, required String id}) async {
-
     graduatedEduTypeName = name;
     graduatedEduTypeId = id;
 
@@ -535,10 +548,8 @@ class ProviderGraduated extends ChangeNotifier {
     graduatedEduYear = "";
     graduatedEduSerNum = "";
     textEditingSerNumber.text = "";
-    txtControllerGraduatedName.text ="";
+    txtControllerGraduatedName.text = "";
     setGraduatedYear = "";
-
-
 
     if (graduatedEduTypeId == "4") {
       boolGraduatedType = false;
@@ -548,72 +559,74 @@ class ProviderGraduated extends ChangeNotifier {
     notifyListeners();
   }
 
-
   ///
   NetworkSetServer networkSetServer = NetworkSetServer();
   late DataEduGraduated dataEduGraduated;
-  Future sentServerGraduatedAll({
-    String? eduType,
-    String? regionId,
-    String? districtId,
-    String? eduListId,
-    String? graduatedYear,
-    String? docSerNum,
-    String? eduName,
-    String? countryId,
-    required BuildContext context
-  })async{
 
+  Future sentServerGraduatedAll(
+      {String? eduType,
+      String? regionId,
+      String? districtId,
+      String? eduListId,
+      String? graduatedYear,
+      String? docSerNum,
+      String? eduName,
+      String? countryId,
+      required BuildContext context}) async {
     Map<String, String> sentEduMap = {
-      "edu_type":eduType??"0",
-      "region_id":regionId??"1726",
-      "district_id":districtId??"0",
-      "edu_list_id":eduListId??"0",
-      "graduated_year":graduatedYear.toString().substring(0,4),
-      "doc_ser_num":docSerNum??"0",
-      "edu_name":eduName??"0",
-      "country_id":countryId??"0"
+      "edu_type": eduType ?? "0",
+      "region_id": regionId ?? "1726",
+      countryId != "860"?"":
+      "district_id": districtId ?? "0",
+      "edu_list_id": eduListId ?? "0",
+      "graduated_year": graduatedYear.toString().substring(0, 4),
+      "doc_ser_num": docSerNum ?? "0",
+      "edu_name": eduName ?? "0",
+      "country_id": countryId ?? "0"
     };
 
     boolAllInfoGraduated = false;
     notifyListeners();
-    String data = await networkSetServer.getSetAllGraduated(allData: jsonEncode(sentEduMap));
+    String data = await networkSetServer.getSetAllGraduated(
+        allData: jsonEncode(sentEduMap));
     log(data);
-    ModelEduGraduated modelEduGraduated = ModelEduGraduated.fromJson(jsonDecode(data));
+    ModelEduGraduated modelEduGraduated =
+        ModelEduGraduated.fromJson(jsonDecode(data));
     dataEduGraduated = modelEduGraduated.data;
     boolAllInfoGraduated = true;
     notifyListeners();
 
-
-  graduatedEduTypeName = listForGet[int.parse(dataEduGraduated.eduTypeId.toString()) -1].name;
-  graduatedEduTypeId = dataEduGraduated.eduTypeId.toString();
-  graduatedRegionId = dataEduGraduated.regionId.toString();
-  graduatedRegionName = dataEduGraduated.regionName;
-  graduatedDistrictName = dataEduGraduated.districtName.toString();
-  graduatedDistrictId = dataEduGraduated.districtId.toString();
-  graduatedEduId = dataEduGraduated.oldeduId.toString();
-  graduatedEduName = dataEduGraduated.gName.toString();
-  graduatedEduYear = dataEduGraduated.graduatedYear.toString();
-  graduatedEduSerNum = dataEduGraduated.docSerNum.toString();
-  textEditingSerNumber.text = dataEduGraduated.docSerNum.toString();
-  txtControllerGraduatedName.text =dataEduGraduated.gName.toString();
-  setGraduatedYear = dataEduGraduated.graduatedYear.toString();
+    graduatedEduTypeName =
+        listForGet[int.parse(dataEduGraduated.eduTypeId.toString()) - 1].name;
+    graduatedEduTypeId = dataEduGraduated.eduTypeId.toString();
+    graduatedRegionId = dataEduGraduated.regionId.toString();
+    graduatedRegionName = dataEduGraduated.regionName;
+    graduatedDistrictName = dataEduGraduated.districtName.toString();
+    graduatedDistrictId = dataEduGraduated.districtId.toString();
+    graduatedEduId = dataEduGraduated.oldeduId.toString();
+    graduatedEduName = dataEduGraduated.gName.toString();
+    graduatedEduYear = dataEduGraduated.graduatedYear.toString();
+    graduatedEduSerNum = dataEduGraduated.docSerNum.toString();
+    textEditingSerNumber.text = dataEduGraduated.docSerNum.toString();
+    txtControllerGraduatedName.text = dataEduGraduated.gName.toString();
+    setGraduatedYear = dataEduGraduated.graduatedYear.toString();
 
     //MyWidgets.awesomeDialogInfo(context: context, valueText: "Ma'lumot saqlandi");
     AwesomeDialog(
-        context: context,
-        dialogType: DialogType.INFO,
-        animType: AnimType.BOTTOMSLIDE,
-        title: "DTM",
-        desc: "Ma'lumot saqlandi",
-        titleTextStyle: TextStyle(
-            color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
-        descTextStyle: TextStyle(
-            color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-        btnCancelOnPress: () {
-          Navigator.of(context).pop();
-        },
-        btnCancelText: "OK")
+            context: context,
+            dialogType: DialogType.INFO,
+            animType: AnimType.BOTTOMSLIDE,
+            title: "DTM",
+            desc: "saved".tr(),
+            titleTextStyle: TextStyle(
+                color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+            descTextStyle: TextStyle(
+                color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+            btnCancelOnPress: () {
+              Navigator.of(context).pop();
+            },
+            btnCancelText: "OK",
+            btnCancelColor: MyColors.appColorBlue1())
         .show();
     notifyListeners();
     // {
@@ -626,7 +639,6 @@ class ProviderGraduated extends ChangeNotifier {
     // "edu_name":"salom",
     // "country_id":"860"
     // }
-
   }
 
   ///
