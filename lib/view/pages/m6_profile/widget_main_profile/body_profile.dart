@@ -7,14 +7,25 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_passport/change_password.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/phone_change.dart';
-import 'package:mydtm/view/pages/m6_profile/widget_main_profile/sheet_lang/sheets_lang.dart';
+import 'package:mydtm/view/pages/m6_profile/widget_main_profile/sheet_lang/lang_change.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-Widget bodyProfile({required BuildContext context,
-  required Function function,
-  required ProviderProfile providerProfile,  required Function functions}){
+Widget myText() {
+  var box = Hive.box("online");
+  return box.get("language") == "1"
+      ? Text("uz".tr())
+      : box.get("language") == "2"
+          ? Text("qq".tr())
+          : Text("ru".tr());
+}
+
+Widget bodyProfile(
+    {required BuildContext context,
+    required Function function,
+    required ProviderProfile providerProfile,
+    required Function functions}) {
   var box = Hive.box("online");
   return SingleChildScrollView(
     child: Container(
@@ -32,28 +43,37 @@ Widget bodyProfile({required BuildContext context,
                 margin: const EdgeInsets.all(10),
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(color: MyColors.appColorWhite()),
-                child:
-                providerProfile.boolHasTokenNoImie?Image.asset("assets/images/icon_person.png", height: 70, fit: BoxFit.fill):
-                Image.memory(
-                  base64Decode(
-                      box.get("personImage").replaceAll("\n", "").toString().substring(23)),
-                  fit: BoxFit.cover,
-                  height: 90,
-                ),
+                child: providerProfile.boolHasTokenNoImie
+                    ? Image.asset("assets/images/icon_person.png",
+                        height: 70, fit: BoxFit.fill)
+                    : Image.memory(
+                        base64Decode(box
+                            .get("personImage")
+                            .replaceAll("\n", "")
+                            .toString()
+                            .substring(23)),
+                        fit: BoxFit.cover,
+                        height: 90,
+                      ),
               ),
               const SizedBox(
                 width: 20,
               ),
-              providerProfile.boolHasTokenNoImie?const SizedBox.shrink():
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                MyWidgets.robotoFontText(text:providerProfile.dataGetImieInfo.lname),
-                const SizedBox(height: 5),
-                MyWidgets.robotoFontText(text:providerProfile.dataGetImieInfo.fname),
-                  const SizedBox(height: 5),
-                  MyWidgets.robotoFontText(text:providerProfile.dataGetImieInfo.mname),
-              ],)
+              providerProfile.boolHasTokenNoImie
+                  ? const SizedBox.shrink()
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        MyWidgets.robotoFontText(
+                            text: providerProfile.dataGetImieInfo.lname),
+                        const SizedBox(height: 5),
+                        MyWidgets.robotoFontText(
+                            text: providerProfile.dataGetImieInfo.fname),
+                        const SizedBox(height: 5),
+                        MyWidgets.robotoFontText(
+                            text: providerProfile.dataGetImieInfo.mname),
+                      ],
+                    )
             ],
           ),
           Divider(
@@ -71,7 +91,8 @@ Widget bodyProfile({required BuildContext context,
             onTap: () {
               pushNewScreen(
                 context,
-                screen:  ChangePhoneNumber(providerProfile: providerProfile, function: functions),
+                screen: ChangePhoneNumber(
+                    providerProfile: providerProfile, function: functions),
                 withNavBar: false,
                 // OPTIONAL VALUE. True by default.
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
@@ -82,12 +103,14 @@ Widget bodyProfile({required BuildContext context,
               color: MyColors.appColorBlue1(),
               size: 24,
             ),
-              subtitle: MyWidgets.robotoFontText(text: box.get("phoneNumber").toString(),textSize: 14,   textColor: MyColors.appColorGrey400(),
-
-                  textFontWeight: FontWeight.w100),
-           title : MyWidgets.robotoFontText(
-                text: "phoneNumberChange".tr(),
-              ),
+            subtitle: MyWidgets.robotoFontText(
+                text: box.get("phoneNumber").toString(),
+                textSize: 14,
+                textColor: MyColors.appColorGrey400(),
+                textFontWeight: FontWeight.w100),
+            title: MyWidgets.robotoFontText(
+              text: "phoneNumberChange".tr(),
+            ),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
               color: MyColors.appColorGrey400(),
@@ -100,7 +123,8 @@ Widget bodyProfile({required BuildContext context,
             onTap: () {
               pushNewScreen(
                 context,
-                screen:  ChangeAccountPasswords(providerProfile: providerProfile),
+                screen:
+                    ChangeAccountPasswords(providerProfile: providerProfile),
                 withNavBar: false,
                 // OPTIONAL VALUE. True by default.
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
@@ -112,8 +136,10 @@ Widget bodyProfile({required BuildContext context,
               size: 24,
             ),
             title: MyWidgets.robotoFontText(text: "changePassport".tr()),
-            subtitle: MyWidgets.robotoFontText(text: "*******",textSize: 14,   textColor: MyColors.appColorGrey400(),
-
+            subtitle: MyWidgets.robotoFontText(
+                text: "*******",
+                textSize: 14,
+                textColor: MyColors.appColorGrey400(),
                 textFontWeight: FontWeight.w100),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
@@ -128,7 +154,9 @@ Widget bodyProfile({required BuildContext context,
           ),
           ListTile(
             onTap: () {
-              sheetAppLanguageInterface(context: context, providerProfile: providerProfile, functions: function);
+              pushNewScreen(context,
+                  screen: LangChangeAll(providerProfile: providerProfile),
+                  withNavBar: false);
             },
             leading: Icon(
               Icons.language,
@@ -136,7 +164,7 @@ Widget bodyProfile({required BuildContext context,
               size: 24,
             ),
             title: MyWidgets.robotoFontText(text: "languageApp".tr()),
-              subtitle: Text(""),
+            subtitle: myText(),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
               color: MyColors.appColorGrey400(),

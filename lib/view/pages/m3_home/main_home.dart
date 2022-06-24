@@ -37,7 +37,9 @@ class _MainHomeState extends State<MainHome> {
     log("3333333333333333333333333333333");
     super.dispose();
   }
-
+Future gerRefresh()async{
+    setState((){});
+}
 
 
   @override
@@ -48,9 +50,12 @@ class _MainHomeState extends State<MainHome> {
         builder: (context, value, child) => Scaffold(
           backgroundColor: MyColors.appColorWhite(),
           // appBar:   searchMain(context: context, providerMainHome: providerMainHome),
-          body: SafeArea(
-              child: bodyMainHome(
-                  context: context, providerMainHome: providerMainHome)),
+          body: RefreshIndicator(
+            onRefresh:gerRefresh,
+            child: SafeArea(
+                child: bodyMainHome(
+                    context: context, providerMainHome: providerMainHome)),
+          ),
         ),
       ),
     );
