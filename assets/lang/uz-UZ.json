@@ -178,5 +178,10 @@
   "chooseCert": "Sertifikat tanlang",
   "fillUpRow": "Yuqoridagilarni to'ldiring",
   "chooseForeignLang": "Chet tilini tanlang",
-  "testSubjects": "Test topshiriladigan fanlar majmuasi"
+  "testSubjects": "Test topshiriladigan fanlar majmuasi",
+  "subjectName": "Fan nomi",
+  "ball": "Ball",
+  "questionCount": "Savollar soni",
+  "allBall": "Umumiy ball"
+
 }

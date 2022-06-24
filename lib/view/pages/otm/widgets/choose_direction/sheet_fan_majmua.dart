@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 sheetFanMajmuaTest(
     {required BuildContext context,
@@ -16,14 +17,17 @@ sheetFanMajmuaTest(
           builder: (context, setState) => SizedBox(
             height: MediaQuery.of(context).size.height * 0.5,
             child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 10),
-                  MyWidgets.robotoFontText(text: "Test topshiriladigan fanlar majmuasi", textFontWeight: FontWeight.w600),
-                  const SizedBox(height: 10),
-                  tableFanMajmua(context: context, providerChooseEdu: providerChooseEdu),
-                ],
+              child: Container(
+                color: MyColors.appColorWhite(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
+                    MyWidgets.robotoFontText(text: "testSubjects".tr(), textFontWeight: FontWeight.w600),
+                    const SizedBox(height: 10),
+                    tableFanMajmua(context: context, providerChooseEdu: providerChooseEdu),
+                  ],
+                ),
               ),
             )
           ),
@@ -64,19 +68,19 @@ Widget tableFanMajmua({required BuildContext context,  required ProviderChooseEd
 
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text("Fan nomi", style: TextStyle(color: Colors.blue.withOpacity(0.7), fontWeight: FontWeight.bold)),
+               child: Text("subjectName".tr(), style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text("Ball", style: TextStyle(color: Colors.blue.withOpacity(0.7), fontWeight: FontWeight.bold)),
+               child: Text("ball".tr(), style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text("Savollar soni", style: TextStyle(color: Colors.blue.withOpacity(0.7), fontWeight: FontWeight.bold)),
+               child: Text("questionCount".tr(), style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text("Umumiy ball", style: TextStyle(color: Colors.blue.withOpacity(0.7), fontWeight: FontWeight.bold)),
+               child: Text("allBall".tr(), style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
              ),
            ]),
        TableRow(

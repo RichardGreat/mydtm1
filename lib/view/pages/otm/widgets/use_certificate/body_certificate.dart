@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
@@ -16,8 +17,11 @@ Widget bodyCertificateOTM(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
           IconButton(icon: Icon(Icons.arrow_back_outlined,
               color:MyColors.appColorBlack()), onPressed: () { Navigator.of(context).pop(); },),
+
+          MyWidgets.robotoFontText(text: "chooseCert".tr(), textSize: 28),
           const SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
@@ -52,12 +56,38 @@ Widget bodyCertificateOTM(
                           Expanded(
                               child: RadioListTile(
                                   title: Text("use".tr(),
-                                      style: TextStyle(fontSize: 14)),
+                                      style: const TextStyle(fontSize: 14)),
                                   value: 1,
                                   groupValue:int.parse(providerChooseEdu
                                       .listCertificateCheckUse[index].certId),
                                   onChanged: (val) {
-                                    setState(() {});
+                                    setState(() {
+
+                                    });
+                                    AwesomeDialog(
+                                        context: context,
+                                        dialogType: DialogType.NO_HEADER,
+                                        animType: AnimType.BOTTOMSLIDE,
+                                        title: "DTM",
+
+                                        desc: "certSubjectName".tr(args: [
+                                          providerChooseEdu
+                                            .listCertificateCheckUse[index]
+                                              .certName
+                                              .toString()
+                                        ]),
+                                        titleTextStyle: TextStyle(
+                                            color: MyColors.appColorBlue1(),
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),
+                                        descTextStyle: TextStyle(
+                                            color: MyColors.appColorBlack(),
+                                            fontWeight: FontWeight.bold),
+                                        btnCancelOnPress: () {},
+                                        btnCancelText: "OK",
+                                        btnCancelColor:
+                                        MyColors.appColorBlue1())
+                                        .show();
                                     providerChooseEdu.setUserNationCert(
                                         indexId: index,
                                         certId: providerChooseEdu
@@ -75,6 +105,30 @@ Widget bodyCertificateOTM(
                                       .listCertificateCheckUse[index].certId),
                                   onChanged: (val) {
                                     setState(() {});
+                                    AwesomeDialog(
+                                        context: context,
+                                        dialogType: DialogType.NO_HEADER,
+                                        animType: AnimType.BOTTOMSLIDE,
+                                        title: "DTM",
+
+                                        desc: "certSubjectName".tr(args: [
+                                          providerChooseEdu
+                                              .listCertificateCheckUse[index]
+                                              .certName
+                                              .toString()
+                                        ]),
+                                        titleTextStyle: TextStyle(
+                                            color: MyColors.appColorBlue1(),
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.bold),
+                                        descTextStyle: TextStyle(
+                                            color: MyColors.appColorBlack(),
+                                            fontWeight: FontWeight.bold),
+                                        btnCancelOnPress: () {},
+                                        btnCancelText: "OK",
+                                        btnCancelColor:
+                                        MyColors.appColorBlue1())
+                                        .show();
                                     providerChooseEdu.setUserNationCert(
                                         indexId: index,
                                         certId: providerChooseEdu

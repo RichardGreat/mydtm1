@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 sheetDIRdu({required BuildContext contexts,
   required ProviderChooseEdu providerChooseEdu,
   required int titleEduDir}) {
@@ -52,9 +52,12 @@ class _DIREduState extends State<DIREdu> {
 
   @override
   Widget build(_) {
-    return Container(
+    return Scaffold(
+      backgroundColor: MyColors.appColorWhite(),
+      body:  Container(
       child: widget.providerChooseEdu.boolDirDownload
           ? Container(
+          margin: EdgeInsets.all(10),
           height: MediaQuery
               .of(context)
               .size
@@ -62,6 +65,8 @@ class _DIREduState extends State<DIREdu> {
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(8)),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
               Container(
@@ -73,55 +78,7 @@ class _DIREduState extends State<DIREdu> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width * 0.8,
-                        height: 50,
-                        child: TextFormField(
-                          controller:
-                          widget.providerChooseEdu.textDir1Controller,
-                          minLines: 1,
-                          onChanged: (value) {
-                            widget.providerChooseEdu
-                                .searchDir(val: value);
-                            setState(() {});
-                          },
-                          textAlignVertical: TextAlignVertical.center,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.search),
-                            suffix: IconButton(
-                                onPressed: () {
-                                  widget.providerChooseEdu
-                                      .clearTextDir1();
-                                  setState(() {});
-                                },
-                                icon: const Icon(
-                                  Icons.clear,
-                                  size: 12,
-                                )),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                color: MyColors.appColorGrey400(),
-                              ),
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                color: MyColors.appColorGrey400(),
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                color: MyColors.appColorGrey400(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      MyWidgets.robotoFontText(text:"chooseDirection".tr(), textSize: 28 ),
                       IconButton(
                           onPressed: () {
                             widget.providerChooseEdu.textDir1Controller
@@ -131,6 +88,56 @@ class _DIREduState extends State<DIREdu> {
                           icon: const Icon(CupertinoIcons.chevron_down))
                     ]),
               ),
+              SizedBox(
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width * 0.9,
+                height: 50,
+                child: TextFormField(
+                  controller:
+                  widget.providerChooseEdu.textDir1Controller,
+                  minLines: 1,
+                  onChanged: (value) {
+                    widget.providerChooseEdu
+                        .searchDir(val: value);
+                    setState(() {});
+                  },
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search),
+                    suffix: IconButton(
+                        onPressed: () {
+                          widget.providerChooseEdu
+                              .clearTextDir1();
+                          setState(() {});
+                        },
+                        icon: const Icon(
+                          Icons.clear,
+                          size: 12,
+                        )),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: MyColors.appColorGrey400(),
+                      ),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: MyColors.appColorGrey400(),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: MyColors.appColorGrey400(),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 15),
               Expanded(
                 child: ListView.builder(
                   itemCount: widget.providerChooseEdu.listDirTemp.length,
@@ -156,8 +163,10 @@ class _DIREduState extends State<DIREdu> {
                               idDir:  widget.providerChooseEdu.listDirTemp[index].id.toString(),
                               fLang: widget.providerChooseEdu.listDirTemp[index].flangId.toString(),
                               titleEduDirId: widget.titleEduDirId,
-                            context: context
+                              context: context
                           );
+                          widget.providerChooseEdu.textDir1Controller
+                              .clear();
                           setState((){});
                           // setData(
                           //     name: widget.providerChooseEdu
@@ -173,6 +182,6 @@ class _DIREduState extends State<DIREdu> {
             ],
           ))
           : MyWidgets.loaderDownload(context: context),
-    );
+    ),);
   }
 }

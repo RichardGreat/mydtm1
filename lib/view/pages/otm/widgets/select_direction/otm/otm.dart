@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 sheetOTMEdu(
     {required BuildContext contexts,
     required ProviderChooseEdu providerChooseEdu,
@@ -52,109 +52,119 @@ class _OTMEduState extends State<OTMEdu> {
 
   @override
   Widget build(_) {
-    return Container(
+    return Scaffold(
+      backgroundColor: MyColors.appColorWhite(),
+      body: Container(
       child: widget.providerChooseEdu.boolOtmData
           ? Container(
-              height: MediaQuery.of(context).size.height * 0.95,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(8)),
-              child: Column(
-                children: [
-                  const SizedBox(height: 20),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            height: 50,
-                            child: TextFormField(
-                              controller:
-                                  widget.providerChooseEdu.textOTMChoose,
-                              minLines: 1,
-                              onChanged: (value) {
-                                widget.providerChooseEdu.searchOtm(val: value);
-                                setState(() {});
-                              },
-                              textAlignVertical: TextAlignVertical.center,
-                              decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.search),
-                                suffix: IconButton(
-                                    onPressed: () {
-                                      widget.providerChooseEdu.clearTextOtm1();
-                                      setState(() {});
-                                    },
-                                    icon: const Icon(
-                                      Icons.clear,
-                                      size: 12,
-                                    )),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: MyColors.appColorGrey400(),
-                                  ),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: MyColors.appColorGrey400(),
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: MyColors.appColorGrey400(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                              onPressed: () {
-                                widget.providerChooseEdu.textOTMChoose.clear();
-                                Navigator.of(context).pop();
-                              },
-                              icon: const Icon(CupertinoIcons.chevron_down))
-                        ]),
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount:
-                          widget.providerChooseEdu.listDataOtmTemp.length,
-                      itemBuilder: (context, index) => GestureDetector(
-                        child: Card(
-                          margin: const EdgeInsets.all(8),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Text(
-                              widget.providerChooseEdu.listDataOtmTemp[index]
-                                  .name,
-                              overflow: TextOverflow.fade,
-                              softWrap: true,
-                              maxLines: 3,
-                              textAlign: TextAlign.start,
-                            ),
-                          ),
-                        ),
-                        onTap: () {
-                          widget.providerChooseEdu.setOtm1(
-                              contexts: context,
-                              titleEduDirId: widget.titleEduDirId,
-                              providerChooseEdu: widget.providerChooseEdu,
-                              name: widget.providerChooseEdu
-                                  .listDataOtmTemp[index].name,
-                              id: widget
-                                  .providerChooseEdu.listDataOtmTemp[index].id);
-                          // Navigator.of(context).pop();
+          height: MediaQuery.of(context).size.height * 0.95,
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(8)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+
+            children: [
+              const SizedBox(height: 20),
+
+
+              Container(
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      MyWidgets.robotoFontText(text: "oliytalim".tr(), textSize: 28),
+                      IconButton(
+                          onPressed: () {
+                            widget.providerChooseEdu.textOTMChoose.clear();
+                            Navigator.of(context).pop();
+                          },
+                          icon: const Icon(CupertinoIcons.chevron_down))
+                    ]),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: 50,
+                child: TextFormField(
+                  controller:
+                  widget.providerChooseEdu.textOTMChoose,
+                  minLines: 1,
+                  onChanged: (value) {
+                    widget.providerChooseEdu.searchOtm(val: value);
+                    setState(() {});
+                  },
+                  textAlignVertical: TextAlignVertical.center,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search),
+                    suffix: IconButton(
+                        onPressed: () {
+                          widget.providerChooseEdu.clearTextOtm1();
+                          setState(() {});
                         },
+                        icon: const Icon(
+                          Icons.clear,
+                          size: 12,
+                        )),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: MyColors.appColorGrey400(),
+                      ),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: MyColors.appColorGrey400(),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: MyColors.appColorGrey400(),
                       ),
                     ),
                   ),
-                ],
-              ))
+                ),
+              ),
+             const SizedBox(height: 15),
+              Expanded(
+                child: ListView.builder(
+                  itemCount:
+                  widget.providerChooseEdu.listDataOtmTemp.length,
+                  itemBuilder: (context, index) => GestureDetector(
+                    child: Card(
+                      margin: const EdgeInsets.all(8),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          widget.providerChooseEdu.listDataOtmTemp[index]
+                              .name,
+                          overflow: TextOverflow.fade,
+                          softWrap: true,
+                          maxLines: 3,
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      widget.providerChooseEdu.setOtm1(
+                          contexts: context,
+                          titleEduDirId: widget.titleEduDirId,
+                          providerChooseEdu: widget.providerChooseEdu,
+                          name: widget.providerChooseEdu
+                              .listDataOtmTemp[index].name,
+                          id: widget
+                              .providerChooseEdu.listDataOtmTemp[index].id);
+                      widget.providerChooseEdu.textOTMChoose.clear();
+                      // Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ))
           : MyWidgets.loaderDownload(context: context),
-    );
+    ),);
   }
 }

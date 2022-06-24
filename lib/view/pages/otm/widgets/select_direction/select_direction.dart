@@ -51,35 +51,40 @@ class _SelectDirectionState extends State<SelectDirection> {
           children: [
             ListTile(
               title: MyWidgets.robotoFontText(
-                  text: "chooseEduType".tr(), textSize: 20),
+                  text: "chooseEduType".tr(), textSize: 28),
             ),
             const SizedBox(height: 20),
             Expanded(
               child: widget.providerChooseEdu.boolGetEmode
-                  ? ListView.builder(
-                      itemCount:
-                          widget.providerChooseEdu.listEmodeChoose.length,
-                      itemBuilder: (context, index) => ListTile(
-                        title: MyWidgets.robotoFontText(
-                            text: widget
-                                .providerChooseEdu.listEmodeChoose[index].name,
-                            textSize: 20),
-                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                        onTap: () {
-                          // if (index == 0) {
-                            widget.providerChooseEdu.setEMode(
-                      emodeId: widget.indexEduDir.toString(),
-                                titleEduDirId: widget.indexEduDir,
-                                context: context,
-                                providerChooseEdu: widget.providerChooseEdu,
-                                name: widget.providerChooseEdu
-                                    .listEmodeChoose[index].name,
-                                id: widget.providerChooseEdu
-                                    .listEmodeChoose[index].id);
-                          // }
-                        },
-                      ),
-                    )
+                  ?  ListView.builder(
+                itemCount:
+                widget.providerChooseEdu.listEmodeChoose.length,
+                itemBuilder: (context, index) => ListTile(
+                  title: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      index != 0 ? const Divider(thickness:  1):SizedBox.shrink(),
+                      MyWidgets.robotoFontText(
+                          text: widget
+                              .providerChooseEdu.listEmodeChoose[index].name,
+                          textSize: 17),
+                    ],
+                  ),
+                  trailing: const Icon(Icons.arrow_forward_ios_sharp,size: 16),
+                  onTap: () {
+                    widget.providerChooseEdu.setEMode(
+                        emodeId: widget.indexEduDir.toString(),
+                        titleEduDirId: widget.indexEduDir,
+                        context: context,
+                        providerChooseEdu: widget.providerChooseEdu,
+                        name: widget.providerChooseEdu
+                            .listEmodeChoose[index].name,
+                        id: widget.providerChooseEdu
+                            .listEmodeChoose[index].id);
+                  },
+                ),
+              )
                   : MyWidgets.loaderDownload(context: context),
             )
           ],

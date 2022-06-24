@@ -14,6 +14,7 @@ sheetRegionTest(
   showModalBottomSheet(
       context: context,
       enableDrag: true,
+      isScrollControlled: true,
       builder: (contexts) {
         return  ChooseRegion(
                 providerChooseEdu: providerChooseEdu, contexts: contexts);
@@ -61,68 +62,27 @@ class _ChooseRegionState extends State<ChooseRegion> {
   Widget build(_) {
 
     return Container(
+      color: MyColors.appColorWhite(),
       child: widget.providerChooseEdu.boolEduChoose
           ? Container(
-              height: MediaQuery.of(context).size.height * 0.7,
+          margin: EdgeInsets.all(10),
+              height: MediaQuery.of(context).size.height * 0.8,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
-                  MyWidgets.robotoFontText(text: "chooseTestRegion".tr()),
-                  const SizedBox(height: 10),
+
+
                   Container(
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            height: 50,
-                            child: TextFormField(
-                              controller: widget
-                                  .providerChooseEdu.textSearchRegionEduChoose,
-                              minLines: 1,
-                              onChanged: (value) {
-                                widget.providerChooseEdu
-                                    .searchRegionEduChoose(value: value);
-                                setState(() {});
-                              },
-                              textAlignVertical: TextAlignVertical.center,
-                              decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.search),
-                                suffix: IconButton(
-                                    onPressed: () {
-                                      widget.providerChooseEdu
-                                          .clearTextEduChooseRegion();
-                                      setState(() {});
-                                    },
-                                    icon: const Icon(
-                                      Icons.clear,
-                                      size: 12,
-                                    )),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: MyColors.appColorGrey400(),
-                                  ),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: MyColors.appColorGrey400(),
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: MyColors.appColorGrey400(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
+                          MyWidgets.robotoFontText(text: "chooseTestRegion".tr(), textSize: 24),
                           IconButton(
                               onPressed: () {
                                 widget
@@ -133,6 +93,53 @@ class _ChooseRegionState extends State<ChooseRegion> {
                               icon: const Icon(CupertinoIcons.chevron_down))
                         ]),
                   ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: 50,
+                    child: TextFormField(
+                      controller: widget
+                          .providerChooseEdu.textSearchRegionEduChoose,
+                      minLines: 1,
+                      onChanged: (value) {
+                        widget.providerChooseEdu
+                            .searchRegionEduChoose(value: value);
+                        setState(() {});
+                      },
+                      textAlignVertical: TextAlignVertical.center,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.search),
+                        suffix: IconButton(
+                            onPressed: () {
+                              widget.providerChooseEdu
+                                  .clearTextEduChooseRegion();
+                              setState(() {});
+                            },
+                            icon: const Icon(
+                              Icons.clear,
+                              size: 12,
+                            )),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: MyColors.appColorGrey400(),
+                          ),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: MyColors.appColorGrey400(),
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: MyColors.appColorGrey400(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+const                  SizedBox(height: 15),
                   Expanded(
                     child: ListView.builder(
                       itemCount: widget
