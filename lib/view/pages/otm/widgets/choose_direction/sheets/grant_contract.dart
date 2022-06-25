@@ -12,6 +12,7 @@ sheetGrantContractChoose(
       backgroundColor: MyColors.appColorWhite(),
       context: context,
       isScrollControlled: true,
+      enableDrag: false,
       builder: (context) {
         return SizedBox(
             height: MediaQuery.of(context).size.height * 0.9,
@@ -112,70 +113,61 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
               ),
             ),
             const SizedBox(height: 20),
-            SingleChildScrollView(
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.6,
-                child: Text(
-                  widget.providerChooseEdu.listGrantContractText[indexValue],
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: ListView.builder(itemBuilder: (context, index) => Text(
+                widget.providerChooseEdu.listGrantContractText[indexValue],
+                style: TextStyle(fontSize: 16),
+              ), itemCount: 1,)
             ),
-            Expanded(
-              child: Container(
-                  margin: const EdgeInsets.only(top: 15),
-                  color: MyColors.appColorWhite(),
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  child: Row(
-                    children: [
-                      Flexible(
-                        fit: FlexFit.tight,
-                        flex: 1,
-                        child: MaterialButton(
-                          color: MyColors.appColorBlue1(),
-                          onPressed: () {
-                            widget.providerChooseEdu.setGrantContract(
-                                id: "0",
-                                name: widget
-                                    .providerChooseEdu.listGrantContract[0]);
-                            Navigator.of(context).pop();
-                          },
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Text(
-                              widget.providerChooseEdu.listGrantContract[0],
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: MyColors.appColorWhite())),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Flexible(
-                        fit: FlexFit.tight,
-                        flex: 1,
-                        child: MaterialButton(
-                          color: MyColors.appColorBlue1(),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          onPressed: () {
-                            widget.providerChooseEdu.setGrantContract(
-                                id: "1",
-                                name: widget
-                                    .providerChooseEdu.listGrantContract[1]);
-                            Navigator.of(context).pop();
-                          },
-                          child: Text(
-                              widget.providerChooseEdu.listGrantContract[1],
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: MyColors.appColorWhite())),
-                        ),
-                      ),
-                    ],
+            const SizedBox(height: 5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width*0.4,
+                  child: MaterialButton(
+                    height: 45,
+                    color: MyColors.appColorBlue1(),
+                    onPressed: () {
+                      widget.providerChooseEdu.setGrantContract(
+                          id: "0",
+                          name: widget
+                              .providerChooseEdu.listGrantContract[0]);
+                      Navigator.of(context).pop();
+                    },
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Text(
+                        widget.providerChooseEdu.listGrantContract[0],
+                        textAlign: TextAlign.center,
+                        style:
+                            TextStyle(color: MyColors.appColorWhite())),
                   ),
+                ),
+
+                SizedBox(
+                  width: MediaQuery.of(context).size.width*0.4,
+                  child: MaterialButton(
+                    height: 45,
+                    color: MyColors.appColorBlue1(),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    onPressed: () {
+                      widget.providerChooseEdu.setGrantContract(
+                          id: "1",
+                          name: widget
+                              .providerChooseEdu.listGrantContract[1]);
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                        widget.providerChooseEdu.listGrantContract[1],
+                        textAlign: TextAlign.center,
+                        style:
+                            TextStyle(color: MyColors.appColorWhite())),
                   ),
+                ),
+              ],
             )
           ],
         ),

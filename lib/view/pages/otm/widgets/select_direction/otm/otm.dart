@@ -75,8 +75,8 @@ class _OTMEduState extends State<OTMEdu> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                          width: MediaQuery.of(context).size.width*0.8,
-                          child: Flexible(child: MyWidgets.robotoFontText(text: "oliytalim".tr(), textSize: 28))),
+                          width: MediaQuery.of(context).size.width*0.7,
+                          child: MyWidgets.robotoFontText(text: "oliytalim".tr(), textSize: 26)),
                       IconButton(
                           onPressed: () {
                             widget.providerChooseEdu.textOTMChoose.clear();

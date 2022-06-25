@@ -11,9 +11,9 @@ sheetMaqsadli(
       backgroundColor: MyColors.appColorWhite(),
       context: context,
       isScrollControlled: true,
-      enableDrag: true,
+      enableDrag: false,
       builder: (context) {
-        return Container(
+        return SizedBox(
           height: MediaQuery.of(context).size.height * 0.9,
           child: MyChoosMaqsadli(providerChooseEdu: providerChooseEdu),
         );
@@ -39,9 +39,9 @@ class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
       backgroundColor: MyColors.appColorWhite(),
       body: Container(
         padding: const EdgeInsets.all(10),
+        height:MediaQuery.of(context).size.height * 0.9,
         child: Column(
           children: [
-            const SizedBox(height: 10),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -57,18 +57,23 @@ class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
                 text: "targetSelection".tr(), textSize: 25),
             const SizedBox(height: 10),
             Container(
+              height: 50,
+              padding:  EdgeInsets.all(4),
               decoration: BoxDecoration(
                   color: MyColors.appColorBlue1(),
                   borderRadius: BorderRadius.circular(10)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Flexible(
-                      flex: 1,
-                      fit: FlexFit.tight,
+              child: SizedBox(
+                height: 50,
+                width: MediaQuery.of(context).size.width *0.8,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width *0.4,
                       child: MaterialButton(
-                        height: 40,
+                        elevation: 0,
+                        height: 45,
                         onPressed: () {
                           setState(() {
                             indexValue = 0;
@@ -82,102 +87,108 @@ class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
                           topLeft: Radius.circular(10),
                           bottomLeft: Radius.circular(10),
                         )),
-                        child: Text("grant".tr(),
+                        child: Text("targeted".tr(),
                             style: TextStyle(
                                 color: indexValue != 0
                                     ? MyColors.appColorWhite()
                                     : MyColors.appColorBlue1())),
-                      )),
-                  Flexible(
-                    flex: 1,
-                    fit: FlexFit.tight,
-                    child: MaterialButton(
-                        height: 40,
-                        color: indexValue == 1
-                            ? MyColors.appColorWhite()
-                            : MyColors.appColorBlue1(),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width *0.4,
+                      child: MaterialButton(
+                        elevation: 0,
+                          height: 45,
+                          color: indexValue == 1
+                              ? MyColors.appColorWhite()
+                              : MyColors.appColorBlue1(),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                            ),
                           ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            indexValue = 1;
-                          });
-                        },
-                        child: Text("targetSelection".tr(),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: indexValue != 1
-                                  ? MyColors.appColorWhite()
-                                  : MyColors.appColorBlue1(),
-                            ))),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            SingleChildScrollView(
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.6,
-                child: Text(
-                  widget.providerChooseEdu.listmaqsadliText[indexValue],
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(top: 15),
-                color: MyColors.appColorWhite(),
-                height: MediaQuery.of(context).size.height * 0.2,
-                child: Row(
-                  children: [
-                    Flexible(
-                      fit: FlexFit.tight,
-                      flex: 1,
-                      child: MaterialButton(
-                        color: MyColors.appColorBlue1(),
-                        onPressed: () {
-                          widget.providerChooseEdu.setMaqsadli(
-                              id: "0",
-                              name: widget.providerChooseEdu.listmaqsadli[0]);
-                          Navigator.of(context).pop();
-                        },
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Text("targeted".tr(),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: MyColors.appColorWhite())),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Flexible(
-                      fit: FlexFit.tight,
-                      flex: 1,
-                      child: MaterialButton(
-                        color: MyColors.appColorBlue1(),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        onPressed: () {
-                          widget.providerChooseEdu.setMaqsadli(
-                              id: "1",
-                              name: widget.providerChooseEdu.listmaqsadli[1]);
-                          Navigator.of(context).pop();
-                        },
-                        child: Text("aimless".tr(),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: MyColors.appColorWhite())),
-                      ),
-                    ),
+                          onPressed: () {
+                            setState(() {
+                              indexValue = 1;
+                            });
+                          },
+                          child: Text("aimless".tr(),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: indexValue != 1
+                                    ? MyColors.appColorWhite()
+                                    : MyColors.appColorBlue1(),
+                              ))),
+                    )
                   ],
                 ),
               ),
-            )
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.52,
+              child:ListView.builder(
+                itemCount: 1,
+                itemBuilder: (context, index) => Text(
+                widget.providerChooseEdu.listmaqsadliText[indexValue],
+                style: const TextStyle(fontSize: 15),
+              ),)
+
+
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 15),
+              color: MyColors.appColorWhite(),
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width*0.4,
+
+                    child: MaterialButton(
+                      height: 45,
+                      color: MyColors.appColorBlue1(),
+                      onPressed: () {
+                        widget.providerChooseEdu.setMaqsadli(
+                            id: "0",
+                            name: widget.providerChooseEdu.listmaqsadli[0]);
+                        Navigator.of(context).pop();
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Text("targeted".tr(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: MyColors.appColorWhite())),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width*0.4,
+
+                    child: MaterialButton(
+                      height: 45,
+                      color: MyColors.appColorBlue1(),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      onPressed: () {
+                        widget.providerChooseEdu.setMaqsadli(
+                            id: "1",
+                            name: widget.providerChooseEdu.listmaqsadli[1]);
+                        Navigator.of(context).pop();
+                      },
+                      child: Text("aimless".tr(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: MyColors.appColorWhite())),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+           const SizedBox(height: 15),
           ],
         ),
       ),

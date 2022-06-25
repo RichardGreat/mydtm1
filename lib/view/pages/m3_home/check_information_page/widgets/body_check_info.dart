@@ -176,8 +176,8 @@ Widget bodyCheckInformation(
               ]),
         ),
       ),
-      bottomCheckInfo(
-          providerCheckInformation: providerCheckInformation, context: context)
+      // bottomCheckInfo(
+      //     providerCheckInformation: providerCheckInformation, context: context)
     ],
   );
 }

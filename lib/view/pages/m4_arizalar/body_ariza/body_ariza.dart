@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/billing_money.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/downloads.dart';
@@ -50,6 +51,8 @@ Widget bodyAriza(
       : MyWidgets.loaderDownload(context: context);
 }
 
+var box = Hive.box("online");
+
 Widget notInfoPerson(
     {required BuildContext context, required ProviderAriza providerAriza}) {
   return SafeArea(
@@ -66,23 +69,25 @@ Widget notInfoPerson(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   MyWidgets.robotoFontText(
-                      text: "arizaNo".tr(), textColor: MyColors.appColorGrey400()),
+                      text: "arizaNo".tr(),
+                      textColor: MyColors.appColorGrey400()),
                   const SizedBox(height: 40),
-                  MaterialButton(
-                      onPressed: () {
-                        pushNewScreen(context,
-                            screen: EnterFirst(), withNavBar: false);
-                      },
-                      height: 50,
-                      minWidth: double.infinity,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      color: MyColors.appColorBlue1(),
-                      child: MyWidgets.robotoFontText(
-                        text: "enterSystem".tr(),
-                        textColor: MyColors.appColorWhite(),
-                      )),
-
+                  (box.get("token").toString().length < 29)
+                      ? MaterialButton(
+                          onPressed: () {
+                            pushNewScreen(context,
+                                screen: EnterFirst(), withNavBar: false);
+                          },
+                          height: 50,
+                          minWidth: double.infinity,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          color: MyColors.appColorBlue1(),
+                          child: MyWidgets.robotoFontText(
+                            text: "enterSystem".tr(),
+                            textColor: MyColors.appColorWhite(),
+                          ))
+                      : SizedBox.shrink()
                 ]),
           ),
         ),
@@ -106,7 +111,6 @@ class _ArizaEnterState extends State<ArizaEnter> {
     return Scaffold(
       backgroundColor: MyColors.appColorWhite(),
       appBar: AppBar(
-
           elevation: 0,
           backgroundColor: MyColors.appColorWhite(),
           iconTheme: IconThemeData(color: MyColors.appColorBlack())),

@@ -79,20 +79,19 @@ Widget chooseDirect(
 
               SizedBox(
 
-                width: MediaQuery.of(context).size.width*0.7,
+                width: MediaQuery.of(context).size.width*0.6,
 
-                child: Flexible(
 
-                  child: Text(
-                    listDirection[1],
-                    softWrap: true,
-                    overflow: TextOverflow.fade,
-                    style: TextStyle(
-                        color: MyColors.appColorBlack(),
-                        fontSize: 17,
-                        fontWeight: FontWeight.normal,
-                        fontFamily: 'Roboto-Medium'),
-                  ),
+
+                child: Text(
+                  listDirection[1],
+                  softWrap: true,
+                  overflow: TextOverflow.visible,
+                  style: TextStyle(
+                      color: MyColors.appColorBlack(),
+                      fontSize: 17,
+                      fontWeight: FontWeight.normal,
+                      fontFamily: 'Roboto-Medium'),
                 ),
               ),
 
@@ -132,21 +131,18 @@ Widget chooseDirect(
             children: [
               SizedBox(
 
-                  width: MediaQuery.of(context).size.width*0.7,
+                  width: MediaQuery.of(context).size.width*0.6,
 
-                  child: Flexible(
-
-                    child: Text(
+                  child: Text(
                 listDirection[3],
                 softWrap: true,
                 overflow: TextOverflow.fade,
                 style: TextStyle(
-                      color: MyColors.appColorBlack(),
-                      fontSize: 17,
-                      fontWeight: FontWeight.normal,
-                      fontFamily: 'Roboto-Medium'),
+                    color: MyColors.appColorBlack(),
+                    fontSize: 17,
+                    fontWeight: FontWeight.normal,
+                    fontFamily: 'Roboto-Medium'),
               ),
-                  ),
               ),
               providerChooseEdu.maqsadliName.length > 4
                   ? Icon(

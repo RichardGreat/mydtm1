@@ -4,6 +4,7 @@ import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'dart:developer';
+import 'package:easy_localization/easy_localization.dart';
 sheetForeignLang({
   required BuildContext contexts,
   required ProviderChooseEdu providerChooseEdu,
@@ -62,7 +63,7 @@ class _ForeignLangTestState extends State<ForeignLangTest> {
 
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: MyWidgets.robotoFontText(text: "Chet tilini tanlang", textFontWeight: FontWeight.w500, textSize: 20),
+                    child: MyWidgets.robotoFontText(text: "chooseForeignLang".tr(), textFontWeight: FontWeight.w500, textSize: 20),
                   ),
                   const  SizedBox(height: 10),
                   Expanded(

@@ -415,7 +415,7 @@ class ProviderChooseEdu extends ChangeNotifier {
           context: context,
           dialogType: DialogType.NO_HEADER,
           animType: AnimType.BOTTOMSLIDE,
-
+          dismissOnTouchOutside: false,
           title: "DTM",
           desc: "chooseOther".tr(),
           titleTextStyle: TextStyle(
@@ -834,7 +834,7 @@ class ProviderChooseEdu extends ChangeNotifier {
               context: context,
               dialogType: DialogType.NO_HEADER,
               animType: AnimType.BOTTOMSLIDE,
-
+          dismissOnTouchOutside: false,
               title: "DTM",
               desc: "chooseOther".tr(),
               titleTextStyle: TextStyle(

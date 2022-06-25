@@ -21,12 +21,14 @@ class _ChooseEduState extends State<ChooseEdu> {
 
   @override
   initState(){
+
     providerChooseEdu.getCheckUseNationCertInfo();
 
     super.initState();
   }
 
    double heightScreen(){
+
      if(MediaQuery.of(context).size.height >= 800){
        return MediaQuery.of(context).size.height*1.33;
      }else if(MediaQuery.of(context).size.height < 800 && MediaQuery.of(context).size.height >= 700){

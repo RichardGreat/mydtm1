@@ -11,7 +11,8 @@ class NetworkSetPassportAgain{
 
     var dio = Dio();
     Response response;
-    response = await dio.post("${MainUrl.mainUrls}/v1/qabul/pasport-change",
+    // response = await dio.post("${MainUrl.mainUrls}/v1/qabul/pasport-change",
+    response = await dio.post("https://api.dtm.uz/v1/qabul/pasport-change",
         data: {
           "psser":passSer,
           "psnum":passNum
