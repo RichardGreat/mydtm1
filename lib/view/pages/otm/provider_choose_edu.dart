@@ -392,7 +392,7 @@ class ProviderChooseEdu extends ChangeNotifier {
   List<DataEmodeChoose> listEmodeChoose = [];
   bool boolGetEmode = false;
 
-  Future getEmode() async {
+  Future getEmode({required BuildContext context}) async {
     try {
       boolGetEmode = false;
 
@@ -409,13 +409,31 @@ class ProviderChooseEdu extends ChangeNotifier {
       boolGetEmode = true;
       notifyListeners();
     } catch (e) {
+      boolGetEmode= true;
+      notifyListeners();
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.NO_HEADER,
+          animType: AnimType.BOTTOMSLIDE,
+
+          title: "DTM",
+          desc: "chooseOther".tr(),
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () {
+            Navigator.of(context).pop();
+          },
+          btnCancelText: "OK")
+          .show();
       log(e.toString());
     }
   }
 
   late String emodeData;
 
-  Future getEmode2({required int indexEduDir}) async {
+  Future getEmode2({required int indexEduDir, required BuildContext context,}) async {
     try {
       boolGetEmode = false;
       if (indexEduDir == 1) {
@@ -460,6 +478,24 @@ class ProviderChooseEdu extends ChangeNotifier {
       boolGetEmode = true;
       notifyListeners();
     } catch (e) {
+      boolGetEmode= true;
+      notifyListeners();
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.NO_HEADER,
+          animType: AnimType.BOTTOMSLIDE,
+          dismissOnTouchOutside: false,
+          title: "DTM",
+          desc: "chooseOther".tr(),
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () {
+            Navigator.of(context).pop();
+          },
+          btnCancelText: "OK")
+          .show();
       log(e.toString());
     }
   }
@@ -792,12 +828,13 @@ class ProviderChooseEdu extends ChangeNotifier {
 
       log(dataDir);
     } catch (e) {
-      // Navigator.of(context).pop();
+      boolDirDownload = true;
+      notifyListeners();
       AwesomeDialog(
               context: context,
               dialogType: DialogType.NO_HEADER,
               animType: AnimType.BOTTOMSLIDE,
-              dismissOnTouchOutside: false,
+
               title: "DTM",
               desc: "chooseOther".tr(),
               titleTextStyle: TextStyle(

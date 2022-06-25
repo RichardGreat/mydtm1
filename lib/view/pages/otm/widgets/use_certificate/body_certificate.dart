@@ -111,8 +111,11 @@ Widget bodyCertificateOTM(
                                         animType: AnimType.BOTTOMSLIDE,
                                         title: "DTM",
 
-                                        desc: "certSubjectName".tr(args: [
+                                        desc: "certSubjectNameNo".tr(args: [
                                           providerChooseEdu
+                                              .listCertificateCheckUse[index]
+                                              .certName
+                                              .toString(), providerChooseEdu
                                               .listCertificateCheckUse[index]
                                               .certName
                                               .toString()

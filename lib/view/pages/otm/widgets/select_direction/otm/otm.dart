@@ -63,7 +63,7 @@ class _OTMEduState extends State<OTMEdu> {
               color: Colors.white, borderRadius: BorderRadius.circular(8)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-
+                mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
 
@@ -74,7 +74,9 @@ class _OTMEduState extends State<OTMEdu> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      MyWidgets.robotoFontText(text: "oliytalim".tr(), textSize: 28),
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width*0.8,
+                          child: Flexible(child: MyWidgets.robotoFontText(text: "oliytalim".tr(), textSize: 28))),
                       IconButton(
                           onPressed: () {
                             widget.providerChooseEdu.textOTMChoose.clear();

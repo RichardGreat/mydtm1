@@ -18,18 +18,18 @@ class SelectDirection extends StatefulWidget {
 
 class _SelectDirectionState extends State<SelectDirection> {
 
-  Future getEmodes() async {
+  Future getEmodes({required BuildContext context} ) async {
     if (widget.indexEduDir == 0) {
-      await widget.providerChooseEdu.getEmode();
+      await widget.providerChooseEdu.getEmode(context: context);
     } else {
-      await widget.providerChooseEdu.getEmode2(indexEduDir: widget.indexEduDir);
+      await widget.providerChooseEdu.getEmode2(indexEduDir: widget.indexEduDir, context: context);
     }
     setState(() {});
   }
 
   @override
   initState() {
-    getEmodes();
+    getEmodes( context: context);
     super.initState();
   }
 

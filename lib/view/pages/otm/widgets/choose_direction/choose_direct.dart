@@ -38,22 +38,19 @@ Widget chooseDirect(
             )),
         child: ListTile(
           minVerticalPadding: 0,
-          title:      Row(
+          title: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-
               MyWidgets.robotoFontText(text: listDirection[0], textSize: 17),
-              providerChooseEdu.testRegionNames.length > 4 ?
-
-              Icon(
-                Icons.check_circle,
-                color: MyColors.appColorGreen1(),
-              ):SizedBox.shrink()
+              providerChooseEdu.testRegionNames.length > 4
+                  ? Icon(
+                      Icons.check_circle,
+                      color: MyColors.appColorGreen1(),
+                    )
+                  : SizedBox.shrink()
             ],
           ),
-
-
           trailing: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -80,16 +77,33 @@ Widget chooseDirect(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
 
-              MyWidgets.robotoFontText(text: listDirection[1], textSize: 17),
-              providerChooseEdu.grantContractName.length > 4 ?
+              SizedBox(
 
-              Icon(
-                Icons.check_circle,
-                color: MyColors.appColorGreen1(),
-              ):SizedBox.shrink()
+                width: MediaQuery.of(context).size.width*0.7,
+
+                child: Flexible(
+
+                  child: Text(
+                    listDirection[1],
+                    softWrap: true,
+                    overflow: TextOverflow.fade,
+                    style: TextStyle(
+                        color: MyColors.appColorBlack(),
+                        fontSize: 17,
+                        fontWeight: FontWeight.normal,
+                        fontFamily: 'Roboto-Medium'),
+                  ),
+                ),
+              ),
+
+              providerChooseEdu.grantContractName.length > 4
+                  ? Icon(
+                      Icons.check_circle,
+                      color: MyColors.appColorGreen1(),
+                    )
+                  : SizedBox.shrink()
             ],
           ),
-
           subtitle: Text(providerChooseEdu.grantContractName),
           trailing: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,21 +126,36 @@ Widget chooseDirect(
           color: MyColors.appColorWhite(),
         ),
         child: ListTile(
-          title:
-          Row(
+          title: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MyWidgets.robotoFontText(text: listDirection[3], textSize: 17),
-              providerChooseEdu.maqsadliName.length > 4 ?
+              SizedBox(
 
-              Icon(
-                Icons.check_circle,
-                color: MyColors.appColorGreen1(),
-              )  : SizedBox.shrink()
+                  width: MediaQuery.of(context).size.width*0.7,
+
+                  child: Flexible(
+
+                    child: Text(
+                listDirection[3],
+                softWrap: true,
+                overflow: TextOverflow.fade,
+                style: TextStyle(
+                      color: MyColors.appColorBlack(),
+                      fontSize: 17,
+                      fontWeight: FontWeight.normal,
+                      fontFamily: 'Roboto-Medium'),
+              ),
+                  ),
+              ),
+              providerChooseEdu.maqsadliName.length > 4
+                  ? Icon(
+                      Icons.check_circle,
+                      color: MyColors.appColorGreen1(),
+                    )
+                  : SizedBox.shrink()
             ],
           ),
-
           trailing: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -154,12 +183,12 @@ Widget chooseDirect(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MyWidgets.robotoFontText(text: listDirection[2], textSize: 17),
-              providerChooseEdu.langName.length > 4 ?
-
-              Icon(
-                Icons.check_circle,
-                color: MyColors.appColorGreen1(),
-              ):SizedBox.shrink()
+              providerChooseEdu.langName.length > 4
+                  ? Icon(
+                      Icons.check_circle,
+                      color: MyColors.appColorGreen1(),
+                    )
+                  : SizedBox.shrink()
             ],
           ),
           trailing: Column(
@@ -189,12 +218,12 @@ Widget chooseDirect(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 MyWidgets.robotoFontText(text: listDirection[4], textSize: 17),
-                providerChooseEdu.langGraphicName.length > 4 ?
-
-                Icon(
-                  Icons.check_circle,
-                  color: MyColors.appColorGreen1(),
-                ):SizedBox.shrink()
+                providerChooseEdu.langGraphicName.length > 4
+                    ? Icon(
+                        Icons.check_circle,
+                        color: MyColors.appColorGreen1(),
+                      )
+                    : SizedBox.shrink()
               ],
             ),
             trailing: Column(
@@ -219,24 +248,21 @@ Widget chooseDirect(
         visible: !providerChooseEdu.boolCheckUseCertificateDataNot,
         child: Container(
           decoration: BoxDecoration(color: MyColors.appColorWhite()),
-          child:
-          ListTile(
-            title:  Row(
+          child: ListTile(
+            title: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 MyWidgets.robotoFontText(
                     text: "certificate".tr(), textSize: 17),
-
-                providerChooseEdu.boolSetUserNationCert?
-                Icon(
-                  Icons.check_circle,
-                  color: MyColors.appColorGreen1(),
-                ):SizedBox.shrink()
+                providerChooseEdu.boolSetUserNationCert
+                    ? Icon(
+                        Icons.check_circle,
+                        color: MyColors.appColorGreen1(),
+                      )
+                    : SizedBox.shrink()
               ],
             ),
-
-
             trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
             onTap: () {
               sheetCertificateUse(

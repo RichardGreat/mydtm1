@@ -165,6 +165,7 @@
   "length4": "Uzunlik 4 dan ko'p bo'lishi kerak",
   "noInfoGraduatedName": "Siz tugatgan ta'lim muassasasi nomi ro'yxatda mavjud bo'lmasa yuqorida muassasa turini \n\"Boshqa o'quv yurti\" sifatida tanlab muassasa nomini qo'lda yozing",
   "certSubjectName": "Siz tanlagan ta’lim yo‘nalishlarining fanlar majmuasida {} fani mavjud bo‘lsa, sizga mazkur fandan sertifikatingizdagi o‘zlashtirish foiziga mos ravishda proporsional ball beriladi va siz ushbu fandan test sinovi topshirmaysiz.",
+  "certSubjectNameNo":"Siz {} fani bo‘yicha sertifikatdan foydalanishni rad etdingiz. Shu sababli, siz tanlagan ta’lim yo‘nalishlarining fanlar majmuasida {} fani mavjud bo‘lsa, siz ushbu fandan test sinovi topshirasiz.",
   "documentDate": "Hujjat berilgan sana",
   "documentSerNum": "Hujjat seriyasi va raqami",
   "docLength7": "Hujjat seriya raqami 7 birlikdan ko'p bo'lishi kerak",
@@ -182,7 +183,7 @@
   "subjectName": "Fan nomi",
   "ball": "Ball",
   "questionCount": "Savollar soni",
-  "allBall": "Umumiy ball",
+  "allBall": "Maksimal ball",
   "serviceWorkSoon": "Xizmat yaqin vaqtda ishga tushadi"
 
 }
