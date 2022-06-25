@@ -1,8 +1,8 @@
 {
-  "registration": "-Ro'yxatdan o'tish",
-  "identification": "-Xizmatdan foydalanish uchun identifikatsiya tizimi orqali kirishingiz kerak",
-  "serviceNot": "-Xizmat vaqtingcha yopiq",
-  "enter": "-Kirish",
+  "registration": "Ro'yxatdan o'tish",
+  "identification": "Xizmatdan foydalanish uchun identifikatsiya tizimi orqali kirishingiz kerak",
+  "serviceNot": "Xizmat vaqtingcha yopiq",
+  "enter": "Kirish",
   "enterSystem": "Tizimga kirish",
   "fillInField": "Maydonlarni to'ldiring",
   "noInfoCheck": "Ma'lumotlar to'liq emas",
@@ -182,6 +182,7 @@
   "subjectName": "Fan nomi",
   "ball": "Ball",
   "questionCount": "Savollar soni",
-  "allBall": "Umumiy ball"
+  "allBall": "Umumiy ball",
+  "serviceWorkSoon": "Xizmat yaqin vaqtda ishga tushadi"
 
 }

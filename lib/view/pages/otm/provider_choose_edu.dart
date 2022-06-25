@@ -792,14 +792,16 @@ class ProviderChooseEdu extends ChangeNotifier {
 
       log(dataDir);
     } catch (e) {
+      // Navigator.of(context).pop();
       AwesomeDialog(
               context: context,
-              dialogType: DialogType.ERROR,
+              dialogType: DialogType.NO_HEADER,
               animType: AnimType.BOTTOMSLIDE,
+              dismissOnTouchOutside: false,
               title: "DTM",
               desc: "chooseOther".tr(),
               titleTextStyle: TextStyle(
-                  color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+                  color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
               descTextStyle: TextStyle(
                   color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
               btnCancelOnPress: () {
@@ -807,6 +809,7 @@ class ProviderChooseEdu extends ChangeNotifier {
               },
               btnCancelText: "OK")
           .show();
+      // Navigator.of(context).pop();
       log(e.toString());
     }
   }

@@ -1,6 +1,9 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
+import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/provider_service_page.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/widgets/service_page_bottonsheet.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/body_ariza.dart';
@@ -17,6 +20,7 @@ Widget servicePageBody(
     "aboutService".tr(),
     "serviceArizlar".tr(),
   ];
+  var box = Hive.box("online");
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -43,14 +47,41 @@ Widget servicePageBody(
                     context: context,
                     providerServicePage: providerServicePage);
               } else if (index == 1) {
-
+                if(box.get("token").toString().length > 29) {
                 if(serviceMainList.id.toString().trim() == "42") {
-                  pushNewScreen(context,
-                      screen: MainMyStatement(numberParam: "0"));
-                }
+
+                    pushNewScreen(context,
+                        screen: MainMyStatement(numberParam: "0"));
+                  }
+
+
                 else{
+
                   MyWidgets.awesomeDialogError(context: context, valueText:"arizaNo".tr());
-                }
+                }}
+              else{
+
+                AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.NO_HEADER,
+                    animType: AnimType.BOTTOMSLIDE,
+                    title: "DTM",
+                    desc: "identification".tr(),
+                    titleTextStyle:TextStyle(color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
+                    descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+                    btnOkOnPress: () {
+                      pushNewScreen(
+                        context,
+                        screen: EnterFirst(),
+                        withNavBar: false,
+                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                      );
+                    },
+
+                    btnOkColor: MyColors.appColorBlue1(),
+                    btnOkText: "enter".tr()
+                ).show();
+              }
               }
             },
             shape: RoundedRectangleBorder(

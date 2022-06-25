@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mydtm/main.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/body_ariza.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza1.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
@@ -28,8 +30,7 @@ class _MainMyStatementState extends State<MainMyStatement> {
     child: Consumer<ProviderAriza>(builder: (context, value, child) => WillPopScope(
     onWillPop: () async {
       if(widget.numberParam == "2"){
-        Navigator.of(context).pop();
-        Navigator.of(context).pop();
+    Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MyApp(),), (route) => false);
       }
     return true;
     },

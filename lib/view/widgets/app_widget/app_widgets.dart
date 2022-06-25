@@ -107,12 +107,12 @@ class MyWidgets {
   static awesomeDialogInfo({required BuildContext context, required String valueText}) {
     AwesomeDialog(
             context: context,
-            dialogType: DialogType.INFO,
+            dialogType: DialogType.NO_HEADER,
             animType: AnimType.BOTTOMSLIDE,
             title: "DTM",
             desc: valueText,
             titleTextStyle: TextStyle(
-                color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+                color: MyColors.appColorBlue1(), fontSize: 24, fontWeight: FontWeight.bold),
             descTextStyle: TextStyle(
                 color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
             btnCancelOnPress: () {},
@@ -124,12 +124,12 @@ class MyWidgets {
   static awesomeDialogError({required BuildContext context, required String valueText}) {
     AwesomeDialog(
             context: context,
-            dialogType: DialogType.ERROR,
+            dialogType: DialogType.NO_HEADER,
             animType: AnimType.BOTTOMSLIDE,
             title: "DTM",
             desc: valueText,
             titleTextStyle: TextStyle(
-                color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+                color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
             descTextStyle: TextStyle(
                 color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
             btnCancelOnPress: () {},

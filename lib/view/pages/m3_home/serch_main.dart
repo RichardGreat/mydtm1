@@ -139,7 +139,7 @@ mainSearchBottomSheet(
                                   .listDataServiceListTemp[index].serviceNameRu,
 
                               textColor: Colors.black.withOpacity(0.9),
-                              textSize: 20),
+                              textSize: 17),
                         ),
                       ),
                     )),)

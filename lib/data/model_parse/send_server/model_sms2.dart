@@ -4,7 +4,7 @@ class ModelSms2 {
    required this.data,
   });
 
-  int status;
+  dynamic status;
   DataSms2  data;
 
   factory ModelSms2.fromJson(Map<String, dynamic> json) => ModelSms2(
@@ -25,9 +25,9 @@ class DataSms2 {
   required this.phone,
   });
 
-  int logId;
-  int smsId;
-  String phone;
+ dynamic logId;
+ dynamic smsId;
+ dynamic phone;
 
   factory DataSms2.fromJson(Map<String, dynamic> json) => DataSms2(
     logId: json["log_id"],

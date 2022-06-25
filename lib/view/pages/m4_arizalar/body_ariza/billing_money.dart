@@ -29,13 +29,16 @@ Widget infoMoneyBilling(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-                title: Text("numberInvoice".tr()),
+                title: Text(
+                  "numberInvoice".tr(),
+                  style: TextStyle(color: MyColors.appColorBlack()),
+                ),
                 onTap: () {},
                 trailing: Text(
                   providerAriza.model.invoice.toString(),
                   style: TextStyle(
                       color: MyColors.appColorBlack(),
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.w700),
                 )),
             ListTile(
               title: Text("holat".tr()),
@@ -60,14 +63,16 @@ Widget infoMoneyBilling(
               ),
             ),
             ListTile(
-              title: Text("balance".tr()),
-              onTap: () {},
-              trailing:  Text(providerAriza.model.balance.toString()+" So'm")
-            ),
+                title: Text("balance".tr()),
+                onTap: () {},
+                trailing:
+                    Text("${providerAriza.model.balance.toString()}  So'm", style: TextStyle(fontWeight: FontWeight.w500, color: MyColors.appColorBlack()), ) ),
 
             Container(
-              margin: EdgeInsets.all(10),
-              child: Text("warming".tr()),
+              margin: const EdgeInsets.all(10),
+              child: Text("warming".tr(),
+                textAlign: TextAlign.justify
+                ,style: TextStyle(fontWeight: FontWeight.w500, color: MyColors.appColorBlack()),),
             ),
             // MaterialButton(
             //   onPressed: () {},

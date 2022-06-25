@@ -47,9 +47,17 @@ Widget bodyChooseEdu({
   }
 
   String textEduList({required int index}) {
-    return providerChooseEdu.listTitleEduDir[index].nameEdu.length < 4
-        ? "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameTitle}"}"
-        : "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
+    if(providerChooseEdu.listTitleEduDir[index].dirName.length > 3) {
+      return providerChooseEdu.listTitleEduDir[index].nameEdu.length < 4
+          ? "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameTitle}"}"
+          : "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
+    }else{
+      providerChooseEdu.listTitleEduDir[index].eduId = "";
+      providerChooseEdu.listTitleEduDir[index].nameEdu= "";
+      return providerChooseEdu.listTitleEduDir[index].nameEdu.length < 4
+          ? "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameTitle}"}"
+          : "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
+    }
   }
 
   return Column(

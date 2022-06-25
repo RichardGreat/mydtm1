@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/billing_money.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/downloads.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/info_ariza.dart';
@@ -7,6 +8,7 @@ import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 Widget bodyAriza(
     {required BuildContext context, required ProviderAriza providerAriza}) {
@@ -51,15 +53,41 @@ Widget bodyAriza(
 Widget notInfoPerson(
     {required BuildContext context, required ProviderAriza providerAriza}) {
   return SafeArea(
-    child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [MyWidgets.robotoFontText(text: "arizaNo".tr())],
-          )
-        ]),
+    child: Center(
+      child: SizedBox(
+        height: 400,
+        child: SingleChildScrollView(
+          child: Container(
+            height: 400,
+            width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.all(15),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  MyWidgets.robotoFontText(
+                      text: "arizaNo".tr(), textColor: MyColors.appColorGrey400()),
+                  const SizedBox(height: 40),
+                  MaterialButton(
+                      onPressed: () {
+                        pushNewScreen(context,
+                            screen: EnterFirst(), withNavBar: false);
+                      },
+                      height: 50,
+                      minWidth: double.infinity,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      color: MyColors.appColorBlue1(),
+                      child: MyWidgets.robotoFontText(
+                        text: "enterSystem".tr(),
+                        textColor: MyColors.appColorWhite(),
+                      )),
+
+                ]),
+          ),
+        ),
+      ),
+    ),
   );
 }
 
@@ -78,8 +106,7 @@ class _ArizaEnterState extends State<ArizaEnter> {
     return Scaffold(
       backgroundColor: MyColors.appColorWhite(),
       appBar: AppBar(
-          title: MyWidgets.robotoFontText(
-              text: "otmQabul".tr()),
+
           elevation: 0,
           backgroundColor: MyColors.appColorWhite(),
           iconTheme: IconThemeData(color: MyColors.appColorBlack())),
@@ -92,6 +119,8 @@ class _ArizaEnterState extends State<ArizaEnter> {
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 10),
+                  MyWidgets.robotoFontText(text: "otmQabul".tr(), textSize: 22),
                   const SizedBox(height: 10),
                   Expanded(
                     child: ListView.builder(

@@ -41,7 +41,7 @@ myViewButton(
                   "services".tr(),
                           style: TextStyle(
                               color: MyColors.appColorBlack(),
-                              fontSize: 17,
+                              fontSize: 24,
                               fontWeight: FontWeight.normal,
                               fontFamily: 'Roboto-Medium'),
                           maxLines: 3,
@@ -137,7 +137,7 @@ myViewButton(
                     gridDelegate:
                         const SliverGridDelegateWithMaxCrossAxisExtent(
                             maxCrossAxisExtent: 200,
-                            childAspectRatio: 3 / 2,
+                            childAspectRatio: 1.3,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10),
                   ),

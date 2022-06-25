@@ -25,11 +25,11 @@ class ProviderServicePage extends ChangeNotifier{
 
         AwesomeDialog(
             context: context,
-            dialogType: DialogType.INFO,
+            dialogType: DialogType.NO_HEADER,
             animType: AnimType.BOTTOMSLIDE,
             title: "DTM",
             desc: "identification".tr(),
-            titleTextStyle:TextStyle(color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+            titleTextStyle:TextStyle(color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
             descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
             btnOkOnPress: () {
               pushNewScreen(
@@ -39,6 +39,8 @@ class ProviderServicePage extends ChangeNotifier{
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
               );
             },
+
+            btnOkColor: MyColors.appColorBlue1(),
             btnOkText: "enter".tr()
         )..show(),
 
@@ -53,28 +55,75 @@ class ProviderServicePage extends ChangeNotifier{
                       pageTransitionAnimation:
                           PageTransitionAnimation.cupertino,
                     )
-                  }else{
+                  }else if(box.get("token").toString().length > 29){
           AwesomeDialog(
               context: context,
-              dialogType: DialogType.INFO,
+              dialogType: DialogType.NO_HEADER,
               animType: AnimType.BOTTOMSLIDE,
               title: "DTM",
-              desc: "Xizmat yaqin vaqtda ishga tushadi",
-              titleTextStyle:TextStyle(color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+              desc: "serviceWorkSoon".tr(),
+              titleTextStyle:TextStyle(color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
               descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
               btnOkOnPress: () {
                 // Navigator.of(context).pop();
               },
+              btnOkText: "enter".tr(),
+            btnOkColor: MyColors.appColorBlue1()
+          )..show(),
+        }else{
+          AwesomeDialog(
+              context: context,
+              dialogType: DialogType.NO_HEADER,
+              animType: AnimType.BOTTOMSLIDE,
+              title: "DTM",
+              desc: "identification".tr(),
+              titleTextStyle:TextStyle(color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+              btnOkOnPress: () {
+                pushNewScreen(
+                  context,
+                  screen: EnterFirst(),
+                  withNavBar: false,
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                );
+              },
+
+              btnOkColor: MyColors.appColorBlue1(),
               btnOkText: "enter".tr()
           )..show(),
         }
+
+
               }
 
     }:{
+        if(box.get("token").toString().length > 29)
+              {
+                MyWidgets.awesomeDialogInfo(
+                    context: context, valueText: "serviceNot".tr())
+              }else{
+          AwesomeDialog(
+              context: context,
+              dialogType: DialogType.NO_HEADER,
+              animType: AnimType.BOTTOMSLIDE,
+              title: "DTM",
+              desc: "identification".tr(),
+              titleTextStyle:TextStyle(color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+              btnOkOnPress: () {
+                pushNewScreen(
+                  context,
+                  screen: EnterFirst(),
+                  withNavBar: false,
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                );
+              },
 
-      MyWidgets.awesomeDialogInfo(context: context, valueText: "serviceNot".tr())
-
-    };
+              btnOkColor: MyColors.appColorBlue1(),
+              btnOkText: "enter".tr()
+          )..show(),
+        }
+          };
   }
 
 }

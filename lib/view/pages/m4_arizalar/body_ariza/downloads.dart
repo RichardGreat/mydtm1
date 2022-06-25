@@ -26,7 +26,7 @@ Widget downloads({required BuildContext context, required ProviderAriza provider
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
-          title: Text("notePaper".tr()),
+          title: Text("notePaper".tr(), style: TextStyle(color: MyColors.appColorBlack(),),),
           onTap: () {
             pushNewScreen(
               context,
@@ -35,10 +35,10 @@ Widget downloads({required BuildContext context, required ProviderAriza provider
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
           },
-          trailing:const  Icon(Icons.arrow_forward_ios_sharp),
+          trailing:const  Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ),
         ListTile(
-          title: Text("accessPaper".tr()),
+          title: Text("accessPaper".tr(),style: TextStyle(color: MyColors.appColorBlack(),)),
           onTap: () {
             pushNewScreen(
               context,
@@ -47,10 +47,10 @@ Widget downloads({required BuildContext context, required ProviderAriza provider
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
           },
-          trailing: const  Icon(Icons.arrow_forward_ios_sharp),
+          trailing: const  Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ),
         ListTile(
-          title: Text("answerSheet".tr()),
+          title: Text("answerSheet".tr(),style: TextStyle(color: MyColors.appColorBlack(), )),
           onTap: () {
             pushNewScreen(
               context,
@@ -60,7 +60,7 @@ Widget downloads({required BuildContext context, required ProviderAriza provider
             );
 
           },
-          trailing:const   Icon(Icons.arrow_forward_ios_sharp),
+          trailing:const   Icon(Icons.arrow_forward_ios_sharp, size: 16),
         )
       ],
     ),
