@@ -16,7 +16,7 @@ class NetworkGetAddressInfo {
 
     );
     log(jsonEncode("${MainUrl.mainUrls}/v1/person-data/get-address"));
-    log(jsonEncode("${MainUrl.mainUrlHeader}:"+ box.get("token")));
+    log(jsonEncode("${MainUrl.mainUrlHeader}:${box.get("token")}"));
     log(jsonEncode(response.data));
     log(response.statusCode.toString());
     return jsonEncode(response.data).toString();

@@ -36,6 +36,7 @@ class MyWidgets {
       FontWeight? textFontWeight}) {
     return Text(
       text,
+
       style: TextStyle(
           color: textColor ?? MyColors.appColorBlack(),
           fontSize: textSize ?? 17,

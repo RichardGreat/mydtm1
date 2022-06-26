@@ -36,13 +36,17 @@ Widget constGraduated(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MyWidgets.robotoFontText(
-                  text: providerGraduated.graduatedEduTypeName.length < 4
-                      ? "choose".tr()
-                      : providerGraduated.graduatedEduTypeName ,
-                  textColor: providerGraduated.graduatedEduTypeName .length < 4
-                      ? MyColors.appColorGrey400()
-                      : MyColors.appColorBlack()),
+              SizedBox(
+
+                child: MyWidgets.robotoFontText(
+                    text: providerGraduated.graduatedEduTypeName.length < 4
+                        ? "choose".tr()
+                        : providerGraduated.graduatedEduTypeName ,
+                    textColor: providerGraduated.graduatedEduTypeName .length < 4
+                        ? MyColors.appColorGrey400()
+                        : MyColors.appColorBlack()),
+                width: MediaQuery.of(context).size.width*0.7,
+              ),
               const Icon(Icons.arrow_drop_down_outlined)
             ],
           ),

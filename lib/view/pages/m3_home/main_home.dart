@@ -17,11 +17,13 @@ class _MainHomeState extends State<MainHome> {
 
   @override
   void initState() {
+
     getServiceList();
     super.initState();
   }
 
   Future getServiceList() async {
+    await providerMainHome.checkVersion(context: context);
     await providerMainHome.setLangUser();
     await providerMainHome.getDateService(context: context);
   }

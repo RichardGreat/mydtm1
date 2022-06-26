@@ -11,7 +11,7 @@ Widget bodyAriza1(
     {required BuildContext context, required ProviderAriza providerAriza}) {
   return GestureDetector(
     child: Container(
-      height: 160,
+      height: 180,
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(

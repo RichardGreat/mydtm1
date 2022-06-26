@@ -16,10 +16,13 @@ Widget bodyCheckInformation(
       const SizedBox(height: 20),
       MyWidgets.robotoFontText(text: serviceName, textSize: 22),
       const SizedBox(height: 8),
-    Text(
-         "userService".tr(),
-      style: TextStyle(color: MyColors.appColorGrey600(), fontSize: 17, fontWeight: FontWeight.w500),
-        ),
+      Text(
+        "userService".tr(),
+        style: TextStyle(
+            color: MyColors.appColorGrey600(),
+            fontSize: 17,
+            fontWeight: FontWeight.w500),
+      ),
       const SizedBox(height: 20),
       Container(
         decoration: BoxDecoration(
@@ -30,8 +33,10 @@ Widget bodyCheckInformation(
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
             providerCheckInformation.checkInfo(
-              providerCheckInformation: providerCheckInformation,
-                index: 0, context: context, func: functions);
+                providerCheckInformation: providerCheckInformation,
+                index: 0,
+                context: context,
+                func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
           leading: MyWidgets.robotoFontText(
@@ -57,11 +62,31 @@ Widget bodyCheckInformation(
           onTap: () {
             providerCheckInformation.checkInfo(
                 providerCheckInformation: providerCheckInformation,
-                index: 1, context: context, func: functions);
+                index: 1,
+                context: context,
+                func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
-          leading: MyWidgets.robotoFontText(
-              text: providerCheckInformation.myList[1].name, textSize: 16),
+          leading: Column(
+            mainAxisAlignment:  MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width*0.5,
+                child: Text(
+                  providerCheckInformation.myList[1].name,
+                  overflow: TextOverflow.visible,
+                  softWrap: true,
+
+                  style: TextStyle(
+                      color: MyColors.appColorBlack(),
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                      fontFamily: 'Roboto-Medium'),
+                ),
+              ),
+            ],
+          ),
           title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -83,7 +108,9 @@ Widget bodyCheckInformation(
           onTap: () {
             providerCheckInformation.checkInfo(
                 providerCheckInformation: providerCheckInformation,
-                index: 2, context: context, func: functions);
+                index: 2,
+                context: context,
+                func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
           leading: MyWidgets.robotoFontText(
@@ -109,7 +136,9 @@ Widget bodyCheckInformation(
           onTap: () {
             providerCheckInformation.checkInfo(
                 providerCheckInformation: providerCheckInformation,
-                index: 3, context: context, func: functions);
+                index: 3,
+                context: context,
+                func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
           leading: MyWidgets.robotoFontText(
@@ -135,7 +164,9 @@ Widget bodyCheckInformation(
           onTap: () {
             providerCheckInformation.checkInfo(
                 providerCheckInformation: providerCheckInformation,
-                index: 4, context: context, func: functions);
+                index: 4,
+                context: context,
+                func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
           leading: MyWidgets.robotoFontText(
@@ -161,9 +192,14 @@ Widget bodyCheckInformation(
           onTap: () {
             providerCheckInformation.checkInfo(
                 providerCheckInformation: providerCheckInformation,
-                index: 5, context: context, func: functions);
+                index: 5,
+                context: context,
+                func: functions);
           },
-          trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14,),
+          trailing: const Icon(
+            Icons.arrow_forward_ios_sharp,
+            size: 14,
+          ),
           leading: MyWidgets.robotoFontText(
               text: providerCheckInformation.myList[5].name, textSize: 16),
           title: Row(

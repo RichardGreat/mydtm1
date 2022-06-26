@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/main_home.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
 import 'package:mydtm/view/pages/m6_profile/main_profile.dart';
+import 'package:mydtm/view/pages/update_page/upadate_must.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
@@ -17,23 +19,37 @@ class MainPages extends StatefulWidget {
 class _MainPagesState extends State<MainPages> {
   List<Widget> myPages() => [
         const MainHome(),
-         MainMyStatement(numberParam: "0"),
-       const MainMessages(),
-         MainProfile(myFunction: getFunction),
+        MainMyStatement(numberParam: "0"),
+        const MainMessages(),
+        MainProfile(myFunction: getFunction),
       ];
   int index = 0;
   PersistentTabController controller = PersistentTabController(initialIndex: 0);
 
-     getFunction(){
-      setState((){});
-    }
+  getFunction() {
+    setState(() {});
+  }
+
+  var box = Hive.box("online");
+
+  @override
+  initState() {
+    getFirstAction();
+    super.initState();
+  }
+  Future getFirstAction()async{
+    try{
+      await Future.delayed(Duration.zero);
+      box.put("updateVersion", "1001");
+    }catch(e){}
+  }
 
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
-
       context,
-        screens: myPages(), items: navBarsItems(),
+      screens: myPages(),
+      items: navBarsItems(),
       confineInSafeArea: true,
       backgroundColor: MyColors.appColorWhite(),
       controller: controller,
@@ -43,13 +59,13 @@ class _MainPagesState extends State<MainPages> {
       hideNavigationBar: false,
       hideNavigationBarWhenKeyboardShows: false,
       decoration: NavBarDecoration(
-        borderRadius:const BorderRadius.only(topRight: Radius.circular(10), topLeft:Radius.circular(10)),
-        colorBehindNavBar:MyColors.appColorBlue1(),
+        borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+        colorBehindNavBar: MyColors.appColorBlue1(),
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
       navBarStyle: NavBarStyle.style3,
-
     );
   }
 }
@@ -57,7 +73,6 @@ class _MainPagesState extends State<MainPages> {
 List<PersistentBottomNavBarItem> navBarsItems() {
   return [
     PersistentBottomNavBarItem(
-
       icon: const Icon(
         Icons.home,
         size: 36,
@@ -75,7 +90,6 @@ List<PersistentBottomNavBarItem> navBarsItems() {
       // title: ("Settings"),
 
       icon: const Icon(
-
         Icons.article,
         size: 36,
       ),
@@ -101,8 +115,6 @@ List<PersistentBottomNavBarItem> navBarsItems() {
       activeColorSecondary: MyColors.appColorBlue1(),
       inactiveColorPrimary: MyColors.appColorGrey400(),
     ),
-
-
     PersistentBottomNavBarItem(
       icon: const Icon(
         Icons.account_circle,
@@ -117,6 +129,5 @@ List<PersistentBottomNavBarItem> navBarsItems() {
       activeColorSecondary: MyColors.appColorBlue1(),
       inactiveColorPrimary: MyColors.appColorGrey400(),
     ),
-
   ];
 }
