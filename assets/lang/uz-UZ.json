@@ -170,7 +170,7 @@
   "documentSerNum": "Hujjat seriyasi va raqami",
   "docLength7": "Hujjat seriya raqami 7 birlikdan ko'p bo'lishi kerak",
   "imageDoc": "Hujjat rasmi",
-  "imageTypes": "jpg, png, 2 MBdan oshmasligi zarur",
+  "imageTypes": "jpg, png, 8 MBdan oshmasligi zarur",
   "camera": "Kamera",
   "gallery": "Galereya",
   "editImage": "Rasm tahrirlash",

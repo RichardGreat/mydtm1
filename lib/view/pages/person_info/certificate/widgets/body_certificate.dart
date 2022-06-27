@@ -58,15 +58,20 @@ Widget bodyCertificate(
                               children: [
                                 Icon(Icons.add_circle,
                                     color: MyColors.appColorBlue1()),
-                                MyWidgets.robotoFontText(
-                                    text: "addCertificate".tr(),
-                                    textColor: providerCertificate
-                                                .dataCheckForeignCertificate
-                                                .status ==
-                                            1
-                                        ? MyColors.appColorGrey400()
-                                        : MyColors.appColorBlue1(),
-                                    textSize: 15),
+                              SizedBox(
+                                 width: MediaQuery.of(context).size.width*0.74,
+                                  child:                  MyWidgets.robotoFontText(
+                                      text: "addCertificate".tr(),
+                                      textColor: providerCertificate
+                                          .dataCheckForeignCertificate
+                                          .status ==
+                                          1
+                                          ? MyColors.appColorGrey400()
+                                          : MyColors.appColorBlue1(),
+                                      textSize: 15),
+                              ),
+
+
                               ],
                             ),
                           ),

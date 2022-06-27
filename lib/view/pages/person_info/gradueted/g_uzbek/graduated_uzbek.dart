@@ -155,7 +155,8 @@ Widget graduatedUzbek(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Flexible(
+                                  SizedBox(
+
                                     child: Text(
                                       providerGradueted
                                                   .graduatedEduName.length <
@@ -171,6 +172,7 @@ Widget graduatedUzbek(
                                           fontWeight: FontWeight.normal,
                                           fontFamily: 'Roboto-Medium'),
                                     ),
+                                    width: MediaQuery.of(context).size.width*0.7,
                                   ),
                                   const Icon(Icons.arrow_drop_down_outlined)
                                 ],

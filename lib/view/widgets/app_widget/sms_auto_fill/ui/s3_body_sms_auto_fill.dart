@@ -82,22 +82,27 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
               child: !providerSms.boolRegistration
                   ? Container(
                 margin: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    uiText(
-                        context: context,
-                        phoneNum: widget.phoneNum,
-                        providerSms: providerSms),
-                    const SizedBox(height: 10),
-
-                    Expanded(
-                        child: bottomUI(
+                child: SingleChildScrollView(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height*0.8,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        uiText(
                             context: context,
-                            providerSms: providerSms))
+                            phoneNum: widget.phoneNum,
+                            providerSms: providerSms),
+                        const SizedBox(height: 10),
 
-                    // Text(providerSms.valueSignature ?? ""),
-                  ],
+                        Expanded(
+                            child: bottomUI(
+                                context: context,
+                                providerSms: providerSms))
+
+                        // Text(providerSms.valueSignature ?? ""),
+                      ],
+                    ),
+                  ),
                 ),
               )
                   : registrated(

@@ -38,6 +38,7 @@ dependencies:
   open_file: ^3.2.1
   cached_network_image: ^3.2.1
   url_launcher: ^6.1.4
+  flutter_screen_lock: ^7.0.2
 
 
 dev_dependencies:

@@ -526,17 +526,19 @@ class ProviderSms extends ChangeNotifier {
   }
 
   Future getOTPCode() async {
+
+  try{
     OTPInteractor otpInteract = OTPInteractor();
     valueSignature = await otpInteract.getAppSignature();
     code1 = valueSignature!;
     controller = OTPTextEditController(
         codeLength: 5,
         onCodeReceive: (code) => {
-              code1 = code,
-              log('Your Application receive code - $code'),
-            })
+          code1 = code,
+          log('Your Application receive code - $code'),
+        })
       ..startListenUserConsent(
-        (code) {
+            (code) {
           final exp = RegExp(r'(\d{5})');
           return exp.stringMatch(code ?? '') ?? '';
         },
@@ -544,6 +546,8 @@ class ProviderSms extends ChangeNotifier {
           // SampleStrategy(),
         ],
       );
+  }catch(e){}
+
   }
 
   ///end

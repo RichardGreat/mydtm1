@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/main_home.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
@@ -8,7 +9,7 @@ import 'package:mydtm/view/pages/m6_profile/main_profile.dart';
 import 'package:mydtm/view/pages/update_page/upadate_must.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-
+import 'dart:developer';
 class MainPages extends StatefulWidget {
   const MainPages({Key? key}) : super(key: key);
 
@@ -34,8 +35,23 @@ class _MainPagesState extends State<MainPages> {
 
   @override
   initState() {
-    getFirstAction();
+    Future.delayed(Duration.zero);
+    lockScreen();
+    // getFirstAction();
     super.initState();
+  }
+  lockScreen(){
+    try{
+      setState(() {
+        screenLock(
+          context: context,
+          correctString: '1234',
+          
+        );
+      });
+    }catch(e){
+      log(e.toString());
+    }
   }
   Future getFirstAction()async{
     try{

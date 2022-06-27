@@ -33,6 +33,10 @@ PreferredSizeWidget appBarProfile(
                     color: MyColors.appColorBlack(), fontSize: 18, fontWeight: FontWeight.w500),
               btnOkOnPress:(){
                 box.delete("token");
+                box.delete("imie");
+                box.delete("psnum");
+                box.delete("personImage");
+                // box.delete("getEdInfo");
                 pushNewScreenWithRouteSettings(context,
                     screen: EnterFirst(),
                     settings: RouteSettings(),

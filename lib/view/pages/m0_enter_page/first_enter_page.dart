@@ -16,6 +16,7 @@ class EnterFirst0 extends StatefulWidget {
 var box = Hive.box("online");
 
 class _EnterFirst0State extends State<EnterFirst0> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

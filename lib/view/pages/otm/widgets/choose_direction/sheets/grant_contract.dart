@@ -79,34 +79,31 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Flexible(
-                      flex: 1,
-                      fit: FlexFit.tight,
-                      child: MaterialButton(
-                        height: 40,
-                        onPressed: () {
-                          setState(() {
-                            indexValue = 0;
-                          });
-                        },
-                        color: indexValue == 0
-                            ? MyColors.appColorWhite()
-                            : MyColors.appColorBlue1(),
-                        shape:const  RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10),
-                              bottomLeft: Radius.circular(10),
+                  SizedBox(
+                    child: MaterialButton(
+                      height: 40,
+                      onPressed: () {
+                        setState(() {
+                          indexValue = 0;
+                        });
+                      },
+                      color: indexValue == 0
+                          ? MyColors.appColorWhite()
+                          : MyColors.appColorBlue1(),
+                      shape:const  RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
 
-                            )),
-                        child: Text("grant".tr(),
-                            style: TextStyle(
-                                color: indexValue != 0
-                                    ? MyColors.appColorWhite()
-                                    : MyColors.appColorBlue1())),
-                      )),
-                  Flexible(
-                    flex: 1,
-                    fit: FlexFit.tight,
+                          )),
+                      child: Text("grant".tr(),
+                          style: TextStyle(
+                              color: indexValue != 0
+                                  ? MyColors.appColorWhite()
+                                  : MyColors.appColorBlue1())),
+                    ),
+                  ),
+                  SizedBox(
                     child: MaterialButton(
                         height: 40,
                         color: indexValue == 1

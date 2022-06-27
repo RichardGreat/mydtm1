@@ -47,7 +47,7 @@ Widget bodyMainHome(
                 itemBuilder: (context, index) => providerMainHome
                         .listDataServiceList[index].service.isNotEmpty
                     ? SizedBox(
-                        height: 170,
+                        height: 180,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,

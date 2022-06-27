@@ -31,12 +31,13 @@ Widget personReceived2(
                 child: Image.memory(
                   base64Decode((providerPersonInfo.image
                       .replaceAll("\n", "")
-                      .substring(23))),
+                      .substring(23).trim())),
                   height: 100,
                   fit: BoxFit.cover,
                 ),
               ),
-              Flexible(
+              SizedBox(
+                width: MediaQuery.of(context).size.width*0.3,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,

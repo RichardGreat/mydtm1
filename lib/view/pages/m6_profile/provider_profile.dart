@@ -13,7 +13,6 @@ import 'package:mydtm/data/model_parse/m1_model/parse_captche.dart';
 import 'package:mydtm/data/model_parse/m6_model/change_phone/phone_changes.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_imie_info.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
-import 'package:mydtm/view/pages/person_info/pasport_info_set/provider_person_info.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'dart:developer';

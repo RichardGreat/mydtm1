@@ -31,7 +31,7 @@ Widget districtChoose(
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                     MyWidgets.robotoFontText(
                         text: providerAddressInfo.districtName.length < 5
-                            ? "Tanlang..."
+                            ? "choose".tr()
                             : providerAddressInfo.districtName,
                         textSize: 16,
                         textColor: providerAddressInfo.districtName.length < 5

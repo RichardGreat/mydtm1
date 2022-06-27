@@ -16,7 +16,9 @@ Widget captchaSignUp(
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          MyWidgets.robotoFontText(text: "solve".tr()),
+          SizedBox(
+              width: MediaQuery.of(context).size.width*0.7,
+              child: MyWidgets.robotoFontText(text: "solve".tr())),
           const SizedBox(height: 2),
           Container(
             height: 50,

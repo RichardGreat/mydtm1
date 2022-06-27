@@ -30,7 +30,8 @@ Widget province(
               border: Border.all(color: MyColors.appColorGrey400())),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Flexible(
+            SizedBox(
+              width:MediaQuery.of(context).size.width*0.7,
               child: Text(
                 providerAddressInfo.provinceName.toString().length < 4 ||
                         providerAddressInfo.provinceName == null
@@ -49,6 +50,7 @@ Widget province(
                     fontWeight: FontWeight.normal,
                     fontFamily: 'Roboto-Medium'),
               ),
+
             ),
             Icon(
               Icons.arrow_drop_down,

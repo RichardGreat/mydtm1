@@ -36,7 +36,8 @@ myViewButton(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Flexible(
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width*0.5,
                         child: Text(
                   "services".tr(),
                           style: TextStyle(

@@ -40,7 +40,6 @@ class ProviderPersonInfo extends ChangeNotifier {
     try {
       boolNetworkGetData = true;
       String dataInfo = await networkGetIMie.getIMieInformation();
-      log(dataInfo);
       modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
       dataGetImieInfo = modelGetImieInfo.data;
       psser = dataGetImieInfo.psser;
@@ -53,6 +52,10 @@ class ProviderPersonInfo extends ChangeNotifier {
       sex = dataGetImieInfo.sex.toString();
       nationId = dataGetImieInfo.nationId.toString();
       image = dataGetImieInfo.image;
+      box.delete("imie");
+      box.delete("psnum");
+      box.put("imie", imie);
+      box.put("psnum", psnum);
       box.put("personImage", image);
       boolNetworkGetData = false;
       notifyListeners();
@@ -60,8 +63,7 @@ class ProviderPersonInfo extends ChangeNotifier {
       boolCheckImieHas = true;
       boolNetworkGetData = false;
       notifyListeners();
-      log(e.toString());
-    }
+     }
   }
 
   NetworkSetImie networkSetImie = NetworkSetImie();
@@ -99,6 +101,8 @@ class ProviderPersonInfo extends ChangeNotifier {
       box.delete("psnum");
       box.put("imie", imie);
       box.put("psnum", psnum);
+
+
       boolCheckImieHas = false;
       boolNetworkGetData = false;
       notifyListeners();
@@ -117,26 +121,11 @@ class ProviderPersonInfo extends ChangeNotifier {
 
   NetworkSetPassportAgain networkSetPassportAgain = NetworkSetPassportAgain();
   Future setPersonAgain({required BuildContext context , required String psSer, required String psNum})async{
-    // https://api.dtm.uz/v1/qabul/pasport-change
     try{
       String data = await networkSetPassportAgain.setPassportInfo(passSer: psSer, passNum: psNum);
       PassportAgainStatus passportAgainStatus = PassportAgainStatus.fromJson(jsonDecode(data));
       if(passportAgainStatus.data.status == 1){
-        // modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(data));
-        // dataGetImieInfo = modelGetImieInfo.data;
-        // psser = dataGetImieInfo.psser;
-        // psnum = dataGetImieInfo.psnum.toString();
-        // imie = dataGetImieInfo.imie.toString();
-        // lname = dataGetImieInfo.lname;
-        // fname = dataGetImieInfo.fname;
-        // mname = dataGetImieInfo.mname;
-        // bdate = dataGetImieInfo.bdate.toString();
-        // sex = dataGetImieInfo.sex.toString();
-        // nationId = dataGetImieInfo.nationId.toString();
-        // image = dataGetImieInfo.image;
-        // box.put("personImage", image);
-        // boolNetworkGetData = false;
-        getPersonInformation(context: context);
+       getPersonInformation(context: context);
         Navigator.of(context).pop();
         notifyListeners();
       }

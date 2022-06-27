@@ -7,7 +7,6 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/person_info/check_user_info/check_user_info.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/aferta.dart';
-import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
@@ -46,7 +45,6 @@ class ProviderCheckInformation extends ChangeNotifier {
     ),
   ];
 
-
   NetworkCheckUserInfo networkCheckUserInfo = NetworkCheckUserInfo();
   late ModelCheckUserInfo modelCheckUserInfo;
   bool boolCheckUserInfo = false;
@@ -72,13 +70,13 @@ class ProviderCheckInformation extends ChangeNotifier {
   Future checkInfo(
       {required int index,
       required BuildContext context,
-        required ProviderCheckInformation providerCheckInformation,
+      required ProviderCheckInformation providerCheckInformation,
       required Function func}) async {
     if (modelCheckUserInfo.person) {
       if (index == 0) {
         pushNewScreen(
           context,
-          screen: PersonInformation(funcState: func),
+          screen: PersonInformation(funcState: func, idFunction: "0"),
           withNavBar: false,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
@@ -115,7 +113,10 @@ class ProviderCheckInformation extends ChangeNotifier {
             );
           } else if (index == 5) {
             // infoAferta(context: context, function: func);
-            inFoAferta(context: context, function: func, providerCheckInformation: providerCheckInformation);
+            inFoAferta(
+                context: context,
+                function: func,
+                providerCheckInformation: providerCheckInformation);
           }
         } else {
           if (index == 2) {
@@ -173,7 +174,7 @@ class ProviderCheckInformation extends ChangeNotifier {
             btnOkOnPress: () {
               pushNewScreen(
                 context,
-                screen: PersonInformation(funcState: func),
+                screen: PersonInformation(funcState: func, idFunction: "0"),
                 withNavBar: false,
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
               );
@@ -198,78 +199,83 @@ class ProviderCheckInformation extends ChangeNotifier {
   }
 
   bool boolAfertaButton = false;
-Future getButtonColor({required bool myBool})async{
-  boolAfertaButton = myBool;
-  // notifyListeners();
-}
-  Future<void> inFoAferta(
-      {required BuildContext context, required Function function, required ProviderCheckInformation providerCheckInformation,}) async {
+
+  Future getButtonColor({required bool myBool}) async {
+    boolAfertaButton = myBool;
+    // notifyListeners();
+  }
+
+  Future<void> inFoAferta({
+    required BuildContext context,
+    required Function function,
+    required ProviderCheckInformation providerCheckInformation,
+  }) async {
     return //AwesomeDialog(
-    //   context: context,
-    //   dialogType: DialogType.NO_HEADER,
-    //   animType: AnimType.BOTTOMSLIDE,
-    //   title: "requestExamTest".tr(),
-    //   body: GestureDetector(
-    //     onTap: () {
-    //       // _launchInBrowser(_url);
-    //     },
-    //     child: Column(
-    //       children: [
-    //         const SizedBox(height: 10),
-    //         Text("requestExamTest".tr(),
-    //             textAlign: TextAlign.center,
-    //             style: const TextStyle(
-    //               fontWeight: FontWeight.w600,
-    //             )),
-    //         Container(
-    //           padding: EdgeInsets.all(8),
-    //           height: MediaQuery.of(context).size.height * 0.75,
-    //           child: ListView.builder(
-    //               itemCount: 2,
-    //               itemBuilder: (context, index) {
-    //                 if (index == 0) {
-    //                   boolAfertaButton = false;
-    //                   return Text(myAfertaList[index]);
-    //                 } else {
-    //                   boolAfertaButton = true;
-    //                   notifyListeners();
-    //                   return const SizedBox.shrink();
-    //                 }
-    //               }),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    //   titleTextStyle: TextStyle(
-    //       color: MyColors.appColorBlue1(),
-    //       fontWeight: FontWeight.bold,
-    //       fontSize: 20),
-    //   descTextStyle: TextStyle(
-    //       color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-    //   btnOkOnPress: () {
-    //     // pushNewScreen(
-    //     //   context,
-    //     //   screen: PersonInformation(funcState: func),
-    //     //   withNavBar: false,
-    //     //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-    //     // );
-    //   },
-    //   btnOkText: "iAgree".tr(),
-    //   btnOkColor: boolAfertaButton
-    //       ? MyColors.appColorBlue1()
-    //       : Colors.blue.withOpacity(0.3),
-    // ).show();
-      showDialog<void>(
+        //   context: context,
+        //   dialogType: DialogType.NO_HEADER,
+        //   animType: AnimType.BOTTOMSLIDE,
+        //   title: "requestExamTest".tr(),
+        //   body: GestureDetector(
+        //     onTap: () {
+        //       // _launchInBrowser(_url);
+        //     },
+        //     child: Column(
+        //       children: [
+        //         const SizedBox(height: 10),
+        //         Text("requestExamTest".tr(),
+        //             textAlign: TextAlign.center,
+        //             style: const TextStyle(
+        //               fontWeight: FontWeight.w600,
+        //             )),
+        //         Container(
+        //           padding: EdgeInsets.all(8),
+        //           height: MediaQuery.of(context).size.height * 0.75,
+        //           child: ListView.builder(
+        //               itemCount: 2,
+        //               itemBuilder: (context, index) {
+        //                 if (index == 0) {
+        //                   boolAfertaButton = false;
+        //                   return Text(myAfertaList[index]);
+        //                 } else {
+        //                   boolAfertaButton = true;
+        //                   notifyListeners();
+        //                   return const SizedBox.shrink();
+        //                 }
+        //               }),
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        //   titleTextStyle: TextStyle(
+        //       color: MyColors.appColorBlue1(),
+        //       fontWeight: FontWeight.bold,
+        //       fontSize: 20),
+        //   descTextStyle: TextStyle(
+        //       color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+        //   btnOkOnPress: () {
+        //     // pushNewScreen(
+        //     //   context,
+        //     //   screen: PersonInformation(funcState: func),
+        //     //   withNavBar: false,
+        //     //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        //     // );
+        //   },
+        //   btnOkText: "iAgree".tr(),
+        //   btnOkColor: boolAfertaButton
+        //       ? MyColors.appColorBlue1()
+        //       : Colors.blue.withOpacity(0.3),
+        // ).show();
+        showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
-        return
-          AlertDialog(
-            backgroundColor: Colors.white,
-            insetPadding: const EdgeInsets.all(10),
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            title:Column(children: [  Row(
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          insetPadding: const EdgeInsets.all(10),
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          title: Column(children: [
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -277,24 +283,23 @@ Future getButtonColor({required bool myBool})async{
                     onTap: () {
                       Navigator.of(context).pop();
                     },
-                    child:const Icon(Icons.close))
+                    child: const Icon(Icons.close))
               ],
             ),
-              const  SizedBox(height: 10),
-              Text("requestExamTest".tr(),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                  )),]),
-            content:SizedBox(
-                height: MediaQuery.of(context).size.height*0.75,
-                child:Aferta(
-                    providerCheckInformation:providerCheckInformation,
+            const SizedBox(height: 10),
+            Text("requestExamTest".tr(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                )),
+          ]),
+          content: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.75,
+            child: Aferta(
+                providerCheckInformation: providerCheckInformation,
                 function: function),
-            ),
-
+          ),
         );
-
       },
     );
   }
