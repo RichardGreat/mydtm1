@@ -10,6 +10,7 @@ import 'package:mydtm/view/pages/m3_home/show_by_category/show_by_category.dart'
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'dart:developer';
 
 Widget bodyMainHome(
     {required BuildContext context,
@@ -19,6 +20,8 @@ Widget bodyMainHome(
       ? NestedScrollView(
           floatHeaderSlivers: true,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+
+
             return <Widget>[
               SliverAppBar(
                 backgroundColor: MyColors.appColorWhite(),

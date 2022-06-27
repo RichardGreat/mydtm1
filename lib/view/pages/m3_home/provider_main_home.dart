@@ -52,12 +52,12 @@ class ProviderMainHome extends ChangeNotifier {
                   dialogType: DialogType.NO_HEADER,
                   animType: AnimType.BOTTOMSLIDE,
                   title: "DTM",
-                  desc: box.get("language") == "1"
+                  desc: box.get("language").toString() == "1"
                       ? modelCheckMobileVersion.data.versionText
-                      : box.get("language") == "2"
+                      : box.get("language").toString() == "2"
                           ? modelCheckMobileVersion.data.versionTextQq
-                          : box.get("language") == "3"
-                              ? modelCheckMobileVersion.data.versionText
+                          : box.get("language").toString() == "3"
+                              ? modelCheckMobileVersion.data.versionTextRu
                               : "update",
                   titleTextStyle: TextStyle(
                       color: MyColors.appColorBlue1(),
@@ -68,7 +68,8 @@ class ProviderMainHome extends ChangeNotifier {
                       fontWeight: FontWeight.bold),
                   btnCancelOnPress: () {},
                   btnCancelText: "OK",
-                  btnOkColor: MyColors.appColorBlue1())
+
+                  btnCancelColor: MyColors.appColorBlue1())
               .show();
         } else if (modelCheckMobileVersion.data.status.toString() == "3") {
           box.put("updateMobileText", modelCheckMobileVersion.data.versionText);
@@ -151,20 +152,7 @@ class ProviderMainHome extends ChangeNotifier {
               },
               btnCancelText: "OK")
           .show();
-      log("@@@message");
-      log(e.toString());
     }
-
-    // StaticListForDelete staticListForDelete = StaticListForDelete();
-    // modelListForDelete.addAll(staticListForDelete.getListDelete());
-    // log(jsonEncode(modelListForDelete));
-    // modelListForDeleteSearch.clear();
-    // modelListForDeleteSearch.addAll(modelListForDelete);
-    //
-    // modelListForDelete.sort((a, b) => a.category.compareTo(b.category));
-    // releaseDateMap =
-    //     modelListForDelete.groupListsBy((element) => element.category);
-    // modelListForDeleteTemp.addAll(releaseDateMap.values);
   }
 
   /// Go service page

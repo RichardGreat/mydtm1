@@ -51,7 +51,7 @@ Widget bodyAriza1(
                     // maxLines: 3,
                     overflow: TextOverflow.fade,
                     softWrap: true,
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+                    style:const TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
                   ),
                   const SizedBox(height: 10),
                   MyWidgets.robotoFontText(
@@ -62,8 +62,9 @@ Widget bodyAriza1(
                           .toString()
                           .substring(0, 16),
                       textSize: 14),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
                   Container(
+                    height: 45,
                     padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -79,6 +80,7 @@ Widget bodyAriza1(
                           textSize: 14),
                     ),
                   )
+
                 ],
               ),
             ),

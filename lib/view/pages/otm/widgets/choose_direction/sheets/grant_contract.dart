@@ -35,8 +35,28 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
 
   @override
   Widget build(BuildContext context) {
+
+    double heightScreen(){
+
+      if(MediaQuery.of(context).size.height >= 800){
+        return MediaQuery.of(context).size.height*1.33;
+      }else if(MediaQuery.of(context).size.height < 800 && MediaQuery.of(context).size.height >= 700){
+        return MediaQuery.of(context).size.height*1.53;
+      }
+      else if(MediaQuery.of(context).size.height < 700 && MediaQuery.of(context).size.height >= 600){
+        return MediaQuery.of(context).size.height*1.63;
+      }
+      else if(MediaQuery.of(context).size.height < 600 && MediaQuery.of(context).size.height >= 500){
+        return MediaQuery.of(context).size.height*1.83;
+      }
+      else if(MediaQuery.of(context).size.height < 500 && MediaQuery.of(context).size.height >= 400){
+        return MediaQuery.of(context).size.height*2.53;
+      }
+      return 700;
+    }
     return Scaffold(
       backgroundColor: MyColors.appColorWhite(),
+
       body: Container(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -47,7 +67,7 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [GestureDetector(
                   onTap: (){   Navigator.of(context).pop();},
-                  child: Icon(Icons.close))],),
+                  child:const Icon(Icons.close))],),
             MyWidgets.robotoFontText(
                 text: "chooseGrantContract".tr(), textSize: 25),
             const SizedBox(height: 10),

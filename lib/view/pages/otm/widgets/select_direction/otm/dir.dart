@@ -78,7 +78,9 @@ class _DIREduState extends State<DIREdu> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      MyWidgets.robotoFontText(text:"chooseDirection".tr(), textSize: 28 ),
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width*0.7,
+                          child: MyWidgets.robotoFontText(text:"chooseDirection".tr(), textSize: 28 )),
                       IconButton(
                           onPressed: () {
                             widget.providerChooseEdu.textDir1Controller

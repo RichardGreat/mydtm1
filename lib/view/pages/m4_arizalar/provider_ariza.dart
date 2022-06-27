@@ -67,7 +67,9 @@ class ProviderAriza extends ChangeNotifier {
         boolDataDownload1 = true;
         notifyListeners();
         log(modelGetDownloadsData1.data.src);
-      }catch(e){log(e.toString());}
+      }catch(e){
+       modelGetDownloadsData1.status = 0;
+       log(e.toString());}
     } else if (categoryId == 2) {
       try{
         boolDataDownload2 = false;
@@ -76,9 +78,8 @@ class ProviderAriza extends ChangeNotifier {
         modelGetDownloads2 = modelGetDownloadsData2.data;
         boolDataDownload2 = true;
         notifyListeners();
-        log(modelGetDownloadsData2.data.src);
       }catch(e){
-
+        modelGetDownloadsData2.status = 0;
       }
 
     } else if (categoryId == 3) {
@@ -86,6 +87,7 @@ class ProviderAriza extends ChangeNotifier {
       boolDataDownload3 = false;
       String dataDownloads = await networkDownloadsAnswerSheet.getCheckAnswerSheet();
       modelGetDownloadsData3 = ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
+
       modelGetDownloads3 = modelGetDownloadsData3.data;
 
       boolDataDownload3 = true;

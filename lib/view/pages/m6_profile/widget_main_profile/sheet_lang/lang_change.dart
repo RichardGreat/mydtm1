@@ -23,6 +23,10 @@ class _LangChangeAllState extends State<LangChangeAll> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.appColorWhite(),
+      appBar: AppBar(backgroundColor: MyColors.appColorWhite(),elevation: 0,
+
+      iconTheme: IconThemeData(color: MyColors.appColorBlack()),
+      ),
       body: SafeArea(
           child: Container(
         margin: EdgeInsets.all(10),
@@ -36,7 +40,7 @@ class _LangChangeAllState extends State<LangChangeAll> {
                 child: Column(
                   children: [
                     const SizedBox(height: 10),
-                    MyWidgets.robotoFontText(text: "languageApp".tr()),
+                    MyWidgets.robotoFontText(text: "languageApp".tr(), textSize: 24),
                     const SizedBox(height: 10),
                     Expanded(
                       child: Container(
