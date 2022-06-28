@@ -49,22 +49,23 @@ class _EnterFirstState extends State<EnterFirst> {
                                   child: Column(
                                     children: [
                                       const SizedBox(height: 20),
-                                   Image.asset("assets/images/dtm.png", height: 70),
+                                      Image.asset("assets/images/dtm.png",
+                                          height: 70),
                                       const SizedBox(height: 25),
                                       enterFirstBodyInput(
                                           context: context,
                                           providerEnterFirst:
                                               providerEnterFirst),
                                       const SizedBox(height: 20),
-
-                                      forgotPassword(context: context, providerEnterFirst: providerEnterFirst),
+                                      forgotPassword(
+                                          context: context,
+                                          providerEnterFirst:
+                                              providerEnterFirst),
                                       const SizedBox(height: 20),
                                       captchaGet(
                                           context: context,
                                           providerEnterFirst:
                                               providerEnterFirst),
-
-
                                       const SizedBox(height: 20),
                                       enterButton(
                                           context: context,

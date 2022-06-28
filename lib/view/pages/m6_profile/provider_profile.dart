@@ -36,6 +36,12 @@ class ProviderProfile extends ChangeNotifier {
   NetworkGetIMie networkGetIMie = NetworkGetIMie();
   var box = Hive.box("online");
 
+  bool boolLockAction = false;
+  Future getButtonAction()async{
+    boolLockAction = !boolLockAction;
+    notifyListeners();
+  }
+
   late String psser,
       psnum,
       imie,

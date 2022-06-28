@@ -1,17 +1,16 @@
 import 'dart:convert';
-
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_passport/change_password.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/phone_change.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/sheet_lang/lang_change.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
-import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -245,6 +244,53 @@ Widget bodyProfile(
             ),
             title: MyWidgets.robotoFontText(text: "languageApp".tr()),
             subtitle: myText(),
+            trailing: Icon(
+              Icons.arrow_forward_ios_rounded,
+              color: MyColors.appColorGrey400(),
+            ),
+          ),
+          ListTile(
+            onTap: () {
+              box.get("token").toString().length > 30
+                  ? AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.NO_HEADER,
+                      animType: AnimType.BOTTOMSLIDE,
+                      title: "DTM",
+                      desc: "logUot".tr(),
+                      titleTextStyle: TextStyle(
+                          color: MyColors.appColorBlue1(),
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold),
+                      descTextStyle: TextStyle(
+                          color: MyColors.appColorBlack(),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
+                      btnOkOnPress: () {
+                        box.delete("token");
+                        box.delete("imie");
+                        box.delete("psnum");
+                        box.delete("personImage");
+                        // box.delete("getEdInfo");
+                        pushNewScreenWithRouteSettings(context,
+                            screen: EnterFirst(),
+                            settings: RouteSettings(),
+                            withNavBar: false);
+                      },
+                      btnOkText: "yes".tr(),
+                      btnOkColor: MyColors.appColorBlue1(),
+                      btnCancelColor: MyColors.appColorGrey600(),
+                      btnCancelOnPress: () {},
+                      btnCancelText: "no".tr(),
+                    ).show()
+                  : {};
+            },
+            leading: Icon(
+              Icons.logout,
+              color: MyColors.appColorBlue1(),
+              size: 24,
+            ),
+            title: MyWidgets.robotoFontText(text: "logOut1".tr()),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
               color: MyColors.appColorGrey400(),
