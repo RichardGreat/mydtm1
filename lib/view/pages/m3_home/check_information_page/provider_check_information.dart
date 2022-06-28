@@ -72,6 +72,7 @@ class ProviderCheckInformation extends ChangeNotifier {
       required BuildContext context,
       required ProviderCheckInformation providerCheckInformation,
       required Function func}) async {
+
     if (modelCheckUserInfo.person) {
       if (index == 0) {
         pushNewScreen(
@@ -93,7 +94,7 @@ class ProviderCheckInformation extends ChangeNotifier {
           if (index == 2) {
             pushNewScreen(
               context,
-              screen: Graduated(funcState: func),
+              screen: Graduated(funcState: func, modelCheckUserInfo: modelCheckUserInfo),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
@@ -122,7 +123,7 @@ class ProviderCheckInformation extends ChangeNotifier {
           if (index == 2) {
             pushNewScreen(
               context,
-              screen: Graduated(funcState: func),
+              screen: Graduated(funcState: func, modelCheckUserInfo: modelCheckUserInfo),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );

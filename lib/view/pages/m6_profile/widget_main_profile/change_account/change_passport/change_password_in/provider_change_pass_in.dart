@@ -73,6 +73,8 @@ class ProviderChangePasswordInputs extends ChangeNotifier {
           descTextStyle: TextStyle(
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
           btnCancelOnPress: () {
+            box.delete("langLock");
+            box.put("langLock", "1");
             Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainPages(),), (route) => false);
           },
           btnCancelText: "OK")

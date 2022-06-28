@@ -13,16 +13,19 @@ import 'package:mydtm/data/internet_connections/person_info/graduated/set_server
 import 'package:mydtm/data/internet_connections/person_info/graduated/year_graduated.dart';
 import 'package:mydtm/data/model_parse/m6_model/district.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_country.dart';
+import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/data/model_parse/person_info/g_edu_type.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/all_info_graduated.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/g_country.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/graduated_name.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/graduated_year.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/model_get_graduated.dart';
+import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/state_choose.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_type.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_year.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderGraduated extends ChangeNotifier {
   final formKeyGraduated = GlobalKey<FormState>();
@@ -572,7 +575,10 @@ class ProviderGraduated extends ChangeNotifier {
       String? docSerNum,
       String? eduName,
       String? countryId,
+        required Function functions,
+        required ModelCheckUserInfo modelCheckUserInfo,
       required BuildContext context}) async {
+
     Map<String, String> sentEduMap = {
       "edu_type": eduType ?? "0",
       "region_id": regionId ?? "1726",
@@ -624,6 +630,11 @@ class ProviderGraduated extends ChangeNotifier {
                 color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
             btnCancelOnPress: () {
               Navigator.of(context).pop();
+
+              // modelCheckUserInfo.personGeneralEdu == false ? {
+              //   pushNewScreen(context, screen: Certificates(funcState: functions),)
+              // }:{};
+
             },
             btnCancelText: "OK",
             btnCancelColor: MyColors.appColorBlue1())

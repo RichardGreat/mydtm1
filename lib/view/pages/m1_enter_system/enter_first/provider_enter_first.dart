@@ -118,6 +118,8 @@ class ProviderEnterFirst extends ChangeNotifier {
         // ignore: use_build_context_synchronously
         box.delete("phoneNumber");
         box.put("phoneNumber", textAuthLogin.text);
+        box.delete("langLock");
+        box.put("langLock", "1");
         // ignore: use_build_context_synchronously
         Navigator.pushAndRemoveUntil(
             context,

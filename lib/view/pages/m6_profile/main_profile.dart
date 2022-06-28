@@ -30,6 +30,12 @@ class _MainProfileState extends State<MainProfile> {
     setState((){});
     // }else{}
   }
+
+  getStateFunction(){
+    setState((){});
+  }
+
+
   @override
   initState() {
 

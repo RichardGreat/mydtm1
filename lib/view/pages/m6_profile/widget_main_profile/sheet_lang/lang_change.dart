@@ -57,6 +57,8 @@ class _LangChangeAllState extends State<LangChangeAll> {
                                   context.locale = const Locale("uz", "UZ");
                                   box.delete("language");
                                   box.put("language", "1");
+                                  box.delete("langLock");
+                                  box.put("langLock", "1");
                                   widget.providerProfile.setLangUser();
                                   Navigator.pushAndRemoveUntil(
                                     context,
@@ -81,6 +83,8 @@ class _LangChangeAllState extends State<LangChangeAll> {
                                   context.locale = const Locale("kk", "KK");
                                   box.delete("language");
                                   box.put("language", "2");
+                                  box.delete("langLock");
+                                  box.put("langLock", "1");
                                   widget.providerProfile.setLangUser();
                                   Navigator.pushAndRemoveUntil(
                                     context,
@@ -105,6 +109,8 @@ class _LangChangeAllState extends State<LangChangeAll> {
                                   context.locale = const Locale("ru", "RU");
                                   box.delete("language");
                                   box.put("language", "3");
+                                  box.delete("langLock");
+                                  box.put("langLock", "1");
                                   widget.providerProfile.setLangUser();
                                   Navigator.pushAndRemoveUntil(
                                     context,

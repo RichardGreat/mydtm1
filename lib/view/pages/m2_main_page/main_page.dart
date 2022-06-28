@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/view/lock_screen_all.dart';
 import 'package:mydtm/view/pages/m3_home/main_home.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
@@ -16,7 +17,7 @@ class MainPages extends StatefulWidget {
   State<MainPages> createState() => _MainPagesState();
 }
 
-class _MainPagesState extends State<MainPages> {
+class _MainPagesState extends State<MainPages> with WidgetsBindingObserver {
   List<Widget> myPages() => [
         const MainHome(),
         MainMyStatement(numberParam: "0"),
@@ -31,85 +32,60 @@ class _MainPagesState extends State<MainPages> {
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+
+        break;
+      case AppLifecycleState.inactive:
+        {
+          // print(box.get("lockHasEnter").toString());
+          // print(box.get("langLock").toString());
+
+          if( box.get("lockHasEnter").toString() != "1"){
+
+            if(box.get("langLock").toString().trim() == "1"){
+              box.delete("langLock");
+            }
+            else{
+              box.get("lockScreen").toString().trim().length == 4 &&
+                  box.get("lockScreen").toString() != "null"
+                  ? {pushNewScreen(context, screen: LockScreenAllWindow()),
+                box.delete("lockHasEnter")
+              }
+                  : {};};
+          }else{
+
+          }
+
+        }
+        break;
+      case AppLifecycleState.paused:
+        // Handle this case
+        break;
+      case AppLifecycleState.detached:
+        // TODO: Handle this case.
+        break;
+    }
+
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
   initState() {
     super.initState();
-    screenLocks();
+    WidgetsBinding.instance.addObserver(this);
+    // screenLocks();
     getFirstAction();
   }
 
-  var box = Hive.box("online");
-
-  Future screenLocks() async {
-    await Future.delayed(const Duration(milliseconds: 50)).then((value) {
-      screenLock(
-        context: context,
-        title:
-            Text("Parol kiriting", style: TextStyle(color: MyColors.appColorBlack())),
-        didConfirmed: (String a) {
-          Navigator.of(context).pop();
-        },
-        correctString: "1234",
-        didUnlocked: () {
-          Navigator.of(context).pop();
-        },
-        // didOpened: (){
-        //   Navigator.of(context).pop();
-        // },
-        confirmation: true,
-        footer: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "DTM",
-                style: TextStyle(
-                    color: MyColors.appColorBlack(),
-                    fontWeight: FontWeight.w500),
-              )
-            ]),
-        canCancel: false,
-        screenLockConfig: const ScreenLockConfig(
-          backgroundColor: Colors.white,
-        ),
-        secretsConfig: SecretsConfig(
-          spacing: 15, // or spacingRatio
-          padding: const EdgeInsets.all(40),
-          secretConfig: SecretConfig(
-            borderColor: Colors.white,
-            borderSize: 2.0,
-            disabledColor: Colors.black,
-            enabledColor: Colors.blue,
-            height: 15,
-            width: 15,
-            build: (context, {required config, required enabled}) {
-              return SizedBox(
-                width: config.width,
-                height: config.height,
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(10),
-                    color: enabled ? config.enabledColor : config.disabledColor,
-                    border: Border.all(
-                      width: config.borderSize,
-                      color: config.borderColor,
-                    ),
-                  ),
-                  padding: EdgeInsets.all(10),
-                  width: config.width,
-                  height: config.height,
-                ),
-              );
-            },
-          ),
-        ),
-        cancelButton: const Icon(Icons.close, color: Colors.black),
-        deleteButton:
-            const Icon(CupertinoIcons.delete_left_fill, color: Colors.black),
-      );
-    });
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
+  var box = Hive.box("online");
   Future getFirstAction() async {
     try {
       await Future.delayed(Duration.zero);

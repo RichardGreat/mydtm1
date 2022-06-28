@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/app_bar.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/captcha.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_button.dart';
@@ -26,6 +27,7 @@ class _EnterFirstState extends State<EnterFirst> {
     providerEnterFirst.getCaptcha();
     super.initState();
   }
+  var box = Hive.box("online");
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +78,8 @@ class _EnterFirstState extends State<EnterFirst> {
                                 ),
                               ))),
                 onWillPop: () async {
+                  box.delete("langLock");
+                  box.put("langLock", "1");
                   Navigator.pushAndRemoveUntil(
                       context,
                       CupertinoPageRoute(

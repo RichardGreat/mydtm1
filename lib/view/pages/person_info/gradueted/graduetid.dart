@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/app_bar_gradueted.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/button_gradueted.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/const_gradueted.dart';
@@ -15,7 +16,8 @@ import 'package:provider/provider.dart';
 
 class Graduated extends StatefulWidget {
   Function funcState;
-  Graduated({Key? key, required this.funcState}) : super(key: key);
+  ModelCheckUserInfo modelCheckUserInfo;
+  Graduated({Key? key, required this.funcState, required this.modelCheckUserInfo}) : super(key: key);
 
   @override
   State<Graduated> createState() => _GraduatedState();
@@ -194,6 +196,8 @@ class _GraduatedState extends State<Graduated> {
                       ),
                       const SizedBox(height: 20),
                       buttonGraduated(
+                        function: widget.funcState,
+                        modelCheckUserInfo: widget.modelCheckUserInfo,
                           context: context,
                           providerGradueted: providerGraduated)
                     ],

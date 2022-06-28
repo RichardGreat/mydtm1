@@ -53,6 +53,8 @@ class _PersonInformationState extends State<PersonInformation> {
 
               return true;
             } else if (widget.idFunction == "99") {
+              box.delete("langLock");
+              box.put("langLock", "1");
               Navigator.pushAndRemoveUntil(
                   context,
                   CupertinoPageRoute(

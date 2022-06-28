@@ -135,6 +135,8 @@ class ProviderSms extends ChangeNotifier {
           ModelGetToken.fromJson(jsonDecode(dataToken));
       box.delete("token");
       box.put("token", modelGetToken.data.accessToken);
+      box.delete("langLock");
+      box.put("langLock", "1");
       // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
           context,
@@ -393,6 +395,8 @@ class ProviderSms extends ChangeNotifier {
           // ignore: use_build_context_synchronously
           box.delete("phoneNumber");
           box.put("phoneNumber", phoneNumber);
+          box.delete("langLock");
+          box.put("langLock", "1");
           // ignore: use_build_context_synchronously
           Navigator.pushAndRemoveUntil(
               context,

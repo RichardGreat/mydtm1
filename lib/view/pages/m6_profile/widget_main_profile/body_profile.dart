@@ -1,9 +1,10 @@
 import 'dart:convert';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_passport/change_password.dart';
@@ -11,6 +12,7 @@ import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/p
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/sheet_lang/lang_change.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
+import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -23,7 +25,7 @@ Widget myText() {
           ? Text("qq".tr())
           : Text("ru".tr());
 }
-
+late ModelCheckUserInfo modelCheckUserInfo;
 Widget bodyProfile(
     {required BuildContext context,
     required Function function,
@@ -93,24 +95,27 @@ Widget bodyProfile(
           ),
           ListTile(
             onTap: () {
-              screenLock(
-                  context: context,
-                  correctString: "1234",
-                  canCancel: false,
-                  title: Text("SOBIR"),
-                  withBlur: true,
-                  didOpened: () {},
-                  retryDelay: const Duration(minutes: 2),
-                  didUnlocked: () {
-                    Navigator.of(context).pop();
-                  });
+              // screenLock(
+              //     context: context,
+              //     correctString: "1234",
+              //     canCancel: false,
+              //     title: Text("SOBIR"),
+              //     withBlur: true,
+              //     didOpened: () {},
+              //     retryDelay: const Duration(minutes: 2),
+              //     didUnlocked: () {
+              //       Navigator.of(context).pop();
+              //     });
 
-              // pushNewScreen(
-              //   context,
-              //   screen: PersonInformation(funcState: function, idFunction: box.get("imie").toString().length > 13 ? "1":"99"),
-              //   withNavBar: false,
-              //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              // );
+              pushNewScreen(
+                context,
+                screen: PersonInformation(
+                    funcState: function,
+                    idFunction:
+                        box.get("imie").toString().length > 13 ? "1" : "99"),
+                withNavBar: false,
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
             },
             leading: Icon(
               Icons.person_pin_rounded,
@@ -151,7 +156,7 @@ Widget bodyProfile(
             onTap: () {
               pushNewScreen(
                 context,
-                screen: Graduated(funcState: function),
+                screen: Graduated(funcState: function, modelCheckUserInfo: modelCheckUserInfo),
                 withNavBar: false,
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
               );

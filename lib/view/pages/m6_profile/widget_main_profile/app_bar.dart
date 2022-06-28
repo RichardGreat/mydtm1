@@ -13,7 +13,8 @@ PreferredSizeWidget appBarProfile(
   var box = Hive.box("online");
 
   String getTextDialog() {
-    return box.get("lockScreen").toString().length == 4
+    return box.get("lockScreen").toString().length == 4 &&
+            box.get("lockScreen").toString() != "null"
         ? "Dasturga kirish parolini o'chirish yoki boshqa qoyish"
         : "Parol qoymoqchimisiz";
   }
@@ -41,10 +42,53 @@ PreferredSizeWidget appBarProfile(
                       getTextDialog(),
                       style: TextStyle(fontSize: 20),
                     ),
-                    box.get("lockScreen").toString().length == 4
-                        ? SizedBox()
+                    const SizedBox(height: 25),
+                    box.get("lockScreen").toString().length == 4 &&
+                            box.get("lockScreen").toString().trim() != "null"
+                        ? Row(
+                            children: [
+                              MaterialButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  pushNewScreen(context,
+                                      screen: ScreenLockWindow(
+                                          idScreenLockWindow: "1"),
+                                      withNavBar: false);
+                                },
+                                height: 45,
+                                minWidth:
+                                    MediaQuery.of(context).size.width * 0.2,
+                                color: MyColors.appColorBlue1(),
+                                child: const Text("Parol almashtirish",
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                              const SizedBox(width: 5),
+                              MaterialButton(
+                                height: 45,
+                                minWidth:
+                                    MediaQuery.of(context).size.width * 0.2,
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  pushNewScreen(context,
+                                      screen: ScreenLockWindow(
+                                          idScreenLockWindow: "2"),
+                                      withNavBar: false);
+                                },
+                                child: Text("Parolni o'chirish",
+                                    style: TextStyle(color: Colors.black)),
+                                color: MyColors.appColorWhite(),
+                              ),
+                            ],
+                          )
                         : MaterialButton(
+                            height: 45,
+                            minWidth: MediaQuery.of(context).size.width * 0.4,
+                            color: MyColors.appColorBlue1(),
+                            child: Text("Yangi parol kiritish",
+                                style:
+                                    TextStyle(color: MyColors.appColorWhite())),
                             onPressed: () {
+                              Navigator.of(context).pop();
                               pushNewScreen(context,
                                   screen:
                                       ScreenLockWindow(idScreenLockWindow: "0"),
@@ -63,10 +107,11 @@ PreferredSizeWidget appBarProfile(
               ).show();
             },
             child: Icon(
-                providerProfile.boolLockAction
-                    ? Icons.lock_open_sharp
-                    : Icons.lock,
-                color: Colors.black)),
+                box.get("lockScreen").toString().length == 4 &&
+                        box.get("lockScreen").toString().trim() != "null"
+                    ? Icons.lock
+                    : Icons.lock_open_sharp,
+                color: Colors.blue)),
       )
     ],
   );

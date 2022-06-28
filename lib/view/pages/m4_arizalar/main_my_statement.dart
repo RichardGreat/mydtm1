@@ -30,6 +30,8 @@ class _MainMyStatementState extends State<MainMyStatement> {
     child: Consumer<ProviderAriza>(builder: (context, value, child) => WillPopScope(
     onWillPop: () async {
       if(widget.numberParam == "2"){
+        box.delete("langLock");
+        box.put("langLock", "1");
     Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MyApp(),), (route) => false);
       }
     return true;
