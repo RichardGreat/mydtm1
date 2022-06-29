@@ -1,7 +1,8 @@
 import 'dart:convert';
+import 'dart:developer';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_district.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_region.dart';
@@ -13,7 +14,6 @@ import 'package:mydtm/data/internet_connections/person_info/graduated/set_server
 import 'package:mydtm/data/internet_connections/person_info/graduated/year_graduated.dart';
 import 'package:mydtm/data/model_parse/m6_model/district.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_country.dart';
-import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/data/model_parse/person_info/g_edu_type.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/all_info_graduated.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/g_country.dart';
@@ -108,9 +108,8 @@ class ProviderGraduated extends ChangeNotifier {
         } catch (e) {
           log(e.toString());
         }
-      } else if (
-      dataGraduatedInfo.countryId.toString() == "860" &&
-      dataGraduatedInfo.eduTypeId != "4") {
+      } else if (dataGraduatedInfo.countryId.toString() == "860" &&
+          dataGraduatedInfo.eduTypeId != "4") {
         boolGraduatedType = true;
         boolUzbekGraduated = true;
         graduatedEduTypeName =
@@ -495,8 +494,8 @@ class ProviderGraduated extends ChangeNotifier {
       ModelGraduatedYear modelGraduatedYear =
           ModelGraduatedYear.fromJson(jsonDecode(dataGraduated));
       listGraduatedYear.clear();
-      for (int i = int.parse(modelGraduatedYear.data.endYear);
-          i >= int.parse(modelGraduatedYear.data.beginYear);
+      for (int i = int.parse(modelGraduatedYear.data.endYear)-1;
+          i >= int.parse(modelGraduatedYear.data.beginYear)-1;
           i--) {
         listGraduatedYear.add("$i-${"year".tr()}");
       }
@@ -575,15 +574,13 @@ class ProviderGraduated extends ChangeNotifier {
       String? docSerNum,
       String? eduName,
       String? countryId,
-        required Function functions,
-        required ModelCheckUserInfo modelCheckUserInfo,
+      required String idWindowId,
+      required Function functions,
       required BuildContext context}) async {
-
     Map<String, String> sentEduMap = {
       "edu_type": eduType ?? "0",
       "region_id": regionId ?? "1726",
-      countryId != "860"?"":
-      "district_id": districtId ?? "0",
+      countryId != "860" ? "" : "district_id": districtId ?? "0",
       "edu_list_id": eduListId ?? "0",
       "graduated_year": graduatedYear.toString().substring(0, 4),
       "doc_ser_num": docSerNum ?? "0",
@@ -622,6 +619,7 @@ class ProviderGraduated extends ChangeNotifier {
             context: context,
             dialogType: DialogType.INFO,
             animType: AnimType.BOTTOMSLIDE,
+            dismissOnTouchOutside: false,
             title: "DTM",
             desc: "saved".tr(),
             titleTextStyle: TextStyle(
@@ -629,14 +627,20 @@ class ProviderGraduated extends ChangeNotifier {
             descTextStyle: TextStyle(
                 color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
             btnCancelOnPress: () {
-              Navigator.of(context).pop();
+              if(idWindowId == "1"){
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+              }else if(idWindowId == "0"){
+                pushNewScreen(context,
+                    screen: Certificates(funcState: functions));
+              }
+
 
               // modelCheckUserInfo.personGeneralEdu == false ? {
               //   pushNewScreen(context, screen: Certificates(funcState: functions),)
               // }:{};
-
             },
-            btnCancelText: "OK",
+            btnCancelText: "continue".tr(),
             btnCancelColor: MyColors.appColorBlue1())
         .show();
     notifyListeners();
@@ -651,6 +655,8 @@ class ProviderGraduated extends ChangeNotifier {
     // "country_id":"860"
     // }
   }
+
+  Future getActionGraduates() async {}
 
   ///
 

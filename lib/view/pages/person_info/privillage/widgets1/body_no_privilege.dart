@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/privillage/provider_privilege.dart';
@@ -50,7 +51,63 @@ Widget bodyNoPrivilege({required BuildContext context, required ProviderPrivileg
         )
 
 
-      ],),)
+      ],),),
+        const SizedBox(height: 30),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   crossAxisAlignment: CrossAxisAlignment.center,
+        //   children: [
+        //     MaterialButton(
+        //       height: 40,
+        //       minWidth: double.infinity,
+        //       shape: RoundedRectangleBorder(
+        //           borderRadius: BorderRadius.circular(5)),
+        //       color: MyColors.appColorBlue1(),
+        //       child: Text("afertaAccept".tr(),
+        //           style: TextStyle(color: MyColors.appColorWhite())),
+        //       onPressed: () {
+        //         AwesomeDialog(
+        //             context: context,
+        //             dialogType: DialogType.NO_HEADER,
+        //             animType: AnimType.BOTTOMSLIDE,
+        //             title: "DTM",
+        //             desc: "chooseDirection".tr(),
+        //             titleTextStyle: TextStyle(
+        //                 color: MyColors.appColorBlue1(),
+        //                 fontSize: 24,
+        //                 fontWeight: FontWeight.bold),
+        //             descTextStyle: TextStyle(
+        //                 color: MyColors.appColorBlack(),
+        //                 fontWeight: FontWeight.bold),
+        //             btnCancelOnPress: () {
+        //               Navigator.of(context).pop();
+        //             },
+        //             btnCancelText: "OK")
+        //             .show();
+        //         // providerCheckInformation.boolAfertaButton
+        //         //     ? {
+        //         //         Navigator.of(context).pop(),
+        //         //         pushNewScreen(
+        //         //           context,
+        //         //           screen: ChooseEdu(funcState: function),
+        //         //           withNavBar: false,
+        //         //           pageTransitionAnimation:
+        //         //               PageTransitionAnimation.cupertino,
+        //         //         ),
+        //         //       }
+        //         //     : {};
+        //       },
+        //     ),
+        //     // MaterialButton(onPressed: (){
+        //     //   // pushNewScreen(context, screen: Privilege(funcState: func));
+        //     // },
+        //     //   height: 50,
+        //     //   minWidth: MediaQuery.of(context).size.width*0.8,
+        //     //   color: MyColors.appColorBlue1(),
+        //     //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        //     //   child: Text("continue".tr(), style: TextStyle(fontWeight: FontWeight.w600, color: MyColors.appColorWhite())),),
+        //   ],
+        // )
     ],),
   );
 }

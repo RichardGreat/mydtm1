@@ -13,9 +13,10 @@ import 'package:provider/provider.dart';
 class PersonInformation extends StatefulWidget {
   Function funcState;
   String idFunction;
+  String windowIdPassport = "0";
 
   PersonInformation(
-      {Key? key, required this.funcState, required this.idFunction})
+      {Key? key, required this.funcState, required this.idFunction, required this.windowIdPassport})
       : super(key: key);
 
   @override
@@ -32,7 +33,7 @@ class _PersonInformationState extends State<PersonInformation> {
   }
 
   Future getPersonInfo() async {
-    await providerPersonInfo.getPersonInformation(context: context);
+    await providerPersonInfo.getPersonInformation(context: context, function:    widget.funcState);
   }
 
   var box = Hive.box("online");
@@ -44,11 +45,13 @@ class _PersonInformationState extends State<PersonInformation> {
       child: Consumer<ProviderPersonInfo>(
         builder: (context, value, child) => WillPopScope(
           onWillPop: () async {
+            print(widget.idFunction);
+
             if (widget.idFunction == "0") {
               Navigator.of(context).pop();
               widget.funcState();
               return true;
-            } else if (widget.idFunction == "1") {
+            } else if (widget.idFunction == "1" && box.get("imie").toString().length > 12) {
               Navigator.of(context).pop();
 
               return true;

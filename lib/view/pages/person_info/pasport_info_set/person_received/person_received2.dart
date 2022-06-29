@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_received/passport_againperson_received.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/provider_person_info.dart';
@@ -34,6 +33,7 @@ Widget personReceived2(
                       .substring(23).trim())),
                   height: 100,
                   fit: BoxFit.cover,
+
                 ),
               ),
               SizedBox(
@@ -94,7 +94,7 @@ Widget personReceived2(
             alignment: Alignment.bottomCenter,
             child: Container(
           margin: const EdgeInsets.all(15),
-          child: MaterialButton(
+              child: MaterialButton(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10)),
             minWidth: double.infinity,
@@ -109,7 +109,8 @@ Widget personReceived2(
                 text: "passportAgain".tr(), textColor: MyColors.appColorWhite()),
           ),
             ),
-          )
+          ),
+
         ],
       ));
 }

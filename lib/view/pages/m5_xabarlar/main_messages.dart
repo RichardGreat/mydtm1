@@ -25,8 +25,6 @@ class _MainMessagesState extends State<MainMessages> {
     super.initState();
   }
 
-
-
   Future getDtmNews() async {
     await providerDtmNews.getAllDtmNews();
   }
@@ -37,12 +35,14 @@ class _MainMessagesState extends State<MainMessages> {
       create: (context) => providerDtmNews,
       child: Consumer<ProviderDtmNews>(
         builder: (context, value, child) => Scaffold(
-          appBar: AppBar(
-            backgroundColor: MyColors.appColorWhite(),
-            elevation: 0,
-            title: MyWidgets.robotoFontText(text: "news".tr(), textSize: 24, textFontWeight: FontWeight.w500),
-
-          ),
+            appBar: AppBar(
+              backgroundColor: MyColors.appColorWhite(),
+              elevation: 0,
+              title: MyWidgets.robotoFontText(
+                  text: "news".tr(),
+                  textSize: 24,
+                  textFontWeight: FontWeight.w500),
+            ),
             body: providerDtmNews.boolDtmNews
                 ? SafeArea(
                     child: ListView.builder(
@@ -60,17 +60,22 @@ class _MainMessagesState extends State<MainMessages> {
                                       blurRadius: 1)
                                 ]),
                             child: ListTile(
-                              onTap: (){
-                                pushNewScreen(context, screen: NewsSee(
-                                    id: providerDtmNews
-                                    .modelDtmNews2[index].id.toString(),
-                                    date: providerDtmNews
-                                    .modelDtmNews2[index].createdDate.toString(),
-                                    titleName: providerDtmNews
-                                        .modelDtmNews2[index].title.toString(),
-                                    imgUrl: providerDtmNews
-                                    .modelDtmNews2[index].imageUrl.toString(),
-                                    providerDtmNews: providerDtmNews));
+                              onTap: () {
+                                pushNewScreen(context,
+                                    screen: NewsSee(
+                                        id: providerDtmNews
+                                            .modelDtmNews2[index].id
+                                            .toString(),
+                                        date: providerDtmNews
+                                            .modelDtmNews2[index].createdDate
+                                            .toString(),
+                                        titleName: providerDtmNews
+                                            .modelDtmNews2[index].title
+                                            .toString(),
+                                        imgUrl: providerDtmNews
+                                            .modelDtmNews2[index].imageUrl
+                                            .toString(),
+                                        providerDtmNews: providerDtmNews));
                               },
                               leading: CachedNetworkImage(
                                 height: 80,
@@ -80,13 +85,14 @@ class _MainMessagesState extends State<MainMessages> {
                                     .modelDtmNews2[index].imageUrl,
                                 progressIndicatorBuilder:
                                     (context, url, downloadProgress) =>
-                                     const   CupertinoActivityIndicator(),
+                                        const CupertinoActivityIndicator(),
                                 errorWidget: (context, url, error) =>
                                     const Icon(Icons.error),
                               ),
-                              title: Text(providerDtmNews
-                                  .modelDtmNews2[index].title
-                                  .toString(), maxLines: 3),
+                              title: Text(
+                                  providerDtmNews.modelDtmNews2[index].title
+                                      .toString(),
+                                  maxLines: 3),
                               trailing: Text(providerDtmNews
                                   .modelDtmNews2[index].createdDate
                                   .toString()),

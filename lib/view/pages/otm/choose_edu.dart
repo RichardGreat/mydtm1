@@ -69,7 +69,7 @@ class _ChooseEduState extends State<ChooseEdu> {
                   providerChooseEdu.boolCheckUseCertificateData ?
 
                   bodyChooseEdu(
-                      context: context, providerChooseEdu: providerChooseEdu):MyWidgets.loaderDownload(context: context),
+                      context: context, providerChooseEdu: providerChooseEdu):Center(child: MyWidgets.loaderDownload(context: context)),
                 ),
               ),
             )),),

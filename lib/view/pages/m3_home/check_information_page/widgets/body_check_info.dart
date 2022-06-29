@@ -68,16 +68,15 @@ Widget bodyCheckInformation(
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
           leading: Column(
-            mainAxisAlignment:  MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width*0.5,
+                width: MediaQuery.of(context).size.width * 0.5,
                 child: Text(
                   providerCheckInformation.myList[1].name,
                   overflow: TextOverflow.visible,
                   softWrap: true,
-
                   style: TextStyle(
                       color: MyColors.appColorBlack(),
                       fontSize: 16,
@@ -212,8 +211,15 @@ Widget bodyCheckInformation(
               ]),
         ),
       ),
-      // bottomCheckInfo(
-      //     providerCheckInformation: providerCheckInformation, context: context)
+      providerCheckInformation.modelCheckUserInfo.person &&
+              providerCheckInformation.modelCheckUserInfo.personAddress &&
+              providerCheckInformation.modelCheckUserInfo.personGeneralEdu
+          ? bottomCheckInfo(
+              providerCheckInformation: providerCheckInformation,
+              context: context,
+              functions1: functions
+      )
+          : SizedBox.shrink()
     ],
   );
 }

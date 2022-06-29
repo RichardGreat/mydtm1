@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_imie.dart';
@@ -11,6 +12,9 @@ import 'package:mydtm/data/model_parse/person_info/passport_info/model_passport_
 import 'package:mydtm/data/model_parse/person_info/passport_info/model_set_passport.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderPersonInfo extends ChangeNotifier {
   final formKey123 = GlobalKey<FormState>();
@@ -35,12 +39,22 @@ class ProviderPersonInfo extends ChangeNotifier {
 
   bool boolCheckImieHas = false;
 
-  Future getPersonInformation({required BuildContext context}) async {
+  Future getPersonInformation(
+      {required BuildContext context, required Function function}) async {
     NetworkGetIMie networkGetIMie = NetworkGetIMie();
     try {
       boolNetworkGetData = true;
-      String dataInfo = await networkGetIMie.getIMieInformation();
-      modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
+
+      if (box.get("boxAllPersonInfo").toString().length > 200) {
+        modelGetImieInfo = ModelGetImieInfo.fromJson(
+            jsonDecode(box.get("boxAllPersonInfo").toString()));
+      } else {
+        String dataInfo = await networkGetIMie.getIMieInformation();
+        box.delete("boxAllPersonInfo");
+        box.put("boxAllPersonInfo", dataInfo);
+        modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
+      }
+
       dataGetImieInfo = modelGetImieInfo.data;
       psser = dataGetImieInfo.psser;
       psnum = dataGetImieInfo.psnum.toString();
@@ -54,16 +68,18 @@ class ProviderPersonInfo extends ChangeNotifier {
       image = dataGetImieInfo.image;
       box.delete("imie");
       box.delete("psnum");
+      box.delete("personImage");
       box.put("imie", imie);
       box.put("psnum", psnum);
       box.put("personImage", image);
+
       boolNetworkGetData = false;
       notifyListeners();
     } catch (e) {
       boolCheckImieHas = true;
       boolNetworkGetData = false;
       notifyListeners();
-     }
+    }
   }
 
   NetworkSetImie networkSetImie = NetworkSetImie();
@@ -76,16 +92,16 @@ class ProviderPersonInfo extends ChangeNotifier {
       "ps_num": txtPsNumController.text,
       "nation": "1",
     };
-    log(jsonEncode(myMapsImie));
+
     boolNetworkGetData = true;
     notifyListeners();
     String imieInfo =
-    await networkSetImie.setImie(data: jsonEncode(myMapsImie));
+        await networkSetImie.setImie(data: jsonEncode(myMapsImie));
     boolNetworkGetData = false;
     notifyListeners();
     try {
-      ModelGetImieInfo modelGetPersonInfo = ModelGetImieInfo.fromJson(
-          jsonDecode(imieInfo));
+      ModelGetImieInfo modelGetPersonInfo =
+          ModelGetImieInfo.fromJson(jsonDecode(imieInfo));
       dataGetImieInfo = modelGetPersonInfo.data;
       psser = modelGetPersonInfo.data.psser;
       psnum = modelGetPersonInfo.data.psnum.toString();
@@ -97,40 +113,63 @@ class ProviderPersonInfo extends ChangeNotifier {
       sex = modelGetPersonInfo.data.sex.toString();
       nationId = modelGetPersonInfo.data.nationId.toString();
       image = modelGetPersonInfo.data.image;
+
       box.delete("imie");
       box.delete("psnum");
+      box.delete("personImage");
       box.put("imie", imie);
       box.put("psnum", psnum);
-
-
+      box.put("personImage", image);
       boolCheckImieHas = false;
       boolNetworkGetData = false;
       notifyListeners();
     } catch (e) {
       try {
-        ModelRegistration2 modelRegistration2 = ModelRegistration2.fromJson(
-            jsonDecode(imieInfo));
+        ModelRegistration2 modelRegistration2 =
+            ModelRegistration2.fromJson(jsonDecode(imieInfo));
         MyWidgets.awesomeDialogError(
             context: context, valueText: modelRegistration2.errors);
-      } catch (e) {
-
-      }
+      } catch (e) {}
     }
-    log(imieInfo);
   }
 
   NetworkSetPassportAgain networkSetPassportAgain = NetworkSetPassportAgain();
-  Future setPersonAgain({required BuildContext context , required String psSer, required String psNum})async{
-    try{
-      String data = await networkSetPassportAgain.setPassportInfo(passSer: psSer, passNum: psNum);
-      PassportAgainStatus passportAgainStatus = PassportAgainStatus.fromJson(jsonDecode(data));
-      if(passportAgainStatus.data.status == 1){
-       getPersonInformation(context: context);
-        Navigator.of(context).pop();
+
+  Future setPersonAgain(
+      {required BuildContext context,
+      required String psSer,
+      required String psNum,
+      required Function function1}) async {
+    try {
+      String data = await networkSetPassportAgain.setPassportInfo(
+          passSer: psSer, passNum: psNum);
+      PassportAgainStatus passportAgainStatus =
+          PassportAgainStatus.fromJson(jsonDecode(data));
+      if (passportAgainStatus.data.status == 1) {
+        getPersonInformation(context: context, function: function1);
+
+        AwesomeDialog(
+                context: context,
+                dialogType: DialogType.NO_HEADER,
+                animType: AnimType.BOTTOMSLIDE,
+                title: "DTM",
+                desc: "saved".tr(),
+                titleTextStyle: TextStyle(
+                    color: MyColors.appColorBlue1(),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+                descTextStyle: TextStyle(
+                    color: MyColors.appColorBlack(),
+                    fontWeight: FontWeight.bold),
+                btnCancelOnPress: () {
+                  Navigator.of(context).pop();
+                  // pushNewScreen(context, screen: AddressInfo(funcState: funcState), withNavBar: false);
+                },
+                btnCancelText: "continue".tr())
+            .show();
         notifyListeners();
       }
-
-    }catch(e){
+    } catch (e) {
       log(e.toString());
     }
   }
@@ -140,12 +179,12 @@ class ProviderPersonInfo extends ChangeNotifier {
     Navigator.push(
         context,
         CupertinoPageRoute(
-          builder: (context) =>  AddressInfo(funcState:functionBosh ),
-        ));
+            builder: (context) =>
+                AddressInfo(funcState: functionBosh, addressWindowId: "0"),
+            ));
   }
 
-  String nationIds = "",
-      nationNames = "";
+  String nationIds = "", nationNames = "";
 
   Future setNation(
       {required String nationId, required String nationName}) async {
@@ -178,7 +217,5 @@ class ProviderPersonInfo extends ChangeNotifier {
     boolChooseNation = boolNation;
   }
 
-Future functionBosh() async {
-
-}
+  Future functionBosh() async {}
 }

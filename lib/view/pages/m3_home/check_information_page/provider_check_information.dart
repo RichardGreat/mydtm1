@@ -5,7 +5,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/person_info/check_user_info/check_user_info.dart';
+import 'package:mydtm/data/internet_connections/person_info/privilege_check/privillege_check.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
+import 'package:mydtm/data/model_parse/person_info/privilege_model/privilege_model1.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/aferta.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
@@ -77,7 +79,7 @@ class ProviderCheckInformation extends ChangeNotifier {
       if (index == 0) {
         pushNewScreen(
           context,
-          screen: PersonInformation(funcState: func, idFunction: "0"),
+          screen: PersonInformation(funcState: func, idFunction: "0", windowIdPassport: "0"),
           withNavBar: false,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
@@ -85,7 +87,7 @@ class ProviderCheckInformation extends ChangeNotifier {
         if (index == 1) {
           pushNewScreen(
             context,
-            screen: AddressInfo(funcState: func),
+            screen: AddressInfo(funcState: func, addressWindowId: "0"),
             withNavBar: false,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
@@ -94,7 +96,7 @@ class ProviderCheckInformation extends ChangeNotifier {
           if (index == 2) {
             pushNewScreen(
               context,
-              screen: Graduated(funcState: func, modelCheckUserInfo: modelCheckUserInfo),
+              screen: Graduated(funcState: func, windowIdGraduated: "0" ),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
@@ -123,7 +125,7 @@ class ProviderCheckInformation extends ChangeNotifier {
           if (index == 2) {
             pushNewScreen(
               context,
-              screen: Graduated(funcState: func, modelCheckUserInfo: modelCheckUserInfo),
+              screen: Graduated(funcState: func, windowIdGraduated: "0"),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
@@ -136,7 +138,7 @@ class ProviderCheckInformation extends ChangeNotifier {
         if (index == 1) {
           pushNewScreen(
             context,
-            screen: AddressInfo(funcState: func),
+            screen: AddressInfo(funcState: func,  addressWindowId: "0"),
             withNavBar: false,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
@@ -175,7 +177,7 @@ class ProviderCheckInformation extends ChangeNotifier {
             btnOkOnPress: () {
               pushNewScreen(
                 context,
-                screen: PersonInformation(funcState: func, idFunction: "0"),
+                screen: PersonInformation(funcState: func, idFunction: "0", windowIdPassport: "0"),
                 withNavBar: false,
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
               );
@@ -183,7 +185,9 @@ class ProviderCheckInformation extends ChangeNotifier {
             btnOkText: "iAgree".tr(),
             btnOkColor: MyColors.appColorBlue1(),
             btnCancel: MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
               color: MyColors.appColorWhite(),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
@@ -314,6 +318,33 @@ class ProviderCheckInformation extends ChangeNotifier {
       throw 'Could not launch $url';
     }
   }
+
+
+  NetworkPrivilege networkPrivilege = NetworkPrivilege();
+  List<DataCheckPrivilege> listCheckPrivilege = [];
+  bool boolGetDataPrivilege = false;
+  bool boolPrivilegeNot = false;
+  Future getPrivilege()async{
+    try{
+      boolGetDataPrivilege = false;
+      String dataPrivilege = await networkPrivilege.getPrivilege();
+      ModelCheckPrivilege modelCheckPrivilege = ModelCheckPrivilege.fromJson(jsonDecode(dataPrivilege));
+      listCheckPrivilege = modelCheckPrivilege.data;
+      boolGetDataPrivilege = true;
+      notifyListeners();
+    }catch(e){
+
+      boolPrivilegeNot = true;
+      boolGetDataPrivilege = true;
+      notifyListeners();
+      log(e.toString());
+    }
+
+  }
+
+
+
+
 }
 
 class ModelCheckInformationForDelete {

@@ -2,10 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
-import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class AccessPaperDownload extends StatefulWidget {
   ProviderAriza providerAriza;
@@ -88,10 +86,12 @@ class _AccessPaperDownloadState extends State<AccessPaperDownload> {
                     ]),
                   )
                 : Center(
-                    child: MyWidgets.robotoFontText(text: "infoNotFind".tr()))
-            : Center(
-                child: MyWidgets.loaderDownload(context: context),
-              ),
+                    child: MyWidgets.loaderDownload(context: context),
+                  )
+            : Center(child:
+        Text( "noInfoAbiturRuxsat".tr(),
+          textAlign: TextAlign.center,
+          style: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.w500, fontSize: 18, ),)),
       )),
     );
   }

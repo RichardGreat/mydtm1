@@ -15,8 +15,8 @@ PreferredSizeWidget appBarProfile(
   String getTextDialog() {
     return box.get("lockScreen").toString().length == 4 &&
             box.get("lockScreen").toString() != "null"
-        ? "Dasturga kirish parolini o'chirish yoki boshqa qoyish"
-        : "Parol qoymoqchimisiz";
+        ? "Dasturga kirish parolini o'chirish yoki boshqa yaratish"
+        : "Pin kod yaratish";
   }
 
   return AppBar(
@@ -26,10 +26,12 @@ PreferredSizeWidget appBarProfile(
         ? MyWidgets.robotoFontText(text: "personalInfo".tr(), textSize: 24)
         : Text(""),
     actions: [
-      Padding(
+      box.get("token").toString().length > 30
+          ?  Padding(
         padding: const EdgeInsets.only(right: 15),
         child: GestureDetector(
             onTap: () {
+              print(box.get("lockScreen").toString());
               AwesomeDialog(
                 context: context,
                 dialogType: DialogType.NO_HEADER,
@@ -40,61 +42,64 @@ PreferredSizeWidget appBarProfile(
                   child: Column(children: [
                     Text(
                       getTextDialog(),
+                      textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 20),
                     ),
                     const SizedBox(height: 25),
                     box.get("lockScreen").toString().length == 4 &&
-                            box.get("lockScreen").toString().trim() != "null"
-                        ? Row(
-                            children: [
-                              MaterialButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                  pushNewScreen(context,
-                                      screen: ScreenLockWindow(
-                                          idScreenLockWindow: "1"),
-                                      withNavBar: false);
-                                },
-                                height: 45,
-                                minWidth:
-                                    MediaQuery.of(context).size.width * 0.2,
-                                color: MyColors.appColorBlue1(),
-                                child: const Text("Parol almashtirish",
-                                    style: TextStyle(color: Colors.white)),
-                              ),
-                              const SizedBox(width: 5),
-                              MaterialButton(
-                                height: 45,
-                                minWidth:
-                                    MediaQuery.of(context).size.width * 0.2,
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                  pushNewScreen(context,
-                                      screen: ScreenLockWindow(
-                                          idScreenLockWindow: "2"),
-                                      withNavBar: false);
-                                },
-                                child: Text("Parolni o'chirish",
-                                    style: TextStyle(color: Colors.black)),
-                                color: MyColors.appColorWhite(),
-                              ),
-                            ],
-                          )
-                        : MaterialButton(
-                            height: 45,
-                            minWidth: MediaQuery.of(context).size.width * 0.4,
-                            color: MyColors.appColorBlue1(),
-                            child: Text("Yangi parol kiritish",
-                                style:
-                                    TextStyle(color: MyColors.appColorWhite())),
+                        box.get("lockScreen").toString().trim() != "null"
+                        ? FittedBox(
+                          child: Row(
+                      children: [
+                          MaterialButton(
                             onPressed: () {
                               Navigator.of(context).pop();
                               pushNewScreen(context,
-                                  screen:
-                                      ScreenLockWindow(idScreenLockWindow: "0"),
+                                  screen: ScreenLockWindow(
+                                      idScreenLockWindow: "1"),
                                   withNavBar: false);
                             },
-                          )
+                            height: 45,
+                            minWidth:
+                            MediaQuery.of(context).size.width * 0.2,
+                            color: MyColors.appColorBlue1(),
+                            child: const Text("Parol almashtirish",
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                          const SizedBox(width: 5),
+                          MaterialButton(
+                            height: 45,
+                            minWidth:
+                            MediaQuery.of(context).size.width * 0.2,
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              pushNewScreen(context,
+                                  screen: ScreenLockWindow(
+                                      idScreenLockWindow: "2"),
+                                  withNavBar: false);
+                            },
+                            child: Text("Parolni o'chirish",
+                                style: TextStyle(color: Colors.black)),
+                            color: MyColors.appColorWhite(),
+                          ),
+                      ],
+                    ),
+                        )
+                        : MaterialButton(
+                      height: 45,
+                      minWidth: MediaQuery.of(context).size.width * 0.4,
+                      color: MyColors.appColorBlue1(),
+                      child: Text("Pin kod",
+                          style:
+                          TextStyle(color: MyColors.appColorWhite())),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        pushNewScreen(context,
+                            screen:
+                            ScreenLockWindow(idScreenLockWindow: "0"),
+                            withNavBar: false);
+                      },
+                    )
                   ]),
                 ),
                 titleTextStyle: TextStyle(
@@ -108,11 +113,13 @@ PreferredSizeWidget appBarProfile(
             },
             child: Icon(
                 box.get("lockScreen").toString().length == 4 &&
-                        box.get("lockScreen").toString().trim() != "null"
+                    box.get("lockScreen").toString().trim() != "null"
                     ? Icons.lock
                     : Icons.lock_open_sharp,
                 color: Colors.blue)),
       )
+          : Text(""),
+
     ],
   );
 }

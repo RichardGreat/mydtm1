@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/pages/person_info/certificate/widgets/app_bar_certificate.dart';
 import 'package:mydtm/view/pages/person_info/certificate/widgets/body_certificate.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 class Certificates extends StatefulWidget {
@@ -26,7 +29,7 @@ class _CertificatesState extends State<Certificates> {
    await providerCertificate.getNationCertInfo();
     setState((){});
   }
-
+  var box = Hive.box("online");
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -34,8 +37,8 @@ class _CertificatesState extends State<Certificates> {
       child: Consumer<ProviderCertificate>(
         builder: (context, value, child) => WillPopScope(
           onWillPop: ()async{
-            await widget.funcState();
-            Navigator.of(context).pop();
+            widget.funcState();
+            pushNewScreen(context, screen:CheckInformation(serviceName:  box.get("categoryName").toString()) );
             return true;
           },
           child: Scaffold(

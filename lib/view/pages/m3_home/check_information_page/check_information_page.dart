@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_information.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/widgets/app_bar_check_info.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/widgets/body_check_info.dart';
@@ -30,30 +33,35 @@ class _CheckInformationState extends State<CheckInformation> {
     await providerCheckInformation.getInfoUser();
     setState(() {});
   }
-
+  var box = Hive.box("online");
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => providerCheckInformation,
       child: Consumer<ProviderCheckInformation>(
-        builder: (context, value, child) => Scaffold(
+        builder: (context, value, child) => WillPopScope(child: Scaffold(
           backgroundColor: MyColors.appColorGrey100(),
           appBar: appBarCheckInfo(context: context),
           body: providerCheckInformation.boolCheckUserInfo
               ? SafeArea(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      margin: const EdgeInsets.all(15),
-                      child: bodyCheckInformation(
-                          functions: getCheckUserInfo,
-                          context: context,
-                          providerCheckInformation: providerCheckInformation,
-                          serviceName: widget.serviceName),
-                    ),
-                  ),
-                )
+            child: SingleChildScrollView(
+              child: Container(
+                margin: const EdgeInsets.all(15),
+                child: bodyCheckInformation(
+                    functions: getCheckUserInfo,
+                    context: context,
+                    providerCheckInformation: providerCheckInformation,
+                    serviceName: widget.serviceName),
+              ),
+            ),
+          )
               : MyWidgets.loaderDownload(context: context),
-        ),
+        ), onWillPop: ()async{
+          box.delete("langLock");
+          box.put("langLock", "1");
+          Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainPages(),), (route) => false);
+          return true;
+        })
       ),
     );
   }

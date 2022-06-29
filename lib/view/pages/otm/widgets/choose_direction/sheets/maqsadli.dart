@@ -56,75 +56,75 @@ class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
             MyWidgets.robotoFontText(
                 text: "targetSelection".tr(), textSize: 25),
             const SizedBox(height: 10),
-            Container(
-              height: 50,
-              padding:  EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                  color: MyColors.appColorBlue1(),
-                  borderRadius: BorderRadius.circular(10)),
-              child: SizedBox(
-                height: 50,
-                width: MediaQuery.of(context).size.width *0.8,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width *0.4,
-                      child: MaterialButton(
-                        elevation: 0,
-                        height: 45,
-                        onPressed: () {
-                          setState(() {
-                            indexValue = 0;
-                          });
-                        },
-                        color: indexValue == 0
-                            ? MyColors.appColorWhite()
-                            : MyColors.appColorBlue1(),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomLeft: Radius.circular(10),
-                        )),
-                        child: Text("targeted".tr(),
-                            style: TextStyle(
-                                color: indexValue != 0
-                                    ? MyColors.appColorWhite()
-                                    : MyColors.appColorBlue1())),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width *0.4,
-                      child: MaterialButton(
-                        elevation: 0,
-                          height: 45,
-                          color: indexValue == 1
-                              ? MyColors.appColorWhite()
-                              : MyColors.appColorBlue1(),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              indexValue = 1;
-                            });
-                          },
-                          child: Text("aimless".tr(),
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: indexValue != 1
-                                    ? MyColors.appColorWhite()
-                                    : MyColors.appColorBlue1(),
-                              ))),
-                    )
-                  ],
-                ),
-              ),
-            ),
+            // Container(
+            //   height: 50,
+            //   padding:  EdgeInsets.all(4),
+            //   decoration: BoxDecoration(
+            //       color: MyColors.appColorWhite(),
+            //       borderRadius: BorderRadius.circular(10)),
+            //   child: SizedBox(
+            //     height: 50,
+            //     width: MediaQuery.of(context).size.width *0.8,
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       crossAxisAlignment: CrossAxisAlignment.center,
+            //       children: [
+            //         SizedBox(
+            //           width: MediaQuery.of(context).size.width *0.4,
+            //           child: MaterialButton(
+            //             elevation: 0,
+            //             height: 45,
+            //             onPressed: () {
+            //               setState(() {
+            //                 indexValue = 0;
+            //               });
+            //             },
+            //             color: indexValue == 0
+            //                 ? MyColors.appColorWhite()
+            //                 : MyColors.appColorBlue1(),
+            //             shape: const RoundedRectangleBorder(
+            //                 borderRadius: BorderRadius.only(
+            //               topLeft: Radius.circular(10),
+            //               bottomLeft: Radius.circular(10),
+            //             )),
+            //             child: Text("targeted".tr(),
+            //                 style: TextStyle(
+            //                     color: indexValue != 0
+            //                         ? MyColors.appColorWhite()
+            //                         : MyColors.appColorBlue1())),
+            //           ),
+            //         ),
+            //         SizedBox(
+            //           width: MediaQuery.of(context).size.width *0.4,
+            //           child: MaterialButton(
+            //             elevation: 0,
+            //               height: 45,
+            //               color: indexValue == 1
+            //                   ? MyColors.appColorWhite()
+            //                   : MyColors.appColorBlue1(),
+            //               shape: const RoundedRectangleBorder(
+            //                 borderRadius: BorderRadius.only(
+            //                   topRight: Radius.circular(10),
+            //                   bottomRight: Radius.circular(10),
+            //                 ),
+            //               ),
+            //               onPressed: () {
+            //                 setState(() {
+            //                   indexValue = 1;
+            //                 });
+            //               },
+            //               child: Text("aimless".tr(),
+            //                   textAlign: TextAlign.center,
+            //                   style: TextStyle(
+            //                     color: indexValue != 1
+            //                         ? MyColors.appColorWhite()
+            //                         : MyColors.appColorBlue1(),
+            //                   ))),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
             const SizedBox(height: 10),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.52,
@@ -150,7 +150,7 @@ class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
 
                     child: MaterialButton(
                       height: 45,
-                      color: MyColors.appColorBlue1(),
+                      color: MyColors.appColorWhite(),
                       onPressed: () {
                         widget.providerChooseEdu.setMaqsadli(
                             id: "0",
@@ -161,7 +161,7 @@ class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
                           borderRadius: BorderRadius.circular(8)),
                       child: Text("targeted".tr(),
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: MyColors.appColorWhite())),
+                          style: TextStyle(color: MyColors.appColorBlack())),
                     ),
                   ),
                   const SizedBox(
@@ -171,7 +171,7 @@ class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
 
                     child: MaterialButton(
                       height: 45,
-                      color: MyColors.appColorBlue1(),
+                      color: MyColors.appColorWhite(),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
                       onPressed: () {
@@ -182,7 +182,7 @@ class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
                       },
                       child: Text("aimless".tr(),
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: MyColors.appColorWhite())),
+                          style: TextStyle(color: MyColors.appColorBlack())),
                     ),
                   ),
                 ],

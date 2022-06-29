@@ -26,50 +26,47 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
 
   String textBody() {
     return widget.idScreenLockWindow == "0"
-        ? "Pin kod 4 raqamdan iborat kod kiriting"
+        ? "pin4Length".tr()
         : widget.idScreenLockWindow == "1"
-            ? "Parol almashtirish uchun pin kodni kiriting"
-            : "Parolni o'chirish uchun pin kodni kiriting";
+            ? "changePin".tr()
+            : "deletePin".tr();
   }
 
   checkInputs({required String textInputLock}) {
     widget.idScreenLockWindow == "0"
         ? {
-      box.put("lockScreen", textEditingController.text.toString().trim()),
-      AwesomeDialog(
-          context: context,
-          dialogType: DialogType.NO_HEADER,
-          animType: AnimType.BOTTOMSLIDE,
-          title: "DTM",
-          body: Container(
-            margin: const EdgeInsets.all(15),
-            child: Column(
-              children: [
-                Text(
-                  "saved".tr(),
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: MyColors.appColorBlack()),
+            box.put("lockScreen", textEditingController.text.toString().trim()),
+            AwesomeDialog(
+                context: context,
+                dialogType: DialogType.NO_HEADER,
+                animType: AnimType.BOTTOMSLIDE,
+                title: "DTM",
+                body: Container(
+                  margin: const EdgeInsets.all(15),
+                  child: Column(
+                    children: [
+                      Text(
+                        "saved".tr(),
+                        style: TextStyle(
+                            fontSize: 20, color: MyColors.appColorBlack()),
+                      ),
+                      const SizedBox(height: 25),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 25),
-              ],
-            ),
-          ),
-          titleTextStyle: TextStyle(
-              color: MyColors.appColorBlue1(),
-              fontSize: 24,
-              fontWeight: FontWeight.bold),
-          descTextStyle: TextStyle(
-              color: MyColors.appColorBlack(),
-              fontWeight: FontWeight.bold),
-          btnCancelColor: MyColors.appColorBlue1(),
-          btnCancelText: "Ok",
-          btnCancelOnPress: () {
-            Navigator.of(context).pop();
-          })
-          .show(),
-
-    }
+                titleTextStyle: TextStyle(
+                    color: MyColors.appColorBlue1(),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+                descTextStyle: TextStyle(
+                    color: MyColors.appColorBlack(),
+                    fontWeight: FontWeight.bold),
+                btnCancelColor: MyColors.appColorBlue1(),
+                btnCancelText: "Ok",
+                btnCancelOnPress: () {
+                  Navigator.of(context).pop();
+                }).show(),
+          }
         : widget.idScreenLockWindow == "1"
             ? {
                 /// Parol almashtirish
@@ -78,36 +75,35 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                     boolChangePassword = true,
                     textEditingController.clear(),
                     AwesomeDialog(
-                        context: context,
-                        dialogType: DialogType.NO_HEADER,
-                        animType: AnimType.BOTTOMSLIDE,
-                        title: "DTM",
-                        body: Container(
-                          margin: const EdgeInsets.all(15),
-                          child: Column(
-                            children: [
-                              Text(
-                                "Yangi parol kiriting",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: MyColors.appColorBlack()),
+                            context: context,
+                            dialogType: DialogType.NO_HEADER,
+                            animType: AnimType.BOTTOMSLIDE,
+                            title: "DTM",
+                            body: Container(
+                              margin: const EdgeInsets.all(15),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "newPassword".tr(),
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: MyColors.appColorBlack()),
+                                  ),
+                                  const SizedBox(height: 25),
+                                ],
                               ),
-                              const SizedBox(height: 25),
-                            ],
-                          ),
-                        ),
-                        titleTextStyle: TextStyle(
-                            color: MyColors.appColorBlue1(),
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold),
-                        descTextStyle: TextStyle(
-                            color: MyColors.appColorBlack(),
-                            fontWeight: FontWeight.bold),
-                        btnCancelColor: MyColors.appColorBlue1(),
-                        btnCancelText: "Ok",
-                        btnCancelOnPress: () {
-
-                        }).show(),
+                            ),
+                            titleTextStyle: TextStyle(
+                                color: MyColors.appColorBlue1(),
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold),
+                            descTextStyle: TextStyle(
+                                color: MyColors.appColorBlack(),
+                                fontWeight: FontWeight.bold),
+                            btnCancelColor: MyColors.appColorBlue1(),
+                            btnCancelText: "Ok",
+                            btnCancelOnPress: () {})
+                        .show(),
                   }
                 else
                   {
@@ -121,7 +117,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                               child: Column(
                                 children: [
                                   Text(
-                                    "Parol xato qayta uruning",
+                                    "invalidPassword".tr(),
                                     style: TextStyle(
                                         fontSize: 20,
                                         color: MyColors.appColorBlack()),
@@ -161,7 +157,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                               child: Column(
                                 children: [
                                   Text(
-                                    "parol o'chirildi",
+                                    "passwordErase".tr(),
                                     style: TextStyle(
                                         fontSize: 20,
                                         color: MyColors.appColorBlack()),
@@ -195,7 +191,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                               child: Column(
                                 children: [
                                   Text(
-                                    "Parol xato qayta uruning",
+                                    "invalidPassword".tr(),
                                     style: TextStyle(
                                         fontSize: 20,
                                         color: MyColors.appColorBlack()),
@@ -242,10 +238,14 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                MyWidgets.robotoFontText(
-                    text:
-                        !boolChangePassword ? textBody() : "newPassword".tr()),
-                const SizedBox(height: 10),
+                Text(!boolChangePassword ? textBody() : "newPassword".tr(),
+              textAlign: TextAlign.center
+              ,
+                    style: TextStyle(
+                        color: MyColors.appColorBlack(),
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500)),
+                const SizedBox(height: 20),
                 TextFormField(
                   controller: textEditingController,
                   maxLines: 1,
@@ -302,7 +302,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                   ),
                   validator: (value) {
                     if (value.toString().length < 4) {
-                      return "parol uzunligi  4 birlik bo'lishi kerak";
+                      return "pin4Length".tr();
                     } else {
                       return "";
                     }
@@ -312,8 +312,8 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                 MaterialButton(
                   onPressed: () {
                     // box.put("lockScreen", "1234");
-                    setState((){});
-                    print(box.get("lockScreen").toString());
+                    setState(() {});
+
                     if (!formKey.currentState!.validate()) {
                       !boolChangePassword
                           ? checkInputs(
@@ -323,44 +323,44 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                               box.delete("lockScreen"),
                               box.put("lockScreen",
                                   textEditingController.text.toString().trim()),
-                        AwesomeDialog(
-                            context: context,
-                            dialogType: DialogType.NO_HEADER,
-                            animType: AnimType.BOTTOMSLIDE,
-                            title: "DTM",
-                            body: Container(
-                              margin: const EdgeInsets.all(15),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "saved".tr(),
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: MyColors.appColorBlack()),
+                              AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.NO_HEADER,
+                                  animType: AnimType.BOTTOMSLIDE,
+                                  title: "DTM",
+                                  body: Container(
+                                    margin: const EdgeInsets.all(15),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          "saved".tr(),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: MyColors.appColorBlack()),
+                                        ),
+                                        const SizedBox(height: 25),
+                                      ],
+                                    ),
                                   ),
-                                  const SizedBox(height: 25),
-                                ],
-                              ),
-                            ),
-                            titleTextStyle: TextStyle(
-                                color: MyColors.appColorBlue1(),
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold),
-                            descTextStyle: TextStyle(
-                                color: MyColors.appColorBlack(),
-                                fontWeight: FontWeight.bold),
-                            btnCancelColor: MyColors.appColorBlue1(),
-                            btnCancelText: "Ok",
-                            btnCancelOnPress: () {
-                              Navigator.of(context).pop();
-                            }).show(),
+                                  titleTextStyle: TextStyle(
+                                      color: MyColors.appColorBlue1(),
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold),
+                                  descTextStyle: TextStyle(
+                                      color: MyColors.appColorBlack(),
+                                      fontWeight: FontWeight.bold),
+                                  btnCancelColor: MyColors.appColorBlue1(),
+                                  btnCancelText: "Ok",
+                                  btnCancelOnPress: () {
+                                    Navigator.of(context).pop();
+                                  }).show(),
                               boolChangePassword = false,
                             };
                     }
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  color: MyColors.appColorBlue2(),
+                  color: MyColors.appColorBlue1(),
                   height: 50,
                   minWidth: double.infinity,
                   child: MyWidgets.robotoFontText(

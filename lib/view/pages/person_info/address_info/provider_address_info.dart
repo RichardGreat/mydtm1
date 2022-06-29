@@ -11,8 +11,10 @@ import 'package:mydtm/data/model_parse/m6_model/district.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_address.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_country.dart';
 import 'package:mydtm/data/model_parse/person_info/model_address.dart';
+import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderAddressInfo extends ChangeNotifier {
   final keyAddressInfo = GlobalKey<FormState>();
@@ -173,7 +175,7 @@ class ProviderAddressInfo extends ChangeNotifier {
 
   NetworkSetAddress networkSetAddress = NetworkSetAddress();
 
-  Future setAddress({required BuildContext context}) async {
+  Future setAddress({required BuildContext context, required String windowsIdAddress}) async {
     boolGetAddressInfo = false;
     notifyListeners();
 
@@ -182,7 +184,7 @@ class ProviderAddressInfo extends ChangeNotifier {
       "district_id": districtId,
       "address": txtEditControllerAddress.text
     };
-    log(jsonEncode(mapAddress));
+
     try {
       String dataSetAddress = await networkSetAddress.setAddressInfo(
           setAddressInfos: jsonEncode(mapAddress));
@@ -202,6 +204,7 @@ class ProviderAddressInfo extends ChangeNotifier {
           context: context,
           dialogType: DialogType.INFO,
           animType: AnimType.BOTTOMSLIDE,
+          dismissOnTouchOutside: false,
           title: "DTM",
           desc: "saved".tr(),
           titleTextStyle: TextStyle(
@@ -210,9 +213,10 @@ class ProviderAddressInfo extends ChangeNotifier {
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
 
               btnCancelOnPress: () {
+            pushNewScreen(context, screen: Graduated(funcState: getActions,  windowIdGraduated: windowsIdAddress), withNavBar: false);
           },
               btnCancelColor: MyColors.appColorBlue1(),
-          btnCancelText: "OK")
+          btnCancelText: "continue".tr(),)
           .show();
 
       notifyListeners();
@@ -220,4 +224,5 @@ class ProviderAddressInfo extends ChangeNotifier {
       log(e.toString());
     }
   }
+  Future getActions()async{}
 }

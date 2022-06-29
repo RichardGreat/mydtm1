@@ -1,13 +1,19 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
 import 'package:mydtm/view/pages/person_info/privillage/provider_privilege.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-Widget bodyPrivilege(
-    {required BuildContext context,
-    required ProviderPrivilege providerPrivilege}) {
+Widget bodyPrivilege({
+  required BuildContext context,
+  required ProviderPrivilege providerPrivilege,
+}) {
   if (providerPrivilege.boolGetDataPrivilege) {
+    var box = Hive.box("online");
     return Container(
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(color: MyColors.appColorGrey100()),
@@ -20,7 +26,6 @@ Widget bodyPrivilege(
             itemCount: providerPrivilege.listCheckPrivilege.length,
             itemBuilder: (context, index) => Container(
                 padding: const EdgeInsets.all(12),
-
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: MyColors.appColorWhite(),
@@ -88,6 +93,64 @@ Widget bodyPrivilege(
                   ],
                 )),
           ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            MaterialButton(
+              height: 50,
+              minWidth: MediaQuery.of(context).size.width * 0.7,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
+              color: MyColors.appColorBlue1(),
+              child: Text("continue".tr(),
+                  style: TextStyle(color: MyColors.appColorWhite())),
+              onPressed: () {
+                AwesomeDialog(
+                        context: context,
+                        dialogType: DialogType.NO_HEADER,
+                        animType: AnimType.BOTTOMSLIDE,
+                        title: "DTM",
+                        desc: "chooseDirection".tr(),
+                        titleTextStyle: TextStyle(
+                            color: MyColors.appColorBlue1(),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                        descTextStyle: TextStyle(
+                            color: MyColors.appColorBlack(),
+                            fontWeight: FontWeight.bold),
+                        btnCancelOnPress: () {
+                          pushNewScreen(context,
+                              screen: CheckInformation(
+                                  serviceName: box.get("categoryName").toString()));
+                        },
+                        btnCancelColor: MyColors.appColorBlue1(),
+                        btnCancelText: "OK")
+                    .show();
+                // providerCheckInformation.boolAfertaButton
+                //     ? {
+                //         Navigator.of(context).pop(),
+                //         pushNewScreen(
+                //           context,
+                //           screen: ChooseEdu(funcState: function),
+                //           withNavBar: false,
+                //           pageTransitionAnimation:
+                //               PageTransitionAnimation.cupertino,
+                //         ),
+                //       }
+                //     : {};
+              },
+            ),
+            // MaterialButton(onPressed: (){
+            //   // pushNewScreen(context, screen: Privilege(funcState: func));
+            // },
+            //   height: 50,
+            //   minWidth: MediaQuery.of(context).size.width*0.8,
+            //   color: MyColors.appColorBlue1(),
+            //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            //   child: Text("continue".tr(), style: TextStyle(fontWeight: FontWeight.w600, color: MyColors.appColorWhite())),),
+          ],
         )
       ]),
     );

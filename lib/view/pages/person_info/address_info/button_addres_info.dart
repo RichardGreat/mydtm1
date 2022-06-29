@@ -7,7 +7,8 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 Widget buttonAddressInfo(
     {required BuildContext context,
-    required ProviderAddressInfo providerAddressInfo}) {
+
+    required ProviderAddressInfo providerAddressInfo, required String windowIds}) {
   // log((providerAddressInfo.boolAddressText &&
   //         providerAddressInfo.districtName.length > 4 &&
   //         providerAddressInfo.provinceName.length > 4)
@@ -22,7 +23,7 @@ Widget buttonAddressInfo(
                 providerAddressInfo.districtName.length > 4 &&
                 providerAddressInfo.provinceName.length > 4) {
               // Navigator.push(context,CupertinoPageRoute(builder: (context) => const Graduated(),));
-              providerAddressInfo.setAddress(context: context);
+              providerAddressInfo.setAddress(context: context, windowsIdAddress: windowIds);
             }
           },
           minWidth: double.infinity,

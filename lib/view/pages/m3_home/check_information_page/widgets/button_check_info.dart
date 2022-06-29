@@ -6,7 +6,9 @@ import 'package:easy_localization/easy_localization.dart';
 
 Widget bottomCheckInfo(
     {required ProviderCheckInformation providerCheckInformation,
-      required BuildContext context
+    required BuildContext context,
+      required Function functions1
+
     }) {
   return Column(
     children: [
@@ -15,17 +17,16 @@ Widget bottomCheckInfo(
         height: 50,
         minWidth: double.infinity,
         onPressed: () {
-
+          providerCheckInformation.checkInfo(
+              providerCheckInformation: providerCheckInformation,
+              index: 5,
+              context: context,
+              func: functions1);
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        color:
-  providerCheckInformation.modelCheckUserInfo.person &&
-  providerCheckInformation.modelCheckUserInfo.personAddress&&
-  providerCheckInformation.modelCheckUserInfo.personGeneralEdu?
-
-        MyColors.appColorBlue1(): Color.fromRGBO(66, 112, 218,0.4),
+        color: MyColors.appColorBlue1(),
         child: MyWidgets.robotoFontText(
-            text: "send".tr(), textColor: MyColors.appColorWhite()),
+            text: "continue".tr(), textColor: MyColors.appColorWhite()),
       ),
       const SizedBox(height: 20),
     ],

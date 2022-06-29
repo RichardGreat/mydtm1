@@ -1,14 +1,21 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:mydtm/view/lock_screen_all.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:mydtm/main.dart';
 import 'package:mydtm/view/pages/m3_home/main_home.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
 import 'package:mydtm/view/pages/m6_profile/main_profile.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class MainPages extends StatefulWidget {
   const MainPages({Key? key}) : super(key: key);
@@ -17,7 +24,7 @@ class MainPages extends StatefulWidget {
   State<MainPages> createState() => _MainPagesState();
 }
 
-class _MainPagesState extends State<MainPages> with WidgetsBindingObserver {
+class _MainPagesState extends State<MainPages> {
   List<Widget> myPages() => [
         const MainHome(),
         MainMyStatement(numberParam: "0"),
@@ -31,67 +38,168 @@ class _MainPagesState extends State<MainPages> with WidgetsBindingObserver {
     setState(() {});
   }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.resumed:
-
-        break;
-      case AppLifecycleState.inactive:
-        {
-          // print(box.get("lockHasEnter").toString());
-          // print(box.get("langLock").toString());
-
-          if( box.get("lockHasEnter").toString() != "1"){
-
-            if(box.get("langLock").toString().trim() == "1"){
-              box.delete("langLock");
-            }
-            else{
-              box.get("lockScreen").toString().trim().length == 4 &&
-                  box.get("lockScreen").toString() != "null"
-                  ? {pushNewScreen(context, screen: LockScreenAllWindow()),
-                box.delete("lockHasEnter")
-              }
-                  : {};};
-          }else{
-
-          }
-
-        }
-        break;
-      case AppLifecycleState.paused:
-        // Handle this case
-        break;
-      case AppLifecycleState.detached:
-        // TODO: Handle this case.
-        break;
-    }
-
-    super.didChangeAppLifecycleState(state);
-  }
-
-  @override
-  initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-    // screenLocks();
-    getFirstAction();
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
   var box = Hive.box("online");
+
   Future getFirstAction() async {
     try {
       await Future.delayed(Duration.zero);
       box.put("updateVersion", "1001");
     } catch (e) {}
   }
+
+  @override
+  initState() {
+    super.initState();
+    screenLock123();
+    // isBiometricAvailable();
+    getFirstAction();
+  }
+
+  Future screenLock123() async {
+
+    await Future.delayed(const Duration(milliseconds: 10)).then((value) {
+      if (box.get("langLock").toString().trim() == "1") {
+        box.delete("langLock");
+      } else {
+        box.get("lockScreen").toString().trim().length == 4 &&
+                box.get("lockScreen").toString() != "null"
+            ? {
+                screenLock(
+                  withBlur: true,
+                  context: navigatorKey.currentContext!,
+                  correctString: box.get("lockScreen").toString(),
+                  canCancel: false,
+                  footer: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                          onTap: () {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.NO_HEADER,
+                              animType: AnimType.BOTTOMSLIDE,
+                              title: "DTM",
+                              desc: "logUot".tr(),
+                              titleTextStyle: TextStyle(
+                                  color: MyColors.appColorBlue1(),
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold),
+                              descTextStyle: TextStyle(
+                                  color: MyColors.appColorBlack(),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500),
+                              btnOkOnPress: () {
+                                box.delete("token");
+                                box.delete("imie");
+                                box.delete("psnum");
+                                box.delete("personImage");
+                                box.delete("boxAllPersonInfo");
+                                box.delete("langLock");
+                                box.delete("lockScreen");
+
+                                if (Platform.isIOS) {
+                                  exit(0);
+                                } else {
+                                  SystemNavigator.pop();
+                                }
+                                Navigator.of(context).pop();
+                              },
+                              btnOkText: "yes".tr(),
+                              btnOkColor: MyColors.appColorGrey600(),
+                              btnCancelColor: Colors.blue.shade800,
+                              btnCancelOnPress: () {},
+                              btnCancelText: "no".tr(),
+                            ).show();
+                            // AwesomeDialog(
+                            //         context: context,
+                            //         dialogType: DialogType.NO_HEADER,
+                            //         animType: AnimType.BOTTOMSLIDE,
+                            //         title: "DTM",
+                            //         desc: "logUot".tr(),
+                            //         titleTextStyle: TextStyle(
+                            //             color: MyColors.appColorBlue1(),
+                            //             fontSize: 24,
+                            //             fontWeight: FontWeight.bold),
+                            //         descTextStyle: TextStyle(
+                            //             color: MyColors.appColorBlack(),
+                            //             fontWeight: FontWeight.bold),
+                            //         btnCancelOnPress: () {
+                            //           if (Platform.isIOS) {
+                            //             exit(0);
+                            //           } else {
+                            //             SystemNavigator.pop();
+                            //           }
+                            //           Navigator.of(context).pop();
+                            //           box.delete("lockScreen");
+                            //           box.delete("token");
+                            //           box.delete("imie");
+                            //           box.delete("psnum");
+                            //           box.delete("personImage");
+                            //           box.delete("boxAllPersonInfo");
+                            //         },
+                            //         btnCancelColor: MyColors.appColorBlue1(),
+                            //         btnCancelText: "OK")
+                            //     .show();
+                          },
+                          child:  Text("exet".tr())),
+                      const SizedBox(width: 20),
+                    ],
+                  ),
+                  // customizedButtonChild: const Icon(
+                  //   Icons.fingerprint,
+                  // ),
+                  title:  Text("pinPassword".tr()),
+                  screenLockConfig: const ScreenLockConfig(
+                    backgroundColor: Colors.black,
+                  ),
+                  // customizedButtonTap: () async {
+                  //   await authenticate(context: context);
+                  // },
+                  // didOpened: () async {
+                  //   await authenticate(context: context);
+                  // },
+                ),
+                box.delete("lockHasEnter")
+              }
+            : {};
+      }
+    });
+  }
+  //
+  // final LocalAuthentication _auth = LocalAuthentication();
+  //
+  // Future<bool> hasEnrolledBiometrics() async {
+  //   final List<BiometricType> availableBiometrics =
+  //       await _auth.getAvailableBiometrics();
+  //   if (availableBiometrics.isNotEmpty) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+  //
+  // Future<bool> authenticate({required BuildContext context}) async {
+  //
+  // try{final bool didAuthenticate = await _auth.authenticate(
+  //     localizedReason: "fingerScanner".tr(),
+  //     options: const AuthenticationOptions(biometricOnly: true));
+  // if (didAuthenticate) {
+  //   Navigator.pop(context);
+  // }
+  // return didAuthenticate;}catch(e){
+  //   print(jsonEncode(e).toString());
+  //   return false;
+  // }
+  //
+  // }
+  //
+  // bool showBiometrics = false;
+  // bool isAuthenticated = false;
+  //
+  // isBiometricAvailable() async {
+  //   showBiometrics = await hasEnrolledBiometrics();
+  // }
 
   @override
   Widget build(BuildContext context) {

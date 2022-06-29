@@ -72,15 +72,19 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
                 text: "chooseGrantContract".tr(), textSize: 25),
             const SizedBox(height: 10),
             Container(
+              width: MediaQuery.of(context).size.width*0.8,
               decoration: BoxDecoration(
-                  color: MyColors.appColorBlue1(),
+                  color: MyColors.appColorWhite(),
+
                   borderRadius: BorderRadius.circular(10)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
+                    width: MediaQuery.of(context).size.width*0.4,
                     child: MaterialButton(
+                      elevation: 0,
                       height: 40,
                       onPressed: () {
                         setState(() {
@@ -88,25 +92,30 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
                         });
                       },
                       color: indexValue == 0
-                          ? MyColors.appColorWhite()
-                          : MyColors.appColorBlue1(),
+                          ? MyColors.appColorBlue1()
+                          : MyColors.appColorWhite(),
                       shape:const  RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                             bottomLeft: Radius.circular(10),
 
                           )),
-                      child: Text("grant".tr(),
-                          style: TextStyle(
-                              color: indexValue != 0
-                                  ? MyColors.appColorWhite()
-                                  : MyColors.appColorBlue1())),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width*0.35,
+                        child: Text("grant".tr(),
+                            style: TextStyle(
+                                color: indexValue == 0
+                                    ? MyColors.appColorWhite()
+                                    : MyColors.appColorBlue1())),
+                      ),
                     ),
                   ),
                   SizedBox(
+                    width: MediaQuery.of(context).size.width*0.4,
                     child: MaterialButton(
+                      elevation: 0,
                         height: 40,
-                        color: indexValue == 1
+                        color: indexValue != 1
                             ? MyColors.appColorWhite()
                             : MyColors.appColorBlue1(),
                         shape: const RoundedRectangleBorder(
@@ -118,13 +127,17 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
                             indexValue = 1;
                           });
                         },
-                        child: Text("contract".tr(),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: indexValue != 1
-                                  ? MyColors.appColorWhite()
-                                  : MyColors.appColorBlue1(),
-                            ))),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width*0.4,
+                          child: Text("contract".tr(),
+                              maxLines: 2,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: indexValue != 1
+                                    ? MyColors.appColorBlue1()
+                                    : MyColors.appColorWhite(),
+                              )),
+                        )),
                   )
                 ],
               ),
@@ -145,7 +158,7 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
                   width: MediaQuery.of(context).size.width*0.4,
                   child: MaterialButton(
                     height: 45,
-                    color: MyColors.appColorBlue1(),
+                    color: MyColors.appColorWhite(),
                     onPressed: () {
                       widget.providerChooseEdu.setGrantContract(
                           id: "0",
@@ -159,7 +172,7 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
                         widget.providerChooseEdu.listGrantContract[0],
                         textAlign: TextAlign.center,
                         style:
-                            TextStyle(color: MyColors.appColorWhite())),
+                            TextStyle(color: MyColors.appColorBlack())),
                   ),
                 ),
 
@@ -167,7 +180,8 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
                   width: MediaQuery.of(context).size.width*0.4,
                   child: MaterialButton(
                     height: 45,
-                    color: MyColors.appColorBlue1(),
+
+                    color: MyColors.appColorWhite(),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
                     onPressed: () {
@@ -181,7 +195,7 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
                         widget.providerChooseEdu.listGrantContract[1],
                         textAlign: TextAlign.center,
                         style:
-                            TextStyle(color: MyColors.appColorWhite())),
+                            TextStyle(color: MyColors.appColorBlack())),
                   ),
                 ),
               ],

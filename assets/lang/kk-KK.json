@@ -185,5 +185,16 @@
   "chooseForeignLang": "Shet tilin tańlań",
   "testSubjects": "Test tapsırılatuǵın pánler kompleksi",
   "serviceWorkSoon": "Xızmet jaqın arada iske túsedi",
-  "logOut1": "Tizimdan chiqish"
+  "logOut1": "Shiǵiw",
+
+  "newPassword": "Yangi pin kod kiriting",
+  "pinPassword": "Pin kod kiriting",
+  "fingerScanner": "Barmoq skaner",
+  "pin4Length": "4 ta raqamdan iborat pin kod kiriting",
+  "changePin": "Parol almashtirish uchun amaldagi pin kodni kiriting",
+  "deletePin": "Parolni o'chirish uchun amaldagi pin kodni kiriting",
+  "invalidPassword": "Parolda xatolik qayta urinib ko'ring",
+  "passwordErase": "Pin kod o'chirildi",
+  "noInfoAbiturRuxsat": "Qabul jarayoni tugagandan so'ng bir hafta muddat ichida abituriyent ruxsatnomasini yuklab olish mumkin bo‘ladi",
+  "noInfoAbiturResult": "Abituriyent test sinovida ishtirok etgan kunining ertasiga o‘z natijasini haqida ma'lumot olishi mumkin"
 }

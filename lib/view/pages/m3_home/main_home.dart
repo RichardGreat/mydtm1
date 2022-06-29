@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/body_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -19,10 +20,12 @@ class _MainHomeState extends State<MainHome> {
   @override
   void initState() {
     Future.delayed(Duration.zero);
+
     getServiceList();
     super.initState();
   }
 
+  var box = Hive.box("online");
 
 
   Future getServiceList() async {

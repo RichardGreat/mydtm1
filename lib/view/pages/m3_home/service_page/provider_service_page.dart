@@ -19,6 +19,10 @@ class ProviderServicePage extends ChangeNotifier{
     required bool status,
     required String categoryName,
     required String categoryId })async{
+    box.delete("categoryName");
+    box.delete("categoryNameId");
+    box.put("categoryName", categoryName);
+    box.put("categoryNameId", categoryId);
     status
         ? {
       if(box.get("token").toString().length < 30){

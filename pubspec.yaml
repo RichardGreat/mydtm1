@@ -39,6 +39,9 @@ dependencies:
   cached_network_image: ^3.2.1
   url_launcher: ^6.1.4
   flutter_screen_lock: ^7.0.2
+  local_auth: ^2.1.0
+  get_it: ^7.2.0
+
 
 
 

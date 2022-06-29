@@ -8,8 +8,8 @@ import 'package:easy_localization/easy_localization.dart';
 
 Widget buttonGraduated(
     {required BuildContext context,
-      required Function function,
-      required ModelCheckUserInfo modelCheckUserInfo,
+    required Function function,
+    required String idWindowIds,
     required ProviderGraduated providerGradueted}) {
   return MaterialButton(
     minWidth: double.infinity,
@@ -17,49 +17,47 @@ Widget buttonGraduated(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     color: MyColors.appColorBlue1(),
     onPressed: () {
-
       providerGradueted.formKeyGraduated.currentState!.validate();
-      log(providerGradueted.graduatedEduTypeId);
-      log(providerGradueted.textEditingSerNumber.text);
-      log(providerGradueted.setGraduatedYear.length.toString());
+      // log(providerGradueted.graduatedEduTypeId);
+      // log(providerGradueted.textEditingSerNumber.text);
+      // log(providerGradueted.setGraduatedYear.length.toString());
       if (providerGradueted.graduatedEduTypeId == "4" &&
           providerGradueted.textEditingSerNumber.text.length >= 6) {
-        if(providerGradueted.txtControllerGraduatedName.text.length >= 4){
+        if (providerGradueted.txtControllerGraduatedName.text.length >= 4) {
           /// Chet el
           log("Chet el server");
           providerGradueted.sentServerGraduatedAll(
-            functions: function,
-            modelCheckUserInfo: modelCheckUserInfo,
+              idWindowId: idWindowIds,
+              functions: function,
               context: context,
               eduType: providerGradueted.graduatedEduTypeId,
               regionId: providerGradueted.graduatedRegionId,
               districtId: providerGradueted.graduatedDistrictId,
-              eduListId:  providerGradueted.graduatedEduId,
+              eduListId: providerGradueted.graduatedEduId,
               graduatedYear: providerGradueted.setGraduatedYear,
               docSerNum: providerGradueted.textEditingSerNumber.text,
               eduName: providerGradueted.txtControllerGraduatedName.text,
               countryId: providerGradueted.graduatedCountryId);
         }
-
       } else {
         /// o'zbek
-        if(providerGradueted.setGraduatedYear.length >= 3 &&
-            providerGradueted.textEditingSerNumber.text.length >= 5){
-  log("o'zbek server");
-  providerGradueted.sentServerGraduatedAll(
-      // graduatedEduId
-      // graduatedEduName
-    modelCheckUserInfo: modelCheckUserInfo,
-      functions: function,
-      context: context,
-      eduType: providerGradueted.graduatedEduTypeId,
-      regionId: providerGradueted.graduatedRegionId,
-      districtId: providerGradueted.graduatedDistrictId,
-      eduListId:  providerGradueted.graduatedEduId,
-      graduatedYear: providerGradueted.setGraduatedYear,
-      docSerNum: providerGradueted.textEditingSerNumber.text,
-      eduName: providerGradueted.graduatedEduName,
-      countryId: "860");
+        if (providerGradueted.setGraduatedYear.length >= 3 &&
+            providerGradueted.textEditingSerNumber.text.length >= 5) {
+          log("o'zbek server");
+          providerGradueted.sentServerGraduatedAll(
+              // graduatedEduId
+              // graduatedEduName
+              idWindowId:idWindowIds,
+              functions: function,
+              context: context,
+              eduType: providerGradueted.graduatedEduTypeId,
+              regionId: providerGradueted.graduatedRegionId,
+              districtId: providerGradueted.graduatedDistrictId,
+              eduListId: providerGradueted.graduatedEduId,
+              graduatedYear: providerGradueted.setGraduatedYear,
+              docSerNum: providerGradueted.textEditingSerNumber.text,
+              eduName: providerGradueted.graduatedEduName,
+              countryId: "860");
         }
       }
       // Navigator.push(

@@ -17,6 +17,8 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'dart:developer';
 
+import 'package:url_launcher/url_launcher.dart';
+
 class ProviderProfile extends ChangeNotifier {
   TextEditingController textChangePhoneNum = TextEditingController();
   TextEditingController textPhoneChangePassport = TextEditingController();
@@ -37,7 +39,8 @@ class ProviderProfile extends ChangeNotifier {
   var box = Hive.box("online");
 
   bool boolLockAction = false;
-  Future getButtonAction()async{
+
+  Future getButtonAction() async {
     boolLockAction = !boolLockAction;
     notifyListeners();
   }
@@ -57,8 +60,27 @@ class ProviderProfile extends ChangeNotifier {
   Future getProfile() async {
     try {
       boolGetProfileData = false;
-      String dataInfo = await networkGetIMie.getIMieInformation();
-      modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
+      if (box.get("boxAllPersonInfo").toString().length > 200) {
+        modelGetImieInfo = ModelGetImieInfo.fromJson(
+            jsonDecode(box.get("boxAllPersonInfo").toString()));
+      } else {
+        String dataInfo = await networkGetIMie.getIMieInformation();
+        box.delete("boxAllPersonInfo");
+        box.put("boxAllPersonInfo", dataInfo);
+        modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
+        // dataGetImieInfo = modelGetImieInfo.data;
+        // psnum = dataGetImieInfo.psnum.toString();
+        // imie = dataGetImieInfo.imie.toString();
+        // image = dataGetImieInfo.image;
+        //
+        // box.delete("imie");
+        // box.delete("psnum");
+        // box.delete("personImage");
+        // box.put("imie", imie);
+        // box.put("psnum", psnum);
+        // box.put("personImage", image);
+      }
+
       dataGetImieInfo = modelGetImieInfo.data;
       psser = dataGetImieInfo.psser;
       psnum = dataGetImieInfo.psnum.toString();
@@ -70,6 +92,11 @@ class ProviderProfile extends ChangeNotifier {
       sex = dataGetImieInfo.sex.toString();
       nationId = dataGetImieInfo.nationId.toString();
       image = dataGetImieInfo.image;
+      box.delete("imie");
+      box.delete("psnum");
+      box.delete("personImage");
+      box.put("imie", imie);
+      box.put("psnum", psnum);
       box.put("personImage", image);
       boolHasTokenNoImie = false;
       boolGetProfileData = true;
@@ -164,39 +191,39 @@ class ProviderProfile extends ChangeNotifier {
       /// error
     }
   }
+
   ///
 
-
- // MyColors myColors = MyColors();
+  // MyColors myColors = MyColors();
   late NetworkServiceList networkServiceList = NetworkServiceList();
   NetworkSetLanguage networkSetLanguage = NetworkSetLanguage();
   String dataLang = "";
+
   Future setLangUser() async {
-    try{
+    try {
       if (box.get("token").toString().length > 30) {
         box.get("language") == "1"
             ? {
-          dataLang =
-          await networkSetLanguage.setLanguageUser(setLang: "uz")
-        }
+                dataLang =
+                    await networkSetLanguage.setLanguageUser(setLang: "uz")
+              }
             : box.get("language") == "2"
-            ? {
-          dataLang =
-          await networkSetLanguage.setLanguageUser(setLang: "kk")
-        }
-            : {
-          dataLang =
-          await networkSetLanguage.setLanguageUser(setLang: "ru")
-        };
+                ? {
+                    dataLang =
+                        await networkSetLanguage.setLanguageUser(setLang: "kk")
+                  }
+                : {
+                    dataLang =
+                        await networkSetLanguage.setLanguageUser(setLang: "ru")
+                  };
         log(dataLang);
       }
-    }catch(e){
+    } catch (e) {
       log(e.toString());
     }
   }
 
-
-///
+  ///
   NetworkChangePassword networkChangePassword = NetworkChangePassword();
 
   Future getNewPassport({required BuildContext context}) async {
@@ -209,13 +236,14 @@ class ProviderProfile extends ChangeNotifier {
       getCaptcha();
       String dataNet = await networkChangePassword.getChangePhoneNumber(
           mapChangePassword: mapForNewPassword);
-      ModelResetPassSms modelResetPassSms = ModelResetPassSms.fromJson(jsonDecode(dataNet));
+      ModelResetPassSms modelResetPassSms =
+          ModelResetPassSms.fromJson(jsonDecode(dataNet));
       textCaptchaEditingControllerPassport.clear();
 
       // ignore: use_build_context_synchronously
       pushNewScreen(context,
           screen: SmsAutoFillUi(
-              phoneNum:  box.get("phoneNumber"),
+              phoneNum: box.get("phoneNumber"),
               password: "",
               captchaKey: modelResetPassSms.data.smsId.toString(),
               captchaValue: modelResetPassSms.data.endDate.toString(),
@@ -226,5 +254,14 @@ class ProviderProfile extends ChangeNotifier {
   }
 
   /// Change Phone
+  final Uri url = Uri.parse("https://lex.uz/docs/-4396419");
+  Future<void> launchInBrowser(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Could not launch $url';
+    }
+  }
 
 }

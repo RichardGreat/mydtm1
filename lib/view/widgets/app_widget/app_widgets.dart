@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
+import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
@@ -130,13 +131,16 @@ class MyWidgets {
             title: "DTM",
             desc: valueText,
             titleTextStyle: TextStyle(
-                color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
+                color: MyColors.appColorBlue1(),
+                fontSize: 24,
+                fontWeight: FontWeight.bold),
             descTextStyle: TextStyle(
                 color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
             btnCancelOnPress: () {},
             btnCancelText: "OK")
         .show();
   }
+
 
 
 

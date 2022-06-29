@@ -4,9 +4,12 @@ import 'package:connection_notifier/connection_notifier.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
+import 'dart:async';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -20,7 +23,7 @@ class MyHttpOverrides extends HttpOverrides {
 Future initialization(BuildContext? context) async {
   await Future.delayed(const Duration(milliseconds: 1900));
 }
-
+final GlobalKey<NavigatorState> navigatorKey =  GlobalKey<NavigatorState>();
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -58,8 +61,99 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
   var box = Hive.box("online");
+   LocalAuthentication auth = LocalAuthentication();
+
+
+
+
+  Future<void> localAuth(BuildContext context) async {
+
+    final List<BiometricType> availableBiometrics =
+    await auth.getAvailableBiometrics();
+    if (availableBiometrics.contains(BiometricType.face) ||
+        availableBiometrics.contains(BiometricType.fingerprint)) {
+    }
+  }
+
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+
+    switch (state) {
+      case AppLifecycleState.resumed:
+
+        break;
+      case AppLifecycleState.inactive:
+
+        break;
+      case AppLifecycleState.paused:
+      // Handle this case
+        break;
+      case AppLifecycleState.detached:
+        {
+          // if(box.get("langLock").toString().trim() == "1"){
+          //   box.delete("langLock");
+          // }
+          // else{
+          //   box.get("lockScreen").toString().trim().length == 4 &&
+          //       box.get("lockScreen").toString() != "null"
+          //       ? {
+          //     screenLock(
+          //       withBlur: true,
+          //       context: navigatorKey.currentContext!,
+          //       correctString:  box.get("lockScreen").toString(),
+          //       canCancel: false,
+          //       footer:const Text("Tizimdan chiqish"),
+          //
+          //       title: Text("Pin kod kiriting"),
+          //       screenLockConfig: ScreenLockConfig(
+          //         backgroundColor: Colors.black,
+          //       ),
+          //
+          //       // didUnlocked:(){
+          //       //         Navigator.of(context).pop();
+          //       //         Navigator.of(context).pop();
+          //       //       } ,
+          //       // customizedButtonTap: () async {
+          //       //   await localAuth(context);
+          //       // },
+          //       // didOpened: () async {
+          //       //   await localAuth(context);
+          //       //
+          //       // },
+          //     ),
+          //     // pushNewScreen(context, screen: LockScreenAllWindow()),
+          //     box.delete("lockHasEnter")
+          //   }
+          //       : {};};
+
+
+        }
+        break;
+    }
+
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  initState() {
+    // screenLock123();
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+
+  }
+
+
+
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +161,7 @@ class _MyAppState extends State<MyApp> {
       disconnectedContent: Center(child: Text("noInternetConn".tr())),
       connectedContent: Center(child: Text("internetConn".tr())),
       child: MaterialApp(
+        navigatorKey: navigatorKey,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
@@ -79,4 +174,6 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+
+
 }

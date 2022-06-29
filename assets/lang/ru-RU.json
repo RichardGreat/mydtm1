@@ -29,7 +29,7 @@
   "advice": "#advice",
   "news": "Новости",
   "or": "Или",
-  "year": "Год",
+  "year": "год",
   "bYear":"Год окончания",
   "document": "Серия и номер документа",
   "phoneNumber": "Телефон номер",
@@ -182,5 +182,15 @@
   "fillAllRows":  "Заполните все строки",
   "chooseOther": "Подходящее направление не найдено, выбирайте заново",
   "fillInfo": "Заполните данные",
-  "logOut1": "Tizimdan chiqish"
+  "logOut1": "Выйти из системы",
+  "newPassword": "Введите новый PIN-код",
+  "pinPassword": "Введите PIN-код",
+  "fingerScanner": "Сканер пальцев",
+  "pin4Length": "Введите пин-код из 4 цифр",
+  "changePin": "Введите действующий пин-код для замены пароля",
+  "deletePin": "Введите действующий пин-код для удаления пароля",
+  "invalidPassword": "В пароле ошибка попробуйте снова",
+  "passwordErase": "PIN-код удален",
+  "noInfoAbiturRuxsat": "Qabul jarayoni tugagandan so'ng abituriyent ruxsatnomasini yuklab olishingiz mumkin",
+  "noInfoAbiturResult": "Abituriyent test sinovida ishtirok etgan kuning ertasiga o‘z natijasini haqida ma'lumot olishi mumkin"
 }

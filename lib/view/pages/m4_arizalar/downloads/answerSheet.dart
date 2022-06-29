@@ -47,7 +47,8 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
       body: SafeArea(
           child: Container(
         child: widget.providerAriza.boolDataDownload3
-            ? widget.providerAriza.modelGetDownloadsData3.status.toString() == "1"
+            ? widget.providerAriza.modelGetDownloadsData3.status.toString() ==
+                    "1"
                 ? SingleChildScrollView(
                     child: Column(children: [
                       SizedBox(
@@ -85,10 +86,12 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
                       ),
                     ]),
                   )
-                :  Center(child: MyWidgets.robotoFontText(text: "infoNotFind".tr()))
-            : Center(
-                child:  MyWidgets.loaderDownload(context: context),
-              ),
+                : Center(
+                    child: MyWidgets.loaderDownload(context: context),
+                  )
+            : Center(child:Text( "noInfoAbiturResult".tr(),
+          textAlign: TextAlign.center,
+          style: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.w500, fontSize: 18, ),)),
       )),
     );
   }

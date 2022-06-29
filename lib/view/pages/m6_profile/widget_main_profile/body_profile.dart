@@ -25,7 +25,9 @@ Widget myText() {
           ? Text("qq".tr())
           : Text("ru".tr());
 }
+
 late ModelCheckUserInfo modelCheckUserInfo;
+
 Widget bodyProfile(
     {required BuildContext context,
     required Function function,
@@ -106,16 +108,74 @@ Widget bodyProfile(
               //     didUnlocked: () {
               //       Navigator.of(context).pop();
               //     });
+                print(box.get("personImage").toString().length.toString());
+              if (box.get("personImage").toString().length > 50) {
 
-              pushNewScreen(
-                context,
-                screen: PersonInformation(
-                    funcState: function,
-                    idFunction:
-                        box.get("imie").toString().length > 13 ? "1" : "99"),
-                withNavBar: false,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              );
+                pushNewScreen(
+                  context,
+                  screen: PersonInformation(
+                      funcState: function,
+                      windowIdPassport: "1",
+                      idFunction:
+                          box.get("personImage").toString().length > 50 ? "1" : "99"),
+                  withNavBar: false,
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                );
+              } else {
+                AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.NO_HEADER,
+                    animType: AnimType.BOTTOMSLIDE,
+                    body: GestureDetector(
+                      onTap: () {
+
+                        providerProfile.launchInBrowser(providerProfile.url);
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(10),
+                        child: Text("personalInfoAccess".tr(),
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.w500,
+                              color: MyColors.appColorBlue1(),
+                            )),
+                      ),
+                    ),
+                    titleTextStyle: TextStyle(
+                        color: MyColors.appColorBlue1(),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
+                    descTextStyle: TextStyle(
+                        color: MyColors.appColorBlack(),
+                        fontWeight: FontWeight.bold),
+                    btnOkOnPress: () {
+                      pushNewScreen(
+                        context,
+                        screen: PersonInformation(
+                            funcState: function,
+                            idFunction:  box.get("personImage").toString().length > 50 ? "1" : "99",
+                            windowIdPassport: "0"),
+                        withNavBar: false,
+                        pageTransitionAnimation:
+                            PageTransitionAnimation.cupertino,
+                      );
+                    },
+                    btnOkText: "iAgree".tr(),
+                    btnOkColor: MyColors.appColorBlue1(),
+                    btnCancel: MaterialButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      color: MyColors.appColorWhite(),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Text(
+                        "notAgree".tr(),
+                        style: TextStyle(color: MyColors.appColorBlack()),
+                      ),
+                    )).show();
+              }
             },
             leading: Icon(
               Icons.person_pin_rounded,
@@ -132,12 +192,18 @@ Widget bodyProfile(
           ),
           ListTile(
             onTap: () {
-              pushNewScreen(
-                context,
-                screen: AddressInfo(funcState: function),
-                withNavBar: false,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              );
+              if (box.get("personImage").toString().length > 50) {
+                pushNewScreen(
+                  context,
+                  screen:
+                      AddressInfo(funcState: function, addressWindowId: "1"),
+                  withNavBar: false,
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                );
+              } else {
+                MyWidgets.awesomeDialogError(
+                    context: context, valueText: "passportFillInfo".tr());
+              }
             },
             leading: Icon(
               Icons.home,
@@ -154,12 +220,18 @@ Widget bodyProfile(
           ),
           ListTile(
             onTap: () {
-              pushNewScreen(
-                context,
-                screen: Graduated(funcState: function, modelCheckUserInfo: modelCheckUserInfo),
-                withNavBar: false,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              );
+              if (box.get("personImage").toString().length > 50) {
+                pushNewScreen(
+                  context,
+                  screen:
+                      Graduated(funcState: function, windowIdGraduated: "1"),
+                  withNavBar: false,
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                );
+              } else {
+                MyWidgets.awesomeDialogError(
+                    context: context, valueText: "passportFillInfo".tr());
+              }
             },
             leading: Icon(
               Icons.school,
@@ -254,53 +326,59 @@ Widget bodyProfile(
               color: MyColors.appColorGrey400(),
             ),
           ),
-          ListTile(
-            onTap: () {
-              box.get("token").toString().length > 30
-                  ? AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.NO_HEADER,
-                      animType: AnimType.BOTTOMSLIDE,
-                      title: "DTM",
-                      desc: "logUot".tr(),
-                      titleTextStyle: TextStyle(
-                          color: MyColors.appColorBlue1(),
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold),
-                      descTextStyle: TextStyle(
-                          color: MyColors.appColorBlack(),
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500),
-                      btnOkOnPress: () {
-                        box.delete("token");
-                        box.delete("imie");
-                        box.delete("psnum");
-                        box.delete("personImage");
-                        // box.delete("getEdInfo");
-                        pushNewScreenWithRouteSettings(context,
-                            screen: EnterFirst(),
-                            settings: RouteSettings(),
-                            withNavBar: false);
-                      },
-                      btnOkText: "yes".tr(),
-                      btnOkColor: MyColors.appColorBlue1(),
-                      btnCancelColor: MyColors.appColorGrey600(),
-                      btnCancelOnPress: () {},
-                      btnCancelText: "no".tr(),
-                    ).show()
-                  : {};
-            },
-            leading: Icon(
-              Icons.logout,
-              color: MyColors.appColorBlue1(),
-              size: 24,
-            ),
-            title: MyWidgets.robotoFontText(text: "logOut1".tr()),
-            trailing: Icon(
-              Icons.arrow_forward_ios_rounded,
-              color: MyColors.appColorGrey400(),
-            ),
-          ),
+          box.get("token").toString().length > 30
+              ? ListTile(
+                  onTap: () {
+                    box.get("token").toString().length > 30
+                        ? AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.NO_HEADER,
+                            animType: AnimType.BOTTOMSLIDE,
+                            title: "DTM",
+                            desc: "logUot".tr(),
+                            titleTextStyle: TextStyle(
+                                color: MyColors.appColorBlue1(),
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold),
+                            descTextStyle: TextStyle(
+                                color: MyColors.appColorBlack(),
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                            btnOkOnPress: () {
+
+                              box.delete("token");
+                              box.delete("imie");
+                              box.delete("psnum");
+                              box.delete("personImage");
+                              box.delete("boxAllPersonInfo");
+                              box.delete("langLock");
+                              box.delete("lockScreen");
+
+                              pushNewScreenWithRouteSettings(context,
+                                  screen: EnterFirst(),
+                                  settings: RouteSettings(),
+                                  withNavBar: false);
+                            },
+                            btnOkText: "yes".tr(),
+                            btnOkColor: MyColors.appColorBlue1(),
+                            btnCancelColor: MyColors.appColorGrey600(),
+                            btnCancelOnPress: () {},
+                            btnCancelText: "no".tr(),
+                          ).show()
+                        : {};
+                  },
+                  leading: Icon(
+                    Icons.logout,
+                    color: MyColors.appColorBlue1(),
+                    size: 24,
+                  ),
+                  title: MyWidgets.robotoFontText(text: "logOut1".tr()),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    color: MyColors.appColorGrey400(),
+                  ),
+                )
+              : SizedBox.shrink(),
           Divider(
             color: MyColors.appColorGrey100(),
             thickness: 1,
