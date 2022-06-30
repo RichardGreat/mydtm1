@@ -21,7 +21,7 @@ class ProviderAriza extends ChangeNotifier {
   late Person person;
   bool boolQaydVaraqaDownload = false;
   bool boolQaydVaraqaDownloadNot = false;
-
+  bool boolBitiruvchi = false;
   Future getQaydVaraqa() async {
     try {
       boolQaydVaraqaDownload = false;
@@ -30,6 +30,10 @@ class ProviderAriza extends ChangeNotifier {
           ModelArizaQadVaraqa.fromJson(jsonDecode(dataAriza));
       DataArizaQadVaraqa dataArizaQadVaraqa = modelArizaQadVaraqa.data;
       model = dataArizaQadVaraqa.model;
+      if(model.invoice == null){
+        boolBitiruvchi = true;
+        notifyListeners();
+      }
       person = dataArizaQadVaraqa.person;
       boolQaydVaraqaDownload = true;
       notifyListeners();
@@ -55,7 +59,9 @@ class ProviderAriza extends ChangeNotifier {
   bool boolDataDownload2 = false;
   bool boolDataDownload3 = false;
 
+
   Future getDownloads({required int categoryId}) async {
+
     /// String url o'zgartirish kerak
     if (categoryId == 1) {
      try {

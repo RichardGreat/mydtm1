@@ -54,19 +54,9 @@ class _LangChangeAllState extends State<LangChangeAll> {
                                   color: MyColors.appColorGrey400()),
                               ListTile(
                                 onTap: () {
-                                  context.locale = const Locale("uz", "UZ");
-                                  box.delete("language");
-                                  box.put("language", "1");
-                                  box.delete("langLock");
-                                  box.put("langLock", "1");
-                                  widget.providerProfile.setLangUser();
-                                  Navigator.pushAndRemoveUntil(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) => MyApp()),
-                                    (route) => false,
-                                  );
-                                  setState(() {});
+                                  widget.providerProfile.changeLang(langId: "0", context: context);
+
+
                                 },
                                 title:
                                     MyWidgets.robotoFontText(text: "uz".tr()),
@@ -80,19 +70,9 @@ class _LangChangeAllState extends State<LangChangeAll> {
                                   color: MyColors.appColorGrey400()),
                               ListTile(
                                 onTap: () {
-                                  context.locale = const Locale("kk", "KK");
-                                  box.delete("language");
-                                  box.put("language", "2");
-                                  box.delete("langLock");
-                                  box.put("langLock", "1");
-                                  widget.providerProfile.setLangUser();
-                                  Navigator.pushAndRemoveUntil(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) => MyApp()),
-                                    (route) => false,
-                                  );
-                                  setState(() {});
+                                  widget.providerProfile.changeLang(langId: "1", context: context);
+
+
                                 },
                                 title:
                                     MyWidgets.robotoFontText(text: "qq".tr()),
@@ -106,19 +86,9 @@ class _LangChangeAllState extends State<LangChangeAll> {
                                   color: MyColors.appColorGrey400()),
                               ListTile(
                                 onTap: () {
-                                  context.locale = const Locale("ru", "RU");
-                                  box.delete("language");
-                                  box.put("language", "3");
-                                  box.delete("langLock");
-                                  box.put("langLock", "1");
-                                  widget.providerProfile.setLangUser();
-                                  Navigator.pushAndRemoveUntil(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) => MyApp()),
-                                    (route) => false,
-                                  );
-                                  setState(() {});
+
+                                  widget.providerProfile.changeLang(langId: "2", context: context);
+
                                 },
                                 title:
                                     MyWidgets.robotoFontText(text: "ru".tr()),

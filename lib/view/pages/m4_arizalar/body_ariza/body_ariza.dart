@@ -141,6 +141,7 @@ class _ArizaEnterState extends State<ArizaEnter> {
                                 context: context,
                                 providerAriza: widget.providerAriza),
                             const SizedBox(height: 20),
+                          widget.  providerAriza.boolBitiruvchi ? SizedBox.shrink():
                             infoMoneyBilling(
                                 context: context,
                                 providerAriza: widget.providerAriza)

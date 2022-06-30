@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_captcha.dart';
@@ -12,6 +14,7 @@ import 'package:mydtm/data/internet_connections/person_info/set_lang.dart';
 import 'package:mydtm/data/model_parse/m1_model/parse_captche.dart';
 import 'package:mydtm/data/model_parse/m6_model/change_phone/phone_changes.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_imie_info.dart';
+import 'package:mydtm/main.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -205,7 +208,8 @@ class ProviderProfile extends ChangeNotifier {
         box.get("language") == "1"
             ? {
                 dataLang =
-                    await networkSetLanguage.setLanguageUser(setLang: "uz")
+                    await networkSetLanguage.setLanguageUser(setLang: "uz"),
+
               }
             : box.get("language") == "2"
                 ? {
@@ -261,6 +265,56 @@ class ProviderProfile extends ChangeNotifier {
       mode: LaunchMode.externalApplication,
     )) {
       throw 'Could not launch $url';
+    }
+  }
+
+
+  Future changeLang({required String langId, required BuildContext context})async{
+    if(langId == "0"){
+      context.locale = const Locale("uz", "UZ");
+      box.delete("language");
+      box.put("language", "1");
+      box.delete("langLock");
+      box.put("langLock", "1");
+      await setLangUser();
+      // ignore: use_build_context_synchronously
+      Navigator.pushAndRemoveUntil(
+        context,
+        CupertinoPageRoute(
+            builder: (context) =>const MyApp( )),
+            (route) => false,
+      );
+    }
+    else if(langId == "1"){
+      context.locale = const Locale("kk", "KK");
+      box.delete("language");
+      box.put("language", "2");
+      box.delete("langLock");
+      box.put("langLock", "1");
+      await setLangUser();
+      // ignore: use_build_context_synchronously
+      Navigator.pushAndRemoveUntil(
+        context,
+        CupertinoPageRoute(
+            builder: (context) => const MyApp()),
+            (route) => false,
+      );
+    }
+    else if(langId == "2"){
+      context.locale = const Locale("ru", "RU");
+      box.delete("language");
+      box.put("language", "3");
+      box.delete("langLock");
+      box.put("langLock", "1");
+    await setLangUser();
+      // ignore: use_build_context_synchronously
+      Navigator.pushAndRemoveUntil(
+        context,
+        CupertinoPageRoute(
+            builder: (context) => const MyApp()),
+            (route) => false,
+      );
+
     }
   }
 

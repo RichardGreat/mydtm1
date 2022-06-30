@@ -26,6 +26,7 @@ Widget bodyPrivilege({
             itemCount: providerPrivilege.listCheckPrivilege.length,
             itemBuilder: (context, index) => Container(
                 padding: const EdgeInsets.all(12),
+                margin: EdgeInsets.all(5),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: MyColors.appColorWhite(),

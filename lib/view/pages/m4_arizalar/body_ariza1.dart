@@ -65,6 +65,7 @@ Widget bodyAriza1(
                         .substring(0, 16),
                     textSize: 14),
                 const SizedBox(height: 20),
+                providerAriza.boolBitiruvchi ? SizedBox.shrink():
                 Container(
                   height: 45,
                   padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
