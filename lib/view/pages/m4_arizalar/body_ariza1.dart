@@ -29,7 +29,7 @@ Widget bodyAriza1(
           Padding(
             padding: const EdgeInsets.only  (right: 20),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.2,
+              width: MediaQuery.of(context).size.width * 0.18,
               child: Image.asset(
                 "assets/images/icon_person.png",
                 height: 60,
@@ -49,8 +49,8 @@ Widget bodyAriza1(
                   width: MediaQuery.of(context).size.width*0.6,
                   child: Text(
                     "otmQabul".tr(),
-                    // maxLines: 3,
-                    overflow: TextOverflow.fade,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     softWrap: true,
                     style:const TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
                   ),

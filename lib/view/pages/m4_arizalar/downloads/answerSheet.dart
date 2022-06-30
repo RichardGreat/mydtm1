@@ -46,6 +46,7 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
       ),
       body: SafeArea(
           child: Container(
+            margin: EdgeInsets.all(15),
         child: widget.providerAriza.boolDataDownload3
             ? widget.providerAriza.modelGetDownloadsData3.status.toString() ==
                     "1"

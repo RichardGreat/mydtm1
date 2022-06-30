@@ -45,6 +45,7 @@ class _AccessPaperDownloadState extends State<AccessPaperDownload> {
       ),
       body: SafeArea(
           child: Container(
+            margin: EdgeInsets.all(15),
         child: widget.providerAriza.boolDataDownload2
             ? widget.providerAriza.modelGetDownloadsData2.status.toString() ==
                     "1"

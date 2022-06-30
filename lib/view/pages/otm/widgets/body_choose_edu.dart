@@ -47,10 +47,17 @@ Widget bodyChooseEdu({
   }
 
   String textEduList({required int index}) {
+  if(index == 0){
+    if(providerChooseEdu.listTitleEduDir[0].dirName.isNotEmpty) {
+      return "${0 + 1}${" ${providerChooseEdu.listTitleEduDir[0].nameEdu}"}";
+    }else{
+      providerChooseEdu.listTitleEduDir[0].eduId = "";
+      providerChooseEdu.listTitleEduDir[0].nameEdu= "";
+      return "${0 + 1}${" ${providerChooseEdu.listTitleEduDir[0].nameTitle}"}";
+    }
+  }else{
     if(providerChooseEdu.listTitleEduDir[index].dirName.length > 3) {
-      return providerChooseEdu.listTitleEduDir[index].nameEdu.length < 4
-          ? "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameTitle}"}"
-          : "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
+      return "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
     }else{
       providerChooseEdu.listTitleEduDir[index].eduId = "";
       providerChooseEdu.listTitleEduDir[index].nameEdu= "";
@@ -58,6 +65,8 @@ Widget bodyChooseEdu({
           ? "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameTitle}"}"
           : "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
     }
+  }
+
   }
 
   return Column(

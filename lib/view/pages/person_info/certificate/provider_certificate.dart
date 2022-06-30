@@ -325,8 +325,8 @@ class ProviderCertificate extends ChangeNotifier {
       // log( dateYearMonthDay);
       // log("dtm_${textForeignSertNumber.text}.$fileName");
       boolSentServerCertificate = true;
-      stateFunc();
-      notifyListeners();
+
+
       FormData formData =  FormData.fromMap({
         "ser_num": textForeignSertNumber.text,
         "flang_level_id": langLevelIds,
@@ -337,7 +337,8 @@ class ProviderCertificate extends ChangeNotifier {
       ModelSetServerCertificate modelSetServerCertificate = ModelSetServerCertificate.fromJson(jsonDecode(networkData));
       setServerCertificate = modelSetServerCertificate.masseage;
       boolSentServerCertificate = false;
-      stateFunc();
+       stateFunc();
+      await stateFunc2();
       notifyListeners();
       AwesomeDialog(
           context: context,

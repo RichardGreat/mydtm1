@@ -59,20 +59,19 @@ Widget bodyCertificate(
                               children: [
                                 Icon(Icons.add_circle,
                                     color: MyColors.appColorBlue1()),
-                              SizedBox(
-                                 width: MediaQuery.of(context).size.width*0.74,
-                                  child:                  MyWidgets.robotoFontText(
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.74,
+                                  child: MyWidgets.robotoFontText(
                                       text: "addCertificate".tr(),
                                       textColor: providerCertificate
-                                          .dataCheckForeignCertificate
-                                          .status ==
-                                          1
+                                                  .dataCheckForeignCertificate
+                                                  .status ==
+                                              1
                                           ? MyColors.appColorGrey400()
                                           : MyColors.appColorBlue1(),
                                       textSize: 15),
-                              ),
-
-
+                                ),
                               ],
                             ),
                           ),
@@ -107,7 +106,7 @@ Widget bodyCertificate(
                             children: [
                               MyWidgets.robotoFontText(
                                   text: providerCertificate
-                                      .dataCheckForeignCertificate.flangName),
+                                      .dataCheckForeignCertificate.flangName.toString()),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -162,7 +161,7 @@ Widget bodyCertificate(
                                         MyWidgets.robotoFontText(
                                             text: providerCertificate
                                                 .dataCheckForeignCertificate
-                                                .statusName,
+                                                .statusName.toString(),
                                             textColor:
                                                 MyColors.appColorWhite()),
                                       ],
@@ -270,16 +269,25 @@ Widget bodyCertificate(
                           ),
                         )),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      MaterialButton(onPressed: (){
-                        pushNewScreen(context, screen: Privilege(funcState: func), withNavBar: false);
-                      },
+                      MaterialButton(
+                        onPressed: () {
+                          pushNewScreen(context,
+                              screen: Privilege(funcState: func),
+                              withNavBar: false);
+                        },
                         height: 50,
                         color: MyColors.appColorBlue1(),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                        minWidth: MediaQuery.of(context).size.width*0.8,
-                        child: Text("continue".tr(), style: TextStyle(fontWeight: FontWeight.w600, color: MyColors.appColorWhite())),),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        minWidth: MediaQuery.of(context).size.width * 0.8,
+                        child: Text("continue".tr(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: MyColors.appColorWhite())),
+                      ),
                     ],
                   )
                 ],

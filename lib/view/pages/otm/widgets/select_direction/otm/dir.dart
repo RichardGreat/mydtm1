@@ -6,6 +6,8 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 sheetDIRdu({required BuildContext contexts,
   required ProviderChooseEdu providerChooseEdu,
+  required String eduName,
+  required String eduId,
   required int titleEduDir}) {
   showModalBottomSheet(
       context: contexts,
@@ -15,6 +17,8 @@ sheetDIRdu({required BuildContext contexts,
         return DIREdu(
             providerChooseEdu: providerChooseEdu,
             contexts: contexts,
+            eduName: eduName,
+            eduId: eduId,
             titleEduDirId: titleEduDir);
       });
 }
@@ -24,10 +28,13 @@ class DIREdu extends StatefulWidget {
   ProviderChooseEdu providerChooseEdu;
   BuildContext contexts;
   int titleEduDirId;
-
+  String eduId;
+  String eduName;
   DIREdu({Key? key,
     required this.providerChooseEdu,
     required this.contexts,
+    required this.eduId,
+    required this.eduName,
     required this.titleEduDirId})
       : super(key: key);
 
@@ -161,6 +168,8 @@ class _DIREduState extends State<DIREdu> {
                         onTap: () {
 
                           widget.providerChooseEdu.setDir1(
+                            eduId: widget.eduId,
+                              eduName: widget.eduName,
                               nameDir:  widget.providerChooseEdu.listDirTemp[index].name,
                               idDir:  widget.providerChooseEdu.listDirTemp[index].id.toString(),
                               fLang: widget.providerChooseEdu.listDirTemp[index].flangId.toString(),

@@ -497,7 +497,7 @@ class ProviderGraduated extends ChangeNotifier {
       for (int i = int.parse(modelGraduatedYear.data.endYear)-1;
           i >= int.parse(modelGraduatedYear.data.beginYear)-1;
           i--) {
-        listGraduatedYear.add("$i-${"year".tr()}");
+        listGraduatedYear.add("$i ${"year".tr()}");
       }
       // listGraduatedYearTemp.clear();
       listGraduatedYearTemp = listGraduatedYear;

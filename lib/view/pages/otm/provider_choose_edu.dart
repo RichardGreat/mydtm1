@@ -395,10 +395,8 @@ class ProviderChooseEdu extends ChangeNotifier {
   Future getEmode({required BuildContext context}) async {
     try {
       boolGetEmode = false;
-
       String emodeData = await networkEmodeChoose.getEmodeItem(langId: langId);
       modelEmodeGet = ModelEmodeGet.fromJson(jsonDecode(emodeData));
-
       listEmodeChoose = modelEmodeGet.data.entries
           .map((entry) => DataEmodeChoose(
                 id: entry.key,
@@ -417,16 +415,16 @@ class ProviderChooseEdu extends ChangeNotifier {
           animType: AnimType.BOTTOMSLIDE,
           dismissOnTouchOutside: false,
           title: "DTM",
-          desc: "chooseOther".tr(),
+          desc: "infoNoDir".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
           descTextStyle: TextStyle(
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
           btnCancelOnPress: () {
-            Navigator.of(context).pop();
+
           },
           btnCancelText: "OK")
-          .show();
+          .show().then((value) => Navigator.of(context).pop());
       log(e.toString());
     }
   }
@@ -486,7 +484,7 @@ class ProviderChooseEdu extends ChangeNotifier {
           animType: AnimType.BOTTOMSLIDE,
           dismissOnTouchOutside: false,
           title: "DTM",
-          desc: "chooseOther".tr(),
+          desc: "infoNoDir".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
           descTextStyle: TextStyle(
@@ -632,7 +630,10 @@ class ProviderChooseEdu extends ChangeNotifier {
     };
     sheetDIRdu(
         contexts: contexts,
+        eduId:  listTitleEduDir[titleEduDirId].eduId,
+        eduName:  listTitleEduDir[titleEduDirId].nameEdu,
         providerChooseEdu: providerChooseEdu,
+
         titleEduDir: titleEduDirId);
     notifyListeners();
   }
@@ -647,13 +648,17 @@ class ProviderChooseEdu extends ChangeNotifier {
   Future setDir1(
       {required String nameDir,
       required String idDir,
+      required String eduId,
+      required String eduName,
+
       required String fLang,
       required int titleEduDirId,
       required BuildContext context}) async {
     listTitleEduDir[titleEduDirId].dirId = idDir;
+    listTitleEduDir[titleEduDirId].nameEdu = eduName;
     listTitleEduDir[titleEduDirId].dirName = nameDir;
     listTitleEduDir[titleEduDirId].fLangId = fLang;
-
+    notifyListeners();
     if (listTitleEduDir[0].fLangId == "0") {
       boolForeignLang = false;
       notifyListeners();

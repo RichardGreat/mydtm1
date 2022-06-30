@@ -15,7 +15,7 @@ sheetGrantContractChoose(
       enableDrag: false,
       builder: (context) {
         return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.9,
+            height: MediaQuery.of(context).size.height * 0.93,
             child: MyChoosGrantContract(providerChooseEdu: providerChooseEdu));
       });
 }
@@ -177,7 +177,7 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
                 ),
 
                 SizedBox(
-                  width: MediaQuery.of(context).size.width*0.4,
+                  width: MediaQuery.of(context).size.width*0.42,
                   child: MaterialButton(
                     height: 45,
 
@@ -194,6 +194,7 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
                     child: Text(
                         widget.providerChooseEdu.listGrantContract[1],
                         textAlign: TextAlign.center,
+
                         style:
                             TextStyle(color: MyColors.appColorBlack())),
                   ),

@@ -6,13 +6,14 @@ import 'package:flutter/services.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 Widget captchaGetPassport(
     {required BuildContext context,
       required ProviderProfile providerProfile}) {
   return Column(
     children: [
-      MyWidgets.robotoFontText(text: "Arfimetik amalni bajaring"),
+      MyWidgets.robotoFontText(text: "solve".tr()),
       const SizedBox(height: 2),
       Container(
         height: 50,
