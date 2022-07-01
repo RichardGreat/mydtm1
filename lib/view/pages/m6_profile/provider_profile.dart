@@ -154,6 +154,7 @@ class ProviderProfile extends ChangeNotifier {
           ModelPhoneChange.fromJson(jsonDecode(data));
       // ignore: use_build_context_synchronously
       pushNewScreen(context,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
           screen: SmsAutoFillUi(
               phoneNum: modelPhoneChange.data.phone.toString(),
               password: "",
@@ -246,6 +247,7 @@ class ProviderProfile extends ChangeNotifier {
 
       // ignore: use_build_context_synchronously
       pushNewScreen(context,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
           screen: SmsAutoFillUi(
               phoneNum: box.get("phoneNumber"),
               password: "",

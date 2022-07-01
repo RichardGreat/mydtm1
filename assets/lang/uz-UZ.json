@@ -196,6 +196,15 @@
   "passwordErase": "Pin kod o‘chirildi",
   "noInfoAbiturRuxsat": "Qabul jarayoni tugagandan so'ng bir hafta muddat ichida abituriyent ruxsatnomasini yuklab olishingiz mumkin bo'ladi",
   "noInfoAbiturResult": "Abituriyent test sinovida ishtirok etgan kuning ertasiga o‘z natijasini haqida ma'lumot olishi mumkin",
-  "infoNoDir": "Tanlovingizga mos yo'nalish boshqa mavjud emas"
+  "infoNoDir": "Tanlovingizga mos yo'nalish boshqa mavjud emas",
+  "pinKodEnterOrNew": "Dasturga kirish pin kodini o'chirish yoki boshqa yaratish",
+  "createPinKod": "Pin kod yaratish",
+  "addInvalid": "Nogironlik imtiyozini qo'shish",
+  "invalidGroup": "Nogironlik guruhi",
+  "invalidChooseGroup": "Nogironlik guruhi tanlang",
+  "invalid1": "Birinchi guruh",
+  "invalid2": "Ikkinchi guruh",
+  "dateInvalid": "Ammal qilish muddati",
+  "blind": "Ko'zi ojiz"
 }
 

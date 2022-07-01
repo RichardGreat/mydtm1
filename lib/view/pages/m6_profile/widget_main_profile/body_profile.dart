@@ -311,6 +311,7 @@ Widget bodyProfile(
           ListTile(
             onTap: () {
               pushNewScreen(context,
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
                   screen: LangChangeAll(providerProfile: providerProfile),
                   withNavBar: false);
             },
@@ -355,6 +356,7 @@ Widget bodyProfile(
                               box.delete("lockScreen");
 
                               pushNewScreenWithRouteSettings(context,
+                                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                   screen: EnterFirst(),
                                   settings: RouteSettings(),
                                   withNavBar: false);

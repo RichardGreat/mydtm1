@@ -92,6 +92,7 @@ Widget bodyChooseEdu({
                 if (checkFillSelected() && checkFillDir(index: index)) {
                   if (providerChooseEdu.boolCheckUseCertificateDataNot) {
                     pushNewScreen(context,
+                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
                         screen: SelectDirection(
                           providerChooseEdu: providerChooseEdu,
                           indexEduDir: int.parse(
@@ -100,6 +101,7 @@ Widget bodyChooseEdu({
                   } else {
                     if (providerChooseEdu.boolSetUserNationCert) {
                       pushNewScreen(context,
+                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
                           screen: SelectDirection(
                             providerChooseEdu: providerChooseEdu,
                             indexEduDir: int.parse(

@@ -91,7 +91,9 @@ Widget bodyAriza1(
       ),
     ),
     onTap: () {
-      pushNewScreen(context, screen: ArizaEnter(providerAriza: providerAriza));
+      pushNewScreen(context,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+          screen: ArizaEnter(providerAriza: providerAriza));
     },
   );
 }

@@ -215,6 +215,7 @@ class ProviderSms extends ChangeNotifier {
           ModelResetPassToken2.fromJson(jsonDecode(dataSms));
       // ignore: use_build_context_synchronously
       pushNewScreen(context,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
           screen: ChangePasswordInput(
               passResetToken: modelResetPassToken2.data.passwordResetToken));
       log(dataSms);
@@ -436,6 +437,7 @@ class ProviderSms extends ChangeNotifier {
         ProviderAriza providerAriza = ProviderAriza();
         // ignore: use_build_context_synchronously
         pushNewScreen(context,
+            pageTransitionAnimation: PageTransitionAnimation.cupertino,
             screen: MainMyStatement(
               numberParam: "2",
             ));

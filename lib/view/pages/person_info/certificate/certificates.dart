@@ -38,7 +38,9 @@ class _CertificatesState extends State<Certificates> {
         builder: (context, value, child) => WillPopScope(
           onWillPop: ()async{
             widget.funcState();
-            pushNewScreen(context, screen:CheckInformation(serviceName:  box.get("categoryName").toString()) );
+            pushNewScreen(
+
+                context, pageTransitionAnimation: PageTransitionAnimation.cupertino, screen:CheckInformation(serviceName:  box.get("categoryName").toString()) );
             return true;
           },
           child: Scaffold(

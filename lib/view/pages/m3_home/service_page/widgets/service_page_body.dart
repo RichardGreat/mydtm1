@@ -51,6 +51,7 @@ Widget servicePageBody(
                 if(serviceMainList.id.toString().trim() == "42") {
 
                     pushNewScreen(context,
+                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
                         screen: MainMyStatement(numberParam: "0"));
                   }
 

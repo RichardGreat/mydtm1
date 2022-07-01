@@ -15,8 +15,8 @@ PreferredSizeWidget appBarProfile(
   String getTextDialog() {
     return box.get("lockScreen").toString().length == 4 &&
             box.get("lockScreen").toString() != "null"
-        ? "Dasturga kirish parolini o'chirish yoki boshqa yaratish"
-        : "Pin kod yaratish";
+        ? "pinKodEnterOrNew".tr()
+        : "createPinKod".tr();
   }
 
   return AppBar(
@@ -55,6 +55,7 @@ PreferredSizeWidget appBarProfile(
                             onPressed: () {
                               Navigator.of(context).pop();
                               pushNewScreen(context,
+                                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                   screen: ScreenLockWindow(
                                       idScreenLockWindow: "1"),
                                   withNavBar: false);
@@ -74,13 +75,14 @@ PreferredSizeWidget appBarProfile(
                             onPressed: () {
                               Navigator.of(context).pop();
                               pushNewScreen(context,
+                                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                   screen: ScreenLockWindow(
                                       idScreenLockWindow: "2"),
                                   withNavBar: false);
                             },
+                            color: MyColors.appColorWhite(),
                             child: Text("Parolni o'chirish",
                                 style: TextStyle(color: Colors.black)),
-                            color: MyColors.appColorWhite(),
                           ),
                       ],
                     ),
@@ -95,6 +97,7 @@ PreferredSizeWidget appBarProfile(
                       onPressed: () {
                         Navigator.of(context).pop();
                         pushNewScreen(context,
+                            pageTransitionAnimation: PageTransitionAnimation.cupertino,
                             screen:
                             ScreenLockWindow(idScreenLockWindow: "0"),
                             withNavBar: false);

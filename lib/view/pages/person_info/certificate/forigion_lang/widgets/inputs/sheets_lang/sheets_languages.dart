@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
-import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 modelGetLang(
     {required BuildContext context,
-      required ProviderCertificate providerCertificate,
-      required Function fff,
-      required String titleName
-    }) {
+    required ProviderCertificate providerCertificate,
+    required Function fff,
+    required String titleName}) {
   showModalBottomSheet<void>(
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
@@ -18,39 +15,48 @@ modelGetLang(
       barrierColor: Colors.black.withOpacity(0.2),
       context: context,
       builder: (_) {
-        return SheetGetSetLang(providerCertificate: providerCertificate, f:fff, titleName: titleName);
+        return SheetGetSetLang(
+            providerCertificate: providerCertificate,
+            f: fff,
+            titleName: titleName);
       });
 }
+
 // ignore: must_be_immutable
 class SheetGetSetLang extends StatefulWidget {
   ProviderCertificate providerCertificate;
   String titleName;
   Function f;
-  SheetGetSetLang({Key? key, required this.providerCertificate, required this.f, required this.titleName}) : super(key: key);
+
+  SheetGetSetLang(
+      {Key? key,
+      required this.providerCertificate,
+      required this.f,
+      required this.titleName})
+      : super(key: key);
 
   @override
   State<SheetGetSetLang> createState() => _SheetGetSetLangState();
 }
 
 class _SheetGetSetLangState extends State<SheetGetSetLang> {
-
-  Future getRegionName()async{
+  Future getRegionName() async {
     await widget.providerCertificate.getLanguage(context: context);
-    setState((){});
+    setState(() {});
   }
 
   @override
-  initState(){
-    getRegionName() ;
+  initState() {
+    getRegionName();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
         height: MediaQuery.of(context).size.height * 0.8,
         decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8)),
+            color: Colors.white, borderRadius: BorderRadius.circular(8)),
         child: Column(
           children: [
             const SizedBox(height: 10),
@@ -58,7 +64,6 @@ class _SheetGetSetLangState extends State<SheetGetSetLang> {
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
               padding: EdgeInsets.all(5),
-
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -108,15 +113,14 @@ class _SheetGetSetLangState extends State<SheetGetSetLang> {
                     //     ),
                     //   ),
                     // ),
-                    MyWidgets.robotoFontText(text: widget.titleName, textSize: 20,
-                    textFontWeight: FontWeight.bold
-                    ),
+                    MyWidgets.robotoFontText(
+                        text: widget.titleName,
+                        textSize: 20,
+                        textFontWeight: FontWeight.bold),
                     IconButton(
                         onPressed: () {
-                          widget.    providerCertificate
-                              .clearTextCerLang();
+                          widget.providerCertificate.clearTextCerLang();
                           Navigator.of(context).pop();
-
                         },
                         icon: const Icon(Icons.close))
                   ]),
@@ -124,24 +128,24 @@ class _SheetGetSetLangState extends State<SheetGetSetLang> {
             Expanded(
               child: ListView.builder(
                 itemCount:
-                widget.providerCertificate.listDataForeignLangTemp.length,
+                    widget.providerCertificate.listDataForeignLangTemp.length,
                 itemBuilder: (context, index) => GestureDetector(
                   child: Card(
                     margin: const EdgeInsets.all(8),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: MyWidgets.robotoFontText(
-                        text:   widget.providerCertificate
+                        text: widget.providerCertificate
                             .listDataForeignLangTemp[index].name,
                       ),
                     ),
                   ),
                   onTap: () {
-                    widget.   providerCertificate.setCertLang(
-                        distId:  widget. providerCertificate
+                    widget.providerCertificate.setCertLang(
+                        distId: widget.providerCertificate
                             .listDataForeignLangTemp[index].code
                             .toString(),
-                        distName:  widget. providerCertificate
+                        distName: widget.providerCertificate
                             .listDataForeignLangTemp[index].name);
                     widget.f();
                     Navigator.of(context).pop();

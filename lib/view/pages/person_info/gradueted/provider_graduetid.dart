@@ -632,6 +632,7 @@ class ProviderGraduated extends ChangeNotifier {
                   Navigator.of(context).pop();
               }else if(idWindowId == "0"){
                 pushNewScreen(context,
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
                     screen: Certificates(funcState: functions));
               }
 

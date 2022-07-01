@@ -62,6 +62,7 @@ class _MainMessagesState extends State<MainMessages> {
                             child: ListTile(
                               onTap: () {
                                 pushNewScreen(context,
+                                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                     screen: NewsSee(
                                         id: providerDtmNews
                                             .modelDtmNews2[index].id

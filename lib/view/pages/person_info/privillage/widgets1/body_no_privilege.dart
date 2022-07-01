@@ -18,8 +18,7 @@ Widget bodyNoPrivilege({required BuildContext context, required ProviderPrivileg
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
       const SizedBox(height: 20),
-      MyWidgets.robotoFontText(text: "privileges".tr(), textSize: 28),
-      const SizedBox(height: 15),
+
       Container(
         padding: const EdgeInsets.all(10),
 
@@ -56,6 +55,13 @@ Widget bodyNoPrivilege({required BuildContext context, required ProviderPrivileg
 
 
       ],),),
+
+        const SizedBox(height: 30),
+        MaterialButton(
+          color: MyColors.appColorWhite(),
+          height: 50,
+          minWidth: MediaQuery.of(context).size.width*0.7,
+          onPressed: (){}, child: Text("addInvalid".tr()),),
         const SizedBox(height: 30),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -86,6 +92,7 @@ Widget bodyNoPrivilege({required BuildContext context, required ProviderPrivileg
                         fontWeight: FontWeight.bold),
                     btnCancelOnPress: () {
                       pushNewScreen(context,
+                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
                           screen: CheckInformation(
                               serviceName: box.get("categoryName").toString()));
                     },
@@ -115,7 +122,7 @@ Widget bodyNoPrivilege({required BuildContext context, required ProviderPrivileg
             //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             //   child: Text("continue".tr(), style: TextStyle(fontWeight: FontWeight.w600, color: MyColors.appColorWhite())),),
           ],
-        )
+        ),
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.center,
         //   crossAxisAlignment: CrossAxisAlignment.center,
@@ -171,6 +178,8 @@ Widget bodyNoPrivilege({required BuildContext context, required ProviderPrivileg
         //     //   child: Text("continue".tr(), style: TextStyle(fontWeight: FontWeight.w600, color: MyColors.appColorWhite())),),
         //   ],
         // )
+
+
     ],),
   );
 }

@@ -213,7 +213,9 @@ class ProviderAddressInfo extends ChangeNotifier {
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
 
               btnCancelOnPress: () {
-            pushNewScreen(context, screen: Graduated(funcState: getActions,  windowIdGraduated: windowsIdAddress), withNavBar: false);
+            pushNewScreen(context,
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                screen: Graduated(funcState: getActions,  windowIdGraduated: windowsIdAddress), withNavBar: false);
           },
               btnCancelColor: MyColors.appColorBlue1(),
           btnCancelText: "continue".tr(),)

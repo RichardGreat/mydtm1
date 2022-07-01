@@ -12,7 +12,7 @@ class MyWidgets {
 
   Future goEnterFirst({required BuildContext context}) async {
     box.delete("token");
-    pushNewScreen(context, screen: EnterFirst(), withNavBar: false);
+    pushNewScreen(context,   pageTransitionAnimation: PageTransitionAnimation.cupertino, screen: EnterFirst(), withNavBar: false);
   }
 
   static Widget loaderDownload({required BuildContext context}){
@@ -111,6 +111,7 @@ class MyWidgets {
             context: context,
             dialogType: DialogType.NO_HEADER,
             animType: AnimType.BOTTOMSLIDE,
+            dismissOnTouchOutside: false,
             title: "DTM",
             desc: valueText,
             titleTextStyle: TextStyle(
@@ -128,6 +129,7 @@ class MyWidgets {
             context: context,
             dialogType: DialogType.NO_HEADER,
             animType: AnimType.BOTTOMSLIDE,
+            dismissOnTouchOutside: false,
             title: "DTM",
             desc: valueText,
             titleTextStyle: TextStyle(

@@ -67,6 +67,7 @@ class _AfertaState extends State<Aferta> {
             {
             Navigator.of(context).pop(),
             pushNewScreen(
+
               context,
               screen: ChooseEdu(funcState: widget.function),
               withNavBar: false,

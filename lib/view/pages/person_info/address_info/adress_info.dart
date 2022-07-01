@@ -40,8 +40,8 @@ class _AddressInfoState extends State<AddressInfo> {
             onWillPop: ()async{
          if(widget.addressWindowId == "0") {
                 await widget.funcState();
-
                 pushNewScreen(context,
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
                     screen: CheckInformation(
                         serviceName: box.get("categoryName").toString()));
               }else if(widget.addressWindowId == "1"){

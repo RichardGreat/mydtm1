@@ -76,6 +76,7 @@ Widget notInfoPerson(
                       ? MaterialButton(
                           onPressed: () {
                             pushNewScreen(context,
+                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                 screen: EnterFirst(), withNavBar: false);
                           },
                           height: 50,

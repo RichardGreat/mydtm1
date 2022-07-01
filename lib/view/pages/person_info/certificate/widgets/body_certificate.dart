@@ -34,6 +34,7 @@ Widget bodyCertificate(
                                     1
                                 ? {}
                                 : pushNewScreen(context,
+                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                     screen: ForeignLanguageAdd(
                                       providerCertificate: providerCertificate,
                                       function: func,
@@ -275,6 +276,7 @@ Widget bodyCertificate(
                       MaterialButton(
                         onPressed: () {
                           pushNewScreen(context,
+                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
                               screen: Privilege(funcState: func),
                               withNavBar: false);
                         },

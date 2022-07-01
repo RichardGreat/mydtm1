@@ -884,6 +884,7 @@ class ProviderChooseEdu extends ChangeNotifier {
       log(modelSms2.data.smsId.toString());
 
       pushNewScreen(context,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
           screen: SmsAutoFillUi(
               phoneNum: modelSms2.data.phone.toString(),
               password: "123",

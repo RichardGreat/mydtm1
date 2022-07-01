@@ -74,7 +74,9 @@ class ProviderMainHome extends ChangeNotifier {
         } else if (modelCheckMobileVersion.data.status.toString() == "3") {
           box.put("updateMobileText", modelCheckMobileVersion.data.versionText);
           // ignore: use_build_context_synchronously
-          pushNewScreen(context, screen: UpdateMust(), withNavBar: false);
+          pushNewScreen(context,
+              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              screen: UpdateMust(), withNavBar: false);
         }
       }
     } catch (e) {
@@ -162,6 +164,7 @@ class ProviderMainHome extends ChangeNotifier {
       required ServiceMainList serviceMainList}) async {
     pushNewScreen(
       context,
+
       screen: ServicePage(
         serviceMainList: serviceMainList,
       ),

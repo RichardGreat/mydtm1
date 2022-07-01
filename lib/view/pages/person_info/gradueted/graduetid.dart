@@ -50,6 +50,7 @@ class _GraduatedState extends State<Graduated> {
             if (widget.windowIdGraduated == "0") {
               widget.funcState();
               pushNewScreen(context,
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
                   screen: CheckInformation(
                       serviceName: box.get("categoryName").toString()));
             } else if (widget.windowIdGraduated == "1") {
@@ -99,11 +100,6 @@ class _GraduatedState extends State<Graduated> {
                             const SizedBox(height: 4),
                             GestureDetector(
                               onTap: () {
-                                log(providerGraduated.graduatedEduTypeId);
-                                log(providerGraduated.graduatedCountryName);
-                                log(providerGraduated
-                                    .txtControllerGraduatedName.text);
-
                                 if (providerGraduated.graduatedEduTypeId ==
                                         "4" &&
                                     providerGraduated

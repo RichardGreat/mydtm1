@@ -85,6 +85,7 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
                           MaterialButton(
                             onPressed: () {
                               pushNewScreen(context,
+                                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                   screen: ChooseEdu(funcState: getBoshFunc));
                             },
                             height: 50,
