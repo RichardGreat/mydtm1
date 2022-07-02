@@ -191,7 +191,17 @@
   "deletePin": "Введите действующий пин-код для удаления пароля",
   "invalidPassword": "В пароле ошибка попробуйте снова",
   "passwordErase": "PIN-код удален",
-  "noInfoAbiturRuxsat": "Qabul jarayoni tugagandan so'ng bir hafta muddat ichida abituriyent ruxsatnomasini yuklab olishingiz mumkin bo'ladi",
-  "noInfoAbiturResult": "Abituriyent test sinovida ishtirok etgan kuning ertasiga o‘z natijasini haqida ma'lumot olishi mumkin",
-  "infoNoDir": "Tanlovingizga mos yo'nalish boshqa mavjud emas"
+  "noInfoAbiturRuxsat": "Вы сможете скачать пропуск абитуриента в течение одной недели после окончания процесса приема",
+  "noInfoAbiturResult": "Информацию о своем результате абитуриент может получить на следующий день после участия в тестировании.",
+  "infoNoDir": "Подходящего направления по вашему выбору больше не существует.",
+  "pinKodEnterOrNew": "Удалите или создайте другой PIN-код для доступа к программе",
+  "createPinKod": "Создать пин-код",
+  "infoFillError": "При вводе данных произошла ошибка. Повторите попытку.",
+  "addInvalid": "Справка об инвалидности",
+  "invalidGroup": "Группа инвалидности",
+  "invalidChooseGroup": "Группа инвалидности",
+  "invalid1": "1-я группа",
+  "invalid2": "2-я группа",
+  "dateInvalid": "Срок действия",
+  "blind": "Слепой"
 }

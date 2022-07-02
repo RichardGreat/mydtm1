@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
-import 'package:mydtm/view/pages/person_info/privillage/add_invalid/add_invalid.dart';
 import 'package:mydtm/view/pages/person_info/privillage/provider_privilege.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';

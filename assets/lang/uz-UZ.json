@@ -199,12 +199,11 @@
   "infoNoDir": "Tanlovingizga mos yo'nalish boshqa mavjud emas",
   "pinKodEnterOrNew": "Dasturga kirish pin kodini o'chirish yoki boshqa yaratish",
   "createPinKod": "Pin kod yaratish",
-  "addInvalid": "Nogironlik imtiyozini qo'shish",
+  "addInvalid": "Nogironlik to‘g‘risida ma'lumotnoma",
   "invalidGroup": "Nogironlik guruhi",
   "invalidChooseGroup": "Nogironlik guruhi tanlang",
   "invalid1": "Birinchi guruh",
   "invalid2": "Ikkinchi guruh",
-  "dateInvalid": "Ammal qilish muddati",
+  "dateInvalid": "Amal qilish muddati",
   "blind": "Ko'zi ojiz"
 }
-

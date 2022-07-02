@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:mydtm/data/internet_connections/main_url.dart';
 
 class NetworkCheckVersions {
 
@@ -8,7 +9,8 @@ class NetworkCheckVersions {
     var dio = Dio();
     Response response;
     response = await dio.get(
-      "https://api.dtm.uz/home/version",
+      "${MainUrl.mainUrls}/home/version",
+      // "https://api.dtm.uz/home/version",
     );
     return jsonEncode(response.data);
   }

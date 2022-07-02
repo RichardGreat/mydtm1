@@ -186,7 +186,6 @@
   "testSubjects": "Test tapsırılatuǵın pánler kompleksi",
   "serviceWorkSoon": "Xızmet jaqın arada iske túsedi",
   "logOut1": "Shiǵiw",
-
   "newPassword": "Jańa pin kod kiritiń",
   "pinPassword": "Pin kod kiritiń",
   "fingerScanner": "Barmaq skaneri",
@@ -197,5 +196,14 @@
   "passwordErase": "Pin kod óshirildi",
   "noInfoAbiturRuxsat": "Qabıllaw processi juwmaqlanǵannan soń bir hápte múddet ishinde abiturient ruxsatnamasın júklep alıw múmkin boladı",
   "noInfoAbiturResult": "Abiturient test sınaǵında qatnasqan kúnniń ertesine óz nátiyjesi haqqında maǵlıwmat alıwı múmkin",
-  "infoNoDir": "Tańlawıńızǵa mas baǵdar basqa joq"
+  "infoNoDir": "Tańlawıńızǵa mas baǵdar basqa joq",
+  "pinKodEnterOrNew": "Dasturga kirish pin kodini o'chirish yoki tahrirlash",
+  "createPinKod": "Pin kod yaratish",
+  "addInvalid": "Nogironlik to‘g‘risida ma'lumotnoma",
+  "invalidGroup": "Mayipliliq topari",
+  "invalidChooseGroup": "Nogironlik guruhi tanlang",
+  "invalid1": "Birinshi topar",
+  "invalid2": "Ikinshi topar",
+  "dateInvalid": "Ámel qiliw múddeti",
+  "blind": "Ko'zi ojiz"
 }

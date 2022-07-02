@@ -58,7 +58,7 @@ class _SheetGetSetLangState extends State<SheetGetSetLang> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     MyWidgets.robotoFontText(
-                        text: "invalid1".tr(),
+                        text: "invalidChooseGroup".tr(),
                         textSize: 20,
                         textFontWeight: FontWeight.w500),
                     IconButton(
@@ -79,7 +79,7 @@ class _SheetGetSetLangState extends State<SheetGetSetLang> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                    color: MyColors.appColorWhite(),
+                    color: MyColors.appColorGrey100(),
                     borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(
@@ -107,7 +107,7 @@ class _SheetGetSetLangState extends State<SheetGetSetLang> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                    color: MyColors.appColorWhite(),
+                    color: MyColors.appColorGrey100(),
                     borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(

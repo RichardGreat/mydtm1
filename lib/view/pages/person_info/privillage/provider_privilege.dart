@@ -12,15 +12,23 @@ class ProviderPrivilege extends ChangeNotifier{
   List<DataCheckPrivilege> listCheckPrivilege = [];
   bool boolGetDataPrivilege = false;
   bool boolPrivilegeNot = false;
+  bool boolAddInvalide = false;
+  bool boolEditInvalide = false;
 
   Future getPrivilege()async{
     try{
       boolGetDataPrivilege = false;
       String dataPrivilege = await networkPrivilege.getPrivilege();
-    ModelCheckPrivilege modelCheckPrivilege = ModelCheckPrivilege.fromJson(jsonDecode(dataPrivilege));
+      ModelCheckPrivilege modelCheckPrivilege = ModelCheckPrivilege.fromJson(jsonDecode(dataPrivilege));
 
     log(dataPrivilege);
     listCheckPrivilege = modelCheckPrivilege.data;
+    for(var lis in listCheckPrivilege){
+      if(lis.typeId.toString() == "2"){
+        boolAddInvalide = true;
+        notifyListeners();
+      }
+    }
       boolGetDataPrivilege = true;
       notifyListeners();
     }catch(e){

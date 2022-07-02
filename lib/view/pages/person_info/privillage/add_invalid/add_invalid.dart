@@ -194,8 +194,9 @@ class _InvalidAddState extends State<InvalidAdd> {
                             const SizedBox(height: 30),
                             MaterialButton(
                                 onPressed: () {
-                                  if (providerAddInvalide.invalidType == "1" ||
-                                      providerAddInvalide.invalidType == "2" &&
+
+                                  providerAddInvalide.formKeyInvalide.currentState!.validate();
+                                  if (providerAddInvalide.invalidType!= "0"  &&
                                           providerAddInvalide
                                               .formKeyInvalide.currentState!
                                               .validate() &&

@@ -10,7 +10,7 @@ class NetworkInvalidePrivilege {
   Future<String> setInvalide({required String dataInvalid}) async {
     var dio = Dio();
     Response response;
-    response = await dio.post("https://api.dtm.uz/v1/imtiyoz/set-invalid",
+    response = await dio.post("${MainUrl.mainUrls}/v1/imtiyoz/set-invalid",
         data: dataInvalid,
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
 
