@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
 import 'package:mydtm/view/pages/person_info/privillage/provider_privilege.dart';
-import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -17,7 +16,7 @@ Widget bodyNoPrivilege({required BuildContext context, required ProviderPrivileg
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-      const SizedBox(height: 20),
+
 
       Container(
         padding: const EdgeInsets.all(10),
@@ -56,20 +55,15 @@ Widget bodyNoPrivilege({required BuildContext context, required ProviderPrivileg
 
       ],),),
 
-        const SizedBox(height: 30),
-        MaterialButton(
-          color: MyColors.appColorWhite(),
-          height: 50,
-          minWidth: MediaQuery.of(context).size.width*0.7,
-          onPressed: (){}, child: Text("addInvalid".tr()),),
-        const SizedBox(height: 30),
+        const SizedBox(height: 35),
+
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             MaterialButton(
               height: 50,
-              minWidth: MediaQuery.of(context).size.width * 0.7,
+              minWidth: MediaQuery.of(context).size.width * 0.85,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
               color: MyColors.appColorBlue1(),
@@ -99,87 +93,10 @@ Widget bodyNoPrivilege({required BuildContext context, required ProviderPrivileg
                     btnCancelColor: MyColors.appColorBlue1(),
                     btnCancelText: "OK")
                     .show();
-                // providerCheckInformation.boolAfertaButton
-                //     ? {
-                //         Navigator.of(context).pop(),
-                //         pushNewScreen(
-                //           context,
-                //           screen: ChooseEdu(funcState: function),
-                //           withNavBar: false,
-                //           pageTransitionAnimation:
-                //               PageTransitionAnimation.cupertino,
-                //         ),
-                //       }
-                //     : {};
               },
             ),
-            // MaterialButton(onPressed: (){
-            //   // pushNewScreen(context, screen: Privilege(funcState: func));
-            // },
-            //   height: 50,
-            //   minWidth: MediaQuery.of(context).size.width*0.8,
-            //   color: MyColors.appColorBlue1(),
-            //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            //   child: Text("continue".tr(), style: TextStyle(fontWeight: FontWeight.w600, color: MyColors.appColorWhite())),),
           ],
         ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   crossAxisAlignment: CrossAxisAlignment.center,
-        //   children: [
-        //     MaterialButton(
-        //       height: 40,
-        //       minWidth: double.infinity,
-        //       shape: RoundedRectangleBorder(
-        //           borderRadius: BorderRadius.circular(5)),
-        //       color: MyColors.appColorBlue1(),
-        //       child: Text("afertaAccept".tr(),
-        //           style: TextStyle(color: MyColors.appColorWhite())),
-        //       onPressed: () {
-        //         AwesomeDialog(
-        //             context: context,
-        //             dialogType: DialogType.NO_HEADER,
-        //             animType: AnimType.BOTTOMSLIDE,
-        //             title: "DTM",
-        //             desc: "chooseDirection".tr(),
-        //             titleTextStyle: TextStyle(
-        //                 color: MyColors.appColorBlue1(),
-        //                 fontSize: 24,
-        //                 fontWeight: FontWeight.bold),
-        //             descTextStyle: TextStyle(
-        //                 color: MyColors.appColorBlack(),
-        //                 fontWeight: FontWeight.bold),
-        //             btnCancelOnPress: () {
-        //               Navigator.of(context).pop();
-        //             },
-        //             btnCancelText: "OK")
-        //             .show();
-        //         // providerCheckInformation.boolAfertaButton
-        //         //     ? {
-        //         //         Navigator.of(context).pop(),
-        //         //         pushNewScreen(
-        //         //           context,
-        //         //           screen: ChooseEdu(funcState: function),
-        //         //           withNavBar: false,
-        //         //           pageTransitionAnimation:
-        //         //               PageTransitionAnimation.cupertino,
-        //         //         ),
-        //         //       }
-        //         //     : {};
-        //       },
-        //     ),
-        //     // MaterialButton(onPressed: (){
-        //     //   // pushNewScreen(context, screen: Privilege(funcState: func));
-        //     // },
-        //     //   height: 50,
-        //     //   minWidth: MediaQuery.of(context).size.width*0.8,
-        //     //   color: MyColors.appColorBlue1(),
-        //     //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        //     //   child: Text("continue".tr(), style: TextStyle(fontWeight: FontWeight.w600, color: MyColors.appColorWhite())),),
-        //   ],
-        // )
-
-
     ],),
   );
 }

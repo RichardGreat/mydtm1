@@ -92,6 +92,7 @@ class ProviderAddInvalide extends ChangeNotifier{
             color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
         btnCancelOnPress: () {
           Navigator.of(context).pop();
+          Navigator.of(context).pop();
 
         },
         btnCancelColor: MyColors.appColorBlue1(),

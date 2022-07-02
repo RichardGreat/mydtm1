@@ -28,6 +28,7 @@ class ProviderAriza extends ChangeNotifier {
       String dataAriza = await networkArizaCheck.getCheckAriza();
       ModelArizaQadVaraqa modelArizaQadVaraqa =
           ModelArizaQadVaraqa.fromJson(jsonDecode(dataAriza));
+      log(dataAriza);
       DataArizaQadVaraqa dataArizaQadVaraqa = modelArizaQadVaraqa.data;
       model = dataArizaQadVaraqa.model;
       if(model.invoice == null){

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:mydtm/data/internet_connections/person_info/privilege_check/invalid_delete.dart';
 import 'package:mydtm/data/internet_connections/person_info/privilege_check/privillege_check.dart';
 import 'package:mydtm/data/model_parse/person_info/privilege_model/invalid.dart';
 import 'package:mydtm/data/model_parse/person_info/privilege_model/privilege_model1.dart';
@@ -28,6 +29,10 @@ class ProviderPrivilege extends ChangeNotifier{
         boolAddInvalide = true;
         notifyListeners();
       }
+      if(lis.status.toString() == "7"){
+        boolEditInvalide = true;
+        notifyListeners();
+      }
     }
       boolGetDataPrivilege = true;
       notifyListeners();
@@ -39,6 +44,15 @@ class ProviderPrivilege extends ChangeNotifier{
       log(e.toString());
     }
 
+  }
+
+  NetworkInvalideDelete networkInvalideDelete = NetworkInvalideDelete();
+  Future deleteInvalid({required BuildContext context})async{
+    try{
+      String dataDelete = await networkInvalideDelete.deleteInvalide();
+      Navigator.of(context).pop();
+      print(dataDelete);
+    }catch(e){}
   }
 
 }

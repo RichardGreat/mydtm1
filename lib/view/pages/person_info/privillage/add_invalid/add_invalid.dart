@@ -27,7 +27,11 @@ class _InvalidAddState extends State<InvalidAdd> {
       create: (context) => providerAddInvalide,
       child: Consumer<ProviderAddInvalide>(
           builder: (context, value, child) => Form(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+                autovalidateMode: AutovalidateMode.onUserInteraction,onWillPop: ()async{
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  return true;
+          },
                 key: providerAddInvalide.formKeyInvalide,
                 child: Scaffold(
                   backgroundColor: MyColors.appColorGrey100(),
@@ -95,7 +99,9 @@ class _InvalidAddState extends State<InvalidAdd> {
                                 prefix: const SizedBox(width: 5),
                                 suffixIcon: GestureDetector(
                                   child: const Icon(Icons.clear, size: 12),
-                                  onTap: () {},
+                                  onTap: () {
+                                    providerAddInvalide.textEditingController.clear();
+                                  },
                                 ),
                                 contentPadding: const EdgeInsets.all(8),
                                 fillColor: Colors.white,
@@ -194,18 +200,17 @@ class _InvalidAddState extends State<InvalidAdd> {
                             const SizedBox(height: 30),
                             MaterialButton(
                                 onPressed: () {
-
-                                  providerAddInvalide.formKeyInvalide.currentState!.validate();
-                                  if (providerAddInvalide.invalidType!= "0"  &&
-                                          providerAddInvalide
-                                              .formKeyInvalide.currentState!
-                                              .validate() &&
-                                          providerAddInvalide
-                                                  .invalidDate1.length >
-                                              6 &&
-                                          providerAddInvalide
-                                                  .invalidDate2.length >
-                                              6) {
+                                  providerAddInvalide
+                                      .formKeyInvalide.currentState!
+                                      .validate();
+                                  if (providerAddInvalide.invalidType != "0" &&
+                                      providerAddInvalide.textEditingController
+                                              .text.toString().trim().length >
+                                          6 &&
+                                      providerAddInvalide.invalidDate1.length >
+                                          6 &&
+                                      providerAddInvalide.invalidDate2.length >
+                                          6) {
                                     providerAddInvalide.sendServer(
                                         context: context);
                                   } else {

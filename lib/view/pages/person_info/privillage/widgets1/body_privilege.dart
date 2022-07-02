@@ -1,8 +1,10 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
+import 'package:mydtm/view/pages/person_info/privillage/add_invalid/add_invalid.dart';
 import 'package:mydtm/view/pages/person_info/privillage/provider_privilege.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -19,7 +21,6 @@ Widget bodyPrivilege({
       decoration: BoxDecoration(color: MyColors.appColorGrey100()),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const SizedBox(height: 20),
-
         Expanded(
           child: ListView.builder(
             itemCount: providerPrivilege.listCheckPrivilege.length,
@@ -90,12 +91,73 @@ Widget bodyPrivilege({
                             ],
                           ),
                         ]),
+                    providerPrivilege.listCheckPrivilege[index].typeId
+                                    .toString() ==
+                                "2" &&
+                            providerPrivilege.listCheckPrivilege[index].status
+                                    .toString() ==
+                                "7"
+                        ? const Divider()
+                        : const SizedBox.shrink(),
+                    providerPrivilege.listCheckPrivilege[index].typeId
+                                    .toString() ==
+                                "2" &&
+                            providerPrivilege.listCheckPrivilege[index].status
+                                    .toString() ==
+                                "7"
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                                GestureDetector(
+                                  onTap:(){
+                                    pushNewScreen(context, screen: InvalidAdd(),
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                      withNavBar: false);
+                                    },
+                                  child: Icon(Icons.edit,
+                                      color: MyColors.appColorBlue1()),
+                                ),
+                                GestureDetector(
+                                  onTap:(){
+
+                                    AwesomeDialog(
+                                        context: context,
+                                        dialogType: DialogType.NO_HEADER,
+                                        animType: AnimType.BOTTOMSLIDE,
+                                        dismissOnTouchOutside: false,
+                                        title: "DTM",
+                                        desc: "valueText",
+                                        titleTextStyle: TextStyle(
+                                            color: MyColors.appColorBlue1(),
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold),
+                                        descTextStyle: TextStyle(
+                                            color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+                                        btnOkOnPress: (){
+                                          providerPrivilege.deleteInvalid(context: context);
+                                        },
+                                        btnCancelOnPress: () {},
+
+                                        btnOkColor: MyColors.appColorGrey100(),
+                                        btnCancelColor: MyColors.appColorBlue1(),
+
+                                        btnOkText: "yes".tr(),buttonsTextStyle: TextStyle(color: MyColors.appColorBlack()),
+                                        btnCancelText: "no".tr())
+                                        .show();
+
+
+
+                                  },
+                                  child: Icon(Icons.delete_forever,
+                                      color: Colors.red.shade500),
+                                ),
+                              ])
+                        : SizedBox.shrink(),
                   ],
                 )),
           ),
         ),
         const SizedBox(height: 30),
-
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -124,19 +186,19 @@ Widget bodyPrivilege({
                             fontWeight: FontWeight.bold),
                         btnCancelOnPress: () {
                           pushNewScreen(context,
-                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                              pageTransitionAnimation:
+                                  PageTransitionAnimation.cupertino,
                               screen: CheckInformation(
-                                  serviceName: box.get("categoryName").toString()));
+                                  serviceName:
+                                      box.get("categoryName").toString()));
                         },
                         btnCancelColor: MyColors.appColorBlue1(),
                         btnCancelText: "OK")
                     .show();
-
               },
             ),
-
           ],
-        )
+        ),
       ]),
     );
   } else {
