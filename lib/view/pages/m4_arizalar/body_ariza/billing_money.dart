@@ -30,11 +30,13 @@ Widget infoMoneyBilling(
           children: [
             ListTile(
                 title: Text(
+
                   "numberInvoice".tr(),
                   style: TextStyle(color: MyColors.appColorBlack()),
                 ),
                 onTap: () {},
-                trailing: Text(
+                trailing: SelectableText(
+                      
                   providerAriza.model.invoice.toString(),
                   style: TextStyle(
                       color: MyColors.appColorBlack(),
@@ -63,7 +65,7 @@ Widget infoMoneyBilling(
               ),
             ),
             ListTile(
-                title: Text("balance".tr()),
+                title: Text("balance".tr(), ),
                 onTap: () {},
                 trailing:
                     Text("${providerAriza.model.balance.toString()}  So'm", style: TextStyle(fontWeight: FontWeight.w500, color: MyColors.appColorBlack()), ) ),

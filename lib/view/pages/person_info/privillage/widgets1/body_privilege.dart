@@ -152,7 +152,7 @@ Widget bodyPrivilege({
                                       color: Colors.red.shade500),
                                 ),
                               ])
-                        : SizedBox.shrink(),
+                        : const SizedBox.shrink(),
                   ],
                 )),
           ),

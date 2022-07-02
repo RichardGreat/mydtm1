@@ -187,6 +187,7 @@ Widget bodyProfile(
             ),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
+              size: 16,
               color: MyColors.appColorGrey400(),
             ),
           ),
@@ -214,7 +215,9 @@ Widget bodyProfile(
               text: "addressAlways".tr(),
             ),
             trailing: Icon(
+
               Icons.arrow_forward_ios_rounded,
+              size: 16,
               color: MyColors.appColorGrey400(),
             ),
           ),
@@ -234,15 +237,18 @@ Widget bodyProfile(
               }
             },
             leading: Icon(
+
               Icons.school,
+              size: 16,
               color: MyColors.appColorBlue1(),
-              size: 24,
+
             ),
             title: MyWidgets.robotoFontText(
               text: "schoolInfo".tr(),
             ),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
+              size: 16,
               color: MyColors.appColorGrey400(),
             ),
           ),
@@ -259,8 +265,9 @@ Widget bodyProfile(
             },
             leading: Icon(
               Icons.phone,
+              size: 16,
               color: MyColors.appColorBlue1(),
-              size: 24,
+
             ),
             subtitle: MyWidgets.robotoFontText(
                 text: box.get("phoneNumber").toString(),
@@ -272,6 +279,7 @@ Widget bodyProfile(
             ),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
+              size: 16,
               color: MyColors.appColorGrey400(),
             ),
           ),
@@ -292,7 +300,7 @@ Widget bodyProfile(
             leading: Icon(
               Icons.lock,
               color: MyColors.appColorBlue1(),
-              size: 24,
+              size: 16,
             ),
             title: MyWidgets.robotoFontText(text: "changePassport".tr()),
             subtitle: MyWidgets.robotoFontText(
@@ -302,6 +310,7 @@ Widget bodyProfile(
                 textFontWeight: FontWeight.w100),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
+              size: 16,
               color: MyColors.appColorGrey400(),
             ),
           ),
@@ -324,6 +333,7 @@ Widget bodyProfile(
             subtitle: myText(),
             trailing: Icon(
               Icons.arrow_forward_ios_rounded,
+              size: 16,
               color: MyColors.appColorGrey400(),
             ),
           ),
@@ -376,7 +386,9 @@ Widget bodyProfile(
                   ),
                   title: MyWidgets.robotoFontText(text: "logOut1".tr()),
                   trailing: Icon(
+
                     Icons.arrow_forward_ios_rounded,
+                    size: 16,
                     color: MyColors.appColorGrey400(),
                   ),
                 )
