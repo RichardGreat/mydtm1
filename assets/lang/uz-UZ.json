@@ -205,5 +205,6 @@
   "invalid1": "Birinchi guruh",
   "invalid2": "Ikkinchi guruh",
   "dateInvalid": "Amal qilish muddati",
-  "blind": "Ko'zi ojiz"
+  "blind": "Ko'zi ojiz",
+  "deleteInfoInvalid": "Ma'lumotni o'chirishni xohlaysizmi?"
 }

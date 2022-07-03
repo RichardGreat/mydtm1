@@ -35,7 +35,7 @@ class _LangGraphicChooseTestState extends State<LangGraphicChooseTest> {
   //   setState(() {});
   // }
 
-  List<String> listLangGraphic =["Kirill", "Lotin"];
+  List<String> listLangGraphic =["Lotin", "Kirill", ];
 
 
   @override
@@ -68,7 +68,7 @@ class _LangGraphicChooseTestState extends State<LangGraphicChooseTest> {
                       ),
                     ),
                     onTap: () {
-                      widget.providerChooseEdu.setLanguageGraphic(name: listLangGraphic[index], id: index.toString());
+                      widget.providerChooseEdu.setLanguageGraphic(name: listLangGraphic[index].toString(), id:listLangGraphic[index].toString() == "Lotin"?"1":"0");
                       // widget.providerChooseEdu.setLanguage(
                       //     name: widget.providerChooseEdu
                       //         .listLangEduChooseTestTemp[index].name,

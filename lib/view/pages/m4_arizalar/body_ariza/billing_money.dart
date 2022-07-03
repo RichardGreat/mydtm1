@@ -36,7 +36,7 @@ Widget infoMoneyBilling(
                 ),
                 onTap: () {},
                 trailing: SelectableText(
-                      
+
                   providerAriza.model.invoice.toString(),
                   style: TextStyle(
                       color: MyColors.appColorBlack(),
