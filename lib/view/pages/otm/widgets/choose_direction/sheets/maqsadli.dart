@@ -55,77 +55,7 @@ class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
             ),
             MyWidgets.robotoFontText(
                 text: "targetSelection".tr(), textSize: 25),
-            const SizedBox(height: 10),
-            // Container(
-            //   height: 50,
-            //   padding:  EdgeInsets.all(4),
-            //   decoration: BoxDecoration(
-            //       color: MyColors.appColorWhite(),
-            //       borderRadius: BorderRadius.circular(10)),
-            //   child: SizedBox(
-            //     height: 50,
-            //     width: MediaQuery.of(context).size.width *0.8,
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       crossAxisAlignment: CrossAxisAlignment.center,
-            //       children: [
-            //         SizedBox(
-            //           width: MediaQuery.of(context).size.width *0.4,
-            //           child: MaterialButton(
-            //             elevation: 0,
-            //             height: 45,
-            //             onPressed: () {
-            //               setState(() {
-            //                 indexValue = 0;
-            //               });
-            //             },
-            //             color: indexValue == 0
-            //                 ? MyColors.appColorWhite()
-            //                 : MyColors.appColorBlue1(),
-            //             shape: const RoundedRectangleBorder(
-            //                 borderRadius: BorderRadius.only(
-            //               topLeft: Radius.circular(10),
-            //               bottomLeft: Radius.circular(10),
-            //             )),
-            //             child: Text("targeted".tr(),
-            //                 style: TextStyle(
-            //                     color: indexValue != 0
-            //                         ? MyColors.appColorWhite()
-            //                         : MyColors.appColorBlue1())),
-            //           ),
-            //         ),
-            //         SizedBox(
-            //           width: MediaQuery.of(context).size.width *0.4,
-            //           child: MaterialButton(
-            //             elevation: 0,
-            //               height: 45,
-            //               color: indexValue == 1
-            //                   ? MyColors.appColorWhite()
-            //                   : MyColors.appColorBlue1(),
-            //               shape: const RoundedRectangleBorder(
-            //                 borderRadius: BorderRadius.only(
-            //                   topRight: Radius.circular(10),
-            //                   bottomRight: Radius.circular(10),
-            //                 ),
-            //               ),
-            //               onPressed: () {
-            //                 setState(() {
-            //                   indexValue = 1;
-            //                 });
-            //               },
-            //               child: Text("aimless".tr(),
-            //                   textAlign: TextAlign.center,
-            //                   style: TextStyle(
-            //                     color: indexValue != 1
-            //                         ? MyColors.appColorWhite()
-            //                         : MyColors.appColorBlue1(),
-            //                   ))),
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.52,
               child:ListView.builder(
@@ -153,7 +83,7 @@ class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
                       color: MyColors.appColorWhite(),
                       onPressed: () {
                         widget.providerChooseEdu.setMaqsadli(
-                            id: "0",
+                            id: "1",
                             name: widget.providerChooseEdu.listmaqsadli[0]);
                         Navigator.of(context).pop();
                       },
@@ -176,7 +106,7 @@ class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
                           borderRadius: BorderRadius.circular(8)),
                       onPressed: () {
                         widget.providerChooseEdu.setMaqsadli(
-                            id: "1",
+                            id: "0",
                             name: widget.providerChooseEdu.listmaqsadli[1]);
                         Navigator.of(context).pop();
                       },

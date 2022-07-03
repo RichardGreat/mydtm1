@@ -78,11 +78,7 @@ Widget chooseDirect(
             children: [
 
               SizedBox(
-
                 width: MediaQuery.of(context).size.width*0.6,
-
-
-
                 child: Text(
                   listDirection[1],
                   softWrap: true,

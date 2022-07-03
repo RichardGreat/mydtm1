@@ -161,7 +161,7 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
                     color: MyColors.appColorWhite(),
                     onPressed: () {
                       widget.providerChooseEdu.setGrantContract(
-                          id: "0",
+                          id: "1",
                           name: widget
                               .providerChooseEdu.listGrantContract[0]);
                       Navigator.of(context).pop();
@@ -186,7 +186,7 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
                         borderRadius: BorderRadius.circular(8)),
                     onPressed: () {
                       widget.providerChooseEdu.setGrantContract(
-                          id: "1",
+                          id: "0",
                           name: widget
                               .providerChooseEdu.listGrantContract[1]);
                       Navigator.of(context).pop();

@@ -37,7 +37,7 @@ class _LangGraphicChooseTestState extends State<LangGraphicChooseTest> {
   //   setState(() {});
   // }
 
-  List<String> listLangGraphic =["Lotin", "Kirill"];
+  List<String> listLangGraphic =["Kirill", "Lotin"];
 
 
   @override
