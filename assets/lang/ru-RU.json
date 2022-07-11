@@ -59,7 +59,7 @@
   "personInformation": "Личная информация",
   "addressAlways": "Место постоянной прописки",
   "schoolInfo": "Учебное заведение",
-  "certificates":"Сертификаты",
+  "certificates":"Сертификати",
   "privileges": "Льготы",
   "noPrivileges": "Нет никаких льгот",
   "noPrivilegesText": "Если у абитуриента нет льготы, абитуриент должен обратиться в министерство или ведомство, предоставившее льготу.",
@@ -203,11 +203,5 @@
   "invalid1": "1-я группа",
   "invalid2": "2-я группа",
   "dateInvalid": "Срок действия",
-  "blind": "Слепой",
-  "updateGraduetedInfo": "Обновление",
-  "deletePrivilage":"Удалить льготу",
-  "loginPasswordError": "Номер телефона или пароль был введен неправильно.",
-  "captchaError": "Неправильный проверочный код.",
-  "textGraduatedInfo": " Скачать"
-
+  "blind": "Слепой"
 }

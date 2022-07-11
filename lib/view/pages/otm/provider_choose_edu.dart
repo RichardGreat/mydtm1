@@ -230,7 +230,7 @@ class ProviderChooseEdu extends ChangeNotifier {
     notifyListeners();
   }
 
-  String langGraphicId = "0";
+  String langGraphicId = "1";
   String langGraphicName = "Lotin";
 
   Future setLanguageGraphic({required String name, required String id}) async {

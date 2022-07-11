@@ -195,7 +195,7 @@
   "invalidPassword": "Pin koda xatolik qayta urinib ko‘ring",
   "passwordErase": "Pin kod o‘chirildi",
   "noInfoAbiturRuxsat": "Qabul jarayoni tugagandan so'ng bir hafta muddat ichida abituriyent ruxsatnomasini yuklab olishingiz mumkin bo'ladi",
-  "noInfoAbiturResult": "Abituriyent test sinovida ishtirok etgan kuning ertasiga o‘z natijasi haqida ma'lumot olishi mumkin",
+  "noInfoAbiturResult": "Abituriyent test sinovida ishtirok etgan kuning ertasiga o‘z natijasini haqida ma'lumot olishi mumkin",
   "infoNoDir": "Tanlovingizga mos yo'nalish boshqa mavjud emas",
   "pinKodEnterOrNew": "Dasturga kirish pin kodini o'chirish yoki boshqa yaratish",
   "createPinKod": "Pin kod yaratish",
@@ -205,12 +205,5 @@
   "invalid1": "Birinchi guruh",
   "invalid2": "Ikkinchi guruh",
   "dateInvalid": "Amal qilish muddati",
-  "blind": "Ko'zi ojiz",
-  "updateGraduetedInfo": "Yangilash",
-  "deletePrivilage":"Imtiyozni o'chirish",
-  "loginPasswordError": "Telefon raqam yoki parol noto‘g‘ri kiritildi.",
-  "captchaError": "Tekshiruv kodi noto`g`ri.",
-  "textGraduatedInfo": "Yuklab olish"
-
-
+  "blind": "Ko'zi ojiz"
 }

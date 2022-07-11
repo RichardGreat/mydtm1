@@ -205,11 +205,5 @@
   "invalid1": "Birinshi topar",
   "invalid2": "Ikinshi topar",
   "dateInvalid": "Ámel qiliw múddeti",
-  "blind": "Ko'zi ojiz",
-  "updateGraduetedInfo": "Jańalaw",
-  "deletePrivilage":"Jeńillikti óshiriw",
-  "loginPasswordError": "Telefon nomeri yaki parol nadurıs kiritildi.",
-  "captchaError": "Tekshiruv kodi noto`g`ri.",
-  "textGraduatedInfo": " Júklep alıw"
-
+  "blind": "Ko'zi ojiz"
 }
