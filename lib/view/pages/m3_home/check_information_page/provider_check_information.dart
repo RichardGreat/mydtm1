@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/data/internet_connections/m4_ariza/qayd_varaqa.dart';
 import 'package:mydtm/data/internet_connections/person_info/check_user_info/check_user_info.dart';
 import 'package:mydtm/data/internet_connections/person_info/privilege_check/privillege_check.dart';
+import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/data/model_parse/person_info/privilege_model/privilege_model1.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/aferta.dart';
@@ -16,10 +20,13 @@ import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information
 import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProviderCheckInformation extends ChangeNotifier {
+class ProviderCheckInformation extends ChangeNotifier
+{
   List<ModelCheckInformationForDelete> myList = [
     ModelCheckInformationForDelete(
       id: 1,
@@ -324,6 +331,7 @@ class ProviderCheckInformation extends ChangeNotifier {
   List<DataCheckPrivilege> listCheckPrivilege = [];
   bool boolGetDataPrivilege = false;
   bool boolPrivilegeNot = false;
+
   Future getPrivilege()async{
     try{
       boolGetDataPrivilege = false;
@@ -342,8 +350,53 @@ class ProviderCheckInformation extends ChangeNotifier {
 
   }
 
+  NetworkDownloadsQaydVaraqa networkDownloadsQaydVaraqa = NetworkDownloadsQaydVaraqa();
+  late ModelGetDownloads modelGetDownloadsData1;
+  late DataGetDownloads modelGetDownloads1;
+  bool boolDataDownload1 = false;
+  Future getQaydVaraqa2()async{
+    try {
+      boolDataDownload1 = false;
+      String dataDownloads = await networkDownloadsQaydVaraqa.getCheckDownloads();
+      modelGetDownloadsData1 =
+          ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
+      modelGetDownloads1 = modelGetDownloadsData1.data;
+      boolDataDownload1 = true;
+      notifyListeners();
+      log(modelGetDownloadsData1.data.src);
+    }catch(e){
+      modelGetDownloadsData1.status = 0;
+      log(e.toString());}
 
+  }
+  Future openFile({required String url, required String fileName})async{
+    try{
+      final file = await downloadFile(url: url, name: fileName);
+      if (file == null) return;
+      print("path: ${file.path}");
+      OpenFile.open(file.path);
+    }catch(e){
+      log(e.toString());
+    }
+  }
 
+  Future<File?> downloadFile({required String url, required String name})async{
+    final appStore = await getApplicationDocumentsDirectory();
+    final file = File('${appStore.path}/$name.pdf');
+    final response = await Dio().get(url,
+        options: Options(
+          responseType: ResponseType.bytes,
+          followRedirects: false,
+          receiveTimeout: 0,
+        )
+    );
+
+    final raf = file.openSync(mode: FileMode.write);
+    raf.writeFromSync(response.data);
+    await raf.close();
+    return file;
+
+  }
 
 }
 

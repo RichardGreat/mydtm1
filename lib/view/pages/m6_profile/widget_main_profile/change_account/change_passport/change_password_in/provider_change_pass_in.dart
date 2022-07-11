@@ -64,7 +64,7 @@ class ProviderChangePasswordInputs extends ChangeNotifier {
       box.put("token", dataAccessNewPassport.accessToken);
       AwesomeDialog(
           context: context,
-          dialogType: DialogType.INFO,
+          dialogType: DialogType.NO_HEADER,
           animType: AnimType.BOTTOMSLIDE,
           title: "DTM",
           desc: "passwordChange".tr(),
@@ -72,18 +72,21 @@ class ProviderChangePasswordInputs extends ChangeNotifier {
               color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
           descTextStyle: TextStyle(
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+
           btnCancelOnPress: () {
             box.delete("langLock");
             box.put("langLock", "1");
             Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainPages(),), (route) => false);
           },
+          btnCancelColor: MyColors.appColorBlue1(),
+
           btnCancelText: "OK")
           .show();
 
     } catch (e) {
       AwesomeDialog(
           context: context,
-          dialogType: DialogType.INFO,
+          dialogType: DialogType.NO_HEADER,
           animType: AnimType.BOTTOMSLIDE,
           title: "DTM",
           desc: "reTry".tr(),

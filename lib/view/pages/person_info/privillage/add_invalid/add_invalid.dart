@@ -95,7 +95,7 @@ class _InvalidAddState extends State<InvalidAdd> {
                               maxLength: 20,
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
-                                hintText: "AA-1234567",
+
                                 prefix: const SizedBox(width: 5),
                                 suffixIcon: GestureDetector(
                                   child: const Icon(Icons.clear, size: 12),

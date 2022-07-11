@@ -180,7 +180,7 @@ Widget bodyProfile(
             leading: Icon(
               Icons.person_pin_rounded,
               color: MyColors.appColorBlue1(),
-              size: 24,
+
             ),
             title: MyWidgets.robotoFontText(
               text: "personInformation".tr(),
@@ -209,7 +209,7 @@ Widget bodyProfile(
             leading: Icon(
               Icons.home,
               color: MyColors.appColorBlue1(),
-              size: 24,
+
             ),
             title: MyWidgets.robotoFontText(
               text: "addressAlways".tr(),
@@ -239,7 +239,7 @@ Widget bodyProfile(
             leading: Icon(
 
               Icons.school,
-              size: 16,
+
               color: MyColors.appColorBlue1(),
 
             ),
@@ -265,7 +265,7 @@ Widget bodyProfile(
             },
             leading: Icon(
               Icons.phone,
-              size: 16,
+
               color: MyColors.appColorBlue1(),
 
             ),
@@ -300,7 +300,7 @@ Widget bodyProfile(
             leading: Icon(
               Icons.lock,
               color: MyColors.appColorBlue1(),
-              size: 16,
+
             ),
             title: MyWidgets.robotoFontText(text: "changePassport".tr()),
             subtitle: MyWidgets.robotoFontText(

@@ -10,6 +10,7 @@ import 'package:mydtm/view/pages/person_info/gradueted/const_gradueted.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/g_forgione.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_uzbek/graduated_uzbek.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
+import 'package:mydtm/view/pages/person_info/gradueted/update_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -34,12 +35,19 @@ class _GraduatedState extends State<Graduated> {
   @override
   initState() {
     log(box.get("token"));
-    providerGraduated.getAllInfoGraduated();
+    getDataGradueted();
     super.initState();
   }
 
-  // box.put("categoryName", categoryName);
-  // box.put("categoryNameId", categoryId);
+  Future getDataGradueted() async {
+     providerGraduated.getAllInfoGraduated();
+  }
+
+  void getUpdate2022() {
+    // providerGraduated.getAllInfoGraduated();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -73,6 +81,7 @@ class _GraduatedState extends State<Graduated> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             /// header
+
                             constGraduated(
                                 context: context,
                                 providerGraduated: providerGraduated),
@@ -108,17 +117,27 @@ class _GraduatedState extends State<Graduated> {
                                     providerGraduated.txtControllerGraduatedName
                                             .text.length >=
                                         4) {
-                                  providerGraduated.getYear(
-                                      contexts: context,
-                                      providerGraduated: providerGraduated);
+                                  providerGraduated.modelGraduatedInfo.data
+                                              .graduatedYear
+                                              .toString() ==
+                                          "2022"
+                                      ? {}
+                                      : providerGraduated.getYear(
+                                          contexts: context,
+                                          providerGraduated: providerGraduated);
                                 } else if (providerGraduated
                                             .graduatedEduTypeId !=
                                         "4" &&
                                     providerGraduated.graduatedEduName.length >
                                         5) {
-                                  providerGraduated.getYear(
-                                      contexts: context,
-                                      providerGraduated: providerGraduated);
+                                  providerGraduated.modelGraduatedInfo.data
+                                              .graduatedYear
+                                              .toString() ==
+                                          "2022"
+                                      ? {}
+                                      : providerGraduated.getYear(
+                                          contexts: context,
+                                          providerGraduated: providerGraduated);
                                 }
                               },
                               child: Container(
@@ -146,6 +165,101 @@ class _GraduatedState extends State<Graduated> {
                                 ),
                               ),
                             ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   crossAxisAlignment: CrossAxisAlignment.center,
+                            //   children: [
+                            //     GestureDetector(
+                            //       onTap: () {
+                            //         if (providerGraduated.graduatedEduTypeId ==
+                            //                 "4" &&
+                            //             providerGraduated
+                            //                     .graduatedCountryName.length >=
+                            //                 5 &&
+                            //             providerGraduated
+                            //                     .txtControllerGraduatedName
+                            //                     .text
+                            //                     .length >=
+                            //                 4) {
+                            //           providerGraduated.getYear(
+                            //               contexts: context,
+                            //               providerGraduated: providerGraduated);
+                            //         } else if (providerGraduated
+                            //                     .graduatedEduTypeId !=
+                            //                 "4" &&
+                            //             providerGraduated
+                            //                     .graduatedEduName.length >
+                            //                 5) {
+                            //           providerGraduated.getYear(
+                            //               contexts: context,
+                            //               providerGraduated: providerGraduated);
+                            //         }
+                            //       },
+                            //       child: Container(
+                            //         height: 50,
+                            //         width:
+                            //             MediaQuery.of(context).size.width * 0.8,
+                            //         padding: const EdgeInsets.symmetric(
+                            //             horizontal: 10),
+                            //         decoration: BoxDecoration(
+                            //           borderRadius: BorderRadius.circular(10),
+                            //           border: Border.all(
+                            //               color: MyColors.appColorGrey400()),
+                            //         ),
+                            //         child: Row(
+                            //           mainAxisAlignment:
+                            //               MainAxisAlignment.spaceBetween,
+                            //           children: [
+                            //             MyWidgets.robotoFontText(
+                            //               text: providerGraduated
+                            //                           .graduatedEduYear.length <
+                            //                       3
+                            //                   ? "choose".tr()
+                            //                   : providerGraduated
+                            //                       .graduatedEduYear,
+                            //             ),
+                            //             const Icon(
+                            //                 Icons.arrow_drop_down_outlined)
+                            //           ],
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     GestureDetector(
+                            //         onTap: () {
+                            //           AwesomeDialog(
+                            //                   context: context,
+                            //                   dialogType: DialogType.NO_HEADER,
+                            //                   animType: AnimType.BOTTOMSLIDE,
+                            //                   dismissOnTouchOutside: false,
+                            //                   title: "DTM",
+                            //                   desc:
+                            //                       "Umumiy o'rta ta'lim muassasasini \n2022-yilda bitirdingizmi?",
+                            //                   titleTextStyle: TextStyle(
+                            //                       color:
+                            //                           MyColors.appColorBlue1(),
+                            //                       fontSize: 24,
+                            //                       fontWeight: FontWeight.bold),
+                            //                   descTextStyle: TextStyle(
+                            //                       color:
+                            //                           MyColors.appColorBlack(),
+                            //                       fontWeight: FontWeight.bold),
+                            //                   btnOkOnPress: (){},
+                            //                   btnCancelOnPress: () {},
+                            //                   btnCancelColor: MyColors.appColorBlue1(),
+                            //               btnOkColor: MyColors.appColorGrey400(),
+                            //                   btnOkText: "yes".tr(),
+                            //                   btnCancelText: "no".tr(),
+                            //             buttonsTextStyle: TextStyle(color: MyColors.appColorWhite())
+                            //
+                            //           )
+                            //               .show();
+                            //         },
+                            //         child: Icon(
+                            //           Icons.info_outline,
+                            //           color: MyColors.appColorBlue1(),
+                            //         ))
+                            //   ],
+                            // ),
                             const SizedBox(height: 20),
                             MyWidgets.robotoFontText(
                                 text: "document".tr(),
@@ -153,6 +267,12 @@ class _GraduatedState extends State<Graduated> {
                                 textSize: 16),
                             const SizedBox(height: 4),
                             TextFormField(
+                              enabled: providerGraduated
+                                          .modelGraduatedInfo.data.graduatedYear
+                                          .toString() ==
+                                      "2022"
+                                  ? false
+                                  : true,
                               controller:
                                   providerGraduated.textEditingSerNumber,
                               maxLines: 1,
@@ -209,12 +329,33 @@ class _GraduatedState extends State<Graduated> {
                               },
                             ),
                             const SizedBox(height: 20),
-                            buttonGraduated(
-                              idWindowIds: widget.windowIdGraduated,
-                                function: widget.funcState,
-                                // modelCheckUserInfo: widget.modelCheckUserInfo,
-                                context: context,
-                                providerGradueted: providerGraduated)
+
+                            providerGraduated
+                                        .modelGraduatedInfo.data.graduatedYear
+                                        .toString() ==
+                                    "2022"
+                                ? SizedBox.shrink()
+                                : buttonGraduated(
+                                    idWindowIds: widget.windowIdGraduated,
+                                    function: widget.funcState,
+                                    // modelCheckUserInfo: widget.modelCheckUserInfo,
+                                    context: context,
+                                    providerGradueted: providerGraduated),
+                            providerGraduated
+                                        .modelGraduatedInfo.data.graduatedYear
+                                        .toString() ==
+                                    "2022"
+                                ? const SizedBox.shrink()
+                                : const SizedBox(height: 20),
+                            providerGraduated
+                                        .modelGraduatedInfo.data.graduatedYear
+                                        .toString() ==
+                                    "2022"
+                                ? const SizedBox.shrink()
+                                : updateInfoGradueted(
+                                    context: context,
+                                    function: getUpdate2022,
+                                    providerGraduated: providerGraduated),
                           ],
                         ),
                       ),

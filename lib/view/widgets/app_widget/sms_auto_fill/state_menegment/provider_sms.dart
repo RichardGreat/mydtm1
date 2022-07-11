@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_token.dart';
@@ -13,7 +14,6 @@ import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_passport/change_password_in/change_password_input.dart';
-import 'package:mydtm/view/pages/otm/widgets/edu_reg_success/success_edu_reg.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/edu/edu_reg_success.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_auth.dart';
@@ -26,7 +26,6 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/networks/network_sms
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:otp_autofill/otp_autofill.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class ProviderSms extends ChangeNotifier {
   late OTPTextEditController controller = OTPTextEditController(codeLength: 5);
@@ -278,7 +277,7 @@ class ProviderSms extends ChangeNotifier {
                 dialogType: DialogType.INFO,
                 animType: AnimType.BOTTOMSLIDE,
                 title: "DTM",
-                desc: "Telefon raqam o'zgardi",
+                desc: "saved".tr(),
                 titleTextStyle: TextStyle(
                     color: MyColors.appColorBlue1(),
                     fontWeight: FontWeight.bold),
@@ -289,6 +288,7 @@ class ProviderSms extends ChangeNotifier {
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
                 },
+                btnCancelColor: MyColors.appColorBlue1(),
                 btnCancelText: "OK")
             .show();
       }
@@ -303,7 +303,7 @@ class ProviderSms extends ChangeNotifier {
               dialogType: DialogType.INFO,
               animType: AnimType.BOTTOMSLIDE,
               title: "DTM",
-              desc: "Qayta urinib ko'ring",
+              desc: "reTry".tr(),
               titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
               descTextStyle: TextStyle(
@@ -312,6 +312,7 @@ class ProviderSms extends ChangeNotifier {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
               },
+
               btnCancelText: "OK")
           .show();
       boolSentServerRequest = true;

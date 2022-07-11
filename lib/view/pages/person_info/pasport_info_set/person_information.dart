@@ -45,7 +45,7 @@ class _PersonInformationState extends State<PersonInformation> {
       child: Consumer<ProviderPersonInfo>(
         builder: (context, value, child) => WillPopScope(
           onWillPop: () async {
-            print(widget.idFunction);
+
 
             if (widget.idFunction == "0") {
               Navigator.of(context).pop();
@@ -69,7 +69,9 @@ class _PersonInformationState extends State<PersonInformation> {
           },
           child: Scaffold(
               backgroundColor: MyColors.appColorWhite(),
+
               appBar: appBarPersonInfo(),
+
               body: !providerPersonInfo.boolNetworkGetData
                   ? !providerPersonInfo.boolCheckImieHas
                       ? personReceived2(
@@ -82,7 +84,7 @@ class _PersonInformationState extends State<PersonInformation> {
                               child: SingleChildScrollView(
                             child: Container(
                               padding: const EdgeInsets.all(10),
-                              height: MediaQuery.of(context).size.height,
+                              height: MediaQuery.of(context).size.height*0.85,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [

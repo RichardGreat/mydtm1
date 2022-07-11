@@ -43,7 +43,7 @@ class _MainPagesState extends State<MainPages> {
   Future getFirstAction() async {
     try {
       await Future.delayed(Duration.zero);
-      box.put("updateVersion", "1001");
+      box.put("updateVersion", "1002");
     } catch (e) {}
   }
 

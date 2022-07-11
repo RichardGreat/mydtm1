@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/billing_money.dart';
@@ -8,53 +10,50 @@ import 'package:mydtm/view/pages/m4_arizalar/body_ariza/info_ariza.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-Widget bodyAriza(
-    {required BuildContext context, required ProviderAriza providerAriza}) {
+Widget bodyAriza({required BuildContext context, required ProviderAriza providerAriza}) {
   return providerAriza.boolQaydVaraqaDownload
       ? Container(
-          margin: const EdgeInsets.all(10),
-          child: providerAriza.boolQaydVaraqaDownloadNot
-              ? notInfoPerson(context: context, providerAriza: providerAriza)
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 10),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: 1,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              downloads(
-                                  context: context,
-                                  providerAriza: providerAriza),
-                              const SizedBox(height: 20),
-                              infoAriza(
-                                  context: context,
-                                  providerAriza: providerAriza),
-                              const SizedBox(height: 20),
-                              infoMoneyBilling(
-                                  context: context,
-                                  providerAriza: providerAriza)
-                            ],
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-        )
+    margin: const EdgeInsets.all(10),
+    child: providerAriza.boolQaydVaraqaDownloadNot
+        ? notInfoPerson(context: context, providerAriza: providerAriza)
+        : Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 10),
+        Expanded(
+          child: ListView.builder(
+            itemCount: 1,
+            itemBuilder: (BuildContext context, int index) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  downloads(
+                      context: context,
+                      providerAriza: providerAriza),
+                  const SizedBox(height: 20),
+                  infoAriza(
+                      context: context,
+                      providerAriza: providerAriza),
+                  const SizedBox(height: 20),
+                  infoMoneyBilling(
+                      context: context,
+                      providerAriza: providerAriza)
+                ],
+              );
+            },
+          ),
+        ),
+      ],
+    ),
+  )
       : MyWidgets.loaderDownload(context: context);
 }
 
 var box = Hive.box("online");
 
-Widget notInfoPerson(
-    {required BuildContext context, required ProviderAriza providerAriza}) {
+Widget notInfoPerson({required BuildContext context, required ProviderAriza providerAriza}) {
   return SafeArea(
     child: Center(
       child: SizedBox(
@@ -68,6 +67,8 @@ Widget notInfoPerson(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  // SelectableText("998489900", autofocus: true, ),
+
                   MyWidgets.robotoFontText(
                       text: "arizaNo".tr(),
                       textColor: MyColors.appColorGrey400()),
@@ -76,18 +77,20 @@ Widget notInfoPerson(
                       ? MaterialButton(
                           onPressed: () {
                             pushNewScreen(context,
-                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                screen: EnterFirst(), withNavBar: false);
+                                pageTransitionAnimation:
+                                    PageTransitionAnimation.cupertino,
+                                screen: EnterFirst(),
+                                withNavBar: false);
                           },
                           height: 50,
                           minWidth: double.infinity,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          color: MyColors.appColorBlue1(),
-                          child: MyWidgets.robotoFontText(
-                            text: "enterSystem".tr(),
-                            textColor: MyColors.appColorWhite(),
-                          ))
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      color: MyColors.appColorBlue1(),
+                      child: MyWidgets.robotoFontText(
+                        text: "enterSystem".tr(),
+                        textColor: MyColors.appColorWhite(),
+                      ))
                       : SizedBox.shrink()
                 ]),
           ),
@@ -117,43 +120,43 @@ class _ArizaEnterState extends State<ArizaEnter> {
           iconTheme: IconThemeData(color: MyColors.appColorBlack())),
       body: SafeArea(
           child: Container(
-        margin: const EdgeInsets.all(10),
-        child: widget.providerAriza.boolQaydVaraqaDownloadNot
-            ? notInfoPerson(
+            margin: const EdgeInsets.all(10),
+            child: widget.providerAriza.boolQaydVaraqaDownloadNot
+                ? notInfoPerson(
                 context: context, providerAriza: widget.providerAriza)
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 10),
-                  MyWidgets.robotoFontText(text: "otmQabul".tr(), textSize: 22),
-                  const SizedBox(height: 10),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: 1,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            downloads(
-                                context: context,
-                                providerAriza: widget.providerAriza),
-                            const SizedBox(height: 20),
-                            infoAriza(
-                                context: context,
-                                providerAriza: widget.providerAriza),
-                            const SizedBox(height: 20),
+                : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                MyWidgets.robotoFontText(text: "otmQabul".tr(), textSize: 22),
+                const SizedBox(height: 10),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 1,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          downloads(
+                              context: context,
+                              providerAriza: widget.providerAriza),
+                          const SizedBox(height: 20),
+                          infoAriza(
+                              context: context,
+                              providerAriza: widget.providerAriza),
+                          const SizedBox(height: 20),
                           widget.  providerAriza.boolBitiruvchi ? SizedBox.shrink():
-                            infoMoneyBilling(
-                                context: context,
-                                providerAriza: widget.providerAriza)
-                          ],
-                        );
-                      },
-                    ),
+                          infoMoneyBilling(
+                              context: context,
+                              providerAriza: widget.providerAriza)
+                        ],
+                      );
+                    },
                   ),
-                ],
-              ),
-      )),
+                ),
+              ],
+            ),
+          )),
     );
   }
 }

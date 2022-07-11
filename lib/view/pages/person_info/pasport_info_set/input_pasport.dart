@@ -103,9 +103,10 @@ Widget inputPassportInfo(
                 if (!providerPersonInfo.myBoolWidget && value.length < 2) {
                   return "personCodeError".tr();
                 } else {
-                  return "personCodeError".tr();
+                  return "personCode".tr();
                 }
-              } else {
+              }
+              else {
                 return "personCodeError".tr();
               }
             } else {

@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_information.dart';
+import 'package:mydtm/view/pages/m3_home/qayd_varaqa/qayd_varaqa2.dart';
 import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -65,15 +66,24 @@ class _AfertaState extends State<Aferta> {
             widget.providerCheckInformation.boolAfertaButton
                 ?
             {
-            Navigator.of(context).pop(),
-            pushNewScreen(
-
-              context,
-              screen: ChooseEdu(funcState: widget.function),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            ),
-          }:{};
+                    Navigator.of(context).pop(),
+                    widget.providerCheckInformation.modelCheckUserInfo.bakalavr
+                        ? pushNewScreen(
+                            context,
+                            screen: QaydVaraqaEdit(providerCheckInformation: widget.providerCheckInformation),
+                            withNavBar: false,
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
+                          )
+                        : pushNewScreen(
+                            context,
+                            screen: ChooseEdu(funcState: widget.function),
+                            withNavBar: false,
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
+                          ),
+                  }
+                :{};
           },
         ),
       ]),

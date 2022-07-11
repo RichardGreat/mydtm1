@@ -77,6 +77,7 @@ Widget graduatedUzbek(
                 // graduatedEduSerNum = "";
                 // textEditingSerNumber.text = "";
                 // setGraduatedYear = "";
+                providerGradueted.modelGraduatedInfo.data.graduatedYear.toString()=="2022"? {}:
                 providerGradueted.graduatedEduTypeName.length > 4
                     ? modelSheetProvinceGraduated(
                         context: context, providerGraduated: providerGradueted)
@@ -115,6 +116,7 @@ Widget graduatedUzbek(
                 ),
               ),
               onTap: () {
+                providerGradueted.modelGraduatedInfo.data.graduatedYear.toString()=="2022"? {}:
                 providerGradueted.graduatedRegionName.length > 4
                     ? modelSheetGraduatedDistrict(
                         context: context, providerGraduateds: providerGradueted)
@@ -180,6 +182,7 @@ Widget graduatedUzbek(
                               ),
                             ),
                             onTap: () {
+                              providerGradueted.modelGraduatedInfo.data.graduatedYear.toString()=="2022"? {}:
                               providerGradueted.graduatedDistrictName.length > 5
                                   ? modelSheetGraduatedName(
                                       context: context,

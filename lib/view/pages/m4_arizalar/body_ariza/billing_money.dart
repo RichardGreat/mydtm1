@@ -1,8 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 Widget infoMoneyBilling(
     {required BuildContext context, required ProviderAriza providerAriza}) {
@@ -29,19 +30,49 @@ Widget infoMoneyBilling(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-                title: Text(
+              title:
+              GestureDetector(
+                  child:  SelectableText(
+                    providerAriza.model.invoice.toString(),
+                    style: TextStyle(
+                        color: MyColors.appColorBlack(),
+                        fontWeight: FontWeight.w700),
+                  ),
+                  onTap: () {
+                    Clipboard.setData(ClipboardData(
+                      text: providerAriza.model.invoice.toString(),
+                    ));
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(
+                        duration: const Duration(seconds: 1),
+                        content: Text(providerAriza.model.invoice.toString(),)));
+                  }),
 
-                  "numberInvoice".tr(),
-                  style: TextStyle(color: MyColors.appColorBlack()),
-                ),
-                onTap: () {},
-                trailing: SelectableText(
-                      
-                  providerAriza.model.invoice.toString(),
-                  style: TextStyle(
-                      color: MyColors.appColorBlack(),
-                      fontWeight: FontWeight.w700),
-                )),
+              onTap: () {},
+              trailing: GestureDetector(
+                  child:Icon(Icons.copy_all),
+                  onTap: () {
+                    Clipboard.setData(ClipboardData(
+                      text: providerAriza.model.invoice.toString(),
+                    ));
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(
+                        duration: const Duration(seconds: 1),
+                        content: Text(providerAriza.model.invoice.toString(),)));
+                  }),
+              leading:  Text(
+                "numberInvoice".tr(),
+                style: TextStyle(color: MyColors.appColorBlack()),
+              ),
+
+              // SelectableText(
+              //
+              //   providerAriza.model.invoice.toString(),
+              //   style: TextStyle(
+              //       color: MyColors.appColorBlack(),
+              //       fontWeight: FontWeight.w700),
+              // )
+            ),
             ListTile(
               title: Text("holat".tr()),
               onTap: () {},
@@ -65,16 +96,26 @@ Widget infoMoneyBilling(
               ),
             ),
             ListTile(
-                title: Text("balance".tr(), ),
+                title: Text(
+                  "balance".tr(),
+                ),
                 onTap: () {},
-                trailing:
-                    Text("${providerAriza.model.balance.toString()}  So'm", style: TextStyle(fontWeight: FontWeight.w500, color: MyColors.appColorBlack()), ) ),
+                trailing: Text(
+                  "${providerAriza.model.balance.toString()}  So'm",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: MyColors.appColorBlack()),
+                )),
 
             Container(
               margin: const EdgeInsets.all(10),
-              child: Text("warming".tr(),
-                textAlign: TextAlign.justify
-                ,style: TextStyle(fontWeight: FontWeight.w500, color: MyColors.appColorBlack()),),
+              child: Text(
+                "warming".tr(),
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: MyColors.appColorBlack()),
+              ),
             ),
             // MaterialButton(
             //   onPressed: () {},

@@ -126,7 +126,7 @@ Widget bodyPrivilege({
                                         animType: AnimType.BOTTOMSLIDE,
                                         dismissOnTouchOutside: false,
                                         title: "DTM",
-                                        desc: "valueText",
+                                        desc: "deletePrivilage".tr(),
                                         titleTextStyle: TextStyle(
                                             color: MyColors.appColorBlue1(),
                                             fontSize: 24,

@@ -326,14 +326,21 @@ class ProviderCertificate extends ChangeNotifier {
       // log("dtm_${textForeignSertNumber.text}.$fileName");
       boolSentServerCertificate = true;
 
-
+      String networkData ="";
       FormData formData =  FormData.fromMap({
         "ser_num": textForeignSertNumber.text,
         "flang_level_id": langLevelIds,
         "given_date": dateYearMonthDay,
         "image": await MultipartFile.fromFile(fileToServer!.path, filename: "dtm_${textForeignSertNumber.text}.$fileName")
       });
-      String networkData = await networkSentServerCert.getNationalCert(formDate: formData);
+      try{
+        networkData  =
+            await networkSentServerCert.getNationalCert(formDate: formData);
+        log("networkData");
+        log(networkData);
+      }catch(e){
+        log(e.toString());
+      }
       ModelSetServerCertificate modelSetServerCertificate = ModelSetServerCertificate.fromJson(jsonDecode(networkData));
       setServerCertificate = modelSetServerCertificate.masseage;
       boolSentServerCertificate = false;

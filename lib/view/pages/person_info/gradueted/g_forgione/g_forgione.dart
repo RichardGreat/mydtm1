@@ -37,8 +37,11 @@ Widget graduatedForeign(
       const SizedBox(height: 4),
       GestureDetector(
         onTap: () {
-          providerGradueted.getCountry(
-              context: context, providerGraduated: providerGradueted);
+          providerGradueted.modelGraduatedInfo.data.graduatedYear.toString() ==
+                  "2022"
+              ? {}
+              : providerGradueted.getCountry(
+                  context: context, providerGraduated: providerGradueted);
           // modelSheetStateChoose(
           //     context: context, providerGraduated: providerGraduated);
         },
@@ -106,19 +109,26 @@ Widget graduatedForeign(
         onTap: (){
           // graduatedEduTypeName = name;
           // graduatedEduTypeId = id;
-          // graduatedRegionId = "";
-          // graduatedRegionName = "";
-          // graduatedDistrictName = "";
-          // graduatedDistrictId = "";
-          // graduatedEduId = "";
-          // graduatedEduName = "";
-          // graduatedEduYear = "";
-          // graduatedEduSerNum = "";
-          // textEditingSerNumber.text = "";
-          // setGraduatedYear = "";
-          providerGradueted.graduatedEduTypeName.length > 4?
-          modelSheetProvinceGraduated(context: context, providerGraduated: providerGradueted):{};
-        },
+                // graduatedRegionId = "";
+                // graduatedRegionName = "";
+                // graduatedDistrictName = "";
+                // graduatedDistrictId = "";
+                // graduatedEduId = "";
+                // graduatedEduName = "";
+                // graduatedEduYear = "";
+                // graduatedEduSerNum = "";
+                // textEditingSerNumber.text = "";
+                // setGraduatedYear = "";
+                providerGradueted.modelGraduatedInfo.data.graduatedYear
+                            .toString() ==
+                        "2022"
+                    ? {}
+                    : providerGradueted.graduatedEduTypeName.length > 4
+                        ? modelSheetProvinceGraduated(
+                            context: context,
+                            providerGraduated: providerGradueted)
+                        : {};
+              },
       ):const SizedBox.shrink(),
       functionUzbAnother(providerGradueted: providerGradueted)? const SizedBox(height: 20):const SizedBox.shrink(),
       ///
@@ -147,10 +157,17 @@ Widget graduatedForeign(
             ],
           ),
         ),
-        onTap: (){
-          providerGradueted.graduatedRegionName.length > 4?
-          modelSheetGraduatedDistrict(context: context, providerGraduateds: providerGradueted):{};
-        },
+        onTap: () {
+                providerGradueted.modelGraduatedInfo.data.graduatedYear
+                            .toString() ==
+                        "2022"
+                    ? {}
+                    : providerGradueted.graduatedRegionName.length > 4
+                        ? modelSheetGraduatedDistrict(
+                            context: context,
+                            providerGraduateds: providerGradueted)
+                        : {};
+              },
 
       ):const SizedBox.shrink(),
       functionUzbAnother(providerGradueted: providerGradueted)?
@@ -170,9 +187,12 @@ Widget graduatedForeign(
         controller: providerGradueted.txtControllerGraduatedName,
         maxLines: 1,
         maxLength: 30,
-
+        enabled: providerGradueted.modelGraduatedInfo.data.graduatedYear
+                    .toString() ==
+                "2022"
+            ? false
+            : true,
         keyboardType: TextInputType.streetAddress,
-
         decoration: InputDecoration(
           counter: const SizedBox.shrink(),
           contentPadding: const EdgeInsets.only(left: 8, right: 8),

@@ -11,6 +11,7 @@ import 'package:mydtm/data/internet_connections/person_info/graduated/g_edu_type
 import 'package:mydtm/data/internet_connections/person_info/graduated/g_graduated_names.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/get_graduated_all.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/set_server.dart';
+import 'package:mydtm/data/internet_connections/person_info/graduated/update_2022.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/year_graduated.dart';
 import 'package:mydtm/data/model_parse/m6_model/district.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_country.dart';
@@ -20,10 +21,12 @@ import 'package:mydtm/data/model_parse/person_info/graduated/g_country.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/graduated_name.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/graduated_year.dart';
 import 'package:mydtm/data/model_parse/person_info/graduated/model_get_graduated.dart';
+import 'package:mydtm/data/model_parse/person_info/graduated/update2022.dart';
 import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/state_choose.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_type.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_year.dart';
+import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
@@ -56,6 +59,21 @@ class ProviderGraduated extends ChangeNotifier {
       boolAllInfoGraduated = true;
       notifyListeners();
     } catch (e) {
+      modelGraduatedInfo = ModelGraduatedInfo(
+          status: 0,
+          data: DataGraduatedInfo(id: "",
+              regionId: "",
+              countryId: "",
+              countryName: "",
+              regionName: "",
+              districtId: "",
+              districtName: "",
+              docSerNum: "",
+              graduatedYear: "",
+              eduName: "",
+              oldEduId: "",
+              eduTypeId: "",
+              gName: ""));
       boolAllInfoGraduatedNot = true;
       boolAllInfoGraduated = true;
       notifyListeners();
@@ -198,6 +216,7 @@ class ProviderGraduated extends ChangeNotifier {
       ModelGeneralEduType modelGeneralEduType =
           ModelGeneralEduType.fromJson(jsonDecode(dataGEduType));
       listGeneralEduType = modelGeneralEduType.data;
+
       modelSheetGraduatedType(
           contexts: context, providerGraduated: providerGraduated);
       boolGEduType = true;
@@ -657,7 +676,48 @@ class ProviderGraduated extends ChangeNotifier {
     // }
   }
 
+
   Future getActionGraduates() async {}
+
+  NetworkUpdate2022 networkUpdate2022 = NetworkUpdate2022();
+  late ModelUpdate2022 modelUpdate2022;
+  late DataUpdate2022 dataUpdate2022;
+
+  Future getUpdate2022({required BuildContext context})async{
+    try{
+      boolAllInfoGraduated = false;
+      notifyListeners();
+      String dataUpdate2022 = await networkUpdate2022.getSet2022();
+      modelUpdate2022 = ModelUpdate2022.fromJson(jsonDecode(dataUpdate2022));
+      dataUpdate2022 = modelUpdate2022.data.message;
+      if(modelUpdate2022.status.toString() =="1"){
+        getAllInfoGraduated();
+      }
+      boolAllInfoGraduated = true;
+      notifyListeners();
+      print(dataUpdate2022);
+    }catch(e){
+      boolAllInfoGraduated = true;
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.NO_HEADER,
+          animType: AnimType.BOTTOMSLIDE,
+          dismissOnTouchOutside: false,
+          title: "DTM",
+          desc:     "infoNotFind".tr(),
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(),
+              fontSize: 24,
+              fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () {},
+          btnCancelText: "OK")
+          .show();
+
+      notifyListeners();
+    }
+  }
 
   ///
 

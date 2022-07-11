@@ -137,7 +137,7 @@ class ProviderEnterFirst extends ChangeNotifier {
         modelAuthorizationError = ModelErrorUserName.fromJson(jsonDecode(data));
         MyWidgets.scaffoldMessengerBottom(
             context: context,
-            valueText: modelAuthorizationError.errors.password[0]);
+            valueText: "loginPasswordError".tr());
       } catch (e) {
         try {
           boolAuthorization = false;
@@ -145,7 +145,7 @@ class ProviderEnterFirst extends ChangeNotifier {
               ModelAuthorizationCaptchaError.fromJson(jsonDecode(data));
           MyWidgets.scaffoldMessengerBottom(
               context: context,
-              valueText: modelAuthorizationCaptchaError.errors);
+              valueText:"captchaError".tr());
         } catch (e) {
           // smsId: widget.captchaValue, endTime: int.parse(widget.captchaKey), context: context);
           ModelRegistrationSms modelRegistrationSms =
