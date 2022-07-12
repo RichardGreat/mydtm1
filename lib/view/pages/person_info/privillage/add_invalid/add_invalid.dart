@@ -137,6 +137,7 @@ class _InvalidAddState extends State<InvalidAdd> {
                                     width: 2.0,
                                   ),
                                 ),
+                                errorMaxLines: 2,
                               ),
                               validator: (validate) {
                                 if (validate.toString().length < 7) {

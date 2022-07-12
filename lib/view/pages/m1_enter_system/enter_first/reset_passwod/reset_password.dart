@@ -107,6 +107,7 @@ class _ResetPasswordsState extends State<ResetPasswords> {
                           // focusedBorder: UnderlineInputBorder(
                           //   borderSide: BorderSide(color: MyColors.appColorBackC4()),
                           // ),
+                          errorMaxLines: 2,
                         ),
                         validator: (value) {
                           if (value == null || value.length < 9) {

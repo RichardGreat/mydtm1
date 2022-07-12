@@ -113,6 +113,7 @@ class _ChangePasswordInputState extends State<ChangePasswordInput> {
                               width: 2.0,
                             ),
                           ),
+                          errorMaxLines: 2,
                         ),
                         validator: (value) {
                           if (value == null || value.length < 8) {

@@ -59,6 +59,7 @@ Widget inputsSignUp(
             // focusedBorder: UnderlineInputBorder(
             //   borderSide: BorderSide(color: MyColors.appColorBackC4()),
             // ),
+            errorMaxLines: 2,
           ),
           validator: (value) {
             if (value == null || value.length < 9) {
@@ -162,6 +163,7 @@ Widget inputsSignUp(
                 width: 2.0,
               ),
             ),
+
           ),
       validator: (value){
   if (value == null || value.length < 8) {

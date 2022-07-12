@@ -86,6 +86,7 @@ Widget inputPassportInfo(
             // focusedBorder: UnderlineInputBorder(
             //   borderSide: BorderSide(color: MyColors.appColorBackC4()),
             // ),
+            errorMaxLines: 2,
           ),
           validator: (value) {
             if (value == null || value.length < 14) {
@@ -239,6 +240,7 @@ Widget inputPassportInfo(
                 // focusedBorder: UnderlineInputBorder(
                 //   borderSide: BorderSide(color: MyColors.appColorBackC4()),
                 // ),
+                errorMaxLines: 2,
               ),
               validator: (value3){
                 if(value3!.isEmpty || value3.length < 7){

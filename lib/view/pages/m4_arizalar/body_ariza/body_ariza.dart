@@ -119,6 +119,7 @@ class _ArizaEnterState extends State<ArizaEnter> {
 
   getInfoPul() {
     log(box.get("token"));
+    widget.providerAriza.model.invoice.toString() == "null"?
     Future.delayed(const Duration(milliseconds: 300)).then((value) {
       box.get("notShowAgain1").toString() != "1"
           ? showDialog<void>(
@@ -143,7 +144,7 @@ class _ArizaEnterState extends State<ArizaEnter> {
               },
             )
           : {};
-    });
+    }):{};
   }
 
   @override

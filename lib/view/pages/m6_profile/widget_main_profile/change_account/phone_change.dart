@@ -99,6 +99,7 @@ class _ChangePhoneNumberState extends State<ChangePhoneNumber> {
                         // focusedBorder: UnderlineInputBorder(
                         //   borderSide: BorderSide(color: MyColors.appColorBackC4()),
                         // ),
+                        errorMaxLines: 2,
                       ),
                       validator: (value) {
                         if (value == null || value.length < 9) {

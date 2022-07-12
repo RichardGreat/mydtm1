@@ -61,7 +61,7 @@ class _InfoNotPayState extends State<InfoNotPay> {
                         Navigator.of(context).pop();
                       },
                       height: 45,
-                      minWidth: MediaQuery.of(context).size.width * 0.7,
+                      minWidth: MediaQuery.of(context).size.width * 0.75,
                       color: MyColors.appColorBlue1(),
                       shape:
                       RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
