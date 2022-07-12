@@ -45,7 +45,7 @@ class _SheetGraduatedNameState extends State<SheetGraduatedName> {
     return Container(
       child: widget.providerGraduated.boolGetGraduatedName
           ? widget.providerGraduated.boolGetGraduatedNameError?
-          Container(child: Center(child: MyWidgets.robotoFontText(text:widget.providerGraduated.modelGetGraduatedNameError.errors)),)
+          Center(child: MyWidgets.robotoFontText(text:widget.providerGraduated.modelGetGraduatedNameError.errors))
           : Container(
           height: MediaQuery.of(context).size.height * 0.6,
           decoration: BoxDecoration(

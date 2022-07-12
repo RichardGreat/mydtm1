@@ -373,7 +373,7 @@ class ProviderCheckInformation extends ChangeNotifier
     try{
       final file = await downloadFile(url: url, name: fileName);
       if (file == null) return;
-      print("path: ${file.path}");
+
       OpenFile.open(file.path);
     }catch(e){
       log(e.toString());

@@ -1,4 +1,3 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -36,24 +35,6 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
   @override
   Widget build(BuildContext context) {
 
-    double heightScreen(){
-
-      if(MediaQuery.of(context).size.height >= 800){
-        return MediaQuery.of(context).size.height*1.33;
-      }else if(MediaQuery.of(context).size.height < 800 && MediaQuery.of(context).size.height >= 700){
-        return MediaQuery.of(context).size.height*1.53;
-      }
-      else if(MediaQuery.of(context).size.height < 700 && MediaQuery.of(context).size.height >= 600){
-        return MediaQuery.of(context).size.height*1.63;
-      }
-      else if(MediaQuery.of(context).size.height < 600 && MediaQuery.of(context).size.height >= 500){
-        return MediaQuery.of(context).size.height*1.83;
-      }
-      else if(MediaQuery.of(context).size.height < 500 && MediaQuery.of(context).size.height >= 400){
-        return MediaQuery.of(context).size.height*2.53;
-      }
-      return 700;
-    }
     return Scaffold(
       backgroundColor: MyColors.appColorWhite(),
 
@@ -147,7 +128,7 @@ class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
               height: MediaQuery.of(context).size.height * 0.5,
               child: ListView.builder(itemBuilder: (context, index) => Text(
                 widget.providerChooseEdu.listGrantContractText[indexValue],
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ), itemCount: 1,)
             ),
             const SizedBox(height: 5),

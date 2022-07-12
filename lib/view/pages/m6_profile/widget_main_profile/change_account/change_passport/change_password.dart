@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -184,7 +183,7 @@ class _ChangeAccountPasswordsState extends State<ChangeAccountPasswords> {
                       },
                       height: 50,
                       minWidth: double.infinity,
-                      color: MyColors.appColorBlue2(),
+                      color: MyColors.appColorBlue1(),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       child: MyWidgets.robotoFontText(

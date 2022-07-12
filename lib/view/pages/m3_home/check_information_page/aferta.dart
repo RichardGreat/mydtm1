@@ -48,7 +48,7 @@ class _AfertaState extends State<Aferta> {
                   getAction(myBools: true);
                   return const SizedBox.shrink();
                 } else {
-                  return SizedBox.shrink();
+                  return const SizedBox.shrink();
                 }
               }),
         ),

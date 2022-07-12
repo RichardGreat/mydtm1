@@ -1,6 +1,4 @@
 import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyColors {
@@ -69,7 +67,7 @@ class MyColors {
   }
 
   static Color appColorGreen1() {
-    return  Color.fromRGBO(25,178,141, 1);
+    return  const Color.fromRGBO(25,178,141, 1);
   }
 
   static Color appColorGreen2() {

@@ -218,8 +218,8 @@ Widget graduatedUzbek(
 
                     ],
                   )
-                : SizedBox.shrink(),
+                :const SizedBox.shrink(),
           ],
         )
-      : SizedBox.shrink();
+      : const SizedBox.shrink();
 }

@@ -23,7 +23,9 @@
    <application
         android:label="DTM"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+       android:allowBackup="false"
+       android:fullBackupOnly="false">
 
        <activity android:name="com.android.camera.CropImage"/>
        <activity

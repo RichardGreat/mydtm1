@@ -37,7 +37,7 @@ serviceSheetBottomSheet(
                       : box.get("language") == "2"
                       ? serviceMainList.serviceNameQQ
                       : serviceMainList.serviceNameRu
-                  ,textStyle: TextStyle(fontSize: 18), ),
+                  ,textStyle: const TextStyle(fontSize: 18), ),
 
               ],
             ),

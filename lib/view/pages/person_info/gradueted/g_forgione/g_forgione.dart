@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_uzbek/widgets/districts.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_uzbek/widgets/region_sheet.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';

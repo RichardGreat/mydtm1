@@ -156,7 +156,7 @@ class _ChangePhoneNumberState extends State<ChangePhoneNumber> {
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
-                    color: MyColors.appColorBlue2(),
+                    color: MyColors.appColorBlue1(),
                     height: 50,
                     minWidth: double.infinity,
                     child: MyWidgets.robotoFontText(

@@ -4,10 +4,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/answersheet.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/ariza_check.dart';
-import 'package:mydtm/data/internet_connections/m4_ariza/downloads_url.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/qayd_varaqa.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/ruxsanoma.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
@@ -112,7 +110,7 @@ class ProviderAriza extends ChangeNotifier {
     try{
       final file = await downloadFile(url: url, name: fileName);
       if (file == null) return;
-      print("path: ${file.path}");
+
       OpenFile.open(file.path);
     }catch(e){
       log(e.toString());

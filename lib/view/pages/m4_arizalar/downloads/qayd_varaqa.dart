@@ -63,7 +63,7 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
                                 Center(child: Text(error.toString())),
                           )),
                       Container(
-                        margin: EdgeInsets.all(15),
+                        margin: const EdgeInsets.all(15),
                         child: Column(children: [
                           MaterialButton(
                             onPressed: () {

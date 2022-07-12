@@ -1,15 +1,13 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/pages/person_info/certificate/widgets/photo/image_edit.dart';
-import 'package:mydtm/view/widgets/colors/app_colors.dart';
+
 
 // Widget
 changeAvatar(
     {required BuildContext context,
       required ProviderCertificate providerCertificate}) {
-  var box = Hive.box("online");
+
   showModalBottomSheet(
     context: context,
     shape: RoundedRectangleBorder(

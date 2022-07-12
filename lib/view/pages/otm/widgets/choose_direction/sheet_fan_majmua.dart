@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -41,11 +40,11 @@ sheetFanMajmuaTest(
 
 Widget tableFanMajmua({required BuildContext context,  required ProviderChooseEdu providerChooseEdu}){
   return Card(
-    margin: EdgeInsets.all(4),
+    margin: const EdgeInsets.all(4),
     child: SingleChildScrollView(
       scrollDirection: Axis.horizontal,
    child:     Table(
-     defaultColumnWidth: IntrinsicColumnWidth(),
+     defaultColumnWidth: const IntrinsicColumnWidth(),
      border: TableBorder.all(borderRadius: BorderRadius.circular(4),color: MyColors.appColorGrey400()),
      columnWidths: const <int, TableColumnWidth>{
        0: IntrinsicColumnWidth(),
@@ -68,19 +67,19 @@ Widget tableFanMajmua({required BuildContext context,  required ProviderChooseEd
 
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text("subjectName".tr(), style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+               child: Text("subjectName".tr(), style:const  TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text("ball".tr(), style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+               child: Text("ball".tr(), style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text("questionCount".tr(), style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+               child: Text("questionCount".tr(), style:const  TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text("allBall".tr(), style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+               child: Text("allBall".tr(), style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
              ),
            ]),
        TableRow(
@@ -101,7 +100,7 @@ Widget tableFanMajmua({required BuildContext context,  required ProviderChooseEd
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text(providerChooseEdu.modelFanMasjmua.data.main.b1.totalBall.toString()+" ball", style: TextStyle(color: Colors.black.withOpacity(0.8), fontWeight: FontWeight.w500)),
+               child: Text(providerChooseEdu.modelFanMasjmua.data.main.b1.totalBall.toString(), style: TextStyle(color: Colors.black.withOpacity(0.8), fontWeight: FontWeight.w500)),
              ),
            ]),
        TableRow(
@@ -122,7 +121,7 @@ Widget tableFanMajmua({required BuildContext context,  required ProviderChooseEd
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text(providerChooseEdu.modelFanMasjmua.data.main.b2.totalBall.toString()+" ball", style: TextStyle(color: Colors.black.withOpacity(0.8), fontWeight: FontWeight.w500)),
+               child: Text("${providerChooseEdu.modelFanMasjmua.data.main.b2.totalBall} ", style: TextStyle(color: Colors.black.withOpacity(0.8), fontWeight: FontWeight.w500)),
              ),
            ]),
        TableRow(children: [
@@ -141,7 +140,7 @@ Widget tableFanMajmua({required BuildContext context,  required ProviderChooseEd
          ),
          Padding(
            padding: const EdgeInsets.all(8.0),
-           child: Text("${providerChooseEdu.modelFanMasjmua.data.required[0].totalBall} ball", style: TextStyle(color: Colors.black.withOpacity(0.8), fontWeight: FontWeight.w500)),
+           child: Text("${providerChooseEdu.modelFanMasjmua.data.required[0].totalBall}", style: TextStyle(color: Colors.black.withOpacity(0.8), fontWeight: FontWeight.w500)),
          ),
        ]),
        TableRow(children: [
@@ -160,7 +159,7 @@ Widget tableFanMajmua({required BuildContext context,  required ProviderChooseEd
          ),
          Padding(
            padding: const EdgeInsets.all(8.0),
-           child: Text("${providerChooseEdu.modelFanMasjmua.data.required[1].totalBall} ball", style: TextStyle(color: Colors.black.withOpacity(0.8), fontWeight: FontWeight.w500)),
+           child: Text("${providerChooseEdu.modelFanMasjmua.data.required[1].totalBall}", style: TextStyle(color: Colors.black.withOpacity(0.8), fontWeight: FontWeight.w500)),
          ),
        ]),
        TableRow(children: [
@@ -179,7 +178,7 @@ Widget tableFanMajmua({required BuildContext context,  required ProviderChooseEd
          ),
          Padding(
            padding: const EdgeInsets.all(8.0),
-           child: Text("${providerChooseEdu.modelFanMasjmua.data.required[2].totalBall} ball", style: TextStyle(color: Colors.black.withOpacity(0.8), fontWeight: FontWeight.w500)),
+           child: Text("${providerChooseEdu.modelFanMasjmua.data.required[2].totalBall}", style: TextStyle(color: Colors.black.withOpacity(0.8), fontWeight: FontWeight.w500)),
          ),
        ]),
 

@@ -5,7 +5,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/foreign_cert.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/national_certificate.dart';
@@ -20,7 +19,6 @@ import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/lang_typ
 import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/languange.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/set_server.dart';
 import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/widgets/model_botton_sheet.dart';
-import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 class ProviderCertificate extends ChangeNotifier {

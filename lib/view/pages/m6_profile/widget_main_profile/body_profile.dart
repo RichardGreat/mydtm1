@@ -108,7 +108,7 @@ Widget bodyProfile(
               //     didUnlocked: () {
               //       Navigator.of(context).pop();
               //     });
-                print(box.get("personImage").toString().length.toString());
+
               if (box.get("personImage").toString().length > 50) {
 
                 pushNewScreen(
@@ -364,6 +364,8 @@ Widget bodyProfile(
                               box.delete("boxAllPersonInfo");
                               box.delete("langLock");
                               box.delete("lockScreen");
+                              box.delete("notShowAgain1");
+
 
                               pushNewScreenWithRouteSettings(context,
                                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
@@ -392,7 +394,7 @@ Widget bodyProfile(
                     color: MyColors.appColorGrey400(),
                   ),
                 )
-              : SizedBox.shrink(),
+              : const SizedBox.shrink(),
           Divider(
             color: MyColors.appColorGrey100(),
             thickness: 1,

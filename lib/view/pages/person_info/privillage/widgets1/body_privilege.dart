@@ -1,6 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
@@ -126,7 +125,7 @@ Widget bodyPrivilege({
                                         animType: AnimType.BOTTOMSLIDE,
                                         dismissOnTouchOutside: false,
                                         title: "DTM",
-                                        desc: "valueText",
+                                        desc: "wantToDelete".tr(),
                                         titleTextStyle: TextStyle(
                                             color: MyColors.appColorBlue1(),
                                             fontSize: 24,

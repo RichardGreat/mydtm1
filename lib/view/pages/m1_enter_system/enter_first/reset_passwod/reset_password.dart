@@ -190,7 +190,7 @@ class _ResetPasswordsState extends State<ResetPasswords> {
                         },
                         height: 50,
                         minWidth: double.infinity,
-                        color: MyColors.appColorBlue2(),
+                        color: MyColors.appColorBlue1(),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         child: MyWidgets.robotoFontText(

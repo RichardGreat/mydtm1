@@ -65,7 +65,7 @@ class _ChooseRegionState extends State<ChooseRegion> {
       color: MyColors.appColorWhite(),
       child: widget.providerChooseEdu.boolEduChoose
           ? Container(
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
               height: MediaQuery.of(context).size.height * 0.8,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),

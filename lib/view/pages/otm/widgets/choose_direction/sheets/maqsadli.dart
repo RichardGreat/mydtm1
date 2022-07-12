@@ -50,7 +50,7 @@ class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
                     onTap: () {
                       Navigator.of(context).pop();
                     },
-                    child: Icon(Icons.close))
+                    child: const Icon(Icons.close))
               ],
             ),
             MyWidgets.robotoFontText(

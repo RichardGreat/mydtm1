@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
@@ -9,8 +10,30 @@ Widget updateInfoGradueted(
     required ProviderGraduated providerGraduated}) {
   return MaterialButton(
     onPressed: () {
-      providerGraduated.getUpdate2022(context: context);
-      function();
+      AwesomeDialog(
+              context: context,
+              dialogType: DialogType.NO_HEADER,
+              animType: AnimType.BOTTOMSLIDE,
+              dismissOnTouchOutside: false,
+              title: "DTM",
+              desc:
+                  "wantUpdateInfo".tr(),
+              titleTextStyle: TextStyle(
+                  color: MyColors.appColorBlue1(),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(
+                  color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+              btnCancelOnPress: () {},
+              btnOkOnPress: () {
+                providerGraduated.getUpdate2022(context: context);
+                function();
+              },
+              btnCancelColor: MyColors.appColorGrey600(),
+              btnOkColor: MyColors.appColorBlue1(),
+              btnOkText: "yes".tr(),
+              btnCancelText: "no".tr())
+          .show();
     },
     height: 45,
     minWidth: MediaQuery.of(context).size.width,

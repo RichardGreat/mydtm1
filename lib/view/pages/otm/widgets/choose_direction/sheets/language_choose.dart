@@ -14,7 +14,7 @@ sheetLanguageChooseTest(
       enableDrag: true,
       builder: (context) {
         return StatefulBuilder(
-          builder: (context, setState) => Container(
+          builder: (context, setState) => SizedBox(
             height: MediaQuery.of(context).size.height * 0.8,
             child: LangEduChooseTest(providerChooseEdu: providerChooseEdu),
           ),
@@ -52,7 +52,7 @@ class _LangEduChooseTestState extends State<LangEduChooseTest> {
       color: MyColors.appColorWhite(),
       child: widget.providerChooseEdu.boolLangEduTest
           ? Container(
-        margin:   EdgeInsets.all(10),
+        margin:   const EdgeInsets.all(10),
           height: MediaQuery.of(context).size.height * 0.8,
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(8)),

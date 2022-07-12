@@ -26,7 +26,7 @@ import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/state_choose.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_type.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_year.dart';
-import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
@@ -536,7 +536,7 @@ class ProviderGraduated extends ChangeNotifier {
 
     for (var values in listGraduatedYear) {
       if (values.toString().contains(value.toString())) {
-        print(values);
+
         listGraduatedYearTemp.add(values);
       }
     }
@@ -691,11 +691,11 @@ class ProviderGraduated extends ChangeNotifier {
       modelUpdate2022 = ModelUpdate2022.fromJson(jsonDecode(dataUpdate2022));
       dataUpdate2022 = modelUpdate2022.data.message;
       if(modelUpdate2022.status.toString() =="1"){
-        getAllInfoGraduated();
+        getAllInfoGraduated2(context: context);
       }
       boolAllInfoGraduated = true;
       notifyListeners();
-      print(dataUpdate2022);
+
     }catch(e){
       boolAllInfoGraduated = true;
       AwesomeDialog(
@@ -704,7 +704,7 @@ class ProviderGraduated extends ChangeNotifier {
           animType: AnimType.BOTTOMSLIDE,
           dismissOnTouchOutside: false,
           title: "DTM",
-          desc:     "infoNotFind".tr(),
+          desc: "infoNotFind".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),
               fontSize: 24,
@@ -719,6 +719,57 @@ class ProviderGraduated extends ChangeNotifier {
     }
   }
 
+  Future getAllInfoGraduated2({required BuildContext context}) async {
+    try {
+      boolAllInfoGraduated = false;
+      String data = await networkGetGraduated.getAllGraduated();
+      log(data);
+      modelGraduatedInfo = ModelGraduatedInfo.fromJson(jsonDecode(data));
+      checkAllInfo(dataGraduatedInfo: modelGraduatedInfo.data);
+      boolAllInfoGraduated = true;
+      if(modelGraduatedInfo.data.graduatedYear.toString()!="2022"){
+        AwesomeDialog(
+            context: context,
+            dialogType: DialogType.NO_HEADER,
+            animType: AnimType.BOTTOMSLIDE,
+            dismissOnTouchOutside: false,
+            title: "DTM",
+            desc: "wantUpdateInfo2".tr(),
+            titleTextStyle: TextStyle(
+                color: MyColors.appColorBlue1(),
+                fontSize: 24,
+                fontWeight: FontWeight.bold),
+            descTextStyle: TextStyle(
+                color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+            btnCancelOnPress: () {},
+            btnCancelColor: MyColors.appColorBlue1(),
+            btnCancelText: "OK")
+            .show();
+      }
+
+      notifyListeners();
+    } catch (e) {
+      modelGraduatedInfo = ModelGraduatedInfo(
+          status: 0,
+          data: DataGraduatedInfo(id: "",
+              regionId: "",
+              countryId: "",
+              countryName: "",
+              regionName: "",
+              districtId: "",
+              districtName: "",
+              docSerNum: "",
+              graduatedYear: "",
+              eduName: "",
+              oldEduId: "",
+              eduTypeId: "",
+              gName: ""));
+      boolAllInfoGraduatedNot = true;
+      boolAllInfoGraduated = true;
+      notifyListeners();
+      log(e.toString());
+    }
+  }
   ///
 
 }

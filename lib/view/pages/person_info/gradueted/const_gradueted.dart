@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_type.dart';
-import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/state_choose.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';

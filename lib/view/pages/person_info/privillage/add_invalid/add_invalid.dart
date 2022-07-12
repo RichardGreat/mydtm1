@@ -109,7 +109,7 @@ class _InvalidAddState extends State<InvalidAdd> {
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                   borderSide: BorderSide(
-                                    color: MyColors.appColorBlue2(),
+                                    color: MyColors.appColorBlue1(),
                                   ),
                                 ),
                                 enabledBorder: OutlineInputBorder(

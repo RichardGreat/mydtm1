@@ -12,7 +12,6 @@ import 'package:mydtm/data/model_parse/m1_model/authhorization/model_auth_succes
 import 'package:mydtm/data/model_parse/m1_model/authhorization/model_get_token.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
-import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_passport/change_password_in/change_password_input.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/edu/edu_reg_success.dart';
@@ -102,7 +101,7 @@ class ProviderSms extends ChangeNotifier {
         modelRegistrationCaptchaError =
             ModelRegistrationCaptchaError.fromJson(jsonDecode(dataSms));
         MyWidgets.scaffoldMessengerBottom(
-            context: context, valueText: modelRegistrationCaptchaError.errors);
+            context: context, valueText: "captchaError".tr());
         Navigator.of(context).pop();
 
         log("catch");
@@ -435,7 +434,7 @@ class ProviderSms extends ChangeNotifier {
 
       if (modelEduSuccess.status == 1) {
         // ignore: use_build_context_synchronously
-        ProviderAriza providerAriza = ProviderAriza();
+        // ProviderAriza providerAriza = ProviderAriza();
         // ignore: use_build_context_synchronously
         pushNewScreen(context,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,

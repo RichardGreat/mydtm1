@@ -56,13 +56,13 @@ class _NewsSeeState extends State<NewsSee> {
           ),
           SliverToBoxAdapter(
             child:   Container(
-              margin: EdgeInsets.all(5),
+              margin: const EdgeInsets.all(5),
               height: MediaQuery.of(context).size.height * 0.3,
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.white,
-                  boxShadow: [BoxShadow(color: Colors.grey)]),
+                  boxShadow: const [BoxShadow(color: Colors.grey)]),
               child: CachedNetworkImage(
                 height: 80,
                 width: 100,
@@ -90,7 +90,7 @@ class _NewsSeeState extends State<NewsSee> {
               children: [
                 Align(
                     alignment: Alignment.centerRight,
-                    child: Text(widget.date, style: TextStyle(fontWeight: FontWeight.w500),)),
+                    child: Text(widget.date, style: const TextStyle(fontWeight: FontWeight.w500),)),
                 const SizedBox(height: 10),
                 Expanded(
                   child: SingleChildScrollView(

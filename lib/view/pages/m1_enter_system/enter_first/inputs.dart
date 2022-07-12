@@ -1,14 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/provider_enter_first.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 
-Widget enterFirstBodyInput(
-    {required BuildContext context,
-    required ProviderEnterFirst providerEnterFirst}) {
+Widget enterFirstBodyInput({required BuildContext context,
+  required ProviderEnterFirst providerEnterFirst}) {
   return Column(
     // mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,15 +25,15 @@ Widget enterFirstBodyInput(
           decoration: InputDecoration(
             prefixText: "+998 ",
             suffixIcon:
-             GestureDetector(child: const Icon(Icons.clear, size: 12), onTap: (){
-               providerEnterFirst.textAuthLogin.clear();
-             },),
+            GestureDetector(child: const Icon(Icons.clear, size: 12), onTap: (){
+              providerEnterFirst.textAuthLogin.clear();
+            },),
             contentPadding: const EdgeInsets.all(8),
             fillColor: Colors.white,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
-                color: MyColors.appColorBlue2(),
+                color: MyColors.appColorBlue1(),
               ),
             ),
             enabledBorder: OutlineInputBorder(
@@ -45,23 +44,24 @@ Widget enterFirstBodyInput(
               ),
             ),
             focusedErrorBorder:  OutlineInputBorder(
-  borderRadius: BorderRadius.circular(8),
-  borderSide: BorderSide(
-    color: MyColors.appColorGrey100(),
-    width: 2.0,
-  ),
-),
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: MyColors.appColorGrey100(),
+                width: 2.0,
+              ),
+            ),
+            errorMaxLines: 2,
             errorStyle: TextStyle(
               color: MyColors.appColorRed(),
               fontWeight: FontWeight.w500,
             ),
             errorBorder:  OutlineInputBorder(
-             borderRadius: BorderRadius.circular(8),
-             borderSide: BorderSide(
-               color: MyColors.appColorGrey100(),
-               width: 2.0,
-             ),
-           ),
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: MyColors.appColorGrey100(),
+                width: 2.0,
+              ),
+            ),
             // focusedBorder: UnderlineInputBorder(
             //   borderSide: BorderSide(color: MyColors.appColorBackC4()),
             // ),
@@ -111,7 +111,7 @@ Widget enterFirstBodyInput(
       const SizedBox(height: 10),
       MyWidgets.robotoFontText(text: "password".tr()),
       TextFormField(
-        controller: providerEnterFirst.textAuthPassword,
+          controller: providerEnterFirst.textAuthPassword,
           textAlignVertical: TextAlignVertical.center,
           maxLines: 1,
           maxLength: 20,
@@ -127,17 +127,18 @@ Widget enterFirstBodyInput(
               },
               child: providerEnterFirst.boolPasswordVisible
                   ? Icon(
-                      CupertinoIcons.eye_slash,
-                      color: MyColors.appColorGrey600(),
-                      size: 18,
-                    )
+                CupertinoIcons.eye_slash,
+                color: MyColors.appColorGrey600(),
+                size: 18,
+              )
                   : Icon(
-                      CupertinoIcons.eye,
-                      color: MyColors.appColorBlue2(),
-                      size: 18,
-                    ),
+                CupertinoIcons.eye,
+                color: MyColors.appColorBlue2(),
+                size: 18,
+              ),
             ),
             fillColor: Colors.white,
+            errorMaxLines: 2,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
@@ -170,11 +171,11 @@ Widget enterFirstBodyInput(
               ),
             ),
           ),
-        validator: (value) {
-          if(value!.isEmpty || value.length < 8){
-            return "passwordLength".tr();
+          validator: (value) {
+            if(value!.isEmpty || value.length < 8){
+              return "passwordLength".tr();
+            }
           }
-  }
       ),
     ],
   );

@@ -62,7 +62,7 @@ class _SelectDirectionState extends State<SelectDirection> {
                 widget.providerChooseEdu.listEmodeChoose.length,
                 itemBuilder: (context, index) => Column(
                   children: [
-                    index != 0 ? const Divider(thickness:  0.7):SizedBox.shrink(),
+                    index != 0 ? const Divider(thickness:  0.7):const SizedBox.shrink(),
                     ListTile(
 
                       title: MyWidgets.robotoFontText(

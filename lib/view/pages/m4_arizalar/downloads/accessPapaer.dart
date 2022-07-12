@@ -45,7 +45,7 @@ class _AccessPaperDownloadState extends State<AccessPaperDownload> {
       ),
       body: SafeArea(
           child: Container(
-            margin: EdgeInsets.all(15),
+            margin: const EdgeInsets.all(15),
         child: widget.providerAriza.boolDataDownload2
             ? widget.providerAriza.modelGetDownloadsData2.status.toString() ==
                     "1"
@@ -64,7 +64,7 @@ class _AccessPaperDownloadState extends State<AccessPaperDownload> {
                                 Center(child: Text(error.toString())),
                           )),
                       Container(
-                        margin: EdgeInsets.all(15),
+                        margin: const EdgeInsets.all(15),
                         child: Column(children: [
                           MaterialButton(
                             onPressed: () {

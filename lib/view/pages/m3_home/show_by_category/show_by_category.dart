@@ -8,7 +8,7 @@ import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:universal_image/universal_image.dart';
+
 import 'package:easy_localization/easy_localization.dart';
 
 myViewButton(

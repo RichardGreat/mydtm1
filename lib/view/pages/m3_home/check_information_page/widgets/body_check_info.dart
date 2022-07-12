@@ -47,7 +47,7 @@ Widget bodyCheckInformation(
               children: [
                 providerCheckInformation.modelCheckUserInfo.person
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
               ]),
         ),
       ),
@@ -92,7 +92,7 @@ Widget bodyCheckInformation(
               children: [
                 providerCheckInformation.modelCheckUserInfo.personAddress
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
               ]),
         ),
       ),
@@ -120,7 +120,7 @@ Widget bodyCheckInformation(
               children: [
                 providerCheckInformation.modelCheckUserInfo.personGeneralEdu
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
               ]),
         ),
       ),
@@ -148,7 +148,7 @@ Widget bodyCheckInformation(
               children: [
                 providerCheckInformation.modelCheckUserInfo.certificate
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
               ]),
         ),
       ),
@@ -176,7 +176,7 @@ Widget bodyCheckInformation(
               children: [
                 providerCheckInformation.modelCheckUserInfo.imtiyoz
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
               ]),
         ),
       ),
@@ -219,7 +219,7 @@ Widget bodyCheckInformation(
               context: context,
               functions1: functions
       )
-          : SizedBox.shrink()
+          : const SizedBox.shrink()
     ],
   );
 }

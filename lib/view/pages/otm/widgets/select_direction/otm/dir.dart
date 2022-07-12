@@ -64,7 +64,7 @@ class _DIREduState extends State<DIREdu> {
       body:  Container(
       child: widget.providerChooseEdu.boolDirDownload
           ? Container(
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           height: MediaQuery
               .of(context)
               .size
@@ -146,7 +146,7 @@ class _DIREduState extends State<DIREdu> {
                   ),
                 ),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Expanded(
                 child: ListView.builder(
                   itemCount: widget.providerChooseEdu.listDirTemp.length,

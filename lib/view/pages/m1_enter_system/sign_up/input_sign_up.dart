@@ -11,7 +11,7 @@ Widget inputsSignUp(
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      MyWidgets.robotoFontText(text: "Telefon"),
+      MyWidgets.robotoFontText(text: "phoneNumber".tr()),
       TextFormField(
           controller: providerSignUp.textSingUpLogin,
           maxLines: 1,
@@ -130,6 +130,7 @@ Widget inputsSignUp(
                     ),
             ),
             fillColor: Colors.white,
+            errorMaxLines: 2,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
