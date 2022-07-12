@@ -18,7 +18,6 @@ class _MainHomeState extends State<MainHome> {
 
   @override
   void initState() {
-    Future.delayed(Duration.zero);
 
     getServiceList();
     super.initState();
@@ -28,6 +27,7 @@ class _MainHomeState extends State<MainHome> {
 
 
   Future getServiceList() async {
+    Future.delayed(Duration.zero);
     await providerMainHome.checkVersion(context: context);
     await providerMainHome.setLangUser();
     await providerMainHome.getDateService(context: context);

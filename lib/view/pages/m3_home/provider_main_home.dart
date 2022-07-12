@@ -16,6 +16,7 @@ import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/pages/update_page/upadate_must.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProviderMainHome extends ChangeNotifier {
   // List<ModelListForDelete> modelListForDelete = [];
@@ -42,15 +43,20 @@ class ProviderMainHome extends ChangeNotifier {
       String dataVersion = await NetworkCheckVersions.checkMobileVersion();
       ModelCheckMobileVersion modelCheckMobileVersion =
           ModelCheckMobileVersion.fromJson(jsonDecode(dataVersion));
-      log(dataVersion);
-      if(box.get("updateVersion").toString() != modelCheckMobileVersion.data.version.toString()) {
+
+      log(jsonEncode(modelCheckMobileVersion).toString());
+      ///1003
+      if(box.get("updateVersion").toString() != modelCheckMobileVersion.data.version.toString()
+      ) {
 
         if (modelCheckMobileVersion.data.status.toString() == "1") {
+
         } else if (modelCheckMobileVersion.data.status.toString() == "2") {
           AwesomeDialog(
                   context: context,
                   dialogType: DialogType.NO_HEADER,
                   animType: AnimType.BOTTOMSLIDE,
+                  dismissOnBackKeyPress: false,
                   title: "DTM",
                   desc: box.get("language").toString() == "1"
                       ? modelCheckMobileVersion.data.versionText
@@ -66,7 +72,10 @@ class ProviderMainHome extends ChangeNotifier {
                   descTextStyle: TextStyle(
                       color: MyColors.appColorBlack(),
                       fontWeight: FontWeight.bold),
-                  btnCancelOnPress: () {},
+                  btnCancelOnPress: () {
+
+                    openGooglePlayMarket();
+                  },
                   btnCancelText: "OK",
 
                   btnCancelColor: MyColors.appColorBlue1())
@@ -82,6 +91,12 @@ class ProviderMainHome extends ChangeNotifier {
     } catch (e) {
       log(e.toString());
     }
+  }
+  final Uri _url = Uri.parse('https://play.google.com/store/apps/details?id=www.my_dtm.uz');
+  Future openGooglePlayMarket()async{
+    try{
+      if (!await launchUrl(_url)) throw 'Could not launch $_url';
+    }catch(e){}
   }
 
   Future setLangUser() async {
@@ -112,10 +127,10 @@ class ProviderMainHome extends ChangeNotifier {
   Future getDateService({required BuildContext context}) async {
     try {
       String dataServiceList = await networkServiceList.getServiceList();
-      log(dataServiceList);
+
       ModelServiceList modelServiceList =
           ModelServiceList.fromJson(jsonDecode(dataServiceList));
-      log(jsonEncode(modelServiceList));
+      // log(jsonEncode(modelServiceList));
 
       listDataServiceList.addAll(modelServiceList.data);
       for (var value in listDataServiceList) {
