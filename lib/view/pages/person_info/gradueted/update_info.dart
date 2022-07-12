@@ -42,7 +42,7 @@ Widget updateInfoGradueted(
     color: MyColors.appColorGrey100(),
     child: Text(
         providerGraduated.boolAllInfoGraduatedNot
-            ? "textGraduatedInfo".tr()
+            ? "updateGraduetedInfo".tr()
             : "updateGraduetedInfo".tr(),
         style: TextStyle(
             color: MyColors.appColorBlack(), fontWeight: FontWeight.bold)),
