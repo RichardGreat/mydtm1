@@ -45,7 +45,7 @@ class ProviderMainHome extends ChangeNotifier {
           ModelCheckMobileVersion.fromJson(jsonDecode(dataVersion));
 
       log(jsonEncode(modelCheckMobileVersion).toString());
-      ///1003
+      ///1004
       if(box.get("updateVersion").toString() != modelCheckMobileVersion.data.version.toString()
       ) {
 
