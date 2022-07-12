@@ -3,7 +3,7 @@
   "identification": "Xızmetten paydalanıw ushın identifikaciya sisteması arqalı kiriwińiz kerek",
   "serviceNot": "Xızmet waqıtsha jabıq",
   "enter": "Kiriw",
-  "regUser": "Пользователь уже зарегистрирован в системе",
+  "regUser": "Bul telefon nomer aldın dizimnen ótken",
   "enterSystem": "Sistemaǵa kiriw",
   "fillInField": "Maydanlardı toltırıń",
   "noInfoCheck": "Maǵlıwmatlar tolıq emes",
@@ -218,8 +218,9 @@
   "textGraduatedInfo": " Júklep alıw",
   "wantUpdateInfo": "Maǵluwmatlardı jańalaysızba?",
   "wantUpdateInfo2": "Maǵluwmatlarıńızdı jańalaǵanızdan soń da bilimlendiriw shólkeminiń tamamlaǵan jılıńız 2022- jılǵa ózgermese, ózińiz bilim alǵan shólkemińizge murájat etiwińiz múmkin.",
-  "infoNotPayTitle": "Test sinaǵında qatnasıw ushın tólewden azat etiletuǵın abiturientler.\nUsı jılı bilimlendiriw shólkemin pitirgen abiturientler.",
-  "infoNotPay": "1.  Nágiranlıǵı bolǵan shaxslar;\n2.  Tolıq mámleket qarawındaǵı (mehribanlıq úyi tárbiyalanıwshıları hámde balalar qalashasınıń pitkeriwshileri; \n3.  Sociallıq qorǵawdıń birden-bir reestri” informacialiq dizimge alinǵan shaxslar hám oniń perzentleri;\n4.   “Jaslar dápteri” ne kiritilgen jaslar.\n5.  Jeńillik tiykarında tuwrıdan tuwrı studentlikke usınıs etilgen abiturientler.\nTolıq maǵluwmat ushın dizim beti menen tanısıń.",
+  "infoNotPayTitle": "Test sinaǵında qatnasıw ushın tólewden azat etiletuǵın abiturientler.",
+  "infoNotPay": "1. Usı jılı bilimlendiriw shólkemin pitirgen abiturientler;\n.2 Nágiranlıǵı bolǵan shaxslar;\n3.  Tolıq mámleket qarawındaǵı (mehribanlıq úyi tárbiyalanıwshıları hámde balalar qalashasınıń pitkeriwshileri; \n4.  Sociallıq qorǵawdıń birden-bir reestri” informacialiq dizimge alinǵan shaxslar hám oniń perzentleri;\n5.   “Jaslar dápteri” ne kiritilgen jaslar.\n6.  Jeńillik tiykarında tuwrıdan tuwrı studentlikke usınıs etilgen abiturientler.\nTolıq maǵluwmat ushın dizim beti menen tanısıń.",
   "doNotShowAgain": "Basqa kórsetilmew",
-  "accepted": "Tanıstım"
+  "accepted": "Tanıstım",
+  "telephoneHasNum": "Telfon nomer aldınlaw bánt etilgen!"
 }
