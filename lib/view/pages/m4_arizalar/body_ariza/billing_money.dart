@@ -54,9 +54,21 @@ Widget infoMoneyBilling({required BuildContext context, required ProviderAriza p
                       text: providerAriza.model.invoice.toString(),
                     ));
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: MyColors.appColorWhite(),
                         duration: const Duration(seconds: 1),
-                        content: Text(
-                          providerAriza.model.invoice.toString(),
+                        content: Row(
+                          children: [
+                            Icon(Icons.copy_all, color: MyColors.appColorBlue1()),
+                            const SizedBox(width: 5),
+                            SizedBox(
+                              child: FittedBox(
+                                child: Text(
+                                  providerAriza.model.invoice.toString(),
+                                  style: TextStyle(color: MyColors.appColorBlue1(), fontSize: 17),
+                                ),
+                              ),
+                            ),
+                          ],
                         )));
                   }),
               leading: Text(
