@@ -45,17 +45,32 @@ class ProviderGraduated extends ChangeNotifier {
 
   bool boolAllInfoGraduatedNot = false;
 
-  Future getAllInfoGraduated() async {
+  Future getAllInfoGraduated({required BuildContext context}) async {
     try {
       boolAllInfoGraduated = false;
-      String data = await networkGetGraduated.getAllGraduated();
-      log(data);
-      modelGraduatedInfo = ModelGraduatedInfo.fromJson(jsonDecode(data));
-      // if(modelGraduatedInfo.data.countryId != "860"){
-      //   boolGraduatedType = false;
-      //   notifyListeners();
-      // }
-      checkAllInfo(dataGraduatedInfo: modelGraduatedInfo.data);
+      // String data = await networkGetGraduated.getAllGraduated();
+      // log(data);
+      // modelGraduatedInfo = ModelGraduatedInfo.fromJson(jsonDecode(data));
+      /// if(modelGraduatedInfo.data.countryId != "860"){
+      ///   boolGraduatedType = false;
+      ///   notifyListeners();
+      ///}
+      // checkAllInfo(dataGraduatedInfo: modelGraduatedInfo.data);
+      modelGraduatedInfo = ModelGraduatedInfo(
+          status: 0,
+          data: DataGraduatedInfo(id: "",
+              regionId: "",
+              countryId: "",
+              countryName: "",
+              regionName: "",
+              districtId: "",
+              districtName: "",
+              docSerNum: "",
+              graduatedYear: "",
+              eduName: "",
+              oldEduId: "",
+              eduTypeId: "",
+              gName: ""));
       boolAllInfoGraduated = true;
       notifyListeners();
     } catch (e) {
@@ -76,6 +91,23 @@ class ProviderGraduated extends ChangeNotifier {
               gName: ""));
       boolAllInfoGraduatedNot = true;
       boolAllInfoGraduated = true;
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.NO_HEADER,
+          animType: AnimType.BOTTOMSLIDE,
+          dismissOnTouchOutside: false,
+          title: "DTM",
+          desc: "wantUpdateInfo2".tr(),
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(),
+              fontSize: 24,
+              fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () {},
+          btnCancelColor: MyColors.appColorBlue1(),
+          btnCancelText: "OK")
+          .show();
       notifyListeners();
       log("123");
       log(e.toString());
@@ -749,6 +781,7 @@ class ProviderGraduated extends ChangeNotifier {
 
       notifyListeners();
     } catch (e) {
+
       modelGraduatedInfo = ModelGraduatedInfo(
           status: 0,
           data: DataGraduatedInfo(id: "",
@@ -766,6 +799,23 @@ class ProviderGraduated extends ChangeNotifier {
               gName: ""));
       boolAllInfoGraduatedNot = true;
       boolAllInfoGraduated = true;
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.NO_HEADER,
+          animType: AnimType.BOTTOMSLIDE,
+          dismissOnTouchOutside: false,
+          title: "DTM",
+          desc: "wantUpdateInfo2".tr(),
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(),
+              fontSize: 24,
+              fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () {},
+          btnCancelColor: MyColors.appColorBlue1(),
+          btnCancelText: "OK")
+          .show();
       notifyListeners();
       log(e.toString());
     }

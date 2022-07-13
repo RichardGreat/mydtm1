@@ -45,7 +45,7 @@ class _MainPagesState extends State<MainPages> {
       await Future.delayed(Duration.zero);
 
       box.delete("updateVersion");
-      box.put("updateVersion", "1004");
+      box.put("updateVersion", "1005");
     } catch (e) {}
   }
 

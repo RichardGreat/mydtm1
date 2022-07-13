@@ -40,7 +40,7 @@ class _GraduatedState extends State<Graduated> {
   }
 
   Future getDataGradueted() async {
-     providerGraduated.getAllInfoGraduated();
+     providerGraduated.getAllInfoGraduated(context: context);
   }
 
   void getUpdate2022() {
