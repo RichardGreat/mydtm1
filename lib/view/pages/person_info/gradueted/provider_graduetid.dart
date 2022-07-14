@@ -48,14 +48,14 @@ class ProviderGraduated extends ChangeNotifier {
   Future getAllInfoGraduated({required BuildContext context}) async {
     try {
       boolAllInfoGraduated = false;
-      // String data = await networkGetGraduated.getAllGraduated();
-      // log(data);
-      // modelGraduatedInfo = ModelGraduatedInfo.fromJson(jsonDecode(data));
+      String data = await networkGetGraduated.getAllGraduated();
+      log(data);
+      modelGraduatedInfo = ModelGraduatedInfo.fromJson(jsonDecode(data));
       /// if(modelGraduatedInfo.data.countryId != "860"){
       ///   boolGraduatedType = false;
       ///   notifyListeners();
       ///}
-      // checkAllInfo(dataGraduatedInfo: modelGraduatedInfo.data);
+      checkAllInfo(dataGraduatedInfo: modelGraduatedInfo.data);
       modelGraduatedInfo = ModelGraduatedInfo(
           status: 0,
           data: DataGraduatedInfo(id: "",

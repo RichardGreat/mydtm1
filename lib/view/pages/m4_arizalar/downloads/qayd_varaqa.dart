@@ -65,27 +65,36 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
                       Container(
                         margin: const EdgeInsets.all(15),
                         child: Column(children: [
-                          MaterialButton(
-                            onPressed: () {
-                              widget.providerAriza.openFile(
-                                  url: widget
-                                      .providerAriza.modelGetDownloads1.src,
-                                  fileName: "dtm1");
-                            },
-                            height: 50,
-                            minWidth: double.infinity,
-                            color: MyColors.appColorBlue1(),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            child: MyWidgets.robotoFontText(
-                                text: "download".tr(),
-                                textColor: MyColors.appColorWhite()),
-                          ),
+                          widget.providerAriza.loading
+                              ? LinearProgressIndicator(
+                                  minHeight: 10,
+                                  value: widget.providerAriza.progress,
+                                )
+                              : MaterialButton(
+                                  onPressed: () {
+                                    widget.providerAriza.download(
+                                        urls: widget.providerAriza
+                                            .modelGetDownloads1.src ,  fileName: "qayd_varaqa.pdf" );
+                                    // widget.providerAriza.openFile(
+                                    //     url: widget
+                                    //         .providerAriza.modelGetDownloads1.src,
+                                    //     fileName: "dtm1");
+                                  },
+                                  height: 50,
+                                  minWidth: double.infinity,
+                                  color: MyColors.appColorBlue1(),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: MyWidgets.robotoFontText(
+                                      text: "download".tr(),
+                                      textColor: MyColors.appColorWhite()),
+                                ),
                           const SizedBox(height: 10),
                           MaterialButton(
                             onPressed: () {
                               pushNewScreen(context,
-                                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                  pageTransitionAnimation:
+                                      PageTransitionAnimation.cupertino,
                                   screen: ChooseEdu(funcState: getBoshFunc));
                             },
                             height: 50,
@@ -104,8 +113,8 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
                     ]),
                   )
                 : Center(
-          child: MyWidgets.robotoFontText(text: "infoNotFind".tr()),
-        )
+                    child: MyWidgets.robotoFontText(text: "infoNotFind".tr()),
+                  )
             : MyWidgets.loaderDownload(context: context),
       )),
     );
