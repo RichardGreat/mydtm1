@@ -12,12 +12,11 @@ import 'package:mydtm/data/internet_connections/person_info/privilege_check/priv
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/data/model_parse/person_info/privilege_model/privilege_model1.dart';
-import 'package:mydtm/view/pages/m3_home/check_information_page/aferta.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
-import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
+import 'package:mydtm/view/perevod/pages/old_edu_add.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:open_file/open_file.dart';
@@ -25,10 +24,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProviderCheckInformation extends ChangeNotifier
+class ProviderCheckInfoPerevod extends ChangeNotifier
 {
-
-
   List<ModelCheckInformationForDelete> myList = [
     ModelCheckInformationForDelete(
       id: 1,
@@ -44,17 +41,14 @@ class ProviderCheckInformation extends ChangeNotifier
     ),
     ModelCheckInformationForDelete(
       id: 4,
-      name: "certificates".tr(),
-    ),
-    ModelCheckInformationForDelete(
-      id: 5,
-      name: "privileges".tr(),
+      name: "oldEdu".tr(),
     ),
     ModelCheckInformationForDelete(
       id: 6,
       name: "chooseDirection".tr(),
     ),
   ];
+
   NetworkCheckUserInfo networkCheckUserInfo = NetworkCheckUserInfo();
   late ModelCheckUserInfo modelCheckUserInfo;
   bool boolCheckUserInfo = false;
@@ -79,9 +73,9 @@ class ProviderCheckInformation extends ChangeNotifier
 
   Future checkInfo(
       {required int index,
-      required BuildContext context,
-      required ProviderCheckInformation providerCheckInformation,
-      required Function func}) async {
+        required BuildContext context,
+        required ProviderCheckInfoPerevod providerCheckInfoPerevod,
+        required Function func}) async {
 
     if (modelCheckUserInfo.person) {
       if (index == 0) {
@@ -111,7 +105,7 @@ class ProviderCheckInformation extends ChangeNotifier
           } else if (index == 3) {
             pushNewScreen(
               context,
-              screen: Certificates(funcState: func),
+              screen: OldEduAdd(),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
@@ -127,7 +121,7 @@ class ProviderCheckInformation extends ChangeNotifier
             inFoAferta(
                 context: context,
                 function: func,
-                providerCheckInformation: providerCheckInformation);
+                providerCheckInfoPerevod: providerCheckInfoPerevod);
           }
         } else {
           if (index == 2) {
@@ -221,100 +215,46 @@ class ProviderCheckInformation extends ChangeNotifier
   Future<void> inFoAferta({
     required BuildContext context,
     required Function function,
-    required ProviderCheckInformation providerCheckInformation,
+    required ProviderCheckInfoPerevod providerCheckInfoPerevod,
   }) async {
-    return //AwesomeDialog(
-        //   context: context,
-        //   dialogType: DialogType.NO_HEADER,
-        //   animType: AnimType.BOTTOMSLIDE,
-        //   title: "requestExamTest".tr(),
-        //   body: GestureDetector(
-        //     onTap: () {
-        //       // _launchInBrowser(_url);
-        //     },
-        //     child: Column(
-        //       children: [
-        //         const SizedBox(height: 10),
-        //         Text("requestExamTest".tr(),
-        //             textAlign: TextAlign.center,
-        //             style: const TextStyle(
-        //               fontWeight: FontWeight.w600,
-        //             )),
-        //         Container(
-        //           padding: EdgeInsets.all(8),
-        //           height: MediaQuery.of(context).size.height * 0.75,
-        //           child: ListView.builder(
-        //               itemCount: 2,
-        //               itemBuilder: (context, index) {
-        //                 if (index == 0) {
-        //                   boolAfertaButton = false;
-        //                   return Text(myAfertaList[index]);
-        //                 } else {
-        //                   boolAfertaButton = true;
-        //                   notifyListeners();
-        //                   return const SizedBox.shrink();
-        //                 }
-        //               }),
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        //   titleTextStyle: TextStyle(
-        //       color: MyColors.appColorBlue1(),
-        //       fontWeight: FontWeight.bold,
-        //       fontSize: 20),
-        //   descTextStyle: TextStyle(
-        //       color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-        //   btnOkOnPress: () {
-        //     // pushNewScreen(
-        //     //   context,
-        //     //   screen: PersonInformation(funcState: func),
-        //     //   withNavBar: false,
-        //     //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        //     // );
-        //   },
-        //   btnOkText: "iAgree".tr(),
-        //   btnOkColor: boolAfertaButton
-        //       ? MyColors.appColorBlue1()
-        //       : Colors.blue.withOpacity(0.3),
-        // ).show();
-        showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          insetPadding: const EdgeInsets.all(10),
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10.0))),
-          title: Column(children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Icon(Icons.close))
-              ],
-            ),
-            const SizedBox(height: 10),
-            Text("requestExamTest".tr(),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                )),
-          ]),
-          content: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.75,
-            child: Aferta(
-                providerCheckInformation: providerCheckInformation,
-                function: function),
-          ),
-        );
-      },
-    );
+    // return
+      // showDialog<void>(
+      //   context: context,
+      //   barrierDismissible: false, // user must tap button!
+      //   builder: (BuildContext context) {
+      //     return AlertDialog(
+      //       backgroundColor: Colors.white,
+      //       insetPadding: const EdgeInsets.all(10),
+      //       shape: const RoundedRectangleBorder(
+      //           borderRadius: BorderRadius.all(Radius.circular(10.0))),
+      //       title: Column(children: [
+      //         Row(
+      //           crossAxisAlignment: CrossAxisAlignment.start,
+      //           mainAxisAlignment: MainAxisAlignment.end,
+      //           children: [
+      //             GestureDetector(
+      //                 onTap: () {
+      //                   Navigator.of(context).pop();
+      //                 },
+      //                 child: const Icon(Icons.close))
+      //           ],
+      //         ),
+      //         const SizedBox(height: 10),
+      //         Text("requestExamTest".tr(),
+      //             textAlign: TextAlign.center,
+      //             style: const TextStyle(
+      //               fontWeight: FontWeight.w600,
+      //             )),
+      //       ]),
+      //       content: SizedBox(
+      //         height: MediaQuery.of(context).size.height * 0.75,
+      //         child: Aferta(
+      //             providerCheckInfoPerevod: providerCheckInfoPerevod,
+      //             function: function),
+      //       ),
+      //     );
+      //   },
+      // );
   }
 
   // final Uri urls = Uri.parse("https://lex.uz/docs/-4396419");
@@ -417,7 +357,7 @@ class ModelCheckInformationForDelete {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-      };
+    "id": id,
+    "name": name,
+  };
 }

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_information.dart';
-import 'package:mydtm/view/pages/m3_home/check_information_page/widgets/button_check_info.dart';
+import 'package:mydtm/view/perevod/check_info_perevod/provider_check_perevod.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-Widget bodyCheckInformation(
+Widget bodyCheckInfoPerevod(
     {required BuildContext context,
-    required Function functions,
-    required ProviderCheckInformation providerCheckInformation,
-    required String serviceName}) {
+      required Function functions,
+      required ProviderCheckInfoPerevod providerCheckInfoPerevod,
+      required String serviceName}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -32,20 +31,20 @@ Widget bodyCheckInformation(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
-            providerCheckInformation.checkInfo(
-                providerCheckInformation: providerCheckInformation,
+            providerCheckInfoPerevod.checkInfo(
+                providerCheckInfoPerevod: providerCheckInfoPerevod,
                 index: 0,
                 context: context,
                 func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
           leading: MyWidgets.robotoFontText(
-              text: providerCheckInformation.myList[0].name, textSize: 16),
+              text: providerCheckInfoPerevod.myList[0].name, textSize: 16),
           title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                providerCheckInformation.modelCheckUserInfo.person
+                providerCheckInfoPerevod.modelCheckUserInfo.person
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : const SizedBox.shrink(),
               ]),
@@ -60,8 +59,8 @@ Widget bodyCheckInformation(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
-            providerCheckInformation.checkInfo(
-                providerCheckInformation: providerCheckInformation,
+            providerCheckInfoPerevod.checkInfo(
+                providerCheckInfoPerevod: providerCheckInfoPerevod,
                 index: 1,
                 context: context,
                 func: functions);
@@ -74,7 +73,7 @@ Widget bodyCheckInformation(
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.5,
                 child: Text(
-                  providerCheckInformation.myList[1].name,
+                  providerCheckInfoPerevod.myList[1].name,
                   overflow: TextOverflow.visible,
                   softWrap: true,
                   style: TextStyle(
@@ -90,7 +89,7 @@ Widget bodyCheckInformation(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                providerCheckInformation.modelCheckUserInfo.personAddress
+                providerCheckInfoPerevod.modelCheckUserInfo.personAddress
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : const SizedBox.shrink(),
               ]),
@@ -105,20 +104,20 @@ Widget bodyCheckInformation(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
-            providerCheckInformation.checkInfo(
-                providerCheckInformation: providerCheckInformation,
+            providerCheckInfoPerevod.checkInfo(
+                providerCheckInfoPerevod: providerCheckInfoPerevod,
                 index: 2,
                 context: context,
                 func: functions);
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
           leading: MyWidgets.robotoFontText(
-              text: providerCheckInformation.myList[2].name, textSize: 16),
+              text: providerCheckInfoPerevod.myList[2].name, textSize: 16),
           title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                providerCheckInformation.modelCheckUserInfo.personGeneralEdu
+                providerCheckInfoPerevod.modelCheckUserInfo.personGeneralEdu
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : const SizedBox.shrink(),
               ]),
@@ -133,8 +132,8 @@ Widget bodyCheckInformation(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
-            providerCheckInformation.checkInfo(
-                providerCheckInformation: providerCheckInformation,
+            providerCheckInfoPerevod.checkInfo(
+                providerCheckInfoPerevod: providerCheckInfoPerevod,
                 index: 3,
                 context: context,
                 func: functions);
@@ -143,13 +142,13 @@ Widget bodyCheckInformation(
           leading: SizedBox(
             width: MediaQuery.of(context).size.width*0.6,
             child: MyWidgets.robotoFontText(
-                text: "oldEdu".tr(), textSize: 16),
+                text:  providerCheckInfoPerevod.myList[3].name, textSize: 16),
           ),
           title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-            providerCheckInformation.modelCheckUserInfo.certificate
+                providerCheckInfoPerevod.modelCheckUserInfo.certificate
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : const SizedBox.shrink(),
               ]),
@@ -165,8 +164,8 @@ Widget bodyCheckInformation(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
-            providerCheckInformation.checkInfo(
-                providerCheckInformation: providerCheckInformation,
+            providerCheckInfoPerevod.checkInfo(
+                providerCheckInfoPerevod: providerCheckInfoPerevod,
                 index: 5,
                 context: context,
                 func: functions);
@@ -176,26 +175,27 @@ Widget bodyCheckInformation(
             size: 14,
           ),
           leading: MyWidgets.robotoFontText(
-              text: providerCheckInformation.myList[5].name, textSize: 16),
+              text: providerCheckInfoPerevod.myList[4].name, textSize: 16),
           title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                providerCheckInformation.modelCheckUserInfo.bakalavr
+                providerCheckInfoPerevod.modelCheckUserInfo.bakalavr
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : const SizedBox.shrink(),
               ]),
         ),
       ),
-      providerCheckInformation.modelCheckUserInfo.person &&
-              providerCheckInformation.modelCheckUserInfo.personAddress &&
-              providerCheckInformation.modelCheckUserInfo.personGeneralEdu
-          ? bottomCheckInfo(
-              providerCheckInformation: providerCheckInformation,
-              context: context,
-              functions1: functions
-      )
-          : const SizedBox.shrink()
+      // providerCheckInfoPerevod.modelCheckUserInfo.person &&
+      //     providerCheckInfoPerevod.modelCheckUserInfo.personAddress &&
+      //     providerCheckInfoPerevod.modelCheckUserInfo.personGeneralEdu
+      //     ?
+      // bottomCheckInfo(
+      //     providerCheckInformation: providerCheckInfoPerevod,
+      //     context: context,
+      //     functions1: functions
+      // )
+      //     : const SizedBox.shrink()
     ],
   );
 }

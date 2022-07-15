@@ -20,7 +20,6 @@ Widget bodyMainHome(
           floatHeaderSlivers: true,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
 
-
             return <Widget>[
               SliverAppBar(
                 backgroundColor: MyColors.appColorWhite(),

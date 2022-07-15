@@ -34,15 +34,8 @@ class _MainHomeState extends State<MainHome> {
   }
 
 
-  @override
-  void didChangeDependencies(){
-    super.didChangeDependencies();
-  }
-  @override
-  void dispose(){
-    log("3333333333333333333333333333333");
-    super.dispose();
-  }
+
+
 Future gerRefresh()async{
     setState((){});
 }

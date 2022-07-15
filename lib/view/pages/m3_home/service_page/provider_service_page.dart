@@ -4,6 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
+import 'package:mydtm/view/perevod/check_info_perevod/check_info_perevodga.dart';
+import 'package:mydtm/view/perevod/main_perevod.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -59,7 +61,19 @@ class ProviderServicePage extends ChangeNotifier{
                       pageTransitionAnimation:
                           PageTransitionAnimation.cupertino,
                     )
-                  }else if(box.get("token").toString().length > 29){
+                  }
+        else  if(categoryId == "41")
+          {
+            pushNewScreen(
+              context,
+              screen: CheckInformationPerevodga(serviceName: categoryName),
+              withNavBar: false,
+              pageTransitionAnimation:
+              PageTransitionAnimation.cupertino,
+            )
+          }
+        else if(box.get("token").toString().length > 29){
+
           AwesomeDialog(
               context: context,
               dialogType: DialogType.NO_HEADER,
@@ -101,11 +115,14 @@ class ProviderServicePage extends ChangeNotifier{
               }
 
     }:{
+
         if(box.get("token").toString().length > 29)
               {
+
                 MyWidgets.awesomeDialogInfo(
                     context: context, valueText: "serviceNot".tr())
               }else{
+
           AwesomeDialog(
               context: context,
               dialogType: DialogType.NO_HEADER,

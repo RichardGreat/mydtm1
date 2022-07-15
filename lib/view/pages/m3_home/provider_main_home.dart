@@ -130,7 +130,7 @@ class ProviderMainHome extends ChangeNotifier {
 
       ModelServiceList modelServiceList =
           ModelServiceList.fromJson(jsonDecode(dataServiceList));
-      // log(jsonEncode(modelServiceList));
+      log(jsonEncode(modelServiceList));
 
       listDataServiceList.addAll(modelServiceList.data);
       for (var value in listDataServiceList) {
