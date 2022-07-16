@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/sheets/country_sheet.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/sheets/edu_type.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -30,10 +32,12 @@ Widget bodyMainOldEdu(
           child: ListTile(
             minVerticalPadding: 0,
             title: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(height: 4),
                     SizedBox(
@@ -58,8 +62,11 @@ Widget bodyMainOldEdu(
                 Icon(Icons.arrow_forward_ios_sharp, size: 16),
               ],
             ),
-            subtitle: Text(providerOldEdu.restRegionNamePerevod),
+            subtitle: Text(providerOldEdu.restRegionNamePerevod,
+               ),
             onTap: () {
+              modelSheetCountryPerevod(
+                  contexts: context, providerOldEdu: providerOldEdu);
               // sheetRegionTest(
               //     context: context, providerChooseEdu: providerChooseEdu);
             },
@@ -78,7 +85,7 @@ Widget bodyMainOldEdu(
               children: [
                 MyWidgets.robotoFontText(
                     text: "oldEduEduType".tr(), textSize: 17),
-                providerOldEdu.langName.length > 4
+                providerOldEdu.eduTypeName.length > 4
                     ? Icon(
                         Icons.check_circle,
                         color: MyColors.appColorGreen1(),
@@ -94,10 +101,10 @@ Widget bodyMainOldEdu(
                 Icon(Icons.arrow_forward_ios_sharp, size: 16),
               ],
             ),
-            subtitle: Text(providerOldEdu.langName),
+            subtitle: Text(providerOldEdu.eduTypeName),
             onTap: () {
-              // sheetLanguageChooseTest(
-              //     context: context, providerChooseEdu: providerChooseEdu);
+              modelSheetEduTypePerevod(contexts: context, providerOldEdu: providerOldEdu);
+
             },
           ),
         ),
@@ -177,7 +184,7 @@ Widget bodyMainOldEdu(
         ///Kurs bosqichi
         Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
                 bottomRight: Radius.circular(8),
                 bottomLeft: Radius.circular(8)),
             color: MyColors.appColorWhite(),
@@ -222,12 +229,12 @@ Widget bodyMainOldEdu(
           child: Center(child: Text("Image choose")),
         ),
         const SizedBox(height: 10),
-        MaterialButton(onPressed: (){},
-
+        MaterialButton(
+          onPressed: () {},
           child: Text("OK", style: TextStyle(color: MyColors.appColorWhite())),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           height: 50,
-          minWidth: MediaQuery.of(context).size.width*0.9,
+          minWidth: MediaQuery.of(context).size.width * 0.9,
           color: MyColors.appColorBlue1(),
         )
       ],
