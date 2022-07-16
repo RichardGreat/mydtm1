@@ -64,6 +64,9 @@ class _GraduatedState extends State<Graduated> {
             } else if (widget.windowIdGraduated == "1") {
               Navigator.of(context).pop();
             }
+            else if (widget.windowIdGraduated == "2") {
+              Navigator.of(context).pop();
+            }
             return true;
           },
           child: Scaffold(
@@ -350,6 +353,8 @@ class _GraduatedState extends State<Graduated> {
                                     "2022"
                                 ? const SizedBox.shrink()
                                 : const SizedBox(height: 20),
+
+                            widget.windowIdGraduated !="2"?
                             providerGraduated
                                         .modelGraduatedInfo.data.graduatedYear
                                         .toString() ==
@@ -358,7 +363,7 @@ class _GraduatedState extends State<Graduated> {
                                 : updateInfoGradueted(
                                     context: context,
                                     function: getUpdate2022,
-                                    providerGraduated: providerGraduated),
+                                    providerGraduated: providerGraduated):const SizedBox.shrink(),
                           ],
                         ),
                       ),

@@ -143,13 +143,44 @@ Widget bodyCheckInformation(
           leading: SizedBox(
             width: MediaQuery.of(context).size.width*0.6,
             child: MyWidgets.robotoFontText(
-                text: "oldEdu".tr(), textSize: 16),
+                text:providerCheckInformation.myList[3].name, textSize: 16),
           ),
           title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
             providerCheckInformation.modelCheckUserInfo.certificate
+                    ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
+                    : const SizedBox.shrink(),
+              ]),
+        ),
+      ),
+      const SizedBox(height: 2),
+      Container(
+        decoration: BoxDecoration(
+            color: MyColors.appColorWhite(),
+            borderRadius: BorderRadius.circular(5)),
+        child: ListTile(
+          dense: true,
+          visualDensity: const VisualDensity(vertical: 0),
+          onTap: () {
+            providerCheckInformation.checkInfo(
+                providerCheckInformation: providerCheckInformation,
+                index: 4,
+                context: context,
+                func: functions);
+          },
+          trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
+          leading: SizedBox(
+            width: MediaQuery.of(context).size.width*0.6,
+            child: MyWidgets.robotoFontText(
+                text:providerCheckInformation.myList[4].name, textSize: 16),
+          ),
+          title: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                providerCheckInformation.modelCheckUserInfo.certificate
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : const SizedBox.shrink(),
               ]),
@@ -167,7 +198,7 @@ Widget bodyCheckInformation(
           onTap: () {
             providerCheckInformation.checkInfo(
                 providerCheckInformation: providerCheckInformation,
-                index: 5,
+                index:  5,
                 context: context,
                 func: functions);
           },

@@ -224,6 +224,11 @@
   "accepted": "Tanishdim",
   "telephoneHasNum": "Telfon raqam avvalroq band qilingan!",
 
-  "oldEdu":"Tahsil olayotgan taʼlim muassasangiz"
-
+  "oldEdu":"Tahsil olayotgan taʼlim muassasangiz",
+  "enterOldEdu": "Tahsil olayotgan taʼlim muassasangiz maʼlumotlarini kiriting",
+  "oldEduCountry": "Taʼlim muassasangiz joylashgan davlat",
+  "oldEduEduType": "Ta'lim shakli",
+  "oldEduEduName": "Ta'lim muassasa nomi",
+  "oldEduDirectionName": "Yo‘nalish nomi",
+  "oldEduNumberCourse": "Tugatgan bosqichi"
 }

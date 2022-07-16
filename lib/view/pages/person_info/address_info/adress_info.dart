@@ -39,13 +39,16 @@ class _AddressInfoState extends State<AddressInfo> {
           WillPopScope(
             onWillPop: ()async{
          if(widget.addressWindowId == "0") {
-                await widget.funcState();
+                 widget.funcState();
                 pushNewScreen(context,
                     pageTransitionAnimation: PageTransitionAnimation.cupertino,
                     screen: CheckInformation(
                         serviceName: box.get("categoryName").toString()));
               }else if(widget.addressWindowId == "1"){
                 Navigator.of(context).pop();
+         }
+         else if(widget.addressWindowId == "2"){
+           Navigator.of(context).pop();
          }
               return true;
             },

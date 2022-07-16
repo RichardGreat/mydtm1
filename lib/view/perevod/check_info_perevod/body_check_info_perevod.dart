@@ -166,7 +166,7 @@ Widget bodyCheckInfoPerevod(
           onTap: () {
             providerCheckInfoPerevod.checkInfo(
                 providerCheckInfoPerevod: providerCheckInfoPerevod,
-                index: 5,
+                index: 4,
                 context: context,
                 func: functions);
           },

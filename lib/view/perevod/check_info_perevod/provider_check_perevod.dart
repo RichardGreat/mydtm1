@@ -16,7 +16,8 @@ import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
-import 'package:mydtm/view/perevod/pages/old_edu_add.dart';
+import 'package:mydtm/view/perevod/pages/new_edu_perevod/new_edu_perevod.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/old_edu_add.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:open_file/open_file.dart';
@@ -89,7 +90,7 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
         if (index == 1) {
           pushNewScreen(
             context,
-            screen: AddressInfo(funcState: func, addressWindowId: "0"),
+            screen: AddressInfo(funcState: func, addressWindowId: "2"),
             withNavBar: false,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
@@ -98,7 +99,7 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
           if (index == 2) {
             pushNewScreen(
               context,
-              screen: Graduated(funcState: func, windowIdGraduated: "0" ),
+              screen: Graduated(funcState: func, windowIdGraduated: "2" ),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
@@ -112,11 +113,13 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
           } else if (index == 4) {
             pushNewScreen(
               context,
-              screen: Privilege(funcState: func),
+              screen: NewEduPerevod(),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
-          } else if (index == 5) {
+          }
+
+          else if (index == 5) {
             // infoAferta(context: context, function: func);
             inFoAferta(
                 context: context,
@@ -127,7 +130,7 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
           if (index == 2) {
             pushNewScreen(
               context,
-              screen: Graduated(funcState: func, windowIdGraduated: "0"),
+              screen: Graduated(funcState: func, windowIdGraduated: "2"),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
@@ -140,7 +143,7 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
         if (index == 1) {
           pushNewScreen(
             context,
-            screen: AddressInfo(funcState: func,  addressWindowId: "0"),
+            screen: AddressInfo(funcState: func,  addressWindowId: "2"),
             withNavBar: false,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );

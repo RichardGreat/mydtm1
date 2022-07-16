@@ -223,5 +223,6 @@
   "accepted": "Ok",
   "telephoneHasNum": "Номер телефона уже используется",
 
-  "oldEdu":"Tahsil olayotgan taʼlim muassasangiz"
+  "oldEdu":"Tahsil olayotgan taʼlim muassasangiz",
+  "enterOldEdu": "Tahsil olayotgan taʼlim muassasangiz maʼlumotlarini kiriting"
 }
