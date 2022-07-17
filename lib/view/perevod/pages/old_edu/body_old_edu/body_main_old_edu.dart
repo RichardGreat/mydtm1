@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/sheets/country_sheet.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/sheets/edu_dir.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/sheets/edu_lang_old_perevod.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/sheets/edu_type.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/sheets/graduet_year.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/sheets/uzb_edu_sheet.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -122,7 +125,7 @@ Widget bodyMainOldEdu(
               children: [
                 MyWidgets.robotoFontText(
                     text: "chooseLangEmode".tr(), textSize: 17),
-                providerOldEdu.eduTypeName.length > 4
+                providerOldEdu.eduLangName.length > 4
                     ? Icon(
                   Icons.check_circle,
                   color: MyColors.appColorGreen1(),
@@ -138,9 +141,9 @@ Widget bodyMainOldEdu(
                 Icon(Icons.arrow_forward_ios_sharp, size: 16),
               ],
             ),
-            subtitle: Text(providerOldEdu.eduTypeName),
+            subtitle: Text(providerOldEdu.eduLangName),
             onTap: () {
-              modelSheetEduTypePerevod(contexts: context, providerOldEdu: providerOldEdu);
+              modelSheetEduLangOldPerevod(contexts: context, providerOldEdu: providerOldEdu);
 
             },
           ),
@@ -158,7 +161,7 @@ Widget bodyMainOldEdu(
               children: [
                 MyWidgets.robotoFontText(
                     text: "oldEduEduName".tr(), textSize: 17),
-                providerOldEdu.langName.length > 4
+                providerOldEdu.eduUzbName.length > 4
                     ? Icon(
                         Icons.check_circle,
                         color: MyColors.appColorGreen1(),
@@ -174,7 +177,7 @@ Widget bodyMainOldEdu(
                 Icon(Icons.arrow_forward_ios_sharp, size: 16),
               ],
             ),
-            subtitle: Text(providerOldEdu.langName),
+            subtitle: Text(providerOldEdu.eduUzbName),
             onTap: () {
               modelSheetUzbEduPerevod(contexts: context, providerOldEdu: providerOldEdu);
               // sheetLanguageChooseTest(
@@ -195,7 +198,7 @@ Widget bodyMainOldEdu(
               children: [
                 MyWidgets.robotoFontText(
                     text: "oldEduDirectionName".tr(), textSize: 17),
-                providerOldEdu.langName.length > 4
+                providerOldEdu.dirNames.length > 4
                     ? Icon(
                         Icons.check_circle,
                         color: MyColors.appColorGreen1(),
@@ -211,8 +214,9 @@ Widget bodyMainOldEdu(
                 Icon(Icons.arrow_forward_ios_sharp, size: 16),
               ],
             ),
-            subtitle: Text(providerOldEdu.langName),
+            subtitle: Text(providerOldEdu.dirNames),
             onTap: () {
+              modelSheetEduDirPerevod(contexts: context, providerOldEdu: providerOldEdu);
               // sheetLanguageChooseTest(
               //     context: context, providerChooseEdu: providerChooseEdu);
             },
@@ -234,7 +238,7 @@ Widget bodyMainOldEdu(
               children: [
                 MyWidgets.robotoFontText(
                     text: "oldEduNumberCourse".tr(), textSize: 17),
-                providerOldEdu.langName.length > 4
+                providerOldEdu.graduatedYearNames.length > 4
                     ? Icon(
                         Icons.check_circle,
                         color: MyColors.appColorGreen1(),
@@ -250,8 +254,9 @@ Widget bodyMainOldEdu(
                 Icon(Icons.arrow_forward_ios_sharp, size: 16),
               ],
             ),
-            subtitle: Text(providerOldEdu.langName),
+            subtitle: Text(providerOldEdu.graduatedYearNames),
             onTap: () {
+              modelSheetGraduatedYearPerevod(contexts: context, providerOldEdu: providerOldEdu);
               // sheetLanguageChooseTest(
               //     context: context, providerChooseEdu: providerChooseEdu);
             },

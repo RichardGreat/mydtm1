@@ -230,5 +230,9 @@
   "oldEduEduType": "Ta'lim shakli",
   "oldEduEduName": "Ta'lim muassasa nomi",
   "oldEduDirectionName": "Yo‘nalish nomi",
-  "oldEduNumberCourse": "Tugatgan bosqichi"
+  "oldEduNumberCourse": "Tugatgan bosqichi",
+  "firstYear": "Birinchi bosqich",
+  "secondYear": "Ikkinchi bosqich",
+  "thirdYear": "Uchunchi bosqich",
+  "fourthYear": "To'rtinchi bosqich"
 }

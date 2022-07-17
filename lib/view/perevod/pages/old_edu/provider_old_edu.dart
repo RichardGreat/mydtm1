@@ -2,11 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/perevod/internet/countrys.dart';
+import 'package:mydtm/data/perevod/internet/edu_lang_perevod.dart';
 import 'package:mydtm/data/perevod/internet/edu_type.dart';
+import 'package:mydtm/data/perevod/internet/get_edu_direct.dart';
 import 'package:mydtm/data/perevod/internet/uzb_edu_perevod.dart';
 import 'package:mydtm/data/perevod/model/country_model.dart';
 import 'package:mydtm/data/perevod/model/edu.dart';
+import 'package:mydtm/data/perevod/model/edu_lang_old.dart';
 import 'package:mydtm/data/perevod/model/edu_type.dart';
+import 'package:mydtm/data/perevod/model/model_mvdir.dart';
 
 class ProviderOldEdu extends ChangeNotifier {
   late String restRegionNamePerevod = "";
@@ -102,34 +106,141 @@ class ProviderOldEdu extends ChangeNotifier {
 
   /// Edu lang
   bool boolEduLang = false;
-  Future getEduLang()async{
-    try{
+  NetworkEduLangPerevod networkEduLangPerevod = NetworkEduLangPerevod();
+  List<DataLangOldPerevod> listDataLangOld = [];
+
+  Future getEduLang() async {
+    try {
       boolEduLang = false;
-
-
-    }catch(e){}
+      String dataEduLang = await networkEduLangPerevod.getEduLangType(
+          emodeID: setEduTypePerevodId);
+      ModelEduLangPerevod modelEduLangPerevod =
+          ModelEduLangPerevod.fromJson(jsonDecode(dataEduLang));
+      listDataLangOld = modelEduLangPerevod.lang;
+      boolEduLang = true;
+      notifyListeners();
+    } catch (e) {}
   }
-  /// UZB edu
+
+  /// Edu lang
+
+  String eduLangName = "";
+  String eduLangId = "";
+
+  Future setEduLangOld({required String name, required String id}) async {
+    eduLangName = name;
+    eduLangId = id;
+    notifyListeners();
+  }
+
+  /// Edu name uzb
   NetworkEduPerevod networkEduPerevod = NetworkEduPerevod();
   late ModelGetEduPerevod modelGetEduPerevod;
   List<DataGetEduPerevod> listDataGetPerevod = [];
   List<DataGetEduPerevod> listDataGetPerevodTemp = [];
   bool boolEdu = false;
 
-
   Future getUzbEdu() async {
-    try{
+    try {
       boolEdu = false;
-     String data = await networkEduPerevod.getEdu(emode: setEduTypePerevodId, langId: restRegionNamePerevodId);
-     modelGetEduPerevod = ModelGetEduPerevod.fromJson(jsonDecode(data));
-     listDataGetPerevod = modelGetEduPerevod.education;
-     listDataGetPerevodTemp.clear();
-     listDataGetPerevodTemp.addAll(listDataGetPerevod);
+      String data = await networkEduPerevod.getEdu(
+          emode: setEduTypePerevodId, langId: eduLangId);
+      modelGetEduPerevod = ModelGetEduPerevod.fromJson(jsonDecode(data));
+      print(data);
+      listDataGetPerevod = modelGetEduPerevod.education;
+      listDataGetPerevodTemp.clear();
+      listDataGetPerevodTemp.addAll(listDataGetPerevod);
+      boolEdu = true;
+      notifyListeners();
+    } catch (e) {}
+  }
 
-     boolEdu = true;
-     notifyListeners();
+  Future searchEduName({required String nameEdu}) async {
+    try {
+      boolEdu = false;
+      notifyListeners();
+      listDataGetPerevodTemp.clear();
+      for (var valeus in listDataGetPerevod) {
+        if (valeus.name
+            .trim()
+            .toLowerCase()
+            .contains(nameEdu.trim().toLowerCase())) {
+          listDataGetPerevodTemp.add(valeus);
+        }
+      }
+      boolEdu = true;
+      notifyListeners();
+    } catch (e) {}
+  }
 
+  String eduUzbName = "";
+  String eduUzbId = "";
+
+  Future setEduName({required String name, required String eduId}) async {
+    eduUzbName = name;
+    eduUzbId = eduId;
+    notifyListeners();
+  }
+
+  /// Edu Direction
+
+  bool boolEduDirection = false;
+  NetworkUzbEduDirPerevod networkUzbEduDirPerevod = NetworkUzbEduDirPerevod();
+  List<DataMvdirPerevod> listDataMVDir = [];
+  List<DataMvdirPerevod> listDataMVDirTemp = [];
+
+  Future getEduDir() async {
+    try {
+      boolEduDirection = false;
+      String data = await networkUzbEduDirPerevod.getUzbEduDir(
+          emod: setEduTypePerevodId, langId: eduLangId, eduId: eduUzbId);
+      ModelEduMvDirPerevod modelEduMvDirPerevod =
+          ModelEduMvDirPerevod.fromJson(jsonDecode(data));
+      listDataMVDir = modelEduMvDirPerevod.mvdir;
+      listDataMVDirTemp.clear();
+      listDataMVDirTemp.addAll(listDataMVDir);
+      boolEduDirection = true;
+      notifyListeners();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future searchEduDir({required String dirName}) async {
+    try {
+      boolEduDirection = false;
+      notifyListeners();
+      listDataMVDirTemp.clear();
+      for (var valeus in listDataMVDir) {
+        if (valeus.name
+            .trim()
+            .toLowerCase()
+            .contains(dirName.trim().toLowerCase())) {
+          listDataMVDirTemp.add(valeus);
+        }
+      }
+      boolEduDirection = true;
+      notifyListeners();
+    } catch (e) {}
+  }
+
+
+  String dirNames = "";
+  String dirIds = "";
+  Future setEduDirection({required String dirName, required String dirId})async{
+    try{
+      dirNames = dirName;
+      dirIds = dirId;
+      notifyListeners();
     }catch(e){}
+  }
 
+  /// Graduated Year
+  String graduatedYear = "";
+  String graduatedYearNames = "";
+  Future setGraduatedYears({required String year,  required String graduatedYearName})async{
+    graduatedYear = year;
+    graduatedYearNames = graduatedYearName;
+    notifyListeners();
   }
 }

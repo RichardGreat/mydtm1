@@ -1,11 +1,12 @@
+// https://api.dtm.uz/v1/transfer-qabul/first-edu?region_id=860&emode_id=1&syear=1&edu_name=Uzbe&mvdir_name=Uzb Yonalsish
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
 
-class NetworkEduPerevod {
-  Future getEdu({required String emode, required String langId}) async {
+class NetworkEduDirPerevod {
+  Future getEduDir({required String emode, required String langId}) async {
     var box = Hive.box("online");
     var dio = Dio();
     Response response;
