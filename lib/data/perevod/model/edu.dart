@@ -1,13 +1,3 @@
-// To parse this JSON data, do
-//
-//     final modelGetEduPerevod = modelGetEduPerevodFromJson(jsonString);
-
-import 'dart:convert';
-
-ModelGetEduPerevod modelGetEduPerevodFromJson(String str) => ModelGetEduPerevod.fromJson(json.decode(str));
-
-String modelGetEduPerevodToJson(ModelGetEduPerevod data) => json.encode(data.toJson());
-
 class ModelGetEduPerevod {
   ModelGetEduPerevod({
   required  this.status,
@@ -15,11 +5,11 @@ class ModelGetEduPerevod {
   });
 
   int status;
-  List<Education> education;
+  List<DataGetEduPerevod> education;
 
   factory ModelGetEduPerevod.fromJson(Map<String, dynamic> json) => ModelGetEduPerevod(
     status: json["status"],
-    education: List<Education>.from(json["education"].map((x) => Education.fromJson(x))),
+    education: List<DataGetEduPerevod>.from(json["education"].map((x) => DataGetEduPerevod.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -28,8 +18,8 @@ class ModelGetEduPerevod {
   };
 }
 
-class Education {
-  Education({
+class DataGetEduPerevod {
+  DataGetEduPerevod({
    required this.name,
    required this.langId,
   });
@@ -37,7 +27,7 @@ class Education {
   String name;
   int langId;
 
-  factory Education.fromJson(Map<String, dynamic> json) => Education(
+  factory DataGetEduPerevod.fromJson(Map<String, dynamic> json) => DataGetEduPerevod(
     name: json["name"],
     langId: json["lang_id"],
   );

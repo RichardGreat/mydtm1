@@ -12,7 +12,11 @@ PODS:
   - image_cropper (0.0.4):
     - Flutter
     - TOCropViewController (~> 2.6.1)
+  - image_gallery_saver (1.5.0):
+    - Flutter
   - image_picker_ios (0.0.1):
+    - Flutter
+  - local_auth_ios (0.0.1):
     - Flutter
   - open_file (0.0.1):
     - Flutter
@@ -37,7 +41,9 @@ DEPENDENCIES:
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - flutter_pdfview (from `.symlinks/plugins/flutter_pdfview/ios`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
+  - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - local_auth_ios (from `.symlinks/plugins/local_auth_ios/ios`)
   - open_file (from `.symlinks/plugins/open_file/ios`)
   - otp_autofill (from `.symlinks/plugins/otp_autofill/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
@@ -62,8 +68,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_pdfview/ios"
   image_cropper:
     :path: ".symlinks/plugins/image_cropper/ios"
+  image_gallery_saver:
+    :path: ".symlinks/plugins/image_gallery_saver/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
+  local_auth_ios:
+    :path: ".symlinks/plugins/local_auth_ios/ios"
   open_file:
     :path: ".symlinks/plugins/open_file/ios"
   otp_autofill:
@@ -86,7 +96,9 @@ SPEC CHECKSUMS:
   flutter_pdfview: 25f53dd6097661e6395b17de506e6060585946bd
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_cropper: 60c2789d1f1a78c873235d4319ca0c34a69f2d98
+  image_gallery_saver: 259eab68fb271cfd57d599904f7acdc7832e7ef2
   image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
+  local_auth_ios: 0d333dde7780f669e66f19d2ff6005f3ea84008d
   open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
   otp_autofill: 93bcc21475705d35445927cb9aef24e818bbf083
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02

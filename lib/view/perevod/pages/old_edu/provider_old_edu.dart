@@ -5,6 +5,7 @@ import 'package:mydtm/data/perevod/internet/countrys.dart';
 import 'package:mydtm/data/perevod/internet/edu_type.dart';
 import 'package:mydtm/data/perevod/internet/uzb_edu_perevod.dart';
 import 'package:mydtm/data/perevod/model/country_model.dart';
+import 'package:mydtm/data/perevod/model/edu.dart';
 import 'package:mydtm/data/perevod/model/edu_type.dart';
 
 class ProviderOldEdu extends ChangeNotifier {
@@ -99,13 +100,35 @@ class ProviderOldEdu extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Edu lang
+  bool boolEduLang = false;
+  Future getEduLang()async{
+    try{
+      boolEduLang = false;
+
+
+    }catch(e){}
+  }
   /// UZB edu
-  NetworkUzbEduPerevod networkUzbEduPerevod = NetworkUzbEduPerevod();
+  NetworkEduPerevod networkEduPerevod = NetworkEduPerevod();
+  late ModelGetEduPerevod modelGetEduPerevod;
+  List<DataGetEduPerevod> listDataGetPerevod = [];
+  List<DataGetEduPerevod> listDataGetPerevodTemp = [];
+  bool boolEdu = false;
+
 
   Future getUzbEdu() async {
     try{
+      boolEdu = false;
+     String data = await networkEduPerevod.getEdu(emode: setEduTypePerevodId, langId: restRegionNamePerevodId);
+     modelGetEduPerevod = ModelGetEduPerevod.fromJson(jsonDecode(data));
+     listDataGetPerevod = modelGetEduPerevod.education;
+     listDataGetPerevodTemp.clear();
+     listDataGetPerevodTemp.addAll(listDataGetPerevod);
 
-     String data = await networkUzbEduPerevod.getUzbEdu(emod: setEduTypePerevodId, langId: restRegionNamePerevodId);
+     boolEdu = true;
+     notifyListeners();
+
     }catch(e){}
 
   }

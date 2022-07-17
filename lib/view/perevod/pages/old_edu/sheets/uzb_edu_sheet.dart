@@ -40,7 +40,7 @@ class _UzbEduSheetState extends State<UzbEduSheet> {
   }
 
   Future getForeignCountry()async{
-    await widget.providerOldEdu.getForeignCountry();
+    await widget.providerOldEdu.getUzbEdu();
     setState((){});
   }
 
@@ -55,6 +55,8 @@ class _UzbEduSheetState extends State<UzbEduSheet> {
             borderRadius: BorderRadius.circular(8)),
         child: Column(
           children: [
+            Text("Oliy ta'lim"),
+            SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -127,7 +129,7 @@ class _UzbEduSheetState extends State<UzbEduSheet> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount:widget. providerOldEdu.listDataCountryPerevodTemp.length,
+                itemCount:widget. providerOldEdu.listDataGetPerevodTemp.length,
                 itemBuilder: (context, index) => GestureDetector(
                   child: Card(
                     margin: const EdgeInsets.all(8),
@@ -135,15 +137,15 @@ class _UzbEduSheetState extends State<UzbEduSheet> {
                       padding: const EdgeInsets.all(10),
                       child: MyWidgets.robotoFontText(
                         text: widget.providerOldEdu
-                            .listDataCountryPerevodTemp[index].name,
+                            .listDataGetPerevodTemp[index].name,
                       ),
                     ),
                   ),
                   onTap: () {
                     setState((){});
                     widget.providerOldEdu.setCountryVal(
-                        name: widget.providerOldEdu.listDataCountryPerevodTemp[index].name.toString(),
-                        id: widget.providerOldEdu.listDataCountryPerevodTemp[index].id.toString()
+                        name: widget.providerOldEdu.listDataGetPerevodTemp[index].name.toString(),
+                        id: widget.providerOldEdu.listDataGetPerevodTemp[index].langId.toString()
                             .toString());
 
                     Navigator.of(context).pop();
