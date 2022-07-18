@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/image_to_pdf/image_to_pdf.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/sheets/country_sheet.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/sheets/edu_dir.dart';
@@ -9,6 +10,7 @@ import 'package:mydtm/view/perevod/pages/old_edu/sheets/uzb_edu_sheet.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 Widget bodyMainOldEdu(
     {required BuildContext context, required ProviderOldEdu providerOldEdu}) {
@@ -66,8 +68,9 @@ Widget bodyMainOldEdu(
                 Icon(Icons.arrow_forward_ios_sharp, size: 16),
               ],
             ),
-            subtitle: Text(providerOldEdu.restRegionNamePerevod,
-               ),
+            subtitle: Text(
+              providerOldEdu.restRegionNamePerevod,
+            ),
             onTap: () {
               modelSheetCountryPerevod(
                   contexts: context, providerOldEdu: providerOldEdu);
@@ -107,8 +110,8 @@ Widget bodyMainOldEdu(
             ),
             subtitle: Text(providerOldEdu.eduTypeName),
             onTap: () {
-              modelSheetEduTypePerevod(contexts: context, providerOldEdu: providerOldEdu);
-
+              modelSheetEduTypePerevod(
+                  contexts: context, providerOldEdu: providerOldEdu);
             },
           ),
         ),
@@ -127,9 +130,9 @@ Widget bodyMainOldEdu(
                     text: "chooseLangEmode".tr(), textSize: 17),
                 providerOldEdu.eduLangName.length > 4
                     ? Icon(
-                  Icons.check_circle,
-                  color: MyColors.appColorGreen1(),
-                )
+                        Icons.check_circle,
+                        color: MyColors.appColorGreen1(),
+                      )
                     : const SizedBox.shrink()
               ],
             ),
@@ -143,8 +146,8 @@ Widget bodyMainOldEdu(
             ),
             subtitle: Text(providerOldEdu.eduLangName),
             onTap: () {
-              modelSheetEduLangOldPerevod(contexts: context, providerOldEdu: providerOldEdu);
-
+              modelSheetEduLangOldPerevod(
+                  contexts: context, providerOldEdu: providerOldEdu);
             },
           ),
         ),
@@ -179,7 +182,8 @@ Widget bodyMainOldEdu(
             ),
             subtitle: Text(providerOldEdu.eduUzbName),
             onTap: () {
-              modelSheetUzbEduPerevod(contexts: context, providerOldEdu: providerOldEdu);
+              modelSheetUzbEduPerevod(
+                  contexts: context, providerOldEdu: providerOldEdu);
               // sheetLanguageChooseTest(
               //     context: context, providerChooseEdu: providerChooseEdu);
             },
@@ -216,7 +220,8 @@ Widget bodyMainOldEdu(
             ),
             subtitle: Text(providerOldEdu.dirNames),
             onTap: () {
-              modelSheetEduDirPerevod(contexts: context, providerOldEdu: providerOldEdu);
+              modelSheetEduDirPerevod(
+                  contexts: context, providerOldEdu: providerOldEdu);
               // sheetLanguageChooseTest(
               //     context: context, providerChooseEdu: providerChooseEdu);
             },
@@ -256,20 +261,26 @@ Widget bodyMainOldEdu(
             ),
             subtitle: Text(providerOldEdu.graduatedYearNames),
             onTap: () {
-              modelSheetGraduatedYearPerevod(contexts: context, providerOldEdu: providerOldEdu);
+              modelSheetGraduatedYearPerevod(
+                  contexts: context, providerOldEdu: providerOldEdu);
               // sheetLanguageChooseTest(
               //     context: context, providerChooseEdu: providerChooseEdu);
             },
           ),
         ),
         const SizedBox(height: 5),
-        Container(
-          height: 70,
-          width: MediaQuery.of(context).size.width * 0.9,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: MyColors.appColorWhite()),
-          child: Center(child: Text("Image choose")),
+        GestureDetector(
+          onTap: () {
+            pushNewScreen(context, screen: ImageToPdf(), withNavBar: false);
+          },
+          child: Container(
+            height: 70,
+            width: MediaQuery.of(context).size.width * 0.9,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: MyColors.appColorWhite()),
+            child: Center(child: Text("Image choose")),
+          ),
         ),
         const SizedBox(height: 10),
         MaterialButton(
