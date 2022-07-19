@@ -6,9 +6,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 class ProviderImageToPDF extends ChangeNotifier {
-  List<Image> listImagesPDF = [];
-  List<String> listImagesByte = [];
-  List<File> listFiles = [];
+  List<Image>   listImagesPDF = [];
+  List<String>  listImagesByte = [];
+  List<File>    listFiles = [];
 
   num mbSizeZero = 0;
 
@@ -32,6 +32,7 @@ class ProviderImageToPDF extends ChangeNotifier {
       crossAxisAlignment: pw.CrossAxisAlignment.center,
       mainAxisAlignment: pw.MainAxisAlignment.center,
       build: (context) => [
+
         pw.SizedBox(
           height: MediaQuery.of(contexts).size.height * 0.9,
           width: MediaQuery.of(contexts).size.width * 0.9,
@@ -41,19 +42,37 @@ class ProviderImageToPDF extends ChangeNotifier {
                 listImagesByte[0],
               ),
             ),
+            fit: pw.BoxFit.fill,
           ),
         ),
+        listImagesByte.length == 2?
+        pw.SizedBox(
+          height: MediaQuery.of(contexts).size.height * 0.9,
+          width: MediaQuery.of(contexts).size.width * 0.9,
+
+          child: pw.Image(
+
+            pw.MemoryImage(
+              base64Decode(
+                listImagesByte[1],
+              ),
+            ),
+            fit: pw.BoxFit.fill,
+          ),
+        ):pw.SizedBox.shrink(),
+        listImagesByte.length == 3?
         pw.SizedBox(
           height: MediaQuery.of(contexts).size.height * 0.9,
           width: MediaQuery.of(contexts).size.width * 0.9,
           child: pw.Image(
             pw.MemoryImage(
               base64Decode(
-                listImagesByte[1],
+                listImagesByte[2],
               ),
             ),
+            fit: pw.BoxFit.fill,
           ),
-        ),
+        ):pw.SizedBox.shrink(),
       ],
     ));
 
@@ -72,5 +91,12 @@ class ProviderImageToPDF extends ChangeNotifier {
     final file = File("${dir.path}/$name");
     await file.writeAsBytes(bytes);
     return file;
+  }
+
+  Future deleteItemList({required int index})async{
+    listImagesPDF.removeAt(index);
+    listImagesByte.removeAt(index);
+    listFiles.removeAt(index);
+    notifyListeners();
   }
 }

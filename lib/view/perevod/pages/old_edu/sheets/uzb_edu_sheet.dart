@@ -52,7 +52,7 @@ class _UzbEduSheetState extends State<UzbEduSheet> {
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Column(
                 children: [
-                  const Text("Oliy ta'lim"),
+
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
