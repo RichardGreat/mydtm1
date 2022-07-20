@@ -5,14 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mydtm/view/perevod/pages/old_edu/image_to_pdf/provider_image_to_pdf.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class ChooseImagesPerevod extends StatefulWidget {
-  ProviderImageToPDF providerImageToPDF;
+  ProviderOldEdu providerOldEdu;
+  Function function;
 
-  ChooseImagesPerevod({Key? key, required this.providerImageToPDF})
+  ChooseImagesPerevod({Key? key, required this.providerOldEdu, required this.function})
       : super(key: key);
 
   @override
@@ -26,7 +27,11 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
   String? img64;
 
   var box = Hive.box("online");
-
+  @override
+  initState(){
+    widget.providerOldEdu.mbSizeZero = 0;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -56,6 +61,7 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
                         IconButton(
                             onPressed: () {
                               _pickImage(ImageSource.camera);
+                              // Navigator.of(context).pop();
                             },
                             icon: Icon(Icons.add_a_photo_outlined,
                                 color: MyColors.appColorBlue1(), size: 25)),
@@ -76,6 +82,7 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
                         IconButton(
                             onPressed: () {
                               _pickImage(ImageSource.gallery);
+                              // Navigator.of(context).pop();
                             },
                             icon: Icon(
                               Icons.add_photo_alternate_outlined,
@@ -107,8 +114,8 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
     }
   }
 
-  late final mb;
-  late final mbSize;
+   num mb = 0;
+   num mbSize = 0;
 
 
   Future<void> _cropImage() async {
@@ -155,26 +162,26 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
       final bytes = imageFile!.readAsBytesSync().lengthInBytes;
       final kb = bytes / 1024;
       mb = kb / 1024;
-      setState(() {});
 
-      widget.providerImageToPDF
+
+      widget.providerOldEdu
           .getImageString(imageString: img64.toString().trim());
-      widget.providerImageToPDF.getImageFile(file: imageFile!);
+      widget.providerOldEdu.getImageFile(file: imageFile!);
 
-      widget.providerImageToPDF.getImageForPdf(
+      widget.providerOldEdu.getImageForPdf(
         image: Image.memory(
           base64Decode(img64.toString().trim()),
           fit: BoxFit.cover,
           height: 90,
         ),
       );
-
-      for (var val in widget.providerImageToPDF.listFiles) {
+      widget.providerOldEdu.mbSizeZero = 0;
+      for (var val in widget.providerOldEdu.listFiles) {
         final bytesSize = val.readAsBytesSync().lengthInBytes;
         final kbSize = bytesSize / 1024;
         mbSize = kbSize / 1024;
-        widget.providerImageToPDF.mbSizeZero+=mbSize;
-        if(widget.providerImageToPDF.mbSizeZero > 7.8){
+        widget.providerOldEdu.mbSizeZero+= mbSize;
+        if(widget.providerOldEdu.mbSizeZero > 7.8){
           AwesomeDialog(
             context: context,
             dialogType: DialogType.INFO,
@@ -190,6 +197,7 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
             },
           ).show();
         }
+        widget.function();
       }
 
     } else {
@@ -207,6 +215,7 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
           // notifyListeners();
         },
       ).show();
+      widget.function();
       // notifyListeners();
       // }
     }

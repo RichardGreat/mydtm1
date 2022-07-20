@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 class ProviderImageToPDF extends ChangeNotifier {
-  List<Image>   listImagesPDF = [];
-  List<String>  listImagesByte = [];
-  List<File>    listFiles = [];
+  List<Image> listImagesPDF = [];
+  List<String> listImagesByte = [];
+  List<File> listFiles = [];
 
   num mbSizeZero = 0;
 
@@ -21,6 +22,7 @@ class ProviderImageToPDF extends ChangeNotifier {
     listImagesByte.add(imageString);
     notifyListeners();
   }
+
   Future getImageFile({required File file}) async {
     listFiles.add(file);
     notifyListeners();
@@ -31,11 +33,12 @@ class ProviderImageToPDF extends ChangeNotifier {
     pdf.addPage(pw.MultiPage(
       crossAxisAlignment: pw.CrossAxisAlignment.center,
       mainAxisAlignment: pw.MainAxisAlignment.center,
-      build: (context) => [
+      build: (context) =>
+      [
 
         pw.SizedBox(
-          height: MediaQuery.of(contexts).size.height * 0.9,
-          width: MediaQuery.of(contexts).size.width * 0.9,
+          // height: MediaQuery.of(contexts).size.height * 0.9,
+          // width: MediaQuery.of(contexts).size.width * 0.9,
           child: pw.Image(
             pw.MemoryImage(
               base64Decode(
@@ -45,10 +48,10 @@ class ProviderImageToPDF extends ChangeNotifier {
             fit: pw.BoxFit.fill,
           ),
         ),
-        listImagesByte.length == 2?
+        listImagesByte.length >= 2 ?
         pw.SizedBox(
-          height: MediaQuery.of(contexts).size.height * 0.9,
-          width: MediaQuery.of(contexts).size.width * 0.9,
+          // height: MediaQuery.of(contexts).size.height * 0.9,
+          // width: MediaQuery.of(contexts).size.width * 0.9,
 
           child: pw.Image(
 
@@ -59,11 +62,12 @@ class ProviderImageToPDF extends ChangeNotifier {
             ),
             fit: pw.BoxFit.fill,
           ),
-        ):pw.SizedBox.shrink(),
-        listImagesByte.length == 3?
+        ) : pw.SizedBox.shrink(),
+
+        listImagesByte.length <= 3 ?
         pw.SizedBox(
-          height: MediaQuery.of(contexts).size.height * 0.9,
-          width: MediaQuery.of(contexts).size.width * 0.9,
+          // height: MediaQuery.of(contexts).size.height * 0.9,
+          // width: MediaQuery.of(contexts).size.width * 0.9,
           child: pw.Image(
             pw.MemoryImage(
               base64Decode(
@@ -72,7 +76,7 @@ class ProviderImageToPDF extends ChangeNotifier {
             ),
             fit: pw.BoxFit.fill,
           ),
-        ):pw.SizedBox.shrink(),
+        ) : pw.SizedBox.shrink(),
       ],
     ));
 
@@ -84,6 +88,8 @@ class ProviderImageToPDF extends ChangeNotifier {
     await OpenFile.open(url);
   }
 
+
+
   Future<File> saveDocument(
       {required String name, required pw.Document pdf}) async {
     final bytes = await pdf.save();
@@ -93,10 +99,11 @@ class ProviderImageToPDF extends ChangeNotifier {
     return file;
   }
 
-  Future deleteItemList({required int index})async{
+  Future deleteItemList({required int index}) async {
     listImagesPDF.removeAt(index);
     listImagesByte.removeAt(index);
     listFiles.removeAt(index);
     notifyListeners();
   }
+
 }

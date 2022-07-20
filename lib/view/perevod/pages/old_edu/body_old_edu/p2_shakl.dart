@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
-import 'package:mydtm/view/perevod/pages/old_edu/sheets/graduet_year.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/sheets/edu_type.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-Widget kursBosqichi({required BuildContext context, required ProviderOldEdu providerOldEdu}){
-  return   Container(
+Widget shakl({required BuildContext context, required ProviderOldEdu providerOldEdu}){
+  return Container(
     decoration: BoxDecoration(
-      // borderRadius: const BorderRadius.only(
-      //     bottomRight: Radius.circular(8),
-      //     bottomLeft: Radius.circular(8)),
       color: MyColors.appColorWhite(),
     ),
     child: ListTile(
@@ -19,8 +16,9 @@ Widget kursBosqichi({required BuildContext context, required ProviderOldEdu prov
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           MyWidgets.robotoFontText(
-              text: "oldEduNumberCourse".tr(), textSize: 17),
-          providerOldEdu.graduatedYearNames.length > 4
+              text: "oldEduEduType".tr(), textSize: 17, textColor: providerOldEdu.restRegionNamePerevod.length > 4 ? MyColors.appColorBlack():MyColors.appColorGrey400()),
+
+          providerOldEdu.eduTypeName.length > 4
               ? Icon(
             Icons.check_circle,
             color: MyColors.appColorGreen1(),
@@ -36,12 +34,13 @@ Widget kursBosqichi({required BuildContext context, required ProviderOldEdu prov
           Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ],
       ),
-      subtitle: Text(providerOldEdu.graduatedYearNames),
+      subtitle: Text(providerOldEdu.eduTypeName, maxLines: 1,),
       onTap: () {
-        modelSheetGraduatedYearPerevod(
-            contexts: context, providerOldEdu: providerOldEdu);
-        // sheetLanguageChooseTest(
-        //     context: context, providerChooseEdu: providerChooseEdu);
+
+
+        providerOldEdu.restRegionNamePerevod.length > 4?
+        modelSheetEduTypePerevod(
+            contexts: context, providerOldEdu: providerOldEdu):{};
       },
     ),
   );

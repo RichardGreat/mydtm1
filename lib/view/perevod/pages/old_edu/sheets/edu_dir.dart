@@ -52,7 +52,6 @@ class _EduDirPerevodSheetState extends State<EduDirPerevodSheet> {
               color: Colors.white, borderRadius: BorderRadius.circular(8)),
           child: Column(
             children: [
-              const Text("Yonalish"),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

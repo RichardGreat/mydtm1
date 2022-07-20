@@ -48,6 +48,7 @@ Widget davlat({required BuildContext context, required ProviderOldEdu providerOl
       ),
       subtitle: Text(
         providerOldEdu.restRegionNamePerevod,
+        maxLines: 1,
       ),
       onTap: () {
         modelSheetCountryPerevod(

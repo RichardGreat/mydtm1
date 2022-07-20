@@ -19,8 +19,8 @@ Widget hujjatRasm(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          MyWidgets.robotoFontText(text: "imageDoc".tr(), textSize: 17),
-          providerOldEdu.graduatedYearNames.length > 4
+          MyWidgets.robotoFontText(text: "imageDoc".tr(), textSize: 17, textColor: providerOldEdu.graduatedYearNames.length > 4?MyColors.appColorBlack():MyColors.appColorGrey400()),
+    providerOldEdu.boolConvertImageToPdf
               ? Icon(
                   Icons.check_circle,
                   color: MyColors.appColorGreen1(),
@@ -30,7 +30,9 @@ Widget hujjatRasm(
       ),
       trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
       onTap: () {
-        pushNewScreen(context, screen: ImageToPdf(), withNavBar: false);
+
+        providerOldEdu.graduatedYearNames.length > 4 ?
+        pushNewScreen(context, screen: ImageToPdf(providerOldEdu: providerOldEdu), withNavBar: false):{};
 // sheetLanguageChooseTest(
 //     context: context, providerChooseEdu: providerChooseEdu);
       },

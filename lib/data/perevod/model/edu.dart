@@ -9,12 +9,12 @@ class ModelGetEduPerevod {
 
   factory ModelGetEduPerevod.fromJson(Map<String, dynamic> json) => ModelGetEduPerevod(
     status: json["status"],
-    education: List<DataGetEduPerevod>.from(json["education"].map((x) => DataGetEduPerevod.fromJson(x))),
+    education: List<DataGetEduPerevod>.from(json["EduUzb"].map((x) => DataGetEduPerevod.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "status": status,
-    "education": List<dynamic>.from(education.map((x) => x.toJson())),
+    "EduUzb": List<dynamic>.from(education.map((x) => x.toJson())),
   };
 }
 
@@ -29,11 +29,11 @@ class DataGetEduPerevod {
 
   factory DataGetEduPerevod.fromJson(Map<String, dynamic> json) => DataGetEduPerevod(
     name: json["name"],
-    langId: json["lang_id"],
+    langId: json["id"],
   );
 
   Map<String, dynamic> toJson() => {
     "name": name,
-    "lang_id": langId,
+    "id": langId,
   };
 }

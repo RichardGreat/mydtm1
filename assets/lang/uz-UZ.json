@@ -235,5 +235,9 @@
   "secondYear": "Ikkinchi bosqich",
   "thirdYear": "Uchunchi bosqich",
   "fourthYear": "To'rtinchi bosqich",
-  "perevodAllPage": "Siz 3 tagacha rasm yuklashingiz mumkin.\nJami hajm 8 Mb oshmasligi kerak"
+  "perevodAllPage": "Siz 3 tagacha rasm yuklashingiz mumkin.\nJami hajm 8 Mb oshmasligi kerak",
+  "dirNameType": "Yo'nalish nomi yozing",
+  "eduNameType": "Oli ta'lim muassasasi nomini yozing",
+  "pleaseWait": "Iltimos kuting"
+
 }

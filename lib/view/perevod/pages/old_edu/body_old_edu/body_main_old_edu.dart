@@ -1,11 +1,12 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/davlat.dart';
-import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/hujjat_rasm.dart';
-import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/kurs_bosqich.dart';
-import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/shakl.dart';
-import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/talim_muassasa.dart';
-import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/til.dart';
-import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/yonalish.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/p1_davlat.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/p7_hujjat_rasm.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/p6_kurs_bosqich.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/p2_shakl.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/p4_talim_muassasa.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/p3_til.dart';
+import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/p5_yonalish.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/image_to_pdf/image_to_pdf.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/sheets/country_sheet.dart';
@@ -51,18 +52,22 @@ Widget bodyMainOldEdu(
 
         ///Kurs bosqichi
         kursBosqichi(context: context, providerOldEdu: providerOldEdu),
+
         /// Hujjat rasm
         hujjatRasm(context: context, providerOldEdu: providerOldEdu),
 
         const SizedBox(height: 10),
         MaterialButton(
-          onPressed: () {},
+          onPressed: () {
 
+          providerOldEdu.sentServerData(context: context);
+          },
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           height: 50,
           minWidth: MediaQuery.of(context).size.width * 0.9,
           color: MyColors.appColorBlue1(),
-          child: Text("access".tr(), style: TextStyle(color: MyColors.appColorWhite())),
+          child: Text("access".tr(),
+              style: TextStyle(color: MyColors.appColorWhite())),
         )
       ],
     ),

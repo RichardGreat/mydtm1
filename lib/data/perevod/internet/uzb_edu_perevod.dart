@@ -9,7 +9,7 @@ class NetworkEduPerevod {
     var box = Hive.box("online");
     var dio = Dio();
     Response response;
-    response = await dio.get("${MainUrl.mainUrls}/v1/transfer-qabul/education?emode_id=$emode&lang_id=$langId",
+    response = await dio.get("${MainUrl.mainUrls}/v1/transfer-qabul/country-uz?id=860",
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
     return jsonEncode(response.data);
   }
