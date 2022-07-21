@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/perevod/pages/new_edu_perevod/new_edu_sheet/n1_region_sheet.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/new_edu_sheet/n5_direction_sheet.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/provider_new_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -26,7 +24,7 @@ Widget eduDirNewPerevod(
           MyWidgets.robotoFontText(
               text: "chooseDirection".tr(),
               textSize: 17,
-              textColor: providerNewEduPerevod.dirNames.length > 4
+              textColor: providerNewEduPerevod.eduNames.length > 4
                   ? MyColors.appColorBlack()
                   : MyColors.appColorGrey400()),
           providerNewEduPerevod.dirNames.length > 4

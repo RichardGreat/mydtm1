@@ -179,6 +179,7 @@ class ProviderNewEduPerevod extends ChangeNotifier {
       {required String eduName, required String eduId}) async {
     eduNames = eduName;
     eduIds = eduId;
+    notifyListeners();
   }
 
   /// Dir

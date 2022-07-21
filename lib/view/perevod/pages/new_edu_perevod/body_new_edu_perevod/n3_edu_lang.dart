@@ -22,7 +22,7 @@ Widget eduLangNewPerevod(
           MyWidgets.robotoFontText(
               text: "chooseLangEmode".tr(),
               textSize: 17,
-              textColor: providerNewEduPerevod.langNames.length > 4
+              textColor: providerNewEduPerevod.eduTypeNames.length > 4
                   ? MyColors.appColorBlack()
                   : MyColors.appColorGrey400()),
           providerNewEduPerevod.langNames.length > 4
@@ -43,7 +43,7 @@ Widget eduLangNewPerevod(
       ),
       subtitle: Text(providerNewEduPerevod.langNames),
       onTap: () {
-        providerNewEduPerevod.langNames.length > 4
+        providerNewEduPerevod.eduTypeNames.length > 4
             ? modelSheetEduLangPerevod(
                 contexts: context, providerNewEduPerevod: providerNewEduPerevod)
             : {};
