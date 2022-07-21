@@ -25,8 +25,9 @@ class _ImageToPdfState extends State<ImageToPdf> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: ()async{
-        await widget.providerOldEdu
-            .createPdfFile(contexts: context);
+        if(widget.providerOldEdu.listFiles.isNotEmpty) {
+          await widget.providerOldEdu.createPdfFile(contexts: context);
+        }
         Navigator.of(context).pop();
         return true;
       },

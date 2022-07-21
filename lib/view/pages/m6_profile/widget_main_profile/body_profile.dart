@@ -365,7 +365,7 @@ Widget bodyProfile(
                               box.delete("langLock");
                               box.delete("lockScreen");
                               box.delete("notShowAgain1");
-
+                              box.delete("phoneNumber");
 
                               pushNewScreenWithRouteSettings(context,
                                   pageTransitionAnimation: PageTransitionAnimation.cupertino,

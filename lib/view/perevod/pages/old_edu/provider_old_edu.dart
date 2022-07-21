@@ -75,7 +75,7 @@ class ProviderOldEdu extends ChangeNotifier {
       boolForeignCountry = false;
       String dataNet = await networkCountryPerevod.getCountries();
       ModelGetCountryPerevod modelGetCountryPerevod =
-          ModelGetCountryPerevod.fromJson(jsonDecode(dataNet));
+      ModelGetCountryPerevod.fromJson(jsonDecode(dataNet));
       listDataCountryPerevod = modelGetCountryPerevod.masseage;
       listDataCountryPerevodTemp.clear();
       listDataCountryPerevodTemp.addAll(listDataCountryPerevod);
@@ -131,7 +131,7 @@ class ProviderOldEdu extends ChangeNotifier {
       boolEduType = false;
       String dataNet = await networkEduTypePerevod.getEduType();
       ModelGetEduTypePerevod modelGetEduTypePerevod =
-          ModelGetEduTypePerevod.fromJson(jsonDecode(dataNet));
+      ModelGetEduTypePerevod.fromJson(jsonDecode(dataNet));
       listDataEduType = modelGetEduTypePerevod.masseage;
       listDataEduTypeTemp.clear();
       listDataEduTypeTemp.addAll(listDataEduType);
@@ -167,7 +167,7 @@ class ProviderOldEdu extends ChangeNotifier {
       String dataEduLang = await networkEduLangPerevod.getEduLangType(
           emodeID: setEduTypePerevodId);
       ModelEduLangPerevod modelEduLangPerevod =
-          ModelEduLangPerevod.fromJson(jsonDecode(dataEduLang));
+      ModelEduLangPerevod.fromJson(jsonDecode(dataEduLang));
       listDataLangOld = modelEduLangPerevod.lang;
       boolEduLang = true;
       notifyListeners();
@@ -248,7 +248,7 @@ class ProviderOldEdu extends ChangeNotifier {
       String data = await networkUzbEduDirPerevod.getUzbEduDir(
           emod: setEduTypePerevodId, langId: eduLangId, eduId: eduUzbId);
       ModelEduMvDirPerevod modelEduMvDirPerevod =
-          ModelEduMvDirPerevod.fromJson(jsonDecode(data));
+      ModelEduMvDirPerevod.fromJson(jsonDecode(data));
       listDataMVDir = modelEduMvDirPerevod.mvdir;
       listDataMVDirTemp.clear();
       listDataMVDirTemp.addAll(listDataMVDir);
@@ -330,10 +330,17 @@ class ProviderOldEdu extends ChangeNotifier {
       pw.MultiPage(
         crossAxisAlignment: pw.CrossAxisAlignment.center,
         mainAxisAlignment: pw.MainAxisAlignment.center,
-        build: (context) => [
+        build: (context) =>
+        [
           pw.SizedBox(
-            height: MediaQuery.of(contexts).size.height,
-            width: MediaQuery.of(contexts).size.width,
+            height: MediaQuery
+                .of(contexts)
+                .size
+                .height,
+            width: MediaQuery
+                .of(contexts)
+                .size
+                .width,
             child: pw.Image(
               pw.MemoryImage(
                 base64Decode(
@@ -345,31 +352,43 @@ class ProviderOldEdu extends ChangeNotifier {
           ),
           listImagesByte.length >= 2
               ? pw.SizedBox(
-                  height: MediaQuery.of(contexts).size.height,
-                  width: MediaQuery.of(contexts).size.width,
-                  child: pw.Image(
-                    pw.MemoryImage(
-                      base64Decode(
-                        listImagesByte[1],
-                      ),
-                    ),
-                    fit: pw.BoxFit.fill,
-                  ),
-                )
+            height: MediaQuery
+                .of(contexts)
+                .size
+                .height,
+            width: MediaQuery
+                .of(contexts)
+                .size
+                .width,
+            child: pw.Image(
+              pw.MemoryImage(
+                base64Decode(
+                  listImagesByte[1],
+                ),
+              ),
+              fit: pw.BoxFit.fill,
+            ),
+          )
               : pw.SizedBox.shrink(),
           listImagesByte.length >= 3
               ? pw.SizedBox(
-                  height: MediaQuery.of(contexts).size.height,
-                  width: MediaQuery.of(contexts).size.width,
-                  child: pw.Image(
-                    pw.MemoryImage(
-                      base64Decode(
-                        listImagesByte[2],
-                      ),
-                    ),
-                    fit: pw.BoxFit.fill,
-                  ),
-                )
+            height: MediaQuery
+                .of(contexts)
+                .size
+                .height,
+            width: MediaQuery
+                .of(contexts)
+                .size
+                .width,
+            child: pw.Image(
+              pw.MemoryImage(
+                base64Decode(
+                  listImagesByte[2],
+                ),
+              ),
+              fit: pw.BoxFit.fill,
+            ),
+          )
               : pw.SizedBox.shrink(),
         ],
       ),
@@ -412,98 +431,120 @@ class ProviderOldEdu extends ChangeNotifier {
   bool boolUploadIndicatorServer = true;
 
   late MessageSendServerPerevod messageSendServerPerevod;
-  Future sentServerData({required BuildContext context}) async {
 
-    try{
-      final bytes = (await fileToServerPerevod!.readAsBytes()).lengthInBytes;
-      final kb = bytes / 1024;
-      final mb = kb / 1024;
-      if(mb > 8){
-        AwesomeDialog(
-            context: context,
-            dialogType: DialogType.NO_HEADER,
-            animType: AnimType.BOTTOMSLIDE,
-            dismissOnTouchOutside: false,
-            title: "DTM",
-            desc: "Hajm 8 mb kishik bo'lishi kerak",
-            titleTextStyle: TextStyle(
-                color: MyColors.appColorBlue1(),
-                fontSize: 24,
-                fontWeight: FontWeight.bold),
-            descTextStyle: TextStyle(
-                color: MyColors.appColorBlack(),
-                fontWeight: FontWeight.bold),
-            btnCancelOnPress: () {},
-            btnCancelText: "OK")
-            .show();
-      }else{
-        if (restRegionNamePerevod.length > 4 &&
-          eduTypeName.length > 4 &&
-          eduLangName.length > 4 &&
-          eduUzbName.length > 4 &&
-          dirNames.length > 4 &&
-          graduatedYear.length > 4 &&
-          mb < 8) {
-        String networkData = "";
-        boolUploadIndicatorServer = false;
-        notifyListeners();
-        FormData formData = FormData.fromMap({
-          "region_id": restRegionNamePerevodId,
-          "emode_id": setEduTypePerevodId,
-          "syear": graduatedYear,
-          "edu_name": eduUzbName,
-          "mvdir_name": dirNames,
-          "image": await MultipartFile.fromFile(fileToServerPerevod!.path,
-              filename: "dtm_${box.get("token")}.pdf")
-        });
-        try {
-          networkData =
-          await networkSetOldEduPerevod.setServerOldEdu(formDate: formData);
-          ModelDataSendServerPerevod modelDataSendServerPerevod =
-          ModelDataSendServerPerevod.fromJson(jsonDecode(networkData));
-          messageSendServerPerevod = modelDataSendServerPerevod.masseage;
-          boolUploadIndicatorServer = true;
+  Future sentServerData({required BuildContext context}) async {
+    if (listFiles.isNotEmpty) {
+      try {
+        final bytes = (await fileToServerPerevod!.readAsBytes()).lengthInBytes;
+        final kb = bytes / 1024;
+        final mb = kb / 1024;
+        if (mb > 8) {
           AwesomeDialog(
-            context: context,
-            dialogType: DialogType.NO_HEADER,
-            animType: AnimType.BOTTOMSLIDE,
-            dismissOnTouchOutside: false,
-            body: Column(
-              children: [
-                Text("saved".tr(),
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                        color: MyColors.appColorBlue1()
-                    ) ),
-                Divider(),
-                const SizedBox(height: 20),
-                Text("continue".tr(),
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                    )),
-              ],
-            ),
-            titleTextStyle: TextStyle(
-                color: MyColors.appColorBlue1(),
-                fontSize: 24,
-                fontWeight: FontWeight.bold),
-            descTextStyle: TextStyle(
-                color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-            btnCancelOnPress: () {},
-            btnOkOnPress: () {},
-            btnOkColor: MyColors.appColorBlue1(),
-            btnCancelColor: MyColors.appColorGrey400(),
-            btnOkText: "yes".tr(),
-            btnCancelText: "no".tr(),
-          ).show();
-          notifyListeners();
-        } catch (e) {
-          log("#888");
-          log(e.toString());
+              context: context,
+              dialogType: DialogType.NO_HEADER,
+              animType: AnimType.BOTTOMSLIDE,
+              dismissOnTouchOutside: false,
+              title: "DTM",
+              desc: "Hajm 8 mb kishik bo'lishi kerak",
+              titleTextStyle: TextStyle(
+                  color: MyColors.appColorBlue1(),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(
+                  color: MyColors.appColorBlack(),
+                  fontWeight: FontWeight.bold),
+              btnCancelOnPress: () {},
+              btnCancelText: "OK")
+              .show();
+        } else {
+          if (restRegionNamePerevod.length > 4 &&
+              eduTypeName.length > 4 &&
+              eduLangName.length > 4 &&
+              eduUzbName.length > 4 &&
+              dirNames.length > 4 &&
+              graduatedYear.length > 4 &&
+              mb < 8) {
+            String networkData = "";
+            boolUploadIndicatorServer = false;
+            notifyListeners();
+            FormData formData = FormData.fromMap({
+              "region_id": restRegionNamePerevodId,
+              "emode_id": setEduTypePerevodId,
+              "syear": graduatedYear,
+              "edu_name": eduUzbName,
+              "mvdir_name": dirNames,
+              "image": await MultipartFile.fromFile(fileToServerPerevod!.path,
+                  filename: "dtm_${box.get("token")}.pdf")
+            });
+            try {
+              networkData =
+              await networkSetOldEduPerevod.setServerOldEdu(formDate: formData);
+              ModelDataSendServerPerevod modelDataSendServerPerevod =
+              ModelDataSendServerPerevod.fromJson(jsonDecode(networkData));
+              messageSendServerPerevod = modelDataSendServerPerevod.masseage;
+              boolUploadIndicatorServer = true;
+              AwesomeDialog(
+                context: context,
+                dialogType: DialogType.NO_HEADER,
+                animType: AnimType.BOTTOMSLIDE,
+                dismissOnTouchOutside: false,
+                body: Column(
+                  children: [
+                    Text("saved".tr(),
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500,
+                            color: MyColors.appColorBlue1()
+                        )),
+                    Divider(),
+                    const SizedBox(height: 20),
+                    Text("continue".tr(),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        )),
+                  ],
+                ),
+                titleTextStyle: TextStyle(
+                    color: MyColors.appColorBlue1(),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+                descTextStyle: TextStyle(
+                    color: MyColors.appColorBlack(),
+                    fontWeight: FontWeight.bold),
+                btnCancelOnPress: () {},
+                btnOkOnPress: () {},
+                btnOkColor: MyColors.appColorBlue1(),
+                btnCancelColor: MyColors.appColorGrey400(),
+                btnOkText: "yes".tr(),
+                btnCancelText: "no".tr(),
+              ).show();
+              notifyListeners();
+            } catch (e) {
+              log("#888");
+              log(e.toString());
+            }
+          } else {
+            AwesomeDialog(
+                context: context,
+                dialogType: DialogType.NO_HEADER,
+                animType: AnimType.BOTTOMSLIDE,
+                dismissOnTouchOutside: false,
+                title: "DTM",
+                desc: "infoFillError".tr(),
+                titleTextStyle: TextStyle(
+                    color: MyColors.appColorBlue1(),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+                descTextStyle: TextStyle(
+                    color: MyColors.appColorBlack(),
+                    fontWeight: FontWeight.bold),
+                btnCancelOnPress: () {},
+                btnCancelText: "OK")
+                .show();
+          }
         }
-      } else {
+      } catch (e) {
         AwesomeDialog(
             context: context,
             dialogType: DialogType.NO_HEADER,
@@ -521,16 +562,15 @@ class ProviderOldEdu extends ChangeNotifier {
             btnCancelOnPress: () {},
             btnCancelText: "OK")
             .show();
-      }}
-
-    }catch(e){
+      }
+    } else {
       AwesomeDialog(
           context: context,
           dialogType: DialogType.NO_HEADER,
           animType: AnimType.BOTTOMSLIDE,
           dismissOnTouchOutside: false,
           title: "DTM",
-          desc: "infoFillError".tr(),
+          desc: "pictureNotInfo".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),
               fontSize: 24,
