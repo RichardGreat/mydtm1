@@ -44,7 +44,7 @@ Widget bodyCheckInfoPerevod(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                providerCheckInfoPerevod.modelCheckUserInfo.person
+                providerCheckInfoPerevod.modeCheckUserPerevod.person
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : const SizedBox.shrink(),
               ]),
@@ -89,7 +89,7 @@ Widget bodyCheckInfoPerevod(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                providerCheckInfoPerevod.modelCheckUserInfo.personAddress
+                providerCheckInfoPerevod.modeCheckUserPerevod.personAddress
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : const SizedBox.shrink(),
               ]),
@@ -117,7 +117,7 @@ Widget bodyCheckInfoPerevod(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                providerCheckInfoPerevod.modelCheckUserInfo.personGeneralEdu
+                providerCheckInfoPerevod.modeCheckUserPerevod.personGeneralEdu
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : const SizedBox.shrink(),
               ]),
@@ -148,7 +148,7 @@ Widget bodyCheckInfoPerevod(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                providerCheckInfoPerevod.modelCheckUserInfo.certificate
+                providerCheckInfoPerevod.modeCheckUserPerevod.oldEdu
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : const SizedBox.shrink(),
               ]),
@@ -180,7 +180,7 @@ Widget bodyCheckInfoPerevod(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                providerCheckInfoPerevod.modelCheckUserInfo.bakalavr
+                providerCheckInfoPerevod.modeCheckUserPerevod.abitur
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : const SizedBox.shrink(),
               ]),

@@ -12,6 +12,8 @@ import 'package:mydtm/data/internet_connections/person_info/privilege_check/priv
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/data/model_parse/person_info/privilege_model/privilege_model1.dart';
+import 'package:mydtm/data/perevod/internet/check_user_perevod_info.dart';
+import 'package:mydtm/data/perevod/model/check_user_perevod.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
@@ -25,8 +27,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProviderCheckInfoPerevod extends ChangeNotifier
-{
+class ProviderCheckInfoPerevod extends ChangeNotifier {
   List<ModelCheckInformationForDelete> myList = [
     ModelCheckInformationForDelete(
       id: 1,
@@ -50,19 +51,19 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
     ),
   ];
 
-  NetworkCheckUserInfo networkCheckUserInfo = NetworkCheckUserInfo();
-  late ModelCheckUserInfo modelCheckUserInfo;
+  NetworkCheckUserInfoPerevod networkCheckUserInfo =
+      NetworkCheckUserInfoPerevod();
+  late ModeCheckUserPerevod modeCheckUserPerevod;
   bool boolCheckUserInfo = false;
   var box = Hive.box("online");
 
   Future getInfoUser() async {
     try {
       boolCheckUserInfo = false;
-      String dataCheckInfo = await networkCheckUserInfo.getUserInfo(
-          phoneNumber: box.get("phoneNumber"));
+      String dataCheckInfo = await networkCheckUserInfo.getUserInfoPerevod();
       log(dataCheckInfo);
-      modelCheckUserInfo =
-          ModelCheckUserInfo.fromJson(jsonDecode(dataCheckInfo));
+      modeCheckUserPerevod =
+          ModeCheckUserPerevod.fromJson(jsonDecode(dataCheckInfo));
 
       boolCheckUserInfo = true;
       notifyListeners();
@@ -74,19 +75,19 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
 
   Future checkInfo(
       {required int index,
-        required BuildContext context,
-        required ProviderCheckInfoPerevod providerCheckInfoPerevod,
-        required Function func}) async {
-
-    if (modelCheckUserInfo.person) {
+      required BuildContext context,
+      required ProviderCheckInfoPerevod providerCheckInfoPerevod,
+      required Function func}) async {
+    if (modeCheckUserPerevod.person) {
       if (index == 0) {
         pushNewScreen(
           context,
-          screen: PersonInformation(funcState: func, idFunction: "0", windowIdPassport: "0"),
+          screen: PersonInformation(
+              funcState: func, idFunction: "0", windowIdPassport: "0"),
           withNavBar: false,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
-      } else if (modelCheckUserInfo.personAddress) {
+      } else if (modeCheckUserPerevod.personAddress) {
         if (index == 1) {
           pushNewScreen(
             context,
@@ -95,11 +96,11 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
         }
-        if (modelCheckUserInfo.personGeneralEdu) {
+        if (modeCheckUserPerevod.personGeneralEdu) {
           if (index == 2) {
             pushNewScreen(
               context,
-              screen: Graduated(funcState: func, windowIdGraduated: "2" ),
+              screen: Graduated(funcState: func, windowIdGraduated: "2"),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
@@ -117,9 +118,7 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
-          }
-
-          else if (index == 5) {
+          } else if (index == 5) {
             // infoAferta(context: context, function: func);
             inFoAferta(
                 context: context,
@@ -143,7 +142,7 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
         if (index == 1) {
           pushNewScreen(
             context,
-            screen: AddressInfo(funcState: func,  addressWindowId: "2"),
+            screen: AddressInfo(funcState: func, addressWindowId: "2"),
             withNavBar: false,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
@@ -182,7 +181,8 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
             btnOkOnPress: () {
               pushNewScreen(
                 context,
-                screen: PersonInformation(funcState: func, idFunction: "0", windowIdPassport: "0"),
+                screen: PersonInformation(
+                    funcState: func, idFunction: "0", windowIdPassport: "0"),
                 withNavBar: false,
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
               );
@@ -221,43 +221,43 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
     required ProviderCheckInfoPerevod providerCheckInfoPerevod,
   }) async {
     // return
-      // showDialog<void>(
-      //   context: context,
-      //   barrierDismissible: false, // user must tap button!
-      //   builder: (BuildContext context) {
-      //     return AlertDialog(
-      //       backgroundColor: Colors.white,
-      //       insetPadding: const EdgeInsets.all(10),
-      //       shape: const RoundedRectangleBorder(
-      //           borderRadius: BorderRadius.all(Radius.circular(10.0))),
-      //       title: Column(children: [
-      //         Row(
-      //           crossAxisAlignment: CrossAxisAlignment.start,
-      //           mainAxisAlignment: MainAxisAlignment.end,
-      //           children: [
-      //             GestureDetector(
-      //                 onTap: () {
-      //                   Navigator.of(context).pop();
-      //                 },
-      //                 child: const Icon(Icons.close))
-      //           ],
-      //         ),
-      //         const SizedBox(height: 10),
-      //         Text("requestExamTest".tr(),
-      //             textAlign: TextAlign.center,
-      //             style: const TextStyle(
-      //               fontWeight: FontWeight.w600,
-      //             )),
-      //       ]),
-      //       content: SizedBox(
-      //         height: MediaQuery.of(context).size.height * 0.75,
-      //         child: Aferta(
-      //             providerCheckInfoPerevod: providerCheckInfoPerevod,
-      //             function: function),
-      //       ),
-      //     );
-      //   },
-      // );
+    // showDialog<void>(
+    //   context: context,
+    //   barrierDismissible: false, // user must tap button!
+    //   builder: (BuildContext context) {
+    //     return AlertDialog(
+    //       backgroundColor: Colors.white,
+    //       insetPadding: const EdgeInsets.all(10),
+    //       shape: const RoundedRectangleBorder(
+    //           borderRadius: BorderRadius.all(Radius.circular(10.0))),
+    //       title: Column(children: [
+    //         Row(
+    //           crossAxisAlignment: CrossAxisAlignment.start,
+    //           mainAxisAlignment: MainAxisAlignment.end,
+    //           children: [
+    //             GestureDetector(
+    //                 onTap: () {
+    //                   Navigator.of(context).pop();
+    //                 },
+    //                 child: const Icon(Icons.close))
+    //           ],
+    //         ),
+    //         const SizedBox(height: 10),
+    //         Text("requestExamTest".tr(),
+    //             textAlign: TextAlign.center,
+    //             style: const TextStyle(
+    //               fontWeight: FontWeight.w600,
+    //             )),
+    //       ]),
+    //       content: SizedBox(
+    //         height: MediaQuery.of(context).size.height * 0.75,
+    //         child: Aferta(
+    //             providerCheckInfoPerevod: providerCheckInfoPerevod,
+    //             function: function),
+    //       ),
+    //     );
+    //   },
+    // );
   }
 
   // final Uri urls = Uri.parse("https://lex.uz/docs/-4396419");
@@ -270,61 +270,64 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
     }
   }
 
-
   NetworkPrivilege networkPrivilege = NetworkPrivilege();
   List<DataCheckPrivilege> listCheckPrivilege = [];
   bool boolGetDataPrivilege = false;
   bool boolPrivilegeNot = false;
 
-  Future getPrivilege()async{
-    try{
+  Future getPrivilege() async {
+    try {
       boolGetDataPrivilege = false;
       String dataPrivilege = await networkPrivilege.getPrivilege();
-      ModelCheckPrivilege modelCheckPrivilege = ModelCheckPrivilege.fromJson(jsonDecode(dataPrivilege));
+      ModelCheckPrivilege modelCheckPrivilege =
+          ModelCheckPrivilege.fromJson(jsonDecode(dataPrivilege));
       listCheckPrivilege = modelCheckPrivilege.data;
       boolGetDataPrivilege = true;
       notifyListeners();
-    }catch(e){
-
+    } catch (e) {
       boolPrivilegeNot = true;
       boolGetDataPrivilege = true;
       notifyListeners();
       log(e.toString());
     }
-
   }
 
-  NetworkDownloadsQaydVaraqa networkDownloadsQaydVaraqa = NetworkDownloadsQaydVaraqa();
+  NetworkDownloadsQaydVaraqa networkDownloadsQaydVaraqa =
+      NetworkDownloadsQaydVaraqa();
   late ModelGetDownloads modelGetDownloadsData1;
   late DataGetDownloads modelGetDownloads1;
   bool boolDataDownload1 = false;
-  Future getQaydVaraqa2()async{
+
+  Future getQaydVaraqa2() async {
     try {
       boolDataDownload1 = false;
-      String dataDownloads = await networkDownloadsQaydVaraqa.getCheckDownloads();
+      String dataDownloads =
+          await networkDownloadsQaydVaraqa.getCheckDownloads();
       modelGetDownloadsData1 =
           ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
       modelGetDownloads1 = modelGetDownloadsData1.data;
       boolDataDownload1 = true;
       notifyListeners();
       log(modelGetDownloadsData1.data.src);
-    }catch(e){
+    } catch (e) {
       modelGetDownloadsData1.status = 0;
-      log(e.toString());}
-
-  }
-  Future openFile({required String url, required String fileName})async{
-    try{
-      final file = await downloadFile(url: url, name: fileName);
-      if (file == null) return;
-
-      OpenFile.open(file.path);
-    }catch(e){
       log(e.toString());
     }
   }
 
-  Future<File?> downloadFile({required String url, required String name})async{
+  Future openFile({required String url, required String fileName}) async {
+    try {
+      final file = await downloadFile(url: url, name: fileName);
+      if (file == null) return;
+
+      OpenFile.open(file.path);
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<File?> downloadFile(
+      {required String url, required String name}) async {
     final appStore = await getApplicationDocumentsDirectory();
     final file = File('${appStore.path}/$name.pdf');
     final response = await Dio().get(url,
@@ -332,16 +335,13 @@ class ProviderCheckInfoPerevod extends ChangeNotifier
           responseType: ResponseType.bytes,
           followRedirects: false,
           receiveTimeout: 0,
-        )
-    );
+        ));
 
     final raf = file.openSync(mode: FileMode.write);
     raf.writeFromSync(response.data);
     await raf.close();
     return file;
-
   }
-
 }
 
 class ModelCheckInformationForDelete {
@@ -360,7 +360,7 @@ class ModelCheckInformationForDelete {
       );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-  };
+        "id": id,
+        "name": name,
+      };
 }
