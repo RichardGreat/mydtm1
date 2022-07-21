@@ -6,9 +6,10 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-Widget eduTypeNewPerevod({required BuildContext context, required ProviderNewEduPerevod providerNewEduPerevod}){
-
-  return           Container(
+Widget eduTypeNewPerevod(
+    {required BuildContext context,
+    required ProviderNewEduPerevod providerNewEduPerevod}) {
+  return Container(
     decoration: BoxDecoration(
       color: MyColors.appColorWhite(),
     ),
@@ -17,13 +18,19 @@ Widget eduTypeNewPerevod({required BuildContext context, required ProviderNewEdu
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+
           MyWidgets.robotoFontText(
-              text: "chooseEduType".tr(), textSize: 17),
-          providerNewEduPerevod.eduType.length > 4
+              text: "chooseEduType".tr(),
+              textSize: 17,
+              textColor:
+                  providerNewEduPerevod.testRegionNames.toString().length > 4
+                      ? MyColors.appColorBlack()
+                      : MyColors.appColorGrey400()),
+          providerNewEduPerevod.eduTypeNames.length > 4
               ? Icon(
-            Icons.check_circle,
-            color: MyColors.appColorGreen1(),
-          )
+                  Icons.check_circle,
+                  color: MyColors.appColorGreen1(),
+                )
               : const SizedBox.shrink()
         ],
       ),
@@ -35,9 +42,12 @@ Widget eduTypeNewPerevod({required BuildContext context, required ProviderNewEdu
           Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ],
       ),
-      subtitle: Text(providerNewEduPerevod.langName),
+      subtitle: Text(providerNewEduPerevod.eduTypeNames),
       onTap: () {
-        modelSheetEduTypeNewPerevod(contexts: context, providerNewEduPerevod: providerNewEduPerevod);
+        providerNewEduPerevod.testRegionNames.toString().length > 4
+            ? modelSheetEduTypeNewPerevod(
+                contexts: context, providerNewEduPerevod: providerNewEduPerevod)
+            : {};
         // sheetLanguageChooseTest(
         //     context: context, providerChooseEdu: providerChooseEdu);
       },

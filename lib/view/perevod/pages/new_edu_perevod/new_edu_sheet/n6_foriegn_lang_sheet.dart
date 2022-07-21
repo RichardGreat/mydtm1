@@ -115,7 +115,7 @@ class _GetTestRegionPerevodState extends State<GetTestRegionPerevod> {
                 ),
                 IconButton(
                   onPressed: () {
-                    widget.   providerNewEduPerevod.closeWindowPerevod();
+                    widget.   providerNewEduPerevod.closeWindowPerevod(context: context);
                   },
                   icon: Icon(CupertinoIcons.chevron_down,
                       color: MyColors.appColorBlack()),

@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
 
-class NetworkEduTypeNewPerevod {
-  Future<String> getTestRegion({required String emodeId}) async {
+class NetworkEduLangNewPerevod {
+  Future<String> getEduLang({required String emodeId}) async {
     var dio = Dio();
     Response response;
     var box = Hive.box("online");

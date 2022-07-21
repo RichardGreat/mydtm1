@@ -30,7 +30,8 @@ Widget testRegion({required BuildContext context, required ProviderNewEduPerevod
                       text: "chooseTestRegion".tr(), textSize: 17)),
             ],
           ),
-          providerNewEduPerevod.testRegion.length > 4
+
+          providerNewEduPerevod.testRegionNames.length > 4
               ? Icon(
             Icons.check_circle,
             color: MyColors.appColorGreen1(),
@@ -46,7 +47,7 @@ Widget testRegion({required BuildContext context, required ProviderNewEduPerevod
           Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ],
       ),
-      subtitle: Text(providerNewEduPerevod.testRegion),
+      subtitle: Text(providerNewEduPerevod.testRegionNames),
       onTap: () {
         modelSheetTestRegionPerevod(
             contexts: context, providerNewEduPerevod: providerNewEduPerevod);

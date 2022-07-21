@@ -6,7 +6,7 @@ import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-modelSheetTestRegionPerevod(
+modelSheetEduPerevod(
     {required BuildContext contexts,
       required ProviderNewEduPerevod providerNewEduPerevod}) {
 
@@ -19,36 +19,36 @@ modelSheetTestRegionPerevod(
       enableDrag: true,
       isScrollControlled: true,
       builder: (_) {
-        return Container(
+        return SizedBox(
             height: MediaQuery.of(contexts).size.height * 0.85,
-            child: GetTestRegionPerevod(providerNewEduPerevod: providerNewEduPerevod));
+            child: GetEduPerevod(providerNewEduPerevod: providerNewEduPerevod));
       });
 }
 
-class GetTestRegionPerevod extends StatefulWidget {
+class GetEduPerevod extends StatefulWidget {
   ProviderNewEduPerevod providerNewEduPerevod;
-  GetTestRegionPerevod({Key? key, required this.providerNewEduPerevod}) : super(key: key);
+  GetEduPerevod({Key? key, required this.providerNewEduPerevod}) : super(key: key);
 
   @override
-  State<GetTestRegionPerevod> createState() => _GetTestRegionPerevodState();
+  State<GetEduPerevod> createState() => _GetEduPerevodState();
 }
 
-class _GetTestRegionPerevodState extends State<GetTestRegionPerevod> {
+class _GetEduPerevodState extends State<GetEduPerevod> {
   @override
   initState(){
-    getForeignCountry();
+    getEdu();
     super.initState();
   }
 
-  Future getForeignCountry()async{
-    await widget.providerNewEduPerevod.testRegionUser(context: context);
+  Future getEdu()async{
+    await widget.providerNewEduPerevod.getEdu();
     setState((){});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(body:  widget.providerNewEduPerevod
-        .boolTestRegion
+        .boolEdu
         ? Container(
         height: MediaQuery.of(context).size.height * 0.8,
         decoration: BoxDecoration(
@@ -65,12 +65,12 @@ class _GetTestRegionPerevodState extends State<GetTestRegionPerevod> {
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: TextFormField(
                     controller:
-                    widget. providerNewEduPerevod.textEditNewEduSearch,
+                    widget. providerNewEduPerevod.textEditEdu,
                     maxLines: 1,
                     keyboardType: TextInputType.text,
                     onChanged: (values) {
 
-                      widget. providerNewEduPerevod.searchTestRegion(val:  values.toString());
+                      widget. providerNewEduPerevod.searchEdu(val:  values.toString());
                       setState(() {});
                     },
                     decoration: InputDecoration(
@@ -115,7 +115,7 @@ class _GetTestRegionPerevodState extends State<GetTestRegionPerevod> {
                 ),
                 IconButton(
                   onPressed: () {
-                    widget.   providerNewEduPerevod.closeWindowPerevod();
+                    widget.   providerNewEduPerevod.closeWindowEdu(context: context);
                   },
                   icon: Icon(CupertinoIcons.chevron_down,
                       color: MyColors.appColorBlack()),
@@ -128,7 +128,7 @@ class _GetTestRegionPerevodState extends State<GetTestRegionPerevod> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount:widget. providerNewEduPerevod.listTestRegionTemp.length,
+                itemCount:widget. providerNewEduPerevod.listEduTemp.length,
                 itemBuilder: (context, index) => GestureDetector(
                   child: Card(
                     margin: const EdgeInsets.all(8),
@@ -136,15 +136,15 @@ class _GetTestRegionPerevodState extends State<GetTestRegionPerevod> {
                       padding: const EdgeInsets.all(10),
                       child: MyWidgets.robotoFontText(
                         text: widget.providerNewEduPerevod
-                            .listTestRegionTemp[index].name,
+                            .listEduTemp[index].name,
                       ),
                     ),
                   ),
                   onTap: () {
                     setState((){});
-                    widget.providerNewEduPerevod.setTestRegionNewEdu(
-                        regionName: widget.providerNewEduPerevod.listTestRegionTemp[index].name.toString(),
-                        regionId: widget.providerNewEduPerevod.listTestRegionTemp[index].id.toString()
+                    widget.providerNewEduPerevod.setEduNewPerevod(
+                        eduName:  widget.providerNewEduPerevod.listEduTemp[index].name.toString(),
+                        eduId:  widget.providerNewEduPerevod.listEduTemp[index].langId.toString()
                             .toString());
 
                     Navigator.of(context).pop();

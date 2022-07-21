@@ -17,7 +17,7 @@ Widget eduTestForeignLangNewPerevod({required BuildContext context, required Pro
         children: [
           MyWidgets.robotoFontText(
               text: "chooseLangEmode".tr(), textSize: 17),
-          providerNewEduPerevod.langName.length > 4
+          providerNewEduPerevod.langNames.length > 4
               ? Icon(
             Icons.check_circle,
             color: MyColors.appColorGreen1(),
@@ -33,7 +33,7 @@ Widget eduTestForeignLangNewPerevod({required BuildContext context, required Pro
           Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ],
       ),
-      subtitle: Text(providerNewEduPerevod.langName),
+      subtitle: Text(providerNewEduPerevod.langNames),
       onTap: () {
         // sheetLanguageChooseTest(
         //     context: context, providerChooseEdu: providerChooseEdu);
