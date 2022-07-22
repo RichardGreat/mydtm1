@@ -57,6 +57,7 @@ Widget bodyMainOldEdu(
                 providerOldEdu.eduUzbName.length > 4 &&
                 providerOldEdu.dirNames.length > 4 &&
                 providerOldEdu.graduatedYear.length > 4) {
+
               providerOldEdu.sentServerData(context: context);
             } else {
               AwesomeDialog(
