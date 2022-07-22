@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mydtm/view/perevod/pages/new_edu_perevod/new_edu_sheet/n6_foriegn_lang_sheet.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/provider_new_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -35,6 +36,7 @@ Widget eduTestForeignLangNewPerevod({required BuildContext context, required Pro
       ),
       subtitle: Text(providerNewEduPerevod.langNames),
       onTap: () {
+        modelSheetForeignLangPerevod(contexts: context, providerNewEduPerevod: providerNewEduPerevod);
         // sheetLanguageChooseTest(
         //     context: context, providerChooseEdu: providerChooseEdu);
       },

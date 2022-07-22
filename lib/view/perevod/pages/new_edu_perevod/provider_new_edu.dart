@@ -7,6 +7,7 @@ import 'package:mydtm/data/perevod/internet/new_edu/m2_test_edu_type.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/m3_edu_langs.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/m4_edu.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/m5_dir.dart';
+import 'package:mydtm/data/perevod/internet/new_edu/m6_foreign_lang.dart';
 import 'package:mydtm/data/perevod/internet/uzb_edu_perevod.dart';
 import 'package:mydtm/data/perevod/model/new_edu/m1_test_region.dart';
 import 'package:mydtm/data/perevod/model/new_edu/m2_emode_new_perevod.dart';
@@ -15,6 +16,7 @@ import 'package:mydtm/data/perevod/model/new_edu/m4_edu_new_perevod.dart';
 import 'dart:developer';
 
 import 'package:mydtm/data/perevod/model/new_edu/m5_dir_new_perevod.dart';
+import 'package:mydtm/data/perevod/model/new_edu/m6_test_foreign_lang_new_perevod.dart';
 
 class ProviderNewEduPerevod extends ChangeNotifier {
 
@@ -227,6 +229,38 @@ class ProviderNewEduPerevod extends ChangeNotifier {
   Future setDir({required String dirName, required   String dirId})async{
     dirNames = dirName;
     dirIds = dirId;
+
+    checkForeignLang(dirIds: dirId);
     notifyListeners();
+  }
+
+  NetworkForeignLangPerevod networkForeignLangPerevod = NetworkForeignLangPerevod();
+  List<DataMvdirLangNewPerevod> listForeignLang= [];
+  late ModelTestLangNewPerevod modelTestLangNewPerevod;
+  bool boolCheckForeignLanguage = true;
+
+  Future checkForeignLang({required String dirIds})async{
+    try{
+      boolCheckForeignLanguage = false;
+      notifyListeners();
+      String data = await networkForeignLangPerevod.getForeignLang(dirID: dirIds);
+      modelTestLangNewPerevod = ModelTestLangNewPerevod.fromJson(jsonDecode(data));
+      listForeignLang = modelTestLangNewPerevod.mvdir;
+      boolCheckForeignLanguage = true;
+      notifyListeners();
+
+    }catch(e){
+      boolCheckForeignLanguage = true;
+      notifyListeners();
+      log(e.toString());
+    }
+  }
+
+  String foreignLangName = "";
+  String foreignLangId = "";
+
+  Future setForeignLanguage({required String langName, required String langId})async{
+    foreignLangName = langName;
+    foreignLangId = langId;
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/body_new_edu_perevod/n1_test_region.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/body_new_edu_perevod/n2_edu_type.dart';
@@ -16,7 +17,8 @@ Widget bodyNewPerevod(
     return Container(
         margin: const EdgeInsets.all(15),
       child: SingleChildScrollView(
-        child: Column(
+        child: providerNewEduPerevod
+            .boolCheckForeignLanguage ? Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -46,7 +48,10 @@ Widget bodyNewPerevod(
                 eduDirNewPerevod(context: context, providerNewEduPerevod: providerNewEduPerevod),
 
                 /// Chet tili
-                 eduTestForeignLangNewPerevod(context: context, providerNewEduPerevod: providerNewEduPerevod),
+              Visibility(
+                visible: providerNewEduPerevod.listForeignLang.length > 1,
+                child: eduTestForeignLangNewPerevod(context: context, providerNewEduPerevod: providerNewEduPerevod),),
+
 
               const  SizedBox(height: 10),
                 MaterialButton(onPressed: (){},
@@ -58,7 +63,7 @@ Widget bodyNewPerevod(
                     color: MyColors.appColorBlue1(),
                 )
             ],
-        ),
+        ):Center(child: CupertinoActivityIndicator(),),
       ),
     );
 }
