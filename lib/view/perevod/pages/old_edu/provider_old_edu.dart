@@ -461,8 +461,8 @@ class ProviderOldEdu extends ChangeNotifier {
               eduTypeName.length > 4 &&
               eduLangName.length > 4 &&
               eduUzbName.length > 4 &&
-              dirNames.length > 4 &&
-              graduatedYear.length > 4 &&
+              textEditingDirection.text.length > 4 &&
+              graduatedYearNames.length > 4 &&
               mb < 8) {
             String networkData = "";
             boolUploadIndicatorServer = false;

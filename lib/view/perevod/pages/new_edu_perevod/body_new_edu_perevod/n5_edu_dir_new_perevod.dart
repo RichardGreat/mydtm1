@@ -43,7 +43,7 @@ Widget eduDirNewPerevod(
           Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ],
       ),
-      subtitle: Text(providerNewEduPerevod.dirNames),
+      subtitle: Text(providerNewEduPerevod.dirNames, maxLines: 1),
       onTap: () {
         providerNewEduPerevod.eduNames.length > 4
             ? modelSheetDirNewPerevod(

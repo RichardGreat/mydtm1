@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/body_old_edu/p1_davlat.dart';
@@ -51,13 +52,19 @@ Widget bodyMainOldEdu(
         const SizedBox(height: 10),
         MaterialButton(
           onPressed: () {
+            log(providerOldEdu.restRegionNamePerevod);
+            log(providerOldEdu.eduTypeName);
+            log(providerOldEdu.eduLangName);
+            log(providerOldEdu.eduUzbName);
+            log(providerOldEdu.textEditingDirection.text);
+            log(providerOldEdu.graduatedYearNames);
+
             if (providerOldEdu.restRegionNamePerevod.length > 4 &&
                 providerOldEdu.eduTypeName.length > 4 &&
                 providerOldEdu.eduLangName.length > 4 &&
                 providerOldEdu.eduUzbName.length > 4 &&
-                providerOldEdu.dirNames.length > 4 &&
-                providerOldEdu.graduatedYear.length > 4) {
-
+                providerOldEdu.textEditingDirection.text.length > 4 &&
+                providerOldEdu.graduatedYearNames.length > 4) {
               providerOldEdu.sentServerData(context: context);
             } else {
               AwesomeDialog(
