@@ -75,7 +75,7 @@ class ProviderOldEdu extends ChangeNotifier {
       boolForeignCountry = false;
       String dataNet = await networkCountryPerevod.getCountries();
       ModelGetCountryPerevod modelGetCountryPerevod =
-      ModelGetCountryPerevod.fromJson(jsonDecode(dataNet));
+          ModelGetCountryPerevod.fromJson(jsonDecode(dataNet));
       listDataCountryPerevod = modelGetCountryPerevod.masseage;
       listDataCountryPerevodTemp.clear();
       listDataCountryPerevodTemp.addAll(listDataCountryPerevod);
@@ -131,7 +131,7 @@ class ProviderOldEdu extends ChangeNotifier {
       boolEduType = false;
       String dataNet = await networkEduTypePerevod.getEduType();
       ModelGetEduTypePerevod modelGetEduTypePerevod =
-      ModelGetEduTypePerevod.fromJson(jsonDecode(dataNet));
+          ModelGetEduTypePerevod.fromJson(jsonDecode(dataNet));
       listDataEduType = modelGetEduTypePerevod.masseage;
       listDataEduTypeTemp.clear();
       listDataEduTypeTemp.addAll(listDataEduType);
@@ -167,7 +167,7 @@ class ProviderOldEdu extends ChangeNotifier {
       String dataEduLang = await networkEduLangPerevod.getEduLangType(
           emodeID: setEduTypePerevodId);
       ModelEduLangPerevod modelEduLangPerevod =
-      ModelEduLangPerevod.fromJson(jsonDecode(dataEduLang));
+          ModelEduLangPerevod.fromJson(jsonDecode(dataEduLang));
       listDataLangOld = modelEduLangPerevod.lang;
       boolEduLang = true;
       notifyListeners();
@@ -233,6 +233,7 @@ class ProviderOldEdu extends ChangeNotifier {
     dirIds = "";
     graduatedYear = "";
     graduatedYearNames = "";
+
     notifyListeners();
   }
 
@@ -248,7 +249,7 @@ class ProviderOldEdu extends ChangeNotifier {
       String data = await networkUzbEduDirPerevod.getUzbEduDir(
           emod: setEduTypePerevodId, langId: eduLangId, eduId: eduUzbId);
       ModelEduMvDirPerevod modelEduMvDirPerevod =
-      ModelEduMvDirPerevod.fromJson(jsonDecode(data));
+          ModelEduMvDirPerevod.fromJson(jsonDecode(data));
       listDataMVDir = modelEduMvDirPerevod.mvdir;
       listDataMVDirTemp.clear();
       listDataMVDirTemp.addAll(listDataMVDir);
@@ -330,17 +331,10 @@ class ProviderOldEdu extends ChangeNotifier {
       pw.MultiPage(
         crossAxisAlignment: pw.CrossAxisAlignment.center,
         mainAxisAlignment: pw.MainAxisAlignment.center,
-        build: (context) =>
-        [
+        build: (context) => [
           pw.SizedBox(
-            height: MediaQuery
-                .of(contexts)
-                .size
-                .height,
-            width: MediaQuery
-                .of(contexts)
-                .size
-                .width,
+            height: MediaQuery.of(contexts).size.height,
+            width: MediaQuery.of(contexts).size.width,
             child: pw.Image(
               pw.MemoryImage(
                 base64Decode(
@@ -352,43 +346,31 @@ class ProviderOldEdu extends ChangeNotifier {
           ),
           listImagesByte.length >= 2
               ? pw.SizedBox(
-            height: MediaQuery
-                .of(contexts)
-                .size
-                .height,
-            width: MediaQuery
-                .of(contexts)
-                .size
-                .width,
-            child: pw.Image(
-              pw.MemoryImage(
-                base64Decode(
-                  listImagesByte[1],
-                ),
-              ),
-              fit: pw.BoxFit.fill,
-            ),
-          )
+                  height: MediaQuery.of(contexts).size.height,
+                  width: MediaQuery.of(contexts).size.width,
+                  child: pw.Image(
+                    pw.MemoryImage(
+                      base64Decode(
+                        listImagesByte[1],
+                      ),
+                    ),
+                    fit: pw.BoxFit.fill,
+                  ),
+                )
               : pw.SizedBox.shrink(),
           listImagesByte.length >= 3
               ? pw.SizedBox(
-            height: MediaQuery
-                .of(contexts)
-                .size
-                .height,
-            width: MediaQuery
-                .of(contexts)
-                .size
-                .width,
-            child: pw.Image(
-              pw.MemoryImage(
-                base64Decode(
-                  listImagesByte[2],
-                ),
-              ),
-              fit: pw.BoxFit.fill,
-            ),
-          )
+                  height: MediaQuery.of(contexts).size.height,
+                  width: MediaQuery.of(contexts).size.width,
+                  child: pw.Image(
+                    pw.MemoryImage(
+                      base64Decode(
+                        listImagesByte[2],
+                      ),
+                    ),
+                    fit: pw.BoxFit.fill,
+                  ),
+                )
               : pw.SizedBox.shrink(),
         ],
       ),
@@ -425,7 +407,6 @@ class ProviderOldEdu extends ChangeNotifier {
 
   ///
 
-
   var box = Hive.box("online");
   NetworkSetOldEduPerevod networkSetOldEduPerevod = NetworkSetOldEduPerevod();
   bool boolUploadIndicatorServer = true;
@@ -440,21 +421,21 @@ class ProviderOldEdu extends ChangeNotifier {
         final mb = kb / 1024;
         if (mb > 8) {
           AwesomeDialog(
-              context: context,
-              dialogType: DialogType.NO_HEADER,
-              animType: AnimType.BOTTOMSLIDE,
-              dismissOnTouchOutside: false,
-              title: "DTM",
-              desc: "Hajm 8 mb kishik bo'lishi kerak",
-              titleTextStyle: TextStyle(
-                  color: MyColors.appColorBlue1(),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
-              descTextStyle: TextStyle(
-                  color: MyColors.appColorBlack(),
-                  fontWeight: FontWeight.bold),
-              btnCancelOnPress: () {},
-              btnCancelText: "OK")
+                  context: context,
+                  dialogType: DialogType.NO_HEADER,
+                  animType: AnimType.BOTTOMSLIDE,
+                  dismissOnTouchOutside: false,
+                  title: "DTM",
+                  desc: "imageMaxSize".tr(),
+                  titleTextStyle: TextStyle(
+                      color: MyColors.appColorBlue1(),
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                  descTextStyle: TextStyle(
+                      color: MyColors.appColorBlack(),
+                      fontWeight: FontWeight.bold),
+                  btnCancelOnPress: () {},
+                  btnCancelText: "OK")
               .show();
         } else {
           if (restRegionNamePerevod.length > 4 &&
@@ -477,10 +458,10 @@ class ProviderOldEdu extends ChangeNotifier {
                   filename: "dtm_${box.get("token")}.pdf")
             });
             try {
-              networkData =
-              await networkSetOldEduPerevod.setServerOldEdu(formDate: formData);
+              networkData = await networkSetOldEduPerevod.setServerOldEdu(
+                  formDate: formData);
               ModelDataSendServerPerevod modelDataSendServerPerevod =
-              ModelDataSendServerPerevod.fromJson(jsonDecode(networkData));
+                  ModelDataSendServerPerevod.fromJson(jsonDecode(networkData));
               messageSendServerPerevod = modelDataSendServerPerevod.masseage;
               boolUploadIndicatorServer = true;
               AwesomeDialog(
@@ -494,9 +475,8 @@ class ProviderOldEdu extends ChangeNotifier {
                         style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.w500,
-                            color: MyColors.appColorBlue1()
-                        )),
-                    Divider(),
+                            color: MyColors.appColorBlue1())),
+                    const Divider(),
                     const SizedBox(height: 20),
                     Text("continue".tr(),
                         style: const TextStyle(
@@ -526,6 +506,26 @@ class ProviderOldEdu extends ChangeNotifier {
             }
           } else {
             AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.NO_HEADER,
+                    animType: AnimType.BOTTOMSLIDE,
+                    dismissOnTouchOutside: false,
+                    title: "DTM",
+                    desc: "infoFillError".tr(),
+                    titleTextStyle: TextStyle(
+                        color: MyColors.appColorBlue1(),
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                    descTextStyle: TextStyle(
+                        color: MyColors.appColorBlack(),
+                        fontWeight: FontWeight.bold),
+                    btnCancelOnPress: () {},
+                    btnCancelText: "OK")
+                .show();
+          }
+        }
+      } catch (e) {
+        AwesomeDialog(
                 context: context,
                 dialogType: DialogType.NO_HEADER,
                 animType: AnimType.BOTTOMSLIDE,
@@ -541,45 +541,24 @@ class ProviderOldEdu extends ChangeNotifier {
                     fontWeight: FontWeight.bold),
                 btnCancelOnPress: () {},
                 btnCancelText: "OK")
-                .show();
-          }
-        }
-      } catch (e) {
-        AwesomeDialog(
-            context: context,
-            dialogType: DialogType.NO_HEADER,
-            animType: AnimType.BOTTOMSLIDE,
-            dismissOnTouchOutside: false,
-            title: "DTM",
-            desc: "infoFillError".tr(),
-            titleTextStyle: TextStyle(
-                color: MyColors.appColorBlue1(),
-                fontSize: 24,
-                fontWeight: FontWeight.bold),
-            descTextStyle: TextStyle(
-                color: MyColors.appColorBlack(),
-                fontWeight: FontWeight.bold),
-            btnCancelOnPress: () {},
-            btnCancelText: "OK")
             .show();
       }
     } else {
       AwesomeDialog(
-          context: context,
-          dialogType: DialogType.NO_HEADER,
-          animType: AnimType.BOTTOMSLIDE,
-          dismissOnTouchOutside: false,
-          title: "DTM",
-          desc: "pictureNotInfo".tr(),
-          titleTextStyle: TextStyle(
-              color: MyColors.appColorBlue1(),
-              fontSize: 24,
-              fontWeight: FontWeight.bold),
-          descTextStyle: TextStyle(
-              color: MyColors.appColorBlack(),
-              fontWeight: FontWeight.bold),
-          btnCancelOnPress: () {},
-          btnCancelText: "OK")
+              context: context,
+              dialogType: DialogType.NO_HEADER,
+              animType: AnimType.BOTTOMSLIDE,
+              dismissOnTouchOutside: false,
+              title: "DTM",
+              desc: "pictureNotInfo".tr(),
+              titleTextStyle: TextStyle(
+                  color: MyColors.appColorBlue1(),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(
+                  color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+              btnCancelOnPress: () {},
+              btnCancelText: "OK")
           .show();
     }
   }

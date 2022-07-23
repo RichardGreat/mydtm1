@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/m1_test_region.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/m2_test_edu_type.dart';
@@ -8,13 +6,11 @@ import 'package:mydtm/data/perevod/internet/new_edu/m3_edu_langs.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/m4_edu.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/m5_dir.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/m6_foreign_lang.dart';
-import 'package:mydtm/data/perevod/internet/uzb_edu_perevod.dart';
 import 'package:mydtm/data/perevod/model/new_edu/m1_test_region.dart';
 import 'package:mydtm/data/perevod/model/new_edu/m2_emode_new_perevod.dart';
 import 'package:mydtm/data/perevod/model/new_edu/m3_edu_lang_new_perevod.dart';
 import 'package:mydtm/data/perevod/model/new_edu/m4_edu_new_perevod.dart';
 import 'dart:developer';
-
 import 'package:mydtm/data/perevod/model/new_edu/m5_dir_new_perevod.dart';
 import 'package:mydtm/data/perevod/model/new_edu/m6_test_foreign_lang_new_perevod.dart';
 
@@ -73,6 +69,18 @@ class ProviderNewEduPerevod extends ChangeNotifier {
       {required String regionId, required String regionName}) async {
     testRegionId = regionId;
     testRegionNames = regionName;
+    eduTypeNames = "";
+    eduTypeIds = "";
+    langIds = "";
+    langNames = "";
+    eduNames = "";
+    eduIds = "";
+    dirNames = "";
+    dirIds = "";
+    foreignLangName = "";
+    foreignLangId = "";
+    boolCheckForeignLanguage = false;
+    notifyListeners();
   }
 
   /// Test edu type
@@ -100,6 +108,15 @@ class ProviderNewEduPerevod extends ChangeNotifier {
       {required String eduTypeName, required String eduTypeId}) async {
     eduTypeNames = eduTypeName;
     eduTypeIds = eduTypeId;
+    langIds = "";
+    langNames = "";
+    eduNames = "";
+    eduIds = "";
+    dirNames = "";
+    dirIds = "";
+    foreignLangName = "";
+    foreignLangId = "";
+    boolCheckForeignLanguage = false;
     notifyListeners();
   }
 
@@ -129,6 +146,14 @@ class ProviderNewEduPerevod extends ChangeNotifier {
   Future setLangEdu({required String langId, required String langName}) async {
     langIds = langId;
     langNames = langName;
+    eduNames = "";
+    eduIds = "";
+    dirNames = "";
+    dirIds = "";
+    foreignLangName = "";
+    foreignLangId = "";
+    boolCheckForeignLanguage = false;
+    notifyListeners();
   }
 
   /// Test Edu
@@ -181,6 +206,11 @@ class ProviderNewEduPerevod extends ChangeNotifier {
       {required String eduName, required String eduId}) async {
     eduNames = eduName;
     eduIds = eduId;
+    dirNames = "";
+    dirIds = "";
+    foreignLangName = "";
+    foreignLangId = "";
+    boolCheckForeignLanguage = false;
     notifyListeners();
   }
 
@@ -229,7 +259,9 @@ class ProviderNewEduPerevod extends ChangeNotifier {
   Future setDir({required String dirName, required   String dirId})async{
     dirNames = dirName;
     dirIds = dirId;
-
+    foreignLangName = "";
+    foreignLangId = "";
+    boolCheckForeignLanguage = false;
     checkForeignLang(dirIds: dirId);
     notifyListeners();
   }
@@ -263,5 +295,12 @@ class ProviderNewEduPerevod extends ChangeNotifier {
     foreignLangName = langName;
     foreignLangId = langId;
     notifyListeners();
+  }
+
+  Future setAllData()async{
+    try{
+      // String dataSetAll = await
+
+    }catch(e){}
   }
 }

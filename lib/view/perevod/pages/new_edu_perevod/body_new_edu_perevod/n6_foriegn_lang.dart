@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/new_edu_sheet/n6_foriegn_lang_sheet.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/provider_new_edu.dart';
@@ -7,7 +8,10 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 Widget eduTestForeignLangNewPerevod({required BuildContext context, required ProviderNewEduPerevod providerNewEduPerevod}){
 
-  return  Container(
+  return
+    providerNewEduPerevod
+        .boolCheckForeignLanguage ?
+    Container(
     decoration: BoxDecoration(
       color: MyColors.appColorWhite(),
     ),
@@ -41,5 +45,5 @@ Widget eduTestForeignLangNewPerevod({required BuildContext context, required Pro
         //     context: context, providerChooseEdu: providerChooseEdu);
       },
     ),
-  );
+  ):const Center(child: CupertinoActivityIndicator(),);
 }
