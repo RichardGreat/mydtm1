@@ -91,43 +91,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
         break;
       case AppLifecycleState.detached:
         {
-          // if(box.get("langLock").toString().trim() == "1"){
-          //   box.delete("langLock");
-          // }
-          // else{
-          //   box.get("lockScreen").toString().trim().length == 4 &&
-          //       box.get("lockScreen").toString() != "null"
-          //       ? {
-          //     screenLock(
-          //       withBlur: true,
-          //       context: navigatorKey.currentContext!,
-          //       correctString:  box.get("lockScreen").toString(),
-          //       canCancel: false,
-          //       footer:const Text("Tizimdan chiqish"),
-          //
-          //       title: Text("Pin kod kiriting"),
-          //       screenLockConfig: ScreenLockConfig(
-          //         backgroundColor: Colors.black,
-          //       ),
-          //
-          //       // didUnlocked:(){
-          //       //         Navigator.of(context).pop();
-          //       //         Navigator.of(context).pop();
-          //       //       } ,
-          //       // customizedButtonTap: () async {
-          //       //   await localAuth(context);
-          //       // },
-          //       // didOpened: () async {
-          //       //   await localAuth(context);
-          //       //
-          //       // },
-          //     ),
-          //     // pushNewScreen(context, screen: LockScreenAllWindow()),
-          //     box.delete("lockHasEnter")
-          //   }
-          //       : {};};
-
-
         }
         break;
     }

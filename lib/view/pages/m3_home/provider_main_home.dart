@@ -35,6 +35,7 @@ class ProviderMainHome extends ChangeNotifier {
   NetworkSetLanguage networkSetLanguage = NetworkSetLanguage();
   String dataLang = "";
   late DataCheckMobileVersion dataCheckMobileVersion;
+  String numberAPIUpdate = "";
 
   Future checkVersion({required BuildContext context}) async {
     boolParseData = false;
@@ -43,14 +44,14 @@ class ProviderMainHome extends ChangeNotifier {
       String dataVersion = await NetworkCheckVersions.checkMobileVersion();
       ModelCheckMobileVersion modelCheckMobileVersion =
           ModelCheckMobileVersion.fromJson(jsonDecode(dataVersion));
+      numberAPIUpdate = modelCheckMobileVersion.data.numberApi.toString();
 
-      log(jsonEncode(modelCheckMobileVersion).toString());
+      log(dataVersion);
+
       ///1005
-      if(box.get("updateVersion").toString() != modelCheckMobileVersion.data.version.toString()
-      ) {
-
+      if (box.get("updateVersion").toString() !=
+          modelCheckMobileVersion.data.version.toString()) {
         if (modelCheckMobileVersion.data.status.toString() == "1") {
-
         } else if (modelCheckMobileVersion.data.status.toString() == "2") {
           AwesomeDialog(
                   context: context,
@@ -73,11 +74,9 @@ class ProviderMainHome extends ChangeNotifier {
                       color: MyColors.appColorBlack(),
                       fontWeight: FontWeight.bold),
                   btnCancelOnPress: () {
-
                     openGooglePlayMarket();
                   },
                   btnCancelText: "OK",
-
                   btnCancelColor: MyColors.appColorBlue1())
               .show();
         } else if (modelCheckMobileVersion.data.status.toString() == "3") {
@@ -85,18 +84,22 @@ class ProviderMainHome extends ChangeNotifier {
           // ignore: use_build_context_synchronously
           pushNewScreen(context,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              screen: UpdateMust(), withNavBar: false);
+              screen: UpdateMust(),
+              withNavBar: false);
         }
       }
     } catch (e) {
       log(e.toString());
     }
   }
-  final Uri _url = Uri.parse('https://play.google.com/store/apps/details?id=www.my_dtm.uz');
-  Future openGooglePlayMarket()async{
-    try{
+
+  final Uri _url =
+      Uri.parse('https://play.google.com/store/apps/details?id=www.my_dtm.uz');
+
+  Future openGooglePlayMarket() async {
+    try {
       if (!await launchUrl(_url)) throw 'Could not launch $_url';
-    }catch(e){}
+    } catch (e) {}
   }
 
   Future setLangUser() async {
@@ -124,14 +127,21 @@ class ProviderMainHome extends ChangeNotifier {
     }
   }
 
+  late ModelServiceList modelServiceList;
+
   Future getDateService({required BuildContext context}) async {
     try {
-      String dataServiceList = await networkServiceList.getServiceList();
+      if (box.get("numberApi").toString().trim() != numberAPIUpdate.toString().trim()) {
+        String dataServiceList = await networkServiceList.getServiceList();
+        box.put("dataServiceList", dataServiceList);
+        box.put("numberApi",numberAPIUpdate);
+        log("Download 777");
+        log( box.get("numberApi"));
+        log("####");
+        }
 
-      ModelServiceList modelServiceList =
-          ModelServiceList.fromJson(jsonDecode(dataServiceList));
-      log(jsonEncode(modelServiceList));
-
+      modelServiceList =
+          ModelServiceList.fromJson(jsonDecode(box.get("dataServiceList")));
       listDataServiceList.addAll(modelServiceList.data);
       for (var value in listDataServiceList) {
         value.service.sort((a, b) => a.sortId);
@@ -179,7 +189,6 @@ class ProviderMainHome extends ChangeNotifier {
       required ServiceMainList serviceMainList}) async {
     pushNewScreen(
       context,
-
       screen: ServicePage(
         serviceMainList: serviceMainList,
       ),

@@ -27,6 +27,8 @@ class DataCheckMobileVersion {
     required this.versionText,
     required this.versionTextQq,
     required this.versionTextRu,
+    required this.numberApi,
+
   });
 
   dynamic id;
@@ -35,6 +37,7 @@ class DataCheckMobileVersion {
   dynamic versionText;
   dynamic versionTextQq;
   dynamic versionTextRu;
+  dynamic numberApi;
 
   factory DataCheckMobileVersion.fromJson(Map<String, dynamic> json) =>
       DataCheckMobileVersion(
@@ -43,7 +46,10 @@ class DataCheckMobileVersion {
           version: json["version"],
           versionText: json["version_text"],
           versionTextQq: json["version_text_qq"],
-          versionTextRu: json["version_text_ru"]);
+          versionTextRu: json["version_text_ru"],
+        numberApi: json["number_api"],
+
+      );
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -51,6 +57,7 @@ class DataCheckMobileVersion {
         "version": version,
         "version_text": versionText,
         "version_text_qq": versionTextQq,
-        "version_text_ru": versionTextRu
+        "version_text_ru": versionTextRu,
+        "number_api": numberApi,
       };
 }
