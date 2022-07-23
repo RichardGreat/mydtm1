@@ -262,5 +262,6 @@ class ProviderNewEduPerevod extends ChangeNotifier {
   Future setForeignLanguage({required String langName, required String langId})async{
     foreignLangName = langName;
     foreignLangId = langId;
+    notifyListeners();
   }
 }

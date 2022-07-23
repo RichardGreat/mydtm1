@@ -47,7 +47,7 @@ Widget eduNewPerevod(
           Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ],
       ),
-      subtitle: Text(providerNewEduPerevod.eduNames),
+      subtitle: Text(providerNewEduPerevod.eduNames, maxLines: 1),
       onTap: () {
         providerNewEduPerevod.langNames.length > 4
             ? modelSheetEduPerevod(
