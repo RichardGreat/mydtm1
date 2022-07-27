@@ -38,7 +38,9 @@ Widget bodyMainOldEdu(
         til(context: context, providerOldEdu: providerOldEdu),
 
         /// Ta'lim muassasasi
-        muassasaNomi(context: context, providerOldEdu: providerOldEdu),
+        providerOldEdu.restRegionNamePerevodId == "860"?
+                muassasaNomi(context: context, providerOldEdu: providerOldEdu):
+        Text("1f"),
 
         ///Yo'nalish
         yonalish(context: context, providerOldEdu: providerOldEdu),
