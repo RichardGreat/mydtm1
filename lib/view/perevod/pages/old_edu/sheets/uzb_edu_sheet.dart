@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 modelSheetUzbEduPerevod(
     {required BuildContext contexts, required ProviderOldEdu providerOldEdu}) {
@@ -15,7 +16,7 @@ modelSheetUzbEduPerevod(
       enableDrag: true,
       isScrollControlled: true,
       builder: (_) {
-        return Container(
+        return SizedBox(
             height: MediaQuery.of(contexts).size.height * 0.85,
             child: UzbEduSheet(providerOldEdu: providerOldEdu));
       });
@@ -45,14 +46,20 @@ class _UzbEduSheetState extends State<UzbEduSheet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.appColorWhite(),
       body: widget.providerOldEdu.boolForeignCountry
           ? Container(
+        margin:const EdgeInsets.all(10),
               height: MediaQuery.of(context).size.height * 0.8,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
+                  const SizedBox(height: 10),
+                  MyWidgets.robotoFontText(text:  "oldEduEduName".tr(), textSize: 20),
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,7 +67,7 @@ class _UzbEduSheetState extends State<UzbEduSheet> {
                       Container(
                         margin: const EdgeInsets.all(10),
                         height: 50,
-                        width: MediaQuery.of(context).size.width * 0.8,
+                        width: MediaQuery.of(context).size.width * 0.7,
                         child: TextFormField(
                           controller: widget
                               .providerOldEdu.textControllerCountryPerevod,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
+
 modelSheetGraduatedYearPerevod(
     {required BuildContext contexts, required ProviderOldEdu providerOldEdu}) {
   showModalBottomSheet<void>(
@@ -29,22 +31,29 @@ class GetEduGraduatedYearPerevod extends StatefulWidget {
 
 class _GetEduGraduatedYearPerevodState extends State<GetEduGraduatedYearPerevod> {
 
-
   List<String> listGraduatedYear = [
   "firstYear".tr(),
   "secondYear".tr(),
   "thirdYear".tr(),
   "fourthYear".tr(),
   ];
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.appColorWhite(),
       body: Container(
+        margin: const EdgeInsets.all(10),
           height: MediaQuery.of(context).size.height * 0.4,
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(8)),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 10),
+              MyWidgets.robotoFontText(text: "oldEduNumberCourse".tr(), textSize: 20),
+              const  SizedBox(height: 10),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
               //   children: [

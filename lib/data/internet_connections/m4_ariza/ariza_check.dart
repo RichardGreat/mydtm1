@@ -9,6 +9,9 @@ class NetworkArizaCheck {
     var box = Hive.box("online");
     var dio = Dio();
     Response response;
+    log( box.get("token"));
+    log( "${MainUrl.mainUrls}/v1/qabul/index");
+
     response = await dio.get("${MainUrl.mainUrls}/v1/qabul/index",
 
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")})); // {MainUrl.mainUrlHeader: box.get("token")}));

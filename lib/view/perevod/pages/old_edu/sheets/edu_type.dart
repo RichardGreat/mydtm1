@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 modelSheetEduTypePerevod(
     {required BuildContext contexts, required ProviderOldEdu providerOldEdu}) {
@@ -43,13 +44,21 @@ class _GetEduTypePerevodState extends State<GetEduTypePerevod> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.appColorWhite(),
       body: widget.providerOldEdu.boolEduType
           ? Container(
+        margin: const EdgeInsets.all(10),
               height: MediaQuery.of(context).size.height * 0.4,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const   SizedBox(height: 10),
+          MyWidgets.robotoFontText(
+            text: "oldEduEduType".tr(), textSize: 17,),
+                  const  SizedBox(height: 10),
                   // Row(
                   //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   //   children: [
