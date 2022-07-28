@@ -4,7 +4,9 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/state_menegment/prov
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 Widget bottomUI(
-    {required BuildContext context, required ProviderSms providerSms}) {
+    {required BuildContext context,
+      required String phoneNumber,
+      required ProviderSms providerSms}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -46,7 +48,9 @@ Widget bottomUI(
                   smsCode: providerSms.controller.text, context: context),
             }
             else if (providerSms.smsSentStatus == 2) {
-              providerSms.getResetPass(smsCode: providerSms.controller.text,
+              providerSms.getResetPass(
+                phoneNum: phoneNumber,
+                  smsCode: providerSms.controller.text,
                   context: context,
                   smsId: providerSms.captchaKeys),
             }

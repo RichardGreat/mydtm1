@@ -96,6 +96,7 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
 
                         Expanded(
                             child: bottomUI(
+                              phoneNumber: widget.phoneNum,
                                 context: context,
                                 providerSms: providerSms))
 

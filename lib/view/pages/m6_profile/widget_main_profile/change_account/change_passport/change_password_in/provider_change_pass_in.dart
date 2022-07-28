@@ -53,7 +53,9 @@ class ProviderChangePasswordInputs extends ChangeNotifier {
   Future getNewPassport(
       {required String passportResetToken,
       required String textNewPassport,
-      required BuildContext context
+      required BuildContext context,
+      required String phoneNumber
+
       }) async {
 
     try {
@@ -62,6 +64,8 @@ class ProviderChangePasswordInputs extends ChangeNotifier {
       dataAccessNewPassport = modelAccessNewPassport.data;
       box.delete("token");
       box.put("token", dataAccessNewPassport.accessToken);
+      box.delete("phoneNumber");
+      box.put("phoneNumber", phoneNumber);
       AwesomeDialog(
           context: context,
           dialogType: DialogType.NO_HEADER,

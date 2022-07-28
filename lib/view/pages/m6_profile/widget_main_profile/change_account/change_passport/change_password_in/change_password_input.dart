@@ -9,8 +9,10 @@ import 'package:easy_localization/easy_localization.dart';
 // ignore: must_be_immutable
 class ChangePasswordInput extends StatefulWidget {
   String passResetToken;
+  String phoneNumber;
 
-  ChangePasswordInput({Key? key, required this.passResetToken})
+  ChangePasswordInput(
+      {Key? key, required this.passResetToken, required this.phoneNumber})
       : super(key: key);
 
   @override
@@ -43,9 +45,9 @@ class _ChangePasswordInputState extends State<ChangePasswordInput> {
                   backgroundColor: MyColors.appColorWhite()),
               body: SafeArea(
                   child: SingleChildScrollView(
-                    child: Container(
-                margin: const EdgeInsets.all(15),
-                child: Column(
+                child: Container(
+                  margin: const EdgeInsets.all(15),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 20),
@@ -53,7 +55,8 @@ class _ChangePasswordInputState extends State<ChangePasswordInput> {
                           text: "changePassport".tr(), textSize: 24),
                       const SizedBox(height: 10),
                       TextFormField(
-                        controller: providerChangePasswordInputs.textEditingPass1,
+                        controller:
+                            providerChangePasswordInputs.textEditingPass1,
                         textAlignVertical: TextAlignVertical.center,
                         maxLines: 1,
                         maxLength: 20,
@@ -129,7 +132,8 @@ class _ChangePasswordInputState extends State<ChangePasswordInput> {
                       ),
                       const SizedBox(height: 10),
                       TextFormField(
-                        controller: providerChangePasswordInputs.textEditingPass2,
+                        controller:
+                            providerChangePasswordInputs.textEditingPass2,
                         textAlignVertical: TextAlignVertical.center,
                         maxLines: 1,
                         maxLength: 20,
@@ -144,18 +148,18 @@ class _ChangePasswordInputState extends State<ChangePasswordInput> {
                                   .boolPasswordVisibleMethod2();
                               setState(() {});
                             },
-                            child:
-                                providerChangePasswordInputs.boolPasswordVisible2
-                                    ? Icon(
-                                        CupertinoIcons.eye_slash,
-                                        color: MyColors.appColorGrey600(),
-                                        size: 18,
-                                      )
-                                    : Icon(
-                                        CupertinoIcons.eye,
-                                        color: MyColors.appColorBlue2(),
-                                        size: 18,
-                                      ),
+                            child: providerChangePasswordInputs
+                                    .boolPasswordVisible2
+                                ? Icon(
+                                    CupertinoIcons.eye_slash,
+                                    color: MyColors.appColorGrey600(),
+                                    size: 18,
+                                  )
+                                : Icon(
+                                    CupertinoIcons.eye,
+                                    color: MyColors.appColorBlue2(),
+                                    size: 18,
+                                  ),
                           ),
                           fillColor: Colors.white,
                           focusedBorder: OutlineInputBorder(
@@ -221,11 +225,14 @@ class _ChangePasswordInputState extends State<ChangePasswordInput> {
                           onPressed: () {
                             setState(() {});
 
-                            if (providerChangePasswordInputs.textEditingPass1.text
+                            if (providerChangePasswordInputs
+                                    .textEditingPass1.text
                                     .trim() ==
-                                providerChangePasswordInputs.textEditingPass2.text
+                                providerChangePasswordInputs
+                                    .textEditingPass2.text
                                     .trim()) {
                               providerChangePasswordInputs.getNewPassport(
+                                  phoneNumber: widget.phoneNumber,
                                   passportResetToken: widget.passResetToken,
                                   textNewPassport: providerChangePasswordInputs
                                       .textEditingPass2.text
@@ -242,9 +249,9 @@ class _ChangePasswordInputState extends State<ChangePasswordInput> {
                               text: "access".tr(),
                               textColor: MyColors.appColorWhite()))
                     ],
+                  ),
                 ),
-              ),
-                  )),
+              )),
             ),
           ),
         ),

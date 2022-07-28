@@ -199,7 +199,9 @@ class ProviderSms extends ChangeNotifier {
   }
 
   Future getResetPass(
-      {required String smsCode,
+      {
+        required String smsCode,
+        required String phoneNum,
       required BuildContext context,
       required String smsId}) async {
     try {
@@ -215,6 +217,9 @@ class ProviderSms extends ChangeNotifier {
       pushNewScreen(context,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
           screen: ChangePasswordInput(
+            phoneNumber: phoneNum,
+
+
               passResetToken: modelResetPassToken2.data.passwordResetToken));
       log(dataSms);
       boolData = true;

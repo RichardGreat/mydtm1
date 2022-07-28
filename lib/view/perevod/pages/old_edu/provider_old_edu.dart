@@ -24,6 +24,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 class ProviderOldEdu extends ChangeNotifier {
+
   TextEditingController textEditingDirection = TextEditingController();
   TextEditingController textEditingEducation = TextEditingController();
 
@@ -109,6 +110,8 @@ class ProviderOldEdu extends ChangeNotifier {
     eduUzbId = "";
     dirNames = "";
     dirIds = "";
+    textEditingDirection.text = "";
+    textEditingEducation.text = "";
     graduatedYear = "";
     graduatedYearNames = "";
     notifyListeners();
@@ -145,6 +148,8 @@ class ProviderOldEdu extends ChangeNotifier {
   Future setEduTypeVal({required String name, required String id}) async {
     eduTypeName = name;
     setEduTypePerevodId = id;
+    textEditingDirection.text = "";
+    textEditingEducation.text = "";
     eduLangName = "";
     eduLangId = "";
     eduUzbName = "";
@@ -182,6 +187,8 @@ class ProviderOldEdu extends ChangeNotifier {
     eduUzbId = "";
     dirNames = "";
     dirIds = "";
+    textEditingDirection.text = "";
+    textEditingEducation.text = "";
     graduatedYear = "";
     graduatedYearNames = "";
     notifyListeners();

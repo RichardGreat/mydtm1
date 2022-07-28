@@ -22,29 +22,32 @@ class _OldEduAddState extends State<OldEduAdd> {
     return ChangeNotifierProvider(
       create: (context) => providerOldEdu,
       child: Consumer<ProviderOldEdu>(
-        builder: (context, value, child) => Scaffold(
-            backgroundColor: MyColors.appColorGrey100(),
-            appBar:
-                appBarOldEdu(context: context, providerOldEdu: providerOldEdu),
-            body: providerOldEdu.boolUploadIndicatorServer
-                ? SafeArea(
-                    child: Container(
-                      margin: const EdgeInsets.all(15),
-                      child: bodyMainOldEdu(
-                          context: context, providerOldEdu: providerOldEdu),
-                    ),
-                  )
-                : Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
-                        Text("pleaseWait".tr()),
-                       const SizedBox(height: 20),
-                     const   CupertinoActivityIndicator(),
-                      ],
-                    ),
-                  )),
+        builder: (context, value, child) => Form(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Scaffold(
+              backgroundColor: MyColors.appColorGrey100(),
+              appBar:
+                  appBarOldEdu(context: context, providerOldEdu: providerOldEdu),
+              body: providerOldEdu.boolUploadIndicatorServer
+                  ? SafeArea(
+                      child: Container(
+                        margin: const EdgeInsets.all(15),
+                        child: bodyMainOldEdu(
+                            context: context, providerOldEdu: providerOldEdu),
+                      ),
+                    )
+                  : Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children:  [
+                          Text("pleaseWait".tr()),
+                         const SizedBox(height: 20),
+                       const   CupertinoActivityIndicator(),
+                        ],
+                      ),
+                    )),
+        ),
       ),
     );
   }

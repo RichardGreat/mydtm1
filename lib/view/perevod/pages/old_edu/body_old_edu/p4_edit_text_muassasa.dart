@@ -12,14 +12,14 @@ Widget editMuassasa (
     child: Container(
       margin: const EdgeInsets.fromLTRB(10, 2, 10, 2),
       child: TextFormField(
-          controller: providerOldEdu.textEditingDirection,
+          controller: providerOldEdu.textEditingEducation,
           maxLines: 1,
           textAlignVertical: TextAlignVertical.center,
           maxLength: 100,
           keyboardType: TextInputType.text,
           enabled: providerOldEdu.getDirectionBool(),
           decoration: InputDecoration(
-            hintText: "dirNameType".tr(),
+            hintText: "oldEduEduName".tr(),
             hintStyle: TextStyle(
                 color: MyColors.appColorGrey400(),
                 fontWeight: FontWeight.w500,
@@ -27,7 +27,7 @@ Widget editMuassasa (
             suffixIcon: GestureDetector(
               child: const Icon(Icons.clear, size: 12),
               onTap: () {
-                providerOldEdu.textEditingDirection.clear();
+                providerOldEdu.textEditingEducation.clear();
               },
             ),
             contentPadding: const EdgeInsets.all(8),
@@ -69,47 +69,9 @@ Widget editMuassasa (
             // ),
           ),
           validator: (value) {
-            if (value.toString().length > 10) {}
+            if (value.toString().length > 8) {}
             return null;
           }),
     ),
-    // ListTile(
-    //   title: Row(
-    //     crossAxisAlignment: CrossAxisAlignment.start,
-    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //     children: [
-    //       MyWidgets.robotoFontText(
-    //           text: "oldEduDirectionName".tr(),
-    //           textSize: 17,
-    //           textColor: providerOldEdu.eduUzbName.length > 4
-    //               ? MyColors.appColorBlack()
-    //               : MyColors.appColorGrey400()),
-    //       providerOldEdu.dirNames.length > 4
-    //           ? Icon(
-    //               Icons.check_circle,
-    //               color: MyColors.appColorGreen1(),
-    //             )
-    //           : const SizedBox.shrink()
-    //     ],
-    //   ),
-    //   trailing: Column(
-    //     crossAxisAlignment: CrossAxisAlignment.start,
-    //     mainAxisAlignment: MainAxisAlignment.start,
-    //     children: const [
-    //       SizedBox(height: 8),
-    //       Icon(Icons.arrow_forward_ios_sharp, size: 16),
-    //     ],
-    //   ),
-    //   subtitle: Text(providerOldEdu.dirNames, maxLines: 1,),
-    //   onTap: () {
-    //
-    //     providerOldEdu.eduUzbName.length > 4
-    //         ? modelSheetEduDirPerevod(
-    //             contexts: context, providerOldEdu: providerOldEdu)
-    //         : {};
-    //     // sheetLanguageChooseTest(
-    //     //     context: context, providerChooseEdu: providerChooseEdu);
-    //   },
-    // ),
   );
 }

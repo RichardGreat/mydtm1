@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mydtm/view/perevod/check_info_perevod/n8_contunie_button.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/provider_check_perevod.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -6,9 +7,9 @@ import 'package:easy_localization/easy_localization.dart';
 
 Widget bodyCheckInfoPerevod(
     {required BuildContext context,
-      required Function functions,
-      required ProviderCheckInfoPerevod providerCheckInfoPerevod,
-      required String serviceName}) {
+    required Function functions,
+    required ProviderCheckInfoPerevod providerCheckInfoPerevod,
+    required String serviceName}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -140,9 +141,9 @@ Widget bodyCheckInfoPerevod(
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
           leading: SizedBox(
-            width: MediaQuery.of(context).size.width*0.6,
+            width: MediaQuery.of(context).size.width * 0.6,
             child: MyWidgets.robotoFontText(
-                text:  providerCheckInfoPerevod.myList[3].name, textSize: 16),
+                text: providerCheckInfoPerevod.myList[3].name, textSize: 16),
           ),
           title: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -155,7 +156,6 @@ Widget bodyCheckInfoPerevod(
         ),
       ),
       const SizedBox(height: 2),
-
       Container(
         decoration: BoxDecoration(
             color: MyColors.appColorWhite(),
@@ -186,16 +186,16 @@ Widget bodyCheckInfoPerevod(
               ]),
         ),
       ),
-      // providerCheckInfoPerevod.modelCheckUserInfo.person &&
-      //     providerCheckInfoPerevod.modelCheckUserInfo.personAddress &&
-      //     providerCheckInfoPerevod.modelCheckUserInfo.personGeneralEdu
-      //     ?
-      // bottomCheckInfo(
-      //     providerCheckInformation: providerCheckInfoPerevod,
-      //     context: context,
-      //     functions1: functions
-      // )
-      //     : const SizedBox.shrink()
+      const SizedBox(height: 10),
+      providerCheckInfoPerevod.modeCheckUserPerevod.person &&
+              providerCheckInfoPerevod.modeCheckUserPerevod.personAddress &&
+              providerCheckInfoPerevod.modeCheckUserPerevod.personGeneralEdu &&
+              providerCheckInfoPerevod.modeCheckUserPerevod.oldEdu
+          ? buttonContinue(
+              providerCheckInfoPerevod: providerCheckInfoPerevod,
+              context: context,
+              functions: functions)
+          : const SizedBox.shrink()
     ],
   );
 }

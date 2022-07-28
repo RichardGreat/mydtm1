@@ -4,35 +4,34 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 Widget editInputPerevod({required BuildContext context, required ProviderNewEduPerevod providerNewEduPerevod}){
   return  TextFormField(
-
       maxLines: 1,
       textAlignVertical: TextAlignVertical.center,
-      maxLength: 9,
+      maxLength: 100,
       keyboardType: TextInputType.number,
 
       decoration: InputDecoration(
-        prefixText: "+998 ",
         suffixIcon:
         GestureDetector(child: const Icon(Icons.clear, size: 12), onTap: (){
-
         },),
-        contentPadding: const EdgeInsets.all(8),
         fillColor: Colors.white,
+        filled: true,
+        hintText: "Izoh",
+        enabled: providerNewEduPerevod.dirNames.length > 4,
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius:const  BorderRadius.only(bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
           borderSide: BorderSide(
             color: MyColors.appColorBlue1(),
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius:const  BorderRadius.only(bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
           borderSide: BorderSide(
             color: MyColors.appColorGrey100(),
             width: 2.0,
           ),
         ),
         focusedErrorBorder:  OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius:const  BorderRadius.only(bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
           borderSide: BorderSide(
             color: MyColors.appColorGrey100(),
             width: 2.0,
@@ -44,7 +43,7 @@ Widget editInputPerevod({required BuildContext context, required ProviderNewEduP
           fontWeight: FontWeight.w500,
         ),
         errorBorder:  OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius:const  BorderRadius.only(bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
           borderSide: BorderSide(
             color: MyColors.appColorGrey100(),
             width: 2.0,
