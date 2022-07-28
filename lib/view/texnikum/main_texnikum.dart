@@ -21,6 +21,16 @@ class _MainTexnikumState extends State<MainTexnikum> {
   ProviderTexnikum providerTexnikum = ProviderTexnikum();
 
   @override
+  initState(){
+    getDataCheck();
+    super.initState();
+  }
+  Future getDataCheck()async{
+await    providerTexnikum.checkAllInfoUser();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => providerTexnikum,
