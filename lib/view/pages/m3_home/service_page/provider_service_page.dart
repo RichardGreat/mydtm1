@@ -5,6 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/check_info_perevodga.dart';
+import 'package:mydtm/view/texnikum/main_texnikum.dart';
 
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -73,21 +74,27 @@ class ProviderServicePage extends ChangeNotifier{
             )
           }
         else if(box.get("token").toString().length > 29){
-
-          AwesomeDialog(
-              context: context,
-              dialogType: DialogType.NO_HEADER,
-              animType: AnimType.BOTTOMSLIDE,
-              title: "DTM",
-              desc: "serviceWorkSoon".tr(),
-              titleTextStyle:TextStyle(color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
-              descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-              btnOkOnPress: () {
-                // Navigator.of(context).pop();
-              },
-              btnOkText: "enter".tr(),
-            btnOkColor: MyColors.appColorBlue1()
-          )..show(),
+            pushNewScreen(
+              context,
+              screen: MainTexnikum(),
+              withNavBar: false,
+              pageTransitionAnimation:
+              PageTransitionAnimation.cupertino,
+            )
+          // AwesomeDialog(
+          //     context: context,
+          //     dialogType: DialogType.NO_HEADER,
+          //     animType: AnimType.BOTTOMSLIDE,
+          //     title: "DTM",
+          //     desc: "serviceWorkSoon".tr(),
+          //     titleTextStyle:TextStyle(color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
+          //     descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          //     btnOkOnPress: () {
+          //       // Navigator.of(context).pop();
+          //     },
+          //     btnOkText: "enter".tr(),
+          //   btnOkColor: MyColors.appColorBlue1()
+          // )..show(),
         }else{
           AwesomeDialog(
               context: context,

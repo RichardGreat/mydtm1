@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
 
-class CheckUserInfoTexnikum{
+class NetworkCheckUserInfoTexnikum{
 
   Future getUserInfoTexnikum({required String phoneNumber})async{
     var box = Hive.box("online");

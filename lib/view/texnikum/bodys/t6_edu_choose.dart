@@ -4,7 +4,7 @@ import 'package:mydtm/view/texnikum/provider_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-Widget passportInfoTexnikum({required BuildContext context, required ProviderTexnikum providerTexnikum,}){
+Widget eduChooseInfoTexnikum({required BuildContext context, required ProviderTexnikum providerTexnikum,}){
   return  Container(
     decoration: BoxDecoration(
         color: MyColors.appColorWhite(),
