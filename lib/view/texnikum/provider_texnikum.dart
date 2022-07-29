@@ -14,14 +14,26 @@ class ProviderTexnikum extends ChangeNotifier {
   NetworkCheckUserInfoTexnikum networkCheckUserInfoTexnikum =
       NetworkCheckUserInfoTexnikum();
   late ModelCheckUserInfoTexnikum modelCheckUserInfoTexnikum;
-
+  bool boolDownloadTexnikum = false;
   Future checkAllInfoUser() async {
     try {
+      boolDownloadTexnikum = false;
       String data = await networkCheckUserInfoTexnikum.getUserInfoTexnikum(
           phoneNumber: "998489900");
       modelCheckUserInfoTexnikum =
           ModelCheckUserInfoTexnikum.fromJson(jsonDecode(data));
+      boolDownloadTexnikum = true;
       notifyListeners();
     } catch (e) {}
   }
+
+
+
+  Future checkInfo({required int index, required ProviderTexnikum providerTexnikum, required BuildContext context, required Function func })async{
+    try{
+      if(index == 0){}
+
+    }catch(e){}
+  }
+
 }

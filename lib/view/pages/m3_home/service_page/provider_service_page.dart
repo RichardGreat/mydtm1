@@ -26,6 +26,7 @@ class ProviderServicePage extends ChangeNotifier{
     box.delete("categoryNameId");
     box.put("categoryName", categoryName);
     box.put("categoryNameId", categoryId);
+    print(categoryId.toString());
     status
         ? {
       if(box.get("token").toString().length < 30){
@@ -72,29 +73,31 @@ class ProviderServicePage extends ChangeNotifier{
               pageTransitionAnimation:
               PageTransitionAnimation.cupertino,
             )
-          }
-        else if(box.get("token").toString().length > 29){
+          }else if(categoryId == "44"){
             pushNewScreen(
               context,
-              screen: MainTexnikum(),
+              screen: MainTexnikum(serviceName: categoryName),
               withNavBar: false,
               pageTransitionAnimation:
               PageTransitionAnimation.cupertino,
             )
-          // AwesomeDialog(
-          //     context: context,
-          //     dialogType: DialogType.NO_HEADER,
-          //     animType: AnimType.BOTTOMSLIDE,
-          //     title: "DTM",
-          //     desc: "serviceWorkSoon".tr(),
-          //     titleTextStyle:TextStyle(color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
-          //     descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-          //     btnOkOnPress: () {
-          //       // Navigator.of(context).pop();
-          //     },
-          //     btnOkText: "enter".tr(),
-          //   btnOkColor: MyColors.appColorBlue1()
-          // )..show(),
+          }
+        else if(box.get("token").toString().length > 29){
+
+          AwesomeDialog(
+              context: context,
+              dialogType: DialogType.NO_HEADER,
+              animType: AnimType.BOTTOMSLIDE,
+              title: "DTM",
+              desc: "serviceWorkSoon".tr(),
+              titleTextStyle:TextStyle(color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+              btnOkOnPress: () {
+                // Navigator.of(context).pop();
+              },
+              btnOkText: "enter".tr(),
+            btnOkColor: MyColors.appColorBlue1()
+          )..show(),
         }else{
           AwesomeDialog(
               context: context,
