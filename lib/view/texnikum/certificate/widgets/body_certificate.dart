@@ -221,8 +221,7 @@ Widget bodyCertificateTexnikuim(
                       ? const SizedBox.shrink()
                       : Expanded(
                           child: ListView.builder(
-                          itemCount:
-                              providerCertificateTexnikum.listCheckCertificate.length,
+                          itemCount: 1,
                           itemBuilder: (context, index) => Container(
                             margin: const EdgeInsets.only(top: 4, bottom: 4),
                             decoration: BoxDecoration(
@@ -239,11 +238,11 @@ Widget bodyCertificateTexnikuim(
                                     const Icon(Icons.arrow_forward_ios_rounded),
                                 title: MyWidgets.robotoFontText(
                                     text: providerCertificateTexnikum
-                                        .listCheckCertificate[index].name
+                                        .modeFLangTexnikum.data.flangCertName
                                         .toString()),
                                 subtitle: MyWidgets.robotoFontText(
                                     text:
-                                        "${providerCertificateTexnikum.listCheckCertificate[index].percent.toString()} %"),
+                                        providerCertificateTexnikum.modeFLangTexnikum.data.flangLevelName),
                                 onTap: () {
                                   AwesomeDialog(
                                           context: context,
@@ -252,8 +251,7 @@ Widget bodyCertificateTexnikuim(
                                           title: "DTM",
                                           desc: "certSubjectName".tr(args: [
                                             providerCertificateTexnikum
-                                                .listCheckCertificate[index]
-                                                .name
+                                                .modeFLangTexnikum.data.flangCertName
                                                 .toString()
                                           ]),
                                           titleTextStyle: TextStyle(

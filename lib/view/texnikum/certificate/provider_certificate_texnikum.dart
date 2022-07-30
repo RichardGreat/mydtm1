@@ -18,7 +18,8 @@ import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/lang_lev
 import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/lang_type.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/languange.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/set_server.dart';
-import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/widgets/model_botton_sheet.dart';
+import 'package:mydtm/data/texnikum/internet/certificate_texnikum/get_flang_cert.dart';
+import 'package:mydtm/data/texnikum/models/model_certificate/model_flang_cert.dart';
 import 'package:mydtm/view/texnikum/certificate/forigion_lang/widgets/model_botton_sheet.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
@@ -27,18 +28,19 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
   var box = Hive.box("online");
 
   //
-  NetworkNationalCert networkNationalCert = NetworkNationalCert();
-  List<DataCheckCertificate> listCheckCertificate = [];
+  NetworkGetFlangTexnikum networkNationalCert = NetworkGetFlangTexnikum();
+  late ModeFLangTexnikum modeFLangTexnikum;
+
   bool boolCheckCertificateData = false;
   bool boolCheckCertificateDataNot = false;
 
   Future getNationCertInfo() async {
     try {
       boolCheckCertificateData = false;
-      String dataCert = await networkNationalCert.getNationalCert();
-      ModelCheckCertificate modelCheckCertificate =
-      ModelCheckCertificate.fromJson(jsonDecode(dataCert));
-      listCheckCertificate = modelCheckCertificate.data;
+      String dataCert = await networkNationalCert.getUserInfoTexnikum();
+      modeFLangTexnikum  =
+          ModeFLangTexnikum.fromJson(jsonDecode(dataCert));
+
       boolCheckCertificateData = true;
       notifyListeners();
     } catch (e) {
