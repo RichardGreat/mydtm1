@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/widgets/inputs/sheets_lang/sheets_languages.dart';
 import 'package:mydtm/view/texnikum/certificate/forigion_lang/widgets/inputs/sheets_lang/sheets_languages.dart';
 import 'package:mydtm/view/texnikum/certificate/provider_certificate_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
+
 Widget langSelectTexnikum(
     {required BuildContext context,
     required ProviderCertificateTexnikum providerCertificateTexnikum, required Function ff}) {

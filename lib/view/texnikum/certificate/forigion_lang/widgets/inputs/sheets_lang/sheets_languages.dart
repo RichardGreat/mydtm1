@@ -40,14 +40,14 @@ class SheetGetSetLangTexnikum extends StatefulWidget {
 }
 
 class _SheetGetSetLangTexnikumState extends State<SheetGetSetLangTexnikum> {
-  Future getRegionName() async {
+  Future getForeignLang() async {
     await widget.providerCertificateTexnikum.getLanguage(context: context);
     setState(() {});
   }
 
   @override
   initState() {
-    getRegionName();
+    getForeignLang();
     super.initState();
   }
 

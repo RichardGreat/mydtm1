@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/widgets/inputs/sheet_certificate/sheet_lang_type.dart';
 import 'package:mydtm/view/texnikum/certificate/forigion_lang/widgets/inputs/sheet_certificate/sheet_lang_type.dart';
 import 'package:mydtm/view/texnikum/certificate/provider_certificate_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -11,8 +10,8 @@ Widget typeSelectTexnikum({required BuildContext context,
   required ProviderCertificateTexnikum providerCertificateTexnikum}){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
-    children: [      const SizedBox(height: 25),
-
+    children: [
+      const SizedBox(height: 25),
       MyWidgets.robotoFontText(
           text: "certType".tr(),
           textColor: MyColors.appColorBlack(),

@@ -7,19 +7,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/foreign_cert.dart';
-import 'package:mydtm/data/internet_connections/person_info/certificate/national_certificate.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/sent_server.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/set_cert/get_cert_level.dart';
-import 'package:mydtm/data/internet_connections/person_info/certificate/set_cert/get_lang.dart';
-import 'package:mydtm/data/internet_connections/person_info/certificate/set_cert/get_lang_type.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/foreign_cert.dart';
-import 'package:mydtm/data/model_parse/person_info/certificate/national_cert.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/lang_level.dart';
-import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/lang_type.dart';
-import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/languange.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/set_server.dart';
-import 'package:mydtm/data/texnikum/internet/certificate_texnikum/get_flang_cert.dart';
-import 'package:mydtm/data/texnikum/models/model_certificate/model_flang_cert.dart';
+import 'package:mydtm/data/texnikum/internet/certificate_texnikum/c0_get_flang_cert.dart';
+import 'package:mydtm/data/texnikum/internet/certificate_texnikum/c1_get_foreign_cert.dart';
+import 'package:mydtm/data/texnikum/internet/certificate_texnikum/c2_get_foreign_lang_type.dart';
+import 'package:mydtm/data/texnikum/models/model_certificate/m2_lang_type.dart';
+import 'package:mydtm/data/texnikum/models/model_certificate/m0_model_flang_cert.dart';
+import 'package:mydtm/data/texnikum/models/model_certificate/m1_model_foregian_lang.dart';
 import 'package:mydtm/view/texnikum/certificate/forigion_lang/widgets/model_botton_sheet.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
@@ -151,19 +149,20 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
   }
 
   ///
-  NetworkGetLanguages networkGetLanguages = NetworkGetLanguages();
-  TextEditingController textEditingLangSearch = TextEditingController();
-  List<DataGetForeignLang> listDataForeignLang = [];
-  List<DataGetForeignLang> listDataForeignLangTemp = [];
+  NetworkGetForeignLangTexnikum networkGetLanguages =
+      NetworkGetForeignLangTexnikum();
+  TextEditingController textEditingLangSearchTexnikum = TextEditingController();
+  List<DataForeignLangTexnikum> listDataForeignLang = [];
+  List<DataForeignLangTexnikum> listDataForeignLangTemp = [];
   bool boolCerGetLang = false;
 
   Future getLanguage({required BuildContext context}) async {
     try {
       boolCerGetLang = false;
-      String data = await networkGetLanguages.getForeignCert();
+      String data = await networkGetLanguages.getUserInfoTexnikum();
       log(data);
-      ModelGetForeignLang modelGetForeignLang =
-      ModelGetForeignLang.fromJson(jsonDecode(data));
+      ModelForeignLangTexnikum modelGetForeignLang =
+          ModelForeignLangTexnikum.fromJson(jsonDecode(data));
       listDataForeignLang = modelGetForeignLang.data;
       listDataForeignLangTemp = listDataForeignLang;
       boolCerGetLang = true;
@@ -187,7 +186,7 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
     boolCerGetLang = false;
     notifyListeners();
     listDataForeignLangTemp.clear();
-    textEditingLangSearch.clear();
+    textEditingLangSearchTexnikum.clear();
     listDataForeignLangTemp.addAll(listDataForeignLang);
     boolCerGetLang = true;
     notifyListeners();
@@ -217,19 +216,20 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
   }
 
   /// Cert type
-  List<DataGetLangType> listLangType = [];
-  List<DataGetLangType> listLangTypeTemp = [];
+  List<DataLangTypeTexnikum> listLangType = [];
+  List<DataLangTypeTexnikum> listLangTypeTemp = [];
   bool boolCertType = false;
-  NetworkGetLangType networkGetLangType = NetworkGetLangType();
+  NetworkGetForeignLangTypeTexnikum networkGetLangType =
+      NetworkGetForeignLangTypeTexnikum();
 
   Future getLanguageCertType({required BuildContext context}) async {
     try {
       boolCertType = false;
       String data =
-      await networkGetLangType.getForeignCertType(langId: certLangId);
+          await networkGetLangType.getLangTypeTexnikum(fLangId: certLangId);
 
-      ModelGetLangType modelGetLangType =
-      ModelGetLangType.fromJson(jsonDecode(data));
+      ModelForeignLangTypeTexnikum modelGetLangType =
+          ModelForeignLangTypeTexnikum.fromJson(jsonDecode(data));
       listLangType = modelGetLangType.data;
       listLangTypeTemp = listLangType;
       boolCertType = true;
@@ -258,7 +258,7 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
   List<DataGetLangLevel> listLangLevelTemp = [];
   bool boolCertLevel = false;
   NetworkGetLangLevel networkGetLangLevel = NetworkGetLangLevel();
-
+123
   Future getLanguageCertLevel({required BuildContext context}) async {
     try {
       boolCertLevel = false;
