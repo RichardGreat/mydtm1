@@ -77,7 +77,7 @@ class ProviderAddInvalideTexnikum extends ChangeNotifier {
       "ser": textEditingController.text.toString().substring(0, 2),
       "numn": textEditingController.text.toString().substring(2),
       "sdate": invalidDate1,
-      "type_id": "2,"//box.get("privilageTypeTexnikum"),
+      "type_id": "2",//box.get("privilageTypeTexnikum"),
       "img": await MultipartFile.fromFile(fileToServer!.path,
           filename: "dtm_${textEditingController.text}.$fileName")
     });
