@@ -18,7 +18,7 @@ Widget certificateGetSerNumberTexnikum(
           textSize: 16),
       const SizedBox(height: 4),
       TextFormField(
-        controller: providerCertificateTexnikum.textForeignSertNumber,
+        controller: providerCertificateTexnikum.textForeignSertNumberTexnikum,
         maxLines: 1,
         maxLength: 25,
         keyboardType: TextInputType.text,

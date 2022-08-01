@@ -7,17 +7,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/person_info/certificate/foreign_cert.dart';
-import 'package:mydtm/data/internet_connections/person_info/certificate/sent_server.dart';
-import 'package:mydtm/data/internet_connections/person_info/certificate/set_cert/get_cert_level.dart';
 import 'package:mydtm/data/model_parse/person_info/certificate/foreign_cert.dart';
-import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/lang_level.dart';
-import 'package:mydtm/data/model_parse/person_info/certificate/set_cert/set_server.dart';
 import 'package:mydtm/data/texnikum/internet/certificate_texnikum/c0_get_flang_cert.dart';
 import 'package:mydtm/data/texnikum/internet/certificate_texnikum/c1_get_foreign_cert.dart';
 import 'package:mydtm/data/texnikum/internet/certificate_texnikum/c2_get_foreign_lang_type.dart';
-import 'package:mydtm/data/texnikum/models/model_certificate/m2_lang_type.dart';
+import 'package:mydtm/data/texnikum/internet/certificate_texnikum/c3_cert_degree.dart';
+import 'package:mydtm/data/texnikum/internet/certificate_texnikum/c4_sent_server.dart';
 import 'package:mydtm/data/texnikum/models/model_certificate/m0_model_flang_cert.dart';
 import 'package:mydtm/data/texnikum/models/model_certificate/m1_model_foregian_lang.dart';
+import 'package:mydtm/data/texnikum/models/model_certificate/m2_lang_type.dart';
+import 'package:mydtm/data/texnikum/models/model_certificate/m3_model_flang_degre.dart';
+import 'package:mydtm/data/texnikum/models/model_certificate/m4_after_save.dart';
 import 'package:mydtm/view/texnikum/certificate/forigion_lang/widgets/model_botton_sheet.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
@@ -57,7 +57,7 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
   bool boolCheckForeignLang = false;
   bool boolCheckForeignLangNot = false;
 
-  Future getForeignCert() async {
+  Future getForeignCertTexnikum() async {
     try {
       boolCheckForeignLang = false;
       String dataCertForeign = await networkForeignCert.getForeignCert();
@@ -210,8 +210,8 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
     langTypeNames = "";
     langLevelIds = "";
     langNameLevel = "";
-    dateYearMonthDay = "";
-    textForeignSertNumber.text = "";
+    dateYearMonthDayTexnikum = "";
+    textForeignSertNumberTexnikum.text = "";
     notifyListeners();
   }
 
@@ -248,25 +248,26 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
     langTypeNames = langTypeName;
     langLevelIds = "";
     langNameLevel = "";
-    dateYearMonthDay = "";
-    textForeignSertNumber.text = "";
+    dateYearMonthDayTexnikum = "";
+    textForeignSertNumberTexnikum.text = "";
     notifyListeners();
   }
 
   /// Cert level
-  List<DataGetLangLevel> listLangLevel = [];
-  List<DataGetLangLevel> listLangLevelTemp = [];
+  List<DataForeignLangDegreeTexnikum> listLangLevel = [];
+  List<DataForeignLangDegreeTexnikum> listLangLevelTemp = [];
   bool boolCertLevel = false;
-  NetworkGetLangLevel networkGetLangLevel = NetworkGetLangLevel();
-123
+  NetworkGetForeignLangDegreeTexnikum networkGetLangLevel =
+      NetworkGetForeignLangDegreeTexnikum();
+
   Future getLanguageCertLevel({required BuildContext context}) async {
     try {
       boolCertLevel = false;
       String data =
-      await networkGetLangLevel.getForeignCertLevel(certType: langTypeIds);
+          await networkGetLangLevel.getLangDegreeTexnikum(fLangId: langTypeIds);
       log(data);
-      ModelGetLangLevel modelGetLangLevel =
-      ModelGetLangLevel.fromJson(jsonDecode(data));
+      ModelForeignLangDegreeTexnikum modelGetLangLevel =
+          ModelForeignLangDegreeTexnikum.fromJson(jsonDecode(data));
       listLangLevel = modelGetLangLevel.data;
       log(jsonEncode(listLangLevel));
       listLangLevelTemp = listLangLevel;
@@ -284,43 +285,47 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
       {required String langLevelId, required String langLeveName}) async {
     langLevelIds = langLevelId;
     langNameLevel = langLeveName;
-    dateYearMonthDay = "";
-    textForeignSertNumber.text = "";
+    dateYearMonthDayTexnikum = "";
+    textForeignSertNumberTexnikum.text = "";
     notifyListeners();
   }
 
   ///
-  DateTime currentDate = DateTime.now();
-  String dateYearMonthDay = "";
+  DateTime currentDateTexnikum = DateTime.now();
+  String dateYearMonthDayTexnikum = "";
 
   Future<void> selectDate(
       {required BuildContext context, required Function fff}) async {
     final DateTime? pickedDate = await showDatePicker(
         context: context,
-        initialDate: currentDate,
+        initialDate: currentDateTexnikum,
         firstDate: DateTime(2019),
-        lastDate: DateTime(2025));
-    if (pickedDate != null && pickedDate != currentDate) {
-      currentDate = pickedDate;
+        lastDate: currentDateTexnikum);
+    if (pickedDate != null && pickedDate != currentDateTexnikum) {
+      currentDateTexnikum = pickedDate;
       // log(DateFormat(currentDate)).YEAR_MONTH_DAY
-      log(DateFormat('yyyy-MM-dd').format(currentDate));
+      log(DateFormat('yyyy-MM-dd').format(currentDateTexnikum));
 
-      dateYearMonthDay = DateFormat('yyyy-MM-dd').format(currentDate);
+      dateYearMonthDayTexnikum =
+          DateFormat('yyyy-MM-dd').format(currentDateTexnikum);
 
       fff();
       notifyListeners();
     }
   }
 
-  TextEditingController textForeignSertNumber = TextEditingController();
+  TextEditingController textForeignSertNumberTexnikum = TextEditingController();
 
   ///
-  NetworkSentServerCert networkSentServerCert = NetworkSentServerCert();
+  NetworkSentServerCertTexnikum networkSentServerCert = NetworkSentServerCertTexnikum();
   bool boolSentServerCertificate = false;
-  late MasseageSetServerCertificate setServerCertificate;
+  late Masseage setServerCertificate;
 
-  Future sentCertificateServer({required BuildContext context, required Function stateFunc, required Function stateFunc2}) async {
-    try{
+  Future sentCertificateServer(
+      {required BuildContext context,
+      required Function stateFunc,
+      required Function stateFunc2}) async {
+    try {
       // log( textForeignSertNumber.text);
       // log( langTypeIds);
       // log( dateYearMonthDay);
@@ -329,20 +334,21 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
 
       String networkData ="";
       FormData formData =  FormData.fromMap({
-        "ser_num": textForeignSertNumber.text,
+        "ser_num": textForeignSertNumberTexnikum.text,
         "flang_level_id": langLevelIds,
-        "given_date": dateYearMonthDay,
-        "image": await MultipartFile.fromFile(fileToServer!.path, filename: "dtm_${textForeignSertNumber.text}.$fileName")
+        "given_date": dateYearMonthDayTexnikum,
+        "image": await MultipartFile.fromFile(fileToServer!.path,
+            filename: "dtm_${textForeignSertNumberTexnikum.text}.$fileName")
       });
       try{
         networkData  =
-        await networkSentServerCert.getNationalCert(formDate: formData);
+        await networkSentServerCert.getNationalCertTexnikum(formDate: formData);
         log("networkData");
         log(networkData);
       }catch(e){
         log(e.toString());
       }
-      ModelSetServerCertificate modelSetServerCertificate = ModelSetServerCertificate.fromJson(jsonDecode(networkData));
+      ModelSaveCertificateTexnikum modelSetServerCertificate = ModelSaveCertificateTexnikum.fromJson(jsonDecode(networkData));
       setServerCertificate = modelSetServerCertificate.masseage;
       boolSentServerCertificate = false;
       stateFunc();
@@ -360,6 +366,7 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
           btnCancelOnPress: () async{
             await stateFunc2();
+            // ignore: use_build_context_synchronously
             Navigator.of(context).pop();
             // Navigator.of(context).pop();
             // Navigator.of(context).pop();
@@ -368,24 +375,10 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
           btnCancelText: "OK")
           .show();
 
-
-
-      getNationCertInfo();
     }catch(e){
       boolSentServerCertificate = false;
       log("e.toString()");
       log(e.toString());
-
     }
-
-    // log(certLangName);
-    // log(certLangId);
-    // log(langTypeIds);
-    // log(langTypeNames);
-    // log(langLevelIds);
-    // log(langNameLevel);
-    // log(dateYearMonthDay);
-    // log(textForeignSertNumber.text);
-    // log(jsonEncode(mapSentCertServer));
   }
 }

@@ -29,7 +29,7 @@ class _CertificateTexnikumState extends State<CertificateTexnikum> {
   }
 
   functionCert() async {
-    await providerCertificateTexnikum.getForeignCert();
+    // await providerCertificateTexnikum.getForeignCertTexnikum();
     await providerCertificateTexnikum.getNationCertInfo();
     setState(() {});
   }

@@ -1,12 +1,11 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/texnikum/certificate/provider_certificate_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'dart:developer';
+
 
 Widget buttonCertificateTexnikum(
     {required BuildContext context,
@@ -21,11 +20,9 @@ Widget buttonCertificateTexnikum(
     color: MyColors.appColorBlue1(),
     onPressed: () {
 
-
-
-      providerCertificateTexnikum.textForeignSertNumber.text.length >= 7 &&
+      providerCertificateTexnikum.textForeignSertNumberTexnikum.text.length >= 7 &&
               providerCertificateTexnikum.langLevelIds.isNotEmpty &&
-              providerCertificateTexnikum.dateYearMonthDay.isNotEmpty &&
+              providerCertificateTexnikum.dateYearMonthDayTexnikum.isNotEmpty &&
               box.get("imageServer").toString().length > 20
           ? providerCertificateTexnikum.sentCertificateServer(
               context: context, stateFunc: ff, stateFunc2: ff2)

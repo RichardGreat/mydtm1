@@ -19,7 +19,7 @@ Widget dateSelectTexnikum({required BuildContext context, required Function ff,r
             boxShadow: [BoxShadow(spreadRadius: 0.1, blurRadius: 0.1, color: MyColors.appColorGrey600())],
             borderRadius: BorderRadius.circular(10)),
         child: ListTile(
-          title: MyWidgets.robotoFontText(text: providerCertificateTexnikum.dateYearMonthDay.length < 2 ? "choose".tr():providerCertificateTexnikum.dateYearMonthDay),
+          title: MyWidgets.robotoFontText(text: providerCertificateTexnikum.dateYearMonthDayTexnikum.length < 2 ? "choose".tr():providerCertificateTexnikum.dateYearMonthDayTexnikum),
           onTap: () async{
           providerCertificateTexnikum.selectDate(context: context, fff: ff);
           },
