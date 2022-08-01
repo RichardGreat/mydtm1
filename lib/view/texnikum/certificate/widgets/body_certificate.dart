@@ -1,7 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/foreigion_lang_add.dart';
-import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:mydtm/view/texnikum/certificate/forigion_lang/foreigion_lang_add.dart';
 import 'package:mydtm/view/texnikum/certificate/provider_certificate_texnikum.dart';
@@ -174,42 +172,6 @@ Widget bodyCertificateTexnikuim(
                               ),
                             ],
                           )
-                          // ListTile(
-                          //   trailing: Icon(Icons.arrow_forward_ios_rounded),
-                          //   title: MyWidgets.robotoFontText(
-                          //           text: providerCertificateTexnikum
-                          //               .dataCheckForeignCertificate.flangCertName),
-                          // subtitle: MyWidgets.robotoFontText(
-                          //           text: providerCertificateTexnikum
-                          //               .dataCheckForeignCertificate.serNum),
-                          //
-                          //   onTap: (){
-                          //
-                          //   },
-                          // )
-                          // Column(
-                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //   crossAxisAlignment: CrossAxisAlignment.start,
-                          //   children: [
-                          //     const SizedBox(height: 10),
-                          //     MyWidgets.robotoFontText(
-                          //         text: providerCertificateTexnikum
-                          //             .dataCheckForeignCertificate.flangCertName),
-                          //     MyWidgets.robotoFontText(
-                          //         text: providerCertificateTexnikum
-                          //             .dataCheckForeignCertificate.flangLevelName),
-                          //     MyWidgets.robotoFontText(
-                          //         text: providerCertificateTexnikum
-                          //             .dataCheckForeignCertificate.serNum.toString()),
-                          //     MyWidgets.robotoFontText(
-                          //         text: providerCertificateTexnikum
-                          //             .dataCheckForeignCertificate.flangName.toString()),
-                          //     MyWidgets.robotoFontText(
-                          //         text: providerCertificateTexnikum
-                          //             .dataCheckForeignCertificate.statusName??""),
-                          //     const SizedBox(height: 10),
-                          //   ],
-                          // ),
                           ),
                   const SizedBox(height: 30),
                   providerCertificateTexnikum.boolCheckCertificateDataNot

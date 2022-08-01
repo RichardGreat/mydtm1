@@ -13,6 +13,7 @@ import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information
 import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:mydtm/view/texnikum/aerta_texnikum.dart';
 import 'package:mydtm/view/texnikum/certificate/certificate_texnikum.dart';
+import 'package:mydtm/view/texnikum/privillage/privillage_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -139,7 +140,7 @@ class ProviderTexnikum extends ChangeNotifier {
           } else if (index == 4) {
             pushNewScreen(
               context,
-              screen: Privilege(funcState: func),
+              screen: PrivilegeTexnikum(funcState: func),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
