@@ -1,38 +1,30 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/person_info/privilege_check/invalid_delete.dart';
-import 'package:mydtm/data/internet_connections/person_info/privilege_check/privillege_check.dart';
-import 'package:mydtm/data/model_parse/person_info/privilege_model/privilege_model1.dart';
+import 'package:mydtm/data/texnikum/internet/privilage/get_all_info.dart';
+import 'package:mydtm/data/texnikum/models/privillage/get_privilage.dart';
 
 class ProviderPrivilegeTexnikum extends ChangeNotifier{
 
 
-  NetworkPrivilege networkPrivilege = NetworkPrivilege();
-  List<DataCheckPrivilege> listCheckPrivilege = [];
+  NetworkGetAllPrivilegeTexnikum networkGetAllPrivilegeTexnikume = NetworkGetAllPrivilegeTexnikum();
+  late MassagePrivilageTexnikum massagePrivilageTexnikum;
   bool boolGetDataPrivilege = false;
   bool boolPrivilegeNot = false;
   bool boolAddInvalide = false;
   bool boolEditInvalide = false;
+  late ModelGetPrivilageTexnikum modelGetPrivilageTexnikum;
 
   Future getPrivilegeTexnikum()async{
     try{
       boolGetDataPrivilege = false;
-      String dataPrivilege = await networkPrivilege.getPrivilege();
-      ModelCheckPrivilege modelCheckPrivilege = ModelCheckPrivilege.fromJson(jsonDecode(dataPrivilege));
+      String dataPrivilege = await networkGetAllPrivilegeTexnikume.getPrivilegeTexnikum();
+      modelGetPrivilageTexnikum = ModelGetPrivilageTexnikum.fromJson(jsonDecode(dataPrivilege));
 
       log(dataPrivilege);
-      listCheckPrivilege = modelCheckPrivilege.data;
-      for(var lis in listCheckPrivilege){
-        if(lis.typeId.toString() == "2"){
-          boolAddInvalide = true;
-          notifyListeners();
-        }
-        if(lis.status.toString() == "7"){
-          boolEditInvalide = true;
-          notifyListeners();
-        }
-      }
+      massagePrivilageTexnikum = modelGetPrivilageTexnikum.masseage;
       boolGetDataPrivilege = true;
       notifyListeners();
     }catch(e){

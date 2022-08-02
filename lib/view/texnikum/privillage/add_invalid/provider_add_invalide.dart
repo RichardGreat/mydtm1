@@ -6,9 +6,9 @@ import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:mydtm/data/internet_connections/person_info/privilege_check/invalid_add.dart';
 import 'package:mydtm/data/model_parse/person_info/privilege_model/invalid.dart';
-import 'package:mydtm/data/texnikum/internet/privilage.dart';
+import 'package:mydtm/data/texnikum/internet/privilage/privilage.dart';
+import 'package:mydtm/data/texnikum/models/privillage/get_privilage.dart';
 import 'package:mydtm/view/texnikum/privillage/add_invalid/image_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -66,25 +66,30 @@ class ProviderAddInvalideTexnikum extends ChangeNotifier {
   }
 
   NetworkSetPrivilegeTexnikum networkInvalidePrivilege =
-  NetworkSetPrivilegeTexnikum();
-
-  late ModelAddInvalid modelAddInvalid;
-
-  Future sendServer({required BuildContext context}) async {
+      NetworkSetPrivilegeTexnikum();
 
 
-    FormData formData = FormData.fromMap({
-      "ser": textEditingController.text.toString().substring(0, 2),
-      "numn": textEditingController.text.toString().substring(2),
-      "sdate": invalidDate1,
-      "type_id": "2",//box.get("privilageTypeTexnikum"),
-      "img": await MultipartFile.fromFile(fileToServer!.path,
-          filename: "dtm_${textEditingController.text}.$fileName")
-    });
+  late FormData formDatas;
+  late ModelGetPrivilageTexnikum modelGetPrivilageTexnikum;
+  bool boolGetPrivillageTexnikum = false;
+
+  Future sendServer(
+      {required BuildContext context, required File files}) async {
+
+      formDatas = FormData.fromMap({
+        "ser": textEditingController.text.toString().substring(0, 2),
+        "num": textEditingController.text.toString().substring(2),
+        "sdate": invalidDate1.toString(),
+        "type_id": box.get("privilageTypeTexnikum").toString(),
+        "img":
+            await MultipartFile.fromFile(files.path, filename: "dtm.$fileName")
+      });
+
 
     try {
       String data = await networkInvalidePrivilege.setPrivilegeTexnikum(
-          formDate: formData);
+          formDate: formDatas);
+
 
 
       AwesomeDialog(
@@ -154,6 +159,7 @@ class ProviderAddInvalideTexnikum extends ChangeNotifier {
       boolForeignImage = false;
       fileToServer = imageFile;
       fileName = fileTypeName;
+      notifyListeners();
       box.delete("imageTexnikum");
       box.delete("imageTexnikumServer");
       box.delete("imageTexnikumServer");
@@ -163,6 +169,7 @@ class ProviderAddInvalideTexnikum extends ChangeNotifier {
       await Future.delayed(const Duration(milliseconds: 400)).then((value) {
         imageChange2 = true;
       });
+
       boolForeignImage = true;
       fff();
       notifyListeners();

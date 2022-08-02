@@ -23,7 +23,7 @@ Widget bodyPrivilegeTexnikum({
         const SizedBox(height: 20),
         Expanded(
           child: ListView.builder(
-            itemCount: providerPrivilegeTexnikum.listCheckPrivilege.length,
+            itemCount: 1,
             itemBuilder: (context, index) => Container(
                 padding: const EdgeInsets.all(12),
                 margin: const EdgeInsets.all(5),
@@ -41,7 +41,7 @@ Widget bodyPrivilegeTexnikum({
                   children: [
                     Text(
                       "${index + 1} "
-                      "${providerPrivilegeTexnikum.listCheckPrivilege[index].orgName}",
+                      "${providerPrivilegeTexnikum.massagePrivilageTexnikum.status}",
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                           color: MyColors.appColorBlack(),
@@ -51,7 +51,7 @@ Widget bodyPrivilegeTexnikum({
                     ),
                     const Divider(),
                     Text(
-                      providerPrivilegeTexnikum.listCheckPrivilege[index].typeName
+                      providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
                           .toString(),
                       textAlign: TextAlign.justify,
                       style: TextStyle(
@@ -66,8 +66,7 @@ Widget bodyPrivilegeTexnikum({
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           MyWidgets.robotoFontText(
-                              text: providerPrivilegeTexnikum
-                                  .listCheckPrivilege[index].serNum
+                              text:  providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
                                   .toString(),
                               textSize: 14,
                               textColor: MyColors.appColorGrey600()),
@@ -77,32 +76,30 @@ Widget bodyPrivilegeTexnikum({
                               MyWidgets.robotoFontText(
                                   textColor: MyColors.appColorGrey600(),
                                   textSize: 14,
-                                  text: providerPrivilegeTexnikum
-                                      .listCheckPrivilege[index].startDate
+                                  text:   providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
                                       .toString()),
                               Icon(Icons.arrow_forward_rounded,
                                   size: 14, color: MyColors.appColorGrey600()),
                               MyWidgets.robotoFontText(
                                   textColor: MyColors.appColorGrey600(),
                                   textSize: 14,
-                                  text: providerPrivilegeTexnikum
-                                      .listCheckPrivilege[index].endDate
+                                  text:   providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
                                       .toString()),
                             ],
                           ),
                         ]),
-                    providerPrivilegeTexnikum.listCheckPrivilege[index].typeId
+                    providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
                                     .toString() ==
                                 "2" &&
-                            providerPrivilegeTexnikum.listCheckPrivilege[index].status
+                        providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
                                     .toString() ==
                                 "7"
                         ? const Divider()
                         : const SizedBox.shrink(),
-                    providerPrivilegeTexnikum.listCheckPrivilege[index].typeId
+                    providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
                                     .toString() ==
                                 "2" &&
-                            providerPrivilegeTexnikum.listCheckPrivilege[index].status
+                        providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
                                     .toString() ==
                                 "7"
                         ? Row(

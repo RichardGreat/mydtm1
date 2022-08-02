@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/otm/choose_edu.dart';
+import 'package:mydtm/view/texnikum/choose_edu/choose_edu_texnikum.dart';
 import 'package:mydtm/view/texnikum/provider_texnikum.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -64,22 +65,15 @@ class _AfertaTexnikumState extends State<AfertaTexnikum> {
             widget.providerTexnikum.boolAfertaButton
                 ? {
                     Navigator.of(context).pop(),
-                    widget.providerTexnikum.modelCheckUserInfoTexnikum.bakalavr
-                        ? pushNewScreen(
+                     pushNewScreen(
                             context,
-                            screen: MainPages(),
+                            screen: ChooseEduTexnikum(),
                             //QaydVaraqaEdit(providerCheckInformation: widget.providerTexnikum),
                             withNavBar: false,
                             pageTransitionAnimation:
                                 PageTransitionAnimation.cupertino,
                           )
-                        : pushNewScreen(
-                            context,
-                            screen: ChooseEdu(funcState: widget.function),
-                            withNavBar: false,
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                          ),
+
                   }
                 : {};
           },

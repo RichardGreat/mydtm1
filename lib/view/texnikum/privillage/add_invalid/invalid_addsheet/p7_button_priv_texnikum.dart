@@ -27,7 +27,9 @@ Widget privilegeAddButtonTexnikum({required BuildContext context,  required Prov
 
         ) {
           providerAddInvalideTexnikum.sendServer(
-              context: context);
+              context: context,
+          files: providerAddInvalideTexnikum.fileToServer!
+          );
         } else {
           if( box.get("imageTexnikum").toString().length > 200) {
             AwesomeDialog(

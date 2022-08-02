@@ -1,7 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/person_info/privillage/add_invalid/add_invalid.dart';
-import 'package:mydtm/view/texnikum/privillage/add_invalid/add_invalid.dart';
 import 'package:mydtm/view/texnikum/privillage/provider_privillage_texnika.dart';
 import 'package:mydtm/view/texnikum/privillage/sheet_choose_invalid.dart';
 import 'package:mydtm/view/texnikum/privillage/widgets1/app_bar_privilege.dart';
@@ -9,7 +7,6 @@ import 'package:mydtm/view/texnikum/privillage/widgets1/body_no_privilege.dart';
 import 'package:mydtm/view/texnikum/privillage/widgets1/body_privilege.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 class PrivilegeTexnikum extends StatefulWidget {
@@ -63,7 +60,6 @@ class _PrivilegeTexnikumState extends State<PrivilegeTexnikum> {
                                 minWidth:
                                     MediaQuery.of(context).size.width * 0.9,
                                 onPressed: () {
-
                                   showModalBottomSheet(
                                     context: context,
                                     shape: RoundedRectangleBorder(
@@ -73,14 +69,13 @@ class _PrivilegeTexnikumState extends State<PrivilegeTexnikum> {
                                     builder: (context) => Container(
                                         decoration: const BoxDecoration(
                                             borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(5),
-                                              topLeft: Radius.circular(5),
-                                            )),
+                                          topRight: Radius.circular(5),
+                                          topLeft: Radius.circular(5),
+                                        )),
                                         height: 200,
-                                        child: chooseInvalidType(context: context)),
+                                        child: chooseInvalidType(
+                                            context: context)),
                                   );
-                                  
-
                                 },
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
