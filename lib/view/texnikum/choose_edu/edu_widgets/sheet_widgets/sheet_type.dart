@@ -14,9 +14,12 @@ sheetEduTypeTexnikum({
 
 
       builder: (_) {
-        return EduTypeTexnikumSheet(
-          providerChooseEduTexnikum: providerChooseEduTexnikum,
-          contexts: contexts,
+        return SizedBox(
+        height: MediaQuery.of(contexts).size.height * 0.3,
+          child: EduTypeTexnikumSheet(
+            providerChooseEduTexnikum: providerChooseEduTexnikum,
+            contexts: contexts,
+          ),
         );
       });
 }
@@ -39,7 +42,7 @@ class EduTypeTexnikumSheet extends StatefulWidget {
 class _EduTypeTexnikumSheetState extends State<EduTypeTexnikumSheet> {
   Future getEduTypeTexnikum() async {
     await widget.providerChooseEduTexnikum.getEduType();
-    setState(() {});
+    setState((){});
   }
 
   @override
@@ -53,9 +56,8 @@ class _EduTypeTexnikumSheetState extends State<EduTypeTexnikumSheet> {
     return Scaffold(
       backgroundColor: MyColors.appColorWhite(),
       body: Container(
-        child: widget.providerChooseEduTexnikum.boolEduTypeTexnikum
+        child: widget.providerChooseEduTexnikum.boolEduLangTexnikum
             ? Container(
-                margin: const EdgeInsets.all(10),
                 height: MediaQuery.of(context).size.height * 0.3,
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -64,7 +66,7 @@ class _EduTypeTexnikumSheetState extends State<EduTypeTexnikumSheet> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 20),
+
                     Container(
                       width: MediaQuery.of(context).size.width,
                       margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
@@ -75,7 +77,7 @@ class _EduTypeTexnikumSheetState extends State<EduTypeTexnikumSheet> {
                                 width: MediaQuery.of(context).size.width * 0.7,
                                 child: MyWidgets.robotoFontText(
                                     text: "chooseDirection".tr(),
-                                    textSize: 28)),
+                                    textSize: 24)),
                             IconButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
@@ -98,6 +100,7 @@ class _EduTypeTexnikumSheetState extends State<EduTypeTexnikumSheet> {
                                 softWrap: true,
                                 maxLines: 3,
                                 textAlign: TextAlign.start,
+                                style: const TextStyle(fontWeight: FontWeight.w500),
                               ),
                             ),
                           ),

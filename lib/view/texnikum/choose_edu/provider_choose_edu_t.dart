@@ -19,9 +19,12 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
       log(data);
       log("777");
       try {
+        log("888");
       modeEduTexnikum = ModelEModeEduTexnikum.fromJson(jsonDecode(data));
-      notifyListeners();
+        log("111");
       } catch (e) {
+        log("999");
+        print(e.toString());
         log(e.toString());
       }
       boolEduLangTexnikum = true;
