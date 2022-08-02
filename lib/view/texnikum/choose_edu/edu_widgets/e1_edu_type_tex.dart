@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mydtm/view/texnikum/choose_edu/edu_widgets/sheet_widgets/sheet_type.dart';
 import 'package:mydtm/view/texnikum/choose_edu/provider_choose_edu_t.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -19,7 +20,7 @@ Widget eduTypeTexnikum({required BuildContext context, required ProviderChooseEd
                 text:"Choose type",
                 textColor: MyColors.appColorBlack()),
             onTap: () {
-
+              sheetEduTypeTexnikum(contexts: context, providerChooseEduTexnikum: providerChooseEduTexnikum);
             },
             trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
           ),
