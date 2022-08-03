@@ -8,7 +8,10 @@ Widget eduButtonTexnikum({required BuildContext context, required ProviderChoose
     children: [
       const SizedBox(height: 20),
       MaterialButton(
-        onPressed: (){},
+        onPressed: (){
+
+          providerChooseEduTexnikum.setAllData();
+        },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         height: 50,
         minWidth: double.infinity,

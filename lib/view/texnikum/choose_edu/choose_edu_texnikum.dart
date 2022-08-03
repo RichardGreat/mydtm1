@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/texnikum/choose_edu/edu_widgets/e0_appbar.dart';
 import 'package:mydtm/view/texnikum/choose_edu/edu_widgets/e1_edu_type_tex.dart';
@@ -31,7 +32,9 @@ class _ChooseEduTexnikumState extends State<ChooseEduTexnikum> {
           backgroundColor: MyColors.appColorGrey100(),
           appBar: appBarEduTexnikum(context: context, providerChooseEduTexnikum: providerChooseEduTexnikum),
           body: SafeArea(
-            child: Container(
+            child: providerChooseEduTexnikum.boolSetAllData?
+
+            Container(
               margin: const EdgeInsets.all(10),
               child: SingleChildScrollView(
                 child: Column(
@@ -49,7 +52,7 @@ class _ChooseEduTexnikumState extends State<ChooseEduTexnikum> {
                       
                     ]),
               ),
-            ),
+            ) : const Center(child: CupertinoActivityIndicator(),),
           ),
         ),
       ),

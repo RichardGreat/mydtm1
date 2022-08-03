@@ -7,10 +7,14 @@ import 'package:mydtm/data/texnikum/internet/edu_choose/t1_emode_texnik.dart';
 import 'package:mydtm/data/texnikum/internet/edu_choose/t2_lang_edu_texnikum.dart';
 import 'package:mydtm/data/texnikum/internet/edu_choose/t3_edu_texnikum.dart';
 import 'package:mydtm/data/texnikum/internet/edu_choose/t4_edu_dir_texnikum.dart';
+import 'package:mydtm/data/texnikum/internet/edu_choose/t5_lang_foreign.dart';
+import 'package:mydtm/data/texnikum/internet/edu_choose/t6_set_all_tex.dart';
 import 'package:mydtm/data/texnikum/models/edu_tex/t1_emod_tex.dart';
 import 'package:mydtm/data/texnikum/models/edu_tex/t2_model_lang.dart';
 import 'package:mydtm/data/texnikum/models/edu_tex/t3_model_eduacation.dart';
 import 'package:mydtm/data/texnikum/models/edu_tex/t4_model_direction_etx.dart';
+import 'package:mydtm/data/texnikum/models/edu_tex/t5_model_lang_foreign.dart';
+import 'package:mydtm/data/texnikum/models/edu_tex/t6_get_all.dart';
 
 class ProviderChooseEduTexnikum extends ChangeNotifier {
   bool boolEduTypeTexnikum = false;
@@ -158,5 +162,58 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
       }
     }
     notifyListeners();
+  }
+
+  bool boolLangForeignTex = false;
+  NetworkLangForeignTexnikum networkLangForeignTexnikum =
+      NetworkLangForeignTexnikum();
+  late ModelLangForeignTexnikum modelLangForeignTexnikum;
+
+  Future getLangForeignTex() async {
+    try {
+      boolLangForeignTex = false;
+      String data = await networkLangForeignTexnikum.getLangForeignTexnikum();
+      modelLangForeignTexnikum =
+          ModelLangForeignTexnikum.fromJson(jsonDecode(data));
+      boolLangForeignTex = true;
+      notifyListeners();
+    } catch (e) {}
+  }
+
+  String foreignLangIds = "";
+  String foreignLangNames = "";
+
+  Future setLangForeignTexnikum(
+      {required String foreignLangId, required String foreignLangName}) async {
+    foreignLangIds = foreignLangId;
+    foreignLangNames = foreignLangName;
+    notifyListeners();
+  }
+
+  NetworkSetAllTexnikum networkSetAllTexnikum = NetworkSetAllTexnikum();
+  bool boolSetAllData = true;
+  late ModelGetAllTexnikum modelGetAllTexnikum;
+
+  Future setAllData() async {
+    Map<String, String> mapAll = {
+      "emode_id": idEduType,
+      "lang_id": idEduLangTex,
+      "edu_id": idEduTexnikum,
+      "direction_id": idDirectionTexnikum,
+      "flang": foreignLangIds
+    };
+
+    try {
+      boolSetAllData = false;
+      notifyListeners();
+      String data = await networkSetAllTexnikum.setAllTexnikum(mapData: mapAll);
+      modelGetAllTexnikum = ModelGetAllTexnikum.fromJson(jsonDecode(data));
+
+      log(data);
+      boolSetAllData = true;
+      notifyListeners();
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }
