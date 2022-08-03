@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/texnikum/choose_edu/edu_widgets/sheet_widgets/sheet_type.dart';
+import 'package:mydtm/view/texnikum/choose_edu/edu_widgets/sheet_widgets/sh1_sheet_type.dart';
 import 'package:mydtm/view/texnikum/choose_edu/provider_choose_edu_t.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 Widget eduTypeTexnikum({required BuildContext context, required ProviderChooseEduTexnikum providerChooseEduTexnikum}){
   return
@@ -17,7 +18,8 @@ Widget eduTypeTexnikum({required BuildContext context, required ProviderChooseEd
           color: MyColors.appColorWhite(),
           child: ListTile(
             title: MyWidgets.robotoFontText(
-                text:"Choose type",
+                text:  providerChooseEduTexnikum.nameEduType.length < 5?
+                "chooseDirection".tr(): providerChooseEduTexnikum.nameEduType,
                 textColor: MyColors.appColorBlack()),
             onTap: () {
               sheetEduTypeTexnikum(contexts: context, providerChooseEduTexnikum: providerChooseEduTexnikum);

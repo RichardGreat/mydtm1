@@ -21,7 +21,7 @@ Widget eduLangDirTexnikum({required BuildContext context, required ProviderChoos
                   text:"Choose edu Lang",
                   textColor: MyColors.appColorBlack()),
               onTap: () {
-
+                // directionNameTexnikum
               },
               trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
             ),

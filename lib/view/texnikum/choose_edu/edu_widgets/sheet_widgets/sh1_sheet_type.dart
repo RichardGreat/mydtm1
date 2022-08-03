@@ -56,7 +56,7 @@ class _EduTypeTexnikumSheetState extends State<EduTypeTexnikumSheet> {
     return Scaffold(
       backgroundColor: MyColors.appColorWhite(),
       body: Container(
-        child: widget.providerChooseEduTexnikum.boolEduLangTexnikum
+        child: widget.providerChooseEduTexnikum.boolEduTypeTexnikum
             ? Container(
                 height: MediaQuery.of(context).size.height * 0.3,
                 decoration: BoxDecoration(
@@ -105,14 +105,12 @@ class _EduTypeTexnikumSheetState extends State<EduTypeTexnikumSheet> {
                             ),
                           ),
                           onTap: () {
-
+                            widget.providerChooseEduTexnikum.setEduTypeTexnikum(idType:  widget
+                                .providerChooseEduTexnikum.modeEduTexnikum.masseage[index].id.toString(), nameType:  widget
+                                .providerChooseEduTexnikum.modeEduTexnikum.masseage[index].name.toString());
                             setState(() {});
-                            // setData(
-                            //     name: widget.providerChooseEdu
-                            //         .listEduChooseRegionTemp[index].regionName,
-                            //     id: widget.providerChooseEdu
-                            //         .listEduChooseRegionTemp[index].regionId);
-                            // setState((){});
+                            Navigator.of(context).pop();
+
                           },
                         ),
                       ),
