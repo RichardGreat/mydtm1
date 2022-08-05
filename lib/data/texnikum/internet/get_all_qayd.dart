@@ -10,7 +10,7 @@ class NetworkGetAllQaydTexnikum {
       var dio = Dio();
       var box = Hive.box("online");
       Response response;
-      response = await dio.get("${MainUrl.mainUrls}/v1/texnikum/get-abitur",
+      response = await dio.get("${MainUrl.mainUrls}/v1/texnikum/view",
 
           options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
 
