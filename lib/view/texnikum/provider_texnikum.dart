@@ -106,7 +106,7 @@ class ProviderTexnikum extends ChangeNotifier {
         pushNewScreen(
           context,
           screen: PersonInformation(
-              funcState: func, idFunction: "0", windowIdPassport: "0"),
+              funcState: func, idFunction: "0", windowIdPassport: "1"),
           withNavBar: false,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
@@ -114,7 +114,7 @@ class ProviderTexnikum extends ChangeNotifier {
         if (index == 1) {
           pushNewScreen(
             context,
-            screen: AddressInfo(funcState: func, addressWindowId: "0"),
+            screen: AddressInfo(funcState: func, addressWindowId: "1"),
             withNavBar: false,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
@@ -123,7 +123,7 @@ class ProviderTexnikum extends ChangeNotifier {
           if (index == 2) {
             pushNewScreen(
               context,
-              screen: Graduated(funcState: func, windowIdGraduated: "0"),
+              screen: Graduated(funcState: func, windowIdGraduated: "1"),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );

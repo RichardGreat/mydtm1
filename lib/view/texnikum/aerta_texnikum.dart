@@ -65,15 +65,14 @@ class _AfertaTexnikumState extends State<AfertaTexnikum> {
             widget.providerTexnikum.boolAfertaButton
                 ? {
                     Navigator.of(context).pop(),
-                     pushNewScreen(
-                            context,
-                            screen: ChooseEduTexnikum(),
-                            //QaydVaraqaEdit(providerCheckInformation: widget.providerTexnikum),
-                            withNavBar: false,
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                          )
-
+                    pushNewScreen(
+                      context,
+                      screen: const ChooseEduTexnikum(),
+                      //QaydVaraqaEdit(providerCheckInformation: widget.providerTexnikum),
+                      withNavBar: false,
+                      pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
+                    )
                   }
                 : {};
           },

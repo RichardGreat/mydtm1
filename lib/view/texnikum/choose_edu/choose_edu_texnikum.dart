@@ -11,6 +11,7 @@ import 'package:mydtm/view/texnikum/choose_edu/provider_choose_edu_t.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ChooseEduTexnikum extends StatefulWidget {
   const ChooseEduTexnikum({Key? key}) : super(key: key);
@@ -41,7 +42,7 @@ class _ChooseEduTexnikumState extends State<ChooseEduTexnikum> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      MyWidgets.robotoFontText(text: "Edu choose texnikum", textSize: 24),
+                      MyWidgets.robotoFontText(text: "chooseTexnikum".tr(), textSize: 24),
                       const SizedBox(height: 10),
                       eduTypeTexnikum(context: context, providerChooseEduTexnikum: providerChooseEduTexnikum),
                       eduLangTexnikum(context: context, providerChooseEduTexnikum: providerChooseEduTexnikum),

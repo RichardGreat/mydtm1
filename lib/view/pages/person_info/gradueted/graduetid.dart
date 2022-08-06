@@ -57,6 +57,7 @@ class _GraduatedState extends State<Graduated> {
           onWillPop: () async {
             if (widget.windowIdGraduated == "0") {
               widget.funcState();
+
               pushNewScreen(context,
                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                   screen: CheckInformation(

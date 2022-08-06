@@ -44,11 +44,12 @@ class _CertificateTexnikumState extends State<CertificateTexnikum> {
           builder: (context, value, child) => WillPopScope(
                 onWillPop: () async {
                   widget.funcState();
-                  pushNewScreen(context,
-                      pageTransitionAnimation:
-                          PageTransitionAnimation.cupertino,
-                      screen: CheckInformation(
-                          serviceName: box.get("categoryName").toString()));
+                  Navigator.of(context).pop();
+                  // pushNewScreen(context,
+                  //     pageTransitionAnimation:
+                  //         PageTransitionAnimation.cupertino,
+                  //     screen: CheckInformation(
+                  //         serviceName: box.get("categoryName").toString()));
                   return true;
                 },
                 child: Scaffold(

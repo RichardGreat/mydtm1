@@ -23,7 +23,7 @@ Widget educationInfoTexnikum({required BuildContext context, required ProviderTe
       leading: SizedBox(
         width: MediaQuery.of(context).size.width*0.6,
         child: MyWidgets.robotoFontText(
-            text: "oldEdu".tr(), textSize: 16),
+            text: "graduated".tr(), textSize: 16),
       ),
       title: Row(
           crossAxisAlignment: CrossAxisAlignment.center,

@@ -12,8 +12,7 @@ Widget eduTypeTexnikum({required BuildContext context, required ProviderChooseEd
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const SizedBox(height: 15),
-        MyWidgets.robotoFontText(text: "chooose edu Type", textColor: MyColors.appColorGrey600()),
-        const  SizedBox(height: 5),
+
         Container(
           color: MyColors.appColorWhite(),
           child: ListTile(
