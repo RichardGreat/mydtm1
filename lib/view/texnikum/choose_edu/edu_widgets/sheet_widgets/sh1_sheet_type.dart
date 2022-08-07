@@ -77,7 +77,7 @@ class _EduTypeTexnikumSheetState extends State<EduTypeTexnikumSheet> {
                                 width: MediaQuery.of(context).size.width * 0.7,
                                 child: MyWidgets.robotoFontText(
                                     text: "chooseDirection".tr(),
-                                    textSize: 24)),
+                                 )),
                             IconButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();

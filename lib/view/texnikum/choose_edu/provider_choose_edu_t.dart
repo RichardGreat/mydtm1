@@ -35,11 +35,28 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
 
   String idEduType = "";
   String nameEduType = "";
+  String idEduLangTex = "";
+  String nameEduLangTex = "";
+  String eduNameTexnikum = "";
+  String idEduTexnikum = "";
+  String directionNameTexnikum = "";
+  String idDirectionTexnikum = "";
+  String foreignLangIds = "";
+  String foreignLangNames = "";
 
   Future setEduTypeTexnikum(
       {required String idType, required String nameType}) async {
     idEduType = idType;
     nameEduType = nameType;
+   idEduLangTex = "";
+   nameEduLangTex = "";
+   eduNameTexnikum = "";
+   idEduTexnikum = "";
+   directionNameTexnikum = "";
+   idDirectionTexnikum = "";
+   foreignLangIds = "";
+   foreignLangNames = "";
+
     notifyListeners();
   }
 
@@ -58,13 +75,16 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
     } catch (e) {}
   }
 
-  String idEduLangTex = "";
-  String nameEduLangTex = "";
+
 
   Future setLangEduTexnikum(
       {required String idEduLang, required String nameEduLang}) async {
     idEduLangTex = idEduLang;
     nameEduLangTex = nameEduLang;
+    eduNameTexnikum = "";
+    idEduTexnikum = "";
+
+
     notifyListeners();
   }
 
@@ -107,13 +127,15 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
     notifyListeners();
   }
 
-  String eduNameTexnikum = "";
-  String idEduTexnikum = "";
+
 
   Future setEducationInfoTexnikum(
       {required String nameEduTex, required String idEduTex}) async {
     eduNameTexnikum = nameEduTex;
     idEduTexnikum = idEduTex;
+    directionNameTexnikum = "";
+    idDirectionTexnikum = "";
+
     notifyListeners();
   }
 
@@ -143,14 +165,14 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
     }
   }
 
-  String directionNameTexnikum = "";
-  String idDirectionTexnikum = "";
 
   Future setDirectionInfoTexnikum(
       {required String nameDirectionTex,
       required String idDirectionTex}) async {
     directionNameTexnikum = nameDirectionTex;
     idDirectionTexnikum = idDirectionTex;
+    foreignLangIds = "";
+    foreignLangNames = "";
     notifyListeners();
   }
 
@@ -180,8 +202,7 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
     } catch (e) {}
   }
 
-  String foreignLangIds = "";
-  String foreignLangNames = "";
+
 
   Future setLangForeignTexnikum(
       {required String foreignLangId, required String foreignLangName}) async {

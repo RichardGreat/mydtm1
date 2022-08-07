@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/texnikum/choose_edu/provider_choose_edu_t.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 sheetLangForeignTexnikum({
   required BuildContext contexts,
@@ -127,7 +128,7 @@ class _LangForeignTestTexnikumState extends State<LangForeignTestTexnikum> {
                     // ),
                     // const SizedBox(height: 15),
                     const SizedBox(height: 10),
-                    MyWidgets.robotoFontText(text: "choose lang"),
+                    MyWidgets.robotoFontText(text: "foreignLang".tr()),
                     const SizedBox(height: 10),
                     Expanded(
                       child: ListView.builder(

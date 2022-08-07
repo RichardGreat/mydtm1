@@ -3,6 +3,7 @@ import 'package:mydtm/view/texnikum/choose_edu/edu_widgets/sheet_widgets/sh5_she
 import 'package:mydtm/view/texnikum/choose_edu/provider_choose_edu_t.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 Widget eduLangDirTexnikum({required BuildContext context, required ProviderChooseEduTexnikum providerChooseEduTexnikum}){
   return
@@ -13,13 +14,13 @@ Widget eduLangDirTexnikum({required BuildContext context, required ProviderChoos
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 15),
-          MyWidgets.robotoFontText(text:"chooose edu Lang", textColor: MyColors.appColorGrey600()),
+          MyWidgets.robotoFontText(text:"foreignLang".tr(), textColor: MyColors.appColorGrey600()),
           const  SizedBox(height: 5),
           Container(
             color: MyColors.appColorWhite(),
             child: ListTile(
               title: MyWidgets.robotoFontText(
-                  text: providerChooseEduTexnikum.foreignLangNames.length < 5 ? "chooose edu Lang":providerChooseEduTexnikum.foreignLangNames,
+                  text: providerChooseEduTexnikum.foreignLangNames.length < 5 ? "choose".tr():providerChooseEduTexnikum.foreignLangNames,
                   textColor: MyColors.appColorBlack()),
               onTap: () {
                 sheetLangForeignTexnikum(contexts: context, providerChooseEduTexnikum: providerChooseEduTexnikum);

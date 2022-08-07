@@ -225,5 +225,23 @@
   "telephoneHasNum": "Telfon nomer aldınlaw bánt etilgen!",
 
   "oldEdu":"Tahsil olayotgan taʼlim muassasangiz",
-  "enterOldEdu": "Bilim alıp atırǵan bilimlendiriw mákemeńizdiń maǵlıwmatların kirgiziń"
+  "enterOldEdu": "Tahsil olayotgan taʼlim muassasangiz maʼlumotlarini kiriting",
+  "oldEduCountry": "Joylashgan davlat",
+  "oldEduEduType": "Ta'lim shakli",
+  "oldEduEduName": "Ta'lim muassasa nomi",
+  "oldEduDirectionName": "Yo‘nalish nomi",
+  "oldEduNumberCourse": "Tugatgan bosqichi",
+  "firstYear": "Birinchi bosqich",
+  "secondYear": "Ikkinchi bosqich",
+  "thirdYear": "Uchunchi bosqich",
+  "fourthYear": "To'rtinchi bosqich",
+  "perevodAllPage": "Siz 3 tagacha rasm yuklashingiz mumkin.\nJami hajm 8 Mb oshmasligi kerak",
+  "dirNameType": "Yo'nalish nomi yozing",
+  "eduNameType": "Oli ta'lim muassasasi nomini yozing",
+  "pictureNotInfo": "Rasm yuklang",
+  "pleaseWait": "Iltimos kuting",
+
+
+  "chooseTexnikum": "Tańlaǵan baǵdarlarí",
+  "texnikum": "Техникум"
 }

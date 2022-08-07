@@ -75,9 +75,50 @@ class _EducationChooseTexnikumState extends State<EducationChooseTexnikum> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.7,
-                                child: MyWidgets.robotoFontText(
-                                    text: "oliytalim".tr(), textSize: 26)),
+                              width: MediaQuery.of(context).size.width * 0.75,
+                              height: 50,
+                              child: TextFormField(
+                                controller: widget.providerChooseEduTexnikum
+                                    .textEduDirectionController,
+                                minLines: 1,
+                                onChanged: (value) {
+                                  widget.providerChooseEduTexnikum
+                                      .searchDirectionTex(val: value);
+                                  setState(() {});
+                                },
+                                textAlignVertical: TextAlignVertical.center,
+                                decoration: InputDecoration(
+                                  prefixIcon: const Icon(Icons.search),
+                                  suffix: IconButton(
+                                      onPressed: () {
+                                        // widget.providerChooseEduTexnikum.clearTextOtm1();
+                                        setState(() {});
+                                      },
+                                      icon: const Icon(
+                                        Icons.clear,
+                                        size: 12,
+                                      )),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: MyColors.appColorGrey400(),
+                                    ),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: MyColors.appColorGrey400(),
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: MyColors.appColorGrey400(),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                             IconButton(
                                 onPressed: () {
                                   // widget.providerChooseEduTexnikum.textOTMChoose.clear();
@@ -86,51 +127,7 @@ class _EducationChooseTexnikumState extends State<EducationChooseTexnikum> {
                                 icon: const Icon(CupertinoIcons.chevron_down))
                           ]),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      height: 50,
-                      child: TextFormField(
-                        controller: widget.providerChooseEduTexnikum
-                            .textEduDirectionController,
-                        minLines: 1,
-                        onChanged: (value) {
-                          widget.providerChooseEduTexnikum
-                              .searchDirectionTex(val: value);
-                          setState(() {});
-                        },
-                        textAlignVertical: TextAlignVertical.center,
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.search),
-                          suffix: IconButton(
-                              onPressed: () {
-                                // widget.providerChooseEduTexnikum.clearTextOtm1();
-                                setState(() {});
-                              },
-                              icon: const Icon(
-                                Icons.clear,
-                                size: 12,
-                              )),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: MyColors.appColorGrey400(),
-                            ),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: MyColors.appColorGrey400(),
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: MyColors.appColorGrey400(),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+
                     Expanded(
                       child: ListView.builder(
                         itemCount: widget
