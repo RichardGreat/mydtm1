@@ -25,9 +25,10 @@ Widget eduTexnikum(
                   : providerChooseEduTexnikum.eduNameTexnikum,
               textColor: MyColors.appColorBlack(), ),
           onTap: () {
+            providerChooseEduTexnikum.nameEduLangTex.toString().length>5?
             sheetEduTexnikum(
                 contexts: context,
-                providerChooseEduTexnikum: providerChooseEduTexnikum);
+                providerChooseEduTexnikum: providerChooseEduTexnikum):{};
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ),

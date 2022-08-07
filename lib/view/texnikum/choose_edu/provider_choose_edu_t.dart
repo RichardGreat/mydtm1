@@ -83,8 +83,10 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
     nameEduLangTex = nameEduLang;
     eduNameTexnikum = "";
     idEduTexnikum = "";
-
-
+    directionNameTexnikum = "";
+    idDirectionTexnikum = "";
+    foreignLangIds = "";
+    foreignLangNames = "";
     notifyListeners();
   }
 
@@ -135,7 +137,8 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
     idEduTexnikum = idEduTex;
     directionNameTexnikum = "";
     idDirectionTexnikum = "";
-
+    foreignLangIds = "";
+    foreignLangNames = "";
     notifyListeners();
   }
 

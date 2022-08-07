@@ -21,7 +21,8 @@ Widget eduLangTexnikum({required BuildContext context, required ProviderChooseEd
                 text:providerChooseEduTexnikum.nameEduLangTex.length < 5 ?"choose".tr():providerChooseEduTexnikum.nameEduLangTex,
                 textColor: MyColors.appColorBlack()),
             onTap: () {
-              sheetEduLangTexnikum(contexts: context, providerChooseEduTexnikum: providerChooseEduTexnikum);
+              providerChooseEduTexnikum.nameEduType.toString().length > 5 ?
+              sheetEduLangTexnikum(contexts: context, providerChooseEduTexnikum: providerChooseEduTexnikum):{};
             },
             trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
           ),

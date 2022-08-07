@@ -25,9 +25,10 @@ Widget eduDirTexnikum(
                   : providerChooseEduTexnikum.directionNameTexnikum,
               textColor: MyColors.appColorBlack()),
           onTap: () {
+            providerChooseEduTexnikum.eduNameTexnikum.toString().length>5?
             sheetDirectionTexnikum(
                 contexts: context,
-                providerChooseEduTexnikum: providerChooseEduTexnikum);
+                providerChooseEduTexnikum: providerChooseEduTexnikum):{};
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ),

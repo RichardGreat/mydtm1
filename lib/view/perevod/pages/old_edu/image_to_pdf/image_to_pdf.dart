@@ -45,7 +45,7 @@ class _ImageToPdfState extends State<ImageToPdf> {
               widget.providerOldEdu.listFiles.isNotEmpty
                   ? MaterialButton(
                       onPressed: () async {
-                        final pdfFile = await widget.providerOldEdu
+                        await widget.providerOldEdu
                             .createPdfFile(contexts: context);
                         // widget.providerOldEdu.openFiles(pdfFile);
                         Navigator.of(context).pop();

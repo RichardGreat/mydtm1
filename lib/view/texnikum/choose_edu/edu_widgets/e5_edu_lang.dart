@@ -23,7 +23,8 @@ Widget eduLangDirTexnikum({required BuildContext context, required ProviderChoos
                   text: providerChooseEduTexnikum.foreignLangNames.length < 5 ? "choose".tr():providerChooseEduTexnikum.foreignLangNames,
                   textColor: MyColors.appColorBlack()),
               onTap: () {
-                sheetLangForeignTexnikum(contexts: context, providerChooseEduTexnikum: providerChooseEduTexnikum);
+                providerChooseEduTexnikum.directionNameTexnikum.toString().length > 5?
+                sheetLangForeignTexnikum(contexts: context, providerChooseEduTexnikum: providerChooseEduTexnikum):{};
                 // directionNameTexnikum
               },
               trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
