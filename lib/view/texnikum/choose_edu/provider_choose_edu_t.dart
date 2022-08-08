@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/texnikum/internet/edu_choose/t1_emode_texnik.dart';
 import 'package:mydtm/data/texnikum/internet/edu_choose/t2_lang_edu_texnikum.dart';
@@ -219,6 +217,7 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
   late ModelGetAllTexnikum modelGetAllTexnikum;
 
   Future setAllData() async {
+
     Map<String, String> mapAll = {
       "emode_id": idEduType,
       "lang_id": idEduLangTex,

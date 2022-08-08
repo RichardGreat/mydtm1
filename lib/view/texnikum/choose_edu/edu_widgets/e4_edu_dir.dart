@@ -23,7 +23,7 @@ Widget eduDirTexnikum(
               text: providerChooseEduTexnikum.directionNameTexnikum.length < 5
                   ? "choose".tr()
                   : providerChooseEduTexnikum.directionNameTexnikum,
-              textColor: MyColors.appColorBlack()),
+              textColor: providerChooseEduTexnikum.directionNameTexnikum.length > 5 ? MyColors.appColorBlack():MyColors.appColorGrey600() ),
           onTap: () {
             providerChooseEduTexnikum.eduNameTexnikum.toString().length>5?
             sheetDirectionTexnikum(

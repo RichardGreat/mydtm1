@@ -4,21 +4,29 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-Widget eduButtonTexnikum({required BuildContext context, required ProviderChooseEduTexnikum providerChooseEduTexnikum}){
+Widget eduButtonTexnikum(
+    {required BuildContext context,
+    required ProviderChooseEduTexnikum providerChooseEduTexnikum}) {
   return Column(
     children: [
       const SizedBox(height: 20),
       MaterialButton(
-        onPressed: (){
-
-          providerChooseEduTexnikum.setAllData();
+        onPressed: () {
+          if (providerChooseEduTexnikum.idEduType.isNotEmpty &&
+              providerChooseEduTexnikum.idEduLangTex.isNotEmpty &&
+              providerChooseEduTexnikum.idEduTexnikum.isNotEmpty &&
+              providerChooseEduTexnikum.idDirectionTexnikum.isNotEmpty &&
+              providerChooseEduTexnikum.foreignLangIds.isNotEmpty) {
+            providerChooseEduTexnikum.setAllData();
+          } else {}
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         height: 50,
         minWidth: double.infinity,
         color: MyColors.appColorBlue1(),
-        child: MyWidgets.robotoFontText(text:"access".tr(), textColor: MyColors.appColorWhite()),),
+        child: MyWidgets.robotoFontText(
+            text: "access".tr(), textColor: MyColors.appColorWhite()),
+      ),
     ],
   );
-
 }

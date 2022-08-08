@@ -11,6 +11,7 @@ import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/texnikum/aerta_texnikum.dart';
 import 'package:mydtm/view/texnikum/certificate/certificate_texnikum.dart';
+import 'package:mydtm/view/texnikum/choose_edu/choose_edu_texnikum.dart';
 import 'package:mydtm/view/texnikum/privillage/privillage_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -142,11 +143,18 @@ class ProviderTexnikum extends ChangeNotifier {
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
           } else if (index == 5) {
-            // infoAferta(context: context, function: func);
-            inFoAferta(
-                context: context,
-                function: func,
-                providerTexnikum: providerTexnikum);
+            // Navigator.of(context).pop();
+            pushNewScreen(
+              context,
+              screen: const ChooseEduTexnikum(),
+              //QaydVaraqaEdit(providerCheckInformation: widget.providerTexnikum),
+              withNavBar: false,
+              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+            );
+            // inFoAferta(
+            //     context: context,
+            //     function: func,
+            //     providerTexnikum: providerTexnikum);
           }
         } else {
           if (index == 2) {

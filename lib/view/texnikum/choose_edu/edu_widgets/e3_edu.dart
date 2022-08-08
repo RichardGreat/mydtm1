@@ -23,7 +23,7 @@ Widget eduTexnikum(
               text: providerChooseEduTexnikum.eduNameTexnikum.length < 5
                   ? "choose".tr()
                   : providerChooseEduTexnikum.eduNameTexnikum,
-              textColor: MyColors.appColorBlack(), ),
+              textColor:providerChooseEduTexnikum.eduNameTexnikum.length > 5 ? MyColors.appColorBlack():MyColors.appColorGrey600()  ),
           onTap: () {
             providerChooseEduTexnikum.nameEduLangTex.toString().length>5?
             sheetEduTexnikum(

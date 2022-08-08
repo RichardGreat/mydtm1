@@ -19,7 +19,7 @@ Widget eduLangTexnikum({required BuildContext context, required ProviderChooseEd
           child: ListTile(
             title: MyWidgets.robotoFontText(
                 text:providerChooseEduTexnikum.nameEduLangTex.length < 5 ?"choose".tr():providerChooseEduTexnikum.nameEduLangTex,
-                textColor: MyColors.appColorBlack()),
+                textColor: providerChooseEduTexnikum.nameEduLangTex.length > 5 ?MyColors.appColorBlack():MyColors.appColorGrey600() ),
             onTap: () {
               providerChooseEduTexnikum.nameEduType.toString().length > 5 ?
               sheetEduLangTexnikum(contexts: context, providerChooseEduTexnikum: providerChooseEduTexnikum):{};
