@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/texnikum/internet/edu_choose/t1_emode_texnik.dart';
 import 'package:mydtm/data/texnikum/internet/edu_choose/t2_lang_edu_texnikum.dart';
@@ -13,6 +15,8 @@ import 'package:mydtm/data/texnikum/models/edu_tex/t3_model_eduacation.dart';
 import 'package:mydtm/data/texnikum/models/edu_tex/t4_model_direction_etx.dart';
 import 'package:mydtm/data/texnikum/models/edu_tex/t5_model_lang_foreign.dart';
 import 'package:mydtm/data/texnikum/models/edu_tex/t6_get_all.dart';
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
+
 
 class ProviderChooseEduTexnikum extends ChangeNotifier {
   bool boolEduTypeTexnikum = false;
@@ -24,9 +28,7 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
     String data = await networkEmodeEDuTexnikum.getEmodeTexnikum();
     log(data);
     log("777");
-
     modeEduTexnikum = ModelEModeEduTexnikum.fromJson(jsonDecode(data));
-
     boolEduTypeTexnikum = true;
     notifyListeners();
   }
@@ -46,14 +48,14 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
       {required String idType, required String nameType}) async {
     idEduType = idType;
     nameEduType = nameType;
-   idEduLangTex = "";
-   nameEduLangTex = "";
-   eduNameTexnikum = "";
-   idEduTexnikum = "";
-   directionNameTexnikum = "";
-   idDirectionTexnikum = "";
-   foreignLangIds = "";
-   foreignLangNames = "";
+    idEduLangTex = "";
+    nameEduLangTex = "";
+    eduNameTexnikum = "";
+    idEduTexnikum = "";
+    directionNameTexnikum = "";
+    idDirectionTexnikum = "";
+    foreignLangIds = "";
+    foreignLangNames = "";
 
     notifyListeners();
   }
@@ -70,10 +72,10 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
       modelLangEduTexnikum = ModelLangEduTexnikum.fromJson(jsonDecode(data));
       boolEduLangTexnikum = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
-
-
 
   Future setLangEduTexnikum(
       {required String idEduLang, required String nameEduLang}) async {
@@ -109,7 +111,7 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
       boolEducationChoose = true;
       notifyListeners();
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 
@@ -126,8 +128,6 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
     }
     notifyListeners();
   }
-
-
 
   Future setEducationInfoTexnikum(
       {required String nameEduTex, required String idEduTex}) async {
@@ -162,10 +162,9 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
       boolEduDirectionTex = true;
       notifyListeners();
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
-
 
   Future setDirectionInfoTexnikum(
       {required String nameDirectionTex,
@@ -200,10 +199,10 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
           ModelLangForeignTexnikum.fromJson(jsonDecode(data));
       boolLangForeignTex = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
-
-
 
   Future setLangForeignTexnikum(
       {required String foreignLangId, required String foreignLangName}) async {
@@ -216,8 +215,7 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
   bool boolSetAllData = true;
   late ModelGetAllTexnikum modelGetAllTexnikum;
 
-  Future setAllData() async {
-
+  Future setAllData({required BuildContext context}) async {
     Map<String, String> mapAll = {
       "emode_id": idEduType,
       "lang_id": idEduLangTex,
@@ -231,9 +229,26 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
       notifyListeners();
       String data = await networkSetAllTexnikum.setAllTexnikum(mapData: mapAll);
       modelGetAllTexnikum = ModelGetAllTexnikum.fromJson(jsonDecode(data));
-
-      log(data);
       boolSetAllData = true;
+      AwesomeDialog(
+              context: context,
+              dialogType: DialogType.NO_HEADER,
+              animType: AnimType.BOTTOMSLIDE,
+              dismissOnTouchOutside: false,
+              title: "DTM",
+              desc: "saved".tr(),
+              btnCancelColor: MyColors.appColorBlue1(),
+              titleTextStyle: TextStyle(
+                  color: MyColors.appColorBlue1(),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(
+                  color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+              btnCancelOnPress: () {
+
+              },
+              btnCancelText: "OK")
+          .show();
       notifyListeners();
     } catch (e) {
       log(e.toString());

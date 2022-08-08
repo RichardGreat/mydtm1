@@ -21,7 +21,7 @@ Widget eduLangDirTexnikum({required BuildContext context, required ProviderChoos
             child: ListTile(
               title: MyWidgets.robotoFontText(
                   text: providerChooseEduTexnikum.foreignLangNames.length < 5 ? "choose".tr():providerChooseEduTexnikum.foreignLangNames,
-                  textColor:  providerChooseEduTexnikum.foreignLangNames.length > 5 ? MyColors.appColorBlack():MyColors.appColorGrey600()),
+                  textColor:  providerChooseEduTexnikum.foreignLangNames.length >= 5 ? MyColors.appColorBlack():MyColors.appColorGrey600()),
               onTap: () {
                 providerChooseEduTexnikum.directionNameTexnikum.toString().length > 5?
                 sheetLangForeignTexnikum(contexts: context, providerChooseEduTexnikum: providerChooseEduTexnikum):{};

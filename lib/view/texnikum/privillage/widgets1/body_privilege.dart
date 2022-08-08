@@ -41,7 +41,7 @@ Widget bodyPrivilegeTexnikum({
                   children: [
                     Text(
                       "${index + 1} "
-                      "${providerPrivilegeTexnikum.massagePrivilageTexnikum.status}",
+                      "${providerPrivilegeTexnikum.massagePrivilageTexnikum.ser}",
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                           color: MyColors.appColorBlack(),

@@ -17,13 +17,19 @@ Widget eduButtonTexnikum(
               providerChooseEduTexnikum.idEduTexnikum.isNotEmpty &&
               providerChooseEduTexnikum.idDirectionTexnikum.isNotEmpty &&
               providerChooseEduTexnikum.foreignLangIds.isNotEmpty) {
-            providerChooseEduTexnikum.setAllData();
+            providerChooseEduTexnikum.setAllData(context: context);
           } else {}
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         height: 50,
         minWidth: double.infinity,
-        color: MyColors.appColorBlue1(),
+        color:
+  providerChooseEduTexnikum.idEduType.isNotEmpty &&
+  providerChooseEduTexnikum.idEduLangTex.isNotEmpty &&
+  providerChooseEduTexnikum.idEduTexnikum.isNotEmpty &&
+  providerChooseEduTexnikum.idDirectionTexnikum.isNotEmpty &&
+  providerChooseEduTexnikum.foreignLangIds.isNotEmpty?
+        MyColors.appColorBlue1():MyColors.appColorGrey600(),
         child: MyWidgets.robotoFontText(
             text: "access".tr(), textColor: MyColors.appColorWhite()),
       ),

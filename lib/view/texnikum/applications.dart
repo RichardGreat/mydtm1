@@ -61,44 +61,44 @@ class _ApplicationTexnikumState extends State<ApplicationTexnikum> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ListTile(
-                                title: Text("holat".tr()),
-                                onTap: () {},
-                                trailing: Container(
-                                  padding: const EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(4),
-                                    color: widget
-                                                .providerTexnikum
-                                                .modelQaydVaraqaTexnikum
-                                                .abitur
-                                                .pstype
-                                                .toString() ==
-                                            "1"
-                                        ? Colors.amber
-                                        : widget
-                                                    .providerTexnikum
-                                                    .modelQaydVaraqaTexnikum
-                                                    .abitur
-                                                    .pstype
-                                                    .toString() ==
-                                                "2"
-                                            ? MyColors.appColorBlue1()
-                                            : MyColors.appColorRed(),
-                                  ),
-                                  child: Text(
-                                    widget
-                                        .providerTexnikum
-                                        .modelQaydVaraqaTexnikum
-                                        .abitur
-                                        .statusName
-                                        .toString(),
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16,
-                                        color: MyColors.appColorWhite()),
-                                  ),
-                                )),
+                            // ListTile(
+                            //     title: Text("holat".tr()),
+                            //     onTap: () {},
+                            //     trailing: Container(
+                            //       padding: const EdgeInsets.all(5),
+                            //       decoration: BoxDecoration(
+                            //         borderRadius: BorderRadius.circular(4),
+                            //         color: widget
+                            //                     .providerTexnikum
+                            //                     .modelQaydVaraqaTexnikum
+                            //                     .abitur
+                            //                     .pstype
+                            //                     .toString() ==
+                            //                 "1"
+                            //             ? Colors.amber
+                            //             : widget
+                            //                         .providerTexnikum
+                            //                         .modelQaydVaraqaTexnikum
+                            //                         .abitur
+                            //                         .pstype
+                            //                         .toString() ==
+                            //                     "2"
+                            //                 ? MyColors.appColorBlue1()
+                            //                 : MyColors.appColorRed(),
+                            //       ),
+                            //       child: Text(
+                            //         widget
+                            //             .providerTexnikum
+                            //             .modelQaydVaraqaTexnikum
+                            //             .abitur
+                            //             .statusName
+                            //             .toString(),
+                            //         style: TextStyle(
+                            //             fontWeight: FontWeight.w500,
+                            //             fontSize: 16,
+                            //             color: MyColors.appColorWhite()),
+                            //       ),
+                            //     )),
                             ListTile(
                               title: Text("applicent".tr()),
                               onTap: () {},
@@ -375,11 +375,10 @@ class _ApplicationTexnikumState extends State<ApplicationTexnikum> {
                       widget.providerTexnikum.modelQaydVaraqaTexnikum.imtiyoz
                               .isNotEmpty
                           ? Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                MyWidgets.robotoFontText(
-                                    text: "imtiyoz"),
+                                MyWidgets.robotoFontText(text: "imtiyoz"),
                                 const SizedBox(height: 10),
                                 Container(
                                   width: double.infinity,
@@ -399,16 +398,19 @@ class _ApplicationTexnikumState extends State<ApplicationTexnikum> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-
-
                                       ListTile(
-                                        title: Text( widget
-                                            .providerTexnikum
-                                            .modelQaydVaraqaTexnikum
-                                            .imtiyoz[0].typeId
-                                            .toString() == "1"?"Ko‘zi ojiz bo‘lgan shaxslar uchun imtiyoz":"Kam taminlangan shaxslar uchun imtiyoz",),
+                                        title: Text(
+                                          widget
+                                                      .providerTexnikum
+                                                      .modelQaydVaraqaTexnikum
+                                                      .imtiyoz[0]
+                                                      .typeId
+                                                      .toString() ==
+                                                  "1"
+                                              ? "Ko‘zi ojiz bo‘lgan shaxslar uchun imtiyoz"
+                                              : "Kam taminlangan shaxslar uchun imtiyoz",
+                                        ),
                                         onTap: () {},
-
                                       ),
                                     ],
                                   ),

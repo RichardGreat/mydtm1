@@ -223,7 +223,6 @@
   "doNotShowAgain": "Boshqa ko‘rsatmaslik",
   "accepted": "Tanishdim",
   "telephoneHasNum": "Telfon raqam avvalroq band qilingan!",
-
   "oldEdu":"Tahsil olayotgan taʼlim muassasangiz",
   "enterOldEdu": "Tahsil olayotgan taʼlim muassasangiz maʼlumotlarini kiriting",
   "oldEduCountry": "Joylashgan davlat",
@@ -240,9 +239,7 @@
   "eduNameType": "Oli ta'lim muassasasi nomini yozing",
   "pictureNotInfo": "Rasm yuklang",
   "pleaseWait": "Iltimos kuting",
-
   "chooseTexnikum": "Tanlagan yo‘nalishlari",
-
   "texnikum": "Texnikum"
 
 

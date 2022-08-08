@@ -48,7 +48,7 @@ class _PrivilegeTexnikumState extends State<PrivilegeTexnikum> {
                   children: [
                     !providerPrivilegeTexnikum.boolAddInvalide
                         ? const SizedBox(height: 20)
-                        : SizedBox.shrink(),
+                        : const SizedBox.shrink(),
                     !providerPrivilegeTexnikum.boolAddInvalide
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.center,
