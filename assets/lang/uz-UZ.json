@@ -240,7 +240,9 @@
   "pictureNotInfo": "Rasm yuklang",
   "pleaseWait": "Iltimos kuting",
   "chooseTexnikum": "Tanlagan yo‘nalishlari",
-  "texnikum": "Texnikum"
+  "texnikum": "Texnikum",
+  "privilegeEyeTexnikum": "Ko‘zi ojiz bo‘lgan shaxslar uchun imtiyoz",
+  "privilegePoorTexnikum": "Kam taminlangan shaxslar uchun imtiyoz"
 
 
 }

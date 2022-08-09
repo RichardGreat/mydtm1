@@ -243,5 +243,7 @@
 
 
   "chooseTexnikum": "Tańlaǵan baǵdarlarí",
-  "texnikum": "Техникум"
+  "texnikum": "Техникум",
+  "privilegeEyeTexnikum": "Kózi ázzi bolǵan shaxslar ushın jeńillik",
+  "privilegePoorTexnikum": "Kem támiyinlengen shaxslar ushın jeńillik"
 }

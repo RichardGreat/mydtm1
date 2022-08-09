@@ -241,5 +241,7 @@
   "pleaseWait": "Iltimos kuting",
 
   "chooseTexnikum": "Выбранные направления обучения",
-  "texnikum": "Техникум"
+  "texnikum": "Техникум",
+  "privilegeEyeTexnikum": "Льготы для слабовидящих лиц",
+  "privilegePoorTexnikum": "Льготы для малообеспеченных лиц"
 }

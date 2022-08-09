@@ -41,7 +41,7 @@ Widget bodyPrivilegeTexnikum({
                   children: [
                     Text(
                       "${index + 1} "
-                      "${providerPrivilegeTexnikum.massagePrivilageTexnikum.ser}",
+                      "${providerPrivilegeTexnikum.massagePrivilageTexnikum.typeId.toString() == "1" ? "privilegeEyeTexnikum".tr() : "privilegePoorTexnikum".tr()}",
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                           color: MyColors.appColorBlack(),
@@ -50,106 +50,71 @@ Widget bodyPrivilegeTexnikum({
                           fontFamily: 'Roboto-Medium'),
                     ),
                     const Divider(),
-                    Text(
-                      providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
-                          .toString(),
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                          color: MyColors.appColorGrey600(),
-                          fontSize: 15,
-                          // fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.normal,
-                          fontFamily: 'Roboto-Medium'),
-                    ),
-                    const Divider(),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          MyWidgets.robotoFontText(
-                              text:  providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
-                                  .toString(),
-                              textSize: 14,
-                              textColor: MyColors.appColorGrey600()),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              MyWidgets.robotoFontText(
-                                  textColor: MyColors.appColorGrey600(),
-                                  textSize: 14,
-                                  text:   providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
-                                      .toString()),
-                              Icon(Icons.arrow_forward_rounded,
-                                  size: 14, color: MyColors.appColorGrey600()),
-                              MyWidgets.robotoFontText(
-                                  textColor: MyColors.appColorGrey600(),
-                                  textSize: 14,
-                                  text:   providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
-                                      .toString()),
-                            ],
-                          ),
-                        ]),
+
+                    const SizedBox(height: 40),
                     providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
                                     .toString() ==
                                 "2" &&
-                        providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
+                            providerPrivilegeTexnikum
+                                    .massagePrivilageTexnikum.imie
                                     .toString() ==
                                 "7"
                         ? const Divider()
                         : const SizedBox.shrink(),
-                    providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
-                                    .toString() ==
-                                "2" &&
-                        providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
-                                    .toString() ==
-                                "7"
-                        ? Row(
+
+
+                    Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                                 GestureDetector(
-                                  onTap:(){
-                                    pushNewScreen(context, screen: InvalidAdd(),
-                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                      withNavBar: false);
-                                    },
+                                  onTap: () {
+                                    pushNewScreen(context,
+                                        screen: InvalidAdd(),
+                                        pageTransitionAnimation:
+                                            PageTransitionAnimation.cupertino,
+                                        withNavBar: false);
+                                  },
                                   child: Icon(Icons.edit,
                                       color: MyColors.appColorBlue1()),
                                 ),
                                 GestureDetector(
-                                  onTap:(){
-
+                                  onTap: () {
                                     AwesomeDialog(
-                                        context: context,
-                                        dialogType: DialogType.NO_HEADER,
-                                        animType: AnimType.BOTTOMSLIDE,
-                                        dismissOnTouchOutside: false,
-                                        title: "DTM",
-                                        desc: "wantToDelete".tr(),
-                                        titleTextStyle: TextStyle(
-                                            color: MyColors.appColorBlue1(),
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.bold),
-                                        descTextStyle: TextStyle(
-                                            color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-                                        btnOkOnPress: (){
-                                          providerPrivilegeTexnikum.deleteInvalidTexnikum(context: context);
-                                        },
-                                        btnCancelOnPress: () {},
-
-                                        btnOkColor: MyColors.appColorGrey100(),
-                                        btnCancelColor: MyColors.appColorBlue1(),
-
-                                        btnOkText: "yes".tr(),buttonsTextStyle: TextStyle(color: MyColors.appColorBlack()),
-                                        btnCancelText: "no".tr())
+                                            context: context,
+                                            dialogType: DialogType.NO_HEADER,
+                                            animType: AnimType.BOTTOMSLIDE,
+                                            dismissOnTouchOutside: false,
+                                            title: "DTM",
+                                            desc: "wantToDelete".tr(),
+                                            titleTextStyle: TextStyle(
+                                                color: MyColors.appColorBlue1(),
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold),
+                                            descTextStyle: TextStyle(
+                                                color: MyColors.appColorBlack(),
+                                                fontWeight: FontWeight.bold),
+                                            btnOkOnPress: () {
+                                              providerPrivilegeTexnikum
+                                                  .deleteInvalidTexnikum(
+                                                      context: context);
+                                            },
+                                            btnCancelOnPress: () {},
+                                            btnOkColor:
+                                                MyColors.appColorGrey100(),
+                                            btnCancelColor:
+                                                MyColors.appColorBlue1(),
+                                            btnOkText: "yes".tr(),
+                                            buttonsTextStyle: TextStyle(
+                                                color:
+                                                    MyColors.appColorBlack()),
+                                            btnCancelText: "no".tr())
                                         .show();
-
-
-
                                   },
                                   child: Icon(Icons.delete_forever,
                                       color: Colors.red.shade500),
                                 ),
                               ])
-                        : const SizedBox.shrink(),
+
                   ],
                 )),
           ),
