@@ -138,7 +138,7 @@ class ProviderTexnikum extends ChangeNotifier {
           } else if (index == 4) {
             pushNewScreen(
               context,
-              screen: PrivilegeTexnikum(funcState: func),
+              screen: PrivilegeTexnikum(funcState: func, windowId: "0"),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );

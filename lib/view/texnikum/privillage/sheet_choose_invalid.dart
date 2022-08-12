@@ -10,9 +10,9 @@ Widget chooseInvalidType({required BuildContext context}) {
       margin: const EdgeInsets.only(top: 10, left: 30, right: 30, bottom: 10),
       decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
-        topRight: Radius.circular(5),
-        topLeft: Radius.circular(5),
-      )),
+            topRight: Radius.circular(5),
+            topLeft: Radius.circular(5),
+          )),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -20,59 +20,59 @@ Widget chooseInvalidType({required BuildContext context}) {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-
-              Container(
-                  padding: const EdgeInsets.all(10),
+              GestureDetector(
+                onTap: (){
+                  pushNewScreen(context,
+                      screen: InvalidAddTexnikum(
+                          titleName: "privilegeEyeTexnikum".tr(),
+                          typeWindow: "1"),
+                      pageTransitionAnimation:
+                      PageTransitionAnimation.cupertino,
+                      withNavBar: false);
+                },
+                child: Container(height: 50,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width ,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                          color: MyColors.appColorBlue1(), width: 1)),
-                  child: Column(
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            pushNewScreen(context,
-                                screen: InvalidAddTexnikum(titleName:  "Ko‘zi ojiz bo‘lgan shaxslar uchun imtiyoz", typeWindow: "1"),
-                                pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                                withNavBar: false);
-                          },
-                          icon: Icon(Icons.add_a_photo_outlined,
-                              color: MyColors.appColorBlue1(), size: 25)),
-                      Text(
-                        "Ko‘zi ojiz bo‘lgan shaxslar uchun imtiyoz",
-                        style: TextStyle(color: MyColors.appColorBlue1()),
-                      )
-                    ],
-                  )),
-              Container(
-                  padding: const EdgeInsets.all(10),
+                      borderRadius: BorderRadius.circular(8),
+                      color: MyColors.appColorWhite(),
+                      boxShadow: [BoxShadow(color: MyColors
+                          .appColorGrey600(),
+                          spreadRadius: 1,
+                          blurRadius: 1)
+                      ]
+                  ),child: Center(child: Text("privilegeEyeTexnikum".tr())),
+                ),
+              ),
+              const SizedBox(height: 10),
+              GestureDetector(
+                onTap: (){
+                  pushNewScreen(context,
+                      screen: InvalidAddTexnikum(
+                          titleName: "privilegeEyeTexnikum".tr(),
+                          typeWindow: "2"),
+                      pageTransitionAnimation:
+                      PageTransitionAnimation.cupertino,
+                      withNavBar: false);
+                },
+                child: Container(height: 50,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width ,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                          color: MyColors.appColorBlue1(), width: 1)),
-                  child: Column(
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            pushNewScreen(context,
-                                screen: InvalidAddTexnikum( titleName:  "Kam taminlangan shaxslar uchun imtiyoz",typeWindow: "2"),
-                                pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                                withNavBar: false);
-                          },
-                          icon: Icon(
-                            Icons.add_photo_alternate_outlined,
-                            color: MyColors.appColorBlue1(),
-                            size: 25,
-                          )),
-                      Text(
-                        "Kam taminlangan shaxslar uchun imtiyoz",
-                        style: TextStyle(color: MyColors.appColorBlue1()),
-                      )
-                    ],
-                  )),
-              Container(),
+                      borderRadius: BorderRadius.circular(8),
+                      color: MyColors.appColorWhite(),
+                      boxShadow: [BoxShadow(color: MyColors
+                          .appColorGrey600(),
+                          spreadRadius: 1,
+                          blurRadius: 1)
+                      ]
+                  ),child: Center(child: Text("privilegeEyeTexnikum".tr())),
+                ),
+              ),
             ],
           ),
         ],

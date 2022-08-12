@@ -143,10 +143,7 @@ class ProviderAriza extends ChangeNotifier {
   }
 
   ///
-  ///
-  ///
-  ///
-  ///
+
   bool loading = false;
   double progress = 0;
   final Dio dio = Dio();

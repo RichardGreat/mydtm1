@@ -89,25 +89,7 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
                                       text: "download".tr(),
                                       textColor: MyColors.appColorWhite()),
                                 ),
-                          const SizedBox(height: 10),
-                          MaterialButton(
-                            onPressed: () {
-                              pushNewScreen(context,
-                                  pageTransitionAnimation:
-                                      PageTransitionAnimation.cupertino,
-                                  screen: ChooseEdu(funcState: getBoshFunc));
-                            },
-                            height: 50,
-                            minWidth: double.infinity,
-                            color: MyColors.appColorWhite(),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                side: BorderSide(
-                                    color: MyColors.appColorBlack())),
-                            child: MyWidgets.robotoFontText(
-                                text: "editEdu".tr(),
-                                textColor: MyColors.appColorBlack()),
-                          ),
+
                         ]),
                       ),
                     ]),

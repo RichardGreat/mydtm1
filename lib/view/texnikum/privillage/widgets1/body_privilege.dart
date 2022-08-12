@@ -68,6 +68,7 @@ Widget bodyPrivilegeTexnikum({
                             children: [
                                 GestureDetector(
                                   onTap: () {
+
                                     pushNewScreen(context,
                                         screen: InvalidAdd(),
                                         pageTransitionAnimation:

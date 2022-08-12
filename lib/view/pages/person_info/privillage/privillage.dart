@@ -12,7 +12,8 @@ import 'package:easy_localization/easy_localization.dart';
 
 class Privilege extends StatefulWidget {
   Function funcState;
-  Privilege({Key? key, required this.funcState}) : super(key: key);
+
+  Privilege({Key? key, required this.funcState,}) : super(key: key);
 
   @override
   State<Privilege> createState() => _PrivilegeState();
@@ -37,51 +38,57 @@ class _PrivilegeState extends State<Privilege> {
     return ChangeNotifierProvider(
       create: (context) => providerPrivilege,
       child: Consumer<ProviderPrivilege>(
-        builder: (context, value, child) => Scaffold(
+        builder: (context, value, child) => WillPopScope(
+          onWillPop: ()async{
 
-          backgroundColor: MyColors.appColorGrey100(),
-          appBar: appBarPrivilege(context: context, providerPrivilege: providerPrivilege),
-          body: 
-          providerPrivilege.boolGetDataPrivilege?
-          Column(
-            children: [
-              !providerPrivilege.boolAddInvalide ?
-              const SizedBox(height: 20):SizedBox.shrink(),
-              !providerPrivilege.boolAddInvalide ?
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  MaterialButton(
-                    color: MyColors.appColorWhite(),
-                    height: 50,
-                    minWidth: MediaQuery.of(context).size.width*0.9,
-                    onPressed: (){
-                      pushNewScreen(context, screen: InvalidAdd(),
-                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                          withNavBar: false);
-                    }, child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(Icons.add_circle, color: MyColors.appColorBlue1()),
-                        SizedBox(
-                            width:  MediaQuery.of(context).size.width*0.6,
-                            child: Text("addInvalid".tr())),
-                      ],
-                    ),),
-                ],
-              ):const SizedBox.shrink(),
-            ! providerPrivilege.boolAddInvalide ?
-              const SizedBox(height: 30):const SizedBox.shrink(),
-              Expanded(child:  providerPrivilege.boolPrivilegeNot?
-              bodyNoPrivilege(context: context, providerPrivilege: providerPrivilege)
-                  : bodyPrivilege(context: context, providerPrivilege: providerPrivilege)
-             ),
-            ],
-          )
-          :Center(child: MyWidgets.loaderDownload(context: context),)
-          ,
+            return true;
+          },
+          child: Scaffold(
+
+            backgroundColor: MyColors.appColorGrey100(),
+            appBar: appBarPrivilege(context: context, providerPrivilege: providerPrivilege),
+            body:
+            providerPrivilege.boolGetDataPrivilege?
+            Column(
+              children: [
+                !providerPrivilege.boolAddInvalide ?
+                const SizedBox(height: 20):const SizedBox.shrink(),
+                !providerPrivilege.boolAddInvalide ?
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    MaterialButton(
+                      color: MyColors.appColorWhite(),
+                      height: 50,
+                      minWidth: MediaQuery.of(context).size.width*0.9,
+                      onPressed: (){
+                        pushNewScreen(context, screen: InvalidAdd(),
+                            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                            withNavBar: false);
+                      }, child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.add_circle, color: MyColors.appColorBlue1()),
+                          SizedBox(
+                              width:  MediaQuery.of(context).size.width*0.6,
+                              child: Text("addInvalid".tr())),
+                        ],
+                      ),),
+                  ],
+                ):const SizedBox.shrink(),
+              ! providerPrivilege.boolAddInvalide ?
+                const SizedBox(height: 30):const SizedBox.shrink(),
+                Expanded(child:  providerPrivilege.boolPrivilegeNot?
+                bodyNoPrivilege(context: context, providerPrivilege: providerPrivilege)
+                    : bodyPrivilege(context: context, providerPrivilege: providerPrivilege)
+               ),
+              ],
+            )
+            :Center(child: MyWidgets.loaderDownload(context: context),)
+            ,
+          ),
         ),
       ),
     );

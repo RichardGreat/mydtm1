@@ -19,7 +19,6 @@ Widget bodyMainHome(
       ? NestedScrollView(
           floatHeaderSlivers: true,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-
             return <Widget>[
               SliverAppBar(
                 backgroundColor: MyColors.appColorWhite(),
@@ -81,9 +80,6 @@ Widget bodyMainHome(
                                 ),
                                 GestureDetector(
                                   onTap: () {
-
-
-
                                     if (providerMainHome
                                         .listDataServiceList[index]
                                         .service
@@ -91,11 +87,7 @@ Widget bodyMainHome(
                                       myViewButton(
                                           context: context,
                                           providerMainHome: providerMainHome,
-                                          myList:
-
-
-
-                                          providerMainHome
+                                          myList: providerMainHome
                                               .listDataServiceList[index]
                                               .service);
                                     }
@@ -151,33 +143,35 @@ Widget bodyMainHome(
                                           width: 30,
                                           filterQuality: FilterQuality.high,
                                           fit: BoxFit.fill,
-                                          imageUrl:  "${MainUrl.mainUrlImage}/${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
-                                          progressIndicatorBuilder:
-                                              (context, url, downloadProgress) =>
-                                          const   CupertinoActivityIndicator(),
+                                          imageUrl:
+                                              "${MainUrl.mainUrlImage}/${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
+                                          progressIndicatorBuilder: (context,
+                                                  url, downloadProgress) =>
+                                              const CupertinoActivityIndicator(),
                                           errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error),
+                                              const Icon(Icons.error),
                                         ),
-
                                         Text(
                                           box.get("language") == "1"
-                                              ?   providerMainHome
-                                              .listDataServiceList[index]
-                                              .service[index2]
-                                              .serviceName
-                                              : box.get("language") == "2"
                                               ? providerMainHome
-                                              .listDataServiceList[index]
-                                              .service[index2]
-                                              .serviceNameQQ
-                                              :providerMainHome
-                                              .listDataServiceList[index]
-                                              .service[index2]
-                                              .serviceNameRu,
+                                                  .listDataServiceList[index]
+                                                  .service[index2]
+                                                  .serviceName
+                                              : box.get("language") == "2"
+                                                  ? providerMainHome
+                                                      .listDataServiceList[
+                                                          index]
+                                                      .service[index2]
+                                                      .serviceNameQQ
+                                                  : providerMainHome
+                                                      .listDataServiceList[
+                                                          index]
+                                                      .service[index2]
+                                                      .serviceNameRu,
 
                                           textAlign: TextAlign.center,
                                           overflow: TextOverflow.ellipsis,
-                                          maxLines:4,
+                                          maxLines: 4,
                                           // softWrap: true,
                                           style: const TextStyle(
                                               fontFamily: 'Roboto-Medium'),

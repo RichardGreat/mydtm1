@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:mydtm/view/texnikum/certificate/forigion_lang/foreigion_lang_add.dart';
 import 'package:mydtm/view/texnikum/certificate/provider_certificate_texnikum.dart';
+import 'package:mydtm/view/texnikum/privillage/privillage_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -12,8 +13,7 @@ Widget bodyCertificateTexnikuim(
     {required BuildContext context,
     required ProviderCertificateTexnikum providerCertificateTexnikum,
     required Function func}) {
-  return providerCertificateTexnikum.boolCheckForeignLang
-      ? providerCertificateTexnikum.boolCheckCertificateData
+  return providerCertificateTexnikum.boolCheckCertificateData
           ? Container(
               margin: const EdgeInsets.all(10),
               width: double.infinity,
@@ -21,10 +21,13 @@ Widget bodyCertificateTexnikuim(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   MyWidgets.robotoFontText(
                       text: "certificate".tr(), textSize: 28),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 15),
+                  providerCertificateTexnikum
+                      .modeFLangTexnikum.data.flangCertName
+                      .toString() == "null" ?
                   providerCertificateTexnikum.dataCheckForeignCertificate.status == 1
                       ? const SizedBox.shrink()
                       : GestureDetector(
@@ -76,108 +79,22 @@ Widget bodyCertificateTexnikuim(
                               ],
                             ),
                           ),
-                        ),
+                        ):SizedBox.shrink(),
                   providerCertificateTexnikum.boolCheckForeignLangNot
-                      ? const SizedBox(height: 20)
-                      : const SizedBox(height: 30),
+                      ? const SizedBox(height: 10)
+                      :  SizedBox(height: providerCertificateTexnikum
+                      .modeFLangTexnikum.data.flangCertName
+                      .toString() == "null" ? 1:20),
                   providerCertificateTexnikum.boolCheckForeignLangNot
                       ? const SizedBox(height: 20)
                       : MyWidgets.robotoFontText(
                           text: "foreignLang".tr(), textSize: 24),
                   const SizedBox(height: 10),
-                  providerCertificateTexnikum.boolCheckForeignLangNot
-                      ? const SizedBox.shrink()
-                      : Container(
-                          margin: const EdgeInsets.only(
-                              right: 3, bottom: 2, top: 2, left: 2),
-                          padding: const EdgeInsets.all(10),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              color: MyColors.appColorWhite(),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: MyColors.appColorGrey400(),
-                                    blurRadius: 0.5,
-                                    spreadRadius: 0.5)
-                              ],
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              MyWidgets.robotoFontText(
-                                  text: providerCertificateTexnikum
-                                      .dataCheckForeignCertificate.flangName.toString()),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  MyWidgets.robotoFontText(
-                                      text: providerCertificateTexnikum
-                                          .dataCheckForeignCertificate
-                                          .flangCertName),
-                                  Container(
-                                    padding: const EdgeInsets.all(5),
-                                    margin: const EdgeInsets.only(
-                                        left: 1, right: 2, top: 2, bottom: 2),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: providerCertificateTexnikum
-                                                  .dataCheckForeignCertificate
-                                                  .status ==
-                                              1
-                                          ? MyColors.appColorGreen2()
-                                          : providerCertificateTexnikum
-                                                      .dataCheckForeignCertificate
-                                                      .status ==
-                                                  0
-                                              ? MyColors.appColorBlue1()
-                                              : MyColors.appColorRed(),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        providerCertificateTexnikum
-                                                    .dataCheckForeignCertificate
-                                                    .status ==
-                                                0
-                                            ? Icon(
-                                                Icons.watch_later_outlined,
-                                                color: MyColors.appColorWhite(),
-                                              )
-                                            : providerCertificateTexnikum
-                                                        .dataCheckForeignCertificate
-                                                        .status ==
-                                                    1
-                                                ? Icon(
-                                                    Icons.check_circle,
-                                                    color: MyColors
-                                                        .appColorWhite(),
-                                                  )
-                                                : Icon(
-                                                    Icons.close,
-                                                    color: MyColors
-                                                        .appColorWhite(),
-                                                  ),
-                                        const SizedBox(width: 3),
-                                        MyWidgets.robotoFontText(
-                                            text: providerCertificateTexnikum
-                                                .dataCheckForeignCertificate
-                                                .statusName.toString(),
-                                            textColor:
-                                                MyColors.appColorWhite()),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )
-                          ),
-                  const SizedBox(height: 30),
+
                   providerCertificateTexnikum.boolCheckCertificateDataNot
                       ? const SizedBox.shrink()
                       : MyWidgets.robotoFontText(
-                          text: "nationalCert".tr(), textSize: 22),
+                          text: "nationalCert".tr(), textSize: 16, textColor: MyColors.appColorGrey600()),
                   const SizedBox(height: 10),
                   providerCertificateTexnikum.boolCheckCertificateDataNot
                       ? const SizedBox.shrink()
@@ -206,28 +123,7 @@ Widget bodyCertificateTexnikuim(
                                     text:
                                         providerCertificateTexnikum.modeFLangTexnikum.data.flangLevelName),
                                 onTap: () {
-                                  AwesomeDialog(
-                                          context: context,
-                                          dialogType: DialogType.NO_HEADER,
-                                          animType: AnimType.BOTTOMSLIDE,
-                                          title: "DTM",
-                                          desc: "certSubjectName".tr(args: [
-                                            providerCertificateTexnikum
-                                                .modeFLangTexnikum.data.flangCertName
-                                                .toString()
-                                          ]),
-                                          titleTextStyle: TextStyle(
-                                              color: MyColors.appColorBlue1(),
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.bold),
-                                          descTextStyle: TextStyle(
-                                              color: MyColors.appColorBlack(),
-                                              fontWeight: FontWeight.bold),
-                                          btnCancelOnPress: () {},
-                                          btnCancelText: "OK",
-                                          btnCancelColor:
-                                              MyColors.appColorBlue1())
-                                      .show();
+
                                 }),
                           ),
                         )),
@@ -239,7 +135,7 @@ Widget bodyCertificateTexnikuim(
                         onPressed: () {
                           pushNewScreen(context,
                               pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                              screen: Privilege(funcState: func),
+                              screen: PrivilegeTexnikum(funcState: func, windowId: "0"),
                               withNavBar: false);
                         },
                         height: 50,
@@ -257,6 +153,6 @@ Widget bodyCertificateTexnikuim(
                 ],
               ),
             )
-          : MyWidgets.loaderDownload(context: context)
-      : MyWidgets.loaderDownload(context: context);
+          : MyWidgets.loaderDownload(context: context);
+
 }

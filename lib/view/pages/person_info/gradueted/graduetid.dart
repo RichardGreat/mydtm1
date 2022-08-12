@@ -113,36 +113,36 @@ class _GraduatedState extends State<Graduated> {
                             const SizedBox(height: 4),
                             GestureDetector(
                               onTap: () {
-                                if (providerGraduated.graduatedEduTypeId ==
-                                        "4" &&
-                                    providerGraduated
-                                            .graduatedCountryName.length >=
-                                        5 &&
-                                    providerGraduated.txtControllerGraduatedName
-                                            .text.length >=
-                                        4) {
-                                  providerGraduated.modelGraduatedInfo.data
-                                              .graduatedYear
-                                              .toString() ==
-                                          "2022"
-                                      ? {}
-                                      : providerGraduated.getYear(
-                                          contexts: context,
-                                          providerGraduated: providerGraduated);
-                                } else if (providerGraduated
-                                            .graduatedEduTypeId !=
-                                        "4" &&
-                                    providerGraduated.graduatedEduName.length >
-                                        5) {
-                                  providerGraduated.modelGraduatedInfo.data
-                                              .graduatedYear
-                                              .toString() ==
-                                          "2022"
-                                      ? {}
-                                      : providerGraduated.getYear(
-                                          contexts: context,
-                                          providerGraduated: providerGraduated);
-                                }
+                                // if (providerGraduated.graduatedEduTypeId ==
+                                //         "4" &&
+                                //     providerGraduated
+                                //             .graduatedCountryName.length >=
+                                //         5 &&
+                                //     providerGraduated.txtControllerGraduatedName
+                                //             .text.length >=
+                                //         4) {
+                                //   providerGraduated.modelGraduatedInfo.data
+                                //               .graduatedYear
+                                //               .toString() ==
+                                //           "2022"
+                                //       ? {}
+                                //       : providerGraduated.getYear(
+                                //           contexts: context,
+                                //           providerGraduated: providerGraduated);
+                                // } else if (providerGraduated
+                                //             .graduatedEduTypeId !=
+                                //         "4" &&
+                                //     providerGraduated.graduatedEduName.length >
+                                //         5) {
+                                //   providerGraduated.modelGraduatedInfo.data
+                                //               .graduatedYear
+                                //               .toString() ==
+                                //           "2022"
+                                //       ? {}
+                                //       : providerGraduated.getYear(
+                                //           contexts: context,
+                                //           providerGraduated: providerGraduated);
+                                // }
                               },
                               child: Container(
                                 height: 50,
@@ -348,23 +348,23 @@ class _GraduatedState extends State<Graduated> {
                                     // modelCheckUserInfo: widget.modelCheckUserInfo,
                                     context: context,
                                     providerGradueted: providerGraduated),
-                            providerGraduated
-                                        .modelGraduatedInfo.data.graduatedYear
-                                        .toString() ==
-                                    "2022"
-                                ? const SizedBox.shrink()
-                                : const SizedBox(height: 20),
-
-                            widget.windowIdGraduated !="2"?
-                            providerGraduated
-                                        .modelGraduatedInfo.data.graduatedYear
-                                        .toString() ==
-                                    "2022"
-                                ? const SizedBox.shrink()
-                                : updateInfoGradueted(
-                                    context: context,
-                                    function: getUpdate2022,
-                                    providerGraduated: providerGraduated):const SizedBox.shrink(),
+                            // providerGraduated
+                            //             .modelGraduatedInfo.data.graduatedYear
+                            //             .toString() ==
+                            //         "2022"
+                            //     ? const SizedBox.shrink()
+                            //     : const SizedBox(height: 20),
+                            //
+                            // widget.windowIdGraduated !="2"?
+                            // providerGraduated
+                            //             .modelGraduatedInfo.data.graduatedYear
+                            //             .toString() ==
+                            //         "2022"
+                            //     ? const SizedBox.shrink()
+                            //     : updateInfoGradueted(
+                            //         context: context,
+                            //         function: getUpdate2022,
+                            //         providerGraduated: providerGraduated):const SizedBox.shrink(),
                           ],
                         ),
                       ),

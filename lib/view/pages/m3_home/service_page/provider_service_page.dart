@@ -26,7 +26,7 @@ class ProviderServicePage extends ChangeNotifier{
     box.delete("categoryNameId");
     box.put("categoryName", categoryName);
     box.put("categoryNameId", categoryId);
-    print(categoryId.toString());
+
     status
         ? {
       if(box.get("token").toString().length < 30){
@@ -56,13 +56,32 @@ class ProviderServicePage extends ChangeNotifier{
 
         if(categoryId == "42")
                   {
-                    pushNewScreen(
-                      context,
-                      screen: CheckInformation(serviceName: categoryName),
-                      withNavBar: false,
-                      pageTransitionAnimation:
-                          PageTransitionAnimation.cupertino,
-                    )
+
+                    // pushNewScreen(
+                    //   context,
+                    //   screen: CheckInformation(serviceName: categoryName),
+                    //   withNavBar: false,
+                    //   pageTransitionAnimation:
+                    //       PageTransitionAnimation.cupertino,
+                    // ),
+                    AwesomeDialog(
+                        context: context,
+                        dialogType: DialogType.NO_HEADER,
+                        animType: AnimType.BOTTOMSLIDE,
+                        dismissOnTouchOutside: false,
+                        title: "DTM",
+                        desc: "regEnd".tr(),
+                        titleTextStyle: TextStyle(
+                            color: MyColors.appColorBlue1(),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                        descTextStyle: TextStyle(
+                            color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+                        btnCancelColor: MyColors.appColorBlue1(),
+                        btnCancelOnPress: () {},
+                        btnCancelText: "OK")
+                        .show(),
+
                   }
         else  if(categoryId == "41")
           {
