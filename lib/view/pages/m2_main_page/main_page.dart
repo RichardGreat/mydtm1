@@ -46,7 +46,10 @@ class _MainPagesState extends State<MainPages> {
 
       box.delete("updateVersion");
       box.put("updateVersion", "1005");
-    } catch (e) {}
+    } catch (e) {
+
+      throw Exception("Error update");
+    }
   }
 
   @override
@@ -67,7 +70,7 @@ class _MainPagesState extends State<MainPages> {
                 box.get("lockScreen").toString() != "null"
             ? {
                 screenLock(
-                  withBlur: true,
+                  useBlur: true,
                   context: navigatorKey.currentContext!,
                   correctString: box.get("lockScreen").toString(),
                   canCancel: false,
@@ -79,8 +82,8 @@ class _MainPagesState extends State<MainPages> {
                           onTap: () {
                             AwesomeDialog(
                               context: context,
-                              dialogType: DialogType.NO_HEADER,
-                              animType: AnimType.BOTTOMSLIDE,
+                              dialogType: DialogType.noHeader,
+                              animType: AnimType.bottomSlide,
                               title: "DTM",
                               desc: "logUot".tr(),
                               titleTextStyle: TextStyle(
@@ -152,7 +155,7 @@ class _MainPagesState extends State<MainPages> {
                   //   Icons.fingerprint,
                   // ),
                   title:  Text("pinPassword".tr()),
-                  screenLockConfig: const ScreenLockConfig(
+                  config: const ScreenLockConfig(
                     backgroundColor: Colors.black,
                   ),
                   // customizedButtonTap: () async {

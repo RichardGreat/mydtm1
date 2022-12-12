@@ -50,7 +50,7 @@ class _LockScreenAllWindowState extends State<LockScreenAllWindow> {
         customizedButtonTap: () async {
           await localAuth(context);
         },
-        didOpened: () async {
+        onOpened: () async {
           await localAuth(context);
 
         },
