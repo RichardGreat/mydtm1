@@ -57,7 +57,7 @@ var box = Hive.box("online");
                                 (context, url, downloadProgress) =>
                             const   CupertinoActivityIndicator(),
                             errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
+                            Image.asset("assets/images/dtm.png"),
                           ),
 
                           const SizedBox(height: 10),

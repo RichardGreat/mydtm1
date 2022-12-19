@@ -51,6 +51,7 @@ Future gerRefresh()async{
           backgroundColor: MyColors.appColorWhite(),
           // appBar:   searchMain(context: context, providerMainHome: providerMainHome),
           body: RefreshIndicator(
+
             onRefresh:gerRefresh,
             child: SafeArea(
                 child: bodyMainHome(

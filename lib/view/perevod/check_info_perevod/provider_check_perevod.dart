@@ -1,23 +1,21 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/qayd_varaqa.dart';
-import 'package:mydtm/data/internet_connections/person_info/check_user_info/check_user_info.dart';
 import 'package:mydtm/data/internet_connections/person_info/privilege_check/privillege_check.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
-import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/data/model_parse/person_info/privilege_model/privilege_model1.dart';
 import 'package:mydtm/data/perevod/internet/check_user_perevod_info.dart';
 import 'package:mydtm/data/perevod/model/check_user_perevod.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
-import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/new_edu_perevod.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/old_edu_add.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';

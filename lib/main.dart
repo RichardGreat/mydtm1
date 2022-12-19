@@ -9,6 +9,8 @@ import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'dart:async';
 
+import 'package:mydtm/view/sertificate_service/sertifate_serv.dart';
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
@@ -130,7 +132,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
         home: box.get("language") == "1" ||
                 box.get("language") == "2" ||
                 box.get("language") == "3"
-            ? const MainPages()
+            ? const SertificateServices()//MainPages()
             : const EnterFirst0(),
       ),
     );

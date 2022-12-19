@@ -149,7 +149,7 @@ Widget bodyMainHome(
                                                   url, downloadProgress) =>
                                               const CupertinoActivityIndicator(),
                                           errorWidget: (context, url, error) =>
-                                              const Icon(Icons.error),
+                                            Image.asset("assets/images/dtm.png", fit: BoxFit.contain),
                                         ),
                                         Text(
                                           box.get("language") == "1"
