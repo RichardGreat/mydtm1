@@ -4,8 +4,8 @@ class ModelCertNationRegion {
     required this.data,
   });
 
-  int status;
-  Map<String, String> data;
+  late int status;
+  late Map<String, String> data;
 
   factory ModelCertNationRegion.fromJson(Map<String, dynamic> json) =>
       ModelCertNationRegion(

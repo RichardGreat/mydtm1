@@ -1,17 +1,18 @@
-import 'package:flutter/foundation.dart';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/certificate_nation/get_regions.dart';
-import 'package:mydtm/data/model_parse/mod_certificate_nation/modal_get_reg.dart';
 import 'package:mydtm/view/sertificate_service/widget_cert_nation/list_choose_regions.dart';
 
 class ProviderCertificateService extends ChangeNotifier {
-  List<ModelCertNationRegion> listCerRegions = [];
+  // List<ModelCertNationRegion> listCerRegions = [];
+  Map<String, String> mapReg = {};
   NetworkGetRegionCertNation getRegionCertNation = NetworkGetRegionCertNation();
   bool boolGetSerRegion = false;
 
   Future getDateServiceCertificate({required BuildContext context}) async {
     boolGetSerRegion = false;
-    listCerRegions = await getRegionCertNation.getRegion();
+    mapReg = await getRegionCertNation.getRegion();
+    log(mapReg.toString());
     boolGetSerRegion = true;
     getButtonSheet(context: context);
 
@@ -27,7 +28,7 @@ class ProviderCertificateService extends ChangeNotifier {
                 topLeft: Radius.circular(10), topRight: Radius.circular(10))),
         context: context,
         builder: (BuildContext context) {
-          return ListChooseRegions(listCerRegions: listCerRegions);
+          return ListChooseRegions(listCerRegions:mapReg );
         });
   }
 }

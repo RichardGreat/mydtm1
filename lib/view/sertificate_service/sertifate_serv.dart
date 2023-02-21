@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
@@ -18,14 +21,18 @@ class SertificateServices extends StatefulWidget {
 class _SertificateServicesState extends State<SertificateServices> {
   ProviderCertificateService providerCertificateService =
       ProviderCertificateService();
+  var box = Hive.box("online");
+
 
   @override
   Widget build(BuildContext context) {
+    // log(box.get("token"));
     return ChangeNotifierProvider(
       create: (context) => providerCertificateService,
       child: Consumer<ProviderCertificateService>(
         builder: (context, value, child) => Scaffold(
             backgroundColor: MyColors.appColorWhite(),
+
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
