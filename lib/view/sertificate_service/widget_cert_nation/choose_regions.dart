@@ -5,7 +5,9 @@ import 'package:mydtm/view/sertificate_service/service_page_sert/provider_sertif
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'dart:developer';
 
-Widget chooseRegions({required ProviderCertificateService providerCertificateService, required BuildContext context}) {
+Widget chooseRegions(
+    {required ProviderCertificateService providerCertificateService,
+    required BuildContext context}) {
   var box = Hive.box("online");
   return Container(
     height: 50,
@@ -15,14 +17,14 @@ Widget chooseRegions({required ProviderCertificateService providerCertificateSer
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: MyColors.appColorGrey400())),
     child: ListTile(
-      onTap: (){
+      onTap: () {
         log(box.get("token"));
         log("12312");
         providerCertificateService.getDateServiceCertificate(context: context);
       },
       leading: Text("province".tr()),
       trailing: const Icon(Icons.arrow_forward_ios_rounded),
-      horizontalTitleGap: 0,
+      horizontalTitleGap: 1,
     ),
   );
 }
