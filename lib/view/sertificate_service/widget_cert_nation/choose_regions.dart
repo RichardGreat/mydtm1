@@ -7,7 +7,9 @@ import 'dart:developer';
 
 Widget chooseRegions(
     {required ProviderCertificateService providerCertificateService,
-    required BuildContext context}) {
+    required BuildContext context,
+    required String natCerId
+    }) {
   var box = Hive.box("online");
   return Container(
     height: 50,
@@ -20,9 +22,13 @@ Widget chooseRegions(
       onTap: () {
         log(box.get("token"));
         log("12312");
-        providerCertificateService.getDateServiceCertificate(context: context);
+        providerCertificateService.getDateServiceCertificate(
+            context: context,
+            providerCertificateService: providerCertificateService,
+          natCertId: natCerId
+        );
       },
-      leading: Text("province".tr()),
+      leading: Text(providerCertificateService.regName ?? "province".tr()),
       trailing: const Icon(Icons.arrow_forward_ios_rounded),
       horizontalTitleGap: 1,
     ),

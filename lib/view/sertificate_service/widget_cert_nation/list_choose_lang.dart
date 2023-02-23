@@ -5,21 +5,21 @@ import 'package:mydtm/view/sertificate_service/service_page_sert/provider_sertif
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class ListChooseRegions extends StatefulWidget {
+class ListChooseLangs extends StatefulWidget {
   Map<String, String> listCerRegions;
   ProviderCertificateService providerCertificateService;
 
-  ListChooseRegions(
+  ListChooseLangs(
       {Key? key,
-      required this.listCerRegions,
-      required this.providerCertificateService})
+        required this.listCerRegions,
+        required this.providerCertificateService})
       : super(key: key);
 
   @override
-  State<ListChooseRegions> createState() => _ListChooseRegionsState();
+  State<ListChooseLangs> createState() => _ListChooseLangsState();
 }
 
-class _ListChooseRegionsState extends State<ListChooseRegions> {
+class _ListChooseLangsState extends State<ListChooseLangs> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,9 +29,9 @@ class _ListChooseRegionsState extends State<ListChooseRegions> {
         const SizedBox(height: 10),
         Padding(
           padding: const EdgeInsets.all(4),
-          child: Text("testRegion".tr(),
+          child: Text("chooseLangTest".tr(),
               style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+              const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
         ),
         Expanded(
           child: ListView.builder(

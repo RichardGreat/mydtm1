@@ -132,7 +132,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
         home: box.get("language") == "1" ||
                 box.get("language") == "2" ||
                 box.get("language") == "3"
-            ? const SertificateServices()//MainPages()
+            ?  //MainPages()//
+         SertificateServices(serID: "10",)//MainPages()
             : const EnterFirst0(),
       ),
     );

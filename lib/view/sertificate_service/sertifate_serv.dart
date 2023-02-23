@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -12,7 +10,9 @@ import 'widget_cert_nation/choose_regions.dart';
 import 'widget_cert_nation/widgets.dart';
 
 class SertificateServices extends StatefulWidget {
-  const SertificateServices({Key? key}) : super(key: key);
+  String serID;
+
+  SertificateServices({Key? key, required this.serID}) : super(key: key);
 
   @override
   State<SertificateServices> createState() => _SertificateServicesState();
@@ -23,7 +23,6 @@ class _SertificateServicesState extends State<SertificateServices> {
       ProviderCertificateService();
   var box = Hive.box("online");
 
-
   @override
   Widget build(BuildContext context) {
     // log(box.get("token"));
@@ -32,7 +31,6 @@ class _SertificateServicesState extends State<SertificateServices> {
       child: Consumer<ProviderCertificateService>(
         builder: (context, value, child) => Scaffold(
             backgroundColor: MyColors.appColorWhite(),
-
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -43,9 +41,14 @@ class _SertificateServicesState extends State<SertificateServices> {
                     const SizedBox(height: 50),
                     chooseRegions(
                         providerCertificateService: providerCertificateService,
+                        natCerId: widget.serID,
                         context: context),
                     const SizedBox(height: 30),
-                    chooseLanguages(),
+                    chooseLanguages(
+                        providerCertificateService: providerCertificateService,
+                        natCerId: widget.serID,
+                        context: context
+                    ),
                     const SizedBox(height: 30),
                     chooseButtons(),
                   ],
