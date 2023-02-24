@@ -47,10 +47,10 @@ class _SertificateServicesState extends State<SertificateServices> {
                     chooseLanguages(
                         providerCertificateService: providerCertificateService,
                         natCerId: widget.serID,
-                        context: context
-                    ),
+                        context: context),
                     const SizedBox(height: 30),
-                    chooseButtons(),
+                    chooseButtons(
+                        providerCertificateService: providerCertificateService),
                   ],
                 ),
               ),

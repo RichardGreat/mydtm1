@@ -5,6 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/check_info_perevodga.dart';
+import 'package:mydtm/view/sertificate_service/sertifate_serv.dart';
 import 'package:mydtm/view/texnikum/main_texnikum.dart';
 
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -29,6 +30,8 @@ class ProviderServicePage extends ChangeNotifier{
 
     status
         ? {
+
+
       if(box.get("token").toString().length < 30){
 
         AwesomeDialog(
@@ -53,7 +56,13 @@ class ProviderServicePage extends ChangeNotifier{
         )..show(),
 
       }else{
+      if(int.parse(categoryId) >= 1 && int.parse(categoryId) <= 10){
+        ///
 
+        pushNewScreen(context,
+            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+            screen: SertificateServices(serID: categoryId))
+      } else
         if(categoryId == "42")
                   {
 

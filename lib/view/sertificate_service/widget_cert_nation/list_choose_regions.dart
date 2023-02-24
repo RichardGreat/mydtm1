@@ -51,7 +51,7 @@ class _ListChooseRegionsState extends State<ListChooseRegions> {
                       // log(widget.listCerRegions.values.elementAt(index));
                       widget.providerCertificateService.setNameRegion(
                           name: widget.listCerRegions.values.elementAt(index),
-                          id: widget.listCerRegions.keys.elementAt.toString());
+                          id: widget.listCerRegions.keys.elementAt(index).toString());
                       Navigator.pop(context);
                     },
                     child: Row(

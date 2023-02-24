@@ -14,10 +14,12 @@ class NetworkGetRegionCertNation {
     /// lang oxirida qo'shish kerak
 
     response = await dio.get(
-        // "https://apimobile.dtm.uz/v1/qabul/test-region-list/$natCerId/'${box.get("language") == "1" ? "uz" : box.get("language") == "2" ? 'kk' : 'ru'}",
-        "https://apimobile.dtm.uz/v1/qabul/test-region-list/",
+        "https://apimobile.dtm.uz/v1/national/test-region-list/$natCerId/${box.get("language") == "1" ? "uz" : box.get("language") == "2" ? 'kk' : 'ru'}",
+        // "https://apimobile.dtm.uz/v1/qabul/test-region-list/",
         options: Options(headers: {"X-Access-Token": box.get("token")}));
-    // log(ModelCertNationRegion.fromJson(response.data).data.toString());
+    log( "https://apimobile.dtm.uz/v1/national/test-region-list//$natCerId/${box.get("language") == "1" ? "uz" : box.get("language") == "2" ? 'kk' : 'ru'}");
+    log(response.data.toString());
+
     if (response.statusCode == 200) {
       return ModelCertNationRegion.fromJson(response.data).data;
 
@@ -38,8 +40,8 @@ class NetworkGetRegionCertNation {
 
     /// lang oxirida qo'shish kerak
     response = await dio.get(
-      // "https://apimobile.dtm.uz/v1/national/test-lang-list/$natCerId/${box.get("language") == "1" ? "uz" : box.get("language") == "2" ? 'kk' : 'ru'}",
-        "https://apimobile.dtm.uz/v1/national/test-lang-list/9/ru",
+      "https://apimobile.dtm.uz/v1/national/test-lang-list/$natCerId/${box.get("language") == "1" ? "uz" : box.get("language") == "2" ? 'kk' : 'ru'}",
+        // "https://apimobile.dtm.uz/v1/national/test-lang-list/$natCerId/ru",
         options: Options(headers: {"X-Access-Token": box.get("token")}));
 
     log(ModelCertNationRegion.fromJson(response.data).data.toString());

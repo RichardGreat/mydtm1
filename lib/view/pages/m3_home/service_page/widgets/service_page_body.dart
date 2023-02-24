@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/provider_service_page.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/widgets/service_page_bottonsheet.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
+import 'package:mydtm/view/sertificate_service/sertifate_serv.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -40,13 +43,22 @@ Widget servicePageBody(
           itemCount: 2,
           itemBuilder: (context, index) => ListTile(
             onTap: () {
+              log(serviceMainList.id.toString());
               if (index == 0) {
                 serviceSheetBottomSheet(
                     serviceMainList: serviceMainList,
                     context: context,
                     providerServicePage: providerServicePage);
               } else if (index == 1) {
+
                 if(box.get("token").toString().length > 29) {
+                  if(int.parse(serviceMainList.id.toString()) >= 1 && int.parse(serviceMainList.id.toString()) <= 10){
+                    ///
+
+                    pushNewScreen(context,
+                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                        screen: SertificateServices(serID: serviceMainList.id.toString()));
+                  }
                 if(serviceMainList.id.toString().trim() == "42") {
 
                     pushNewScreen(context,

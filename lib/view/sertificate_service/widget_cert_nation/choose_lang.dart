@@ -22,7 +22,7 @@ Widget chooseLanguages(
             certId: natCerId
         );
       },
-      leading: Text("chooseLangTest".tr()),
+      leading: Text(providerCertificateService.certLangName ?? "chooseLangTest".tr()),
       trailing: const Icon(Icons.arrow_forward_ios_rounded),
       horizontalTitleGap: 0,
     ),

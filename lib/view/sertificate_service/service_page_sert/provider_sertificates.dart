@@ -1,13 +1,16 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:mydtm/data/internet_connections/certificate_nation/get_regions.dart';
+import 'package:mydtm/data/internet_connections/certificate_nation/create_nat_cert.dart';
+import 'package:mydtm/data/internet_connections/certificate_nation/get_regLang.dart';
+import 'package:mydtm/view/sertificate_service/widget_cert_nation/list_choose_lang.dart';
 import 'package:mydtm/view/sertificate_service/widget_cert_nation/list_choose_regions.dart';
 
 class ProviderCertificateService extends ChangeNotifier {
   // List<ModelCertNationRegion> listCerRegions = [];
   Map<String, String> mapReg = {};
   Map<String, String> mapLang = {};
+  String globNatCert = "";
   NetworkGetRegionCertNation getRegionCertNation = NetworkGetRegionCertNation();
   bool boolGetSerRegion = false;
 
@@ -18,10 +21,12 @@ class ProviderCertificateService extends ChangeNotifier {
     boolGetSerRegion = false;
     mapReg = await getRegionCertNation.getRegion(natCerId: natCertId);
     log(mapReg.toString());
+
     boolGetSerRegion = true;
     getButtonSheet(
         context: context,
         providerCertificateService: providerCertificateService);
+    globNatCert = natCertId;
     notifyListeners();
   }
 
@@ -69,8 +74,8 @@ class ProviderCertificateService extends ChangeNotifier {
                 topLeft: Radius.circular(10), topRight: Radius.circular(10))),
         context: context,
         builder: (BuildContext context) {
-          return ListChooseRegions(
-              listCerRegions: mapLang,
+          return ListChooseLangs(
+              listCerLang: mapLang,
               providerCertificateService: providerCertificateService);
         });
   }
@@ -82,5 +87,26 @@ class ProviderCertificateService extends ChangeNotifier {
     regName = name;
     regId = id;
     notifyListeners();
+  }
+
+  String? certLangName, certLangId;
+
+  Future setCertLang({required String name, required String id}) async {
+    certLangName = name;
+    certLangId = id;
+    notifyListeners();
+  }
+
+
+  NetworkCreateCertNation networkCreateCertNation = NetworkCreateCertNation();
+  String? resultData;
+
+  Future createCert()async{
+    // NetworkCreateCertNation
+    log(certLangId!);
+    log(regId!);
+    log(globNatCert!);
+     resultData = await networkCreateCertNation.getNatCert(testLangId: certLangId!, testRegion: regId!, natCerId: globNatCert);
+     log(resultData!);
   }
 }

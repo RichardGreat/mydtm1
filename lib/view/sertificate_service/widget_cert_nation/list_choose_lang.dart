@@ -1,17 +1,15 @@
-import 'dart:developer';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/sertificate_service/service_page_sert/provider_sertificates.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class ListChooseLangs extends StatefulWidget {
-  Map<String, String> listCerRegions;
+  Map<String, String> listCerLang;
   ProviderCertificateService providerCertificateService;
 
   ListChooseLangs(
       {Key? key,
-        required this.listCerRegions,
+        required this.listCerLang,
         required this.providerCertificateService})
       : super(key: key);
 
@@ -35,7 +33,7 @@ class _ListChooseLangsState extends State<ListChooseLangs> {
         ),
         Expanded(
           child: ListView.builder(
-            itemCount: widget.listCerRegions.length,
+            itemCount: widget.listCerLang.length,
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.fromLTRB(4, 8, 8, 0),
               child: Column(
@@ -49,9 +47,9 @@ class _ListChooseLangsState extends State<ListChooseLangs> {
                     onTap: () {
                       // log(widget.listCerRegions.keys.elementAt(index));
                       // log(widget.listCerRegions.values.elementAt(index));
-                      widget.providerCertificateService.setNameRegion(
-                          name: widget.listCerRegions.values.elementAt(index),
-                          id: widget.listCerRegions.keys.elementAt.toString());
+                      widget.providerCertificateService.setCertLang(
+                          name: widget.listCerLang.values.elementAt(index),
+                          id: widget.listCerLang.keys.elementAt(index).toString());
                       Navigator.pop(context);
                     },
                     child: Row(
@@ -60,7 +58,7 @@ class _ListChooseLangsState extends State<ListChooseLangs> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(4, 4, 8, 0),
                           child: Text(
-                              widget.listCerRegions.values.elementAt(index)),
+                              widget.listCerLang.values.elementAt(index)),
                         ),
                       ],
                     ),

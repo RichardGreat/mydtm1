@@ -171,7 +171,7 @@ Widget bodyMainHome(
 
                                           textAlign: TextAlign.center,
                                           overflow: TextOverflow.ellipsis,
-                                          maxLines: 4,
+                                          maxLines: 3,
                                           // softWrap: true,
                                           style: const TextStyle(
                                               fontFamily: 'Roboto-Medium'),

@@ -1,8 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mydtm/view/sertificate_service/service_page_sert/provider_sertificates.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-Widget chooseButtons() {
+Widget chooseButtons({
+  required ProviderCertificateService providerCertificateService
+}) {
   return Container(
     height: 50,
     width: double.infinity,
@@ -11,7 +14,10 @@ Widget chooseButtons() {
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: MyColors.appColorGrey400())),
     child: MaterialButton(
-      onPressed: () {},
+      onPressed: () {
+        providerCertificateService.createCert();
+
+      },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       color: MyColors.appColorBlue1(),
       child: Text(
