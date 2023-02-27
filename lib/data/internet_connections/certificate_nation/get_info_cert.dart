@@ -3,14 +3,14 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 
-class NetworkCreateCertNation {
+class NetworkGetCertNation {
   Dio dio = Dio();
   var box = Hive.box("online");
 
   Future<String> getNatCert(
       {required String testLangId,
-      required String testRegion,
-      required String natCerId}) async {
+        required String testRegion,
+        required String natCerId}) async {
     log("https://apimobile.dtm.uz/v1/national/create/$natCerId");
     log(box.get("token"));
     log(testRegion.toString());
