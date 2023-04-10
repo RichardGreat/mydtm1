@@ -143,9 +143,9 @@ class ProviderMainHome extends ChangeNotifier {
       modelServiceList =
           ModelServiceList.fromJson(jsonDecode(box.get("dataServiceList")));
       listDataServiceList.addAll(modelServiceList.data);
-      for (var value in listDataServiceList) {
-        value.service.sort((a, b) => a.sortId);
-      }
+      // for (var value in listDataServiceList) {
+      //   value.service.sort((a, b) => (a.sortId));
+      // }
       listDataServiceListTemp.clear();
       listDataServiceListTemp2.clear();
 
@@ -157,6 +157,7 @@ class ProviderMainHome extends ChangeNotifier {
       boolParseData = true;
       notifyListeners();
     } catch (e) {
+      log(e.toString());
       AwesomeDialog(
               context: context,
               dialogType: DialogType.ERROR,

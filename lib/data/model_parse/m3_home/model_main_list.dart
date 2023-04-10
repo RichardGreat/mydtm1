@@ -40,7 +40,7 @@ class DataServiceList {
   List<ServiceMainList> service;
 
   factory DataServiceList.fromJson(Map<String, dynamic> json) => DataServiceList(
-        id: json["id"],
+    id: json["id"],
     categoryName: json["name"],
     categoryNameRu: json["name_ru"],
     categoryNameQQ: json["name_qq"],
@@ -97,23 +97,23 @@ class ServiceMainList {
  dynamic deleted;
 
   factory ServiceMainList.fromJson(Map<String, dynamic> json) => ServiceMainList(
-        id: json["id"],
-        serviceName: json["name"],
-        serviceNameRu: json["name_ru"],
-        serviceNameQQ: json["name_qq"],
-        serviceText: json["text"],
-       serviceTextRu: json["text"],
-       serviceTextQQ: json["text"],
-        mobilIcon: json["mobil_icon"],
-        status: json["status"],
-        link: json["link"],
-        icon: json["icon"],
-        catId: json["cat_id"],
-        cod: json["cod"],
-        sortId: json["sort_id"],
-        createdAt: json["created_at"],
-        updatedAt: json["updated_at"],
-        deleted: json["deleted"],
+        id: json["id"]??"",
+        serviceName: json["name"]??"",
+        serviceNameRu: json["name_ru"]??"",
+        serviceNameQQ: json["name_qq"]??"",
+        serviceText: json["text"]??"",
+        serviceTextRu: json["text"]??"",
+        serviceTextQQ: json["text"]??"",
+        mobilIcon: json["mobil_icon"]??"",
+        status: json["status"]??"",
+        link: json["link"]??"",
+        icon: json["icon"]??"",
+        catId: json["cat_id"]??"",
+        cod: json["cod"]??"",
+        sortId: json["sort_id"]??"",
+        createdAt: json["created_at"]??"",
+        updatedAt: json["updated_at"]??"",
+        deleted: json["deleted"]??"",
       );
 
   Map<String, dynamic> toJson() => {

@@ -29,7 +29,7 @@ class _MainHomeState extends State<MainHome> {
   Future getServiceList() async {
     Future.delayed(Duration.zero);
 
-    await providerMainHome.checkVersion(context: context);
+    // await providerMainHome.checkVersion(context: context);
     await providerMainHome.setLangUser();
     await providerMainHome.getDateService(context: context);
   }
@@ -53,8 +53,8 @@ Future gerRefresh()async{
           body: RefreshIndicator(
             onRefresh:gerRefresh,
             child: SafeArea(
-                child: bodyMainHome(
-                    context: context, providerMainHome: providerMainHome)),
+                child: bodyMainHome(context: context, providerMainHome: providerMainHome)
+            ),
           ),
         ),
       ),

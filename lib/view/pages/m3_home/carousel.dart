@@ -65,10 +65,10 @@ var box = Hive.box("online");
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               box.get("language") == "1"
-                                  ?   i.serviceName
+                                  ?   i.serviceName.toString()
                                   : box.get("language") == "2"
-                                  ? i.serviceNameQQ
-                                  : i.serviceNameRu,
+                                  ? i.serviceNameQQ.toString()
+                                  : i.serviceNameRu.toString(),
 
                               maxLines: 2,
                               softWrap: true,

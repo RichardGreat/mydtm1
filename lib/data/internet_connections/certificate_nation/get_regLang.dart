@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
+import 'package:mydtm/data/internet_connections/main_url.dart';
 import '../../model_parse/mod_certificate_nation/modal_get_reg.dart';
 
 class NetworkGetRegionCertNation {
@@ -14,7 +15,7 @@ class NetworkGetRegionCertNation {
     /// lang oxirida qo'shish kerak
 
     response = await dio.get(
-        "https://apimobile.dtm.uz/v1/national/test-region-list/$natCerId/${box.get("language") == "1" ? "uz" : box.get("language") == "2" ? 'kk' : 'ru'}",
+        "${MainUrl.mainUrls}/v1/national/test-region-list/$natCerId/${box.get("language") == "1" ? "uz" : box.get("language") == "2" ? 'kk' : 'ru'}",
         // "https://apimobile.dtm.uz/v1/qabul/test-region-list/",
         options: Options(headers: {"X-Access-Token": box.get("token")}));
     log( "https://apimobile.dtm.uz/v1/national/test-region-list//$natCerId/${box.get("language") == "1" ? "uz" : box.get("language") == "2" ? 'kk' : 'ru'}");
@@ -40,7 +41,7 @@ class NetworkGetRegionCertNation {
 
     /// lang oxirida qo'shish kerak
     response = await dio.get(
-      "https://apimobile.dtm.uz/v1/national/test-lang-list/$natCerId/${box.get("language") == "1" ? "uz" : box.get("language") == "2" ? 'kk' : 'ru'}",
+      "${MainUrl.mainUrls}/v1/national/test-lang-list/$natCerId/${box.get("language") == "1" ? "uz" : box.get("language") == "2" ? 'kk' : 'ru'}",
         // "https://apimobile.dtm.uz/v1/national/test-lang-list/$natCerId/ru",
         options: Options(headers: {"X-Access-Token": box.get("token")}));
 

@@ -9,7 +9,6 @@ import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'dart:async';
 
-import 'package:mydtm/view/sertificate_service/sertifate_serv.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -23,7 +22,9 @@ class MyHttpOverrides extends HttpOverrides {
 Future initialization(BuildContext? context) async {
   await Future.delayed(const Duration(milliseconds: 1900));
 }
-final GlobalKey<NavigatorState> navigatorKey =  GlobalKey<NavigatorState>();
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -36,7 +37,7 @@ Future main() async {
   ]).then(
     (_) => runApp(
       EasyLocalization(
-        supportedLocales: [
+        supportedLocales: const [
           Locale('kk', 'KK'),
           Locale('ru', 'RU'),
           Locale('uz', 'UZ'),
@@ -61,39 +62,29 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   var box = Hive.box("online");
-   LocalAuthentication auth = LocalAuthentication();
-
-
-
+  LocalAuthentication auth = LocalAuthentication();
 
   Future<void> localAuth(BuildContext context) async {
-
     final List<BiometricType> availableBiometrics =
-    await auth.getAvailableBiometrics();
+        await auth.getAvailableBiometrics();
     if (availableBiometrics.contains(BiometricType.face) ||
-        availableBiometrics.contains(BiometricType.fingerprint)) {
-    }
+        availableBiometrics.contains(BiometricType.fingerprint)) {}
   }
-
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-
     switch (state) {
       case AppLifecycleState.resumed:
-
         break;
       case AppLifecycleState.inactive:
-
         break;
       case AppLifecycleState.paused:
-      // Handle this case
+        // Handle this case
         break;
       case AppLifecycleState.detached:
-        {
-        }
+        {}
         break;
     }
 
@@ -105,18 +96,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
     // screenLock123();
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-
   }
-
-
-
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -132,12 +118,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
         home: box.get("language") == "1" ||
                 box.get("language") == "2" ||
                 box.get("language") == "3"
-            ?  //MainPages()//
-        MainPages()
+            ? //MainPages()//
+            MainPages()
             : const EnterFirst0(),
       ),
     );
   }
-
-
 }
