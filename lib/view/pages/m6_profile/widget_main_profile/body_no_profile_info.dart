@@ -13,7 +13,7 @@ Widget bodyNoProfileInfo({required BuildContext context, required ProviderProfil
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
 
-        Image.asset("assets/images/dtm.png", height: 70),
+        Image.asset("assets/images/gerb.png", height: 70),
         Expanded(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

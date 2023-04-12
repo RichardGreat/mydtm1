@@ -2,6 +2,7 @@ import 'dart:core';
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
+import 'package:mydtm/data/internet_connections/main_url.dart';
 
 class NetworkCreateCertNation {
   Dio dio = Dio();
@@ -17,7 +18,7 @@ class NetworkCreateCertNation {
     log(testLangId.toString());
 
     Response response = await dio.post(
-        "https://apimobile.dtm.uz/v1/national/create/$natCerId",
+        "${MainUrl.mainUrls}/v1/national/create/$natCerId",
         data: {"test_region": testRegion.toString(), "test_lang": testLangId.toString()},
         options: Options(headers: {"X-Access-Token": box.get("token")}));
     log(response.data.toString());

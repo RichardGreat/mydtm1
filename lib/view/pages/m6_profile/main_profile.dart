@@ -26,7 +26,6 @@ class _MainProfileState extends State<MainProfile> {
   Future getProfileInfo()async{
     // if(box.get("token").toString().length > 30){
     await providerProfile.getProfile();
-    log("@@@123");
     setState((){});
     // }else{}
   }

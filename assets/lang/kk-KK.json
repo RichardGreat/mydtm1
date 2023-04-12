@@ -240,13 +240,15 @@
   "eduNameType": "Oli ta'lim muassasasi nomini yozing",
   "pictureNotInfo": "Rasm yuklang",
   "pleaseWait": "Iltimos kuting",
-
-
   "chooseTexnikum": "Tańlaǵan baǵdarlarí",
   "texnikum": "Техникум",
   "privilegeEyeTexnikum": "Kózi ázzi bolǵan shaxslar ushın jeńillik",
   "privilegePoorTexnikum": "Kem támiyinlengen shaxslar ushın jeńillik",
   "regEnd": "Прием закончен",
   "nationCertTitle": "Milliy sertifikat",
-  "chooseLangTest": "Test topshirish tilini tanlang"
+  "chooseLangTest": "Test topshirish tilini tanlang",
+  "certLangExam": "Imtihon topshirish tili",
+  "certDayNatExam": "Imtihon topshirish vaqti",
+  "certRuxsatnoma": "Ruxsatnoma",
+  "certificateNatja": "Imtihon natijasi"
 }

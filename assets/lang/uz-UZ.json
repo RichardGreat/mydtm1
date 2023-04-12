@@ -245,7 +245,14 @@
   "privilegePoorTexnikum": "Kam taminlangan shaxslar uchun imtiyoz",
   "regEnd": "Qabul jarayoni yakunlangan",
   "nationCertTitle": "Milliy sertifikat",
-  "chooseLangTest": "Test topshirish tilini tanlang"
+  "chooseLangTest": "Test topshirish tilini tanlang",
+  "certLangExam": "Imtihon topshirish tili",
+  "certDayNatExam": "Imtihon topshirish vaqti",
+  "certRuxsatnoma": "Ruxsatnoma",
+  "certificateNatja": "Imtihon natijasi"
+
+
+
 
 
 }

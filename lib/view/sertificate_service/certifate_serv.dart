@@ -21,6 +21,7 @@ class SertificateServices extends StatefulWidget {
 }
 
 class _SertificateServicesState extends State<SertificateServices> {
+
   ProviderCertificateService providerCertificateService =
       ProviderCertificateService();
   var box = Hive.box("online");
@@ -59,6 +60,8 @@ class _SertificateServicesState extends State<SertificateServices> {
                         context: context),
                     const SizedBox(height: 30),
                     chooseButtons(
+                      serid: widget.serID,sername: widget.serviceName,
+                      context: context,
                         providerCertificateService: providerCertificateService),
                   ],
                 ),

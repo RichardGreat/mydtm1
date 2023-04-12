@@ -38,9 +38,9 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
             box.put("lockScreen", textEditingController.text.toString().trim()),
             AwesomeDialog(
                 context: context,
-                dialogType: DialogType.NO_HEADER,
-                animType: AnimType.BOTTOMSLIDE,
-                title: "DTM",
+                dialogType: DialogType.noHeader,
+                animType: AnimType.bottomSlide,
+                title: "BMBA",
                 body: Container(
                   margin: const EdgeInsets.all(15),
                   child: Column(
@@ -76,9 +76,9 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                     textEditingController.clear(),
                     AwesomeDialog(
                             context: context,
-                            dialogType: DialogType.NO_HEADER,
-                            animType: AnimType.BOTTOMSLIDE,
-                            title: "DTM",
+                            dialogType: DialogType.noHeader,
+                            animType: AnimType.bottomSlide,
+                            title: "BMBA",
                             body: Container(
                               margin: const EdgeInsets.all(15),
                               child: Column(
@@ -109,9 +109,9 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                   {
                     AwesomeDialog(
                             context: context,
-                            dialogType: DialogType.NO_HEADER,
-                            animType: AnimType.BOTTOMSLIDE,
-                            title: "DTM",
+                        dialogType: DialogType.noHeader,
+                        animType: AnimType.bottomSlide,
+                            title: "BMBA",
                             body: Container(
                               margin: const EdgeInsets.all(15),
                               child: Column(
@@ -149,9 +149,9 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                         // box.put("lockScreen", textInputLock),
                         AwesomeDialog(
                             context: context,
-                            dialogType: DialogType.NO_HEADER,
-                            animType: AnimType.BOTTOMSLIDE,
-                            title: "DTM",
+                            dialogType: DialogType.noHeader,
+                            animType: AnimType.bottomSlide,
+                            title: "BMBA",
                             body: Container(
                               margin: const EdgeInsets.all(15),
                               child: Column(
@@ -183,9 +183,9 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                       {
                         AwesomeDialog(
                             context: context,
-                            dialogType: DialogType.NO_HEADER,
-                            animType: AnimType.BOTTOMSLIDE,
-                            title: "DTM",
+                            dialogType: DialogType.noHeader,
+                            animType: AnimType.bottomSlide,
+                            title: "BMBA",
                             body: Container(
                               margin: const EdgeInsets.all(15),
                               child: Column(
@@ -253,7 +253,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                   maxLength: 4,
                   keyboardType: TextInputType.number,
                   inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                    FilteringTextInputFormatter.allow(RegExp(r'\d')),
                   ],
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
@@ -313,49 +313,55 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                   onPressed: () {
                     // box.put("lockScreen", "1234");
                     setState(() {});
-
-                    if (!formKey.currentState!.validate()) {
-                      !boolChangePassword
-                          ? checkInputs(
-                              textInputLock:
-                                  textEditingController.text.toString().trim())
-                          : {
-                              box.delete("lockScreen"),
-                              box.put("lockScreen",
-                                  textEditingController.text.toString().trim()),
-                              AwesomeDialog(
-                                  context: context,
-                                  dialogType: DialogType.NO_HEADER,
-                                  animType: AnimType.BOTTOMSLIDE,
-                                  title: "DTM",
-                                  body: Container(
-                                    margin: const EdgeInsets.all(15),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          "saved".tr(),
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: MyColors.appColorBlack()),
-                                        ),
-                                        const SizedBox(height: 25),
-                                      ],
+                      if(textEditingController.text.isNotEmpty) {
+                      if (!formKey.currentState!.validate()) {
+                        !boolChangePassword
+                            ? checkInputs(
+                                textInputLock: textEditingController.text
+                                    .toString()
+                                    .trim())
+                            : {
+                                box.delete("lockScreen"),
+                                box.put(
+                                    "lockScreen",
+                                    textEditingController.text
+                                        .toString()
+                                        .trim()),
+                                AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.noHeader,
+                                    animType: AnimType.bottomSlide,
+                                    title: "BMBA",
+                                    body: Container(
+                                      margin: const EdgeInsets.all(15),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            "saved".tr(),
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color:
+                                                    MyColors.appColorBlack()),
+                                          ),
+                                          const SizedBox(height: 25),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  titleTextStyle: TextStyle(
-                                      color: MyColors.appColorBlue1(),
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold),
-                                  descTextStyle: TextStyle(
-                                      color: MyColors.appColorBlack(),
-                                      fontWeight: FontWeight.bold),
-                                  btnCancelColor: MyColors.appColorBlue1(),
-                                  btnCancelText: "Ok",
-                                  btnCancelOnPress: () {
-                                    Navigator.of(context).pop();
-                                  }).show(),
-                              boolChangePassword = false,
-                            };
+                                    titleTextStyle: TextStyle(
+                                        color: MyColors.appColorBlue1(),
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold),
+                                    descTextStyle: TextStyle(
+                                        color: MyColors.appColorBlack(),
+                                        fontWeight: FontWeight.bold),
+                                    btnCancelColor: MyColors.appColorBlue1(),
+                                    btnCancelText: "Ok",
+                                    btnCancelOnPress: () {
+                                      Navigator.of(context).pop();
+                                    }).show(),
+                                boolChangePassword = false,
+                              };
+                      }
                     }
                   },
                   shape: RoundedRectangleBorder(

@@ -245,6 +245,10 @@
   "privilegeEyeTexnikum": "Льготы для слабовидящих лиц",
   "privilegePoorTexnikum": "Льготы для малообеспеченных лиц",
   "regEnd": "Прием закончен",
-  "nationCertTitle": "Ru Milliy sertifikat",
-  "chooseLangTest": "Ru Test topshirish tilini tanlang"
+  "nationCertTitle": "Национальный сертификат",
+  "chooseLangTest": "Ru Test topshirish tilini tanlang",
+  "certLangExam": "Язык экзамена",
+  "certDayNatExam": "Время сдачи экзамена",
+  "certRuxsatnoma": "Пропуск заявителем",
+  "certificateNatja": "Результат экзамена"
 }

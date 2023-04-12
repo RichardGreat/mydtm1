@@ -51,7 +51,7 @@ class _EnterFirstState extends State<EnterFirst> {
                                   child: Column(
                                     children: [
                                       const SizedBox(height: 20),
-                                      Image.asset("assets/images/dtm.png",
+                                      Image.asset("assets/images/gerb.png",
                                           height: 70),
                                       const SizedBox(height: 25),
                                       enterFirstBodyInput(

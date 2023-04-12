@@ -108,10 +108,10 @@ class MyWidgets {
   static awesomeDialogInfo({required BuildContext context, required String valueText}) {
     AwesomeDialog(
             context: context,
-            dialogType: DialogType.NO_HEADER,
-            animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.noHeader,
+        animType: AnimType.bottomSlide,
             dismissOnTouchOutside: false,
-            title: "DTM",
+            title: "BMBA",
             desc: valueText,
             titleTextStyle: TextStyle(
                 color: MyColors.appColorBlue1(), fontSize: 24, fontWeight: FontWeight.bold),
@@ -126,10 +126,11 @@ class MyWidgets {
   static awesomeDialogError({required BuildContext context, required String valueText}) {
     AwesomeDialog(
             context: context,
-            dialogType: DialogType.NO_HEADER,
-            animType: AnimType.BOTTOMSLIDE,
+
+        dialogType: DialogType.noHeader,
+        animType: AnimType.bottomSlide,
             dismissOnTouchOutside: false,
-            title: "DTM",
+            title: "BMBA",
             desc: valueText,
             titleTextStyle: TextStyle(
                 color: MyColors.appColorBlue1(),

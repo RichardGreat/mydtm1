@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/check_info_perevodga.dart';
-import 'package:mydtm/view/sertificate_service/sertifate_serv.dart';
+import 'package:mydtm/view/sertificate_service/certifate_serv.dart';
 import 'package:mydtm/view/texnikum/main_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -66,7 +68,10 @@ class ProviderServicePage extends ChangeNotifier {
                     pushNewScreen(context,
                         pageTransitionAnimation:
                             PageTransitionAnimation.cupertino,
-                        screen: SertificateServices(serID: categoryId, serviceName: categoryName,))
+                        screen: SertificateServices(
+                          serID: categoryId,
+                          serviceName: categoryName,
+                        ))
                   }
                 else if (categoryId == "42")
                   {
@@ -204,5 +209,14 @@ class ProviderServicePage extends ChangeNotifier {
                   ..show(),
               }
           };
+  }
+
+  Future getCertificateIfHas() async {
+    try {
+
+
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }
