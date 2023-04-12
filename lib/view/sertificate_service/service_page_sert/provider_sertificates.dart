@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/certificate_nation/create_nat_cert.dart';
 import 'package:mydtm/data/internet_connections/certificate_nation/get_regLang.dart';
+import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
 import 'package:mydtm/view/sertificate_service/widget_cert_nation/list_choose_lang.dart';
 import 'package:mydtm/view/sertificate_service/widget_cert_nation/list_choose_regions.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderCertificateService extends ChangeNotifier {
   // List<ModelCertNationRegion> listCerRegions = [];
@@ -95,17 +97,31 @@ class ProviderCertificateService extends ChangeNotifier {
 
   NetworkCreateCertNation networkCreateCertNation = NetworkCreateCertNation();
   String? resultData;
-
+bool boolCreateCertification = false;
   Future createCert() async {
     // NetworkCreateCertNation
+    boolCreateCertification = false;
     resultData = await networkCreateCertNation.getNatCert(
         testLangId: certLangId!, testRegion: regId!, natCerId: globNatCert);
+    boolCreateCertification = true;
+
+    notifyListeners();
     log(resultData!);
   }
 
-  Future getCertIfHas() async {
+  getCertIfHas({
+    required BuildContext context,
+    required String certId, // sertifikat idsi
+    required String sername // sertifikat nomi
+  }) {
     try {
-
+      pushNewScreen(context,
+          pageTransitionAnimation:
+          PageTransitionAnimation.cupertino,
+          screen: CertificateApplication(
+            serviceId: certId,
+            certName: sername,
+          ));
     } catch (e) {
       log(e.toString());
     }
