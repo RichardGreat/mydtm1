@@ -30,13 +30,13 @@ class ProviderCertificateService extends ChangeNotifier {
     notifyListeners();
   }
 
-
   bool boolGetCertLang = false;
 
-  Future getLangCertificate({required String certId,
+  Future getLangCertificate({
+    required String certId,
     required BuildContext context,
     required ProviderCertificateService providerCertificateService,
-  })async{
+  }) async {
     boolGetSerRegion = false;
     mapLang = await getRegionCertNation.getLanguage(natCerId: certId);
 
@@ -46,7 +46,6 @@ class ProviderCertificateService extends ChangeNotifier {
         providerCertificateService: providerCertificateService);
     notifyListeners();
   }
-
 
   Future getButtonSheet(
       {required BuildContext context,
@@ -63,11 +62,9 @@ class ProviderCertificateService extends ChangeNotifier {
         });
   }
 
-
-
   Future getButtonSheetNationCertReg(
       {required BuildContext context,
-        required ProviderCertificateService providerCertificateService}) async {
+      required ProviderCertificateService providerCertificateService}) async {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -79,7 +76,6 @@ class ProviderCertificateService extends ChangeNotifier {
               providerCertificateService: providerCertificateService);
         });
   }
-
 
   String? regName, regId;
 
@@ -97,16 +93,21 @@ class ProviderCertificateService extends ChangeNotifier {
     notifyListeners();
   }
 
-
   NetworkCreateCertNation networkCreateCertNation = NetworkCreateCertNation();
   String? resultData;
 
-  Future createCert()async{
+  Future createCert() async {
     // NetworkCreateCertNation
-    log(certLangId!);
-    log(regId!);
-    log(globNatCert!);
-     resultData = await networkCreateCertNation.getNatCert(testLangId: certLangId!, testRegion: regId!, natCerId: globNatCert);
-     log(resultData!);
+    resultData = await networkCreateCertNation.getNatCert(
+        testLangId: certLangId!, testRegion: regId!, natCerId: globNatCert);
+    log(resultData!);
+  }
+
+  Future getCertIfHas() async {
+    try {
+
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }

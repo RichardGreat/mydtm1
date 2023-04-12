@@ -10,9 +10,11 @@ import 'widget_cert_nation/choose_regions.dart';
 import 'widget_cert_nation/widgets.dart';
 
 class SertificateServices extends StatefulWidget {
-  String serID;
+  String serID, serviceName;
 
-  SertificateServices({Key? key, required this.serID}) : super(key: key);
+  SertificateServices(
+      {Key? key, required this.serID, required this.serviceName})
+      : super(key: key);
 
   @override
   State<SertificateServices> createState() => _SertificateServicesState();
@@ -31,13 +33,20 @@ class _SertificateServicesState extends State<SertificateServices> {
       child: Consumer<ProviderCertificateService>(
         builder: (context, value, child) => Scaffold(
             backgroundColor: MyColors.appColorWhite(),
+            appBar: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.white,
+              iconTheme: const IconThemeData(color: Colors.black),
+            ),
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 20),
-                    headTitle(),
+
+                    headTitle(nameService: widget.serviceName),
                     const SizedBox(height: 50),
                     chooseRegions(
                         providerCertificateService: providerCertificateService,

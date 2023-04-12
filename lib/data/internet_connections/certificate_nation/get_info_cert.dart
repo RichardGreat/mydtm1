@@ -2,6 +2,7 @@ import 'dart:core';
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
+import 'package:mydtm/data/internet_connections/main_url.dart';
 
 class NetworkGetCertNation {
   Dio dio = Dio();
@@ -11,20 +12,20 @@ class NetworkGetCertNation {
       {required String testLangId,
         required String testRegion,
         required String natCerId}) async {
-    log("https://apimobile.dtm.uz/v1/national/create/$natCerId");
+    log("${MainUrl.mainUrls}/v1/national/create/$natCerId");
     log(box.get("token"));
     log(testRegion.toString());
     log(testLangId.toString());
 
     Response response = await dio.post(
-        "https://apimobile.dtm.uz/v1/national/create/$natCerId",
+        "${MainUrl.mainUrls}/v1/national/create/$natCerId",
         data: {"test_region": testRegion.toString(), "test_lang": testLangId.toString()},
         options: Options(headers: {"X-Access-Token": box.get("token")}));
     log(response.data.toString());
     if (response.statusCode == 200) {
       return response.data.toString();
     } else {
-      throw Exception("error");
+      throw Exception("error class NetworkGetCertNation");
     }
   }
 }
