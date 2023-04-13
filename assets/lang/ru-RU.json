@@ -246,9 +246,12 @@
   "privilegePoorTexnikum": "Льготы для малообеспеченных лиц",
   "regEnd": "Прием закончен",
   "nationCertTitle": "Национальный сертификат",
-  "chooseLangTest": "Ru Test topshirish tilini tanlang",
+  "chooseLangTest": "Язык экзамена",
   "certLangExam": "Язык экзамена",
   "certDayNatExam": "Время сдачи экзамена",
   "certRuxsatnoma": "Пропуск заявителем",
-  "certificateNatja": "Результат экзамена"
+  "certificateNatja": "Результат экзамена",
+  "enterCapitalLatter": "Введите заглавную букву",
+  "enterSpecialSymbols": "Введите специальный символ",
+  "enterNumber": "Введите номер"
 }

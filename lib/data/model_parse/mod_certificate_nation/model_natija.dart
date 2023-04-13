@@ -1,25 +1,15 @@
-// To parse this JSON data, do
-//
-//     final modelCertRusults = modelCertRusultsFromJson(jsonString);
-
-import 'dart:convert';
-
-ModelCertRusults modelCertRusultsFromJson(String str) => ModelCertRusults.fromJson(json.decode(str));
-
-String modelCertRusultsToJson(ModelCertRusults data) => json.encode(data.toJson());
-
-class ModelCertRusults {
-  ModelCertRusults({
+class ModelCertificateResults {
+  ModelCertificateResults({
     required this.status,
     required this.data,
   });
 
   int status;
-  Data data;
+  DataCertificateResults data;
 
-  factory ModelCertRusults.fromJson(Map<String, dynamic> json) => ModelCertRusults(
+  factory ModelCertificateResults.fromJson(Map<String, dynamic> json) => ModelCertificateResults(
     status: json["status"],
-    data: Data.fromJson(json["data"]),
+    data: DataCertificateResults.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -28,14 +18,14 @@ class ModelCertRusults {
   };
 }
 
-class Data {
-  Data({
+class DataCertificateResults {
+  DataCertificateResults({
     required this.answer,
   });
 
   Answer answer;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory DataCertificateResults.fromJson(Map<String, dynamic> json) => DataCertificateResults(
     answer: Answer.fromJson(json["answer"]),
   );
 
@@ -88,26 +78,22 @@ class An {
   An({
     required this.ball,
     required this.name,
-    this.maxBall,
-
+    required this.maxBall,
   });
 
   double ball;
   String name;
-  double? maxBall;
-
+  double maxBall;
 
   factory An.fromJson(Map<String, dynamic> json) => An(
     ball: json["ball"]?.toDouble(),
     name: json["name"],
     maxBall: json["max_ball"]?.toDouble(),
-
   );
 
   Map<String, dynamic> toJson() => {
     "ball": ball,
     "name": name,
     "max_ball": maxBall,
-
   };
 }

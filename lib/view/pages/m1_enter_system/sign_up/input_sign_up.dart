@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_pw_validator/Resource/Strings.dart';
+import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/provider_sign_up.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -103,6 +105,8 @@ Widget inputsSignUp(
             }
             return null;
           }),
+
+
       const SizedBox(height: 5),
       MyWidgets.robotoFontText(text: "password".tr()),
       TextFormField(
@@ -167,15 +171,56 @@ Widget inputsSignUp(
           ),
       validator: (value){
   if (value == null || value.length < 8) {
-    providerSignUp.boolButtonCol2(boolValue: false);
-    return "passwordLength".tr();
+
+    return "";
   }else{
-    providerSignUp.boolButtonCol2(boolValue: true);
+
     return "";
   }
       },
-      )
-
+      ),
+      FlutterPwValidator(
+          controller: providerSignUp.textSingUpPassword,
+          minLength: 8,
+          uppercaseCharCount: 1,
+          numericCharCount: 1,
+          specialCharCount: 1,
+          width: 400,
+          height: 160,
+          strings: FrenchStrings(),
+          onSuccess: (){
+            providerSignUp.boolButtonCol2(boolValue: true);
+          },
+          onFail: (){
+            providerSignUp.boolButtonCol2(boolValue: false);
+          }
+      ),
     ],
   );
 }
+
+class FrenchStrings implements FlutterPwValidatorStrings {
+  @override
+  // TODO: implement atLeast
+  String get atLeast => "passwordLength".tr();
+
+  @override
+  // TODO: implement normalLetters
+  String get normalLetters => "2";
+
+  @override
+  // TODO: implement numericCharacters
+  String get numericCharacters => "enterNumber".tr();
+
+  @override
+  // TODO: implement specialCharacters
+  String get specialCharacters => "enterSpecialSymbols".tr();
+
+  @override
+  // TODO: implement uppercaseLetters
+  String get uppercaseLetters => "enterCapitalLatter".tr();
+
+}
+
+
+

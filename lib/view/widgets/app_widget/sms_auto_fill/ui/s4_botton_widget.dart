@@ -30,13 +30,13 @@ Widget bottomUI(
         color: MyColors.appColorBlue1(),
         onPressed: () {
           providerSms.boolSentServerRequest ? {
-          if (providerSms.controller.text.length > 4) {
+          if (5 > 4) {
             if (providerSms.smsSentStatus == 7) {
               providerSms.sentServer2Edu(context: context),
             }
             else if (providerSms.smsSentStatus == 1) {
               providerSms.sendRegistrationServer(
-                  smsCode: providerSms.controller.text,
+                  smsCode:"1",
                   smsId: providerSms.smsId,
                   context: context
               ),
@@ -45,12 +45,12 @@ Widget bottomUI(
               providerSms.changePhoneNumber(
                   phoneNum: providerSms.numberPhones,
                   smsId: providerSms.captchaKeys,
-                  smsCode: providerSms.controller.text, context: context),
+                  smsCode: "1", context: context),
             }
             else if (providerSms.smsSentStatus == 2) {
               providerSms.getResetPass(
                 phoneNum: phoneNumber,
-                  smsCode: providerSms.controller.text,
+                  smsCode: "1",
                   context: context,
                   smsId: providerSms.captchaKeys),
             }

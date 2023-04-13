@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mydtm/data/model_parse/mod_certificate_nation/model_cert_application.dart';
+import 'package:mydtm/view/sertificate_service/qayd_varaqa/natija.dart';
 import 'package:mydtm/view/sertificate_service/qayd_varaqa/ruxsatnoma.dart';
 import 'package:mydtm/view/sertificate_service/qayd_varaqa/view_qayd_varaqa.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -9,8 +10,9 @@ import 'package:easy_localization/easy_localization.dart';
 
 class CertAllInformation extends StatefulWidget {
   DataCertApplications dataCertApplications;
+  String serName, serId;
 
-  CertAllInformation({Key? key, required this.dataCertApplications})
+  CertAllInformation({Key? key, required this.dataCertApplications, required this.serId, required this.serName})
       : super(key: key);
 
   @override
@@ -62,6 +64,8 @@ class _CertAllInformationState extends State<CertAllInformation> {
                             context,
                             CupertinoPageRoute(
                               builder: (context) => CertQaydVaraqaView(
+                                certName: widget.serName,
+                                  certId: widget.serId,
                                   certQaytVaraqaId: widget
                                       .dataCertApplications.id
                                       .toString()),
@@ -77,13 +81,12 @@ class _CertAllInformationState extends State<CertAllInformation> {
                             color: MyColors.appColorBlack(),
                           )),
                       onTap: () {
+
                         Navigator.push(
                             context,
                             CupertinoPageRoute(
                               builder: (context) => CertRuxsatnomaView(
-                                  certRuxsatnomaVaraqaId: widget
-                                      .dataCertApplications.id
-                                      .toString()),
+                                  certRuxsatnomaVaraqaId: widget.serId,),
                             ));
 
                       },
@@ -96,6 +99,14 @@ class _CertAllInformationState extends State<CertAllInformation> {
                             color: MyColors.appColorBlack(),
                           )),
                       onTap: () {
+
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => CertificateResultsView(
+                                certId: widget.dataCertApplications.id.toString()),
+                            ));
+
                         // pushNewScreen(
                         //   context,
                         //   screen:  AnswerSheetDownload(providerAriza: providerAriza),
@@ -269,12 +280,12 @@ class _CertAllInformationState extends State<CertAllInformation> {
                             bottom: 4, top: 4, right: 8, left: 8),
                         margin: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
-                            color: 0 == 0
+                            color: widget.dataCertApplications.pay == 0
                                 ? MyColors.appColorRed()
                                 : MyColors.appColorGreen2(),
                             borderRadius: BorderRadius.circular(8)),
                         child: Text(
-                          0 == 0 ? "noPayed".tr() : "payed".tr().toString(),
+                            widget.dataCertApplications.pay  == 0 ? "noPayed".tr() : "payed".tr().toString(),
                           style: TextStyle(
                               color: MyColors.appColorWhite(),
                               fontWeight: FontWeight.bold),

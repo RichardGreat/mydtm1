@@ -21,6 +21,7 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_captcha_error.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
+import 'package:ntp/ntp.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderEnterFirst extends ChangeNotifier {
@@ -90,7 +91,7 @@ class ProviderEnterFirst extends ChangeNotifier {
 
   ///
   var box = Hive.box("online");
-
+  String dataData = "";
   Future getAuthorization({required BuildContext context}) async {
     boolAuthorization = false;
     Map<String, String> getAuthorizationData = {
@@ -100,14 +101,14 @@ class ProviderEnterFirst extends ChangeNotifier {
       "captcha_val": textCaptchaEditingController.text,
       "app_id": "1"
     };
-    getCaptcha();
-    boolAuthorization = true;
-    notifyListeners();
-    String data =
-        await NetworkAuthorize.getAuthorize(mapAuthorize: getAuthorizationData);
-    log(data);
+
     try {
-      ModelUserToken modelUserToken = ModelUserToken.fromJson(jsonDecode(data));
+      boolAuthorization = true;
+      notifyListeners();
+      dataData =
+      await NetworkAuthorize.getAuthorize(mapAuthorize: getAuthorizationData);
+      log(dataData);
+      ModelUserToken modelUserToken = ModelUserToken.fromJson(jsonDecode(dataData));
       String token = await NetworkGetToken.getTokenModel(
           authCode: modelUserToken.data.authorizationCode);
       ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(token));
@@ -130,11 +131,25 @@ class ProviderEnterFirst extends ChangeNotifier {
       }
       boolAuthorization = false;
       modelAuthorizationParse =
-          ModelAuthorizationParse.fromJson(jsonDecode(data));
+          ModelAuthorizationParse.fromJson(jsonDecode(dataData));
     } catch (e) {
+      mainNtp();
+      getCaptcha();
+      if(box.get("errorTry") == null) {
+        box.put("errorTry", "1");
+      }
+     else if(box.get("errorTry") == "1"){
+        box.put("errorTry", "2");
+      }
+      else if(box.get("errorTry") == "2"){
+        box.put("errorTry", "3");
+      }  else if(box.get("errorTry") == "3"){
+
+      }
+
       try {
         boolAuthorization = false;
-        modelAuthorizationError = ModelErrorUserName.fromJson(jsonDecode(data));
+        modelAuthorizationError = ModelErrorUserName.fromJson(jsonDecode(dataData));
         MyWidgets.scaffoldMessengerBottom(
             context: context,
             valueText: "loginPasswordError".tr());
@@ -142,16 +157,16 @@ class ProviderEnterFirst extends ChangeNotifier {
         try {
           boolAuthorization = false;
           modelAuthorizationCaptchaError =
-              ModelAuthorizationCaptchaError.fromJson(jsonDecode(data));
+              ModelAuthorizationCaptchaError.fromJson(jsonDecode(dataData));
           MyWidgets.scaffoldMessengerBottom(
               context: context,
               valueText:"captchaError".tr());
         } catch (e) {
           // smsId: widget.captchaValue, endTime: int.parse(widget.captchaKey), context: context);
           ModelRegistrationSms modelRegistrationSms =
-              ModelRegistrationSms.fromJson(jsonDecode(data));
+              ModelRegistrationSms.fromJson(jsonDecode(dataData));
 
-          log(data);
+          log(dataData);
           log("::");
 
           // ignore: use_build_context_synchronously
@@ -210,7 +225,6 @@ class ProviderEnterFirst extends ChangeNotifier {
             mapChangePassword: mapForNewPassword);
         ModelRegistrationCaptchaError modelRegistrationCaptchaError =
             ModelRegistrationCaptchaError.fromJson(jsonDecode(dataNet));
-        print(dataNet);
         MyWidgets.awesomeDialogInfo(context: context, valueText: modelRegistrationCaptchaError.errors);
 
       } catch (e) {
@@ -219,5 +233,22 @@ class ProviderEnterFirst extends ChangeNotifier {
 
       log(e.toString());
     }
+  }
+  Future<void> mainNtp() async {
+    DateTime _myTime;
+    DateTime _ntpTime;
+
+    /// Or you could get NTP current (It will call DateTime.now() and add NTP offset to it)
+    _myTime = await NTP.now();
+
+    /// Or get NTP offset (in milliseconds) and add it yourself
+    final int offset = await NTP.getNtpOffset(localTime: DateTime.now());
+    int a = _myTime.minute;
+    int b = _myTime.hour;
+
+    print('My time: $_myTime');
+    print('soat: $b');
+    print('mminut: $a');
+    // print('Difference: ${_myTime.difference(_ntpTime).inMilliseconds}ms');
   }
 }

@@ -1,20 +1,38 @@
+import 'dart:developer';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
+import 'package:mydtm/view/sertificate_service/certifate_serv.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 class CertQaydVaraqaView extends StatefulWidget {
+  String certQaytVaraqaId, certId, certName;
 
-  String certQaytVaraqaId;
-  CertQaydVaraqaView({Key? key, required this.certQaytVaraqaId}) : super(key: key);
+  CertQaydVaraqaView(
+      {Key? key,
+      required this.certQaytVaraqaId,
+      required this.certId,
+      required this.certName})
+      : super(key: key);
 
   @override
   State<CertQaydVaraqaView> createState() => _CertQaydVaraqaViewState();
 }
 
 class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
+
+  var box = Hive.box("online");
+
+  @override
+  void initState() {
+    log(widget.certQaytVaraqaId);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +46,18 @@ class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
       ),
       body: SafeArea(
           child: SingleChildScrollView(
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
               SizedBox(
                   height: MediaQuery.of(context).size.height * 0.7,
                   child: const PDF(
                     autoSpacing: false,
-
                     fitEachPage: true,
                   ).fromUrl(
                     "${MainUrl.mainUrls}/v1/national/pdf-aplication/${widget.certQaytVaraqaId}",
+                    headers: {"X-Access-Token":box.get("token")},
                     placeholder: (progress) =>
                         Center(child: Text('$progress %')),
                     errorWidget: (error) =>
@@ -57,14 +75,12 @@ class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
                   //     :
                   MaterialButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
-                      // widget.providerAriza.download(
-                      //     urls: widget.providerAriza
-                      //         .modelGetDownloads1.src ,  fileName: "qayd_varaqa.pdf" );
-                      // widget.providerAriza.openFile(
-                      //     url: widget
-                      //         .providerAriza.modelGetDownloads1.src,
-                      //     fileName: "dtm1");
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) => SertificateServices(
+                                serID: widget.certId, serviceName: widget.certName),
+                          ));
                     },
                     height: 50,
                     minWidth: double.infinity,
@@ -75,11 +91,10 @@ class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
                         text: "editEdu".tr(),
                         textColor: MyColors.appColorWhite()),
                   ),
-
                 ]),
               ),
             ]),
-          )),
+      )),
     );
   }
 }

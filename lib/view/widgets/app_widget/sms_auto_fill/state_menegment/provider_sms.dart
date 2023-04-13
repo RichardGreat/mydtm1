@@ -23,11 +23,9 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_reset_pa
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/networks/network_sms.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:otp_autofill/otp_autofill.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderSms extends ChangeNotifier {
-  late OTPTextEditController controller = OTPTextEditController(codeLength: 5);
 
   final scaffoldKey = GlobalKey();
   String? valueSignature;
@@ -426,12 +424,11 @@ class ProviderSms extends ChangeNotifier {
   bool boolSentServerRequest = true;
 
   Future sentServer2Edu({required BuildContext context}) async {
-    log("resivied_sms: ${controller.text.toString()}, sms_id:$smsId7, logId:$logId7");
     boolSentServerRequest = false;
     notifyListeners();
     try {
       String data = await networkSmsAutoFill.sentServer2Edu(
-          resiviedSms: controller.text,
+          resiviedSms: "controller.text",
           smsId: smsId7.toString(),
           logId: logId7.toString());
       ModelEduSuccess modelEduSuccess =
@@ -489,7 +486,7 @@ class ProviderSms extends ChangeNotifier {
     captchaValues = captchaValue;
     smsSentStatus = numbers;
 
-    getOTPCode();
+
     if (numbers == 1) {
       /// registratsiya
       phoneNumber = phoneNum;
@@ -536,30 +533,27 @@ class ProviderSms extends ChangeNotifier {
     }
   }
 
-  Future getOTPCode() async {
-
-  try{
-    OTPInteractor otpInteract = OTPInteractor();
-    valueSignature = await otpInteract.getAppSignature();
-    code1 = valueSignature!;
-    controller = OTPTextEditController(
-        codeLength: 5,
-        onCodeReceive: (code) => {
-          code1 = code,
-          log('Your Application receive code - $code'),
-        })
-      ..startListenUserConsent(
-            (code) {
-          final exp = RegExp(r'(\d{5})');
-          return exp.stringMatch(code ?? '') ?? '';
-        },
-        strategies: [
-          // SampleStrategy(),
-        ],
-      );
-  }catch(e){}
-
-  }
+  // Future getOTPCode() async {
+  //
+  // try{
+  //   controller = OTPTextEditController(
+  //       codeLength: 5,
+  //       onCodeReceive: (code) => {
+  //         code1 = code,
+  //         log('Your Application receive code - $code'),
+  //       })
+  //     ..startListenUserConsent(
+  //           (code) {
+  //         final exp = RegExp(r'(\d{5})');
+  //         return exp.stringMatch(code ?? '') ?? '';
+  //       },
+  //       strategies: [
+  //         // SampleStrategy(),
+  //       ],
+  //     );
+  // }catch(e){}
+  //
+  // }
 
   ///end
 }

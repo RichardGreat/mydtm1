@@ -53,6 +53,8 @@ class _EnterFirstState extends State<EnterFirst> {
                                       const SizedBox(height: 20),
                                       Image.asset("assets/images/gerb.png",
                                           height: 70),
+                                      const SizedBox(height: 10),
+                                      const Text("BMBA",style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600,fontSize: 25),),
                                       const SizedBox(height: 25),
                                       enterFirstBodyInput(
                                           context: context,

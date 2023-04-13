@@ -250,5 +250,8 @@
   "certLangExam": "Imtihon topshirish tili",
   "certDayNatExam": "Imtihon topshirish vaqti",
   "certRuxsatnoma": "Ruxsatnoma",
-  "certificateNatja": "Imtihon natijasi"
+  "certificateNatja": "Imtihon natijasi",
+  "enterCapitalLatter": "Bosh harx kiriting",
+  "enterSpecialSymbols": "Maxsus belgi kiriting",
+  "enterNumber": "Raqam kiriting"
 }

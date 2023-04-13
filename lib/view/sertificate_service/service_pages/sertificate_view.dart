@@ -82,6 +82,8 @@ class _CertificateApplicationState extends State<CertificateApplication> {
                                         CupertinoPageRoute(
                                           builder: (context) =>
                                               CertAllInformation(
+                                                serId: widget.serviceId,
+                                                serName: widget.certName,
                                                 dataCertApplications: providerServicePage.listCertApp[index],
                                               ),
                                         ));
