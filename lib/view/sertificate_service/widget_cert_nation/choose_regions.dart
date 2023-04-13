@@ -28,7 +28,7 @@ Widget chooseRegions(
           natCertId: natCerId
         );
       },
-      leading: Text(providerCertificateService.regName ?? "province".tr()),
+      leading: Text(providerCertificateService.regName.isEmpty? "province".tr():providerCertificateService.regName),
       trailing: const Icon(Icons.arrow_forward_ios_rounded),
       horizontalTitleGap: 1,
     ),

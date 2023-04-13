@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/certificate_nation/create_nat_cert.dart';
 import 'package:mydtm/data/internet_connections/certificate_nation/get_regLang.dart';
+import 'package:mydtm/data/model_parse/mod_certificate_nation/model_create_cert.dart';
 import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
 import 'package:mydtm/view/sertificate_service/widget_cert_nation/list_choose_lang.dart';
 import 'package:mydtm/view/sertificate_service/widget_cert_nation/list_choose_regions.dart';
@@ -79,7 +81,7 @@ class ProviderCertificateService extends ChangeNotifier {
         });
   }
 
-  String? regName, regId;
+  String regName = "", regId = "";
 
   Future setNameRegion({required String name, required String id}) async {
     regName = name;
@@ -87,7 +89,7 @@ class ProviderCertificateService extends ChangeNotifier {
     notifyListeners();
   }
 
-  String? certLangName, certLangId;
+  String certLangName = "", certLangId = "";
 
   Future setCertLang({required String name, required String id}) async {
     certLangName = name;
@@ -96,28 +98,30 @@ class ProviderCertificateService extends ChangeNotifier {
   }
 
   NetworkCreateCertNation networkCreateCertNation = NetworkCreateCertNation();
-  String? resultData;
-bool boolCreateCertification = false;
-  Future createCert() async {
+  late String resultData;
+  bool boolCreateCertification = false;
+  late DataCreateCert dataCreateCert;
+  Future createCert({required BuildContext context, required String serName, required String subId  }) async {
     // NetworkCreateCertNation
     boolCreateCertification = false;
     resultData = await networkCreateCertNation.getNatCert(
-        testLangId: certLangId!, testRegion: regId!, natCerId: globNatCert);
-    boolCreateCertification = true;
+        testLangId: certLangId, testRegion: regId, natCerId: globNatCert);
 
+    dataCreateCert = ModelCreateCert.fromJson(jsonDecode(resultData)).data;
+    boolCreateCertification = true;
+    getCertIfHas(certId: subId, context: context, sername: serName);
     notifyListeners();
-    log(resultData!);
+    log(resultData);
   }
 
-  getCertIfHas({
-    required BuildContext context,
-    required String certId, // sertifikat idsi
-    required String sername // sertifikat nomi
-  }) {
+  getCertIfHas(
+      {required BuildContext context,
+      required String certId, // sertifikat idsi
+      required String sername // sertifikat nomi
+      }) {
     try {
       pushNewScreen(context,
-          pageTransitionAnimation:
-          PageTransitionAnimation.cupertino,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
           screen: CertificateApplication(
             serviceId: certId,
             certName: sername,

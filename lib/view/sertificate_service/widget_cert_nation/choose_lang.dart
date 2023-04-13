@@ -16,15 +16,16 @@ Widget chooseLanguages(
         border: Border.all(color: MyColors.appColorGrey400())),
     child: ListTile(
       onTap: () {
-        providerCertificateService.getLangCertificate(
-            context: context,
-            providerCertificateService: providerCertificateService,
-            certId: natCerId
-        );
-
+        if(providerCertificateService.regName.isNotEmpty) {
+          providerCertificateService.getLangCertificate(
+              context: context,
+              providerCertificateService: providerCertificateService,
+              certId: natCerId
+          );
+        }
 
       },
-      leading: Text(providerCertificateService.certLangName ?? "chooseLangTest".tr()),
+      leading: Text(providerCertificateService.certLangName.isEmpty? "chooseLangTest".tr():providerCertificateService.certLangName),
       trailing: const Icon(Icons.arrow_forward_ios_rounded),
       horizontalTitleGap: 0,
     ),

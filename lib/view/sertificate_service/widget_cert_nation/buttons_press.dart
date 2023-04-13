@@ -4,12 +4,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mydtm/view/sertificate_service/service_page_sert/provider_sertificates.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-Widget chooseButtons(
-    {required String sername,
-    required String serid,
-    required BuildContext context,
-    required ProviderCertificateService providerCertificateService}) {
-  var box = Hive.box("online");
+Widget chooseButtons({required String sername,
+  required String serid,
+  required BuildContext context,
+  required ProviderCertificateService providerCertificateService}) {
   return Container(
     height: 50,
     width: double.infinity,
@@ -19,7 +17,11 @@ Widget chooseButtons(
         border: Border.all(color: MyColors.appColorGrey400())),
     child: MaterialButton(
       onPressed: () {
-        providerCertificateService.createCert();
+        if (providerCertificateService.certLangName.length > 4 &&
+            providerCertificateService.certLangId.isNotEmpty
+        ) {
+          providerCertificateService.createCert(context: context,serName: sername, subId: serid);
+        }
 
         /// task id ni olib arizaga otish kerak
         ///

@@ -89,25 +89,25 @@ class An {
     required this.ball,
     required this.name,
     this.maxBall,
-    this.geometriya,
+
   });
 
   double ball;
   String name;
   double? maxBall;
-  double? geometriya;
+
 
   factory An.fromJson(Map<String, dynamic> json) => An(
     ball: json["ball"]?.toDouble(),
     name: json["name"],
     maxBall: json["max_ball"]?.toDouble(),
-    geometriya: json["Geometriya"]?.toDouble(),
+
   );
 
   Map<String, dynamic> toJson() => {
     "ball": ball,
     "name": name,
     "max_ball": maxBall,
-    "Geometriya": geometriya,
+
   };
 }
