@@ -16,7 +16,6 @@ import 'package:mydtm/data/model_parse/m1_model/authhorization/model_get_token.d
 import 'package:mydtm/data/model_parse/m1_model/parse_captche.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
-import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_captcha_error.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart';
@@ -92,6 +91,7 @@ class ProviderEnterFirst extends ChangeNotifier {
   ///
   var box = Hive.box("online");
   String dataData = "";
+
   Future getAuthorization({required BuildContext context}) async {
     boolAuthorization = false;
     Map<String, String> getAuthorizationData = {
@@ -101,14 +101,18 @@ class ProviderEnterFirst extends ChangeNotifier {
       "captcha_val": textCaptchaEditingController.text,
       "app_id": "1"
     };
+    if(box.get("clothe5Min") == "1"){
+      mainNtp();
+    }
 
     try {
       boolAuthorization = true;
       notifyListeners();
-      dataData =
-      await NetworkAuthorize.getAuthorize(mapAuthorize: getAuthorizationData);
+      dataData = await NetworkAuthorize.getAuthorize(
+          mapAuthorize: getAuthorizationData);
       log(dataData);
-      ModelUserToken modelUserToken = ModelUserToken.fromJson(jsonDecode(dataData));
+      ModelUserToken modelUserToken =
+          ModelUserToken.fromJson(jsonDecode(dataData));
       String token = await NetworkGetToken.getTokenModel(
           authCode: modelUserToken.data.authorizationCode);
       ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(token));
@@ -121,6 +125,9 @@ class ProviderEnterFirst extends ChangeNotifier {
         box.put("phoneNumber", textAuthLogin.text);
         box.delete("langLock");
         box.put("langLock", "1");
+        ///
+        box.put("clothe5Min", "0");
+        box.put("errorTry", "0");
         // ignore: use_build_context_synchronously
         Navigator.pushAndRemoveUntil(
             context,
@@ -132,35 +139,35 @@ class ProviderEnterFirst extends ChangeNotifier {
       boolAuthorization = false;
       modelAuthorizationParse =
           ModelAuthorizationParse.fromJson(jsonDecode(dataData));
-    } catch (e) {
-      mainNtp();
-      getCaptcha();
-      if(box.get("errorTry") == null) {
-        box.put("errorTry", "1");
-      }
-     else if(box.get("errorTry") == "1"){
-        box.put("errorTry", "2");
-      }
-      else if(box.get("errorTry") == "2"){
-        box.put("errorTry", "3");
-      }  else if(box.get("errorTry") == "3"){
 
+      notifyListeners();
+    } catch (e) {
+
+      getCaptcha();
+      if (box.get("errorTry") == null || box.get("errorTry") == "0") {
+        box.put("errorTry", "1");
+      } else if (box.get("errorTry") == "1") {
+        box.put("errorTry", "2");
+      } else if (box.get("errorTry") == "2") {
+        box.put("errorTry", "3");
+      } else if (box.get("errorTry") == "3") {
+        box.put("clothe5Min", "1");
+        mainNtp();
       }
 
       try {
         boolAuthorization = false;
-        modelAuthorizationError = ModelErrorUserName.fromJson(jsonDecode(dataData));
+        modelAuthorizationError =
+            ModelErrorUserName.fromJson(jsonDecode(dataData));
         MyWidgets.scaffoldMessengerBottom(
-            context: context,
-            valueText: "loginPasswordError".tr());
+            context: context, valueText: "loginPasswordError".tr());
       } catch (e) {
         try {
           boolAuthorization = false;
           modelAuthorizationCaptchaError =
               ModelAuthorizationCaptchaError.fromJson(jsonDecode(dataData));
           MyWidgets.scaffoldMessengerBottom(
-              context: context,
-              valueText:"captchaError".tr());
+              context: context, valueText: "captchaError".tr());
         } catch (e) {
           // smsId: widget.captchaValue, endTime: int.parse(widget.captchaKey), context: context);
           ModelRegistrationSms modelRegistrationSms =
@@ -175,7 +182,6 @@ class ProviderEnterFirst extends ChangeNotifier {
               screen: SmsAutoFillUi(
                   phoneNum: textAuthLogin.text,
                   password: textAuthPassword.text,
-
                   captchaKey: modelRegistrationSms.data.endDate.toString(),
                   captchaValue: modelRegistrationSms.data.smsId.toString(),
                   registration: "99"));
@@ -219,14 +225,13 @@ class ProviderEnterFirst extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       try {
-
         textCaptchaEditingController.clear();
         String dataNet = await networkChangePassword.getChangePhoneNumber(
             mapChangePassword: mapForNewPassword);
         ModelRegistrationCaptchaError modelRegistrationCaptchaError =
             ModelRegistrationCaptchaError.fromJson(jsonDecode(dataNet));
-        MyWidgets.awesomeDialogInfo(context: context, valueText: modelRegistrationCaptchaError.errors);
-
+        MyWidgets.awesomeDialogInfo(
+            context: context, valueText: modelRegistrationCaptchaError.errors);
       } catch (e) {
         MyWidgets.awesomeDialogInfo(context: context, valueText: "reTry".tr());
       }
@@ -234,21 +239,50 @@ class ProviderEnterFirst extends ChangeNotifier {
       log(e.toString());
     }
   }
+
+  int currentTimeHour = 0, currentTimeMinute = 0;
+
   Future<void> mainNtp() async {
-    DateTime _myTime;
-    DateTime _ntpTime;
+    try {
+      DateTime myTime;
+      myTime = await NTP.now();
+      currentTimeHour = myTime.hour;
+      currentTimeMinute = myTime.minute;
 
-    /// Or you could get NTP current (It will call DateTime.now() and add NTP offset to it)
-    _myTime = await NTP.now();
 
-    /// Or get NTP offset (in milliseconds) and add it yourself
-    final int offset = await NTP.getNtpOffset(localTime: DateTime.now());
-    int a = _myTime.minute;
-    int b = _myTime.hour;
 
-    print('My time: $_myTime');
-    print('soat: $b');
-    print('mminut: $a');
-    // print('Difference: ${_myTime.difference(_ntpTime).inMilliseconds}ms');
+      if(box.get("clothe5Min") == "1") {
+         box.put("timeHour", myTime.hour);
+         box.put("timeMinute", myTime.minute);
+      }
+
+      log(getTimeDifferance().toString());
+      log("clothe5Min");
+      log(box.get("clothe5Min"));
+      log("timeHour");
+      log(box.get("timeHour").toString());
+      log("timeMinute");
+      log(box.get("timeMinute").toString());
+
+      log("Currernt time");
+      log(currentTimeHour.toString());
+      log(currentTimeMinute.toString());
+
+      if (getTimeDifferance() >= 5) {
+        box.put("clothe5Min", "0");
+      } else {
+        box.put("clothe5Min", "2");
+      }
+      notifyListeners();
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  int getTimeDifferance() {
+    return currentTimeHour - int.parse(box.get("timeHour")??"0".toString()) == 0
+        ? currentTimeMinute - int.parse(box.get("timeMinute")??"0".toString())
+        : (currentTimeHour - int.parse(box.get("timeHour")??"0".toString())) * 60 +
+            int.parse(box.get("timeMinute")??"0".toString()) - currentTimeMinute;
   }
 }

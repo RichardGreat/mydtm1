@@ -252,6 +252,7 @@
   "certRuxsatnoma": "Ruxsatnoma",
   "certificateNatja": "Imtihon natijasi",
   "enterCapitalLatter": "Bosh harx kiriting",
-  "enterSpecialSymbols": "Maxsus belgi kiriting",
-  "enterNumber": "Raqam kiriting"
+  "enterSpecialSymbols": "!~* Maxsus belgi kiriting",
+  "enterNumber": "Raqam kiriting",
+  "userBlock5MIn": "Siz 3 marta noto'g'ri foydalanuvchi nomi va parolni kiritdingiz, siz vaqtincha bloklangansiz"
 }
