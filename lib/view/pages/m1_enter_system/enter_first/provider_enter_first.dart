@@ -70,10 +70,14 @@ class ProviderEnterFirst extends ChangeNotifier {
 
   Future getCaptcha() async {
     try {
-      boolGetCaptcha = false;
-      modelParseCaptcha = await NetworkGetCaptcha.getCaptcha();
-      boolGetCaptcha = true;
-      notifyListeners();
+      box.get("clothe5Min").toString() == "1"?mainNtp():
+      box.get("clothe5Min").toString() == "2"?mainNtp():
+      {
+        boolGetCaptcha = false,
+        modelParseCaptcha = await NetworkGetCaptcha.getCaptcha(),
+        boolGetCaptcha = true,
+        notifyListeners(),
+      };
     } catch (e) {
       /// error
     }
@@ -252,8 +256,8 @@ class ProviderEnterFirst extends ChangeNotifier {
 
 
       if(box.get("clothe5Min") == "1") {
-         box.put("timeHour", myTime.hour);
-         box.put("timeMinute", myTime.minute);
+         box.put("timeHour", myTime.hour.toString());
+         box.put("timeMinute", myTime.minute.toString());
       }
 
       log(getTimeDifferance().toString());
@@ -270,6 +274,12 @@ class ProviderEnterFirst extends ChangeNotifier {
 
       if (getTimeDifferance() >= 5) {
         box.put("clothe5Min", "0");
+        box.put("errorTry", "0");
+     boolGetCaptcha = false;
+    modelParseCaptcha = await NetworkGetCaptcha.getCaptcha();
+    boolGetCaptcha = true;
+    notifyListeners();
+
       } else {
         box.put("clothe5Min", "2");
       }
