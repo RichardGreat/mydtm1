@@ -66,9 +66,9 @@ Widget bodyCertificateOTM(
                                     });
                                     AwesomeDialog(
                                         context: context,
-                                        dialogType: DialogType.NO_HEADER,
-                                        animType: AnimType.BOTTOMSLIDE,
-                                        title: "DTM",
+                                        dialogType: DialogType.noHeader,
+                                        animType: AnimType.bottomSlide,
+                                        title: "BMBA",
 
                                         desc: "certSubjectName".tr(args: [
                                           providerChooseEdu
@@ -107,9 +107,9 @@ Widget bodyCertificateOTM(
                                     setState(() {});
                                     AwesomeDialog(
                                         context: context,
-                                        dialogType: DialogType.NO_HEADER,
-                                        animType: AnimType.BOTTOMSLIDE,
-                                        title: "DTM",
+                                        dialogType: DialogType.noHeader,
+                                        animType: AnimType.bottomSlide,
+                                        title: "BMBA",
 
                                         desc: "certSubjectNameNo".tr(args: [
                                           providerChooseEdu

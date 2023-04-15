@@ -35,9 +35,9 @@ Widget buttonCertificate(
         // MyWidgets.awesomeDialogError(context: context, valueText: "fillInField".tr()),
         AwesomeDialog(
             context: context,
-            dialogType: DialogType.NO_HEADER,
-            animType: AnimType.BOTTOMSLIDE,
-            title: "DTM",
+            dialogType: DialogType.noHeader,
+            animType: AnimType.bottomSlide,
+            title: "BMBA",
             desc: "fillInField".tr(),
             titleTextStyle: TextStyle(
                 color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),

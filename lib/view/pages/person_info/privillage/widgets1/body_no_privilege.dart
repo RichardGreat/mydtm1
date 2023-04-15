@@ -72,10 +72,10 @@ Widget bodyNoPrivilege({required BuildContext context, required ProviderPrivileg
               onPressed: () {
                 AwesomeDialog(
                     context: context,
-                    dialogType: DialogType.NO_HEADER,
-                    animType: AnimType.BOTTOMSLIDE,
+                    dialogType: DialogType.noHeader,
+                    animType: AnimType.bottomSlide,
                     dismissOnTouchOutside: false,
-                    title: "DTM",
+                    title: "BMBA",
                     desc: "chooseDirection".tr(),
                     titleTextStyle: TextStyle(
                         color: MyColors.appColorBlue1(),

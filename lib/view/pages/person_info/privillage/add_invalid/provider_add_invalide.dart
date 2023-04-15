@@ -79,10 +79,10 @@ class ProviderAddInvalide extends ChangeNotifier{
     modelAddInvalid = ModelAddInvalid.fromJson(jsonDecode(data));
     AwesomeDialog(
         context: context,
-        dialogType: DialogType.NO_HEADER,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.noHeader,
+        animType: AnimType.bottomSlide,
         dismissOnTouchOutside: false,
-        title: "DTM",
+        title: "BMBA",
         desc: "saved".tr(),
         titleTextStyle: TextStyle(
             color: MyColors.appColorBlue1(),

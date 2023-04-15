@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:developer';
 
@@ -93,10 +95,10 @@ class ProviderGraduated extends ChangeNotifier {
       boolAllInfoGraduated = true;
       AwesomeDialog(
           context: context,
-          dialogType: DialogType.NO_HEADER,
-          animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.noHeader,
+          animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-          title: "DTM",
+          title: "BMBA",
           desc: "wantUpdateInfo2".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),
@@ -288,7 +290,9 @@ class ProviderGraduated extends ChangeNotifier {
       boolGraduatedCountry = true;
 
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   Future searchCountry({required String value}) async {
@@ -366,7 +370,9 @@ class ProviderGraduated extends ChangeNotifier {
       listGetCountryTemp.addAll(modelGetCountry.data);
       boolGetRegion = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   Future searchRegion({required String value}) async {
@@ -426,7 +432,9 @@ class ProviderGraduated extends ChangeNotifier {
       listGetDistrictTemp.addAll(listGetDistrict);
       boolGetDistrict = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   Future searchDistrict({required String value}) async {
@@ -668,10 +676,10 @@ class ProviderGraduated extends ChangeNotifier {
     //MyWidgets.awesomeDialogInfo(context: context, valueText: "Ma'lumot saqlandi");
     AwesomeDialog(
             context: context,
-            dialogType: DialogType.INFO,
-            animType: AnimType.BOTTOMSLIDE,
+            dialogType: DialogType.info,
+            animType: AnimType.bottomSlide,
             dismissOnTouchOutside: false,
-            title: "DTM",
+            title: "BMBA",
             desc: "saved".tr(),
             titleTextStyle: TextStyle(
                 color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
@@ -732,10 +740,10 @@ class ProviderGraduated extends ChangeNotifier {
       boolAllInfoGraduated = true;
       AwesomeDialog(
           context: context,
-          dialogType: DialogType.NO_HEADER,
-          animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.noHeader,
+          animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-          title: "DTM",
+          title: "BMBA",
           desc: "infoNotFind".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),
@@ -762,10 +770,10 @@ class ProviderGraduated extends ChangeNotifier {
       if(modelGraduatedInfo.data.graduatedYear.toString()!="2022"){
         AwesomeDialog(
             context: context,
-            dialogType: DialogType.NO_HEADER,
-            animType: AnimType.BOTTOMSLIDE,
+            dialogType: DialogType.noHeader,
+            animType: AnimType.bottomSlide,
             dismissOnTouchOutside: false,
-            title: "DTM",
+            title: "BMBA",
             desc: "wantUpdateInfo2".tr(),
             titleTextStyle: TextStyle(
                 color: MyColors.appColorBlue1(),
@@ -801,10 +809,10 @@ class ProviderGraduated extends ChangeNotifier {
       boolAllInfoGraduated = true;
       AwesomeDialog(
           context: context,
-          dialogType: DialogType.NO_HEADER,
-          animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.noHeader,
+          animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-          title: "DTM",
+          title: "BMBA",
           desc: "wantUpdateInfo2".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),

@@ -159,8 +159,8 @@ class ProviderCheckInformation extends ChangeNotifier
       if (index == 0) {
         AwesomeDialog(
             context: context,
-            dialogType: DialogType.NO_HEADER,
-            animType: AnimType.BOTTOMSLIDE,
+            dialogType: DialogType.noHeader,
+            animType: AnimType.bottomSlide,
             body: GestureDetector(
               onTap: () {
                 _launchInBrowser(_url);
@@ -225,8 +225,8 @@ class ProviderCheckInformation extends ChangeNotifier
   }) async {
     return //AwesomeDialog(
         //   context: context,
-        //   dialogType: DialogType.NO_HEADER,
-        //   animType: AnimType.BOTTOMSLIDE,
+        //   dialogType: DialogType.noHeader,
+        //   animType: AnimType.bottomSlide,
         //   title: "requestExamTest".tr(),
         //   body: GestureDetector(
         //     onTap: () {

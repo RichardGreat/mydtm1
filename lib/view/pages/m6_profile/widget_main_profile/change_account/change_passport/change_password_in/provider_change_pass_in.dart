@@ -68,9 +68,9 @@ class ProviderChangePasswordInputs extends ChangeNotifier {
       box.put("phoneNumber", phoneNumber);
       AwesomeDialog(
           context: context,
-          dialogType: DialogType.NO_HEADER,
-          animType: AnimType.BOTTOMSLIDE,
-          title: "DTM",
+          dialogType: DialogType.noHeader,
+          animType: AnimType.bottomSlide,
+          title: "BMBA",
           desc: "passwordChange".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
@@ -90,9 +90,9 @@ class ProviderChangePasswordInputs extends ChangeNotifier {
     } catch (e) {
       AwesomeDialog(
           context: context,
-          dialogType: DialogType.NO_HEADER,
-          animType: AnimType.BOTTOMSLIDE,
-          title: "DTM",
+          dialogType: DialogType.noHeader,
+          animType: AnimType.bottomSlide,
+          title: "BMBA",
           desc: "reTry".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),

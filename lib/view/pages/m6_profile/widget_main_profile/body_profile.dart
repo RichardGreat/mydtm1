@@ -124,8 +124,8 @@ Widget bodyProfile(
               } else {
                 AwesomeDialog(
                     context: context,
-                    dialogType: DialogType.NO_HEADER,
-                    animType: AnimType.BOTTOMSLIDE,
+                    dialogType: DialogType.noHeader,
+                    animType: AnimType.bottomSlide,
                     body: GestureDetector(
                       onTap: () {
 
@@ -343,9 +343,9 @@ Widget bodyProfile(
                     box.get("token").toString().length > 30
                         ? AwesomeDialog(
                             context: context,
-                            dialogType: DialogType.NO_HEADER,
-                            animType: AnimType.BOTTOMSLIDE,
-                            title: "DTM",
+                            dialogType: DialogType.noHeader,
+                            animType: AnimType.bottomSlide,
+                            title: "BMBA",
                             desc: "logUot".tr(),
                             titleTextStyle: TextStyle(
                                 color: MyColors.appColorBlue1(),

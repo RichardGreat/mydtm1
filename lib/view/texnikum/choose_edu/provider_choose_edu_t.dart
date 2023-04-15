@@ -232,10 +232,10 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
       boolSetAllData = true;
       AwesomeDialog(
               context: context,
-              dialogType: DialogType.NO_HEADER,
-              animType: AnimType.BOTTOMSLIDE,
+              dialogType: DialogType.noHeader,
+              animType: AnimType.bottomSlide,
               dismissOnTouchOutside: false,
-              title: "DTM",
+              title: "BMBA",
               desc: "saved".tr(),
               btnCancelColor: MyColors.appColorBlue1(),
               titleTextStyle: TextStyle(

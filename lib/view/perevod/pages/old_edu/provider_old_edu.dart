@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'package:easy_localization/easy_localization.dart';
 import 'dart:io';
@@ -176,7 +178,7 @@ class ProviderOldEdu extends ChangeNotifier {
       listDataLangOld = modelEduLangPerevod.lang;
       boolEduLang = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {log(e.toString());}
   }
 
   /// Edu lang
@@ -212,7 +214,9 @@ class ProviderOldEdu extends ChangeNotifier {
       listDataGetPerevodTemp.addAll(listDataGetPerevod);
       boolEdu = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   Future searchEduName({required String nameEdu}) async {
@@ -230,7 +234,9 @@ class ProviderOldEdu extends ChangeNotifier {
       }
       boolEdu = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   Future setEduName({required String name, required String eduId}) async {
@@ -263,7 +269,7 @@ class ProviderOldEdu extends ChangeNotifier {
       boolEduDirection = true;
       notifyListeners();
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 
@@ -282,7 +288,7 @@ class ProviderOldEdu extends ChangeNotifier {
       }
       boolEduDirection = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {log(e.toString());}
   }
 
   Future setEduDirection(
@@ -293,7 +299,9 @@ class ProviderOldEdu extends ChangeNotifier {
       graduatedYear = "";
       graduatedYearNames = "";
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   /// Graduated Year
@@ -429,10 +437,10 @@ class ProviderOldEdu extends ChangeNotifier {
         if (mb > 8) {
           AwesomeDialog(
                   context: context,
-                  dialogType: DialogType.NO_HEADER,
-                  animType: AnimType.BOTTOMSLIDE,
+              dialogType: DialogType.noHeader,
+              animType: AnimType.bottomSlide,
                   dismissOnTouchOutside: false,
-                  title: "DTM",
+                  title: "BMBA",
                   desc: "imageMaxSize".tr(),
                   titleTextStyle: TextStyle(
                       color: MyColors.appColorBlue1(),
@@ -473,8 +481,8 @@ class ProviderOldEdu extends ChangeNotifier {
               boolUploadIndicatorServer = true;
               AwesomeDialog(
                 context: context,
-                dialogType: DialogType.NO_HEADER,
-                animType: AnimType.BOTTOMSLIDE,
+                dialogType: DialogType.noHeader,
+                animType: AnimType.bottomSlide,
                 dismissOnTouchOutside: false,
                 body: Column(
                   children: [
@@ -514,10 +522,10 @@ class ProviderOldEdu extends ChangeNotifier {
           } else {
             AwesomeDialog(
                     context: context,
-                    dialogType: DialogType.NO_HEADER,
-                    animType: AnimType.BOTTOMSLIDE,
+                dialogType: DialogType.noHeader,
+                animType: AnimType.bottomSlide,
                     dismissOnTouchOutside: false,
-                    title: "DTM",
+                    title: "BMBA",
                     desc: "infoFillError".tr(),
                     titleTextStyle: TextStyle(
                         color: MyColors.appColorBlue1(),
@@ -534,10 +542,10 @@ class ProviderOldEdu extends ChangeNotifier {
       } catch (e) {
         AwesomeDialog(
                 context: context,
-                dialogType: DialogType.NO_HEADER,
-                animType: AnimType.BOTTOMSLIDE,
+            dialogType: DialogType.noHeader,
+            animType: AnimType.bottomSlide,
                 dismissOnTouchOutside: false,
-                title: "DTM",
+                title: "BMBA",
                 desc: "infoFillError".tr(),
                 titleTextStyle: TextStyle(
                     color: MyColors.appColorBlue1(),
@@ -553,10 +561,10 @@ class ProviderOldEdu extends ChangeNotifier {
     } else {
       AwesomeDialog(
               context: context,
-              dialogType: DialogType.NO_HEADER,
-              animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.noHeader,
+          animType: AnimType.bottomSlide,
               dismissOnTouchOutside: false,
-              title: "DTM",
+              title: "BMBA",
               desc: "pictureNotInfo".tr(),
               titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(),

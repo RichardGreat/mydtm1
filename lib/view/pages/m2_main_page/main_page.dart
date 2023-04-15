@@ -116,8 +116,8 @@ class _MainPagesState extends State<MainPages> {
                             ).show();
                             // AwesomeDialog(
                             //         context: context,
-                            //         dialogType: DialogType.NO_HEADER,
-                            //         animType: AnimType.BOTTOMSLIDE,
+                            //         dialogType: DialogType.noHeader,
+                            //         animType: AnimType.bottomSlide,
                             //         title: "DTM",
                             //         desc: "logUot".tr(),
                             //         titleTextStyle: TextStyle(

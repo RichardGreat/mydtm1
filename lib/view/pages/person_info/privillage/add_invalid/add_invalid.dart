@@ -217,10 +217,10 @@ class _InvalidAddState extends State<InvalidAdd> {
                                   } else {
                                     AwesomeDialog(
                                             context: context,
-                                            dialogType: DialogType.NO_HEADER,
-                                            animType: AnimType.BOTTOMSLIDE,
+                                            dialogType: DialogType.noHeader,
+                                            animType: AnimType.bottomSlide,
                                             dismissOnTouchOutside: false,
-                                            title: "DTM",
+                                            title: "BMBA",
                                             desc: "fillUpRow".tr(),
                                             titleTextStyle: TextStyle(
                                                 color: MyColors.appColorBlue1(),

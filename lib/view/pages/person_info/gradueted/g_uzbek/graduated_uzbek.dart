@@ -195,9 +195,9 @@ Widget graduatedUzbek(
                         onTap: (){
                           AwesomeDialog(
                               context: context,
-                              dialogType: DialogType.NO_HEADER,
-                              animType: AnimType.BOTTOMSLIDE,
-                              title: "DTM",
+                              dialogType: DialogType.noHeader,
+                              animType: AnimType.bottomSlide,
+                              title: "BMBA",
                               desc: "noInfoGraduatedName".tr(),
                               titleTextStyle: TextStyle(
                                   color: MyColors.appColorBlue1(),

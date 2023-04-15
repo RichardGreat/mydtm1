@@ -121,10 +121,10 @@ Widget bodyPrivilege({
 
                                     AwesomeDialog(
                                         context: context,
-                                        dialogType: DialogType.NO_HEADER,
-                                        animType: AnimType.BOTTOMSLIDE,
+                                        dialogType: DialogType.noHeader,
+                                        animType: AnimType.bottomSlide,
                                         dismissOnTouchOutside: false,
-                                        title: "DTM",
+                                        title: "BMBA",
                                         desc: "wantToDelete".tr(),
                                         titleTextStyle: TextStyle(
                                             color: MyColors.appColorBlue1(),
@@ -172,9 +172,9 @@ Widget bodyPrivilege({
               onPressed: () {
                 AwesomeDialog(
                         context: context,
-                        dialogType: DialogType.NO_HEADER,
-                        animType: AnimType.BOTTOMSLIDE,
-                        title: "DTM",
+                        dialogType: DialogType.noHeader,
+                        animType: AnimType.bottomSlide,
+                        title: "BMBA",
                         desc: "chooseDirection".tr(),
                         titleTextStyle: TextStyle(
                             color: MyColors.appColorBlue1(),

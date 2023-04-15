@@ -21,12 +21,12 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_phonecha
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_registrated.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_reset_password2.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart';
+import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms_not_match.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/networks/network_sms.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderSms extends ChangeNotifier {
-
   final scaffoldKey = GlobalKey();
   String? valueSignature;
   String variantId = "0";
@@ -196,10 +196,12 @@ class ProviderSms extends ChangeNotifier {
     notifyListeners();
   }
 
+  String dataSmsResetPassword = "";
+  late ModelSmsNotMatch modelSmsNotMatch;
+
   Future getResetPass(
-      {
-        required String smsCode,
-        required String phoneNum,
+      {required String smsCode,
+      required String phoneNum,
       required BuildContext context,
       required String smsId}) async {
     try {
@@ -207,30 +209,55 @@ class ProviderSms extends ChangeNotifier {
 
       boolData = false;
       notifyListeners();
-      String dataSms = await NetworkSmsAutoFill.sentServerSms(
+      dataSmsResetPassword = await NetworkSmsAutoFill.sentServerSms(
           smsId: smsId, appId: "1", smsCode: smsCode);
+      log(dataSms.toString());
       ModelResetPassToken2 modelResetPassToken2 =
           ModelResetPassToken2.fromJson(jsonDecode(dataSms));
       // ignore: use_build_context_synchronously
       pushNewScreen(context,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
           screen: ChangePasswordInput(
-            phoneNumber: phoneNum,
-
-
+              phoneNumber: phoneNum,
               passResetToken: modelResetPassToken2.data.passwordResetToken));
-      log(dataSms);
       boolData = true;
       timer.cancel();
       boolSentServerRequest = true;
       notifyListeners();
     } catch (e) {
-      boolData = true;
-      timer.cancel();
-      boolSentServerRequest = true;
+      try {
+        boolData = true;
+        timer.cancel();
+        boolSentServerRequest = true;
+        modelSmsNotMatch =
+            ModelSmsNotMatch.fromJson(jsonDecode(dataSmsResetPassword));
 
-      notifyListeners();
-      log(e.toString());
+        AwesomeDialog(
+                context: context,
+                dialogType: DialogType.info,
+                animType: AnimType.bottomSlide,
+                title: "BMBA",
+                desc: "infoFillError".tr(),
+                titleTextStyle: TextStyle(
+                    color: MyColors.appColorBlue1(),
+                    fontWeight: FontWeight.bold),
+                descTextStyle: TextStyle(
+                    color: MyColors.appColorBlack(),
+                    fontWeight: FontWeight.bold),
+                btnCancelOnPress: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
+                btnCancelColor: MyColors.appColorBlue1(),
+                btnCancelText: "OK")
+            .show();
+        notifyListeners();
+      } catch (e) {
+        boolData = true;
+        timer.cancel();
+        boolSentServerRequest = true;
+        notifyListeners();
+      }
     }
   }
 
@@ -274,11 +301,12 @@ class ProviderSms extends ChangeNotifier {
       if (modelPhoneChangeSaved.status == 1) {
         box.delete("phoneNumber");
         box.put("phoneNumber", phoneNum);
+        // ignore: use_build_context_synchronously
         AwesomeDialog(
                 context: context,
-                dialogType: DialogType.INFO,
-                animType: AnimType.BOTTOMSLIDE,
-                title: "DTM",
+                dialogType: DialogType.info,
+                animType: AnimType.bottomSlide,
+                title: "BMBA",
                 desc: "saved".tr(),
                 titleTextStyle: TextStyle(
                     color: MyColors.appColorBlue1(),
@@ -302,9 +330,9 @@ class ProviderSms extends ChangeNotifier {
       boolData = true;
       AwesomeDialog(
               context: context,
-              dialogType: DialogType.INFO,
-              animType: AnimType.BOTTOMSLIDE,
-              title: "DTM",
+              dialogType: DialogType.info,
+              animType: AnimType.bottomSlide,
+              title: "BMBA",
               desc: "reTry".tr(),
               titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
@@ -314,7 +342,6 @@ class ProviderSms extends ChangeNotifier {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
               },
-
               btnCancelText: "OK")
           .show();
       boolSentServerRequest = true;
@@ -445,8 +472,7 @@ class ProviderSms extends ChangeNotifier {
             ));
       } else {
         MyWidgets.awesomeDialogError(
-            context: context,
-            valueText: "infoFillError".tr());
+            context: context, valueText: "infoFillError".tr());
         Navigator.of(context).pop();
       }
       boolSentServerRequest = true;
@@ -485,7 +511,6 @@ class ProviderSms extends ChangeNotifier {
     captchaKeys = captchaKey;
     captchaValues = captchaValue;
     smsSentStatus = numbers;
-
 
     if (numbers == 1) {
       /// registratsiya
@@ -533,27 +558,27 @@ class ProviderSms extends ChangeNotifier {
     }
   }
 
-  // Future getOTPCode() async {
-  //
-  // try{
-  //   controller = OTPTextEditController(
-  //       codeLength: 5,
-  //       onCodeReceive: (code) => {
-  //         code1 = code,
-  //         log('Your Application receive code - $code'),
-  //       })
-  //     ..startListenUserConsent(
-  //           (code) {
-  //         final exp = RegExp(r'(\d{5})');
-  //         return exp.stringMatch(code ?? '') ?? '';
-  //       },
-  //       strategies: [
-  //         // SampleStrategy(),
-  //       ],
-  //     );
-  // }catch(e){}
-  //
-  // }
+// Future getOTPCode() async {
+//
+// try{
+//   controller = OTPTextEditController(
+//       codeLength: 5,
+//       onCodeReceive: (code) => {
+//         code1 = code,
+//         log('Your Application receive code - $code'),
+//       })
+//     ..startListenUserConsent(
+//           (code) {
+//         final exp = RegExp(r'(\d{5})');
+//         return exp.stringMatch(code ?? '') ?? '';
+//       },
+//       strategies: [
+//         // SampleStrategy(),
+//       ],
+//     );
+// }catch(e){}
+//
+// }
 
   ///end
 }

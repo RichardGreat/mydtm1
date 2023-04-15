@@ -10,7 +10,6 @@ import 'package:mydtm/view/pages/person_info/gradueted/const_gradueted.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_forgione/g_forgione.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_uzbek/graduated_uzbek.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
-import 'package:mydtm/view/pages/person_info/gradueted/update_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -232,8 +231,8 @@ class _GraduatedState extends State<Graduated> {
                             //         onTap: () {
                             //           AwesomeDialog(
                             //                   context: context,
-                            //                   dialogType: DialogType.NO_HEADER,
-                            //                   animType: AnimType.BOTTOMSLIDE,
+                            //                   dialogType: DialogType.noHeader,
+                            //                   animType: AnimType.bottomSlide,
                             //                   dismissOnTouchOutside: false,
                             //                   title: "DTM",
                             //                   desc:

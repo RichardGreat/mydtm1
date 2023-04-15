@@ -275,7 +275,6 @@ class ProviderChooseEdu extends ChangeNotifier {
     setDefaultEduDir();
     maqsadliId = id;
     maqsadliName = name;
-    print("$maqsadliName  $maqsadliId");
     notifyListeners();
   }
 
@@ -411,10 +410,10 @@ class ProviderChooseEdu extends ChangeNotifier {
       notifyListeners();
       AwesomeDialog(
           context: context,
-          dialogType: DialogType.NO_HEADER,
-          animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.noHeader,
+          animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-          title: "DTM",
+          title: "BMBA",
           desc: "infoNoDir".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
@@ -480,10 +479,10 @@ class ProviderChooseEdu extends ChangeNotifier {
       notifyListeners();
       AwesomeDialog(
           context: context,
-          dialogType: DialogType.NO_HEADER,
-          animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.noHeader,
+          animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-          title: "DTM",
+          title: "BMBA",
           desc: "infoNoDir".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
@@ -837,10 +836,10 @@ class ProviderChooseEdu extends ChangeNotifier {
       notifyListeners();
       AwesomeDialog(
               context: context,
-              dialogType: DialogType.NO_HEADER,
-              animType: AnimType.BOTTOMSLIDE,
+              dialogType: DialogType.noHeader,
+              animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-              title: "DTM",
+              title: "BMBA",
               desc: "chooseOther".tr(),
               titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),

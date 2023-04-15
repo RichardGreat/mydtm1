@@ -50,7 +50,7 @@ class NetworkSmsAutoFill {
     response = await dio.post("${MainUrl.mainUrls}/auth/check-sms",
         data: {"sms_code": smsCode, "sms_id": smsId, "app_id": "1"});
 
-    return jsonEncode(response.data);
+    return jsonEncode(response.data).toString();
   }
 
   var box = Hive.box("online");

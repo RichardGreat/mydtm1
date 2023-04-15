@@ -1,4 +1,5 @@
-import 'dart:convert';
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'dart:developer';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -6,7 +7,6 @@ import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:mydtm/data/model_parse/person_info/privilege_model/invalid.dart';
 import 'package:mydtm/data/texnikum/internet/privilage/privilage.dart';
 import 'package:mydtm/data/texnikum/models/privillage/get_privilage.dart';
 import 'package:mydtm/view/texnikum/privillage/add_invalid/image_texnikum.dart';
@@ -68,36 +68,30 @@ class ProviderAddInvalideTexnikum extends ChangeNotifier {
   NetworkSetPrivilegeTexnikum networkInvalidePrivilege =
       NetworkSetPrivilegeTexnikum();
 
-
   late FormData formDatas;
   late ModelGetPrivilageTexnikum modelGetPrivilageTexnikum;
   bool boolGetPrivillageTexnikum = false;
 
   Future sendServer(
       {required BuildContext context, required File files}) async {
-
-      formDatas = FormData.fromMap({
-        "ser": textEditingController.text.toString().substring(0, 2),
-        "num": textEditingController.text.toString().substring(2),
-        "sdate": invalidDate1.toString(),
-        "type_id": box.get("privilageTypeTexnikum").toString(),
-        "img":
-            await MultipartFile.fromFile(files.path, filename: "dtm.$fileName")
-      });
-
+    formDatas = FormData.fromMap({
+      "ser": textEditingController.text.toString().substring(0, 2),
+      "num": textEditingController.text.toString().substring(2),
+      "sdate": invalidDate1.toString(),
+      "type_id": box.get("privilageTypeTexnikum").toString(),
+      "img": await MultipartFile.fromFile(files.path, filename: "dtm.$fileName")
+    });
 
     try {
-      String data = await networkInvalidePrivilege.setPrivilegeTexnikum(
+    await networkInvalidePrivilege.setPrivilegeTexnikum(
           formDate: formDatas);
-
-
 
       AwesomeDialog(
               context: context,
-              dialogType: DialogType.NO_HEADER,
-              animType: AnimType.BOTTOMSLIDE,
+              dialogType: DialogType.noHeader,
+              animType: AnimType.bottomSlide,
               dismissOnTouchOutside: false,
-              title: "DTM",
+              title: "BMBA",
               desc: "saved".tr(),
               titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(),

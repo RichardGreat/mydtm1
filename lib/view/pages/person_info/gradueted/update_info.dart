@@ -12,10 +12,10 @@ Widget updateInfoGradueted(
     onPressed: () {
       AwesomeDialog(
               context: context,
-              dialogType: DialogType.NO_HEADER,
-              animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.noHeader,
+          animType: AnimType.bottomSlide,
               dismissOnTouchOutside: false,
-              title: "DTM",
+              title: "BMBA",
               desc:
                   "wantUpdateInfo".tr(),
               titleTextStyle: TextStyle(

@@ -34,10 +34,10 @@ Widget privilegeAddButtonTexnikum({required BuildContext context,  required Prov
           if( box.get("imageTexnikum").toString().length > 200) {
             AwesomeDialog(
                     context: context,
-                    dialogType: DialogType.NO_HEADER,
-                    animType: AnimType.BOTTOMSLIDE,
+                    dialogType: DialogType.noHeader,
+                    animType: AnimType.bottomSlide,
                     dismissOnTouchOutside: false,
-                    title: "DTM",
+                    title: "BMBA",
                     desc: "fillUpRow".tr(),
                     titleTextStyle: TextStyle(
                         color: MyColors.appColorBlue1(),
@@ -53,10 +53,10 @@ Widget privilegeAddButtonTexnikum({required BuildContext context,  required Prov
           }else{
             AwesomeDialog(
                 context: context,
-                dialogType: DialogType.NO_HEADER,
-                animType: AnimType.BOTTOMSLIDE,
+                dialogType: DialogType.noHeader,
+                animType: AnimType.bottomSlide,
                 dismissOnTouchOutside: false,
-                title: "DTM",
+                title: "BMBA",
                 desc: "Rasm kiriting",
                 titleTextStyle: TextStyle(
                     color: MyColors.appColorBlue1(),

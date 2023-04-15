@@ -55,10 +55,10 @@ class ProviderMainHome extends ChangeNotifier {
         } else if (modelCheckMobileVersion.data.status.toString() == "2") {
           AwesomeDialog(
                   context: context,
-                  dialogType: DialogType.NO_HEADER,
-                  animType: AnimType.BOTTOMSLIDE,
+                  dialogType: DialogType.noHeader,
+                  animType: AnimType.bottomSlide,
                   dismissOnBackKeyPress: false,
-                  title: "DTM",
+                  title: "BMBA",
                   desc: box.get("language").toString() == "1"
                       ? modelCheckMobileVersion.data.versionText
                       : box.get("language").toString() == "2"
@@ -160,9 +160,9 @@ class ProviderMainHome extends ChangeNotifier {
       log(e.toString());
       AwesomeDialog(
               context: context,
-              dialogType: DialogType.ERROR,
-              animType: AnimType.BOTTOMSLIDE,
-              title: "DTM",
+              dialogType: DialogType.error,
+              animType: AnimType.bottomSlide,
+              title: "BMBA",
               dismissOnTouchOutside: false,
               desc: "noInternetConn".tr(),
               titleTextStyle: TextStyle(
