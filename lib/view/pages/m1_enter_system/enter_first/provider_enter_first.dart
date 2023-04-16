@@ -223,6 +223,7 @@ class ProviderEnterFirst extends ChangeNotifier {
       ModelResetPassSms modelResetPassSms =
           ModelResetPassSms.fromJson(jsonDecode(dataNetChangePhoneNumber));
       textCaptchaEditingController.clear();
+      getCaptcha();
       modelResetPassSms.status == 1?
       pushNewScreen(context,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,

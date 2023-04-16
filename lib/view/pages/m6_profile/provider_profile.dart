@@ -240,7 +240,9 @@ class ProviderProfile extends ChangeNotifier {
         "captcha_key": modelParseCaptcha.data.captchaKey,
         "captcha_val": textCaptchaEditingControllerPassport.text,
       };
-      getCaptcha();
+      log(modelParseCaptcha.data.captchaKey);
+      log(textCaptchaEditingControllerPassport.text);
+      // getCaptcha();
       String dataNet = await networkChangePassword.getChangePhoneNumber(
           mapChangePassword: mapForNewPassword);
       ModelResetPassSms modelResetPassSms =

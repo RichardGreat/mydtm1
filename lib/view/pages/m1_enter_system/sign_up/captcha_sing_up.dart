@@ -29,77 +29,90 @@ Widget captchaSignUp(
                 borderRadius: BorderRadius.circular(10),
                 color: MyColors.appColorWhite()),
             child: providerSignUp.boolGetCaptcha
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.memory(base64Decode(providerSignUp
-                          .modelParseCaptcha.data.captchaImg
-                          .substring(22))),
-                      SizedBox(
+                ? Stack(
+                  children: [
+                    IconButton(onPressed: (){
+                      providerSignUp.getCaptcha();
+                    },
+                      hoverColor: Colors.blue.shade50,
 
-                        width: 50,
-                        height: 100,
+                      focusColor: Colors.blue.shade200,
+                      highlightColor:  Colors.grey.shade200,
+                      icon: Icon(Icons.change_circle, color: MyColors.appColorBlue2()),
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.memory(base64Decode(providerSignUp
+                              .modelParseCaptcha.data.captchaImg
+                              .substring(22))),
+                          SizedBox(
 
-                        /// Ps Set
-                        child: TextFormField(
-                          controller: providerSignUp.textCaptchaSignUpController,
-                          maxLength: 3,
-                          maxLines: 1,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(RegExp('[0-9]'))
-                          ],
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            counter: const SizedBox.shrink(),
-                            contentPadding: const EdgeInsets.all(8),
-                            fillColor: Colors.white,
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
-                                color: MyColors.appColorGreen2(),
+                            width: 50,
+                            height: 100,
+
+                            /// Ps Set
+                            child: TextFormField(
+                              controller: providerSignUp.textCaptchaSignUpController,
+                              maxLength: 3,
+                              maxLines: 1,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(RegExp('[0-9]'))
+                              ],
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                counter: const SizedBox.shrink(),
+                                contentPadding: const EdgeInsets.all(8),
+                                fillColor: Colors.white,
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: MyColors.appColorGreen2(),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: MyColors.appColorGrey400(),
+                                    width: 1.5,
+                                  ),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: MyColors.appColorBlue1(),
+                                    width: 1.5,
+                                  ),
+                                ),
+                                errorStyle: TextStyle(
+                                  color: MyColors.appColorRed(),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(
+                                    color: MyColors.appColorBlue1(),
+                                    width: 1.5,
+                                  ),
+                                ),
                               ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
-                                color: MyColors.appColorGrey400(),
-                                width: 1.5,
-                              ),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
-                                color: MyColors.appColorBlue1(),
-                                width: 1.5,
-                              ),
-                            ),
-                            errorStyle: TextStyle(
-                              color: MyColors.appColorRed(),
-                              fontWeight: FontWeight.w500,
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide(
-                                color: MyColors.appColorBlue1(),
-                                width: 1.5,
-                              ),
+                              // validator: (value){
+                              //   if(value == null  || value.isEmpty){
+                              //
+                              //     return "..";}
+                              //   else{
+                              //
+                              //     return null;
+                              //   }
+                              // },
                             ),
                           ),
-                          // validator: (value){
-                          //   if(value == null  || value.isEmpty){
-                          //
-                          //     return "..";}
-                          //   else{
-                          //
-                          //     return null;
-                          //   }
-                          // },
-                        ),
+                        ],
                       ),
-                    ],
-                  )
+                  ],
+                )
                 : const Center(child: CupertinoActivityIndicator()),
           ),
         ],

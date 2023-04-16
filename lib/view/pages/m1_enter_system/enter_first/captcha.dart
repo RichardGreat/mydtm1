@@ -20,9 +20,21 @@ Widget captchaGet(
         decoration: BoxDecoration(
             // border: Border.all(color: MyColors.appColorGrey100()),
             borderRadius: BorderRadius.circular(10),
+
             color: MyColors.appColorWhite()),
         child: providerEnterFirst.boolGetCaptcha
-            ? Row(
+            ? Stack(
+              children: [
+                IconButton(onPressed: (){
+                  providerEnterFirst.getCaptcha();
+                },
+                  hoverColor: Colors.blue.shade50,
+
+                  focusColor: Colors.blue.shade200,
+                  highlightColor:  Colors.grey.shade200,
+                icon: Icon(Icons.change_circle, color: MyColors.appColorBlue2()),
+                ),
+                Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -36,7 +48,7 @@ Widget captchaGet(
                     /// Ps Set
                     child: TextFormField(
                       controller:
-                          providerEnterFirst.textCaptchaEditingController,
+                      providerEnterFirst.textCaptchaEditingController,
                       maxLength: 3,
                       maxLines: 1,
                       keyboardType: TextInputType.number,
@@ -92,7 +104,8 @@ Widget captchaGet(
                     ),
                   ),
                 ],
-              )
+              )],
+            )
             : const Center(child: CupertinoActivityIndicator()),
       ),
     ],
