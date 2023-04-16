@@ -47,7 +47,7 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
           .data
           .allow
           .toString();
-      isLoading = false;
+      setState(() => isLoading = false);
 
       doc = await PDFDocument.fromURL(link,
           headers: {"X-Access-Token": box.get("token")}
@@ -56,7 +56,7 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
 
       boolGetAllowLink = true;
       boolGetAllowLinkError = false;
-      setState(() {});
+      setState(() => isLoading = true);
     } catch (e) {
       boolGetAllowLinkError = false;
       boolGetAllowLink = false;
@@ -84,16 +84,15 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
                       children: [
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.75,
-                            child:    isLoading
+                            child:    !isLoading
                                 ? const Center(child: CircularProgressIndicator())
                                 : PDFViewer(
                               document: doc,
                               lazyLoad: false,
                               zoomSteps: 1,
                               backgroundColor: Colors.white,
-                              progressIndicator:const Center(child:Text("")),
-                              numberPickerConfirmWidget: const Text(
-                                "Confirm",
+                               numberPickerConfirmWidget: const Text(
+                                "",
                               ),),),
                       ]),
                 )

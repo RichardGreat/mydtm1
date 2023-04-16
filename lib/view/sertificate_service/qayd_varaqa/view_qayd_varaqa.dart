@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,24 +26,23 @@ class CertQaydVaraqaView extends StatefulWidget {
 class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
   var box = Hive.box("online");
 
+  late PDFDocument docPDF;
+  bool isLoading = false;
+
   @override
   void initState() {
-    log(widget.certQaytVaraqaId);
+    // log(widget.certQaytVaraqaId);
     downloadAndSavePdf();
     super.initState();
   }
 
-  late PDFDocument doc;
-  bool isLoading = false;
+  Future downloadAndSavePdf() async {
+    setState(()=> isLoading = false);
+    docPDF = await PDFDocument.fromURL("${MainUrl.mainUrls}/v1/national/pdf-aplication/${widget.certQaytVaraqaId}",
+        headers: {"X-Access-Token": box.get("token")}
+    );
 
-  Future<void> downloadAndSavePdf() async {
-    setState(() async{
-       isLoading = false;
-      doc = await PDFDocument.fromURL("${MainUrl.mainUrls}/v1/national/pdf-aplication/${widget.certQaytVaraqaId}",
-      headers: {"X-Access-Token": box.get("token")}
-      );
-       isLoading = true;
-    });
+    setState(()=> isLoading = true);
   }
 
   @override
@@ -66,10 +64,10 @@ class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
               SizedBox(
                   height: MediaQuery.of(context).size.height * 0.7,
                   child:
-                  isLoading
+                  !isLoading
                       ? const Center(child: CircularProgressIndicator())
                       : PDFViewer(
-                      document: doc,
+                      document: docPDF,
                       lazyLoad: false,
                       zoomSteps: 1,
                       backgroundColor: Colors.white,
