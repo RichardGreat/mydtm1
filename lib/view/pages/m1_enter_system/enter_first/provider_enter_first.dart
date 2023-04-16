@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
@@ -200,24 +202,28 @@ class ProviderEnterFirst extends ChangeNotifier {
   TextEditingController textPhoneChangePassport = TextEditingController();
   final formKeyChangePasswords = GlobalKey<FormState>();
   NetworkChangePassword networkChangePassword = NetworkChangePassword();
-
+  late String dataNetChangePhoneNumber;
   Future getNewPassport(
       {required BuildContext context,
       required String phoneNumber,
-      required String captchaVal}) async {
+      required String captchaVal,
+      }) async {
     Map<String, dynamic> mapForNewPassword = {
       "username": phoneNumber,
-      "captcha_key": modelParseCaptcha.data.captchaKey,
+      "captcha_key": modelParseCaptcha.data.captchaKey.toString(),
       "captcha_val": captchaVal,
     };
 
     try {
-      String dataNet = await networkChangePassword.getChangePhoneNumber(
+      log("captche key 2 si");
+      log(jsonEncode(mapForNewPassword).toString());
+      log("mapp pasti 3 si");
+      dataNetChangePhoneNumber = await networkChangePassword.getChangePhoneNumber(
           mapChangePassword: mapForNewPassword);
       ModelResetPassSms modelResetPassSms =
-          ModelResetPassSms.fromJson(jsonDecode(dataNet));
+          ModelResetPassSms.fromJson(jsonDecode(dataNetChangePhoneNumber));
       textCaptchaEditingController.clear();
-      // ignore: use_build_context_synchronously
+      modelResetPassSms.status == 1?
       pushNewScreen(context,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
           screen: SmsAutoFillUi(
@@ -225,18 +231,21 @@ class ProviderEnterFirst extends ChangeNotifier {
               password: "",
               captchaKey: modelResetPassSms.data.smsId.toString(),
               captchaValue: modelResetPassSms.data.endDate.toString(),
-              registration: "2"));
+              registration: "2")):{};
       notifyListeners();
     } catch (e) {
+      log(e.toString());
       try {
         textCaptchaEditingController.clear();
-        String dataNet = await networkChangePassword.getChangePhoneNumber(
-            mapChangePassword: mapForNewPassword);
+
         ModelRegistrationCaptchaError modelRegistrationCaptchaError =
-            ModelRegistrationCaptchaError.fromJson(jsonDecode(dataNet));
+            ModelRegistrationCaptchaError.fromJson(jsonDecode(dataNetChangePhoneNumber));
         MyWidgets.awesomeDialogInfo(
             context: context, valueText: modelRegistrationCaptchaError.errors);
+        notifyListeners();
       } catch (e) {
+        getCaptcha();
+        notifyListeners();
         MyWidgets.awesomeDialogInfo(context: context, valueText: "reTry".tr());
       }
 

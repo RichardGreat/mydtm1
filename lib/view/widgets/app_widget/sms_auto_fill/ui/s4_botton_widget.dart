@@ -36,7 +36,7 @@ Widget bottomUI(
             }
             else if (providerSms.smsSentStatus == 1) {
               providerSms.sendRegistrationServer(
-                  smsCode:"1",
+                  smsCode:providerSms.textEditingControllerSms.text.toString().trim(),
                   smsId: providerSms.smsId,
                   context: context
               ),
@@ -45,12 +45,12 @@ Widget bottomUI(
               providerSms.changePhoneNumber(
                   phoneNum: providerSms.numberPhones,
                   smsId: providerSms.captchaKeys,
-                  smsCode: "1", context: context),
+                  smsCode: providerSms.textEditingControllerSms.text.toString().trim(), context: context),
             }
             else if (providerSms.smsSentStatus == 2) {
               providerSms.getResetPass(
                 phoneNum: phoneNumber,
-                  smsCode: "1",
+                  smsCode: providerSms.textEditingControllerSms.text.toString().trim(),
                   context: context,
                   smsId: providerSms.captchaKeys),
             }

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pw_validator/Resource/Strings.dart';
+import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_passport/change_password_in/provider_change_pass_in.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -120,122 +122,46 @@ class _ChangePasswordInputState extends State<ChangePasswordInput> {
                         ),
                         validator: (value) {
                           if (value == null || value.length < 8) {
-                            providerChangePasswordInputs.boolButtonCol2(
-                                boolValue: false);
                             return "passwordLength".tr();
                           } else {
-                            providerChangePasswordInputs.boolButtonCol2(
-                                boolValue: true);
                             return "";
                           }
                         },
                       ),
                       const SizedBox(height: 10),
-                      TextFormField(
-                        controller:
-                            providerChangePasswordInputs.textEditingPass2,
-                        textAlignVertical: TextAlignVertical.center,
-                        maxLines: 1,
-                        maxLength: 20,
-                        obscureText:
-                            providerChangePasswordInputs.boolPasswordVisible2,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.all(8),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              providerChangePasswordInputs
-                                  .boolPasswordVisibleMethod2();
-                              setState(() {});
-                            },
-                            child: providerChangePasswordInputs
-                                    .boolPasswordVisible2
-                                ? Icon(
-                                    CupertinoIcons.eye_slash,
-                                    color: MyColors.appColorGrey600(),
-                                    size: 18,
-                                  )
-                                : Icon(
-                                    CupertinoIcons.eye,
-                                    color: MyColors.appColorBlue2(),
-                                    size: 18,
-                                  ),
-                          ),
-                          fillColor: Colors.white,
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                              color: MyColors.appColorBlue2(),
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                              color: MyColors.appColorGrey100(),
-                              width: 2.0,
-                            ),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                              color: MyColors.appColorGrey100(),
-                              width: 2.0,
-                            ),
-                          ),
-                          errorStyle: TextStyle(
-                            color: MyColors.appColorRed(),
-                            fontWeight: FontWeight.w500,
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                              color: MyColors.appColorGrey100(),
-                              width: 2.0,
-                            ),
-                          ),
-                        ),
-                        validator: (value) {
-                          // ignore: unrelated_type_equality_checks
+                      FlutterPwValidator(
+                          controller:
+                              providerChangePasswordInputs.textEditingPass1,
+                          minLength: 8,
+                          uppercaseCharCount: 1,
+                          numericCharCount: 1,
+                          specialCharCount: 1,
+                          width: 400,
+                          height: 160,
+                          successColor: MyColors.appColorBlue1(),
 
-                          if (value!.length >= 8 &&
-                              providerChangePasswordInputs.textEditingPass1.text
-                                      .trim() ==
-                                  value.trim()) {
-                            providerChangePasswordInputs.passwordButtonColor(
-                                boolBtnCol: true);
-                            return "";
-                            // if (value.toString().trim() !=
-                            //     providerChangePasswordInputs
-                            //         .textEditingPass2.text) {
-                            //   providerChangePasswordInputs.passwordButtonColor(
-                            //       boolBtnCol: false);
-                            //   return "passwordNotMatch".tr();
-                            // } else {
-                            //   providerChangePasswordInputs.passwordButtonColor(
-                            //       boolBtnCol: true);
-                            //   return "true";
-                            // }
-                          } else {
-                            return "passwordNotMatch".tr();
-                          }
-                        },
-                      ),
+                          strings: FrenchString(),
+                          onSuccess: () {
+                            providerChangePasswordInputs
+                                .boolGetAccessTypePassword(boolValue: true);
+                            // providerSignUp.boolButtonCol2(boolValue: true);
+                          },
+                          onFail: () {
+                            providerChangePasswordInputs
+                                .boolGetAccessTypePassword(boolValue: false);
+                            // providerSignUp.boolButtonCol2(boolValue: false);
+                          }),
                       const SizedBox(height: 20),
                       MaterialButton(
                           onPressed: () {
                             setState(() {});
-
                             if (providerChangePasswordInputs
-                                    .textEditingPass1.text
-                                    .trim() ==
-                                providerChangePasswordInputs
-                                    .textEditingPass2.text
-                                    .trim()) {
+                                .boolAccessNewPassword) {
                               providerChangePasswordInputs.getNewPassport(
                                   phoneNumber: widget.phoneNumber,
                                   passportResetToken: widget.passResetToken,
                                   textNewPassport: providerChangePasswordInputs
-                                      .textEditingPass2.text
+                                      .textEditingPass1.text
                                       .trim(),
                                   context: context);
                             }
@@ -258,4 +184,26 @@ class _ChangePasswordInputState extends State<ChangePasswordInput> {
       ),
     );
   }
+}
+
+class FrenchString implements FlutterPwValidatorStrings {
+  //TODO implement atLeast
+  @override
+  String get atLeast => "passwordLength".tr();
+
+  @override
+  // TODO: implement normalLetters
+  String get normalLetters => "2";
+
+  @override
+  // TODO: implement numericCharacters
+  String get numericCharacters => "enterNumber".tr();
+
+  @override
+  // TODO: implement specialCharacters
+  String get specialCharacters => "enterSpecialSymbols".tr();
+
+  @override
+  // TODO: implement uppercaseLetters
+  String get uppercaseLetters => "enterCapitalLatter".tr();
 }

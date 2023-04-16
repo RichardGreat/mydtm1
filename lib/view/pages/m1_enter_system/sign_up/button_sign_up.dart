@@ -33,6 +33,7 @@ Widget buttonSignUp(
 
         },
       ),
+          const SizedBox(height: 30),
     ],
   ));
 }

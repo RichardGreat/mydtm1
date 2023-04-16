@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:easy_localization/easy_localization.dart';
 import 'dart:convert';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -12,39 +14,21 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 class ProviderChangePasswordInputs extends ChangeNotifier {
 
   TextEditingController textEditingPass1 = TextEditingController();
-  TextEditingController textEditingPass2 = TextEditingController();
   final formKeyChangeNewInputPassword = GlobalKey<FormState>();
-  bool boolButtonColor1 = false;
 
-  Future boolButtonCol1({required bool boolValue}) async {
-    boolButtonColor1 = boolValue;
+  /// parol parametri mos bo'lish bo'lmasligi
+  bool boolAccessNewPassword = false;
+  Future boolGetAccessTypePassword({required bool boolValue}) async {
+    boolAccessNewPassword = boolValue;
   }
 
-  bool boolButtonColor2 = false;
-
-  Future boolButtonCol2({required bool boolValue}) async {
-    boolButtonColor2 = boolValue;
-  }
-
+  /// parolni ko'rsatish  yoki yashirish
   bool boolPasswordVisible = true;
-  bool boolPasswordVisible2 = true;
-
   Future boolPasswordVisibleMethod() async {
     boolPasswordVisible = !boolPasswordVisible;
     notifyListeners();
   }
 
-  Future boolPasswordVisibleMethod2() async {
-    boolPasswordVisible2 = !boolPasswordVisible2;
-    notifyListeners();
-  }
-
-  bool boolPasswordBtnColor = false;
-
-  Future passwordButtonColor({required bool boolBtnCol}) async {
-    boolPasswordBtnColor = boolBtnCol;
-
-  }
 
 
   late DataAccessNewPassport  dataAccessNewPassport;
@@ -76,7 +60,7 @@ class ProviderChangePasswordInputs extends ChangeNotifier {
               color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
           descTextStyle: TextStyle(
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-
+dismissOnTouchOutside: false,
           btnCancelOnPress: () {
             box.delete("langLock");
             box.put("langLock", "1");

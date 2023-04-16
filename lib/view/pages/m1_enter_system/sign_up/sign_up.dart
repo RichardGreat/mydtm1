@@ -37,29 +37,28 @@ class _SignUpState extends State<SignUp> {
             body: Form(
                 key: providerSignUp.formKey,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: SafeArea(
-                    child: SingleChildScrollView(
+                child: SingleChildScrollView(
                   child: Container(
-                    height: MediaQuery.of(context).size.height*0.93 -
+                    height: MediaQuery.of(context).size.height  -
                         AppBar().preferredSize.height,
                     padding: const EdgeInsets.all(15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-
                         textWords(
                             context: context, providerSignUp: providerSignUp),
                         inputsSignUp(
                             context: context, providerSignUp: providerSignUp),
-                        const SizedBox(height: 10),
-                        captchaSignUp(context: context, providerSignUp: providerSignUp),
+                        const SizedBox(height: 5),
+                        captchaSignUp(
+                            context: context, providerSignUp: providerSignUp),
                         buttonSignUp(
-                            context: context, providerSignUp: providerSignUp)
+                            context: context, providerSignUp: providerSignUp),
                       ],
                     ),
                   ),
-                )))),
+                ))),
       ),
     );
   }
@@ -80,9 +79,9 @@ class _SignUpState extends State<SignUp> {
           child: MyWidgets.robotoFontText(
               text: "phoneNumberNewPassword".tr(),
               textColor: MyColors.appColorGrey600(),
-              textSize: 14),
+              textSize: 13),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
       ],
     );
   }

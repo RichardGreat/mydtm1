@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
@@ -28,6 +30,7 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderSms extends ChangeNotifier {
   final scaffoldKey = GlobalKey();
+  TextEditingController textEditingControllerSms = TextEditingController();
   String? valueSignature;
   String variantId = "0";
   bool boolTimeEnd = false;
@@ -162,35 +165,22 @@ class ProviderSms extends ChangeNotifier {
     boolData = true;
     notifyListeners();
 
-    // try {
-    //   if (valueSignature != null) {
+    try {
 
-    // dataResetPassword = await networkSmsAutoFill.resetPasswordSms(
-    //     userName: userName,
-    //     captchaKey: captchaKey,
-    //     captchaVal: captchaVal,
-    //     smsHash: valueSignature!);
-    //
-    // ModelRegistrationSms modelRegistrationSms =
-    //     ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
-    //
-    // smsTimer(timers: modelRegistrationSms.data.endDate, context: context);
-    // ModelRegistrationSms modelRegistrationSms12 =
-    //     ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
-    // smsId = modelRegistrationSms12.data.smsId.toString();
-    // } else {
-    //   log(code1);
-    // }
-    //   boolData = true;
-    //
-    //   ///
-    //   /// Navigator.push(context, CupertinoPageRoute(builder: (context) => const NewPassword(),));
-    //   ///
-    //   log("#3");
-    //   notifyListeners();
-    // } catch (e) {
-    //   log(e.toString());
-    // }
+    dataResetPassword = await networkSmsAutoFill.resetPasswordSms(
+        userName: userName,
+        captchaKey: captchaKey,
+        captchaVal: captchaVal,
+        smsHash: "");
+        ModelRegistrationSms modelRegistrationSms12 =
+        ModelRegistrationSms.fromJson(jsonDecode(dataResetPassword));
+    smsId = modelRegistrationSms12.data.smsId.toString();
+      boolData = true;
+      notifyListeners();
+    } catch (e) {
+      log(e.toString());
+    }
+    boolData = true;
     smsTimer(context: context, timers: int.parse(captchaValues));
     // boolData = false;
     notifyListeners();
@@ -209,12 +199,15 @@ class ProviderSms extends ChangeNotifier {
 
       boolData = false;
       notifyListeners();
+      log("getResetPass");
+      log(smsId.toString());
+      log(smsCode.toString());
+
       dataSmsResetPassword = await NetworkSmsAutoFill.sentServerSms(
           smsId: smsId, appId: "1", smsCode: smsCode);
-      log(dataSms.toString());
+
       ModelResetPassToken2 modelResetPassToken2 =
-          ModelResetPassToken2.fromJson(jsonDecode(dataSms));
-      // ignore: use_build_context_synchronously
+          ModelResetPassToken2.fromJson(jsonDecode(dataSmsResetPassword));
       pushNewScreen(context,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
           screen: ChangePasswordInput(
@@ -389,7 +382,6 @@ class ProviderSms extends ChangeNotifier {
   Future endTime() async {}
 
   /// Begin
-  late String code1;
 
   /// registratsiya qilgan sms activate qilmagan
   String smsIdActivate = "";
@@ -524,11 +516,13 @@ class ProviderSms extends ChangeNotifier {
       );
     } else if (numbers == 2) {
       /// parol tiklash
-      resetPassword(
-          userName: phoneNum,
-          captchaVal: captchaValue,
-          captchaKey: captchaKey,
-          context: context);
+      boolData = true;
+      smsTimer(context: context, timers: int.parse(captchaValues));
+      // resetPassword(
+      //     userName: phoneNum,
+      //     captchaVal: captchaValue,
+      //     captchaKey: captchaKey,
+      //     context: context);
     }
 
     /// Telefon nomer almashtirish

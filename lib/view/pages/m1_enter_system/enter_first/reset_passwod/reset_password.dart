@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/captcha.dart';
@@ -24,7 +26,11 @@ class _ResetPasswordsState extends State<ResetPasswords> {
   }
 
   Future getPhoneNum() async {
-    await widget.providerEnterFirst.getCaptcha();
+    widget.providerEnterFirst.textCaptchaEditingController.text.isEmpty?
+    await widget.providerEnterFirst.getCaptcha():{};
+    log("InintState");
+    log(widget.providerEnterFirst.modelParseCaptcha.data.captchaKey.toString());
+    log(widget.providerEnterFirst.modelParseCaptcha.data.val.toString());
     setState((){});
   }
 
@@ -170,6 +176,7 @@ class _ResetPasswordsState extends State<ResetPasswords> {
                                   .textCaptchaEditingController.text.isNotEmpty) {
 
                             if(widget.providerEnterFirst.formKeyChangePasswords.currentState!.validate()){
+
                               widget.providerEnterFirst.getNewPassport(
                                 context: context,
                                 captchaVal: widget.providerEnterFirst
@@ -177,7 +184,7 @@ class _ResetPasswordsState extends State<ResetPasswords> {
                                 phoneNumber: widget.providerEnterFirst
                                     .textPhoneChangePassport.text,
                               );
-                              getPhoneNum();
+                              //
                             }else{
                               MyWidgets.scaffoldMessengerBottom(
                                   context: context, valueText: "infoNotAll".tr());

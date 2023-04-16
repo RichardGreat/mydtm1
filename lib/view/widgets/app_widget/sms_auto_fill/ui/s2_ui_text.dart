@@ -28,6 +28,7 @@ Widget uiText({required BuildContext context, required String phoneNum, required
             width:
             MediaQuery.of(context).size.width * 0.75,
             child: TextFormField(
+              controller: providerSms.textEditingControllerSms,
               maxLines: 1,
               maxLength: 6,
               decoration: InputDecoration(
