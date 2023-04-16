@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +33,7 @@ class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
 
   @override
   void initState() {
-    // log(widget.certQaytVaraqaId);
+    log(widget.certQaytVaraqaId);
     downloadAndSavePdf();
     super.initState();
   }

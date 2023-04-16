@@ -42,7 +42,8 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
 
       Response response = await dio.get(
           "${MainUrl.mainUrls}/v1/national/allow/${widget.certRuxsatnomaVaraqaId}",
-          options: Options(headers: {"X-Access-Token": box.get("token")}));
+          options: Options(headers: {"X-Access-Token": box.get("token")
+          }));
       link = ModelCertAllow.fromJson(jsonDecode(jsonEncode(response.data)))
           .data
           .allow
@@ -52,8 +53,6 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
       doc = await PDFDocument.fromURL(link,
           headers: {"X-Access-Token": box.get("token")}
       );
-      isLoading = true;
-
       boolGetAllowLink = true;
       boolGetAllowLinkError = false;
       setState(() => isLoading = true);
@@ -87,11 +86,11 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
                             child:    !isLoading
                                 ? const Center(child: CircularProgressIndicator())
                                 : PDFViewer(
-                              document: doc,
-                              lazyLoad: false,
-                              zoomSteps: 1,
-                              backgroundColor: Colors.white,
-                               numberPickerConfirmWidget: const Text(
+                                 document: doc,
+                                 lazyLoad: false,
+                                 zoomSteps: 1,
+                                 backgroundColor: Colors.white,
+                                  numberPickerConfirmWidget: const Text(
                                 "",
                               ),),),
                       ]),
