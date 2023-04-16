@@ -57,5 +57,7 @@
         <string>Photo Library Access Warning</string>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>io.flutter.embedded_views_preview</key>
+    <true/>
 </dict>
 </plist>

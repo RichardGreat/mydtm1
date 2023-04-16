@@ -73,7 +73,8 @@ class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
                       lazyLoad: false,
                       zoomSteps: 1,
                       backgroundColor: Colors.white,
-                      progressIndicator: Center(child:Text("")),
+                      progressIndicator: const Center(child: CircularProgressIndicator()),
+                      showIndicator: true,
                       numberPickerConfirmWidget: const Text(
                         "Confirm",
                       ),),),

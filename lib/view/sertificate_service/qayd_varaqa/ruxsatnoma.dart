@@ -89,6 +89,8 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
                                  document: doc,
                                  lazyLoad: false,
                                  zoomSteps: 1,
+                              progressIndicator: const Center(child: CircularProgressIndicator()),
+                              showIndicator: true,
                                  backgroundColor: Colors.white,
                                   numberPickerConfirmWidget: const Text(
                                 "",
