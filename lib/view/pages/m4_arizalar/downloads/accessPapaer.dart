@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -51,18 +50,18 @@ class _AccessPaperDownloadState extends State<AccessPaperDownload> {
                     "1"
                 ? SingleChildScrollView(
                     child: Column(children: [
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.6,
-                          child: const PDF(
-                            autoSpacing: false,
-                            fitEachPage: true,
-                          ).fromUrl(
-                            widget.providerAriza.modelGetDownloads2.src,
-                            placeholder: (progress) =>
-                                Center(child: Text('$progress %')),
-                            errorWidget: (error) =>
-                                Center(child: Text(error.toString())),
-                          )),
+                      // SizedBox(
+                      //     height: MediaQuery.of(context).size.height * 0.6,
+                      //     child: const PDF(
+                      //       autoSpacing: false,
+                      //       fitEachPage: true,
+                      //     ).fromUrl(
+                      //       widget.providerAriza.modelGetDownloads2.src,
+                      //       placeholder: (progress) =>
+                      //           Center(child: Text('$progress %')),
+                      //       errorWidget: (error) =>
+                      //           Center(child: Text(error.toString())),
+                      //     )),
                       Container(
                         margin: const EdgeInsets.all(15),
                         child: Column(children: [

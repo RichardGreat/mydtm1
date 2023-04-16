@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_information.dart';
 import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -50,18 +49,18 @@ class _QaydVaraqaEditState extends State<QaydVaraqaEdit> {
                 ? widget.providerCheckInformation.modelGetDownloadsData1.status == 1
                 ? SingleChildScrollView(
               child: Column(children: [
-                SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.65,
-                    child: const PDF(
-                      autoSpacing: false,
-                      fitEachPage: true,
-                    ).fromUrl(
-                      widget.providerCheckInformation.modelGetDownloads1.src,
-                      placeholder: (progress) =>
-                          Center(child: Text('$progress %')),
-                      errorWidget: (error) =>
-                          Center(child: Text(error.toString())),
-                    )),
+                // SizedBox(
+                //     height: MediaQuery.of(context).size.height * 0.65,
+                //     child: const PDF(
+                //       autoSpacing: false,
+                //       fitEachPage: true,
+                //     ).fromUrl(
+                //       widget.providerCheckInformation.modelGetDownloads1.src,
+                //       placeholder: (progress) =>
+                //           Center(child: Text('$progress %')),
+                //       errorWidget: (error) =>
+                //           Center(child: Text(error.toString())),
+                //     )),
                 Container(
                   margin: const EdgeInsets.all(15),
                   child: Column(children: [

@@ -23,7 +23,6 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ProviderCheckInfoPerevod extends ChangeNotifier {
   List<ModelCheckInformationForDelete> myList = [
@@ -69,7 +68,7 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
     // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
   }
 
-  final Uri _url = Uri.parse("https://lex.uz/docs/-4396419");
+  // final Uri _url = Uri.parse("https://lex.uz/docs/-4396419");
 
   Future checkInfo(
       {required int index,
@@ -105,14 +104,14 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
           } else if (index == 3) {
             pushNewScreen(
               context,
-              screen: OldEduAdd(),
+              screen: const OldEduAdd(),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
           } else if (index == 4) {
             pushNewScreen(
               context,
-              screen: NewEduPerevod(),
+              screen:const NewEduPerevod(),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
@@ -157,7 +156,7 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
             animType: AnimType.bottomSlide,
             body: GestureDetector(
               onTap: () {
-                _launchInBrowser(_url);
+                // _launchInBrowser(_url);
               },
               child: Container(
                 margin: const EdgeInsets.all(10),
@@ -259,14 +258,14 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
   }
 
   // final Uri urls = Uri.parse("https://lex.uz/docs/-4396419");
-  Future<void> _launchInBrowser(Uri url) async {
-    if (!await launchUrl(
-      url,
-      mode: LaunchMode.externalApplication,
-    )) {
-      throw 'Could not launch $url';
-    }
-  }
+  // Future<void> _launchInBrowser(Uri url) async {
+  //   if (!await launchUrl(
+  //     url,
+  //     mode: LaunchMode.externalApplication,
+  //   )) {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   NetworkPrivilege networkPrivilege = NetworkPrivilege();
   List<DataCheckPrivilege> listCheckPrivilege = [];
@@ -332,7 +331,7 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
         options: Options(
           responseType: ResponseType.bytes,
           followRedirects: false,
-          receiveTimeout: 0,
+          receiveTimeout: const Duration(seconds: 10),
         ));
 
     final raf = file.openSync(mode: FileMode.write);

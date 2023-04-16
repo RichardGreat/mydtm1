@@ -133,7 +133,7 @@ class ProviderAriza extends ChangeNotifier {
         options: Options(
           responseType: ResponseType.bytes,
           followRedirects: false,
-          receiveTimeout: 0,
+          receiveTimeout: const Duration(seconds: 60),
         ));
 
     final raf = file.openSync(mode: FileMode.write);

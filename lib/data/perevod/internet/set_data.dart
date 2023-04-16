@@ -14,7 +14,7 @@ class NetworkSetOldEduPerevod {
         "${MainUrl.mainUrls}/v1/transfer-qabul/first-edu",
         data: formDate,
 
-        options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}, receiveTimeout: 10000));
+        options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}, receiveTimeout: const Duration(seconds: 10),));
     return jsonEncode(response.data);
   }
 }

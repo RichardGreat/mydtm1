@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
+import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/data/model_parse/mod_certificate_nation/model_cert_allow.dart';
@@ -36,9 +35,11 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
   bool boolGetAllowLinkError = true;
   var dio = Dio();
   String link = "";
-
+  late PDFDocument doc;
+  bool isLoading = false;
   getAllowLink() async {
     try {
+
       Response response = await dio.get(
           "${MainUrl.mainUrls}/v1/national/allow/${widget.certRuxsatnomaVaraqaId}",
           options: Options(headers: {"X-Access-Token": box.get("token")}));
@@ -46,6 +47,12 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
           .data
           .allow
           .toString();
+      isLoading = false;
+
+      doc = await PDFDocument.fromURL(link,
+          headers: {"X-Access-Token": box.get("token")}
+      );
+      isLoading = true;
 
       boolGetAllowLink = true;
       boolGetAllowLinkError = false;
@@ -77,18 +84,17 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
                       children: [
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.75,
-                            child: const PDF(
-                              autoSpacing: false,
-                              fitEachPage: true,
-                            ).fromUrl(
-                              //    "https://my.uzbmb.uz/allow/m-allow/96904fd98809af197d33453dbd2b33a8",
-                              link,
-                              headers: {"X-Access-Token": box.get("token")},
-                              placeholder: (progress) =>
-                                  Center(child: Text('$progress %')),
-                              errorWidget: (error) =>
-                                  Center(child: Text(error.toString())),
-                            )),
+                            child:    isLoading
+                                ? const Center(child: CircularProgressIndicator())
+                                : PDFViewer(
+                              document: doc,
+                              lazyLoad: false,
+                              zoomSteps: 1,
+                              backgroundColor: Colors.white,
+                              progressIndicator:const Center(child:Text("")),
+                              numberPickerConfirmWidget: const Text(
+                                "Confirm",
+                              ),),),
                       ]),
                 )
               : boolGetAllowLinkError

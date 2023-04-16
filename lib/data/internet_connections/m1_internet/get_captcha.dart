@@ -7,7 +7,7 @@ class NetworkGetCaptcha {
     var dio = Dio();
     Response response;
     response = await dio.get("${MainUrl.mainUrls}/auth/generate-captcha",
-        options: Options(receiveTimeout: 5000));
+        options: Options(receiveTimeout: const Duration(seconds: 50),));
     return ModelParseCaptcha.fromJson(response.data);
   }
 }
