@@ -8,7 +8,7 @@ Widget buttonSignUp(
     {required BuildContext context, required ProviderSignUp providerSignUp}) {
   return Expanded(
       child: Column(
-         mainAxisAlignment: MainAxisAlignment.end,
+         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
         MaterialButton(
         height: 50,
