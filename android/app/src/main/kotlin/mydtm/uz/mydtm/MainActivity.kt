@@ -1,4 +1,4 @@
-package www.my_dtm.uz
+package www.uzbmba.uz
 
 import androidx.annotation.NonNull
 import io.flutter.embedding.engine.FlutterEngine

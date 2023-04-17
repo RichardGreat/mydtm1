@@ -20,7 +20,7 @@ import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information
 import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:open_file/open_file.dart';
+// import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -375,7 +375,7 @@ class ProviderCheckInformation extends ChangeNotifier
       final file = await downloadFile(url: url, name: fileName);
       if (file == null) return;
 
-      OpenFile.open(file.path);
+      // OpenFile.open(file.path);
     }catch(e){
       log(e.toString());
     }

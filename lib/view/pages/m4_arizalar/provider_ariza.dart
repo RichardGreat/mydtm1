@@ -4,16 +4,16 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+// import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/answersheet.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/ariza_check.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/qayd_varaqa.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/ruxsanoma.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/model_qayd_varaqa.dart';
-import 'package:open_file/open_file.dart';
+// import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
+// import 'package:permission_handler/permission_handler.dart';
 
 class ProviderAriza extends ChangeNotifier {
   NetworkArizaCheck networkArizaCheck = NetworkArizaCheck();
@@ -119,7 +119,7 @@ class ProviderAriza extends ChangeNotifier {
       final file = await downloadFile(url: url, name: fileName);
       if (file == null) return;
 
-      OpenFile.open(file.path);
+      // OpenFile.open(file.path);
     } catch (e) {
       log(e.toString());
     }
@@ -154,32 +154,33 @@ class ProviderAriza extends ChangeNotifier {
 
     try {
       if (Platform.isAndroid) {
-          if(await requestPermission(Permission.storage)){
+
             directory = (await  getExternalStorageDirectory())!;
             String  newPath = "";
             List<String> folders = directory.path.split("/");
 
-            for(int x = 1; x < folders.length; x++){
+            for(int x = 1; x < folders.length; x++) {
               String folder = folders[x];
-              if(folder != "Android"){
+              if (folder != "Android") {
                 newPath += "/$folder";
-              }else{
+              } else {
                 break;
               }
+
+              newPath = "$newPath/DTM";
+              directory = Directory(newPath);
             }
+          // }
+          // else{return false;}
 
-            newPath = "$newPath/DTM";
-            directory = Directory(newPath);
-          }
-          else{return false;}
+      // }
 
-      } else {
 
-      if(await requestPermission(Permission.photos)){
-        directory  = await getTemporaryDirectory();
-      }else{
-        return false;
-        }
+      // if(await requestPermission()){
+      //   directory  = await getTemporaryDirectory();
+      //
+      //   return false;
+      //   }
       }
       if(!await directory.exists()){
         await directory.create(recursive:  true);
@@ -193,7 +194,7 @@ class ProviderAriza extends ChangeNotifier {
 
 
         if(Platform.isIOS){
-          await ImageGallerySaver.saveFile(saveFile.path, isReturnPathOfIOS: true);
+          // await ImageGallerySaver.saveFile(saveFile.path, isReturnPathOfIOS: true);
           notifyListeners();
         }
         return true;
@@ -219,16 +220,14 @@ class ProviderAriza extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> requestPermission(Permission permission) async {
-    if (await permission.isGranted) {
-      return true;
-    } else {
-      var result = await permission.request();
-      if (result == PermissionStatus.granted) {
-        return true;
-      } else {
-        return false;
-      }
+  // Future<bool> requestPermission() async {
+  //
+  //     var result = await permission.request();
+  //     if (result == PermissionStatus.granted) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
     }
-  }
-}
+  // }
+// }

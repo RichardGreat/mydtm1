@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:local_auth/local_auth.dart';
+// import 'package:local_auth/local_auth.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'dart:async';
@@ -66,14 +66,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   var box = Hive.box("online");
-  LocalAuthentication auth = LocalAuthentication();
-
-  Future<void> localAuth(BuildContext context) async {
-    final List<BiometricType> availableBiometrics =
-        await auth.getAvailableBiometrics();
-    if (availableBiometrics.contains(BiometricType.face) ||
-        availableBiometrics.contains(BiometricType.fingerprint)) {}
-  }
+  // LocalAuthentication auth = LocalAuthentication();
+  //
+  // Future<void> localAuth(BuildContext context) async {
+  //   final List<BiometricType> availableBiometrics =
+  //       await auth.getAvailableBiometrics();
+  //   if (availableBiometrics.contains(BiometricType.face) ||
+  //       availableBiometrics.contains(BiometricType.fingerprint)) {}
+  // }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {

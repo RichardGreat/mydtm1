@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:dio/dio.dart';
+// import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:open_file/open_file.dart';
+// import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -85,7 +85,7 @@ class ProviderImageToPDF extends ChangeNotifier {
 
   Future openFiles(File file) async {
     final url = file.path;
-    await OpenFile.open(url);
+    // await OpenFile.open(url);
   }
 
 

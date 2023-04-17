@@ -283,14 +283,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.0.1"
-  flutter_svg:
-    dependency: "direct main"
-    description:
-      name: flutter_svg
-      sha256: f991fdb1533c3caeee0cdc14b04f50f0c3916f0dbcbc05237ccbe4e3c6b93f3f
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.5"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -317,14 +309,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.22.08+1"
-  get_it:
-    dependency: "direct main"
-    description:
-      name: get_it
-      sha256: "290fde3a86072e4b37dbb03c07bec6126f0ecc28dad403c12ffe2e5a2d751ab7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.2.0"
   graphs:
     dependency: transitive
     description:
@@ -405,14 +389,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
-  image_gallery_saver:
-    dependency: "direct main"
-    description:
-      name: image_gallery_saver
-      sha256: be812580c7a320d3bf583af89cac6b376f170d48000aca75215a73285a3223a0
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.7.1"
   image_picker:
     dependency: "direct main"
     description:
@@ -493,46 +469,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
-  local_auth:
-    dependency: "direct main"
-    description:
-      name: local_auth
-      sha256: "0cf238be2bfa51a6c9e7e9cfc11c05ea39f2a3a4d3e5bb255d0ebc917da24401"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.6"
-  local_auth_android:
-    dependency: transitive
-    description:
-      name: local_auth_android
-      sha256: "2ccfadbb6fbc63e6674ad58a350b06188829e62669d67a0c752c4e43cb88272a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.21"
-  local_auth_ios:
-    dependency: transitive
-    description:
-      name: local_auth_ios
-      sha256: "604078f6492fe7730fc5bb8e4f2cfe2bc287a9b499ea0ff30a29925fc1873728"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.1"
-  local_auth_platform_interface:
-    dependency: transitive
-    description:
-      name: local_auth_platform_interface
-      sha256: "9e160d59ef0743e35f1b50f4fb84dc64f55676b1b8071e319ef35e7f3bc13367"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.7"
-  local_auth_windows:
-    dependency: transitive
-    description:
-      name: local_auth_windows
-      sha256: bfe0deede77fb36faa62799977074f35ac096d7cafce0c29a44a173d2a2a4b94
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.7"
   matcher:
     dependency: transitive
     description:
@@ -589,14 +525,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
-  open_file:
-    dependency: "direct main"
-    description:
-      name: open_file
-      sha256: "5cd0288033d613ee7908aa974b7ff00805ae55d253f64d311603cf2e30613ca8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.2.1"
   path:
     dependency: transitive
     description:
@@ -685,46 +613,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
-  permission_handler:
-    dependency: "direct main"
-    description:
-      name: permission_handler
-      sha256: "33c6a1253d1f95fd06fa74b65b7ba907ae9811f9d5c1d3150e51417d04b8d6a8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "10.2.0"
-  permission_handler_android:
-    dependency: transitive
-    description:
-      name: permission_handler_android
-      sha256: "8028362b40c4a45298f1cbfccd227c8dd6caf0e27088a69f2ba2ab15464159e2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "10.2.0"
-  permission_handler_apple:
-    dependency: transitive
-    description:
-      name: permission_handler_apple
-      sha256: ee96ac32f5a8e6f80756e25b25b9f8e535816c8e6665a96b6d70681f8c4f7e85
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.0.8"
-  permission_handler_platform_interface:
-    dependency: transitive
-    description:
-      name: permission_handler_platform_interface
-      sha256: "68abbc472002b5e6dfce47fe9898c6b7d8328d58b5d2524f75e277c07a97eb84"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.9.0"
-  permission_handler_windows:
-    dependency: transitive
-    description:
-      name: permission_handler_windows
-      sha256: f67cab14b4328574938ecea2db3475dad7af7ead6afab6338772c5f88963e38b
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.2"
   persistent_bottom_nav_bar_v2:
     dependency: "direct main"
     description:
@@ -1026,30 +914,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.7"
-  vector_graphics:
-    dependency: transitive
-    description:
-      name: vector_graphics
-      sha256: "4cf8e60dbe4d3a693d37dff11255a172594c0793da542183cbfe7fe978ae4aaa"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.4"
-  vector_graphics_codec:
-    dependency: transitive
-    description:
-      name: vector_graphics_codec
-      sha256: "278ad5f816f58b1967396d1f78ced470e3e58c9fe4b27010102c0a595c764468"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.4"
-  vector_graphics_compiler:
-    dependency: transitive
-    description:
-      name: vector_graphics_compiler
-      sha256: "0bf61ad56e6fd6688a2865d3ceaea396bc6a0a90ea0d7ad5049b1b76c09d6163"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.4"
   vector_math:
     dependency: transitive
     description:
@@ -1091,5 +955,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.19.0-0 <3.0.0"
+  dart: ">=2.18.5 <3.0.0"
   flutter: ">=3.7.0-0"

@@ -185,7 +185,7 @@ Widget inputsSignUp(
           uppercaseCharCount: 1,
           numericCharCount: 1,
           specialCharCount: 1,
-          width: 400,
+          width: MediaQuery.of(context).size.width *0.9,
           height: 160,
           strings: FrenchStrings(),
           onSuccess: (){

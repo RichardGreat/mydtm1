@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:local_auth/local_auth.dart';
+// import 'package:local_auth/local_auth.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 class LockScreenAllWindow extends StatefulWidget {
@@ -23,39 +23,45 @@ class _LockScreenAllWindowState extends State<LockScreenAllWindow> {
 
 
   Future<void> localAuth(BuildContext context) async {
-    final localAuth = LocalAuthentication();
-    final didAuthenticate = await localAuth.authenticate(
-        localizedReason: 'Please authenticate');
-    if (didAuthenticate) {
-      Navigator.pop(context);
+    // final localAuth = LocalAuthentication();
+    // final didAuthenticate = await localAuth.authenticate(
+    //     localizedReason: 'Please authenticate');
+    // if (didAuthenticate) {
+    //   Navigator.pop(context);
     }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
   }
 
 
   Future getLockAllWindow()async{
 
 
-    await Future.delayed(const Duration(milliseconds: 10)).then((value) {
-      // box.put("lockHasEnter", "1");
-      screenLock(
-        context: context,
-        correctString:  box.get("lockScreen").toString(),
-        customizedButtonChild:const  Icon(
-          Icons.fingerprint,
-        ),
-          // didUnlocked:(){
-          //         Navigator.of(context).pop();
-          //         Navigator.of(context).pop();
-          //       } ,
-        customizedButtonTap: () async {
-          await localAuth(context);
-        },
-        onOpened: () async {
-          await localAuth(context);
-
-        },
-      );
-    });
+    // await Future.delayed(const Duration(milliseconds: 10)).then((value) {
+    //   // box.put("lockHasEnter", "1");
+    //   screenLock(
+    //     context: context,
+    //     correctString:  box.get("lockScreen").toString(),
+    //     customizedButtonChild:const  Icon(
+    //       Icons.fingerprint,
+    //     ),
+    //       // didUnlocked:(){
+    //       //         Navigator.of(context).pop();
+    //       //         Navigator.of(context).pop();
+    //       //       } ,
+    //     customizedButtonTap: () async {
+    //       await localAuth(context);
+    //     },
+    //     onOpened: () async {
+    //       await localAuth(context);
+    //
+    //     },
+    //   );
+    // });
     //   screenLock(
     //     context: context,
     //     title: Text("Parol kiriting",
@@ -132,4 +138,4 @@ class _LockScreenAllWindowState extends State<LockScreenAllWindow> {
       body: SafeArea(child: Column()),
     );
   }
-}
+
