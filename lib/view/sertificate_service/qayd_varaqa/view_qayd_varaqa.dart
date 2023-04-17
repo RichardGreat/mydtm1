@@ -41,6 +41,9 @@ class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
   Future downloadAndSavePdf() async {
     setState(()=> isLoading = false);
     docPDF = await PDFDocument.fromURL("${MainUrl.mainUrls}/v1/national/pdf-aplication/${widget.certQaytVaraqaId}",
+        cacheManager: CacheManager(Config(
+            "customCacheKey",
+            stalePeriod:const Duration(seconds: 1))),
         headers: {"X-Access-Token": box.get("token")}
     );
 
@@ -74,10 +77,8 @@ class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
                       zoomSteps: 1,
                       backgroundColor: Colors.white,
                       progressIndicator: const Center(child: CircularProgressIndicator()),
-                      showIndicator: true,
-                      numberPickerConfirmWidget: const Text(
-                        "Confirm",
-                      ),),),
+
+                      ),),
                   //
                   // PDFViewer(
                   //   zoomSteps: 2,
