@@ -54,11 +54,11 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.1
-  flutter_native_splash: ^2.2.19
-
-flutter_native_splash:
-  color: "#ffffff"
-  image: "assets/images/gerb.png"
+#  flutter_native_splash: ^2.2.19
+#
+#flutter_native_splash:
+#  color: "#ffffff"
+#  image: "assets/images/gerb.png"
 
 flutter:
   uses-material-design: true
