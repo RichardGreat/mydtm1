@@ -8,6 +8,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'dart:async';
+// import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
 
@@ -29,6 +30,10 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.removeAfter(initialization);
+  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await EasyLocalization.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
   await Hive.initFlutter();
@@ -51,7 +56,7 @@ Future main() async {
     ),
   );
 }
-//
+// FlutterNativeSplash.remove();
 // Future initializations()async{
 // await Future.delayed(const Duration(milliseconds: 1800));
 // }

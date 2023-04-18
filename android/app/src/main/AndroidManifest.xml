@@ -20,11 +20,11 @@
    <application
         android:label="BMBA"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
-       android:allowBackup="false"
-       android:requestLegacyExternalStorage="true"
-       android:fullBackupOnly="false"
-       android:dataExtractionRules="@xml/data_extraction_rules">
+        android:icon="@mipmap/uzbmb"
+        android:allowBackup="false"
+        android:requestLegacyExternalStorage="true"
+        android:fullBackupOnly="false"
+        android:dataExtractionRules="@xml/data_extraction_rules">
 
        <activity android:name="com.android.camera.CropImage"/>
        <activity
