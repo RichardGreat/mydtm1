@@ -338,7 +338,61 @@ Widget bodyProfile(
               color: MyColors.appColorGrey400(),
             ),
           ),
+          ListTile(
+            onTap: () {
+              AwesomeDialog(
+                context: context,
+                dialogType: DialogType.noHeader,
+                animType: AnimType.bottomSlide,
+                title: "deleteAccount".tr(),
+                desc: "deleteAccountText".tr(),
 
+                titleTextStyle: TextStyle(
+                    color: MyColors.appColorBlue1(),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+                descTextStyle: TextStyle(
+                    color: MyColors.appColorBlack(),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
+                btnOkOnPress: () {
+                  providerProfile.launchDeleteAccountInBrowser();
+                  box.delete("token");
+                  box.delete("imie");
+                  box.delete("psnum");
+                  box.delete("personImage");
+                  box.delete("boxAllPersonInfo");
+                  box.delete("langLock");
+                  box.delete("lockScreen");
+                  box.delete("notShowAgain1");
+                  box.delete("phoneNumber");
+                  //
+                  // pushNewScreenWithRouteSettings(context,
+                  //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  //     screen: EnterFirst(),
+                  //     settings: RouteSettings(),
+                  //     withNavBar: false);
+                },
+                btnOkText: "yes".tr(),
+                btnOkColor: MyColors.appColorBlue1(),
+                btnCancelColor: MyColors.appColorGrey600(),
+                btnCancelOnPress: () {},
+                btnCancelText: "no".tr(),
+              ).show();
+            },
+            leading: Icon(
+              Icons.no_accounts_rounded,
+              color: MyColors.appColorBlue1(),
+              size: 24,
+            ),
+            title: MyWidgets.robotoFontText(text: "deleteAccount".tr()),
+
+            trailing: Icon(
+              Icons.arrow_forward_ios_rounded,
+              size: 16,
+              color: MyColors.appColorGrey400(),
+            ),
+          ),
           box.get("token").toString().length > 30
               ? ListTile(
                   onTap: () {
@@ -397,61 +451,7 @@ Widget bodyProfile(
                   ),
                 )
               : const SizedBox.shrink(),
-          ListTile(
-            onTap: () {
-              AwesomeDialog(
-                context: context,
-                dialogType: DialogType.noHeader,
-                animType: AnimType.bottomSlide,
-                title: "deleteAccount".tr(),
-                desc: "deleteAccountText".tr(),
 
-                titleTextStyle: TextStyle(
-                    color: MyColors.appColorBlue1(),
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
-                descTextStyle: TextStyle(
-                    color: MyColors.appColorBlack(),
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500),
-                btnOkOnPress: () {
-                  providerProfile.launchDeleteAccountInBrowser();
-                  box.delete("token");
-                  box.delete("imie");
-                  box.delete("psnum");
-                  box.delete("personImage");
-                  box.delete("boxAllPersonInfo");
-                  box.delete("langLock");
-                  box.delete("lockScreen");
-                  box.delete("notShowAgain1");
-                  box.delete("phoneNumber");
-                  //
-                  // pushNewScreenWithRouteSettings(context,
-                  //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  //     screen: EnterFirst(),
-                  //     settings: RouteSettings(),
-                  //     withNavBar: false);
-                },
-                btnOkText: "yes".tr(),
-                btnOkColor: MyColors.appColorBlue1(),
-                btnCancelColor: MyColors.appColorGrey600(),
-                btnCancelOnPress: () {},
-                btnCancelText: "no".tr(),
-              ).show();
-            },
-            leading: Icon(
-              Icons.no_accounts_rounded,
-              color: MyColors.appColorBlue1(),
-              size: 24,
-            ),
-            title: MyWidgets.robotoFontText(text: "deleteAccount".tr()),
-
-            trailing: Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 16,
-              color: MyColors.appColorGrey400(),
-            ),
-          ),
           Divider(
             color: MyColors.appColorGrey100(),
             thickness: 1,
