@@ -182,16 +182,17 @@ class ProviderEnterFirst extends ChangeNotifier {
 
           log(dataData);
           log("::");
-
+          MyWidgets.scaffoldMessengerBottom(
+              context: context, valueText: "loginPasswordError".tr());
           // ignore: use_build_context_synchronously
-          pushNewScreen(context,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              screen: SmsAutoFillUi(
-                  phoneNum: textAuthLogin.text,
-                  password: textAuthPassword.text,
-                  captchaKey: modelRegistrationSms.data.endDate.toString(),
-                  captchaValue: modelRegistrationSms.data.smsId.toString(),
-                  registration: "99"));
+          // pushNewScreen(context,
+          //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
+          //     screen: SmsAutoFillUi(
+          //         phoneNum: textAuthLogin.text,
+          //         password: textAuthPassword.text,
+          //         captchaKey: modelRegistrationSms.data.endDate.toString(),
+          //         captchaValue: modelRegistrationSms.data.smsId.toString(),
+          //         registration: "99"));
         }
       }
     }

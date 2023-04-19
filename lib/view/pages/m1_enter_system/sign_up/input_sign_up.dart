@@ -188,6 +188,7 @@ Widget inputsSignUp(
           width: MediaQuery.of(context).size.width *0.9,
           height: 160,
           strings: FrenchStrings(),
+          successColor: MyColors.appColorBlue2(),
           onSuccess: (){
             providerSignUp.boolButtonCol2(boolValue: true);
           },

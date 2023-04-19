@@ -416,15 +416,15 @@ Widget bodyProfile(
                     fontWeight: FontWeight.w500),
                 btnOkOnPress: () {
                   providerProfile.launchDeleteAccountInBrowser();
-                  // box.delete("token");
-                  // box.delete("imie");
-                  // box.delete("psnum");
-                  // box.delete("personImage");
-                  // box.delete("boxAllPersonInfo");
-                  // box.delete("langLock");
-                  // box.delete("lockScreen");
-                  // box.delete("notShowAgain1");
-                  // box.delete("phoneNumber");
+                  box.delete("token");
+                  box.delete("imie");
+                  box.delete("psnum");
+                  box.delete("personImage");
+                  box.delete("boxAllPersonInfo");
+                  box.delete("langLock");
+                  box.delete("lockScreen");
+                  box.delete("notShowAgain1");
+                  box.delete("phoneNumber");
                   //
                   // pushNewScreenWithRouteSettings(context,
                   //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
