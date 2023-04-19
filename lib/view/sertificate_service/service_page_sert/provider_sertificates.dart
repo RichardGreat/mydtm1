@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:developer';
 
@@ -5,10 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/certificate_nation/create_nat_cert.dart';
 import 'package:mydtm/data/internet_connections/certificate_nation/get_regLang.dart';
 import 'package:mydtm/data/model_parse/mod_certificate_nation/model_create_cert.dart';
+import 'package:mydtm/data/model_parse/mod_certificate_nation/model_passport.dart';
 import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
 import 'package:mydtm/view/sertificate_service/widget_cert_nation/list_choose_lang.dart';
 import 'package:mydtm/view/sertificate_service/widget_cert_nation/list_choose_regions.dart';
+import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProviderCertificateService extends ChangeNotifier {
   // List<ModelCertNationRegion> listCerRegions = [];
@@ -101,9 +106,11 @@ class ProviderCertificateService extends ChangeNotifier {
   late String resultData;
   bool boolCreateCertification = false;
   late DataCreateCert dataCreateCert;
+
   Future createCert({required BuildContext context, required String serName, required String subId  }) async {
     // NetworkCreateCertNation
     boolCreateCertification = false;
+    try{
     resultData = await networkCreateCertNation.getNatCert(
         testLangId: certLangId, testRegion: regId, natCerId: globNatCert);
 
@@ -111,7 +118,16 @@ class ProviderCertificateService extends ChangeNotifier {
     boolCreateCertification = true;
     getCertIfHas(certId: subId, context: context, sername: serName);
     notifyListeners();
-    log(resultData);
+    log(resultData);}
+        catch(e){
+      try      {
+        ModelPassport modelPassport =
+            ModelPassport.fromJson(jsonDecode(resultData));
+        MyWidgets.awesomeDialogInfo(context: context, valueText: modelPassport.errors.toString());
+      }catch(e){
+        MyWidgets.awesomeDialogInfo(context: context, valueText: "infoFillError".tr());
+      }
+    }
   }
 
   getCertIfHas(

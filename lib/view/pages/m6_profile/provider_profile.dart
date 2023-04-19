@@ -324,4 +324,15 @@ class ProviderProfile extends ChangeNotifier {
     }
   }
 
+  final Uri urlDeleteAccount = Uri.parse("https://my.uzbmb.uz/site/delete-account");
+  Future<void> launchDeleteAccountInBrowser() async {
+    if (!await launchUrl(
+      urlDeleteAccount,
+      mode: LaunchMode.externalApplication,
+
+    )) {
+      throw 'Could not launch $url';
+    }
+  }
+
 }

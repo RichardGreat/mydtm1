@@ -166,7 +166,7 @@
   "length4": "Uzunlik 4 dan ko‘p bo‘lishi kerak",
   "noInfoGraduatedName": "Siz tugatgan ta’lim muassasasi nomi ro‘yxatda mavjud bo‘lmasa yuqorida muassasa turini \n\"Boshqa o‘quv yurti\" sifatida tanlab muassasa nomini qo‘lda yozing",
   "certSubjectName": "Siz tanlagan ta’lim yo‘nalishlarining fanlar majmuasida {} fani mavjud bo‘lsa, sizga mazkur fandan sertifikatingizdagi o‘zlashtirish foiziga mos ravishda proporsional ball beriladi va siz ushbu fandan test sinovi topshirmaysiz.",
-  "certSubjectNameNo":"Siz {} fani bo‘yicha sertifikatdan foydalanishni rad etdingiz. Shu sababli, siz tanlagan ta’lim yo‘nalishlarining fanlar majmuasida {} fani mavjud bo‘lsa, siz ushbu fandan test sinovi topshirasiz.",
+  "certSubjectNameNo": "Siz {} fani bo‘yicha sertifikatdan foydalanishni rad etdingiz. Shu sababli, siz tanlagan ta’lim yo‘nalishlarining fanlar majmuasida {} fani mavjud bo‘lsa, siz ushbu fandan test sinovi topshirasiz.",
   "documentDate": "Hujjat berilgan sana",
   "documentSerNum": "Hujjat seriyasi va raqami",
   "docLength7": "Hujjat seriya raqami 7 birlikdan ko‘p bo‘lishi kerak",
@@ -212,7 +212,7 @@
   "dateInvalid": "Amal qilish muddati",
   "blind": "Ko'zi ojiz",
   "updateGraduetedInfo": "2022-yil bitiruvchisi",
-  "deletePrivilage":"Imtiyozni o'chirish",
+  "deletePrivilage": "Imtiyozni o'chirish",
   "loginPasswordError": "Telefon raqam yoki parol noto‘g‘ri kiritildi.",
   "captchaError": "Tekshiruv kodi noto`g`ri.",
   "textGraduatedInfo": "Yuklab olish",
@@ -223,7 +223,7 @@
   "doNotShowAgain": "Boshqa ko‘rsatmaslik",
   "accepted": "Tanishdim",
   "telephoneHasNum": "Telfon raqam avvalroq band qilingan!",
-  "oldEdu":"Tahsil olayotgan taʼlim muassasangiz",
+  "oldEdu": "Tahsil olayotgan taʼlim muassasangiz",
   "enterOldEdu": "Tahsil olayotgan taʼlim muassasangiz maʼlumotlarini kiriting",
   "oldEduCountry": "Joylashgan davlat",
   "oldEduEduType": "Ta'lim shakli",
@@ -253,12 +253,7 @@
   "enterCapitalLatter": "Bosh harf kiriting",
   "enterSpecialSymbols": "!~* Maxsus belgi kiriting",
   "enterNumber": "Raqam kiriting",
-  "userBlock5MIn": "Siz 3 marta noto'g'ri foydalanuvchi nomi va parolni kiritdingiz, siz vaqtincha bloklangansiz"
-
-
-
-
-
-
-
+  "userBlock5MIn": "Siz 3 marta noto'g'ri login yoki parol kiritganingiz uchun 5 daqiqaga bloklandiz",
+  "deleteAccount": "Hisobni o'chirish",
+  "deleteAccountText": "Hisobni o'chirish uchun. Maxsus saytga ro'yxatdan o'tgan raqamingizni kiriting raqamingizga sms orqali maxsus kod yuboriladi keyingi qadamda maxsus kodni tizimga kiritish orqali hisobiningiz o’chiriladi. \nHisobni o'chirish?"
 }

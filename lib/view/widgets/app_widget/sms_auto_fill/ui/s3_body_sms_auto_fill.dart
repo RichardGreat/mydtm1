@@ -1,3 +1,11 @@
+import 'dart:developer';
+
+import 'dart:developer';
+
+import 'dart:developer';
+
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/state_menegment/provider_sms.dart';
@@ -13,7 +21,7 @@ class SmsAutoFillUi extends StatefulWidget {
   String password;
   String captchaKey;
   String captchaValue;
- String registration;
+  String registration;
 
   /// agar registration 0 bo'lsa parol tiklash
 
@@ -35,12 +43,18 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
 
   @override
   void initState() {
+    log(widget.phoneNum.toString());
+    log(widget.password.toString());
+    log(widget.captchaKey.toString());
+    log(widget.captchaValue.toString());
+    log(widget.registration.toString());
     if (widget.registration != "99") {
-    //   phoneNum:  box.get("phoneNumber"),
-    // password: "",
-    // captchaKey: modelResetPassSms.data.smsId.toString(),
-    // captchaValue: modelResetPassSms.data.endDate.toString(),
-    // registration: "2")
+      //   phoneNum:  box.get("phoneNumber"),
+      // password: "",
+      // captchaKey: modelResetPassSms.data.smsId.toString(),
+      // captchaValue: modelResetPassSms.data.endDate.toString(),
+      // registration: "2")
+
       providerSms.getSmsCode(
           context: context,
           captchaKey: widget.captchaKey,
@@ -48,10 +62,11 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
           password: widget.password,
           phoneNum: widget.phoneNum,
           numbers: int.parse(widget.registration));
-
     } else if (widget.registration == "99") {
       providerSms.regNotActivated(
-          smsId: widget.captchaValue, endTime: int.parse(widget.captchaKey), context: context);
+          smsId: widget.captchaValue,
+          endTime: int.parse(widget.captchaKey),
+          context: context);
     }
 
     super.initState();
@@ -64,53 +79,56 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
     }
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => providerSms,
       child: Consumer<ProviderSms>(
         builder: (context, value, child) => WillPopScope(
-            onWillPop: () async{
-              return true;
-            },
+          onWillPop: () async {
+            return true;
+          },
           child: Scaffold(
-          backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-          appBar: appBarSms(context: context),
-          body: !providerSms.boolData
-              ? const Center(child: CupertinoActivityIndicator())
-              : SafeArea(
-              child: !providerSms.boolRegistration
-                  ? Container(
-                margin: const EdgeInsets.all(10),
-                child: SingleChildScrollView(
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height*0.8,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        uiText(
+            backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+            appBar: appBarSms(context: context),
+            body: !providerSms.boolData
+                ? const Center(child: CupertinoActivityIndicator())
+                : SafeArea(
+                    child: !providerSms.boolRegistration
+                        ? Container(
+                            margin: const EdgeInsets.all(10),
+                            child: SingleChildScrollView(
+                              child: SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.8,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    uiText(
+                                        context: context,
+                                        phoneNum: widget.phoneNum,
+                                        providerSms: providerSms),
+                                    const SizedBox(height: 10),
+
+                                    Expanded(
+                                        child: bottomUI(
+                                            phoneNumber: widget.phoneNum,
+                                            context: context,
+                                            providerSms: providerSms))
+
+                                    // Text(providerSms.valueSignature ?? ""),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          )
+                        : registrated(
                             context: context,
-                            phoneNum: widget.phoneNum,
-                            providerSms: providerSms),
-                        const SizedBox(height: 10),
-
-                        Expanded(
-                            child: bottomUI(
-                              phoneNumber: widget.phoneNum,
-                                context: context,
-                                providerSms: providerSms))
-
-                        // Text(providerSms.valueSignature ?? ""),
-                      ],
-                    ),
-                  ),
-                ),
-              )
-                  : registrated(
-                  context: context,
-                  providerSms: providerSms,
-                  message: providerSms.dataRegisSmsMessage)),
-        ), ),
+                            providerSms: providerSms,
+                            message: providerSms.dataRegisSmsMessage)),
+          ),
+        ),
       ),
     );
   }

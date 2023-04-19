@@ -254,5 +254,7 @@
   "enterCapitalLatter": "Bosh harx kiriting",
   "enterSpecialSymbols": "!~* Maxsus belgi kiriting",
   "enterNumber": "Raqam kiriting",
-  "userBlock5MIn": "Siz 3 marta noto'g'ri foydalanuvchi nomi va parolni kiritdingiz, siz vaqtincha bloklangansiz"
+  "userBlock5MIn": "Siz 3 marta noto'g'ri foydalanuvchi nomi va parolni kiritdingiz, siz vaqtincha bloklangansiz",
+  "deleteAccount": "Hisobni o'chirish",
+  "deleteAccountText":"Hisobni o'chirish uchun. Maxsus saytga ro'yxatdan o'tgan raqamingizni kiriting raqamingizga sms orqali maxsus kod yuboriladi keyingi qadamda maxsus kodni tizimga kiritish orqali hisobiningiz o’chiriladi.\nHisobni o'chirish?"
 }

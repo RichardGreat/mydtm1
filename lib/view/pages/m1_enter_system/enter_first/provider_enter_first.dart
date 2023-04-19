@@ -176,6 +176,7 @@ class ProviderEnterFirst extends ChangeNotifier {
               context: context, valueText: "captchaError".tr());
         } catch (e) {
           // smsId: widget.captchaValue, endTime: int.parse(widget.captchaKey), context: context);
+          log(jsonDecode(dataData).toString());
           ModelRegistrationSms modelRegistrationSms =
               ModelRegistrationSms.fromJson(jsonDecode(dataData));
 
