@@ -71,7 +71,7 @@
   "password": "Пароль",
   "phoneNumberNewPassword": "Введите номер телефона и новый пароль",
   "resetPassword": "Восстановление пароля",
-  "passwordLength": "Значение «Пароль» должно содержать минимум 8 символа.",
+  "passwordLength": "Пароль из 8 и более символов",
   "nation": "Нация",
   "personCode": "ПНФЛ",
   "personCodeError": "ПНФЛ",
