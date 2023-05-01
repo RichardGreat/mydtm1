@@ -11,8 +11,14 @@ import 'package:easy_localization/easy_localization.dart';
 class CertAllInformation extends StatefulWidget {
   DataCertApplications dataCertApplications;
   String serName, serId;
+  bool boolCertPay;
 
-  CertAllInformation({Key? key, required this.dataCertApplications, required this.serId, required this.serName})
+  CertAllInformation(
+      {Key? key,
+      required this.dataCertApplications,
+      required this.serId,
+      required this.serName,
+      required this.boolCertPay})
       : super(key: key);
 
   @override
@@ -20,6 +26,9 @@ class CertAllInformation extends StatefulWidget {
 }
 
 class _CertAllInformationState extends State<CertAllInformation> {
+  bool boolGetAllowExam = false;
+  bool boolGetResultExam = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,13 +73,12 @@ class _CertAllInformationState extends State<CertAllInformation> {
                             context,
                             CupertinoPageRoute(
                               builder: (context) => CertQaydVaraqaView(
-                                certName: widget.serName,
+                                  certName: widget.serName,
                                   certId: widget.serId,
                                   certQaytVaraqaId: widget
                                       .dataCertApplications.id
                                       .toString()),
                             ));
-
                       },
                       trailing:
                           const Icon(Icons.arrow_forward_ios_sharp, size: 16),
@@ -81,17 +89,27 @@ class _CertAllInformationState extends State<CertAllInformation> {
                             color: MyColors.appColorBlack(),
                           )),
                       onTap: () {
-
                         Navigator.push(
                             context,
                             CupertinoPageRoute(
                               builder: (context) => CertRuxsatnomaView(
-                                  certRuxsatnomaVaraqaId: widget.serId,),
+                                boolGetAllowExam: boolGetAllowExam,
+                                certRuxsatnomaVaraqaId: widget.serId,
+                              ),
                             ));
-
                       },
-                      trailing:
-                          const Icon(Icons.arrow_forward_ios_sharp, size: 16),
+                      trailing: CupertinoSwitch(
+                        // This bool value toggles the switch.
+                        value: boolGetAllowExam,
+                        activeColor: CupertinoColors.activeBlue,
+                        onChanged: (bool? value) {
+                          // This is called when the user toggles the switch.
+                          setState(() {
+                            boolGetAllowExam = value ?? false;
+                          });
+                        },
+                      ),
+                      //const Icon(Icons.arrow_forward_ios_sharp, size: 16),
                     ),
                     ListTile(
                       title: Text("certificateNatja".tr(),
@@ -99,12 +117,13 @@ class _CertAllInformationState extends State<CertAllInformation> {
                             color: MyColors.appColorBlack(),
                           )),
                       onTap: () {
-
                         Navigator.push(
                             context,
                             CupertinoPageRoute(
                               builder: (context) => CertificateResultsView(
-                                certId: widget.dataCertApplications.id.toString()),
+                                  boolGetNatija: boolGetResultExam,
+                                  certId: widget.dataCertApplications.id
+                                      .toString()),
                             ));
 
                         // pushNewScreen(
@@ -114,8 +133,17 @@ class _CertAllInformationState extends State<CertAllInformation> {
                         //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                         // );
                       },
-                      trailing:
-                          const Icon(Icons.arrow_forward_ios_sharp, size: 16),
+                      trailing: CupertinoSwitch(
+                        // This bool value toggles the switch.
+                        value: boolGetResultExam,
+                        activeColor: CupertinoColors.activeBlue,
+                        onChanged: (bool? value) {
+                          // This is called when the user toggles the switch.
+                          setState(() {
+                            boolGetResultExam = value ?? false;
+                          });
+                        },
+                      ),
                     )
                   ],
                 ),
@@ -280,12 +308,17 @@ class _CertAllInformationState extends State<CertAllInformation> {
                             bottom: 4, top: 4, right: 8, left: 8),
                         margin: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
-                            color: widget.dataCertApplications.pay == 0
+                            color:
+                            widget.boolCertPay ? MyColors.appColorGreen2():
+                            widget.dataCertApplications.pay == 0
                                 ? MyColors.appColorRed()
                                 : MyColors.appColorGreen2(),
                             borderRadius: BorderRadius.circular(8)),
                         child: Text(
-                            widget.dataCertApplications.pay  == 0 ? "noPayed".tr() : "payed".tr().toString(),
+                            widget.boolCertPay ?"payed".tr():
+                          widget.dataCertApplications.pay == 0
+                              ? "noPayed".tr()
+                              : "payed".tr().toString(),
                           style: TextStyle(
                               color: MyColors.appColorWhite(),
                               fontWeight: FontWeight.bold),

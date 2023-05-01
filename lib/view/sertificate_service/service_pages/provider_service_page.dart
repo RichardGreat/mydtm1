@@ -36,4 +36,10 @@ class ProviderServiceApplicationPage extends ChangeNotifier {
       log(e.toString());
     }
   }
+
+  bool boolGetPay = true;
+  Future getPayForCheck()async{
+    boolGetPay = !boolGetPay;
+    notifyListeners();
+  }
 }

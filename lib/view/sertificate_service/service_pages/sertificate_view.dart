@@ -36,6 +36,8 @@ class _CertificateApplicationState extends State<CertificateApplication> {
   ProviderServiceApplicationPage providerServicePage =
       ProviderServiceApplicationPage();
 
+
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -45,6 +47,15 @@ class _CertificateApplicationState extends State<CertificateApplication> {
           appBar: AppBar(
             title: Text("applications".tr(),
                 style: const TextStyle(color: Colors.black)),
+            actions: [
+              CupertinoSwitch(
+                value: providerServicePage.boolGetPay,
+                onChanged: (value) {
+                  providerServicePage.getPayForCheck();
+                },
+                activeColor: Colors.blue,
+              )
+            ],
             iconTheme: const IconThemeData(color: Colors.black),
             backgroundColor: Colors.white,
             elevation: 0,
@@ -82,10 +93,13 @@ class _CertificateApplicationState extends State<CertificateApplication> {
                                         CupertinoPageRoute(
                                           builder: (context) =>
                                               CertAllInformation(
-                                                serId: widget.serviceId,
-                                                serName: widget.certName,
-                                                dataCertApplications: providerServicePage.listCertApp[index],
-                                              ),
+                                                boolCertPay: providerServicePage.boolGetPay,
+                                            serId: widget.serviceId,
+                                            serName: widget.certName,
+                                            dataCertApplications:
+                                                providerServicePage
+                                                    .listCertApp[index],
+                                          ),
                                         ));
                                   },
                                   child: Card(
@@ -175,6 +189,8 @@ class _CertificateApplicationState extends State<CertificateApplication> {
                                                   fontSize: 17),
                                             ),
                                             trailing: Text(
+                                                providerServicePage.boolGetPay ?
+                                                    "payed".tr():
                                               providerServicePage
                                                           .listCertApp[index]
                                                           .pay
@@ -186,7 +202,9 @@ class _CertificateApplicationState extends State<CertificateApplication> {
                                               overflow: TextOverflow.ellipsis,
                                               softWrap: true,
                                               style: TextStyle(
-                                                  color: providerServicePage
+                                                  color:
+                                                  providerServicePage.boolGetPay ?Colors.black:
+                                                  providerServicePage
                                                               .listCertApp[
                                                                   index]
                                                               .pay

@@ -46,12 +46,12 @@ class Answer {
   });
 
   bool getCert;
-  String subject;
+  dynamic subject;
   List<An> ans;
-  String commonBall;
-  String ballPoint;
-  String hash;
-  String link;
+ dynamic commonBall;
+ dynamic ballPoint;
+ dynamic hash;
+ dynamic link;
 
   factory Answer.fromJson(Map<String, dynamic> json) => Answer(
     getCert: json["get_cert"],
@@ -78,22 +78,22 @@ class An {
   An({
     required this.ball,
     required this.name,
-    required this.maxBall,
+    // required this.maxBall,
   });
 
-  double ball;
-  String name;
-  double maxBall;
+ dynamic ball;
+ dynamic name;
+ // dynamic maxBall;
 
   factory An.fromJson(Map<String, dynamic> json) => An(
-    ball: json["ball"]?.toDouble(),
+    ball: json["ball"],
     name: json["name"],
-    maxBall: json["max_ball"]?.toDouble(),
+    // maxBall: json["Geometriya"]?.toDouble(),
   );
 
   Map<String, dynamic> toJson() => {
     "ball": ball,
     "name": name,
-    "max_ball": maxBall,
+    // "Geometriya": maxBall,
   };
 }

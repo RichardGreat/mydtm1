@@ -13,8 +13,12 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 class CertRuxsatnomaView extends StatefulWidget {
   String certRuxsatnomaVaraqaId;
+  bool boolGetAllowExam;
 
-  CertRuxsatnomaView({Key? key, required this.certRuxsatnomaVaraqaId})
+  CertRuxsatnomaView(
+      {Key? key,
+      required this.certRuxsatnomaVaraqaId,
+      required this.boolGetAllowExam})
       : super(key: key);
 
   @override
@@ -27,6 +31,7 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
   @override
   void initState() {
     getAllowLink();
+    log(widget.boolGetAllowExam.toString());
     log(widget.certRuxsatnomaVaraqaId);
     super.initState();
   }
@@ -37,12 +42,17 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
   String link = "";
   late PDFDocument doc;
   bool isLoading = false;
+
   getAllowLink() async {
     try {
-
       Response response = await dio.get(
-          "${MainUrl.mainUrls}/v1/national/allow/${widget.certRuxsatnomaVaraqaId}",
-          options: Options(headers: {"X-Access-Token": box.get("token")
+          widget.boolGetAllowExam
+              ? "${MainUrl.mainUrls}/v1/national/allow/40"
+              : "${MainUrl.mainUrls}/v1/national/allow/${widget.certRuxsatnomaVaraqaId}",
+          options: Options(headers: {
+            "X-Access-Token": widget.boolGetAllowExam
+                ? "b90beeaac6416018196aeae417fefc96"
+                : box.get("token")
           }));
       link = ModelCertAllow.fromJson(jsonDecode(jsonEncode(response.data)))
           .data
@@ -51,8 +61,7 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
       setState(() => isLoading = false);
 
       doc = await PDFDocument.fromURL(link,
-          headers: {"X-Access-Token": box.get("token")}
-      );
+          headers: {"X-Access-Token": box.get("token")});
       boolGetAllowLink = true;
       boolGetAllowLinkError = false;
       setState(() => isLoading = true);
@@ -82,19 +91,22 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.75,
-                            child:    !isLoading
-                                ? const Center(child: CircularProgressIndicator())
-                                : PDFViewer(
-                                 document: doc,
-                                 lazyLoad: false,
-                                 zoomSteps: 1,
-                              progressIndicator: const Center(child: CircularProgressIndicator()),
-                              showIndicator: true,
-                                 backgroundColor: Colors.white,
+                          height: MediaQuery.of(context).size.height * 0.75,
+                          child: !isLoading
+                              ? const Center(child: CircularProgressIndicator())
+                              : PDFViewer(
+                                  document: doc,
+                                  lazyLoad: false,
+                                  zoomSteps: 1,
+                                  progressIndicator: const Center(
+                                      child: CircularProgressIndicator()),
+                                  showIndicator: false,
+                                  backgroundColor: Colors.white,
                                   numberPickerConfirmWidget: const Text(
-                                "",
-                              ),),),
+                                    "",
+                                  ),
+                                ),
+                        ),
                       ]),
                 )
               : boolGetAllowLinkError

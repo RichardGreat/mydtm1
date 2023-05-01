@@ -57,17 +57,20 @@ Widget servicePageBody(
                       serviceMainList.id.toString().trim() == "64") {
                     ///
                     log(serviceMainList.id.toString());
-                    pushNewScreen(context,
-                        pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino,
-                        screen: CertificateApplication(
-                          serviceId: serviceMainList.id.toString(),
-                          certName: box.get("language") == "1"
-                              ? serviceMainList.serviceName
-                              : box.get("language") == "2"
-                                  ? serviceMainList.serviceNameQQ
-                                  : serviceMainList.serviceNameRu,
-                        ));
+                    if(serviceMainList.status.toString() == "true"){
+                      pushNewScreen(context,
+                          pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
+                          screen: CertificateApplication(
+                            serviceId: serviceMainList.id.toString(),
+                            certName: box.get("language") == "1"
+                                ? serviceMainList.serviceName
+                                : box.get("language") == "2"
+                                ? serviceMainList.serviceNameQQ
+                                : serviceMainList.serviceNameRu,
+                          ));
+                    }else{}
+
                   } else if (serviceMainList.id.toString().trim() == "42") {
                     pushNewScreen(context,
                         pageTransitionAnimation:

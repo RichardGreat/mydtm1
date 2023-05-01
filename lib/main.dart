@@ -9,8 +9,7 @@ import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'dart:async';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
-
-import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
+// import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
 
 
 class MyHttpOverrides extends HttpOverrides {
