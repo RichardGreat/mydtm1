@@ -64,7 +64,7 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
 
       boolCheckUserInfo = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {throw Exception(e.toString());}
     // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
   }
 

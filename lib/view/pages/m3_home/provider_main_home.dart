@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
@@ -84,7 +86,7 @@ class ProviderMainHome extends ChangeNotifier {
           // ignore: use_build_context_synchronously
           pushNewScreen(context,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              screen: UpdateMust(),
+              screen: const UpdateMust(),
               withNavBar: false);
         }
       }
@@ -99,7 +101,7 @@ class ProviderMainHome extends ChangeNotifier {
   Future openGooglePlayMarket() async {
     try {
       if (!await launchUrl(_url)) throw 'Could not launch $_url';
-    } catch (e) {}
+    } catch (e) {throw Exception(e.toString());}
   }
 
   Future setLangUser() async {

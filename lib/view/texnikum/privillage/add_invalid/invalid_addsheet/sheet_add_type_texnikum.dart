@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/person_info/privillage/add_invalid/provider_add_invalide.dart';
 import 'package:mydtm/view/texnikum/privillage/add_invalid/provider_add_invalide.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';

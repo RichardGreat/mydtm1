@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
@@ -48,10 +50,10 @@ class ProviderPrivilege extends ChangeNotifier{
   NetworkInvalideDelete networkInvalideDelete = NetworkInvalideDelete();
   Future deleteInvalid({required BuildContext context})async{
     try{
-      String dataDelete = await networkInvalideDelete.deleteInvalide();
+       await networkInvalideDelete.deleteInvalide();
       Navigator.of(context).pop();
 
-    }catch(e){}
+    }catch(e){throw Exception(e.toString());}
   }
 
 }

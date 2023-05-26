@@ -136,7 +136,6 @@ class ProviderSms extends ChangeNotifier {
       box.put("token", modelGetToken.data.accessToken);
       box.delete("langLock");
       box.put("langLock", "1");
-      // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
           context,
           CupertinoPageRoute(
@@ -294,7 +293,6 @@ class ProviderSms extends ChangeNotifier {
       if (modelPhoneChangeSaved.status == 1) {
         box.delete("phoneNumber");
         box.put("phoneNumber", phoneNum);
-        // ignore: use_build_context_synchronously
         AwesomeDialog(
                 context: context,
                 dialogType: DialogType.info,
@@ -415,12 +413,10 @@ class ProviderSms extends ChangeNotifier {
         box.put("token", modelGetToken.data.accessToken);
         log(box.get("token"));
         if (box.get("token").toString().length > 30) {
-          // ignore: use_build_context_synchronously
           box.delete("phoneNumber");
           box.put("phoneNumber", phoneNumber);
           box.delete("langLock");
           box.put("langLock", "1");
-          // ignore: use_build_context_synchronously
           Navigator.pushAndRemoveUntil(
               context,
               CupertinoPageRoute(
@@ -428,12 +424,14 @@ class ProviderSms extends ChangeNotifier {
               ),
               (route) => false);
         }
-      } catch (e) {}
+      } catch (e) {throw Exception(e.toString());}
 
       log(data);
       log(smsCode);
       log(smsId);
-    } catch (e) {}
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
 
   String resiviedSms = '';
@@ -454,9 +452,7 @@ class ProviderSms extends ChangeNotifier {
           ModelEduSuccess.fromJson(jsonDecode(data));
 
       if (modelEduSuccess.status == 1) {
-        // ignore: use_build_context_synchronously
         // ProviderAriza providerAriza = ProviderAriza();
-        // ignore: use_build_context_synchronously
         pushNewScreen(context,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
             screen: MainMyStatement(

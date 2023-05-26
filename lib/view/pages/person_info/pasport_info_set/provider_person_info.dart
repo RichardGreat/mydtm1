@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:developer';
 
@@ -129,7 +131,7 @@ class ProviderPersonInfo extends ChangeNotifier {
             ModelRegistration2.fromJson(jsonDecode(imieInfo));
         MyWidgets.awesomeDialogError(
             context: context, valueText: modelRegistration2.errors);
-      } catch (e) {}
+      } catch (e) {throw Exception(e.toString());}
     }
   }
 

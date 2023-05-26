@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
@@ -366,7 +368,6 @@ class ProviderCertificateTexnikum extends ChangeNotifier {
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
           btnCancelOnPress: () async{
             await stateFunc2();
-            // ignore: use_build_context_synchronously
             Navigator.of(context).pop();
             // Navigator.of(context).pop();
             // Navigator.of(context).pop();

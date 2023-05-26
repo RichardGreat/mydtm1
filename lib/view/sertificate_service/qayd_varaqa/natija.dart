@@ -115,7 +115,7 @@ class _CertificateResultsViewState extends State<CertificateResultsView> {
                       log(boolNotCertificate.toString());
                     },
                   )
-                : SizedBox.shrink()
+                : const SizedBox.shrink()
           ],
           centerTitle: true,
           backgroundColor: MyColors.appColorWhite(),
@@ -145,7 +145,7 @@ class _CertificateResultsViewState extends State<CertificateResultsView> {
                                     : Colors.red,
                                 fontSize: boolNotCertificate ? 17 : 20,
                                 fontWeight: FontWeight.w500)),
-                      ):SizedBox.shrink(),
+                      ):const SizedBox.shrink(),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.7,
 
@@ -213,7 +213,7 @@ class _CertificateResultsViewState extends State<CertificateResultsView> {
                                         ? Colors.blue.shade900
                                         : Colors.red,
                                     fontSize: boolNotCertificate ? 17 : 20,
-                                    fontWeight: FontWeight.w500)): SizedBox.shrink(),
+                                    fontWeight: FontWeight.w500)): const SizedBox.shrink(),
                           )
                         ]),
                       ),

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/texnikum/choose_edu/provider_choose_edu_t.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 sheetEduTexnikum({
   required BuildContext contexts,

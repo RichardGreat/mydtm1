@@ -10,7 +10,7 @@ class NetworkDownloadsAnswerSheet {
     var dio = Dio();
     Response response;
     response = await dio.get("${MainUrl.mainUrls}/v1/qabul/answer",
-        options: Options(headers: {MainUrl.mainUrlHeader: "5d076bb6e88864b38e63f9480ba5775e"})); // {MainUrl.mainUrlHeader: box.get("token")}));
+        options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")})); // {MainUrl.mainUrlHeader: box.get("token")}));
     log(jsonEncode(response.data));
     return jsonEncode(response.data);
   }

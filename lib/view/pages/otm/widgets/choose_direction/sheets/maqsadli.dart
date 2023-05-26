@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
@@ -15,22 +17,22 @@ sheetMaqsadli(
       builder: (context) {
         return SizedBox(
           height: MediaQuery.of(context).size.height * 0.9,
-          child: MyChoosMaqsadli(providerChooseEdu: providerChooseEdu),
+          child: MyChooseMaqsadli(providerChooseEdu: providerChooseEdu),
         );
       });
 }
 
-class MyChoosMaqsadli extends StatefulWidget {
+class MyChooseMaqsadli extends StatefulWidget {
   ProviderChooseEdu providerChooseEdu;
 
-  MyChoosMaqsadli({Key? key, required this.providerChooseEdu})
+  MyChooseMaqsadli({Key? key, required this.providerChooseEdu})
       : super(key: key);
 
   @override
-  State<MyChoosMaqsadli> createState() => _MyChoosMaqsadliState();
+  State<MyChooseMaqsadli> createState() => _MyChooseMaqsadliState();
 }
 
-class _MyChoosMaqsadliState extends State<MyChoosMaqsadli> {
+class _MyChooseMaqsadliState extends State<MyChooseMaqsadli> {
   int indexValue = 0;
 
   @override

@@ -25,10 +25,10 @@ Widget til({required BuildContext context, required ProviderOldEdu providerOldEd
               : const SizedBox.shrink()
         ],
       ),
-      trailing: Column(
+      trailing: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
-        children: const [
+        children:  [
           SizedBox(height: 8),
           Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ],

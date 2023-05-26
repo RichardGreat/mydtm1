@@ -176,6 +176,7 @@ Widget enterFirstBodyInput({required BuildContext context,
             if(value!.isEmpty || value.length < 8){
               return "passwordLength".tr();
             }
+            return null;
           }
       ),
     ],

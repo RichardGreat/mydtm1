@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -131,7 +133,7 @@ class _ApplicationTexnikumState extends State<ApplicationTexnikum> {
                             ),
 
                             ListTile(
-                              title: Text("Tanlangan texnikum"),
+                              title: const Text("Tanlangan texnikum"),
                               horizontalTitleGap: 1,
                               onTap: () {},
                               trailing: SizedBox(
@@ -150,7 +152,7 @@ class _ApplicationTexnikumState extends State<ApplicationTexnikum> {
                               ),
                             ),
                             ListTile(
-                              title: Text("Yo'nalish"),
+                              title: const Text("Yo'nalish"),
                               horizontalTitleGap: 1,
                               onTap: () {},
                               trailing: SizedBox(
@@ -169,7 +171,7 @@ class _ApplicationTexnikumState extends State<ApplicationTexnikum> {
                               ),
                             ),
                             ListTile(
-                              title: Text("Ta'lim shakl"),
+                              title:const  Text("Ta'lim shakl"),
                               horizontalTitleGap: 1,
                               onTap: () {},
                               trailing: SizedBox(
@@ -190,7 +192,7 @@ class _ApplicationTexnikumState extends State<ApplicationTexnikum> {
                               ),
                             ),
                             ListTile(
-                              title: Text("Ta'lim tili"),
+                              title: const Text("Ta'lim tili"),
                               horizontalTitleGap: 1,
                               onTap: () {},
                               trailing: SizedBox(
@@ -287,7 +289,7 @@ class _ApplicationTexnikumState extends State<ApplicationTexnikum> {
                                             ),
                                           )),
                                       ListTile(
-                                        title: Text("Chet tili"),
+                                        title: const Text("Chet tili"),
                                         onTap: () {},
                                         trailing: Text(
                                             widget
@@ -303,7 +305,7 @@ class _ApplicationTexnikumState extends State<ApplicationTexnikum> {
                                                     MyColors.appColorBlack())),
                                       ),
                                       ListTile(
-                                        title: Text("daraja"),
+                                        title:const Text("daraja"),
                                         onTap: () {},
                                         trailing: Text(
                                           widget
@@ -318,7 +320,7 @@ class _ApplicationTexnikumState extends State<ApplicationTexnikum> {
                                         ),
                                       ),
                                       ListTile(
-                                        title: Text("Turi"),
+                                        title:const  Text("Turi"),
                                         horizontalTitleGap: 1,
                                         onTap: () {},
                                         trailing: SizedBox(
@@ -342,7 +344,7 @@ class _ApplicationTexnikumState extends State<ApplicationTexnikum> {
                                         ),
                                       ),
                                       ListTile(
-                                        title: Text("Berilgan vaqti"),
+                                        title:const  Text("Berilgan vaqti"),
                                         horizontalTitleGap: 1,
                                         onTap: () {},
                                         trailing: SizedBox(

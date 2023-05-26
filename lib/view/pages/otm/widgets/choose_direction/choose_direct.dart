@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/pages/otm/widgets/choose_direction/sheets/grafik_lang.dart';
@@ -48,13 +47,13 @@ Widget chooseDirect(
                       Icons.check_circle,
                       color: MyColors.appColorGreen1(),
                     )
-                  : SizedBox.shrink()
+                  : const SizedBox.shrink()
             ],
           ),
-          trailing: Column(
+          trailing:const  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
+            children:  [
               SizedBox(height: 8),
               Icon(Icons.arrow_forward_ios_sharp, size: 16),
             ],
@@ -96,14 +95,14 @@ Widget chooseDirect(
                       Icons.check_circle,
                       color: MyColors.appColorGreen1(),
                     )
-                  : SizedBox.shrink()
+                  : const SizedBox.shrink()
             ],
           ),
           subtitle: Text(providerChooseEdu.grantContractName),
-          trailing: Column(
+          trailing: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
+            children:  [
               SizedBox(height: 8),
               Icon(Icons.arrow_forward_ios_sharp, size: 16),
             ],
@@ -145,13 +144,13 @@ Widget chooseDirect(
                       Icons.check_circle,
                       color: MyColors.appColorGreen1(),
                     )
-                  : SizedBox.shrink()
+                  : const SizedBox.shrink()
             ],
           ),
-          trailing: Column(
+          trailing:const  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
+            children:  [
               SizedBox(height: 8),
               Icon(Icons.arrow_forward_ios_sharp, size: 16),
             ],
@@ -180,13 +179,13 @@ Widget chooseDirect(
                       Icons.check_circle,
                       color: MyColors.appColorGreen1(),
                     )
-                  : SizedBox.shrink()
+                  : const SizedBox.shrink()
             ],
           ),
-          trailing: Column(
+          trailing:const  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
+            children:  [
               SizedBox(height: 8),
               Icon(Icons.arrow_forward_ios_sharp, size: 16),
             ],
@@ -215,13 +214,13 @@ Widget chooseDirect(
                         Icons.check_circle,
                         color: MyColors.appColorGreen1(),
                       )
-                    : SizedBox.shrink()
+                    : const SizedBox.shrink()
               ],
             ),
-            trailing: Column(
+            trailing: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
+              children:  [
                 SizedBox(height: 8),
                 Icon(Icons.arrow_forward_ios_sharp, size: 16),
               ],
@@ -252,7 +251,7 @@ Widget chooseDirect(
                         Icons.check_circle,
                         color: MyColors.appColorGreen1(),
                       )
-                    : SizedBox.shrink()
+                    : const SizedBox.shrink()
               ],
             ),
             trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),

@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/body_new_edu_perevod/n1_test_region.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/body_new_edu_perevod/n2_edu_type.dart';

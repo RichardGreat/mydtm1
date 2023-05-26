@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -15,21 +17,21 @@ sheetGrantContractChoose(
       builder: (context) {
         return SizedBox(
             height: MediaQuery.of(context).size.height * 0.93,
-            child: MyChoosGrantContract(providerChooseEdu: providerChooseEdu));
+            child: MyChooseGrantContract(providerChooseEdu: providerChooseEdu));
       });
 }
 
-class MyChoosGrantContract extends StatefulWidget {
+class MyChooseGrantContract extends StatefulWidget {
   ProviderChooseEdu providerChooseEdu;
 
-  MyChoosGrantContract({Key? key, required this.providerChooseEdu})
+  MyChooseGrantContract({Key? key, required this.providerChooseEdu})
       : super(key: key);
 
   @override
-  State<MyChoosGrantContract> createState() => _MyChoosGrantContractState();
+  State<MyChooseGrantContract> createState() => _MyChooseGrantContractState();
 }
 
-class _MyChoosGrantContractState extends State<MyChoosGrantContract> {
+class _MyChooseGrantContractState extends State<MyChooseGrantContract> {
   int indexValue = 0;
 
   @override

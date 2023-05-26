@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
@@ -425,8 +424,8 @@ Widget bodyProfile(
 
                               pushNewScreenWithRouteSettings(context,
                                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                  screen: EnterFirst(),
-                                  settings: RouteSettings(),
+                                  screen: const EnterFirst(),
+                                  settings: const RouteSettings(),
                                   withNavBar: false);
                             },
                             btnOkText: "yes".tr(),

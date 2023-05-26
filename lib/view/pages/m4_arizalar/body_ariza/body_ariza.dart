@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -63,7 +65,7 @@ Widget notInfoPerson({required BuildContext context, required ProviderAriza prov
           child: Container(
             height: 400,
             width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.all(15),
+            margin: const EdgeInsets.all(15),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,7 +82,7 @@ Widget notInfoPerson({required BuildContext context, required ProviderAriza prov
                         pushNewScreen(context,
                             pageTransitionAnimation:
                             PageTransitionAnimation.cupertino,
-                            screen: EnterFirst(),
+                            screen: const EnterFirst(),
                             withNavBar: false);
                       },
                       height: 50,
@@ -140,7 +142,7 @@ class _ArizaEnterState extends State<ArizaEnter> {
                             fontWeight: FontWeight.w600,
                           )),
                     ]),
-                    content: InfoNotPay());
+                    content: const InfoNotPay());
               },
             )
           : {};

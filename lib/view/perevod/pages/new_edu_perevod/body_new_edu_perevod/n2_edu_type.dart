@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/perevod/pages/new_edu_perevod/new_edu_sheet/n1_region_sheet.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/new_edu_sheet/n2_edu_type_sheet.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/provider_new_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -34,10 +33,10 @@ Widget eduTypeNewPerevod(
               : const SizedBox.shrink()
         ],
       ),
-      trailing: Column(
+      trailing: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
-        children: const [
+        children:  [
           SizedBox(height: 8),
           Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ],

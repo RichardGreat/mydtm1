@@ -47,7 +47,7 @@ class ProviderServicePage extends ChangeNotifier {
                     btnOkOnPress: () {
                       pushNewScreen(
                         context,
-                        screen: EnterFirst(),
+                        screen: const EnterFirst(),
                         withNavBar: false,
                         pageTransitionAnimation:
                             PageTransitionAnimation.cupertino,
@@ -162,7 +162,7 @@ class ProviderServicePage extends ChangeNotifier {
                         btnOkOnPress: () {
                           pushNewScreen(
                             context,
-                            screen: EnterFirst(),
+                            screen: const EnterFirst(),
                             withNavBar: false,
                             pageTransitionAnimation:
                                 PageTransitionAnimation.cupertino,
@@ -198,7 +198,7 @@ class ProviderServicePage extends ChangeNotifier {
                     btnOkOnPress: () {
                       pushNewScreen(
                         context,
-                        screen: EnterFirst(),
+                        screen: const EnterFirst(),
                         withNavBar: false,
                         pageTransitionAnimation:
                             PageTransitionAnimation.cupertino,

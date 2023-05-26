@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, must_be_immutable
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -105,7 +107,7 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
   }
 
   Future<void> _pickImage(ImageSource imageSource) async {
-    final pickedImage = await ImagePicker().getImage(source: imageSource);
+    final pickedImage = await ImagePicker().pickImage(source: imageSource);
     imageFile = pickedImage != null ? File(pickedImage.path) : null;
     if (imageFile != null) {
       setState(() {
@@ -184,8 +186,8 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
         if(widget.providerOldEdu.mbSizeZero > 7.8){
           AwesomeDialog(
             context: context,
-            dialogType: DialogType.INFO,
-            animType: AnimType.TOPSLIDE,
+            dialogType: DialogType.info,
+            animType: AnimType.topSlide,
             title: "${"imageMaxSize".tr()}" "${mb.toString().substring(0, 4)}",
             closeIcon: const Icon(Icons.build),
             btnOkColor: Colors.blueAccent,
@@ -203,8 +205,8 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
     } else {
       AwesomeDialog(
         context: context,
-        dialogType: DialogType.INFO,
-        animType: AnimType.TOPSLIDE,
+        dialogType: DialogType.info,
+        animType: AnimType.topSlide,
         title: "${"imageMaxSize".tr()}" "${mb.toString().substring(0, 4)}",
         closeIcon: const Icon(Icons.build),
         btnOkColor: Colors.blueAccent,

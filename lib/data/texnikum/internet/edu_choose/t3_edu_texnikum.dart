@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -17,7 +18,7 @@ class NetworkEDuTexnikum {
 
       return jsonEncode(response.data);
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 }

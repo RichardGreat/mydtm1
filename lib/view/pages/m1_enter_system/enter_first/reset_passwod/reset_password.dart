@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -66,7 +68,7 @@ class _ResetPasswordsState extends State<ResetPasswords> {
                         maxLength: 9,
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                          FilteringTextInputFormatter.allow(RegExp(r'\d')),
                         ],
                         decoration: InputDecoration(
                           prefixText: "+998 ",

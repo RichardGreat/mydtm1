@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
 // import 'package:local_auth/local_auth.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -135,7 +134,7 @@ class _LockScreenAllWindowState extends State<LockScreenAllWindow> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.appColorWhite(),
-      body: SafeArea(child: Column()),
+      body: const SafeArea(child: Column()),
     );
   }
 

@@ -200,7 +200,7 @@ class ProviderAriza extends ChangeNotifier {
         return true;
       }
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {throw Exception(e.toString());}
 
     return false;
   }
@@ -215,7 +215,7 @@ class ProviderAriza extends ChangeNotifier {
           url:
           urls,
           fileName: fileName);
-    }catch(e){}
+    }catch(e){throw Exception(e.toString());}
     loading = true;
     notifyListeners();
   }

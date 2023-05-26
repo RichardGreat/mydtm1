@@ -63,7 +63,7 @@ class _SheetGetSetLangTexnikumState extends State<SheetGetSetLangTexnikum> {
             Container(
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
-              padding: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

@@ -1,7 +1,7 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
-import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/texnikum/choose_edu/choose_edu_texnikum.dart';
 import 'package:mydtm/view/texnikum/provider_texnikum.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';

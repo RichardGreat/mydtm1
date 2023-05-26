@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -10,13 +11,12 @@ class NetworkEmodeEDuTexnikum {
       var dio = Dio();
       var box = Hive.box("online");
       Response response;
-      print("###e.toString()");
       response = await dio.get("${MainUrl.mainUrls}/v1/texnikum/emode",
           options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
 
       return jsonEncode(response.data);
     }catch(e){
-      print(e.toString());
+      log(e.toString());
     }
   }
 }
