@@ -38,7 +38,7 @@ Widget testRegion({required BuildContext context, required ProviderNewEduPerevod
               : const SizedBox.shrink()
         ],
       ),
-      trailing: const Column(
+      trailing:  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children:  [

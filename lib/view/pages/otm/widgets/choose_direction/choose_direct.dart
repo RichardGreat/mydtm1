@@ -50,7 +50,7 @@ Widget chooseDirect(
                   : const SizedBox.shrink()
             ],
           ),
-          trailing:const  Column(
+          trailing:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children:  [
@@ -99,7 +99,7 @@ Widget chooseDirect(
             ],
           ),
           subtitle: Text(providerChooseEdu.grantContractName),
-          trailing: const Column(
+          trailing:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children:  [
@@ -147,7 +147,7 @@ Widget chooseDirect(
                   : const SizedBox.shrink()
             ],
           ),
-          trailing:const  Column(
+          trailing:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children:  [
@@ -182,7 +182,7 @@ Widget chooseDirect(
                   : const SizedBox.shrink()
             ],
           ),
-          trailing:const  Column(
+          trailing:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children:  [
@@ -217,7 +217,7 @@ Widget chooseDirect(
                     : const SizedBox.shrink()
               ],
             ),
-            trailing: const Column(
+            trailing:  Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children:  [

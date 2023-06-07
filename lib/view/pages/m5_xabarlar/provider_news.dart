@@ -19,6 +19,7 @@ class ProviderDtmNews extends ChangeNotifier {
       boolDtmNews = false;
       getLang(); /// get local lang
       String dataNews = await NetworkDtmNews.getCheckDownloads(langName: langNames.isEmpty ?"uz": langNames);
+      log("dataNews");
       log(dataNews);
       modelDtmNews2 = (jsonDecode(dataNews) as List).
       map((e)=>ModelDtmNews.fromJson(e)).toList();

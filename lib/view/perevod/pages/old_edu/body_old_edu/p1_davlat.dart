@@ -38,7 +38,7 @@ Widget davlat({required BuildContext context, required ProviderOldEdu providerOl
               : const SizedBox.shrink()
         ],
       ),
-      trailing: const Column(
+      trailing:  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

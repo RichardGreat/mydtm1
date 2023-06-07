@@ -25,7 +25,7 @@ Widget til({required BuildContext context, required ProviderOldEdu providerOldEd
               : const SizedBox.shrink()
         ],
       ),
-      trailing: const Column(
+      trailing:  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children:  [

@@ -44,61 +44,66 @@ class _MainMessagesState extends State<MainMessages> {
                   textFontWeight: FontWeight.w500),
             ),
             body: providerDtmNews.boolDtmNews
-                ? SafeArea(
-                    child: ListView.builder(
-                        itemCount: providerDtmNews.modelDtmNews2.length,
-                        itemBuilder: (context, index) => Container(
-                            margin: const EdgeInsets.only(
-                                right: 4, left: 5, bottom: 3, top: 3),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: MyColors.appColorWhite(),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: MyColors.appColorGrey400(),
-                                      spreadRadius: 1,
-                                      blurRadius: 1)
-                                ]),
-                            child: ListTile(
-                              onTap: () {
-                                pushNewScreen(context,
-                                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    screen: NewsSee(
-                                        id: providerDtmNews
-                                            .modelDtmNews2[index].id
-                                            .toString(),
-                                        date: providerDtmNews
-                                            .modelDtmNews2[index].createdDate
-                                            .toString(),
-                                        titleName: providerDtmNews
-                                            .modelDtmNews2[index].title
-                                            .toString(),
-                                        imgUrl: providerDtmNews
-                                            .modelDtmNews2[index].imageUrl
-                                            .toString(),
-                                        providerDtmNews: providerDtmNews));
-                              },
-                              leading: CachedNetworkImage(
-                                height: 80,
-                                width: 100,
-                                fit: BoxFit.fill,
-                                imageUrl: providerDtmNews
-                                    .modelDtmNews2[index].imageUrl,
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) =>
-                                        const CupertinoActivityIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
-                              ),
-                              title: Text(
-                                  providerDtmNews.modelDtmNews2[index].title
-                                      .toString(),
-                                  maxLines: 3),
-                              trailing: Text(providerDtmNews
-                                  .modelDtmNews2[index].createdDate
-                                  .toString()),
-                            ))),
-                  )
+                ? RefreshIndicator(
+              onRefresh: (){
+                return getDtmNews();
+              },
+                  child: SafeArea(
+                      child: ListView.builder(
+                          itemCount: providerDtmNews.modelDtmNews2.length,
+                          itemBuilder: (context, index) => Container(
+                              margin: const EdgeInsets.only(
+                                  right: 4, left: 5, bottom: 3, top: 3),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: MyColors.appColorWhite(),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: MyColors.appColorGrey400(),
+                                        spreadRadius: 1,
+                                        blurRadius: 1)
+                                  ]),
+                              child: ListTile(
+                                onTap: () {
+                                  pushNewScreen(context,
+                                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                      screen: NewsSee(
+                                          id: providerDtmNews
+                                              .modelDtmNews2[index].id
+                                              .toString(),
+                                          date: providerDtmNews
+                                              .modelDtmNews2[index].createdDate
+                                              .toString(),
+                                          titleName: providerDtmNews
+                                              .modelDtmNews2[index].title
+                                              .toString(),
+                                          imgUrl: providerDtmNews
+                                              .modelDtmNews2[index].imageUrl
+                                              .toString(),
+                                          providerDtmNews: providerDtmNews));
+                                },
+                                leading: CachedNetworkImage(
+                                  height: 80,
+                                  width: 100,
+                                  fit: BoxFit.fill,
+                                  imageUrl: providerDtmNews
+                                      .modelDtmNews2[index].imageUrl,
+                                  progressIndicatorBuilder:
+                                      (context, url, downloadProgress) =>
+                                          const CupertinoActivityIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                ),
+                                title: Text(
+                                    providerDtmNews.modelDtmNews2[index].title
+                                        .toString(),
+                                    maxLines: 3),
+                                trailing: Text(providerDtmNews
+                                    .modelDtmNews2[index].createdDate
+                                    .toString()),
+                              ))),
+                    ),
+                )
                 : MyWidgets.loaderDownload(context: context)),
       ),
     );

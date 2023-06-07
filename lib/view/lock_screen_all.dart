@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 // import 'package:local_auth/local_auth.dart';
-import 'package:mydtm/view/widgets/colors/app_colors.dart';
+// import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 class LockScreenAllWindow extends StatefulWidget {
   const LockScreenAllWindow({Key? key}) : super(key: key);
@@ -130,11 +130,11 @@ class _LockScreenAllWindowState extends State<LockScreenAllWindow> {
 
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: MyColors.appColorWhite(),
-      body: const SafeArea(child: Column()),
-    );
-  }
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     backgroundColor: MyColors.appColorWhite(),
+  //     body: const SafeArea(child: Column()),
+  //   );
+  // }
 

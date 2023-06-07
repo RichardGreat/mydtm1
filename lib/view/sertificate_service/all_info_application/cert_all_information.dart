@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mydtm/data/model_parse/mod_certificate_nation/model_cert_application.dart';
-import 'package:mydtm/view/sertificate_service/qayd_varaqa/natija.dart';
+// import 'package:mydtm/view/sertificate_service/qayd_varaqa/natija.dart';
 import 'package:mydtm/view/sertificate_service/qayd_varaqa/ruxsatnoma.dart';
 import 'package:mydtm/view/sertificate_service/qayd_varaqa/view_qayd_varaqa.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -117,14 +117,14 @@ class _CertAllInformationState extends State<CertAllInformation> {
                             color: MyColors.appColorBlack(),
                           )),
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            CupertinoPageRoute(
-                              builder: (context) => CertificateResultsView(
-                                  // boolGetNatija: boolGetResultExam,
-                                  certId: widget.dataCertApplications.id
-                                      .toString()),
-                            ));
+                        // Navigator.push(
+                        //     context,
+                        //     CupertinoPageRoute(
+                        //       builder: (context) => CertificateResultsView(
+                        //           // boolGetNatija: boolGetResultExam,
+                        //           certId: widget.dataCertApplications.id
+                        //               .toString()),
+                        //     ));
 
                         // pushNewScreen(
                         //   context,
