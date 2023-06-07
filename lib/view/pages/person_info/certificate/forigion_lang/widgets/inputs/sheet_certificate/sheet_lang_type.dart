@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
-import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 modelGetLangType(
     {required BuildContext context,

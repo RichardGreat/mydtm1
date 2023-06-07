@@ -36,6 +36,8 @@ Widget constGraduated(
             children: [
               SizedBox(
 
+                width: MediaQuery.of(context).size.width*0.7,
+
                 child: MyWidgets.robotoFontText(
                     text: providerGraduated.graduatedEduTypeName.length < 4
                         ? "choose".tr()
@@ -43,7 +45,6 @@ Widget constGraduated(
                     textColor: providerGraduated.graduatedEduTypeName .length < 4
                         ? MyColors.appColorGrey400()
                         : MyColors.appColorBlack()),
-                width: MediaQuery.of(context).size.width*0.7,
               ),
               const Icon(Icons.arrow_drop_down_outlined)
             ],

@@ -63,7 +63,7 @@ class _PrivilegeState extends State<Privilege> {
                       height: 50,
                       minWidth: MediaQuery.of(context).size.width*0.9,
                       onPressed: (){
-                        pushNewScreen(context, screen: InvalidAdd(),
+                        pushNewScreen(context, screen: const InvalidAdd(),
                             pageTransitionAnimation: PageTransitionAnimation.cupertino,
                             withNavBar: false);
                       }, child: Row(

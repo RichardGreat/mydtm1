@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/provider_new_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -17,7 +19,7 @@ modelSheetEduLangPerevod(
       enableDrag: true,
       isScrollControlled: true,
       builder: (_) {
-        return Container(
+        return SizedBox(
             height: MediaQuery.of(contexts).size.height * 0.6,
             child: GetEduLangPerevod(providerNewEduPerevod: providerNewEduPerevod));
       });
@@ -59,9 +61,9 @@ class _GetEduLangPerevodState extends State<GetEduLangPerevod> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          SizedBox(height: 10),
+            const SizedBox(height: 10),
           MyWidgets.robotoFontText(text: "chooseLangEmode".tr()),
-          SizedBox(height: 10),
+            const  SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
                 itemCount:widget. providerNewEduPerevod.listDataLang.length,

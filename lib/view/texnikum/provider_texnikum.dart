@@ -29,12 +29,12 @@ class ProviderTexnikum extends ChangeNotifier {
     try {
       boolDownloadTexnikum = false;
       String data = await networkCheckUserInfoTexnikum.getUserInfoTexnikum(
-          phoneNumber: "998489900");
+          phoneNumber: "");
       modelCheckUserInfoTexnikum =
           ModelCheckUserInfoTexnikum.fromJson(jsonDecode(data));
       boolDownloadTexnikum = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {throw Exception(e.toString());}
   }
 
   final Uri _url = Uri.parse("https://lex.uz/docs/-4396419");

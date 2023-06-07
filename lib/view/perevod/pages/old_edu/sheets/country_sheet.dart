@@ -1,4 +1,6 @@
 
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
@@ -18,7 +20,7 @@ modelSheetCountryPerevod(
       enableDrag: true,
       isScrollControlled: true,
       builder: (_) {
-        return Container(
+        return  SizedBox(
             height: MediaQuery.of(contexts).size.height * 0.85,
             child: GetCountryPerevod(providerOldEdu: providerOldEdu));
       });

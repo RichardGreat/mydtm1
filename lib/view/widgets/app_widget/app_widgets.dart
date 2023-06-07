@@ -11,7 +11,7 @@ class MyWidgets {
 
   Future goEnterFirst({required BuildContext context}) async {
     box.delete("token");
-    pushNewScreen(context,   pageTransitionAnimation: PageTransitionAnimation.cupertino, screen: EnterFirst(), withNavBar: false);
+    pushNewScreen(context,   pageTransitionAnimation: PageTransitionAnimation.cupertino, screen: const EnterFirst(), withNavBar: false);
   }
 
   static Widget loaderDownload({required BuildContext context}){

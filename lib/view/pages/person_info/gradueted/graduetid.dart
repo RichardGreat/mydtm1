@@ -339,8 +339,8 @@ class _GraduatedState extends State<Graduated> {
                             providerGraduated
                                         .modelGraduatedInfo.data.graduatedYear
                                         .toString() ==
-                                    "2022"
-                                ? SizedBox.shrink()
+                                    "2023"
+                                ? const SizedBox.shrink()
                                 : buttonGraduated(
                                     idWindowIds: widget.windowIdGraduated,
                                     function: widget.funcState,

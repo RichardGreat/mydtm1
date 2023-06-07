@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -100,7 +102,7 @@ class _ChooseImageForeignLangState extends State<ChooseImageForeignLang> {
   }
 
   Future<void> _pickImage(ImageSource imageSource) async {
-    final pickedImage = await ImagePicker().getImage(source: imageSource);
+    final pickedImage = await ImagePicker().pickImage(source: imageSource);
     imageFile = pickedImage != null ? File(pickedImage.path) : null;
     if (imageFile != null) {
       setState(() {
@@ -170,8 +172,8 @@ class _ChooseImageForeignLangState extends State<ChooseImageForeignLang> {
       } else {
         AwesomeDialog(
           context: context,
-          dialogType: DialogType.INFO,
-          animType: AnimType.TOPSLIDE,
+          dialogType: DialogType.info,
+          animType: AnimType.topSlide,
           title:
               "${"imageSize".tr()} ${mb.toString().substring(0, 4)}",
           closeIcon: const Icon(Icons.build),

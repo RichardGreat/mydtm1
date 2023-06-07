@@ -25,7 +25,7 @@ Widget bodyPrivilege({
             itemCount: providerPrivilege.listCheckPrivilege.length,
             itemBuilder: (context, index) => Container(
                 padding: const EdgeInsets.all(12),
-                margin: EdgeInsets.all(5),
+                margin: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: MyColors.appColorWhite(),
@@ -109,7 +109,7 @@ Widget bodyPrivilege({
                             children: [
                                 GestureDetector(
                                   onTap:(){
-                                    pushNewScreen(context, screen: InvalidAdd(),
+                                    pushNewScreen(context, screen: const InvalidAdd(),
                                       pageTransitionAnimation: PageTransitionAnimation.cupertino,
                                       withNavBar: false);
                                     },

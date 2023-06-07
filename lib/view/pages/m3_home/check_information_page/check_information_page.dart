@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -59,7 +61,7 @@ class _CheckInformationState extends State<CheckInformation> {
         ), onWillPop: ()async{
           box.delete("langLock");
           box.put("langLock", "1");
-          Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainPages(),), (route) => false);
+          Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => const  MainPages(),), (route) => false);
           return true;
         })
       ),

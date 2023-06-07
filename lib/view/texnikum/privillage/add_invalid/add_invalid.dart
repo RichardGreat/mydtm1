@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/texnikum/privillage/add_invalid/invalid_addsheet/p2_cer_num_privil_tex.dart';

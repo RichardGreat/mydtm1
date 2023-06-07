@@ -1,6 +1,4 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:mydtm/view/texnikum/certificate/forigion_lang/foreigion_lang_add.dart';
 import 'package:mydtm/view/texnikum/certificate/provider_certificate_texnikum.dart';
 import 'package:mydtm/view/texnikum/privillage/privillage_texnikum.dart';
@@ -79,7 +77,7 @@ Widget bodyCertificateTexnikuim(
                               ],
                             ),
                           ),
-                        ):SizedBox.shrink(),
+                        ):const SizedBox.shrink(),
                   providerCertificateTexnikum.boolCheckForeignLangNot
                       ? const SizedBox(height: 10)
                       :  SizedBox(height: providerCertificateTexnikum

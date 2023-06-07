@@ -1,10 +1,10 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
-import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_information.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/widgets/app_bar_check_info.dart';
-import 'package:mydtm/view/pages/m3_home/check_information_page/widgets/body_check_info.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/body_check_info_perevod.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/provider_check_perevod.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -61,7 +61,7 @@ class _CheckInformationPerevodgaState extends State<CheckInformationPerevodga> {
           ), onWillPop: ()async{
             box.delete("langLock");
             box.put("langLock", "1");
-            Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainPages(),), (route) => false);
+            Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => const MainPages(),), (route) => false);
             return true;
           })
       ),

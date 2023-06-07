@@ -20,7 +20,6 @@ import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_captcha_error.dart';
-import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
 import 'package:ntp/ntp.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -126,7 +125,6 @@ class ProviderEnterFirst extends ChangeNotifier {
       box.put("token", modelGetToken.data.accessToken);
       log(box.get("token"));
       if (box.get("token").toString().length > 30) {
-        // ignore: use_build_context_synchronously
         box.delete("phoneNumber");
         box.put("phoneNumber", textAuthLogin.text);
         box.delete("langLock");
@@ -134,7 +132,6 @@ class ProviderEnterFirst extends ChangeNotifier {
         ///
         box.put("clothe5Min", "0");
         box.put("errorTry", "0");
-        // ignore: use_build_context_synchronously
         Navigator.pushAndRemoveUntil(
             context,
             CupertinoPageRoute(
@@ -177,14 +174,13 @@ class ProviderEnterFirst extends ChangeNotifier {
         } catch (e) {
           // smsId: widget.captchaValue, endTime: int.parse(widget.captchaKey), context: context);
           log(jsonDecode(dataData).toString());
-          ModelRegistrationSms modelRegistrationSms =
-              ModelRegistrationSms.fromJson(jsonDecode(dataData));
+          // ModelRegistrationSms modelRegistrationSms =
+          //     ModelRegistrationSms.fromJson(jsonDecode(dataData));
 
           log(dataData);
           log("::");
           MyWidgets.scaffoldMessengerBottom(
               context: context, valueText: "loginPasswordError".tr());
-          // ignore: use_build_context_synchronously
           // pushNewScreen(context,
           //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
           //     screen: SmsAutoFillUi(

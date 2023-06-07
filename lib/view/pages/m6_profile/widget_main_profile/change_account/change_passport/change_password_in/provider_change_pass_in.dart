@@ -64,7 +64,7 @@ dismissOnTouchOutside: false,
           btnCancelOnPress: () {
             box.delete("langLock");
             box.put("langLock", "1");
-            Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainPages(),), (route) => false);
+            Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => const MainPages(),), (route) => false);
           },
           btnCancelColor: MyColors.appColorBlue1(),
 

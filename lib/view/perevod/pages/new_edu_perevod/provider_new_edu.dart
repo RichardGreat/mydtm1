@@ -45,7 +45,7 @@ class ProviderNewEduPerevod extends ChangeNotifier {
       listTestRegionTemp.addAll(listTestRegion);
       boolTestRegion = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {throw Exception(e.toString());}
   }
 
   Future searchTestRegion({required String val}) async {
@@ -99,7 +99,7 @@ class ProviderNewEduPerevod extends ChangeNotifier {
       listEduTypeNewPerevod = modelEmodeNewPerevod.masseage;
       boolEduTypeNewPerevod = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {throw Exception(e.toString());}
   }
 
 
@@ -138,7 +138,7 @@ class ProviderNewEduPerevod extends ChangeNotifier {
       listDataLang = modelEduLangNewPerevod.lang;
       boolEduLang = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {throw Exception(e.toString());}
   }
 
 
@@ -233,7 +233,7 @@ class ProviderNewEduPerevod extends ChangeNotifier {
       listMvDirTemp.addAll(listMvDir);
       boolDir = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {throw Exception(e.toString());}
   }
 
   Future searchDir({required String value}) async {
@@ -301,6 +301,6 @@ class ProviderNewEduPerevod extends ChangeNotifier {
     try{
       // String dataSetAll = await
 
-    }catch(e){}
+    }catch(e){throw Exception(e.toString());}
   }
 }

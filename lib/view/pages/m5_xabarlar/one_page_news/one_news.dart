@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, library_private_types_in_public_api
+
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -15,7 +17,7 @@ class NewsSee extends StatefulWidget {
   final String imgUrl;
 
   NewsSee(
-      {required this.id,
+      {super.key, required this.id,
         required this.imgUrl,
         required this.titleName,
         required this.providerDtmNews,

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -5,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mydtm/view/texnikum/certificate/provider_certificate_texnikum.dart';
 import 'package:mydtm/view/texnikum/privillage/add_invalid/provider_add_invalide.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'dart:developer';

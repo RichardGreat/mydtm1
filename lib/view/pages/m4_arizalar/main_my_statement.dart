@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/main.dart';
@@ -34,7 +36,7 @@ class _MainMyStatementState extends State<MainMyStatement> {
       if(widget.numberParam == "2"){
         box.delete("langLock");
         box.put("langLock", "1");
-    Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MyApp(),), (route) => false);
+    Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => const MyApp(),), (route) => false);
       }
     return true;
     },

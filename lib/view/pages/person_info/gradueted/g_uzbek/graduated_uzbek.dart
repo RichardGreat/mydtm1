@@ -36,14 +36,14 @@ Widget graduatedUzbek(
             // }
             functionUzbAnother(providerGradueted: providerGradueted)
                 ? const SizedBox(height: 10)
-                : SizedBox.shrink(),
+                : const SizedBox.shrink(),
 
             functionUzbAnother(providerGradueted: providerGradueted)
                 ? MyWidgets.robotoFontText(
                     text: "province".tr(),
                     textColor: MyColors.appColorBlack(),
                     textSize: 16)
-                : SizedBox.shrink(),
+                : const SizedBox.shrink(),
             const SizedBox(height: 4),
             GestureDetector(
               child: Container(

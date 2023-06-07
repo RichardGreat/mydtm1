@@ -61,7 +61,7 @@ modelSheetPersonReceived(
                       Container(
                         height: 50,
                         width: double.infinity,
-                        padding: EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(

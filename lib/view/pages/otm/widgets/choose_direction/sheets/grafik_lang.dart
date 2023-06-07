@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';

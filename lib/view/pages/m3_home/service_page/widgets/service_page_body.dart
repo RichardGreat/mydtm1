@@ -9,7 +9,6 @@ import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/provider_service_page.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/widgets/service_page_bottonsheet.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
-import 'package:mydtm/view/sertificate_service/certifate_serv.dart';
 import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -97,7 +96,7 @@ Widget servicePageBody(
                           btnOkOnPress: () {
                             pushNewScreen(
                               context,
-                              screen: EnterFirst(),
+                              screen: const EnterFirst(),
                               withNavBar: false,
                               pageTransitionAnimation:
                                   PageTransitionAnimation.cupertino,

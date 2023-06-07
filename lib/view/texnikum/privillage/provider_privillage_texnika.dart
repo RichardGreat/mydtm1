@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:developer';
 
@@ -40,10 +42,10 @@ class ProviderPrivilegeTexnikum extends ChangeNotifier{
   NetworkInvalideDelete networkInvalideDelete = NetworkInvalideDelete();
   Future deleteInvalidTexnikum({required BuildContext context})async{
     try{
-      String dataDelete = await networkInvalideDelete.deleteInvalide();
+       await networkInvalideDelete.deleteInvalide();
       Navigator.of(context).pop();
 
-    }catch(e){}
+    }catch(e){throw Exception(e.toString());}
   }
 
 }

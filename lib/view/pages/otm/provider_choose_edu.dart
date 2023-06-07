@@ -682,7 +682,7 @@ class ProviderChooseEdu extends ChangeNotifier {
         boolCheckUseCertificateData = true;
         notifyListeners();
       }
-    } catch (e) {}
+    } catch (e) {throw Exception(e.toString());}
     Navigator.of(context).pop();
     Navigator.of(context).pop();
     Navigator.of(context).pop();
@@ -735,7 +735,7 @@ class ProviderChooseEdu extends ChangeNotifier {
 
       boolForeignLanguage = true;
       notifyListeners();
-    } catch (e) {}
+    } catch (e) {throw Exception(e.toString());}
   }
 
   bool boolSelectForeignLang = false;
