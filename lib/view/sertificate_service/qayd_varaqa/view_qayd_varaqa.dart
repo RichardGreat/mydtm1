@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
@@ -39,15 +38,13 @@ class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
   }
 
   Future downloadAndSavePdf() async {
-    setState(()=> isLoading = false);
-    docPDF = await PDFDocument.fromURL("${MainUrl.mainUrls}/v1/national/pdf-aplication/${widget.certQaytVaraqaId}",
-        cacheManager: CacheManager(Config(
-            "customCacheKey",
-            stalePeriod:const Duration(seconds: 1))),
-        headers: {"X-Access-Token": box.get("token")}
-    );
+    setState(() => isLoading = false);
+    docPDF = await PDFDocument.fromURL(
+        "${MainUrl.mainUrls}/v1/national/pdf-aplication/${widget.certQaytVaraqaId}",
+        cacheManager: CacheManager(Config("customCacheKey", stalePeriod: const Duration(seconds: 1))),
+        headers: {"X-Access-Token": box.get("token")});
 
-    setState(()=> isLoading = true);
+    setState(() => isLoading = true);
   }
 
   @override
@@ -67,29 +64,30 @@ class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.7,
-                  child:
-                  !isLoading
-                      ? const Center(child: CircularProgressIndicator())
-                      : PDFViewer(
-                      document: docPDF,
-                      lazyLoad: false,
-                      zoomSteps: 1,
-                      backgroundColor: Colors.white,
-                      progressIndicator: const Center(child: CircularProgressIndicator()),
-
-                      ),),
-                  //
-                  // PDFViewer(
-                  //   zoomSteps: 2,
-                  //   document: PDFDocument.fromURL(
-                  //
-                  //
-                  //   placeholder: (progress) =>
-                  //       Center(child: Text('$progress %')),
-                  //   errorWidget: (error) =>
-                  //       Center(child: Text(error.toString())),
-                  // )),
+                height: MediaQuery.of(context).size.height * 0.7,
+                child: !isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : PDFViewer(
+                        document: docPDF,
+                        lazyLoad: false,
+                        zoomSteps: 1,
+                        showIndicator: false,
+                        backgroundColor: Colors.white,
+                        progressIndicator:
+                            const Center(child: CircularProgressIndicator()),
+                      ),
+              ),
+              //
+              // PDFViewer(
+              //   zoomSteps: 2,
+              //   document: PDFDocument.fromURL(
+              //
+              //
+              //   placeholder: (progress) =>
+              //       Center(child: Text('$progress %')),
+              //   errorWidget: (error) =>
+              //       Center(child: Text(error.toString())),
+              // )),
               Container(
                 margin: const EdgeInsets.all(15),
                 child: Column(children: [

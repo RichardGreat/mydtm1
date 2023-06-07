@@ -37,9 +37,9 @@ class ProviderServiceApplicationPage extends ChangeNotifier {
     }
   }
 
-  bool boolGetPay = true;
-  Future getPayForCheck()async{
-    boolGetPay = !boolGetPay;
-    notifyListeners();
-  }
+  // bool boolGetPay = true;
+  // Future getPayForCheck()async{
+  //   boolGetPay = !boolGetPay;
+  //   notifyListeners();
+  // }
 }

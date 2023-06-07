@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +12,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 Widget inputsSignUp(
     {required BuildContext context, required ProviderSignUp providerSignUp}) {
+  log(MediaQuery.of(context).size.height.toString());
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -105,97 +108,113 @@ Widget inputsSignUp(
             }
             return null;
           }),
-
-
       const SizedBox(height: 5),
       MyWidgets.robotoFontText(text: "password".tr()),
       TextFormField(
         controller: providerSignUp.textSingUpPassword,
-          textAlignVertical: TextAlignVertical.center,
-          maxLines: 1,
-          maxLength: 20,
-          obscureText: providerSignUp.boolPasswordVisible,
-          keyboardType: TextInputType.visiblePassword,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(8),
-            suffixIcon: GestureDetector(
-              onTap: () {
-                providerSignUp.boolPasswordVisibleMethod();
-              },
-              child: providerSignUp.boolPasswordVisible
-                  ? Icon(
-                      CupertinoIcons.eye_slash,
-                      color: MyColors.appColorGrey600(),
-                      size: 18,
-                    )
-                  : Icon(
-                      CupertinoIcons.eye,
-                      color: MyColors.appColorBlue2(),
-                      size: 18,
-                    ),
-            ),
-            fillColor: Colors.white,
-            errorMaxLines: 2,
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(
-                color: MyColors.appColorBlue2(),
-              ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(
-                color: MyColors.appColorGrey100(),
-                width: 2.0,
-              ),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(
-                color: MyColors.appColorGrey100(),
-                width: 2.0,
-              ),
-            ),
-            errorStyle: TextStyle(
-              color: MyColors.appColorRed(),
-              fontWeight: FontWeight.w500,
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(
-                color: MyColors.appColorGrey100(),
-                width: 2.0,
-              ),
-            ),
-
+        textAlignVertical: TextAlignVertical.center,
+        maxLines: 1,
+        maxLength: 20,
+        obscureText: providerSignUp.boolPasswordVisible,
+        keyboardType: TextInputType.visiblePassword,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.all(8),
+          suffixIcon: GestureDetector(
+            onTap: () {
+              providerSignUp.boolPasswordVisibleMethod();
+            },
+            child: providerSignUp.boolPasswordVisible
+                ? Icon(
+                    CupertinoIcons.eye_slash,
+                    color: MyColors.appColorGrey600(),
+                    size: 18,
+                  )
+                : Icon(
+                    CupertinoIcons.eye,
+                    color: MyColors.appColorBlue2(),
+                    size: 18,
+                  ),
           ),
-      validator: (value){
-  if (value == null || value.length < 8) {
-
-    return "";
-  }else{
-
-    return "";
-  }
-      },
-      ),
-      FlutterPwValidator(
-          controller: providerSignUp.textSingUpPassword,
-          minLength: 8,
-          uppercaseCharCount: 1,
-          numericCharCount: 1,
-          specialCharCount: 1,
-          width: MediaQuery.of(context).size.width*0.9,
-          height: 160,
-          strings: FrenchStrings(),
-          successColor: MyColors.appColorBlue2(),
-          onSuccess: (){
-            providerSignUp.boolButtonCol2(boolValue: true);
-          },
-          onFail: (){
-            providerSignUp.boolButtonCol2(boolValue: false);
+          fillColor: Colors.white,
+          errorMaxLines: 2,
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(
+              color: MyColors.appColorBlue2(),
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(
+              color: MyColors.appColorGrey100(),
+              width: 2.0,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(
+              color: MyColors.appColorGrey100(),
+              width: 2.0,
+            ),
+          ),
+          errorStyle: TextStyle(
+            color: MyColors.appColorRed(),
+            fontWeight: FontWeight.w500,
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(
+              color: MyColors.appColorGrey100(),
+              width: 2.0,
+            ),
+          ),
+        ),
+        validator: (value) {
+          if (value == null || value.length < 8) {
+            return "";
+          } else {
+            return "";
           }
+        },
       ),
+      SizedBox(
+        height: MediaQuery.of(context).size.height > 900
+            ? MediaQuery.of(context).size.height * 0.3
+            : MediaQuery.of(context).size.height > 800
+                ? MediaQuery.of(context).size.height * 0.32
+                : MediaQuery.of(context).size.height > 700
+                    ? MediaQuery.of(context).size.height * 0.3
+                    : MediaQuery.of(context).size.height > 600
+                        ? MediaQuery.of(context).size.height * 0.25
+                        : MediaQuery.of(context).size.height * 0.23,
+        child: SingleChildScrollView(
+          child: FlutterPwValidator(
+              controller: providerSignUp.textSingUpPassword,
+              minLength: 8,
+              uppercaseCharCount: 1,
+              numericCharCount: 1,
+              specialCharCount: 1,
+              width: MediaQuery.of(context).size.width * 0.8,
+              height:
+              MediaQuery.of(context).size.height > 900
+                  ? MediaQuery.of(context).size.height * 0.35
+                  : MediaQuery.of(context).size.height > 800
+                      ? MediaQuery.of(context).size.height * 0.38
+                      : MediaQuery.of(context).size.height > 700
+                          ? MediaQuery.of(context).size.height * 0.43
+                          : MediaQuery.of(context).size.height > 600
+                              ? MediaQuery.of(context).size.height * 0.5
+                              : MediaQuery.of(context).size.height * 0.5,
+              strings: FrenchStrings(),
+              successColor: MyColors.appColorBlue2(),
+              onSuccess: () {
+                providerSignUp.boolButtonCol2(boolValue: true);
+              },
+              onFail: () {
+                providerSignUp.boolButtonCol2(boolValue: false);
+              }),
+        ),
+      )
     ],
   );
 }
@@ -220,8 +239,4 @@ class FrenchStrings implements FlutterPwValidatorStrings {
   @override
   // TODO: implement uppercaseLetters
   String get uppercaseLetters => "enterCapitalLatter".tr();
-
 }
-
-
-

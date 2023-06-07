@@ -11,14 +11,13 @@ import 'package:easy_localization/easy_localization.dart';
 class CertAllInformation extends StatefulWidget {
   DataCertApplications dataCertApplications;
   String serName, serId;
-  bool boolCertPay;
 
   CertAllInformation(
       {Key? key,
       required this.dataCertApplications,
       required this.serId,
       required this.serName,
-      required this.boolCertPay})
+})
       : super(key: key);
 
   @override
@@ -93,23 +92,24 @@ class _CertAllInformationState extends State<CertAllInformation> {
                             context,
                             CupertinoPageRoute(
                               builder: (context) => CertRuxsatnomaView(
-                                boolGetAllowExam: boolGetAllowExam,
+                                // boolGetAllowExam: boolGetAllowExam,
                                 certRuxsatnomaVaraqaId: widget.serId,
                               ),
                             ));
                       },
-                      trailing: CupertinoSwitch(
-                        // This bool value toggles the switch.
-                        value: boolGetAllowExam,
-                        activeColor: CupertinoColors.activeBlue,
-                        onChanged: (bool? value) {
-                          // This is called when the user toggles the switch.
-                          setState(() {
-                            boolGetAllowExam = value ?? false;
-                          });
-                        },
-                      ),
-                      //const Icon(Icons.arrow_forward_ios_sharp, size: 16),
+                      trailing:  const Icon(Icons.arrow_forward_ios_sharp, size: 16),
+                      // CupertinoSwitch(
+                      //   // This bool value toggles the switch.
+                      //   value: boolGetAllowExam,
+                      //   activeColor: CupertinoColors.activeBlue,
+                      //   onChanged: (bool? value) {
+                      //     // This is called when the user toggles the switch.
+                      //     setState(() {
+                      //       boolGetAllowExam = value ?? false;
+                      //     });
+                      //   },
+                      // ),
+                      //
                     ),
                     ListTile(
                       title: Text("certificateNatja".tr(),
@@ -121,7 +121,7 @@ class _CertAllInformationState extends State<CertAllInformation> {
                             context,
                             CupertinoPageRoute(
                               builder: (context) => CertificateResultsView(
-                                  boolGetNatija: boolGetResultExam,
+                                  // boolGetNatija: boolGetResultExam,
                                   certId: widget.dataCertApplications.id
                                       .toString()),
                             ));
@@ -133,17 +133,19 @@ class _CertAllInformationState extends State<CertAllInformation> {
                         //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
                         // );
                       },
-                      trailing: CupertinoSwitch(
-                        // This bool value toggles the switch.
-                        value: boolGetResultExam,
-                        activeColor: CupertinoColors.activeBlue,
-                        onChanged: (bool? value) {
-                          // This is called when the user toggles the switch.
-                          setState(() {
-                            boolGetResultExam = value ?? false;
-                          });
-                        },
-                      ),
+                      trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
+
+                      // CupertinoSwitch(
+                      //   // This bool value toggles the switch.
+                      //   value: boolGetResultExam,
+                      //   activeColor: CupertinoColors.activeBlue,
+                      //   onChanged: (bool? value) {
+                      //     // This is called when the user toggles the switch.
+                      //     setState(() {
+                      //       boolGetResultExam = value ?? false;
+                      //     });
+                      //   },
+                      // ),
                     )
                   ],
                 ),
@@ -309,13 +311,13 @@ class _CertAllInformationState extends State<CertAllInformation> {
                         margin: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
                             color:
-                            widget.boolCertPay ? MyColors.appColorGreen2():
+
                             widget.dataCertApplications.pay == 0
                                 ? MyColors.appColorRed()
                                 : MyColors.appColorGreen2(),
                             borderRadius: BorderRadius.circular(8)),
                         child: Text(
-                            widget.boolCertPay ?"payed".tr():
+
                           widget.dataCertApplications.pay == 0
                               ? "noPayed".tr()
                               : "payed".tr().toString(),

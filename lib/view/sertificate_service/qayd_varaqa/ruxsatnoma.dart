@@ -13,12 +13,13 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 class CertRuxsatnomaView extends StatefulWidget {
   String certRuxsatnomaVaraqaId;
-  bool boolGetAllowExam;
+  // bool boolGetAllowExam;
 
   CertRuxsatnomaView(
       {Key? key,
       required this.certRuxsatnomaVaraqaId,
-      required this.boolGetAllowExam})
+      // required this.boolGetAllowExam
+      })
       : super(key: key);
 
   @override
@@ -31,7 +32,7 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
   @override
   void initState() {
     getAllowLink();
-    log(widget.boolGetAllowExam.toString());
+    // log(widget.boolGetAllowExam.toString());
     log(widget.certRuxsatnomaVaraqaId);
     super.initState();
   }
@@ -46,13 +47,16 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
   getAllowLink() async {
     try {
       Response response = await dio.get(
-          widget.boolGetAllowExam
-              ? "${MainUrl.mainUrls}/v1/national/allow/40"
-              : "${MainUrl.mainUrls}/v1/national/allow/${widget.certRuxsatnomaVaraqaId}",
+          // widget.boolGetAllowExam
+          //     ? "${MainUrl.mainUrls}/v1/national/allow/40"
+          //     :
+          "${MainUrl.mainUrls}/v1/national/allow/${widget.certRuxsatnomaVaraqaId}",
           options: Options(headers: {
-            "X-Access-Token": widget.boolGetAllowExam
-                ? "b90beeaac6416018196aeae417fefc96"
-                : box.get("token")
+            "X-Access-Token":
+            // widget.boolGetAllowExam
+            //     ? "b90beeaac6416018196aeae417fefc96"
+            //     :
+            box.get("token")
           }));
       link = ModelCertAllow.fromJson(jsonDecode(jsonEncode(response.data)))
           .data

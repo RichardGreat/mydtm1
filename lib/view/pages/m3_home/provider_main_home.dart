@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
@@ -131,14 +133,15 @@ class ProviderMainHome extends ChangeNotifier {
 
   Future getDateService({required BuildContext context}) async {
     try {
-      if (box.get("numberApi").toString().trim() != numberAPIUpdate.toString().trim()) {
+      if (box.get("numberApi").toString().trim() !=
+          numberAPIUpdate.toString().trim()) {
         String dataServiceList = await networkServiceList.getServiceList();
         box.put("dataServiceList", dataServiceList);
-        box.put("numberApi",numberAPIUpdate);
+        box.put("numberApi", numberAPIUpdate);
         log("Download 777");
-        log( box.get("numberApi"));
+        log(box.get("numberApi"));
         log("####");
-        }
+      }
 
       modelServiceList =
           ModelServiceList.fromJson(jsonDecode(box.get("dataServiceList")));
@@ -172,8 +175,10 @@ class ProviderMainHome extends ChangeNotifier {
               btnCancelOnPress: () {
                 // getDateService(context: context);
                 if (Platform.isIOS) {
+                  // getDateService(context: context);
                   exit(0);
                 } else {
+                  // getDateService(context: context);
                   SystemNavigator.pop();
                 }
                 Navigator.of(context).pop();
@@ -204,7 +209,6 @@ class ProviderMainHome extends ChangeNotifier {
 
   Future searchServicesItem({required String searchValue}) async {
     listDataServiceListTemp.clear();
-
     box.get("language") == "1"
         ? {
             for (var element in listDataServiceListTemp2)
@@ -212,9 +216,7 @@ class ProviderMainHome extends ChangeNotifier {
                 if (element.serviceName
                     .toLowerCase()
                     .contains(searchValue.toLowerCase()))
-                  {
-                    listDataServiceListTemp.add(element),
-                  }
+                  {listDataServiceListTemp.add(element)}
               }
           }
         : box.get("language") == "2"
@@ -224,9 +226,7 @@ class ProviderMainHome extends ChangeNotifier {
                     if (element.serviceNameQQ
                         .toLowerCase()
                         .contains(searchValue.toLowerCase()))
-                      {
-                        listDataServiceListTemp.add(element),
-                      }
+                      {listDataServiceListTemp.add(element)}
                   }
               }
             : {
@@ -235,9 +235,7 @@ class ProviderMainHome extends ChangeNotifier {
                     if (element.serviceNameRu
                         .toLowerCase()
                         .contains(searchValue.toLowerCase()))
-                      {
-                        listDataServiceListTemp.add(element),
-                      }
+                      {listDataServiceListTemp.add(element)}
                   }
               };
   }

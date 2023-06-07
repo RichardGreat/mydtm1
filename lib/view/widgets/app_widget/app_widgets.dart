@@ -157,6 +157,9 @@ class MyWidgets {
 
   static List<String> checkTelephoneCompanyCode = [
     "33",
+    "50",
+    "55",
+    "77",
     "88",
     "90",
     "91",

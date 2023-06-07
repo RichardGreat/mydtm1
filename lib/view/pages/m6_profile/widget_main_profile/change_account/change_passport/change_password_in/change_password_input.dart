@@ -129,28 +129,50 @@ class _ChangePasswordInputState extends State<ChangePasswordInput> {
                         },
                       ),
                       const SizedBox(height: 10),
-                      FlutterPwValidator(
-                          controller:
-                              providerChangePasswordInputs.textEditingPass1,
-                          minLength: 8,
-                          uppercaseCharCount: 1,
-                          numericCharCount: 1,
-                          specialCharCount: 1,
-                          width: 400,
-                          height: 160,
-                          successColor: MyColors.appColorBlue1(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height > 900
+                            ? MediaQuery.of(context).size.height * 0.3
+                            : MediaQuery.of(context).size.height > 800
+                            ? MediaQuery.of(context).size.height * 0.32
+                            : MediaQuery.of(context).size.height > 700
+                            ? MediaQuery.of(context).size.height * 0.3
+                            : MediaQuery.of(context).size.height > 600
+                            ? MediaQuery.of(context).size.height * 0.25
+                            : MediaQuery.of(context).size.height * 0.23,
+                        child: SingleChildScrollView(
+                          child: FlutterPwValidator(
+                              controller:
+                                  providerChangePasswordInputs.textEditingPass1,
+                              minLength: 8,
+                              uppercaseCharCount: 1,
+                              numericCharCount: 1,
+                              specialCharCount: 1,
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              height:
+                              MediaQuery.of(context).size.height > 900
+                                  ? MediaQuery.of(context).size.height * 0.35
+                                  : MediaQuery.of(context).size.height > 800
+                                  ? MediaQuery.of(context).size.height * 0.38
+                                  : MediaQuery.of(context).size.height > 700
+                                  ? MediaQuery.of(context).size.height * 0.43
+                                  : MediaQuery.of(context).size.height > 600
+                                  ? MediaQuery.of(context).size.height * 0.5
+                                  : MediaQuery.of(context).size.height * 0.5,
+                              successColor: MyColors.appColorBlue1(),
 
-                          strings: FrenchString(),
-                          onSuccess: () {
-                            providerChangePasswordInputs
-                                .boolGetAccessTypePassword(boolValue: true);
-                            // providerSignUp.boolButtonCol2(boolValue: true);
-                          },
-                          onFail: () {
-                            providerChangePasswordInputs
-                                .boolGetAccessTypePassword(boolValue: false);
-                            // providerSignUp.boolButtonCol2(boolValue: false);
-                          }),
+                              strings: FrenchString(),
+                              onSuccess: () {
+                                providerChangePasswordInputs
+                                    .boolGetAccessTypePassword(boolValue: true);
+                                // providerSignUp.boolButtonCol2(boolValue: true);
+                              },
+                              onFail: () {
+                                providerChangePasswordInputs
+                                    .boolGetAccessTypePassword(boolValue: false);
+                                // providerSignUp.boolButtonCol2(boolValue: false);
+                              }),
+                        ),
+                      ),
                       const SizedBox(height: 20),
                       MaterialButton(
                           onPressed: () {

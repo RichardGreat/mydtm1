@@ -38,23 +38,32 @@ class _SignUpState extends State<SignUp> {
                 key: providerSignUp.formKey,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: SingleChildScrollView(
-                  child: Container(
-                    height: MediaQuery.of(context).size.height  -
-                        AppBar().preferredSize.height,
-                    padding: const EdgeInsets.all(15),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                       children: [
-                        textWords(
-                            context: context, providerSignUp: providerSignUp),
-                        inputsSignUp(
-                            context: context, providerSignUp: providerSignUp),
-                        const SizedBox(height: 5),
-                        captchaSignUp(
-                            context: context, providerSignUp: providerSignUp),
-                        buttonSignUp(
-                            context: context, providerSignUp: providerSignUp),
+                       Column(
+                         mainAxisAlignment: MainAxisAlignment.start,
+                         crossAxisAlignment: CrossAxisAlignment.start,
+                         children: [
+
+                         textWords(
+                             context: context, providerSignUp: providerSignUp),
+                         inputsSignUp(
+                             context: context, providerSignUp: providerSignUp),
+                         const SizedBox(height: 5),
+                       ],),
+                        Column(children: [
+                          captchaSignUp(
+                              context: context, providerSignUp: providerSignUp),
+                          buttonSignUp(
+                              context: context, providerSignUp: providerSignUp),
+                        ],),
+
+
                       ],
                     ),
                   ),

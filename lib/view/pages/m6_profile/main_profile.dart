@@ -7,7 +7,6 @@ import 'package:mydtm/view/pages/m6_profile/widget_main_profile/body_profile.dar
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
-import 'dart:developer';
 
 class MainProfile extends StatefulWidget {
   late Function myFunction;

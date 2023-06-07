@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
+import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_passport/change_password.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/phone_change.dart';
@@ -367,11 +368,11 @@ Widget bodyProfile(
                   box.delete("notShowAgain1");
                   box.delete("phoneNumber");
                   //
-                  // pushNewScreenWithRouteSettings(context,
-                  //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  //     screen: EnterFirst(),
-                  //     settings: RouteSettings(),
-                  //     withNavBar: false);
+                  pushNewScreenWithRouteSettings(context,
+                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                      screen: MainPages(),
+                      settings: RouteSettings(),
+                      withNavBar: false);
                 },
                 btnOkText: "yes".tr(),
                 btnOkColor: MyColors.appColorBlue1(),

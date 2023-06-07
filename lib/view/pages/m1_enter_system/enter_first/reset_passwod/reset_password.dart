@@ -30,7 +30,6 @@ class _ResetPasswordsState extends State<ResetPasswords> {
     await widget.providerEnterFirst.getCaptcha():{};
     log("InintState");
     log(widget.providerEnterFirst.modelParseCaptcha.data.captchaKey.toString());
-    log(widget.providerEnterFirst.modelParseCaptcha.data.val.toString());
     setState((){});
   }
 
