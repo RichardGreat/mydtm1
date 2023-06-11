@@ -65,6 +65,7 @@ class ProviderCheckInformation extends ChangeNotifier
       boolCheckUserInfo = false;
       String dataCheckInfo = await networkCheckUserInfo.getUserInfo(
           phoneNumber: box.get("phoneNumber"));
+      log("###@@@");
       log(dataCheckInfo);
       modelCheckUserInfo =
           ModelCheckUserInfo.fromJson(jsonDecode(dataCheckInfo));

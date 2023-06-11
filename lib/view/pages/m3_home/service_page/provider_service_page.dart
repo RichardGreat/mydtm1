@@ -5,8 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
+import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/check_info_perevodga.dart';
-import 'package:mydtm/view/sertificate_service/certifate_serv.dart';
+// import 'package:mydtm/view/sertificate_service/certifate_serv.dart';
 import 'package:mydtm/view/texnikum/main_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -64,42 +65,49 @@ class ProviderServicePage extends ChangeNotifier {
                     int.parse(categoryId) == 64)
                   {
                     ///
+                    pushNewScreen(
+                      context,
+                      screen: CheckInformation(serviceName: categoryName),
+                      withNavBar: false,
+                      pageTransitionAnimation:
+                      PageTransitionAnimation.cupertino,
+                    ),
 
-                    pushNewScreen(context,
-                        pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino,
-                        screen: SertificateServices(
-                          serID: categoryId,
-                          serviceName: categoryName,
-                        ))
+                    // pushNewScreen(context,
+                    //     pageTransitionAnimation:
+                    //         PageTransitionAnimation.cupertino,
+                    //     screen: SertificateServices(
+                    //       serID: categoryId,
+                    //       serviceName: categoryName,
+                    //     ))
                   }
                 else if (categoryId == "42")
                   {
-                    // pushNewScreen(
-                    //   context,
-                    //   screen: CheckInformation(serviceName: categoryName),
-                    //   withNavBar: false,
-                    //   pageTransitionAnimation:
-                    //       PageTransitionAnimation.cupertino,
-                    // ),
-                    AwesomeDialog(
-                            context: context,
-                            dialogType: DialogType.noHeader,
-                            animType: AnimType.bottomSlide,
-                            dismissOnTouchOutside: false,
-                            title: "BMBA",
-                            desc: "regEnd".tr(),
-                            titleTextStyle: TextStyle(
-                                color: MyColors.appColorBlue1(),
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold),
-                            descTextStyle: TextStyle(
-                                color: MyColors.appColorBlack(),
-                                fontWeight: FontWeight.bold),
-                            btnCancelColor: MyColors.appColorBlue1(),
-                            btnCancelOnPress: () {},
-                            btnCancelText: "OK")
-                        .show(),
+                    pushNewScreen(
+                      context,
+                      screen: CheckInformation(serviceName: categoryName),
+                      withNavBar: false,
+                      pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
+                    ),
+                    // AwesomeDialog(
+                    //         context: context,
+                    //         dialogType: DialogType.noHeader,
+                    //         animType: AnimType.bottomSlide,
+                    //         dismissOnTouchOutside: false,
+                    //         title: "BMBA",
+                    //         desc: "regEnd".tr(),
+                    //         titleTextStyle: TextStyle(
+                    //             color: MyColors.appColorBlue1(),
+                    //             fontSize: 24,
+                    //             fontWeight: FontWeight.bold),
+                    //         descTextStyle: TextStyle(
+                    //             color: MyColors.appColorBlack(),
+                    //             fontWeight: FontWeight.bold),
+                    //         btnCancelColor: MyColors.appColorBlue1(),
+                    //         btnCancelOnPress: () {},
+                    //         btnCancelText: "OK")
+                    //     .show(),
                   }
                 else if (categoryId == "41")
                   {

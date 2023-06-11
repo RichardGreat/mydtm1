@@ -50,7 +50,7 @@ Widget chooseDirect(
                   : const SizedBox.shrink()
             ],
           ),
-          trailing:  Column(
+          trailing:  const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children:  [
@@ -99,7 +99,7 @@ Widget chooseDirect(
             ],
           ),
           subtitle: Text(providerChooseEdu.grantContractName),
-          trailing:  Column(
+          trailing:  const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children:  [
@@ -147,8 +147,8 @@ Widget chooseDirect(
                   : const SizedBox.shrink()
             ],
           ),
-          trailing:  Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          trailing:  const Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children:  [
               SizedBox(height: 8),
@@ -182,7 +182,7 @@ Widget chooseDirect(
                   : const SizedBox.shrink()
             ],
           ),
-          trailing:  Column(
+          trailing: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children:  [
@@ -200,7 +200,7 @@ Widget chooseDirect(
 
       /// Test grafik
       Visibility(
-        visible: providerChooseEdu.langId == "1",
+        visible: providerChooseEdu.langId == "1" ||providerChooseEdu.langId == "3",
         child: Container(
           decoration: BoxDecoration(color: MyColors.appColorWhite()),
           child: ListTile(
@@ -217,7 +217,7 @@ Widget chooseDirect(
                     : const SizedBox.shrink()
               ],
             ),
-            trailing:  Column(
+            trailing: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children:  [
@@ -228,6 +228,7 @@ Widget chooseDirect(
             subtitle: Text(providerChooseEdu.langGraphicName),
             onTap: () {
               sheetLanguageGraphicTest(
+                txtChoose: listDirection[4],
                   context: context, providerChooseEdu: providerChooseEdu);
             },
           ),

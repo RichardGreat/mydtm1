@@ -11,7 +11,9 @@ class NetworkEduChooseRegion{
   Future<String> getChooseEduRegion()async{
   var dio = Dio();
   Response response;
-  response = await dio.get("${MainUrl.mainUrls}/v1/qabul/test-region-list"
+  log("token");
+  log(box.get("token"));
+  response = await dio.get("${MainUrl.mainUrls}/v1/abitur/test-region-list"
   ,options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")})
   );
 

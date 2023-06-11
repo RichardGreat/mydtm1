@@ -84,7 +84,7 @@ Widget bodyCertificateOTM(
                                             color: MyColors.appColorBlack(),
                                             fontWeight: FontWeight.bold),
                                         btnCancelOnPress: () {},
-                                        btnCancelText: "OK",
+                                        btnCancelText: "access".tr(),
                                         btnCancelColor:
                                         MyColors.appColorBlue1())
                                         .show();
@@ -128,7 +128,7 @@ Widget bodyCertificateOTM(
                                             color: MyColors.appColorBlack(),
                                             fontWeight: FontWeight.bold),
                                         btnCancelOnPress: () {},
-                                        btnCancelText: "OK",
+                                        btnCancelText: "access".tr(),
                                         btnCancelColor:
                                         MyColors.appColorBlue1())
                                         .show();

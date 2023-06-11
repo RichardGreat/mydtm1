@@ -8,9 +8,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/main.dart';
-import 'package:mydtm/view/pages/m3_home/main_home.dart';
+// import 'package:mydtm/view/pages/m3_home/main_home.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
 import 'package:mydtm/view/pages/m6_profile/main_profile.dart';
+import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -23,8 +24,15 @@ class MainPages extends StatefulWidget {
 }
 
 class _MainPagesState extends State<MainPages> {
+
+
+  Future getBoshFunc() async {
+    // await widget.providerCheckInformation.getQaydVaraqa2();
+    setState(() {});
+  }
+
   List<Widget> myPages() => [
-        const MainHome(),
+         ChooseEdu(funcState:getBoshFunc),
         // MainMyStatement(numberParam: "0"),
         const MainMessages(),
         MainProfile(myFunction: getFunction),

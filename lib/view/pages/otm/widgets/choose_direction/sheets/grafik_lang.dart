@@ -6,14 +6,17 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 
 sheetLanguageGraphicTest(
     {required BuildContext context,
-      required ProviderChooseEdu providerChooseEdu}) {
+    required String txtChoose,
+    required ProviderChooseEdu providerChooseEdu}) {
   showModalBottomSheet(
       context: context,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       builder: (context) {
         return StatefulBuilder(
           builder: (context, setState) => SizedBox(
-            height: MediaQuery.of(context).size.height * 0.2,
-            child: LangGraphicChooseTest(providerChooseEdu: providerChooseEdu),
+            height: MediaQuery.of(context).size.height * 0.3,
+            child: LangGraphicChooseTest(
+                providerChooseEdu: providerChooseEdu, titleName: txtChoose),
           ),
         );
       });
@@ -21,8 +24,10 @@ sheetLanguageGraphicTest(
 
 class LangGraphicChooseTest extends StatefulWidget {
   late ProviderChooseEdu providerChooseEdu;
+  String titleName;
 
-  LangGraphicChooseTest({Key? key, required this.providerChooseEdu})
+  LangGraphicChooseTest(
+      {Key? key, required this.providerChooseEdu, required this.titleName})
       : super(key: key);
 
   @override
@@ -37,53 +42,70 @@ class _LangGraphicChooseTestState extends State<LangGraphicChooseTest> {
   //   setState(() {});
   // }
 
-  List<String> listLangGraphic =["Lotin", "Kirill", ];
-
+  List<String> listLangGraphic = [
+    "Lotin",
+    "Kirill",
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: widget.providerChooseEdu.boolLangEduTest
           ? Container(
-          height: MediaQuery.of(context).size.height * 0.6,
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(8)),
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-
-              Expanded(
-                child: ListView.builder(
-                  itemCount: listLangGraphic.length,
-                  itemBuilder: (context, index) => GestureDetector(
-                    child: Card(
-                      margin: const EdgeInsets.all(8),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          listLangGraphic[index],
-                          overflow: TextOverflow.fade,
-                          softWrap: true,
-                          maxLines: 3,
-                          textAlign: TextAlign.start,
+              height: MediaQuery.of(context).size.height * 0.6,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(8)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(widget.titleName,
+                        style:const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  Divider(),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: listLangGraphic.length,
+                      itemBuilder: (context, index) => GestureDetector(
+                        child: Card(
+                          margin: const EdgeInsets.all(8),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text(
+                              listLangGraphic[index],
+                              overflow: TextOverflow.fade,
+                              softWrap: true,
+                              maxLines: 3,
+                              textAlign: TextAlign.start,
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
                         ),
+                        onTap: () {
+                          widget.providerChooseEdu.setLanguageGraphic(
+                              name: listLangGraphic[index].toString(),
+                              id: listLangGraphic[index].toString() == "Lotin"
+                                  ? "1"
+                                  : "0");
+                          // widget.providerChooseEdu.setLanguage(
+                          //     name: widget.providerChooseEdu
+                          //         .listLangEduChooseTestTemp[index].name,
+                          //     id: widget.providerChooseEdu
+                          //         .listLangEduChooseTestTemp[index].id
+                          //         .toString());
+                          Navigator.of(context).pop();
+                        },
                       ),
                     ),
-                    onTap: () {
-                      widget.providerChooseEdu.setLanguageGraphic(name: listLangGraphic[index].toString(), id:listLangGraphic[index].toString() == "Lotin"?"1":"0");
-                      // widget.providerChooseEdu.setLanguage(
-                      //     name: widget.providerChooseEdu
-                      //         .listLangEduChooseTestTemp[index].name,
-                      //     id: widget.providerChooseEdu
-                      //         .listLangEduChooseTestTemp[index].id
-                      //         .toString());
-                      Navigator.of(context).pop();
-                    },
                   ),
-                ),
-              ),
-            ],
-          ))
+                ],
+              ))
           : MyWidgets.loaderDownload(context: context),
     );
   }
