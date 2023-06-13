@@ -277,7 +277,8 @@ class ProviderProfile extends ChangeNotifier {
 
   Future changeLang({required String langId, required BuildContext context})async{
     if(langId == "0"){
-      context.locale = const Locale("uz", "UZ");
+      context.setLocale(const Locale('uz', 'UZ'));
+
       box.delete("language");
       box.put("language", "1");
       box.delete("langLock");
@@ -292,7 +293,7 @@ class ProviderProfile extends ChangeNotifier {
       );
     }
     else if(langId == "1"){
-      context.locale = const Locale("kk", "KK");
+      context.setLocale(const Locale('kk', 'KK'));
       box.delete("language");
       box.put("language", "2");
       box.delete("langLock");
@@ -307,7 +308,7 @@ class ProviderProfile extends ChangeNotifier {
       );
     }
     else if(langId == "2"){
-      context.locale = const Locale("ru", "RU");
+      context.setLocale(const Locale('ru', 'RU'));
       box.delete("language");
       box.put("language", "3");
       box.delete("langLock");

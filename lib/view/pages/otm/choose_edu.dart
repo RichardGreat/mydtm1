@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
@@ -25,7 +27,7 @@ class _ChooseEduState extends State<ChooseEdu> {
   @override
   initState() {
     providerChooseEdu.getCheckUseNationCertInfo();
-
+    log(box.get("token"));
     super.initState();
   }
 
