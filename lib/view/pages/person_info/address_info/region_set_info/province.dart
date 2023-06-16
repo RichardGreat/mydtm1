@@ -17,8 +17,10 @@ Widget province(
       const SizedBox(height: 8),
       GestureDetector(
         onTap: () {
-          modelSheetProvince(
-              context: context, providerAddressInfo: providerAddressInfo);
+          if(providerAddressInfo.modelGetAddressInfo.data.regionName.isEmpty) {
+            modelSheetProvince(
+                context: context, providerAddressInfo: providerAddressInfo);
+          }
           // providerAddressInfo.getRegion(
           //     context: context, providerAddressInfo: providerAddressInfo);
         },

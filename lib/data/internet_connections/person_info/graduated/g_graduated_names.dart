@@ -19,7 +19,7 @@ class NetworkGetGraduatedNames {
     "general_edu_type":gEduType,
     "region_id":districtId
     };
-    response = await dio.post(
+    response = await dio.get(
         "${MainUrl.mainUrls}/v1/general-edu/get-general-edu-list",
         data: jsonEncode(toServer),
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));

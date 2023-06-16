@@ -32,16 +32,30 @@ Widget regionSetInput(
           controller: providerAddressInfo.txtEditControllerAddress,
           keyboardType: TextInputType.emailAddress,
           autofocus: false,
-          maxLines: 1,
+          maxLines: 4,
+          // enabled: false,
+
           textAlignVertical: TextAlignVertical.center,
-          maxLength: 100,
+          maxLength: 200,
+          style:const TextStyle(color: Colors.black),
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(8),
             fillColor: Colors.white,
+            enabled:
+            providerAddressInfo.modelGetAddressInfo.data.address.isEmpty?
+             true: false,
+
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
                 color: MyColors.appColorGreen2(),
+              ),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: MyColors.appColorGrey400(),
+                width: 1.5,
               ),
             ),
             enabledBorder: OutlineInputBorder(

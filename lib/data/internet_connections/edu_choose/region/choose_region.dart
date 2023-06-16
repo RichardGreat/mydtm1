@@ -13,7 +13,7 @@ class NetworkEduChooseRegion{
   Response response;
   log("token");
   log(box.get("token"));
-  response = await dio.get("${MainUrl.mainUrls}/v1/abitur/test-region-list"
+  response = await dio.get("${MainUrl.mainUrls}/v1/qabul/test-region-list"
   ,options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")})
   );
 

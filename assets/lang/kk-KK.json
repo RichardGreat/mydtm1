@@ -1,10 +1,14 @@
 {
   "registration": "Dizimnen ótiw",
-  "identification": "Xızmetten paydalanıw ushın identifikaciya sisteması arqalı kiriwińiz kerek",
-  "serviceNot": "Xızmet waqıtsha jabıq",
-  "enter": "Kiriw",
   "regUser": "Bul telefon nomer aldın dizimnen ótken",
   "enterSystem": "Sistemaǵa kiriw",
+  "enter": "Kiriw",
+  "kodError": "Telefon nomer kodında qátelik",
+  "solve": "Arifmetikalıq ámeldi orınlań",
+  "changePassport": "Paroldi ózgertiriw",
+
+  "identification": "Xızmetten paydalanıw ushın identifikaciya sisteması arqalı kiriwińiz kerek",
+  "serviceNot": "Xızmet waqıtsha jabıq",
   "fillInField": "Maydanlardı toltırıń",
   "noInfoCheck": "Maǵlıwmatlar tolıq emes",
   "aboutService": "Xızmet haqqında",
@@ -65,7 +69,7 @@
   "noPrivileges": "Sizde jeńillik joq",
   "noPrivilegesText": "Eger abiturienttiń jeńilligi shıqpasa, abiturient jeńillikti bergen ministrlik yamasa shólkemge múráját etiwi tiyis",
   "telephone": "Telefon",
-  "kodError": "Telefon nomer kodında qátelik",
+
   "kodLength": "Telefon nomer uzınlıǵı 9 birlik bolıwı kerek",
   "kodLength6": "Maǵlıwmat 6 birlikten kóp bolıwı kerek",
   "phoneNumberNewPassword": "Telefon nomer hám jańa paroldi kiritiń",
@@ -92,7 +96,7 @@
   "textArizaEduInfo": "Arza jaǵdayın arzalarım bóliminen gúzetip barıń",
   "goArizaSection": "Arzalarım bólimine ótıw",
   "enterNewPhone": "Jańa telefon nomer kiritiń",
-  "changePassport": "Paroldi ózgertiriw",
+
   "newInputPassport": "Jańa paroldi kiritiń",
   "passwordNotMatch": "Paroller sáykes emes",
   "certificate": "Sertifikat",
@@ -117,7 +121,7 @@
   "infoFillError": "Maǵlıwmat kiritiwde qátelik, qaytadan urınıp kóriń ",
   "reTry": "Qaytadan urınıp kóriń",
   "passwordChange": "Parol ózgerdi",
-  "solve": "Arifmetikalıq ámeldi orınlań",
+
   "searchService": "Xızmet atın kiritiń",
   "all": "Barlıǵı",
   "services": "Xızmetler",

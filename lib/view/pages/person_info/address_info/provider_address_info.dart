@@ -187,6 +187,7 @@ class ProviderAddressInfo extends ChangeNotifier {
     };
 
     try {
+      if(modelGetAddressInfo.data.address.isEmpty) {
       String dataSetAddress = await networkSetAddress.setAddressInfo(
           setAddressInfos: jsonEncode(mapAddress));
       ModelGetAddress modelGetAddress =
@@ -198,12 +199,12 @@ class ProviderAddressInfo extends ChangeNotifier {
       address = modelGetAddress.data.address;
 
       boolGetRegion = true;
-      notifyListeners();
+      notifyListeners();}
 
       boolGetAddressInfo = true;
           AwesomeDialog(
           context: context,
-          dialogType: DialogType.info,
+          dialogType: DialogType.noHeader,
           animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
           title: "BMBA",

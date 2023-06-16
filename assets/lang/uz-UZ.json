@@ -1,10 +1,15 @@
 {
   "registration": "Ro‘yxatdan o‘tish",
   "regUser": "Bu telefon nomer oldin ro'yxatdan o'tgan",
+  "enterSystem": "Tizimga kirish",
+  "enter": "Kirish",
+  "kodError": "Telefon nomer kodida xato",
+  "solve": "Arfimetik amalni bajaring",
+  "changePassport": "Parolni o‘zgartirish",
+  "addressAlways": "Doimiy yashash manzili",
+
   "identification": "Xizmatdan foydalanish uchun identifikatsiya orqali kirishingiz kerak",
   "serviceNot": "Xizmat vaqtingcha yopiq",
-  "enter": "Kirish",
-  "enterSystem": "Tizimga kirish",
   "fillInField": "Maydonlarni to‘ldiring",
   "noInfoCheck": "Ma’lumotlar to‘liq emas",
   "aboutService": "Xizmat haqida",
@@ -58,14 +63,14 @@
   "targeted": "Maqsadli tanlovga roziman",
   "aimless": "Maqsadli tanlovga rozi emasman",
   "personInformation": "Shaxsiy ma’lumotlar",
-  "addressAlways": "Doimiy yashash manzili",
+
   "schoolInfo": "Umumta’lim muassasasi",
   "certificates": "Sertifikatlar",
   "privileges": "Imtiyozlar",
   "noPrivileges": "Imtiyoz mavjud emas",
   "noPrivilegesText": "Agar abituriyentning imtiyozi chiqmasa, abituriyent imtiyozni taqdim etgan vazirlik yoki idoraga murojaat qilishi lozim.",
   "telephone": "Telefon",
-  "kodError": "Telefon nomer kodida xato",
+
   "kodLength": "Telefon raqam uzunligi 9 birlik bo‘lishi kerak",
   "kodLength6": "Ma’lumot 6 birlikdan ko‘p bo‘lishi kerak",
   "phoneNumberNewPassword": "Telefon raqam va yangi parol kiriting",
@@ -92,7 +97,7 @@
   "textArizaEduInfo": "Ariza holatini arizalarim bo‘limidan kuzatib boring",
   "goArizaSection": "Arizalarim bo‘limiga o‘tish",
   "enterNewPhone": "Yangi telefon raqam kiriting",
-  "changePassport": "Parolni o‘zgartirish",
+
   "newInputPassport": "Yangi parolni kiriting",
   "passwordNotMatch": "Parollar mos emas",
   "certificate": "Sertifikat",
@@ -117,7 +122,7 @@
   "infoFillError": "Ma’lumot kiritishda xatolik qayta urinib ko‘ring ",
   "reTry": "Qayta urinib ko‘ring",
   "passwordChange": "Parol o‘zgardi",
-  "solve": "Arfimetik amalni bajaring",
+
   "searchService": "Xizmat nomini kiriting",
   "all": "Barchasi",
   "services": "Xizmatlar",

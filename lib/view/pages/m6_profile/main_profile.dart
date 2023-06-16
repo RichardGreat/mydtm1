@@ -56,11 +56,20 @@ class _MainProfileState extends State<MainProfile> {
             providerProfile.boolGetProfileData ?
             SafeArea(
                 child: box.get("token").toString().length > 30
-                    ? bodyProfile(
+                    ? RefreshIndicator(
+                  onRefresh: (){
+                    return getProfileInfo();
+                  },
+                      child: ListView(
+                        children: [
+                          bodyProfile(
                   function: widget.myFunction,
-                        context: context, providerProfile: providerProfile,
+                              context: context, providerProfile: providerProfile,
                 functions: getProfileInfo
-                )
+                ),
+                        ],
+                      ),
+                    )
                     : bodyNoProfileInfo(
                         context: context, providerProfile: providerProfile)):MyWidgets.loaderDownload(context: context)
                 

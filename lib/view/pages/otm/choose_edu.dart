@@ -27,7 +27,7 @@ class _ChooseEduState extends State<ChooseEdu> {
   @override
   initState() {
     providerChooseEdu.getCheckUseNationCertInfo();
-    log(box.get("token"));
+    // log(box.get("token"));
     super.initState();
   }
 
