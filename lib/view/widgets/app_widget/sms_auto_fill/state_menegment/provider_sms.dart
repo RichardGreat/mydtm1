@@ -448,6 +448,7 @@ class ProviderSms extends ChangeNotifier {
           resiviedSms: "controller.text",
           smsId: smsId7.toString(),
           logId: logId7.toString());
+      log(data);
       ModelEduSuccess modelEduSuccess =
           ModelEduSuccess.fromJson(jsonDecode(data));
 
