@@ -83,7 +83,7 @@ class ProviderMainHome extends ChangeNotifier {
               .show();
         } else if (modelCheckMobileVersion.data.status.toString() == "3") {
           box.put("updateMobileText", modelCheckMobileVersion.data.versionText);
-          // ignore: use_build_context_synchronously
+
           pushNewScreen(context,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
               screen: const UpdateMust(),
@@ -96,7 +96,7 @@ class ProviderMainHome extends ChangeNotifier {
   }
 
   final Uri _url =
-      Uri.parse('https://play.google.com/store/apps/details?id=www.my_dtm.uz');
+      Uri.parse('https://play.google.com/store/apps/details?id=www.uzbmba.uz');
 
   Future openGooglePlayMarket() async {
     try {

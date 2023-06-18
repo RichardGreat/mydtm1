@@ -204,7 +204,7 @@ modelSheetPersonReceived(
                       ),
                       Expanded(
                           child: Align(
-                        alignment: Alignment.bottomCenter,
+                        alignment: Alignment.topCenter,
                         child: Container(
                           margin: const EdgeInsets.all(15),
                           child: MaterialButton(

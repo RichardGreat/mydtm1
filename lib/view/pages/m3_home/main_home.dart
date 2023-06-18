@@ -29,9 +29,9 @@ class _MainHomeState extends State<MainHome> {
 
   Future getServiceList() async {
     Future.delayed(Duration.zero);
-
+    //
     await providerMainHome.checkVersion(context: context);
-    await providerMainHome.setLangUser();
+    // await providerMainHome.setLangUser();
     await providerMainHome.getDateService(context: context);
   }
 
@@ -51,10 +51,10 @@ Future gerRefresh()async{
         builder: (context, value, child) => Scaffold(
           backgroundColor: MyColors.appColorWhite(),
           // appBar:   searchMain(context: context, providerMainHome: providerMainHome),
-          body: RefreshIndicator(
-            onRefresh:gerRefresh,
-            child: SafeArea(
-                child: bodyMainHome(context: context, providerMainHome: providerMainHome)
+          body: SafeArea(
+            child: RefreshIndicator(
+              onRefresh:gerRefresh,
+              child: bodyMainHome(context: context, providerMainHome: providerMainHome),
             ),
           ),
         ),

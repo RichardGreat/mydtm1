@@ -81,11 +81,14 @@ class ProviderServicePage extends ChangeNotifier {
                     //       serviceName: categoryName,
                     //     ))
                   }
-                else if (categoryId == "42")
+                // else if (categoryId == "42")
+                else if ("42" == "42")
                   {
+                    log("42##"),
                     pushNewScreen(
                       context,
-                      screen: CheckInformation(serviceName: categoryName),
+                      // screen: CheckInformation(serviceName: categoryName),
+                      screen: CheckInformation(serviceName: "42"),
                       withNavBar: false,
                       pageTransitionAnimation:
                           PageTransitionAnimation.cupertino,
