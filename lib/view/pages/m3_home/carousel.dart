@@ -17,9 +17,9 @@ var box = Hive.box("online");
       child:   CarouselSlider(
         options: CarouselOptions(
             autoPlay: true,
-
             autoPlayInterval: const Duration(seconds: 8)),
           items: providerMainHome.listDataServiceList[0].service.map((i) {
+          // items: ["1" ,"2","3","4" ].map((i) {
           return Builder(
             builder: (BuildContext context) {
               return Container(
@@ -35,7 +35,7 @@ var box = Hive.box("online");
                       margin: const EdgeInsets.symmetric(horizontal: 5.0),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.red,
+                          color: Colors.white,
                           boxShadow: [
                             BoxShadow(
                                 color: MyColors.appColorGrey400(),
@@ -52,7 +52,7 @@ var box = Hive.box("online");
                             width: 80,
                             height: 80,
                             fit: BoxFit.fill,
-                            imageUrl:   "${MainUrl.mainUrlImage}/${i.mobilIcon}",
+                            imageUrl:   "${MainUrl.mainUrlImage}/${"i"".""mobilIcon"}",
                             progressIndicatorBuilder:
                                 (context, url, downloadProgress) =>
                             const   CupertinoActivityIndicator(),
@@ -69,6 +69,10 @@ var box = Hive.box("online");
                                   : box.get("language") == "2"
                                   ? i.serviceNameQQ.toString()
                                   : i.serviceNameRu.toString(),
+                                  // ?   i.toString()
+                                  // : box.get("language") == "2"
+                                  // ? i.toString()
+                                  // : i.toString(),
 
                               maxLines: 2,
                               softWrap: true,

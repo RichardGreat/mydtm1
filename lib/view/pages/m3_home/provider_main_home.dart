@@ -136,6 +136,7 @@ class ProviderMainHome extends ChangeNotifier {
       if (box.get("numberApi").toString().trim() !=
           numberAPIUpdate.toString().trim()) {
         String dataServiceList = await networkServiceList.getServiceList();
+        log(dataServiceList);
         box.put("dataServiceList", dataServiceList);
         box.put("numberApi", numberAPIUpdate);
         log("Download 777");
@@ -146,6 +147,7 @@ class ProviderMainHome extends ChangeNotifier {
       modelServiceList =
           ModelServiceList.fromJson(jsonDecode(box.get("dataServiceList")));
       listDataServiceList.addAll(modelServiceList.data);
+
       // for (var value in listDataServiceList) {
       //   value.service.sort((a, b) => (a.sortId));
       // }

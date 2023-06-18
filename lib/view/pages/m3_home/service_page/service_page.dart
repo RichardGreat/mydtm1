@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/app_bar_service.dart';
@@ -25,6 +27,11 @@ class ServicePage extends StatefulWidget {
 class _ServicePageState extends State<ServicePage> {
   ProviderServicePage providerServicePage = ProviderServicePage();
 
+  @override
+  void initState() {
+    log(widget.serviceMainList.id.toString());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(

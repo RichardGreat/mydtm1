@@ -61,7 +61,7 @@ class _CheckInformationState extends State<CheckInformation> {
         ), onWillPop: ()async{
           box.delete("langLock");
           box.put("langLock", "1");
-          Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => const  MainPages(),), (route) => false);
+          Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) =>   MainPages(homeIdMainpage: "0"),), (route) => false);
           return true;
         })
       ),

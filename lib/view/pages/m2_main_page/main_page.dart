@@ -1,4 +1,6 @@
 
+// ignore_for_file: must_be_immutable
+
 import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -19,7 +21,8 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class MainPages extends StatefulWidget {
-  const MainPages({Key? key}) : super(key: key);
+  String homeIdMainpage = "";
+   MainPages({Key? key, required this.homeIdMainpage }) : super(key: key);
 
   @override
   State<MainPages> createState() => _MainPagesState();
@@ -34,7 +37,7 @@ class _MainPagesState extends State<MainPages> {
   }
 
   List<Widget> myPages() => [
-    MainHome(),
+    MainHome(homePageId: widget.homeIdMainpage),
     // ChooseEdu(funcState:getBoshFunc),
         // MainMyStatement(numberParam: "0"),
         const MainMessages(),

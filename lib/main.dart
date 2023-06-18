@@ -125,7 +125,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 box.get("language") == "2" ||
                 box.get("language") == "3"
             ? //MainPages()//
-            const MainPages()//
+             MainPages(homeIdMainpage: "0",)//
             : const EnterFirst0(),
       ),
     );

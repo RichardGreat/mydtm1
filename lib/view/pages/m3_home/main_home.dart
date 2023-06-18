@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -7,8 +7,9 @@ import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 class MainHome extends StatefulWidget {
+  String homePageId = "";
 
-  const MainHome({Key? key}) : super(key: key);
+   MainHome({Key? key, required this.homePageId}) : super(key: key);
 
   @override
   State<MainHome> createState() => _MainHomeState();
@@ -30,8 +31,10 @@ class _MainHomeState extends State<MainHome> {
   Future getServiceList() async {
     Future.delayed(Duration.zero);
     //
+    if(widget.homePageId == "1"){
+      await providerMainHome.setLangUser();
+    }
     await providerMainHome.checkVersion(context: context);
-    // await providerMainHome.setLangUser();
     await providerMainHome.getDateService(context: context);
   }
 
@@ -41,8 +44,6 @@ class _MainHomeState extends State<MainHome> {
 Future gerRefresh()async{
     setState((){});
 }
-
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(

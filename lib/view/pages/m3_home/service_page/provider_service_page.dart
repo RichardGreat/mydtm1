@@ -28,7 +28,7 @@ class ProviderServicePage extends ChangeNotifier {
     box.put("categoryName", categoryName);
     box.put("categoryNameId", categoryId);
 
-    status
+    !status
         ? {
             if (box.get("token").toString().length < 30)
               {
@@ -81,14 +81,14 @@ class ProviderServicePage extends ChangeNotifier {
                     //       serviceName: categoryName,
                     //     ))
                   }
-                // else if (categoryId == "42")
-                else if ("42" == "42")
+                else if (categoryId == "42")
+                // else if ("42" == "42")
                   {
                     log("42##"),
                     pushNewScreen(
                       context,
-                      // screen: CheckInformation(serviceName: categoryName),
-                      screen: CheckInformation(serviceName: "42"),
+                      screen: CheckInformation(serviceName: categoryName),
+                      // screen: CheckInformation(serviceName: "42"),
                       withNavBar: false,
                       pageTransitionAnimation:
                           PageTransitionAnimation.cupertino,
@@ -186,6 +186,7 @@ class ProviderServicePage extends ChangeNotifier {
               }
           }
         : {
+
             if (box.get("token").toString().length > 29)
               {
                 MyWidgets.awesomeDialogInfo(

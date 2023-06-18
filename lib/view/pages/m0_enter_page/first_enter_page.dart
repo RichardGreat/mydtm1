@@ -74,7 +74,7 @@ class _EnterFirst0State extends State<EnterFirst0> {
                           Navigator.push(
                               context,
                               CupertinoPageRoute(
-                                builder: (context) => const MainPages(),
+                                builder: (context) =>  MainPages(homeIdMainpage: "1"),
                               ));
                         },
                       ),
@@ -99,7 +99,7 @@ class _EnterFirst0State extends State<EnterFirst0> {
                           Navigator.push(
                               context,
                               CupertinoPageRoute(
-                                builder: (context) => const MainPages(),
+                                builder: (context) =>  MainPages(homeIdMainpage: "1"),
                               ));
                         },
                       ),
@@ -124,7 +124,7 @@ class _EnterFirst0State extends State<EnterFirst0> {
                           Navigator.push(
                               context,
                               CupertinoPageRoute(
-                                builder: (context) => const MainPages(),
+                                builder: (context) =>  MainPages(homeIdMainpage: "1"),
                               ));
                         },
                       ),

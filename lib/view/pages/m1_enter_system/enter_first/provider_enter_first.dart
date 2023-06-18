@@ -135,7 +135,7 @@ class ProviderEnterFirst extends ChangeNotifier {
         Navigator.pushAndRemoveUntil(
             context,
             CupertinoPageRoute(
-              builder: (context) => const MainPages(),
+              builder: (context) =>  MainPages(homeIdMainpage: "0"),
             ),
             (route) => false);
       }
