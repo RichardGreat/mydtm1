@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_uzbek/widgets/districts.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_uzbek/widgets/graduated_name.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/g_uzbek/widgets/region_sheet.dart';
@@ -77,11 +78,15 @@ Widget graduatedUzbek(
                 // graduatedEduSerNum = "";
                 // textEditingSerNumber.text = "";
                 // setGraduatedYear = "";
-                providerGradueted.modelGraduatedInfo.data.graduatedYear.toString()=="2022"? {}:
-                providerGradueted.graduatedEduTypeName.length > 4
-                    ? modelSheetProvinceGraduated(
-                        context: context, providerGraduated: providerGradueted)
-                    : {};
+                providerGradueted.modelGraduatedInfo.data.graduatedYear
+                            .toString() ==
+                        "2022"
+                    ? {}
+                    : providerGradueted.graduatedEduTypeName.length > 4
+                        ? modelSheetProvinceGraduated(
+                            context: context,
+                            providerGraduated: providerGradueted)
+                        : {};
               },
             ),
             const SizedBox(height: 10),
@@ -116,11 +121,15 @@ Widget graduatedUzbek(
                 ),
               ),
               onTap: () {
-                providerGradueted.modelGraduatedInfo.data.graduatedYear.toString()=="2022"? {}:
-                providerGradueted.graduatedRegionName.length > 4
-                    ? modelSheetGraduatedDistrict(
-                        context: context, providerGraduateds: providerGradueted)
-                    : {};
+                providerGradueted.modelGraduatedInfo.data.graduatedYear
+                            .toString() ==
+                        "2022"
+                    ? {}
+                    : providerGradueted.graduatedRegionName.length > 4
+                        ? modelSheetGraduatedDistrict(
+                            context: context,
+                            providerGraduateds: providerGradueted)
+                        : {};
               },
             ),
             const SizedBox(height: 10),
@@ -153,14 +162,12 @@ Widget graduatedUzbek(
                                     color: MyColors.appColorGrey400()),
                               ),
                               child: Row(
-
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-
-                                    width: MediaQuery.of(context).size.width*0.6,
-
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.6,
                                     child: Text(
                                       providerGradueted
                                                   .graduatedEduName.length <
@@ -182,43 +189,58 @@ Widget graduatedUzbek(
                               ),
                             ),
                             onTap: () {
-                              providerGradueted.modelGraduatedInfo.data.graduatedYear.toString()=="2022"? {}:
-                              providerGradueted.graduatedDistrictName.length > 5
-                                  ? modelSheetGraduatedName(
-                                      context: context,
-                                      providerGraduated: providerGradueted)
-                                  : {};
+                              providerGradueted
+                                          .modelGraduatedInfo.data.graduatedYear
+                                          .toString() ==
+                                      "2023"
+                                  ? {}
+                                  : providerGradueted
+                                              .graduatedDistrictName.length >
+                                          5
+                                      ? modelSheetGraduatedName(
+                                          context: context,
+                                          providerGraduated: providerGradueted)
+                                      : {};
                             },
                           )),
-                     const SizedBox(width: 1),
+                      const SizedBox(width: 1),
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           AwesomeDialog(
-                              context: context,
-                              dialogType: DialogType.noHeader,
-                              animType: AnimType.bottomSlide,
-                              title: "BMBA",
-                              desc: "noInfoGraduatedName".tr(),
-                              titleTextStyle: TextStyle(
-                                  color: MyColors.appColorBlue1(),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                              descTextStyle: TextStyle(
-                                  color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-                              btnCancelOnPress: () {
-
-                              },
-                              btnCancelText: "OK",
-                              btnCancelColor: MyColors.appColorBlue1()
-                          )
+                                  context: context,
+                                  dialogType: DialogType.noHeader,
+                                  animType: AnimType.bottomSlide,
+                                  title: "BMBA",
+                                  desc: "noInfoGraduatedName".tr(),
+                                  titleTextStyle: TextStyle(
+                                      color: MyColors.appColorBlue1(),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                  descTextStyle: TextStyle(
+                                      color: MyColors.appColorBlack(),
+                                      fontWeight: FontWeight.bold),
+                                  btnCancelOnPress: () {},
+                                  btnCancelText: "OK",
+                                  btnCancelColor: MyColors.appColorBlue1())
                               .show();
                         },
-                        child: Icon(Icons.info_outline, color: MyColors.appColorBlue1()),
+                        child: Icon(Icons.info_outline,
+                                color: MyColors.appColorBlue1())
+                            .animate(
+                                onPlay: (controller) =>
+                                    controller.repeat(reverse: true))
+                            .scaleXY(
+                                end: 1.04,
+                                delay: const Duration(milliseconds: 2500),
+                                curve: Curves.linear)
+                            .shimmer(
+                                color: MyColors.appColorBackC4(),
+                                delay: const Duration(milliseconds: 2600))
+                            .elevation(end:0),
                       ),
-
                     ],
                   )
-                :const SizedBox.shrink(),
+                : const SizedBox.shrink(),
           ],
         )
       : const SizedBox.shrink();

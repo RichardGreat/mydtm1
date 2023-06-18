@@ -866,6 +866,7 @@ class ProviderChooseEdu extends ChangeNotifier {
           isMaqsad: maqsadliId,
           testRegionId: testRegionId,
           langId: langId,
+          appId: 2,
           testGraph: langGraphicId,
           emodeId: mapEmode,
           eduId: mapOtm,

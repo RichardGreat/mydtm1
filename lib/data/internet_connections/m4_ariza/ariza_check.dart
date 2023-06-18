@@ -10,10 +10,9 @@ class NetworkArizaCheck {
     var dio = Dio();
     Response response;
     log( box.get("token"));
-    log( "${MainUrl.mainUrls}/v1/qabul/index");
+    log( "${MainUrl.mainUrls}/v1/qabul/index-mobile");
 
-    response = await dio.get("${MainUrl.mainUrls}/v1/qabul/index",
-
+    response = await dio.get("${MainUrl.mainUrls}/v1/qabul/index-mobile",
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")})); // {MainUrl.mainUrlHeader: box.get("token")}));
     log(jsonEncode(response.data));
     return jsonEncode(response.data);

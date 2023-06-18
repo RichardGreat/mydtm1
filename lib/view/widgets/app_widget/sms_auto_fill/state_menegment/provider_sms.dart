@@ -445,7 +445,7 @@ class ProviderSms extends ChangeNotifier {
     notifyListeners();
     try {
       String data = await networkSmsAutoFill.sentServer2Edu(
-          resiviedSms: "controller.text",
+          resiviedSms: textEditingControllerSms.text,
           smsId: smsId7.toString(),
           logId: logId7.toString());
       log(data);
