@@ -52,7 +52,7 @@ Widget constGraduated(
         ),
         onTap: () {
           setState((){});
-          providerGraduated.modelGraduatedInfo.data.graduatedYear.toString()=="2022"?{}:
+          providerGraduated.modelGraduatedInfo.data.graduatedYear.toString()=="2023"?{}:
           providerGraduated.getGraduatedType(
               context: context, providerGraduated: providerGraduated);
         },

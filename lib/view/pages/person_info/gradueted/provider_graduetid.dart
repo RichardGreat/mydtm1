@@ -481,14 +481,14 @@ class ProviderGraduated extends ChangeNotifier {
   bool boolGetGraduatedName = false;
   bool boolGetGraduatedNameError = false;
   TextEditingController txtGraduatedNameController = TextEditingController();
-
+  String dataGraduated = "";
   Future getGraduatedName() async {
     try {
       boolGetGraduatedName = false;
       boolGetGraduatedNameError = false;
-      String data = await networkGetGraduatedNames.getAllGraduatedName(
+      dataGraduated = await networkGetGraduatedNames.getAllGraduatedName(
           districtId: graduatedDistrictId, gEduType: graduatedEduTypeId);
-      modelGetGraduatedName = ModelGetGraduatedName.fromJson(jsonDecode(data));
+      modelGetGraduatedName = ModelGetGraduatedName.fromJson(jsonDecode(dataGraduated));
       listGetName = modelGetGraduatedName.data;
       listGetNameTemp.clear();
       listGetNameTemp.addAll(listGetName);
@@ -496,13 +496,20 @@ class ProviderGraduated extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       boolGetGraduatedName = false;
-      String data = await networkGetGraduatedNames.getAllGraduatedName(
-          districtId: graduatedDistrictId, gEduType: graduatedEduTypeId);
+    try {
+      dataGraduated = await networkGetGraduatedNames.getAllGraduatedName(
+            districtId: graduatedDistrictId, gEduType: graduatedEduTypeId);
+        modelGetGraduatedNameError =
+            ModelGetGraduatedNameError.fromJson(jsonDecode(dataGraduated));
+        boolGetGraduatedNameError = true;
+        boolGetGraduatedName = true;
+      }catch(e){
+
       modelGetGraduatedNameError =
-          ModelGetGraduatedNameError.fromJson(jsonDecode(data));
+          ModelGetGraduatedNameError(status: 1, errorCode: 401, errors: "Serverda xatolik");
       boolGetGraduatedNameError = true;
       boolGetGraduatedName = true;
-
+    }
       log(e.toString());
     }
   }
@@ -676,7 +683,7 @@ class ProviderGraduated extends ChangeNotifier {
     //MyWidgets.awesomeDialogInfo(context: context, valueText: "Ma'lumot saqlandi");
     AwesomeDialog(
             context: context,
-            dialogType: DialogType.info,
+            dialogType: DialogType.noHeader,
             animType: AnimType.bottomSlide,
             dismissOnTouchOutside: false,
             title: "BMBA",
@@ -688,7 +695,7 @@ class ProviderGraduated extends ChangeNotifier {
             btnCancelOnPress: () {
               if(idWindowId == "1"){
                   Navigator.of(context).pop();
-                  Navigator.of(context).pop();
+                  // Navigator.of(context).pop();
               }else if(idWindowId == "0"){
                 pushNewScreen(context,
                     pageTransitionAnimation: PageTransitionAnimation.cupertino,

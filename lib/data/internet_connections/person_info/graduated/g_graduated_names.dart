@@ -12,7 +12,7 @@ class NetworkGetGraduatedNames {
     Response response;
     log(gEduType.toString());
     log(districtId.toString());
-    log("${MainUrl.mainUrls}/v1/general-edu/get-general-edu-list");
+    log("${MainUrl.mainUrls}/v1/general-edu/get-general-edu-list?edu_type=$gEduType&tuman_id=$districtId");
     log(MainUrl.mainUrlHeader);
     log(box.get("token"));
     Map<String, String> toServer = {
@@ -20,9 +20,13 @@ class NetworkGetGraduatedNames {
     "region_id":districtId
     };
     response = await dio.get(
-        "${MainUrl.mainUrls}/v1/general-edu/get-general-edu-list",
-        data: jsonEncode(toServer),
+        "${MainUrl.mainUrls}/v1/general-edu/get-general-edu-list?edu_type=$gEduType&tuman_id=$districtId",
+        // data: jsonEncode(toServer),
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
-    return jsonEncode(response.data).toString();
+   try{
+     return jsonEncode(response.data).toString();
+   }catch(e){
+     return "server error";
+   }
   }
 }

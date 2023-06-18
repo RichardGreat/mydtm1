@@ -1,11 +1,11 @@
 class ModelGetGraduatedName {
-  ModelGetGraduatedName({
-   required this.status,
-   required this.data,
-  });
-
   int status;
   List<DataGetGraduatedName> data;
+
+  ModelGetGraduatedName({
+    required this.status,
+    required this.data,
+  });
 
   factory ModelGetGraduatedName.fromJson(Map<String, dynamic> json) => ModelGetGraduatedName(
     status: json["status"],
@@ -19,13 +19,13 @@ class ModelGetGraduatedName {
 }
 
 class DataGetGraduatedName {
-  DataGetGraduatedName({
-  required  this.id,
-  required  this.name,
-  });
-
   int id;
   String name;
+
+  DataGetGraduatedName({
+    required this.id,
+    required this.name,
+  });
 
   factory DataGetGraduatedName.fromJson(Map<String, dynamic> json) => DataGetGraduatedName(
     id: json["id"],
