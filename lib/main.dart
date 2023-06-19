@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:connection_notifier/connection_notifier.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -113,8 +114,24 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return ConnectionNotifier(
-      disconnectedContent: Center(child: Text("noInternetConn".tr())),
-      connectedContent: Center(child: Text("internetConn".tr())),
+      disconnectedContent: const Center(child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(Icons.signal_wifi_connected_no_internet_4),
+          SizedBox(width: 10),
+          Text("Internet", style: TextStyle(fontWeight: FontWeight.w600)),
+        ],
+      )),
+      connectedContent:const Center(child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(CupertinoIcons.check_mark_circled_solid),
+          SizedBox(width: 10),
+          Text("Internet", style: TextStyle(fontWeight: FontWeight.w600)),
+        ],
+      )),
       child: MaterialApp(
         navigatorKey: navigatorKey,
         localizationsDelegates: context.localizationDelegates,

@@ -54,6 +54,7 @@ class ProviderMainHome extends ChangeNotifier {
       if (box.get("updateVersion").toString() !=
           modelCheckMobileVersion.data.version.toString()) {
         if (modelCheckMobileVersion.data.status.toString() == "1") {
+
         } else if (modelCheckMobileVersion.data.status.toString() == "2") {
           AwesomeDialog(
                   context: context,
