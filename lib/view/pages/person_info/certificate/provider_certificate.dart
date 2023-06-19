@@ -296,13 +296,16 @@ class ProviderCertificate extends ChangeNotifier {
       {required BuildContext context, required Function fff}) async {
     final DateTime? pickedDate = await showDatePicker(
         context: context,
+        confirmText: "access".tr(),
+        cancelText: "cancel".tr(),
         initialDate: currentDate,
-        firstDate: DateTime(2019),
-        lastDate: DateTime(2025));
+        firstDate: DateTime(2020),
+        lastDate: DateTime.now());
+
     if (pickedDate != null && pickedDate != currentDate) {
       currentDate = pickedDate;
       // log(DateFormat(currentDate)).YEAR_MONTH_DAY
-      log(DateFormat('yyyy-MM-dd').format(currentDate));
+      // log(DateFormat('yyyy-MM-dd').format(currentDate));
 
       dateYearMonthDay = DateFormat('yyyy-MM-dd').format(currentDate);
 

@@ -10,8 +10,8 @@ Widget typeSelect({required BuildContext context,
   required ProviderCertificate providerCertificate}){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
-    children: [      const SizedBox(height: 25),
-
+    children: [
+      const SizedBox(height: 25),
       MyWidgets.robotoFontText(
           text: "certType".tr(),
           textColor: MyColors.appColorBlack(),

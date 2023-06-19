@@ -22,9 +22,7 @@ Widget bodyCertificate(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20),
-                  MyWidgets.robotoFontText(
-                      text: "certificate".tr(), textSize: 28),
-                  const SizedBox(height: 20),
+
                   providerCertificate.dataCheckForeignCertificate.status == 1
                       ? const SizedBox.shrink()
                       : GestureDetector(
@@ -209,7 +207,7 @@ Widget bodyCertificate(
                           //   ],
                           // ),
                           ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 25),
                   providerCertificate.boolCheckCertificateDataNot
                       ? const SizedBox.shrink()
                       : MyWidgets.robotoFontText(

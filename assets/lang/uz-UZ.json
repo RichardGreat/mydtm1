@@ -264,5 +264,6 @@
   "getCertificate": "Sertifikat oldingiz",
   "getCertificateFalse": "Sertufikat uchun yetarlist ball to'play olmadingiz",
   "allBallCert": "Umumiy ball",
-  "copy": "Nusxa olindi"
+  "copy": "Nusxa olindi",
+  "cancel": "Bekor qilish"
 }
