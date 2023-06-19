@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
@@ -16,7 +18,8 @@ import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class EnterFirst extends StatefulWidget {
-  const EnterFirst({Key? key}) : super(key: key);
+  String windowIdEnterFirst = "";
+   EnterFirst({Key? key, required this.windowIdEnterFirst}) : super(key: key);
 
   @override
   State<EnterFirst> createState() => _EnterFirstState();
@@ -101,6 +104,7 @@ class _EnterFirstState extends State<EnterFirst> {
                                     ),
                                   ))),
                 onWillPop: () async {
+
                   box.delete("langLock");
                   box.put("langLock", "1");
                   Navigator.pushAndRemoveUntil(

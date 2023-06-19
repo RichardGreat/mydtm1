@@ -82,7 +82,7 @@ Widget notInfoPerson({required BuildContext context, required ProviderAriza prov
                         pushNewScreen(context,
                             pageTransitionAnimation:
                             PageTransitionAnimation.cupertino,
-                            screen: const EnterFirst(),
+                            screen:  EnterFirst(windowIdEnterFirst: "0"),
                             withNavBar: false);
                       },
                       height: 50,

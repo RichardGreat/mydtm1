@@ -11,11 +11,16 @@ class MyWidgets {
 
   Future goEnterFirst({required BuildContext context}) async {
     box.delete("token");
-    pushNewScreen(context,   pageTransitionAnimation: PageTransitionAnimation.cupertino, screen: const EnterFirst(), withNavBar: false);
+    pushNewScreen(context,
+        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        screen: EnterFirst(windowIdEnterFirst: "0"),
+        withNavBar: false);
   }
 
-  static Widget loaderDownload({required BuildContext context}){
-    return const Center(child: CupertinoActivityIndicator(),);
+  static Widget loaderDownload({required BuildContext context}) {
+    return const Center(
+      child: CupertinoActivityIndicator(),
+    );
   }
 
   /// Text
@@ -36,7 +41,6 @@ class MyWidgets {
       FontWeight? textFontWeight}) {
     return Text(
       text,
-
       style: TextStyle(
           color: textColor ?? MyColors.appColorBlack(),
           fontSize: textSize ?? 17,
@@ -45,7 +49,8 @@ class MyWidgets {
     );
   }
 
-  static Text appTextTitles2({String? txt, double? txtSize, Color? colorAppTxt2}) {
+  static Text appTextTitles2(
+      {String? txt, double? txtSize, Color? colorAppTxt2}) {
     return Text(
       "$txt",
       style: TextStyle(
@@ -65,7 +70,8 @@ class MyWidgets {
     );
   }
 
-  static Text appTextWithColor1({String? txt, double? txtSize, Color? colorText}) {
+  static Text appTextWithColor1(
+      {String? txt, double? txtSize, Color? colorText}) {
     return Text(
       "$txt",
       style: TextStyle(
@@ -95,7 +101,8 @@ class MyWidgets {
     );
   }
 
-  static scaffoldMessengerBottom({required BuildContext context, required String valueText}) {
+  static scaffoldMessengerBottom(
+      {required BuildContext context, required String valueText}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         duration: const Duration(milliseconds: 1650),
         backgroundColor: MyColors.appColorBlack(),
@@ -105,16 +112,19 @@ class MyWidgets {
                 text: valueText, textColor: MyColors.appColorWhite()))));
   }
 
-  static awesomeDialogInfo({required BuildContext context, required String valueText}) {
+  static awesomeDialogInfo(
+      {required BuildContext context, required String valueText}) {
     AwesomeDialog(
             context: context,
-        dialogType: DialogType.noHeader,
-        animType: AnimType.bottomSlide,
+            dialogType: DialogType.noHeader,
+            animType: AnimType.bottomSlide,
             dismissOnTouchOutside: false,
             title: "BMBA",
             desc: valueText,
             titleTextStyle: TextStyle(
-                color: MyColors.appColorBlue1(), fontSize: 24, fontWeight: FontWeight.bold),
+                color: MyColors.appColorBlue1(),
+                fontSize: 24,
+                fontWeight: FontWeight.bold),
             descTextStyle: TextStyle(
                 color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
             btnCancelOnPress: () {},
@@ -123,12 +133,12 @@ class MyWidgets {
         .show();
   }
 
-  static awesomeDialogError({required BuildContext context, required String valueText}) {
+  static awesomeDialogError(
+      {required BuildContext context, required String valueText}) {
     AwesomeDialog(
             context: context,
-
-        dialogType: DialogType.noHeader,
-        animType: AnimType.bottomSlide,
+            dialogType: DialogType.noHeader,
+            animType: AnimType.bottomSlide,
             dismissOnTouchOutside: false,
             title: "BMBA",
             desc: valueText,
@@ -142,9 +152,6 @@ class MyWidgets {
             btnCancelText: "OK")
         .show();
   }
-
-
-
 
   /// Phone code
   static String returnPhoneFormat({required String phoneNumber}) {

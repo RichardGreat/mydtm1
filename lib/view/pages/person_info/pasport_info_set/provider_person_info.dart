@@ -89,9 +89,9 @@ class ProviderPersonInfo extends ChangeNotifier {
 
   Future setPersonInfoServer({required BuildContext context}) async {
     Map<String, String> myMapsImie = {
-      "imie": txtJShShIRController.text,
-      "ps_ser": txtPsSerController.text,
-      "ps_num": txtPsNumController.text,
+      "imie": txtJShShIRController.text.trim(),
+      "ps_ser": txtPsSerController.text.trim(),
+      "ps_num": txtPsNumController.text.trim(),
       "nation": "1",
     };
 

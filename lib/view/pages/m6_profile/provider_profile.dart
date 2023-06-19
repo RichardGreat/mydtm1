@@ -174,7 +174,7 @@ class ProviderProfile extends ChangeNotifier {
   Future goLoginPage({required BuildContext context}) async {
     pushNewScreen(
       context,
-      screen: const EnterFirst(),
+      screen:  EnterFirst(windowIdEnterFirst: "0"),
       withNavBar: false,
       pageTransitionAnimation: PageTransitionAnimation.cupertino,
     );

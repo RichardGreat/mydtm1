@@ -68,7 +68,7 @@ Widget enterFirstBodyInput({required BuildContext context,
 
           ),
           validator: (value) {
-            if (value == null || value.length < 9) {
+            if (value == null || value.toString().trim().length < 9) {
               if (value!.length > 1) {
                 String kod = value.substring(0, 2);
                 for (var element in MyWidgets.checkTelephoneCompanyCode) {
@@ -173,7 +173,7 @@ Widget enterFirstBodyInput({required BuildContext context,
             ),
           ),
           validator: (value) {
-            if(value!.isEmpty || value.length < 8){
+            if(value!.isEmpty || value.toString().trim().length < 8){
               return "passwordLength".tr();
             }
             return null;

@@ -96,7 +96,7 @@ Widget servicePageBody(
                           btnOkOnPress: () {
                             pushNewScreen(
                               context,
-                              screen: const EnterFirst(),
+                              screen:  EnterFirst(windowIdEnterFirst: "0"),
                               withNavBar: false,
                               pageTransitionAnimation:
                                   PageTransitionAnimation.cupertino,

@@ -100,10 +100,10 @@ class ProviderEnterFirst extends ChangeNotifier {
   Future getAuthorization({required BuildContext context}) async {
     boolAuthorization = false;
     Map<String, String> getAuthorizationData = {
-      "username": textAuthLogin.text,
-      "password": textAuthPassword.text,
+      "username": textAuthLogin.text.trim(),
+      "password": textAuthPassword.text.trim(),
       "captcha_key": modelParseCaptcha.data.captchaKey,
-      "captcha_val": textCaptchaEditingController.text,
+      "captcha_val": textCaptchaEditingController.text.trim(),
       "app_id": "1"
     };
     if(box.get("clothe5Min") == "1"){

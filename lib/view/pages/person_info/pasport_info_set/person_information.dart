@@ -91,14 +91,13 @@ class _PersonInformationState extends State<PersonInformation> {
                                   inputPassportInfo(
                                       context: context,
                                       providerPersonInfo: providerPersonInfo),
-                                  const SizedBox(height: 10),
+                                  const SizedBox(height: 20),
                                   // MyWidgets.robotoFontText(text: "nation".tr()),
                                   // const SizedBox(height: 4),
-                                  Expanded(
-                                      child: buttonsPersonInfo(
-                                          context: context,
-                                          providerPersonInfo:
-                                              providerPersonInfo)),
+                                  buttonsPersonInfo(
+                                      context: context,
+                                      providerPersonInfo:
+                                          providerPersonInfo),
                                 ],
                               ),
                             ),

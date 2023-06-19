@@ -411,12 +411,17 @@ Widget bodyProfile(
                             box.delete("notShowAgain1");
                             box.delete("phoneNumber");
 
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              CupertinoPageRoute(
-                                  builder: (context) =>const EnterFirst()),
-                                  (route) => false,
-                            );
+                            // Navigator.pushAndRemoveUntil(
+                            //   context,
+                            //   CupertinoPageRoute(
+                            //       builder: (context) =>const EnterFirst()),
+                            //       (route) => false,
+                            // );
+                            pushNewScreenWithRouteSettings(context,
+                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                screen: EnterFirst(windowIdEnterFirst: "1"),
+                                settings: const RouteSettings(),
+                                withNavBar: false);
                           },
                           btnOkText: "yes".tr(),
                           btnOkColor: MyColors.appColorBlue1(),
