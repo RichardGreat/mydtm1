@@ -1,14 +1,13 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:mydtm/view/pages/person_info/privillage/add_invalid/add_invalid.dart';
 import 'package:mydtm/view/pages/person_info/privillage/provider_privilege.dart';
 import 'package:mydtm/view/pages/person_info/privillage/widgets1/app_bar_privilege.dart';
 import 'package:mydtm/view/pages/person_info/privillage/widgets1/body_no_privilege.dart';
 import 'package:mydtm/view/pages/person_info/privillage/widgets1/body_privilege.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class Privilege extends StatefulWidget {
   Function funcState;
@@ -53,31 +52,31 @@ class _PrivilegeState extends State<Privilege> {
               children: [
                 !providerPrivilege.boolAddInvalide ?
                 const SizedBox(height: 20):const SizedBox.shrink(),
-                !providerPrivilege.boolAddInvalide ?
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    MaterialButton(
-                      color: MyColors.appColorWhite(),
-                      height: 50,
-                      minWidth: MediaQuery.of(context).size.width*0.9,
-                      onPressed: (){
-                        pushNewScreen(context, screen: const InvalidAdd(),
-                            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                            withNavBar: false);
-                      }, child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(Icons.add_circle, color: MyColors.appColorBlue1()),
-                          SizedBox(
-                              width:  MediaQuery.of(context).size.width*0.6,
-                              child: Text("addInvalid".tr())),
-                        ],
-                      ),),
-                  ],
-                ):const SizedBox.shrink(),
+                // !providerPrivilege.boolAddInvalide ?
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   crossAxisAlignment: CrossAxisAlignment.center,
+                //   children: [
+                //     MaterialButton(
+                //       color: MyColors.appColorWhite(),
+                //       height: 50,
+                //       minWidth: MediaQuery.of(context).size.width*0.9,
+                //       onPressed: (){
+                //         pushNewScreen(context, screen: const InvalidAdd(),
+                //             pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                //             withNavBar: false);
+                //       }, child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //         crossAxisAlignment: CrossAxisAlignment.center,
+                //         children: [
+                //           Icon(Icons.add_circle, color: MyColors.appColorBlue1()),
+                //           SizedBox(
+                //               width:  MediaQuery.of(context).size.width*0.6,
+                //               child: Text("addInvalid".tr())),
+                //         ],
+                //       ),),
+                //   ],
+                // ):const SizedBox.shrink(),
               ! providerPrivilege.boolAddInvalide ?
                 const SizedBox(height: 30):const SizedBox.shrink(),
                 Expanded(child:  providerPrivilege.boolPrivilegeNot?
