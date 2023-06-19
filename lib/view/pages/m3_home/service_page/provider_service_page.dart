@@ -28,7 +28,7 @@ class ProviderServicePage extends ChangeNotifier {
     box.put("categoryName", categoryName);
     box.put("categoryNameId", categoryId);
 
-    !status
+    status
         ? {
             if (box.get("token").toString().length < 30)
               {
