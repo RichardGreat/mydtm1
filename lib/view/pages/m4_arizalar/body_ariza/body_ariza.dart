@@ -1,7 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
@@ -120,7 +118,6 @@ class _ArizaEnterState extends State<ArizaEnter> {
   }
 
   getInfoPul() {
-    log(box.get("token"));
     widget.providerAriza.model.invoice.toString() == "null"?
     Future.delayed(const Duration(milliseconds: 300)).then((value) {
       box.get("notShowAgain1").toString() != "1"
@@ -129,6 +126,7 @@ class _ArizaEnterState extends State<ArizaEnter> {
               barrierDismissible: false, // user must tap button!
               builder: (BuildContext context) {
                 return AlertDialog(
+                  scrollable: true,
                     backgroundColor: Colors.white,
                     insetPadding: const EdgeInsets.all(10),
                     shape: const RoundedRectangleBorder(
@@ -142,7 +140,9 @@ class _ArizaEnterState extends State<ArizaEnter> {
                             fontWeight: FontWeight.w600,
                           )),
                     ]),
-                    content: const InfoNotPay());
+                    content: SizedBox(
+                        height: MediaQuery.of(context).size.height*0.8,
+                        child: const InfoNotPay()));
               },
             )
           : {};
@@ -155,6 +155,7 @@ class _ArizaEnterState extends State<ArizaEnter> {
       backgroundColor: MyColors.appColorWhite(),
       appBar: AppBar(
           elevation: 0,
+          title:  MyWidgets.robotoFontText(text: "otmQabul".tr(), textSize: 22),
           backgroundColor: MyColors.appColorWhite(),
           iconTheme: IconThemeData(color: MyColors.appColorBlack())),
       body: SafeArea(
@@ -166,8 +167,8 @@ class _ArizaEnterState extends State<ArizaEnter> {
                 : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 10),
-                MyWidgets.robotoFontText(text: "otmQabul".tr(), textSize: 22),
+                // const SizedBox(height: 10),
+                // MyWidgets.robotoFontText(text: "otmQabul".tr(), textSize: 22),
                 const SizedBox(height: 10),
                 Expanded(
                   child: ListView.builder(

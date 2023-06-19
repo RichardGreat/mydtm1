@@ -34,43 +34,37 @@ class _InfoNotPayState extends State<InfoNotPay> {
                         fontSize: 17)),
               )),
           Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  child: SingleChildScrollView(
-                    child: Column(children: [
-                    CheckboxListTile(
-                      title: Text("doNotShowAgain".tr(), style: TextStyle(color: MyColors.appColorBlue1(), fontWeight: FontWeight.w600)),
-                      value: boolNotShow,
-                      onChanged: (val) {
-                        setState(() {
-                          boolNotShow = !boolNotShow;
-                          if (boolNotShow) {
-                            box.put("notShowAgain1", "1");
-                          } else {
-                            box.put("notShowAgain1", "0");
-                          }
-                        });
-                      }),
-                    const  SizedBox(height: 10),
-                    MaterialButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      height: 45,
-                      minWidth: MediaQuery.of(context).size.width * 0.75,
-                      color: MyColors.appColorBlue1(),
-                      shape:
-                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                      child: Text("accepted".tr(),
-                          style: TextStyle(color: MyColors.appColorWhite())),
-                    )]),
-                  ),),
-              ],
-            ),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: SingleChildScrollView(
+                child: Column(children: [
+                CheckboxListTile(
+                  title: Text("doNotShowAgain".tr(), style: TextStyle(color: MyColors.appColorBlue1(), fontWeight: FontWeight.w600)),
+                  value: boolNotShow,
+                  onChanged: (val) {
+                    setState(() {
+                      boolNotShow = !boolNotShow;
+                      if (boolNotShow) {
+                        box.put("notShowAgain1", "1");
+                      } else {
+                        box.put("notShowAgain1", "0");
+                      }
+                    });
+                  }),
+                const  SizedBox(height: 10),
+                MaterialButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  height: 45,
+                  minWidth: MediaQuery.of(context).size.width * 0.75,
+                  color: MyColors.appColorBlue1(),
+                  shape:
+                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  child: Text("accepted".tr(),
+                      style: TextStyle(color: MyColors.appColorWhite())),
+                )]),
+              ),),
           )
 
         ],

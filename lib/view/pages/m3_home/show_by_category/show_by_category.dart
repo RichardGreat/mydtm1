@@ -108,7 +108,7 @@ myViewButton(
                                     (context, url, downloadProgress) =>
                                 const   CupertinoActivityIndicator(),
                                 errorWidget: (context, url, error) =>
-                                Image.asset("assets/images/gerb.png", fit:BoxFit.contain),
+                               SizedBox.shrink(),
                               ),
 
                               SizedBox(

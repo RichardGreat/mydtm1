@@ -263,5 +263,6 @@
   "deleteAccountText": "Hisobni o'chirish uchun. Maxsus saytga ro'yxatdan o'tgan raqamingizni kiriting raqamingizga sms orqali maxsus kod yuboriladi keyingi qadamda maxsus kodni tizimga kiritish orqali hisobingiz o’chiriladi. \nHisobni o'chirish?",
   "getCertificate": "Sertifikat oldingiz",
   "getCertificateFalse": "Sertufikat uchun yetarlist ball to'play olmadingiz",
-  "allBallCert": "Umumiy ball"
+  "allBallCert": "Umumiy ball",
+  "copy": "Nusxa olindi"
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class MyWidgets {
@@ -129,7 +130,7 @@ class MyWidgets {
                 color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
             btnCancelOnPress: () {},
             btnCancelColor: MyColors.appColorBlue1(),
-            btnCancelText: "OK")
+            btnCancelText: "accepted".tr())
         .show();
   }
 

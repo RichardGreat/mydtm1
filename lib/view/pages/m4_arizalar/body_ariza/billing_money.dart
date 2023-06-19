@@ -1,11 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
-Widget infoMoneyBilling({required BuildContext context, required ProviderAriza providerAriza}) {
+Widget infoMoneyBilling(
+    {required BuildContext context, required ProviderAriza providerAriza}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -54,21 +56,11 @@ Widget infoMoneyBilling({required BuildContext context, required ProviderAriza p
                       text: providerAriza.model.invoice.toString(),
                     ));
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      backgroundColor: MyColors.appColorWhite(),
-                        duration: const Duration(seconds: 1),
-                        content: Row(
-                          children: [
-                            Icon(Icons.copy_all, color: MyColors.appColorBlue1()),
-                            const SizedBox(width: 5),
-                            SizedBox(
-                              child: FittedBox(
-                                child: Text(
-                                  providerAriza.model.invoice.toString(),
-                                  style: TextStyle(color: MyColors.appColorBlue1(), fontSize: 17),
-                                ),
-                              ),
-                            ),
-                          ],
+                        duration: const Duration(seconds: 2),
+                        content: Text(
+                          "${"copy".tr()} ${providerAriza.model.invoice}"
+
+                          ,style: TextStyle(fontWeight: FontWeight.w600),
                         )));
                   }),
               leading: Text(
@@ -79,7 +71,17 @@ Widget infoMoneyBilling({required BuildContext context, required ProviderAriza p
 
             ListTile(
               title: Text("holat".tr()),
-              onTap: () {},
+              onTap: () {
+                Clipboard.setData(ClipboardData(
+                  text: providerAriza.model.invoice.toString(),
+                ));
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    duration: const Duration(seconds: 2),
+                    content: Text(
+                      "${"copy".tr()} ${providerAriza.model.invoice}",
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    )));
+              },
               trailing: Container(
                 padding:
                     const EdgeInsets.only(bottom: 4, top: 4, right: 8, left: 8),
@@ -97,19 +99,41 @@ Widget infoMoneyBilling({required BuildContext context, required ProviderAriza p
                       color: MyColors.appColorWhite(),
                       fontWeight: FontWeight.bold),
                 ),
-              ),
+              )
+                  .animate(
+                      onPlay: (controller) => controller.repeat(reverse: true))
+                  .scaleXY(
+                      end: 1,
+                      delay: const Duration(milliseconds: 3000),
+                      curve: Curves.linear)
+                  .shimmer(
+                      color: providerAriza.model.pay == 0
+                          ? Colors.red
+                          : Colors.green,
+                      delay: const Duration(milliseconds: 3000))
+                  .elevation(end: 0),
             ),
             ListTile(
-                title: Text("balance".tr(), ),
+                title: Text(
+                  "balance".tr(),
+                ),
                 onTap: () {},
-                trailing:
-                Text("${providerAriza.model.balance.toString()}  So'm", style: TextStyle(fontWeight: FontWeight.w500, color: MyColors.appColorBlack()), ) ),
+                trailing: Text(
+                  "${providerAriza.model.balance.toString()}  So'm",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: MyColors.appColorBlack()),
+                )),
 
             Container(
               margin: const EdgeInsets.all(10),
-              child: Text("warming".tr(),
-                textAlign: TextAlign.justify
-                ,style: TextStyle(fontWeight: FontWeight.w500, color: MyColors.appColorBlack()),),
+              child: Text(
+                "warming".tr(),
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: MyColors.appColorBlack()),
+              ),
             ),
             // MaterialButton(
             //   onPressed: () {},

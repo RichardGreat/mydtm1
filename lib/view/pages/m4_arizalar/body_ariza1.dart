@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/body_ariza.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -52,7 +53,7 @@ Widget bodyAriza1(
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     softWrap: true,
-                    style:const TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+                    style:const TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -80,7 +81,21 @@ Widget bodyAriza1(
                             ? "noPayed".tr()
                             : "payed".tr(),
                         textColor: MyColors.appColorWhite(),
-                        textSize: 14),
+                         textFontWeight: FontWeight.w600,
+                        textSize: 15).animate(
+
+                        onPlay: (controller) => controller
+                            .repeat(
+                            reverse: true))
+                        .scaleXY(
+                        end: 1,
+                        delay: const Duration(milliseconds: 3000),
+                        curve: Curves.linear)
+                        .shimmer(
+                        color: providerAriza.model.pay == 0
+                            ?  Colors.red:Colors.green,
+                        delay: const Duration(milliseconds: 3000))
+                        .elevation(end: 0),
                   ),
                 )
 
