@@ -64,11 +64,11 @@ Widget bodyAriza1(
                   ),
                 ),
                const SizedBox(height: 10),
-                MyWidgets.robotoFontText(
-                    text: "время регистрации"
-                        .toString()
-                        .substring(0, 16),
-                    textSize: 14),
+                // MyWidgets.robotoFontText(
+                //     text: "время регистрации"
+                //         .toString()
+                //         .substring(0, 16),
+                //     textSize: 14),
                 MyWidgets.robotoFontText(
                     text: providerAriza.model.updatedAt
                         .toString()

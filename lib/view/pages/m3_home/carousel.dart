@@ -52,7 +52,7 @@ var box = Hive.box("online");
                             width: 80,
                             height: 80,
                             fit: BoxFit.fill,
-                            imageUrl:   "${MainUrl.mainUrlImage}/${"i"".""mobilIcon"}",
+                            imageUrl:   "${MainUrl.mainUrlImage}/${i.mobilIcon}",
                             progressIndicatorBuilder:
                                 (context, url, downloadProgress) =>
                             const   CupertinoActivityIndicator(),
