@@ -267,5 +267,6 @@
   "copy": "Nusxa olindi",
   "cancel": "Bekor qilish",
   "noServerConnection": "Server bilan aloqa yoq.",
-  "wantBackPage": "Ortga qaytmoqchimisiz?"
+  "wantBackPage": "Ortga qaytmoqchimisiz?",
+  "regTime": "Ro'yxatga olingan vaqt"
 }
