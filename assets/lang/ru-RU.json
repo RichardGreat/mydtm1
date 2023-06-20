@@ -264,6 +264,7 @@
   "getCertificateFalse": "Вы не набрали достаточно баллов для сертификата",
   "allBallCert": "Общий счет",
   "copy": "Скопировано",
-  "cancel": "Отмена"
+  "cancel": "Отмена",
+  "noServerConnection": "Нет связи с сервером."
 
 }

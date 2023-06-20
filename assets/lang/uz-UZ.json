@@ -265,5 +265,6 @@
   "getCertificateFalse": "Sertufikat uchun yetarlist ball to'play olmadingiz",
   "allBallCert": "Umumiy ball",
   "copy": "Nusxa olindi",
-  "cancel": "Bekor qilish"
+  "cancel": "Bekor qilish",
+  "noServerConnection": "Server bilan aloqa yoq."
 }

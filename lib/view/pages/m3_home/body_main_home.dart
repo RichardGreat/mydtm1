@@ -14,7 +14,9 @@ Widget bodyMainHome(
     required ProviderMainHome providerMainHome}) {
   var box = Hive.box("online");
   return providerMainHome.boolParseData
-      ? NestedScrollView(
+      ?
+  !providerMainHome.boolErrorHandle?
+  NestedScrollView(
           floatHeaderSlivers: true,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
@@ -195,5 +197,6 @@ Widget bodyMainHome(
                     : const SizedBox.shrink(),
               )),
         )
+  :Center(child: SizedBox.shrink(),)
       : const Center(child: CupertinoActivityIndicator());
 }

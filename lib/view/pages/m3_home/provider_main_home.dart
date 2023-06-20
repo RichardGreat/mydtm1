@@ -31,6 +31,7 @@ class ProviderMainHome extends ChangeNotifier {
   List<ServiceMainList> listDataServiceListTemp2 = [];
   var box = Hive.box("online");
   bool boolParseData = false;
+  bool boolErrorHandle  = false;
 
   MyColors myColors = MyColors();
   late NetworkServiceList networkServiceList = NetworkServiceList();
@@ -41,6 +42,7 @@ class ProviderMainHome extends ChangeNotifier {
 
   Future checkVersion({required BuildContext context}) async {
     boolParseData = false;
+    boolErrorHandle = false;
     notifyListeners();
     try {
       String dataVersion = await NetworkCheckVersions.checkMobileVersion();
@@ -48,7 +50,7 @@ class ProviderMainHome extends ChangeNotifier {
           ModelCheckMobileVersion.fromJson(jsonDecode(dataVersion));
       numberAPIUpdate = modelCheckMobileVersion.data.numberApi.toString();
 
-      log(dataVersion);
+      // log(dataVersion);
 
       ///1005
       if (box.get("updateVersion").toString() !=
@@ -92,7 +94,34 @@ class ProviderMainHome extends ChangeNotifier {
         }
       }
     } catch (e) {
-      log(e.toString());
+      // log(e.toString());
+      boolParseData = true;
+      boolErrorHandle = true;
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.noHeader,
+          animType: AnimType.bottomSlide,
+          title: "BMBA",
+          dismissOnTouchOutside: false,
+          desc: "noServerConnection".tr(),
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () {
+            // getDateService(context: context);
+            if (Platform.isIOS) {
+              // getDateService(context: context);
+              exit(0);
+            } else {
+              // getDateService(context: context);
+              SystemNavigator.pop();
+            }
+            Navigator.of(context).pop();
+          },
+          btnCancelText: "OK")
+          .show();
+      notifyListeners();
     }
   }
 
@@ -137,12 +166,12 @@ class ProviderMainHome extends ChangeNotifier {
       if (box.get("numberApi").toString().trim() !=
           numberAPIUpdate.toString().trim()) {
         String dataServiceList = await networkServiceList.getServiceList();
-        log(dataServiceList);
+        // log(dataServiceList);
         box.put("dataServiceList", dataServiceList);
         box.put("numberApi", numberAPIUpdate);
-        log("Download 777");
-        log(box.get("numberApi"));
-        log("####");
+        // log("Download 777");
+        // log(box.get("numberApi"));
+        // log("####");
       }
 
       modelServiceList =
@@ -163,14 +192,16 @@ class ProviderMainHome extends ChangeNotifier {
       boolParseData = true;
       notifyListeners();
     } catch (e) {
-      log(e.toString());
+      // log(e.toString());
+      boolParseData = true;
+      notifyListeners();
       AwesomeDialog(
               context: context,
-              dialogType: DialogType.error,
+              dialogType: DialogType.noHeader,
               animType: AnimType.bottomSlide,
               title: "BMBA",
               dismissOnTouchOutside: false,
-              desc: "noInternetConn".tr(),
+              desc: "noServerConnection".tr(),
               titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
               descTextStyle: TextStyle(
