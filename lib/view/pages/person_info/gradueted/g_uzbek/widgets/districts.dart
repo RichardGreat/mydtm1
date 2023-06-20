@@ -8,6 +8,7 @@ modelSheetGraduatedDistrict(
     {required BuildContext context,
     required ProviderGraduated providerGraduateds}) {
   showModalBottomSheet<void>(
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10), topRight: Radius.circular(10))),
@@ -45,7 +46,7 @@ class _SheetDistrictState extends State<SheetDistrict> {
     return Container(
       child: widget.providerGraduated.boolGetDistrict
           ? Container(
-              height: MediaQuery.of(context).size.height * 0.6,
+              height: MediaQuery.of(context).size.height * 0.8,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Column(
@@ -129,6 +130,7 @@ class _SheetDistrictState extends State<SheetDistrict> {
                               softWrap: true,
                               maxLines: 3,
                               textAlign: TextAlign.start,
+                              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
                             ),
                           ),
                         ),

@@ -80,7 +80,7 @@ Widget graduatedUzbek(
                 // setGraduatedYear = "";
                 providerGradueted.modelGraduatedInfo.data.graduatedYear
                             .toString() ==
-                        "2022"
+                        "2023"
                     ? {}
                     : providerGradueted.graduatedEduTypeName.length > 4
                         ? modelSheetProvinceGraduated(
@@ -123,7 +123,7 @@ Widget graduatedUzbek(
               onTap: () {
                 providerGradueted.modelGraduatedInfo.data.graduatedYear
                             .toString() ==
-                        "2022"
+                        "2023"
                     ? {}
                     : providerGradueted.graduatedRegionName.length > 4
                         ? modelSheetGraduatedDistrict(

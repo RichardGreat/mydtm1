@@ -37,7 +37,7 @@ Widget graduatedForeign(
       GestureDetector(
         onTap: () {
           providerGradueted.modelGraduatedInfo.data.graduatedYear.toString() ==
-                  "2022"
+                  "2023"
               ? {}
               : providerGradueted.getCountry(
                   context: context, providerGraduated: providerGradueted);

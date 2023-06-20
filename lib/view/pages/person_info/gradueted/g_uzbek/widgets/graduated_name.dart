@@ -6,8 +6,9 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 modelSheetGraduatedName(
     {required BuildContext context,
-      required ProviderGraduated providerGraduated}) {
+    required ProviderGraduated providerGraduated}) {
   showModalBottomSheet<void>(
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10), topRight: Radius.circular(10))),
@@ -16,12 +17,12 @@ modelSheetGraduatedName(
       builder: (_) => SheetGraduatedName(providerGraduated: providerGraduated));
 }
 
-
 // ignore: must_be_immutable
 class SheetGraduatedName extends StatefulWidget {
   late ProviderGraduated providerGraduated;
 
-  SheetGraduatedName({Key? key, required this.providerGraduated}) : super(key: key);
+  SheetGraduatedName({Key? key, required this.providerGraduated})
+      : super(key: key);
 
   @override
   State<SheetGraduatedName> createState() => _SheetGraduatedNameState();
@@ -29,8 +30,7 @@ class SheetGraduatedName extends StatefulWidget {
 
 class _SheetGraduatedNameState extends State<SheetGraduatedName> {
   Future getData() async {
-    await widget.providerGraduated
-        .getGraduatedName();
+    await widget.providerGraduated.getGraduatedName();
     setState(() {});
   }
 
@@ -44,109 +44,118 @@ class _SheetGraduatedNameState extends State<SheetGraduatedName> {
   Widget build(BuildContext context) {
     return Container(
       child: widget.providerGraduated.boolGetGraduatedName
-          ? widget.providerGraduated.boolGetGraduatedNameError?
-          Center(child: MyWidgets.robotoFontText(text:widget.providerGraduated.modelGetGraduatedNameError.errors))
-          : Container(
-          height: MediaQuery.of(context).size.height * 0.6,
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(8)),
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ? widget.providerGraduated.boolGetGraduatedNameError
+              ? Center(
+                  child: MyWidgets.robotoFontText(
+                      text: widget
+                          .providerGraduated.modelGetGraduatedNameError.errors))
+              : Container(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Column(
                     children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        height: 50,
-                        child: TextFormField(
-                          controller: widget
-                              .providerGraduated.txtGraduatedNameController,
-                          minLines: 1,
-                          onChanged: (value) {
-                            widget.providerGraduated
-                                .searchGraduatedName(value: value);
-                            setState(() {});
-                          },
-                          textAlignVertical: TextAlignVertical.center,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.search),
-                            suffix: IconButton(
-                                onPressed: () {
+                      const SizedBox(height: 20),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                height: 50,
+                                child: TextFormField(
+                                  controller: widget.providerGraduated
+                                      .txtGraduatedNameController,
+                                  minLines: 1,
+                                  onChanged: (value) {
+                                    widget.providerGraduated
+                                        .searchGraduatedName(value: value);
+                                    setState(() {});
+                                  },
+                                  textAlignVertical: TextAlignVertical.center,
+                                  decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.search),
+                                    suffix: IconButton(
+                                        onPressed: () {
+                                          widget.providerGraduated
+                                              .clearTextGraduatedName();
+                                          setState(() {});
+                                        },
+                                        icon: const Icon(
+                                          Icons.clear,
+                                          size: 12,
+                                        )),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(
+                                        color: MyColors.appColorGrey400(),
+                                      ),
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(
+                                        color: MyColors.appColorGrey400(),
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(
+                                        color: MyColors.appColorGrey400(),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    widget.providerGraduated
+                                        .txtGraduatedNameController
+                                        .clear();
+                                    Navigator.of(context).pop();
+                                  },
+                                  icon: const Icon(CupertinoIcons.chevron_down))
+                            ]),
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount:
+                              widget.providerGraduated.listGetNameTemp.length,
+                          itemBuilder: (context, index) => GestureDetector(
+                            child: Card(
+                              margin: const EdgeInsets.all(8),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Text(
                                   widget.providerGraduated
-                                      .clearTextGraduatedName();
-                                  setState(() {});
-                                },
-                                icon: const Icon(
-                                  Icons.clear,
-                                  size: 12,
-                                )),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                color: MyColors.appColorGrey400(),
+                                      .listGetNameTemp[index].name,
+                                  overflow: TextOverflow.fade,
+                                  softWrap: true,
+                                  maxLines: 3,
+                                  textAlign: TextAlign.start,
+                                  style: const TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black),
+                                ),
                               ),
                             ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                color: MyColors.appColorGrey400(),
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                color: MyColors.appColorGrey400(),
-                              ),
-                            ),
+                            onTap: () {
+                              widget.providerGraduated.setGraduatedName(
+                                  grdNameId: widget.providerGraduated
+                                      .listGetNameTemp[index].id
+                                      .toString(),
+                                  gradName: widget.providerGraduated
+                                      .listGetNameTemp[index].name);
+                              Navigator.of(context).pop();
+                            },
                           ),
                         ),
                       ),
-                      IconButton(
-                          onPressed: () {
-                            widget.providerGraduated.txtGraduatedNameController
-                                .clear();
-                            Navigator.of(context).pop();
-                          },
-                          icon: const Icon(CupertinoIcons.chevron_down))
-                    ]),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount:
-                  widget.providerGraduated.listGetNameTemp.length,
-                  itemBuilder: (context, index) => GestureDetector(
-                    child: Card(
-                      margin: const EdgeInsets.all(8),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          widget.providerGraduated
-                              .listGetNameTemp[index].name,
-                          overflow: TextOverflow.fade,
-                          softWrap: true,
-                          maxLines: 3,
-                          textAlign: TextAlign.start,
-                        ),
-                      ),
-                    ),
-                    onTap: () {
-                      widget.providerGraduated.setGraduatedName(
-                          grdNameId:  widget.providerGraduated
-                              .listGetNameTemp[index].id
-                              .toString(),
-                          gradName:  widget.providerGraduated
-                              .listGetNameTemp[index].name);
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ))
+                    ],
+                  ))
           : MyWidgets.loaderDownload(context: context),
     );
   }

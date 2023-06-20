@@ -26,7 +26,12 @@ Widget typeSelect({required BuildContext context,
         child: ListTile(
           leading: MyWidgets.robotoFontText(text:providerCertificate.langTypeNames.length < 2 ?"choose".tr():providerCertificate.langTypeNames),
           onTap: (){
-            modelGetLangType( f: ff,context: context, providerCertificate: providerCertificate);
+            providerCertificate.certLangName.isNotEmpty &&
+            providerCertificate.certLangId.isNotEmpty?
+            modelGetLangType( f: ff,context: context, providerCertificate: providerCertificate)
+            :MyWidgets.awesomeDialogError(context: context, valueText: "")
+            ;
+
           },
           shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
