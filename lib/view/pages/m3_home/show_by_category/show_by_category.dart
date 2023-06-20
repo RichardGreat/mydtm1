@@ -103,12 +103,12 @@ myViewButton(
                                 width: 60,
                                 height: 50,
                                 fit: BoxFit.fill,
-                                imageUrl: "${MainUrl.mainUrlImage}/${myList[index].mobilIcon}",
+                                imageUrl: "${MainUrl.mainUrlsImage}/${myList[index].mobilIcon}",
                                 progressIndicatorBuilder:
                                     (context, url, downloadProgress) =>
                                 const   CupertinoActivityIndicator(),
                                 errorWidget: (context, url, error) =>
-                               SizedBox.shrink(),
+                                Image.asset("assets/images/uzbmb.png")
                               ),
 
                               SizedBox(

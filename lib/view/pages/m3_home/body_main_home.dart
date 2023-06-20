@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/view/pages/m3_home/carousel.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/serch_main.dart';
@@ -117,8 +119,8 @@ Widget bodyMainHome(
                                     );
                                   },
                                   child: Container(
-                                    height: 150,
-                                    width: 120,
+                                    height: 155,
+                                    width: 125,
                                     padding: const EdgeInsets.all(10),
                                     margin: const EdgeInsets.all(5),
                                     decoration: BoxDecoration(
@@ -138,29 +140,22 @@ Widget bodyMainHome(
                                           CrossAxisAlignment.center,
                                       children: [
                                         const SizedBox(height: 1),
-                                        // CachedNetworkImage(
-                                        //   height: 30,
-                                        //   width: 30,
-                                        //   filterQuality: FilterQuality.high,
-                                        //   fit: BoxFit.fill,
-                                        //   imageUrl:
-                                        //       "${MainUrl.mainUrls}${providerMainHome.listDataServiceList[index].service[index2].icon}",
-                                        //   progressIndicatorBuilder: (context,
-                                        //           url, downloadProgress) =>
-                                        //       const CupertinoActivityIndicator(),
-                                        //   errorWidget: (context, url, error) =>
-                                        //       SvgPicture.network(
-                                        //         height: 30,
-                                        //         width: 30,
-                                        //         fit: BoxFit.fill,
-                                        //         "${MainUrl.mainUrls}${providerMainHome.listDataServiceList[index].service[index2].icon}",
-                                        //         semanticsLabel: '',
-                                        //         placeholderBuilder: (BuildContext context) => Container(
-                                        //             padding: const EdgeInsets.all(30.0),
-                                        //             child: const CircularProgressIndicator()),
-                                        //       )
-                                        //     // Image.asset("assets/images/gerb.png", fit: BoxFit.contain),
-                                        // ),
+                                        CachedNetworkImage(
+                                          height: 40,
+                                          width: 40,
+                                          filterQuality: FilterQuality.high,
+                                          fit: BoxFit.fill,
+                                          imageUrl:
+                                              "${MainUrl.mainUrlsImage}${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
+                                          progressIndicatorBuilder: (context,
+                                                  url, downloadProgress) =>
+                                              const CupertinoActivityIndicator(),
+                                          errorWidget: (context, url, error) =>
+                                             // Text(url.toString())
+                                             Image.asset("assets/images/uzbmb.png",)
+                                             //
+                                             //     fit: BoxFit.fill),
+                                        ),
                                         Text(
                                           box.get("language") == "1"
                                               ? providerMainHome
@@ -197,6 +192,6 @@ Widget bodyMainHome(
                     : const SizedBox.shrink(),
               )),
         )
-  :Center(child: SizedBox.shrink(),)
+  :const Center(child: SizedBox.shrink(),)
       : const Center(child: CupertinoActivityIndicator());
 }

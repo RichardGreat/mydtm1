@@ -3,8 +3,6 @@ class Assets {
   Assets._();
 
   static const String fontsRobotoMedium = 'assets/fonts/Roboto-Medium.ttf';
-  static const String imagesAppLogo = 'assets/images/app_logo.png';
-  static const String imagesDtm = 'assets/images/dtm.png';
   static const String imagesGerb = 'assets/images/gerb.png';
   static const String imagesIconPerson = 'assets/images/icon_person.png';
   static const String imagesIdCard = 'assets/images/id_card.png';
