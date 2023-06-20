@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/test_download.dart';
 // import 'package:local_auth/local_auth.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
@@ -142,7 +143,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 box.get("language") == "2" ||
                 box.get("language") == "3"
             ? //MainPages()//
-             MainPages(homeIdMainpage: "0",)//
+             // MainPages(homeIdMainpage: "0",)//
+        TestDownload()
             : const EnterFirst0(),
       ),
     );

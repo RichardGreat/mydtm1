@@ -3,14 +3,20 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:file_saver/file_saver.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hive_flutter/adapters.dart';
+
 // import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/answersheet.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/ariza_check.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/qayd_varaqa.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/ruxsanoma.dart';
+import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/model_qayd_varaqa.dart';
+
 // import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 // import 'package:permission_handler/permission_handler.dart';
@@ -74,9 +80,10 @@ class ProviderAriza extends ChangeNotifier {
         modelGetDownloadsData1 =
             ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
         modelGetDownloads1 = modelGetDownloadsData1.data;
+
         boolDataDownload1 = true;
         notifyListeners();
-        log(modelGetDownloadsData1.data.src);
+        // log(modelGetDownloadsData1.data.src);
       } catch (e) {
         modelGetDownloadsData1.status = 0;
         log(e.toString());
@@ -149,85 +156,100 @@ class ProviderAriza extends ChangeNotifier {
   final Dio dio = Dio();
 
   late Directory directory;
+
   Future<bool> downloadFiles(
       {required String url, required String fileName}) async {
-
     try {
       if (Platform.isAndroid) {
+        directory = (await getExternalStorageDirectory())!;
+        String newPath = "";
+        List<String> folders = directory.path.split("/");
 
-            directory = (await  getExternalStorageDirectory())!;
-            String  newPath = "";
-            List<String> folders = directory.path.split("/");
+        for (int x = 1; x < folders.length; x++) {
+          String folder = folders[x];
+          if (folder != "Android") {
+            newPath += "/$folder";
+          } else {
+            break;
+          }
 
-            for(int x = 1; x < folders.length; x++) {
-              String folder = folders[x];
-              if (folder != "Android") {
-                newPath += "/$folder";
-              } else {
-                break;
-              }
+          newPath = "$newPath/DTM";
+          directory = Directory(newPath);
+        }
+        // }
+        // else{return false;}
 
-              newPath = "$newPath/DTM";
-              directory = Directory(newPath);
-            }
-          // }
-          // else{return false;}
+        // }
 
-      // }
-
-
-      // if(await requestPermission()){
-      //   directory  = await getTemporaryDirectory();
-      //
-      //   return false;
-      //   }
+        // if(await requestPermission()){
+        //   directory  = await getTemporaryDirectory();
+        //
+        //   return false;
+        //   }
       }
-      if(!await directory.exists()){
-        await directory.create(recursive:  true);
+      if (!await directory.exists()) {
+        await directory.create(recursive: true);
       }
-      if(await directory.exists()){
+      if (await directory.exists()) {
         File saveFile = File("${directory.path}/$fileName");
-        await dio.download(url,saveFile.path, onReceiveProgress: (downloaded, totalSize){
-            progress = downloaded/totalSize;
-            notifyListeners();
+        await dio.download(url, saveFile.path,
+            onReceiveProgress: (downloaded, totalSize) {
+          progress = downloaded / totalSize;
+          notifyListeners();
         });
 
-
-        if(Platform.isIOS){
+        if (Platform.isIOS) {
           // await ImageGallerySaver.saveFile(saveFile.path, isReturnPathOfIOS: true);
           notifyListeners();
         }
         return true;
       }
       notifyListeners();
-    } catch (e) {throw Exception(e.toString());}
+    } catch (e) {
+      throw Exception(e.toString());
+    }
 
     return false;
   }
 
+  DateTime now = DateTime.now();
+  var box = Hive.box("online");
+  // DateTime date =  DateTime(now.year, now.month, now.day);
+  // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
   Future download({required String urls, required String fileName}) async {
     loading = false;
     progress = 0;
     notifyListeners();
 
-   try {
-    await downloadFiles(
-          url:
-          urls,
-          fileName: fileName);
-    }catch(e){throw Exception(e.toString());}
+    try {
+      await FileSaver.instance.saveFile(
+          name: "bmba_${DateFormat('yyyy-MM-dd – kk:mm').format(now)}.pdf",
+      link: LinkDetails(link: "https://docviewer.yandex.uz/view/0/?*=beVY5yz7Adpsz6lid4AHc11k0i17InVybCI6Imh0dHBzOi8vMS5lZHViaXNoLmtnL3dwLWNvbnRlbnQvdXBsb2Fkcy9zaXRlcy8xMS8yMDIyLzAxLzVrbC5hbmdsaXlza2l5LXlhenlrLWFiZHlzaGV2YS1pLWRyLjIwMTcucGRmIiwidGl0bGUiOiI1a2wuYW5nbGl5c2tpeS15YXp5ay1hYmR5c2hldmEtaS1kci4yMDE3LnBkZiIsIm5vaWZyYW1lIjp0cnVlLCJ1aWQiOiIwIiwidHMiOjE2ODcyNDMxMDA4NDYsInl1IjoiNDMxOTg3MDc5MTY4MzI5MTkxMyIsInNlcnBQYXJhbXMiOiJ0bT0xNjg3MjQzMDk0JnRsZD11eiZsYW5nPWVuJm5hbWU9NWtsLmFuZ2xpeXNraXkteWF6eWstYWJkeXNoZXZhLWktZHIuMjAxNy5wZGYmdGV4dD1ib29rK2VuZ2xpc2grNSslRDAlQkElRDAlQkIlRDAlQjAlRDElODElRDElODErcGRmJnVybD1odHRwcyUzQS8vMS5lZHViaXNoLmtnL3dwLWNvbnRlbnQvdXBsb2Fkcy9zaXRlcy8xMS8yMDIyLzAxLzVrbC5hbmdsaXlza2l5LXlhenlrLWFiZHlzaGV2YS1pLWRyLjIwMTcucGRmJmxyPTEwMzM1Jm1pbWU9cGRmJmwxMG49cnUmc2lnbj03ZGJiNGMyNjUzODljNDZmYzZmYmUyYzUyMzQxNzM4NCZrZXlubz0wIn0%3D&amp;lang=en", headers: {MainUrl.mainUrlHeader: box.get("token")})
+      );
+      //   {
+      //     required String name,
+      // Uint8List? bytes,
+      // File? file,
+      // String? filePath,
+      // LinkDetails? link,
+      // String ext = "",
+      // MimeType mimeType = MimeType.other}
+      //    await downloadFiles(url: urls, fileName: fileName);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
     loading = true;
     notifyListeners();
   }
 
-  // Future<bool> requestPermission() async {
-  //
-  //     var result = await permission.request();
-  //     if (result == PermissionStatus.granted) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-    }
-  // }
+// Future<bool> requestPermission() async {
+//
+//     var result = await permission.request();
+//     if (result == PermissionStatus.granted) {
+//       return true;
+//     } else {
+//       return false;
+//     }
+}
+// }
 // }
