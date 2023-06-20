@@ -11,6 +11,7 @@ sheetForeignLang({
       context: contexts,
       enableDrag: true,
       isScrollControlled: true,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       builder: (_) {
         return ForeignLangTest(
           providerChooseEdu: providerChooseEdu,
@@ -51,14 +52,14 @@ class _ForeignLangTestState extends State<ForeignLangTest> {
     return Container(
       child: widget.providerChooseEdu.boolForeignLanguage
           ? Container(
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.7,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
+                  const  SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: MyWidgets.robotoFontText(text: "chooseForeignLang".tr(), textFontWeight: FontWeight.w500, textSize: 20),
@@ -70,9 +71,9 @@ class _ForeignLangTestState extends State<ForeignLangTest> {
                           widget.providerChooseEdu.listDataForeignLangTemp.length,
                       itemBuilder: (context, index) => GestureDetector(
                         child: Card(
-                          margin: const EdgeInsets.all(8),
+                          margin: const EdgeInsets.all(5),
                           child: Padding(
-                            padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(14),
                             child: Text(
                               widget.providerChooseEdu.listDataForeignLangTemp[index]
                                   .name,
@@ -80,6 +81,7 @@ class _ForeignLangTestState extends State<ForeignLangTest> {
                               softWrap: true,
                               maxLines: 3,
                               textAlign: TextAlign.start,
+                              style: const TextStyle(fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),

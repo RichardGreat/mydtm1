@@ -54,119 +54,120 @@ class _OTMEduState extends State<OTMEdu> {
   Widget build(_) {
     return Scaffold(
       backgroundColor: MyColors.appColorWhite(),
-      body: Container(
-      child: widget.providerChooseEdu.boolOtmData
-          ? Container(
-          height: MediaQuery.of(context).size.height * 0.95,
-          margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(8)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(height: 20),
-
-
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                          width: MediaQuery.of(context).size.width*0.7,
-                          child: MyWidgets.robotoFontText(text: "oliytalim".tr(), textSize: 26)),
-                      IconButton(
-                          onPressed: () {
-                            widget.providerChooseEdu.textOTMChoose.clear();
-                            Navigator.of(context).pop();
-                          },
-                          icon: const Icon(CupertinoIcons.chevron_down))
-                    ]),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 50,
-                child: TextFormField(
-                  controller:
-                  widget.providerChooseEdu.textOTMChoose,
-                  minLines: 1,
-                  onChanged: (value) {
-                    widget.providerChooseEdu.searchOtm(val: value);
-                    setState(() {});
-                  },
-                  textAlignVertical: TextAlignVertical.center,
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.search),
-                    suffix: IconButton(
-                        onPressed: () {
-                          widget.providerChooseEdu.clearTextOtm1();
-                          setState(() {});
-                        },
-                        icon: const Icon(
-                          Icons.clear,
-                          size: 12,
-                        )),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: MyColors.appColorGrey400(),
-                      ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: MyColors.appColorGrey400(),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        color: MyColors.appColorGrey400(),
-                      ),
-                    ),
-                  ),
+      body: SafeArea(
+        child: Container(
+        child: widget.providerChooseEdu.boolOtmData
+            ? Container(
+            height: MediaQuery.of(context).size.height * 0.9,
+            margin: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(8)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(height: 30),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.fromLTRB(8, 2, 5, 2),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width*0.7,
+                            child: MyWidgets.robotoFontText(text: "oliytalim".tr(), textSize: 26)),
+                        IconButton(
+                            onPressed: () {
+                              widget.providerChooseEdu.textOTMChoose.clear();
+                              Navigator.of(context).pop();
+                            },
+                            icon: const Icon(CupertinoIcons.chevron_down))
+                      ]),
                 ),
-              ),
-             const SizedBox(height: 15),
-              Expanded(
-                child: ListView.builder(
-                  itemCount:
-                  widget.providerChooseEdu.listDataOtmTemp.length,
-                  itemBuilder: (context, index) => GestureDetector(
-                    child: Card(
-                      margin: const EdgeInsets.all(8),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          widget.providerChooseEdu.listDataOtmTemp[index]
-                              .name,
-                          overflow: TextOverflow.fade,
-                          softWrap: true,
-                          maxLines: 3,
-                          textAlign: TextAlign.start,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: 50,
+                  child: TextFormField(
+                    controller:
+                    widget.providerChooseEdu.textOTMChoose,
+                    minLines: 1,
+                    onChanged: (value) {
+                      widget.providerChooseEdu.searchOtm(val: value);
+                      setState(() {});
+                    },
+                    textAlignVertical: TextAlignVertical.center,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.search),
+                      suffix: IconButton(
+                          onPressed: () {
+                            widget.providerChooseEdu.clearTextOtm1();
+                            setState(() {});
+                          },
+                          icon: const Icon(
+                            Icons.clear,
+                            size: 12,
+                          )),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: MyColors.appColorGrey400(),
+                        ),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: MyColors.appColorGrey400(),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: MyColors.appColorGrey400(),
                         ),
                       ),
                     ),
-                    onTap: () {
-                      widget.providerChooseEdu.setOtm1(
-                          contexts: context,
-                          titleEduDirId: widget.titleEduDirId,
-                          providerChooseEdu: widget.providerChooseEdu,
-                          name: widget.providerChooseEdu
-                              .listDataOtmTemp[index].name,
-                          id: widget
-                              .providerChooseEdu.listDataOtmTemp[index].id);
-                      widget.providerChooseEdu.textOTMChoose.clear();
-                      // Navigator.of(context).pop();
-                    },
                   ),
                 ),
-              ),
-            ],
-          ))
-          : MyWidgets.loaderDownload(context: context),
-    ),);
+               const SizedBox(height: 15),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount:
+                    widget.providerChooseEdu.listDataOtmTemp.length,
+                    itemBuilder: (context, index) => GestureDetector(
+                      child: Card(
+                        margin: const EdgeInsets.all(4),
+                        child: Padding(
+                          padding: const EdgeInsets.all(13),
+                          child: Text(
+                            widget.providerChooseEdu.listDataOtmTemp[index]
+                                .name,
+                            overflow: TextOverflow.fade,
+                            softWrap: true,
+                            maxLines: 4,
+                            textAlign: TextAlign.start,
+                            style:const TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ),
+                      onTap: () {
+                        widget.providerChooseEdu.setOtm1(
+                            contexts: context,
+                            titleEduDirId: widget.titleEduDirId,
+                            providerChooseEdu: widget.providerChooseEdu,
+                            name: widget.providerChooseEdu
+                                .listDataOtmTemp[index].name,
+                            id: widget
+                                .providerChooseEdu.listDataOtmTemp[index].id);
+                        widget.providerChooseEdu.textOTMChoose.clear();
+                        // Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ))
+            : MyWidgets.loaderDownload(context: context),
+    ),
+      ),);
   }
 }

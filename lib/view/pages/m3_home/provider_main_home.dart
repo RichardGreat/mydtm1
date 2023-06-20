@@ -50,8 +50,6 @@ class ProviderMainHome extends ChangeNotifier {
           ModelCheckMobileVersion.fromJson(jsonDecode(dataVersion));
       numberAPIUpdate = modelCheckMobileVersion.data.numberApi.toString();
 
-      // log(dataVersion);
-
       ///1005
       if (box.get("updateVersion").toString() !=
           modelCheckMobileVersion.data.version.toString()) {
@@ -93,6 +91,9 @@ class ProviderMainHome extends ChangeNotifier {
               withNavBar: false);
         }
       }
+      boolParseData = true;
+      boolErrorHandle = false;
+      notifyListeners();
     } catch (e) {
       // log(e.toString());
       boolParseData = true;
@@ -190,10 +191,12 @@ class ProviderMainHome extends ChangeNotifier {
       }
 
       boolParseData = true;
+      boolErrorHandle = false;
       notifyListeners();
     } catch (e) {
       // log(e.toString());
       boolParseData = true;
+      boolErrorHandle = true;
       notifyListeners();
       AwesomeDialog(
               context: context,

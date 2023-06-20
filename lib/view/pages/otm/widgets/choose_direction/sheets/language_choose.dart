@@ -144,7 +144,7 @@ class _LangEduChooseTestState extends State<LangEduChooseTest> {
                           child: Card(
                             margin: const EdgeInsets.only(top: 4, bottom: 4),
                             child: Padding(
-                              padding: const EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(12),
                               child: Text(
                                 widget.providerChooseEdu
                                     .listLangEduChooseTestTemp[index].name,

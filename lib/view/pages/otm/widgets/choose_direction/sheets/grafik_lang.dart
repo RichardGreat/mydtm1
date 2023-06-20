@@ -72,9 +72,9 @@ class _LangGraphicChooseTestState extends State<LangGraphicChooseTest> {
                       itemCount: listLangGraphic.length,
                       itemBuilder: (context, index) => GestureDetector(
                         child: Card(
-                          margin: const EdgeInsets.all(8),
+                          margin: const EdgeInsets.all(4),
                           child: Padding(
-                            padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(12),
                             child: Text(
                               listLangGraphic[index],
                               overflow: TextOverflow.fade,

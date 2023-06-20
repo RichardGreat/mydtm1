@@ -266,5 +266,6 @@
   "allBallCert": "Umumiy ball",
   "copy": "Nusxa olindi",
   "cancel": "Bekor qilish",
-  "noServerConnection": "Server bilan aloqa yoq."
+  "noServerConnection": "Server bilan aloqa yoq.",
+  "wantBackPage": "Ortga qaytmoqchimisiz?"
 }

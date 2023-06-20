@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:developer';
-
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
@@ -10,6 +9,7 @@ import 'package:mydtm/view/pages/otm/widgets/body_choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ChooseEdu extends StatefulWidget {
   Function funcState;
@@ -60,7 +60,27 @@ class _ChooseEduState extends State<ChooseEdu> {
       child: Consumer<ProviderChooseEdu>(
         builder: (contexts, value, child) => WillPopScope(
           onWillPop: () async {
+            AwesomeDialog(
+                context: context,
+                dialogType: DialogType.noHeader,
+                animType: AnimType.rightSlide,
+                title: "BMBA",
+                desc: "wantBackPage".tr(),
+                descTextStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+                btnOkColor: Colors.grey,
+                btnCancelColor: Colors.blueAccent,
+                btnCancelText: "no".tr(),
+                btnOkText: "yes".tr(),
+                btnCancelOnPress: () {
+                  // Navigator.of(context).pop();
+            },
+            btnOkOnPress: () {
             widget.funcState();
+            Navigator.of(context).pop();
+            },
+
+            ).show();
+
             return true;
           },
           child: Scaffold(

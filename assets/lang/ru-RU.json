@@ -265,6 +265,6 @@
   "allBallCert": "Общий счет",
   "copy": "Скопировано",
   "cancel": "Отмена",
-  "noServerConnection": "Нет связи с сервером."
-
+  "noServerConnection": "Нет связи с сервером.",
+  "wantBackPage": "Вы хотите вернуться назад?"
 }

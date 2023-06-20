@@ -42,7 +42,7 @@ class _AfertaTexnikumState extends State<AfertaTexnikum> {
               itemBuilder: (context, index) {
                 if (index == 0) {
                   getAction(myBools: false);
-                  return Text(myAfertaList[index]);
+                  return Text(myAfertaList[index], textAlign: TextAlign.justify,);
                 } else if (index == 1) {
                   getAction(myBools: true);
                   return const SizedBox.shrink();

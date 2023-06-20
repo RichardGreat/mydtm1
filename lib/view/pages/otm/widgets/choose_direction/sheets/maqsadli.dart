@@ -14,8 +14,10 @@ sheetMaqsadli(
       context: context,
       isScrollControlled: true,
       enableDrag: false,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       builder: (context) {
-        return SizedBox(
+        return Container(
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
           height: MediaQuery.of(context).size.height * 0.9,
           child: MyChooseMaqsadli(providerChooseEdu: providerChooseEdu),
         );
@@ -43,11 +45,12 @@ class _MyChooseMaqsadliState extends State<MyChooseMaqsadli> {
         child: Container(
           padding: const EdgeInsets.all(10),
           
-          height:MediaQuery.of(context).size.height * 0.9,
+          height:MediaQuery.of(context).size.height * 0.85,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height:  10),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,

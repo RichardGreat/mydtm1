@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
 import 'package:mydtm/view/pages/otm/widgets/choose_direction/choose_direct.dart';
 import 'package:mydtm/view/pages/otm/widgets/choose_direction/sheet_fan_majmua.dart';
@@ -46,26 +47,25 @@ Widget bodyChooseEdu({
   }
 
   String textEduList({required int index}) {
-  if(index == 0){
-    if(providerChooseEdu.listTitleEduDir[0].dirName.isNotEmpty) {
-      return "${0 + 1}${" ${providerChooseEdu.listTitleEduDir[0].nameEdu}"}";
-    }else{
-      providerChooseEdu.listTitleEduDir[0].eduId = "";
-      providerChooseEdu.listTitleEduDir[0].nameEdu= "";
-      return "${0 + 1}${" ${providerChooseEdu.listTitleEduDir[0].nameTitle}"}";
+    if (index == 0) {
+      if (providerChooseEdu.listTitleEduDir[0].dirName.isNotEmpty) {
+        return "${0 + 1}${" ${providerChooseEdu.listTitleEduDir[0].nameEdu}"}";
+      } else {
+        providerChooseEdu.listTitleEduDir[0].eduId = "";
+        providerChooseEdu.listTitleEduDir[0].nameEdu = "";
+        return "${0 + 1}${" ${providerChooseEdu.listTitleEduDir[0].nameTitle}"}";
+      }
+    } else {
+      if (providerChooseEdu.listTitleEduDir[index].dirName.length > 3) {
+        return "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
+      } else {
+        providerChooseEdu.listTitleEduDir[index].eduId = "";
+        providerChooseEdu.listTitleEduDir[index].nameEdu = "";
+        return providerChooseEdu.listTitleEduDir[index].nameEdu.length < 4
+            ? "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameTitle}"}"
+            : "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
+      }
     }
-  }else{
-    if(providerChooseEdu.listTitleEduDir[index].dirName.length > 3) {
-      return "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
-    }else{
-      providerChooseEdu.listTitleEduDir[index].eduId = "";
-      providerChooseEdu.listTitleEduDir[index].nameEdu= "";
-      return providerChooseEdu.listTitleEduDir[index].nameEdu.length < 4
-          ? "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameTitle}"}"
-          : "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
-    }
-  }
-
   }
 
   return Column(
@@ -91,7 +91,8 @@ Widget bodyChooseEdu({
                 if (checkFillSelected() && checkFillDir(index: index)) {
                   if (providerChooseEdu.boolCheckUseCertificateDataNot) {
                     pushNewScreen(context,
-                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                        pageTransitionAnimation:
+                            PageTransitionAnimation.cupertino,
                         screen: SelectDirection(
                           providerChooseEdu: providerChooseEdu,
                           indexEduDir: int.parse(
@@ -100,7 +101,8 @@ Widget bodyChooseEdu({
                   } else {
                     if (providerChooseEdu.boolSetUserNationCert) {
                       pushNewScreen(context,
-                          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
                           screen: SelectDirection(
                             providerChooseEdu: providerChooseEdu,
                             indexEduDir: int.parse(
@@ -147,10 +149,20 @@ Widget bodyChooseEdu({
           color: MyColors.appColorWhite(),
           child: ListTile(
             title: MyWidgets.robotoFontText(
-                text: providerChooseEdu.stringForeignLangName.isEmpty
-                    ? "chooseForeignLang".tr()
-                    : providerChooseEdu.stringForeignLangName,
-                textColor: MyColors.appColorBlack()),
+                    text: providerChooseEdu.stringForeignLangName.isEmpty
+                        ? "chooseForeignLang".tr()
+                        : providerChooseEdu.stringForeignLangName,
+                    textColor: MyColors.appColorBlack())
+                .animate(
+                    onPlay: (controller) => controller.repeat(reverse: true))
+                .scaleXY(
+                    end: 1,
+                    delay: const Duration(milliseconds: 1500),
+                    curve: Curves.linear)
+                .shimmer(
+                    color: Colors.green,
+                    delay: const Duration(milliseconds: 1500))
+                .elevation(end: 0),
             onTap: () {
               sheetForeignLang(
                   contexts: context, providerChooseEdu: providerChooseEdu);

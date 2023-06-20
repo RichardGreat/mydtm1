@@ -33,8 +33,9 @@ class _MainHomeState extends State<MainHome> {
     //
     if(widget.homePageId == "1"){
       await providerMainHome.setLangUser();
-      await providerMainHome.getDateService(context: context);
+
     }
+    await providerMainHome.getDateService(context: context);
     await providerMainHome.checkVersion(context: context);
 
   }

@@ -1,6 +1,8 @@
 PODS:
   - easy_pdf_viewer (1.0.1):
     - Flutter
+  - file_saver (0.0.1):
+    - Flutter
   - Flutter (1.0.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -27,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - easy_pdf_viewer (from `.symlinks/plugins/easy_pdf_viewer/ios`)
+  - file_saver (from `.symlinks/plugins/file_saver/ios`)
   - Flutter (from `Flutter`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
@@ -44,6 +47,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   easy_pdf_viewer:
     :path: ".symlinks/plugins/easy_pdf_viewer/ios"
+  file_saver:
+    :path: ".symlinks/plugins/file_saver/ios"
   Flutter:
     :path: Flutter
   image_cropper:
@@ -63,6 +68,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   easy_pdf_viewer: 0b396564ff0e65320c2a505551fb6de05d57f512
+  file_saver: 503e386464dbe118f630e17b4c2e1190fa0cf808
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_cropper: 60c2789d1f1a78c873235d4319ca0c34a69f2d98

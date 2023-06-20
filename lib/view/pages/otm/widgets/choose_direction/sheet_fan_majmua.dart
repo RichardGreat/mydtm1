@@ -43,7 +43,7 @@ Widget tableFanMajmua({required BuildContext context,  required ProviderChooseEd
     margin: const EdgeInsets.all(4),
     child: SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-   child:     Table(
+   child:Table(
      defaultColumnWidth: const IntrinsicColumnWidth(),
      border: TableBorder.all(borderRadius: BorderRadius.circular(4),color: MyColors.appColorGrey400()),
      columnWidths: const <int, TableColumnWidth>{
@@ -62,24 +62,23 @@ Widget tableFanMajmua({required BuildContext context,  required ProviderChooseEd
      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
      children: [
        TableRow(
-
            children: [
 
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text("subjectName".tr(), style:const  TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+               child: Text("subjectName".tr(), style:  TextStyle(color: Colors.blue.shade800, fontWeight: FontWeight.bold)),
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text("ball".tr(), style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+               child: Text("ball".tr(), style:  TextStyle(color: Colors.blue.shade800,  fontWeight: FontWeight.bold)),
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text("questionCount".tr(), style:const  TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+               child: Text("questionCount".tr(), style:  TextStyle(color: Colors.blue.shade800, fontWeight: FontWeight.bold)),
              ),
              Padding(
                padding: const EdgeInsets.all(8.0),
-               child: Text("allBall".tr(), style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+               child: Text("allBall".tr(), style:  TextStyle(color: Colors.blue.shade800, fontWeight: FontWeight.bold)),
              ),
            ]),
        TableRow(
