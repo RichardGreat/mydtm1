@@ -180,7 +180,7 @@ Widget bodyCheckInformation(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                providerCheckInformation.modelCheckUserInfo.certificate
+                providerCheckInformation.modelCheckUserInfo.imtiyoz
                     ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
                     : const SizedBox.shrink(),
               ]),

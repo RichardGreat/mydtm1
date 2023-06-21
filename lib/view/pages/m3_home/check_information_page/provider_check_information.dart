@@ -7,9 +7,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/data/internet_connections/edu_choose/region/choose_region.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/qayd_varaqa.dart';
 import 'package:mydtm/data/internet_connections/person_info/check_user_info/check_user_info.dart';
 import 'package:mydtm/data/internet_connections/person_info/privilege_check/privillege_check.dart';
+import 'package:mydtm/data/model_parse/edu_choose/region.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/data/model_parse/person_info/privilege_model/privilege_model1.dart';
@@ -213,6 +215,9 @@ class ProviderCheckInformation extends ChangeNotifier
     }
   }
 
+
+
+
   bool boolAfertaButton = false;
 
   Future getButtonColor({required bool myBool}) async {
@@ -225,61 +230,7 @@ class ProviderCheckInformation extends ChangeNotifier
     required Function function,
     required ProviderCheckInformation providerCheckInformation,
   }) async {
-    return //AwesomeDialog(
-        //   context: context,
-        //   dialogType: DialogType.noHeader,
-        //   animType: AnimType.bottomSlide,
-        //   title: "requestExamTest".tr(),
-        //   body: GestureDetector(
-        //     onTap: () {
-        //       // _launchInBrowser(_url);
-        //     },
-        //     child: Column(
-        //       children: [
-        //         const SizedBox(height: 10),
-        //         Text("requestExamTest".tr(),
-        //             textAlign: TextAlign.center,
-        //             style: const TextStyle(
-        //               fontWeight: FontWeight.w600,
-        //             )),
-        //         Container(
-        //           padding: EdgeInsets.all(8),
-        //           height: MediaQuery.of(context).size.height * 0.75,
-        //           child: ListView.builder(
-        //               itemCount: 2,
-        //               itemBuilder: (context, index) {
-        //                 if (index == 0) {
-        //                   boolAfertaButton = false;
-        //                   return Text(myAfertaList[index]);
-        //                 } else {
-        //                   boolAfertaButton = true;
-        //                   notifyListeners();
-        //                   return const SizedBox.shrink();
-        //                 }
-        //               }),
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        //   titleTextStyle: TextStyle(
-        //       color: MyColors.appColorBlue1(),
-        //       fontWeight: FontWeight.bold,
-        //       fontSize: 20),
-        //   descTextStyle: TextStyle(
-        //       color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-        //   btnOkOnPress: () {
-        //     // pushNewScreen(
-        //     //   context,
-        //     //   screen: PersonInformation(funcState: func),
-        //     //   withNavBar: false,
-        //     //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        //     // );
-        //   },
-        //   btnOkText: "iAgree".tr(),
-        //   btnOkColor: boolAfertaButton
-        //       ? MyColors.appColorBlue1()
-        //       : Colors.blue.withOpacity(0.3),
-        // ).show();
+    return
         showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -289,25 +240,28 @@ class ProviderCheckInformation extends ChangeNotifier
           insetPadding: const EdgeInsets.all(10),
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
-          title: Column(children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Icon(Icons.close))
-              ],
-            ),
-            const SizedBox(height: 10),
-            Text("requestExamTest".tr(),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                )),
-          ]),
+      title:
+
+      Column(children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Icon(Icons.close))
+          ],
+        ),
+        const SizedBox(height: 10),
+        !boolGetTestRegionCheckError?
+        Text("requestExamTest".tr(),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+            )):const SizedBox.shrink(),
+      ]),
           content: SizedBox(
             height: MediaQuery.of(context).size.height * 0.75,
             child: Aferta(
@@ -408,14 +362,35 @@ class ProviderCheckInformation extends ChangeNotifier
 
   /// Qabul yopilgandan keyin blok qoyish
 /// test regionga so'rov yuborib tekshiraman region qaytmasa blok
-  Future checkQabulEnd()async{
-    try{
 
-    }catch(e){
+  NetworkEduChooseRegion   networkEduChooseRegion = NetworkEduChooseRegion();
+  bool boolGetTestRegionCheck = false;
+  bool boolGetTestRegionCheckError = false;
+  late ModelEduChooseRegion modelEduChooseRegion;
+  Future getTestRegionForCheck(Function func) async {
+    try {
+      boolGetTestRegionCheck = false;
+      boolGetTestRegionCheckError = false;
+      String data = await networkEduChooseRegion.getChooseEduRegion();
+
+      modelEduChooseRegion = ModelEduChooseRegion.fromJson(jsonDecode(data));
+      log(data);
+
+      boolGetTestRegionCheck = true;
+      boolGetTestRegionCheckError = false;
+      notifyListeners();
+      func();
+
+    } catch (e) {
+
+        boolGetTestRegionCheck = false;
+        boolGetTestRegionCheckError = true;
+        notifyListeners();
+        func();
 
     }
-
   }
+
 
 }
 
