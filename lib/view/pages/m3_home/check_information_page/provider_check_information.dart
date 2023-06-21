@@ -406,6 +406,17 @@ class ProviderCheckInformation extends ChangeNotifier
 
   }
 
+  /// Qabul yopilgandan keyin blok qoyish
+/// test regionga so'rov yuborib tekshiraman region qaytmasa blok
+  Future checkQabulEnd()async{
+    try{
+
+    }catch(e){
+
+    }
+
+  }
+
 }
 
 class ModelCheckInformationForDelete {

@@ -776,7 +776,7 @@ class ProviderGraduated extends ChangeNotifier {
       modelGraduatedInfo = ModelGraduatedInfo.fromJson(jsonDecode(data));
       checkAllInfo(dataGraduatedInfo: modelGraduatedInfo.data);
       boolAllInfoGraduated = true;
-      if(modelGraduatedInfo.data.graduatedYear.toString()!="2022"){
+      if(modelGraduatedInfo.data.graduatedYear.toString()!="2023"){
         AwesomeDialog(
             context: context,
             dialogType: DialogType.noHeader,
