@@ -15,31 +15,35 @@ serviceSheetBottomSheet(
   showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return SingleChildScrollView(
-          child: Container(
-            margin:const  EdgeInsets.all(10),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MyWidgets.robotoFontText(text: "aboutService".tr()),
-                    IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        icon: const Icon(Icons.close))
-                  ],
-                ),
-                HtmlWidget(
-                  box.get("language") == "1"
-                      ? serviceMainList.serviceText
-                      : box.get("language") == "2"
-                      ? serviceMainList.serviceNameQQ
-                      : serviceMainList.serviceNameRu
-                  ,textStyle: const TextStyle(fontSize: 18), ),
+        return SizedBox(
+          height: MediaQuery.of(context).size.height*0.6,
+          child: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height*0.55,
+              margin:const  EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      MyWidgets.robotoFontText(text: "aboutService".tr()),
+                      IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: const Icon(Icons.close))
+                    ],
+                  ),
+                  HtmlWidget(
+                    box.get("language") == "1"
+                        ? serviceMainList.serviceText
+                        : box.get("language") == "2"
+                        ? serviceMainList.serviceNameQQ
+                        : serviceMainList.serviceNameRu
+                    ,textStyle: const TextStyle(fontSize: 18), ),
 
-              ],
+                ],
+              ),
             ),
           ),
         );

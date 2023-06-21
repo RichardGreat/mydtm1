@@ -3,7 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
@@ -52,7 +51,7 @@ var box = Hive.box("online");
                             width: 80,
                             height: 80,
                             fit: BoxFit.fill,
-                            imageUrl: "${MainUrl.mainUrlsImage}${i.mobilIcon}",
+                            imageUrl: "${i.mobilIcon}",
                             progressIndicatorBuilder:
                                 (context, url, downloadProgress) =>
                             const   CupertinoActivityIndicator(),

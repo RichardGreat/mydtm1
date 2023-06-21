@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
@@ -103,7 +102,7 @@ myViewButton(
                                 width: 60,
                                 height: 50,
                                 fit: BoxFit.fill,
-                                imageUrl: "${MainUrl.mainUrlsImage}/${myList[index].mobilIcon}",
+                                imageUrl: "${myList[index].mobilIcon}",
                                 progressIndicatorBuilder:
                                     (context, url, downloadProgress) =>
                                 const   CupertinoActivityIndicator(),
