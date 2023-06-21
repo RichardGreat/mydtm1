@@ -268,5 +268,7 @@
   "cancel": "Bekor qilish",
   "noServerConnection": "Server bilan aloqa yoq.",
   "wantBackPage": "Ortga qaytmoqchimisiz?",
-  "regTime": "Ro'yxatga olingan vaqt"
+  "regTime": "Ro'yxatga olingan vaqt",
+  "viewInformation": "Ma'lumotlarni ko'rish",
+  "saveDateTime": "Ma'lumot saqlangan vaqt"
 }

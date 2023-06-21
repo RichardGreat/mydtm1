@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
@@ -12,6 +13,8 @@ class NetworkUpdate2022 {
 
     response = await dio.get("${MainUrl.mainUrls}/v1/general-edu/update",
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
-    return jsonEncode(response.data);
+
+    log( jsonEncode(response.data).toString());
+    return jsonEncode(response.data).toString();
   }
 }

@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -29,13 +30,20 @@ class ProviderAriza extends ChangeNotifier {
   bool boolQaydVaraqaDownloadNot = false;
   bool boolBitiruvchi = false;
 
+  // Load from assets
+
+// Load from URL
+  late PDFDocument doc;
+
+// Load from file
+
   Future getQaydVaraqa() async {
     try {
       boolQaydVaraqaDownload = false;
       String dataAriza = await networkArizaCheck.getCheckAriza();
       ModelArizaQadVaraqa modelArizaQadVaraqa =
           ModelArizaQadVaraqa.fromJson(jsonDecode(dataAriza));
-      log(dataAriza);
+
       DataArizaQadVaraqa dataArizaQadVaraqa = modelArizaQadVaraqa.data;
       model = dataArizaQadVaraqa.model;
       if (model.invoice == null) {
@@ -43,6 +51,7 @@ class ProviderAriza extends ChangeNotifier {
         notifyListeners();
       }
       person = dataArizaQadVaraqa.person;
+
       boolQaydVaraqaDownload = true;
       notifyListeners();
     } catch (e) {
@@ -80,7 +89,8 @@ class ProviderAriza extends ChangeNotifier {
         modelGetDownloadsData1 =
             ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
         modelGetDownloads1 = modelGetDownloadsData1.data;
-
+        doc = await PDFDocument.fromURL(modelGetDownloads1.src,
+            headers: {"X-Access-Token": box.get("token")});
         boolDataDownload1 = true;
         notifyListeners();
         // log(modelGetDownloadsData1.data.src);
@@ -173,7 +183,7 @@ class ProviderAriza extends ChangeNotifier {
             break;
           }
 
-          newPath = "$newPath/DTM";
+          newPath = "$newPath/BMBA";
           directory = Directory(newPath);
         }
         // }
@@ -214,6 +224,7 @@ class ProviderAriza extends ChangeNotifier {
 
   DateTime now = DateTime.now();
   var box = Hive.box("online");
+
   // DateTime date =  DateTime(now.year, now.month, now.day);
   // String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
   Future download({required String urls, required String fileName}) async {
@@ -224,8 +235,8 @@ class ProviderAriza extends ChangeNotifier {
     try {
       await FileSaver.instance.saveFile(
           name: "bmba_${DateFormat('yyyy-MM-dd – kk:mm').format(now)}.pdf",
-      link: LinkDetails(link: "https://docviewer.yandex.uz/view/0/?*=beVY5yz7Adpsz6lid4AHc11k0i17InVybCI6Imh0dHBzOi8vMS5lZHViaXNoLmtnL3dwLWNvbnRlbnQvdXBsb2Fkcy9zaXRlcy8xMS8yMDIyLzAxLzVrbC5hbmdsaXlza2l5LXlhenlrLWFiZHlzaGV2YS1pLWRyLjIwMTcucGRmIiwidGl0bGUiOiI1a2wuYW5nbGl5c2tpeS15YXp5ay1hYmR5c2hldmEtaS1kci4yMDE3LnBkZiIsIm5vaWZyYW1lIjp0cnVlLCJ1aWQiOiIwIiwidHMiOjE2ODcyNDMxMDA4NDYsInl1IjoiNDMxOTg3MDc5MTY4MzI5MTkxMyIsInNlcnBQYXJhbXMiOiJ0bT0xNjg3MjQzMDk0JnRsZD11eiZsYW5nPWVuJm5hbWU9NWtsLmFuZ2xpeXNraXkteWF6eWstYWJkeXNoZXZhLWktZHIuMjAxNy5wZGYmdGV4dD1ib29rK2VuZ2xpc2grNSslRDAlQkElRDAlQkIlRDAlQjAlRDElODElRDElODErcGRmJnVybD1odHRwcyUzQS8vMS5lZHViaXNoLmtnL3dwLWNvbnRlbnQvdXBsb2Fkcy9zaXRlcy8xMS8yMDIyLzAxLzVrbC5hbmdsaXlza2l5LXlhenlrLWFiZHlzaGV2YS1pLWRyLjIwMTcucGRmJmxyPTEwMzM1Jm1pbWU9cGRmJmwxMG49cnUmc2lnbj03ZGJiNGMyNjUzODljNDZmYzZmYmUyYzUyMzQxNzM4NCZrZXlubz0wIn0%3D&amp;lang=en", headers: {MainUrl.mainUrlHeader: box.get("token")})
-      );
+          link: LinkDetails(
+              link: urls, headers: {MainUrl.mainUrlHeader: box.get("token")}));
       //   {
       //     required String name,
       // Uint8List? bytes,

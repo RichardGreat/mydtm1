@@ -557,11 +557,12 @@ class ProviderGraduated extends ChangeNotifier {
     try {
       boolGraduatedYear = false;
       String dataGraduated = await networkGraduatedYear.getYear();
+      log(dataGraduated);
       ModelGraduatedYear modelGraduatedYear =
           ModelGraduatedYear.fromJson(jsonDecode(dataGraduated));
       listGraduatedYear.clear();
       for (int i = int.parse(modelGraduatedYear.data.endYear)-1;
-          i >= int.parse(modelGraduatedYear.data.beginYear)-1;
+          i >= int.parse(modelGraduatedYear.data.beginYear);
           i--) {
         listGraduatedYear.add("$i ${"year".tr()}");
       }
@@ -744,6 +745,7 @@ class ProviderGraduated extends ChangeNotifier {
       notifyListeners();
 
     }catch(e){
+      log(e.toString());
       boolAllInfoGraduated = true;
       AwesomeDialog(
           context: context,

@@ -231,11 +231,11 @@ Widget graduatedUzbek(
                                     controller.repeat(reverse: true))
                             .scaleXY(
                                 end: 1.04,
-                                delay: const Duration(milliseconds: 2500),
+                                delay: const Duration(milliseconds: 1500),
                                 curve: Curves.linear)
                             .shimmer(
-                                color: MyColors.appColorBackC4(),
-                                delay: const Duration(milliseconds: 2600))
+                                color:Colors.white,
+                                delay: const Duration(milliseconds: 2000))
                             .elevation(end:0),
                       ),
                     ],

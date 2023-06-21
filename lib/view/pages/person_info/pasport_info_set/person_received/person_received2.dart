@@ -93,12 +93,32 @@ Widget personReceived2(
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
+              margin: const EdgeInsets.all(15),
+              child: MaterialButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                minWidth: double.infinity,
+                color: MyColors.appColorBlue1(),
+                onPressed: () {
+
+                  // modelSheetPersonReceived(context: context, providerPersonInfo: providerPersonInfo, imie: providerPersonInfo.imie );
+                  providerPersonInfo.getWindow(context: context);
+                },
+                height: 50,
+                child: MyWidgets.robotoFontText(
+                    text: "continue".tr(), textColor: MyColors.appColorWhite()),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
           margin: const EdgeInsets.all(15),
               child: MaterialButton(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10)),
             minWidth: double.infinity,
-            color: MyColors.appColorBlue1(),
+            color: Colors.white,
             onPressed: () {
 
               modelSheetPersonReceived(context: context, providerPersonInfo: providerPersonInfo, imie: providerPersonInfo.imie );
@@ -106,7 +126,7 @@ Widget personReceived2(
             },
             height: 50,
             child: MyWidgets.robotoFontText(
-                text: "passportAgain".tr(), textColor: MyColors.appColorWhite()),
+                text: "passportAgain".tr(), textColor: MyColors.appColorBlue1()),
           ),
             ),
           ),

@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/view/pages/m3_home/carousel.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/serch_main.dart';
@@ -146,7 +145,7 @@ Widget bodyMainHome(
                                           filterQuality: FilterQuality.high,
                                           fit: BoxFit.fill,
                                           imageUrl:
-                                              "${MainUrl.mainUrlsImage}${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
+                                              "${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
                                           progressIndicatorBuilder: (context,
                                                   url, downloadProgress) =>
                                               const CupertinoActivityIndicator(),
