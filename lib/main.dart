@@ -9,6 +9,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'dart:async';
+import 'package:freerasp/freerasp.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 // import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
 
@@ -39,6 +40,37 @@ Future main() async {
   await Hive.initFlutter();
   await Hive.openBox("online");
   await initialization(null);
+  final config = TalsecConfig(
+    /// For Android
+    androidConfig: AndroidConfig(
+      packageName: 'www.uzbmba.uz',
+      signingCertHashes: [
+        'bNSrT49K4aceo7I8iMlohhDtRS0e7kcGeMiH4jSKYaE='
+      ],
+      supportedStores: ['some.other.store'],
+    ),
+    watcherMail: 'tojiyev.s.b@gmail.com',
+    isProd: true,
+  );
+  final callback = ThreatCallback(
+      onAppIntegrity: () => print("App integrity"),
+      onObfuscationIssues: () => print("Obfuscation issues"),
+      onDebug: () => print("Debugging"),
+      onDeviceBinding: () => print("Device binding"),
+      onDeviceID: () => print("Device ID"),
+      onHooks: () => print("Hooks"),
+      onPasscode: () => print("Passcode not set"),
+      onPrivilegedAccess: () => print("Privileged access"),
+      onSecureHardwareNotAvailable: () => print("Secure hardware not available"),
+      onSimulator: () => print("Simulator"),
+      onUnofficialStore: () => print("Unofficial store")
+  );
+
+  // Attaching listener
+  Talsec.instance.attachListener(callback);
+
+
+  await Talsec.instance.start(config);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then(
