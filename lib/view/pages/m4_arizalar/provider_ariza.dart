@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
@@ -44,9 +46,9 @@ class ProviderAriza extends ChangeNotifier {
       ModelArizaQadVaraqa modelArizaQadVaraqa =
           ModelArizaQadVaraqa.fromJson(jsonDecode(dataAriza));
 
-      DataArizaQadVaraqa dataArizaQadVaraqa = modelArizaQadVaraqa.data;
+      DataArizaQadVaraqa dataArizaQadVaraqa = modelArizaQadVaraqa.dataArizaQadVaraqa;
       model = dataArizaQadVaraqa.model;
-      if (model.invoice == null) {
+      if (model.invoice == null || model.invoice.isEm  ) {
         boolBitiruvchi = true;
         notifyListeners();
       }
