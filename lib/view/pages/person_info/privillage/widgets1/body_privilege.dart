@@ -21,7 +21,7 @@ Widget bodyPrivilege({
         const SizedBox(height: 20),
         Expanded(
           child: ListView.builder(
-            itemCount: providerPrivilege.listAddPrivilagesAll.length,
+            itemCount: providerPrivilege.listCheckPrivilege.length,
             itemBuilder: (context, index) =>
                 Container(
                     padding: const EdgeInsets.all(12),
@@ -40,9 +40,9 @@ Widget bodyPrivilege({
                       children: [
                         Text(
                           "${index + 1} "
-                              "${providerPrivilege.listAddPrivilagesAll[index]
+                              "${providerPrivilege.listCheckPrivilege[index]
                               .typeName}",
-                          maxLines: 5,
+                          maxLines: 6,
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                               color: MyColors.appColorBlack(),
@@ -74,7 +74,7 @@ Widget bodyPrivilege({
                                     fontFamily: 'Roboto-Medium'),
                               ),
                               Text(
-                                providerPrivilege.listAddPrivilagesAll[index].serNum
+                                providerPrivilege.listCheckPrivilege[index].serNum
                                     .toString(),
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
@@ -104,13 +104,13 @@ Widget bodyPrivilege({
                                       textColor: MyColors.appColorGrey600(),
                                       textSize: 14,
                                       text: providerPrivilege
-                                          .listAddPrivilagesAll[index].startDate
+                                          .listCheckPrivilege[index].startDate
                                           .toString()
                                           .length > 10 ?
-                                      providerPrivilege.listAddPrivilagesAll[index]
+                                      providerPrivilege.listCheckPrivilege[index]
                                           .startDate.substring(0, 10)
                                           .toString() :
-                                      providerPrivilege.listAddPrivilagesAll[index]
+                                      providerPrivilege.listCheckPrivilege[index]
                                           .startDate
                                           .toString()
                                   ),
@@ -120,13 +120,13 @@ Widget bodyPrivilege({
                                       textColor: MyColors.appColorGrey600(),
                                       textSize: 14,
                                       text: providerPrivilege
-                                          .listAddPrivilagesAll[index].endDate
+                                          .listCheckPrivilege[index].endDate
                                           .toString()
                                           .length > 10 ?
                                       providerPrivilege
-                                          .listAddPrivilagesAll[index].endDate.substring(0,10)
+                                          .listCheckPrivilege[index].endDate.substring(0,10)
                                           :providerPrivilege
-                                          .listAddPrivilagesAll[index].endDate
+                                          .listCheckPrivilege[index].endDate
                                           .toString()
                                   ),
                                 ],

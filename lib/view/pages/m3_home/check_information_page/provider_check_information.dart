@@ -10,11 +10,9 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/region/choose_region.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/qayd_varaqa.dart';
 import 'package:mydtm/data/internet_connections/person_info/check_user_info/check_user_info.dart';
-import 'package:mydtm/data/internet_connections/person_info/privilege_check/privillege_check.dart';
 import 'package:mydtm/data/model_parse/edu_choose/region.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
-import 'package:mydtm/data/model_parse/person_info/privilege_model/privilege_model1.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/aferta.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/certificate/certificates.dart';
@@ -163,6 +161,7 @@ class ProviderCheckInformation extends ChangeNotifier
       if (index == 0) {
         AwesomeDialog(
             context: context,
+            width: MediaQuery.of(context).size.width*0.9,
             dialogType: DialogType.noHeader,
             animType: AnimType.bottomSlide,
             body: GestureDetector(
@@ -170,6 +169,7 @@ class ProviderCheckInformation extends ChangeNotifier
                 _launchInBrowser(_url);
               },
               child: Container(
+                width: MediaQuery.of(context).size.width*0.9,
                 margin: const EdgeInsets.all(10),
                 child: Text("personalInfoAccess".tr(),
                     textAlign: TextAlign.justify,
@@ -283,29 +283,6 @@ class ProviderCheckInformation extends ChangeNotifier
     }
   }
 
-
-  NetworkPrivilege networkPrivilege = NetworkPrivilege();
-  List<DataCheckPrivilege> listCheckPrivilege = [];
-  bool boolGetDataPrivilege = false;
-  bool boolPrivilegeNot = false;
-
-  Future getPrivilege()async{
-    try{
-      boolGetDataPrivilege = false;
-      String dataPrivilege = await networkPrivilege.getPrivilege();
-      ModelCheckPrivilege modelCheckPrivilege = ModelCheckPrivilege.fromJson(jsonDecode(dataPrivilege));
-      listCheckPrivilege = modelCheckPrivilege.data;
-      boolGetDataPrivilege = true;
-      notifyListeners();
-    }catch(e){
-
-      boolPrivilegeNot = true;
-      boolGetDataPrivilege = true;
-      notifyListeners();
-      log(e.toString());
-    }
-
-  }
 
   NetworkDownloadsQaydVaraqa networkDownloadsQaydVaraqa = NetworkDownloadsQaydVaraqa();
   late ModelGetDownloads modelGetDownloadsData1;

@@ -735,11 +735,15 @@ class ProviderGraduated extends ChangeNotifier {
     try{
       boolAllInfoGraduated = false;
       notifyListeners();
+
       String dataUpdate2022 = await networkUpdate2022.getSet2022();
+      modelGraduatedInfo = ModelGraduatedInfo.fromJson(jsonDecode(dataUpdate2022));
+      checkAllInfo(dataGraduatedInfo: modelGraduatedInfo.data);
+
       modelUpdate2022 = ModelUpdate2022.fromJson(jsonDecode(dataUpdate2022));
       dataUpdate2022 = modelUpdate2022.data.message;
       if(modelUpdate2022.status.toString() =="1"){
-        getAllInfoGraduated2(context: context);
+        // getAllInfoGraduated2(context: context);
       }
       boolAllInfoGraduated = true;
       notifyListeners();
@@ -770,8 +774,9 @@ class ProviderGraduated extends ChangeNotifier {
 
   Future getAllInfoGraduated2({required BuildContext context}) async {
     try {
+
       boolAllInfoGraduated = false;
-      String data = await networkGetGraduated.getAllGraduated();
+      String data = await networkUpdate2022.getSet2022();
       log(data);
       modelGraduatedInfo = ModelGraduatedInfo.fromJson(jsonDecode(data));
       checkAllInfo(dataGraduatedInfo: modelGraduatedInfo.data);

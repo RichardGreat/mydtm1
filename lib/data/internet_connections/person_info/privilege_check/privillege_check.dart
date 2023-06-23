@@ -13,6 +13,6 @@ class NetworkPrivilege {
     response = await dio.get("${MainUrl.mainUrls}/v1/imtiyoz/get-imtiyoz",
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
 
-    return jsonEncode(response.data);
+    return jsonEncode(response.data).toString();
   }
 }

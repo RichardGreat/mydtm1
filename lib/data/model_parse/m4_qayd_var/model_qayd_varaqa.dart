@@ -23,26 +23,26 @@ class DataArizaQadVaraqa {
   Person person;
   Address address;
   Education education;
-  List<Plan> plans;
-  Dir dir;
-  List<dynamic> xarbiy;
-  List<CertNation> certNations;
-  List<ImtiyozList> imtiyozList;
-  List<FlangSertList> flangSertList;
-  InvalidList invalidList;
+  // List<Plan> plans;
+  // Dir dir;
+  // List<dynamic> xarbiy;
+  // List<CertNation> certNations;
+  // List<ImtiyozList> imtiyozList;
+  // List<FlangSertList> flangSertList;
+  // InvalidList invalidList;
 
   DataArizaQadVaraqa({
     required this.model,
     required this.person,
     required this.address,
     required this.education,
-    required this.plans,
-    required this.dir,
-    required this.xarbiy,
-    required this.certNations,
-    required this.imtiyozList,
-    required this.flangSertList,
-    required this.invalidList,
+    // required this.plans,
+    // required this.dir,
+    // required this.xarbiy,
+    // required this.certNations,
+    // required this.imtiyozList,
+    // required this.flangSertList,
+    // required this.invalidList,
   });
 
   factory DataArizaQadVaraqa.fromJson(Map<String, dynamic> json) => DataArizaQadVaraqa(
@@ -50,13 +50,13 @@ class DataArizaQadVaraqa {
     person: Person.fromJson(json["person"]),
     address: Address.fromJson(json["address"]),
     education: Education.fromJson(json["education"]),
-    plans: List<Plan>.from(json["plans"].map((x) => Plan.fromJson(x))),
-    dir: Dir.fromJson(json["dir"]),
-    xarbiy: List<dynamic>.from(json["xarbiy"].map((x) => x)),
-    certNations: List<CertNation>.from(json["cert_nations"].map((x) => CertNation.fromJson(x))),
-    imtiyozList: List<ImtiyozList>.from(json["imtiyoz_list"].map((x) => ImtiyozList.fromJson(x))),
-    flangSertList: List<FlangSertList>.from(json["flang_sert_list"].map((x) => FlangSertList.fromJson(x))),
-    invalidList: InvalidList.fromJson(json["invalid_list"]),
+    // plans: List<Plan>.from(json["plans"].map((x) => Plan.fromJson(x))),
+    // dir: Dir.fromJson(json["dir"]),
+    // xarbiy: List<dynamic>.from(json["xarbiy"].map((x) => x)),
+    // certNations: List<CertNation>.from(json["cert_nations"].map((x) => CertNation.fromJson(x))),
+    // imtiyozList: List<ImtiyozList>.from(json["imtiyoz_list"].map((x) => ImtiyozList.fromJson(x))),
+    // flangSertList: List<FlangSertList>.from(json["flang_sert_list"].map((x) => FlangSertList.fromJson(x))),
+    // invalidList: InvalidList.fromJson(json["invalid_list"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -64,13 +64,13 @@ class DataArizaQadVaraqa {
     "person": person.toJson(),
     "address": address.toJson(),
     "education": education.toJson(),
-    "plans": List<dynamic>.from(plans.map((x) => x.toJson())),
-    "dir": dir.toJson(),
-    "xarbiy": List<dynamic>.from(xarbiy.map((x) => x)),
-    "cert_nations": List<dynamic>.from(certNations.map((x) => x.toJson())),
-    "imtiyoz_list": List<dynamic>.from(imtiyozList.map((x) => x.toJson())),
-    "flang_sert_list": List<dynamic>.from(flangSertList.map((x) => x.toJson())),
-    "invalid_list": invalidList.toJson(),
+    // "plans": List<dynamic>.from(plans.map((x) => x.toJson())),
+    // "dir": dir.toJson(),
+    // "xarbiy": List<dynamic>.from(xarbiy.map((x) => x)),
+    // "cert_nations": List<dynamic>.from(certNations.map((x) => x.toJson())),
+    // "imtiyoz_list": List<dynamic>.from(imtiyozList.map((x) => x.toJson())),
+    // "flang_sert_list": List<dynamic>.from(flangSertList.map((x) => x.toJson())),
+    // "invalid_list": invalidList.toJson(),
   };
 }
 
@@ -396,13 +396,13 @@ class Model {
   bool isMaqsad;
   DateTime createdAt;
   DateTime updatedAt;
-  dynamic invoice;
+  int invoice;
   String hash;
-  dynamic status;
-  dynamic serial;
-  dynamic pay;
-  dynamic fee;
-  dynamic balance;
+  int status;
+  int serial;
+  int pay;
+  int fee;
+  String balance;
   String tregion;
   String flangName;
   String eduLangName;

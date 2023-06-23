@@ -26,7 +26,7 @@ Widget updateInfoGradueted(
                   color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
               btnCancelOnPress: () {},
               btnOkOnPress: () {
-                providerGraduated.getUpdate2022(context: context);
+                providerGraduated.getAllInfoGraduated2(context: context);
                 function();
               },
               btnCancelColor: MyColors.appColorGrey600(),

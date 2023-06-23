@@ -48,7 +48,7 @@ class ProviderAriza extends ChangeNotifier {
 
       DataArizaQadVaraqa dataArizaQadVaraqa = modelArizaQadVaraqa.dataArizaQadVaraqa;
       model = dataArizaQadVaraqa.model;
-      if (model.invoice == null || model.invoice.isEm  ) {
+      if (model.invoice == null  ) {
         boolBitiruvchi = true;
         notifyListeners();
       }

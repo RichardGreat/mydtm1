@@ -50,8 +50,8 @@ class _PrivilegeState extends State<Privilege> {
             providerPrivilege.boolGetDataPrivilege?
             Column(
               children: [
-                !providerPrivilege.boolAddInvalide ?
-                const SizedBox(height: 20):const SizedBox.shrink(),
+                // !providerPrivilege.boolAddInvalide ?
+                // const SizedBox(height: 20):const SizedBox.shrink(),
                 // !providerPrivilege.boolAddInvalide ?
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,
@@ -77,8 +77,8 @@ class _PrivilegeState extends State<Privilege> {
                 //       ),),
                 //   ],
                 // ):const SizedBox.shrink(),
-              ! providerPrivilege.boolAddInvalide ?
-                const SizedBox(height: 30):const SizedBox.shrink(),
+              // ! providerPrivilege.boolAddInvalide ?
+              //   const SizedBox(height: 30):const SizedBox.shrink(),
                 Expanded(child:  providerPrivilege.boolPrivilegeNot?
                 bodyNoPrivilege(context: context, providerPrivilege: providerPrivilege)
                     : bodyPrivilege(context: context, providerPrivilege: providerPrivilege)

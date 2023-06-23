@@ -23,79 +23,25 @@ class ProviderPrivilege extends ChangeNotifier {
   List<DataArizaQadVaraqa> listDataEnd = [];
   List<ListAddPrivilagesAll> listAddPrivilagesAll = [];
 
-  getPrivilege() async {
+  //
+  // NetworkPrivilege networkPrivilege = NetworkPrivilege();
+  // List<DataCheckPrivilege> listCheckPrivilege = [];
+  // bool boolGetDataPrivilege = false;
+  // bool boolPrivilegeNot = false;
+
+  Future getPrivilege() async {
     try {
       boolGetDataPrivilege = false;
-      String dataAriza = await networkArizaCheck.getCheckAriza();
-      ModelArizaQadVaraqa modelArizaQadVaraqa =
-          ModelArizaQadVaraqa.fromJson(jsonDecode(dataAriza));
+      String dataPrivilege = await networkPrivilege.getPrivilege();
+      log(dataPrivilege);
+      ModelCheckPrivilege modelCheckPrivilege =
+          ModelCheckPrivilege.fromJson(jsonDecode(dataPrivilege));
+      listCheckPrivilege = modelCheckPrivilege.data;
 
-      // String dataPrivilege = await networkPrivilege.getPrivilege();
-      // ModelCheckPrivilege modelCheckPrivilege =
-      //     ModelCheckPrivilege.fromJson(jsonDecode(dataPrivilege));
-
-      // log(dataPrivilege);
-      listCheckPrivilege2 = modelArizaQadVaraqa.dataArizaQadVaraqa;
-      try {
-        for (int i = 0;
-            i < modelArizaQadVaraqa.dataArizaQadVaraqa.imtiyozList.length;
-            i++) {
-          listAddPrivilagesAll.add(ListAddPrivilagesAll(
-            startDate: modelArizaQadVaraqa
-                .dataArizaQadVaraqa.imtiyozList[i].startDate
-                .toString(),
-            endDate: modelArizaQadVaraqa
-                .dataArizaQadVaraqa.imtiyozList[i].startDate
-                .toString(),
-            serNum: modelArizaQadVaraqa.dataArizaQadVaraqa.imtiyozList[i].ser
-                    .toString() +
-                modelArizaQadVaraqa.dataArizaQadVaraqa.imtiyozList[i].num
-                    .toString(),
-            typeName: modelArizaQadVaraqa.dataArizaQadVaraqa.imtiyozList[i].name
-                .toString(),
-          ));
-        }
-      } catch (e) {
-        log(e.toString());
+      if (listCheckPrivilege.isEmpty) {
+        boolPrivilegeNot = true;
+        notifyListeners();
       }
-
-      try {
-        for (int i = 0;
-            i < modelArizaQadVaraqa.dataArizaQadVaraqa.xarbiy.length;
-            i++) {
-          listAddPrivilagesAll.add(ListAddPrivilagesAll(
-            startDate: modelArizaQadVaraqa
-                .dataArizaQadVaraqa.xarbiy[i].startDate
-                .toString(),
-            endDate: modelArizaQadVaraqa.dataArizaQadVaraqa.xarbiy[i].startDate
-                .toString(),
-            serNum: modelArizaQadVaraqa.dataArizaQadVaraqa.xarbiy[i].ser
-                    .toString() +
-                modelArizaQadVaraqa.dataArizaQadVaraqa.xarbiy[i].num.toString(),
-            typeName: modelArizaQadVaraqa.dataArizaQadVaraqa.xarbiy[i].typeName
-                .toString(),
-          ));
-        }
-      } catch (e) {
-        log(e.toString());
-      }
-
-      try {
-        listAddPrivilagesAll.add(ListAddPrivilagesAll(
-          startDate: modelArizaQadVaraqa
-              .dataArizaQadVaraqa.invalidList.startDate
-              .toString(),
-          endDate: modelArizaQadVaraqa.dataArizaQadVaraqa.invalidList.startDate
-              .toString(),
-          serNum: modelArizaQadVaraqa.dataArizaQadVaraqa.invalidList.serNum
-              .toString(),
-          typeName: modelArizaQadVaraqa.dataArizaQadVaraqa.invalidList.typeName
-              .toString(),
-        ));
-      } catch (e) {
-        log(e.toString());
-      }
-
       boolGetDataPrivilege = true;
       notifyListeners();
     } catch (e) {
