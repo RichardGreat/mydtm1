@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:freerasp/freerasp.dart';
+// import 'package:freerasp/freerasp.dart';
 import 'package:hive_flutter/adapters.dart';
 // import 'package:local_auth/local_auth.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
@@ -41,37 +41,37 @@ Future main() async {
   await Hive.initFlutter();
   await Hive.openBox("online");
   await initialization(null);
-  final config = TalsecConfig(
-    /// For Android
-    androidConfig: AndroidConfig(
-      packageName: 'www.uzbmba.uz',
-      signingCertHashes: [
-        'bNSrT49K4aceo7I8iMlohhDtRS0e7kcGeMiH4jSKYaE='
-      ],
-      supportedStores: ['some.other.store'],
-    ),
-    watcherMail: 'tojiyev.s.b@gmail.com',
-    isProd: true,
-  );
-  final callback = ThreatCallback(
-      onAppIntegrity: () => print("App integrity"),
-      onObfuscationIssues: () => print("Obfuscation issues"),
-      onDebug: () => print("Debugging"),
-      onDeviceBinding: () => print("Device binding"),
-      onDeviceID: () => print("Device ID"),
-      onHooks: () => print("Hooks"),
-      onPasscode: () => print("Passcode not set"),
-      onPrivilegedAccess: () => print("Privileged access"),
-      onSecureHardwareNotAvailable: () => print("Secure hardware not available"),
-      onSimulator: () => print("Simulator"),
-      onUnofficialStore: () => print("Unofficial store")
-  );
-
-  // Attaching listener
-  Talsec.instance.attachListener(callback);
-
-
-  await Talsec.instance.start(config);
+  // final config = TalsecConfig(
+  //   /// For Android
+  //   androidConfig: AndroidConfig(
+  //     packageName: 'www.uzbmba.uz',
+  //     signingCertHashes: [
+  //       'bNSrT49K4aceo7I8iMlohhDtRS0e7kcGeMiH4jSKYaE='
+  //     ],
+  //     supportedStores: ['some.other.store'],
+  //   ),
+  //   watcherMail: 'tojiyev.s.b@gmail.com',
+  //   isProd: true,
+  // );
+  // final callback = ThreatCallback(
+  //     onAppIntegrity: () => print("App integrity"),
+  //     onObfuscationIssues: () => print("Obfuscation issues"),
+  //     onDebug: () => print("Debugging"),
+  //     onDeviceBinding: () => print("Device binding"),
+  //     onDeviceID: () => print("Device ID"),
+  //     onHooks: () => print("Hooks"),
+  //     onPasscode: () => print("Passcode not set"),
+  //     onPrivilegedAccess: () => print("Privileged access"),
+  //     onSecureHardwareNotAvailable: () => print("Secure hardware not available"),
+  //     onSimulator: () => print("Simulator"),
+  //     onUnofficialStore: () => print("Unofficial store")
+  // );
+  //
+  // // Attaching listener
+  // Talsec.instance.attachListener(callback);
+  //
+  //
+  // await Talsec.instance.start(config);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then(
