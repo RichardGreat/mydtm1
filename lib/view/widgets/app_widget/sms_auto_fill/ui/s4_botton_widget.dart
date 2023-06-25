@@ -22,6 +22,7 @@ Widget bottomUI(
           ),
         ],
       ),
+      const SizedBox(height: 25),
       providerSms.timeFormatString == "00:00" ? const SizedBox.shrink() :
       MaterialButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

@@ -102,13 +102,12 @@ class _SmsAutoFillUiState extends State<SmsAutoFillUi> {
                                         context: context,
                                         phoneNum: widget.phoneNum,
                                         providerSms: providerSms),
-                                    const SizedBox(height: 10),
+                                    const SizedBox(height: 25),
 
-                                    Expanded(
-                                        child: bottomUI(
-                                            phoneNumber: widget.phoneNum,
-                                            context: context,
-                                            providerSms: providerSms))
+                                    bottomUI(
+                                        phoneNumber: widget.phoneNum,
+                                        context: context,
+                                        providerSms: providerSms)
 
                                     // Text(providerSms.valueSignature ?? ""),
                                   ],
