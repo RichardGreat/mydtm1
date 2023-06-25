@@ -54,6 +54,7 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
                           PDFViewer(
                             document: widget.providerAriza.doc,
                             lazyLoad: false,
+
                             scrollDirection: Axis.vertical,
                             zoomSteps: 1,
                             showIndicator: false,

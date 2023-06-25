@@ -92,7 +92,14 @@ class ProviderAriza extends ChangeNotifier {
             ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
         modelGetDownloads1 = modelGetDownloadsData1.data;
         doc = await PDFDocument.fromURL(modelGetDownloads1.src,
-            headers: {"X-Access-Token": box.get("token")});
+            headers: {"X-Access-Token": box.get("token")},
+            cacheManager: CacheManager(
+              Config(
+                "customCacheKey",
+                stalePeriod: const Duration(milliseconds: 600),
+                maxNrOfCacheObjects: 1,
+              ),)
+        );
         boolDataDownload1 = true;
         notifyListeners();
         // log(modelGetDownloadsData1.data.src);

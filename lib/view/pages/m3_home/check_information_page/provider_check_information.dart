@@ -21,15 +21,13 @@ import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information
 import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+
 // import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ProviderCheckInformation extends ChangeNotifier
-{
-
-
+class ProviderCheckInformation extends ChangeNotifier {
   List<ModelCheckInformationForDelete> myList = [
     ModelCheckInformationForDelete(
       id: 1,
@@ -73,7 +71,9 @@ class ProviderCheckInformation extends ChangeNotifier
 
       boolCheckUserInfo = true;
       notifyListeners();
-    } catch (e) {throw Exception(e.toString());}
+    } catch (e) {
+      throw Exception(e.toString());
+    }
     // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
   }
 
@@ -84,12 +84,12 @@ class ProviderCheckInformation extends ChangeNotifier
       required BuildContext context,
       required ProviderCheckInformation providerCheckInformation,
       required Function func}) async {
-
     if (modelCheckUserInfo.person) {
       if (index == 0) {
         pushNewScreen(
           context,
-          screen: PersonInformation(funcState: func, idFunction: "0", windowIdPassport: "0"),
+          screen: PersonInformation(
+              funcState: func, idFunction: "0", windowIdPassport: "0"),
           withNavBar: false,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
@@ -106,7 +106,7 @@ class ProviderCheckInformation extends ChangeNotifier
           if (index == 2) {
             pushNewScreen(
               context,
-              screen: Graduated(funcState: func, windowIdGraduated: "0" ),
+              screen: Graduated(funcState: func, windowIdGraduated: "0"),
               withNavBar: false,
               pageTransitionAnimation: PageTransitionAnimation.cupertino,
             );
@@ -148,7 +148,7 @@ class ProviderCheckInformation extends ChangeNotifier
         if (index == 1) {
           pushNewScreen(
             context,
-            screen: AddressInfo(funcState: func,  addressWindowId: "0"),
+            screen: AddressInfo(funcState: func, addressWindowId: "0"),
             withNavBar: false,
             pageTransitionAnimation: PageTransitionAnimation.cupertino,
           );
@@ -161,7 +161,7 @@ class ProviderCheckInformation extends ChangeNotifier
       if (index == 0) {
         AwesomeDialog(
             context: context,
-            width: MediaQuery.of(context).size.width*0.9,
+            width: MediaQuery.of(context).size.width * 0.9,
             dialogType: DialogType.noHeader,
             animType: AnimType.bottomSlide,
             body: GestureDetector(
@@ -169,7 +169,7 @@ class ProviderCheckInformation extends ChangeNotifier
                 _launchInBrowser(_url);
               },
               child: Container(
-                width: MediaQuery.of(context).size.width*0.9,
+                width: MediaQuery.of(context).size.width * 0.9,
                 margin: const EdgeInsets.all(10),
                 child: Text("personalInfoAccess".tr(),
                     textAlign: TextAlign.justify,
@@ -189,7 +189,8 @@ class ProviderCheckInformation extends ChangeNotifier
             btnOkOnPress: () {
               pushNewScreen(
                 context,
-                screen: PersonInformation(funcState: func, idFunction: "0", windowIdPassport: "0"),
+                screen: PersonInformation(
+                    funcState: func, idFunction: "0", windowIdPassport: "0"),
                 withNavBar: false,
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
               );
@@ -215,9 +216,6 @@ class ProviderCheckInformation extends ChangeNotifier
     }
   }
 
-
-
-
   bool boolAfertaButton = false;
 
   Future getButtonColor({required bool myBool}) async {
@@ -230,8 +228,7 @@ class ProviderCheckInformation extends ChangeNotifier
     required Function function,
     required ProviderCheckInformation providerCheckInformation,
   }) async {
-    return
-        showDialog<void>(
+    return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
@@ -240,28 +237,27 @@ class ProviderCheckInformation extends ChangeNotifier
           insetPadding: const EdgeInsets.all(10),
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
-      title:
-
-      Column(children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Icon(Icons.close))
-          ],
-        ),
-        const SizedBox(height: 10),
-        !boolGetTestRegionCheckError?
-        Text("requestExamTest".tr(),
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-            )):const SizedBox.shrink(),
-      ]),
+          title: Column(children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Icon(Icons.close))
+              ],
+            ),
+            const SizedBox(height: 10),
+            !boolGetTestRegionCheckError
+                ? Text("requestExamTest".tr(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ))
+                : const SizedBox.shrink(),
+          ]),
           content: SizedBox(
             height: MediaQuery.of(context).size.height * 0.75,
             child: Aferta(
@@ -283,67 +279,78 @@ class ProviderCheckInformation extends ChangeNotifier
     }
   }
 
-
-  NetworkDownloadsQaydVaraqa networkDownloadsQaydVaraqa = NetworkDownloadsQaydVaraqa();
+  NetworkDownloadsQaydVaraqa networkDownloadsQaydVaraqa =
+      NetworkDownloadsQaydVaraqa();
   late ModelGetDownloads modelGetDownloadsData1;
   late DataGetDownloads modelGetDownloads1;
   bool boolDataDownload1 = false;
   late PDFDocument doc;
-  Future getQaydVaraqa2()async{
+
+  Future getQaydVaraqa2() async {
     try {
       boolDataDownload1 = false;
-      String dataDownloads = await networkDownloadsQaydVaraqa.getCheckDownloads();
+      String dataDownloads =
+          await networkDownloadsQaydVaraqa.getCheckDownloads();
       modelGetDownloadsData1 =
           ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
       modelGetDownloads1 = modelGetDownloadsData1.data;
-      doc = await PDFDocument.fromURL(modelGetDownloads1.src, headers: {
-        "X-Access-Token":box.get("token")
-      });
+      doc = await PDFDocument.fromURL(modelGetDownloads1.src,
+          headers: {
+            "X-Access-Token": box.get("token"),
+          },
+          cacheManager: CacheManager(
+            Config(
+              "customCacheKey",
+              stalePeriod: const Duration(milliseconds: 600),
+              maxNrOfCacheObjects: 1,
+            ),
+          ));
 
       boolDataDownload1 = true;
       notifyListeners();
       log(modelGetDownloadsData1.data.src);
-    }catch(e){
+    } catch (e) {
       modelGetDownloadsData1.status = 0;
-      log(e.toString());}
-
-  }
-  Future openFile({required String url, required String fileName})async{
-    try{
-      final file = await downloadFile(url: url, name: fileName);
-      if (file == null) return;
-
-      // OpenFile.open(file.path);
-    }catch(e){
       log(e.toString());
     }
   }
 
-  Future<File?> downloadFile({required String url, required String name})async{
+  Future openFile({required String url, required String fileName}) async {
+    try {
+      final file = await downloadFile(url: url, name: fileName);
+      if (file == null) return;
+
+      // OpenFile.open(file.path);
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<File?> downloadFile(
+      {required String url, required String name}) async {
     final appStore = await getApplicationDocumentsDirectory();
     final file = File('${appStore.path}/$name.pdf');
     final response = await Dio().get(url,
         options: Options(
           responseType: ResponseType.bytes,
           followRedirects: false,
-          receiveTimeout:const Duration(seconds: 10),
-        )
-    );
+          receiveTimeout: const Duration(seconds: 10),
+        ));
 
     final raf = file.openSync(mode: FileMode.write);
     raf.writeFromSync(response.data);
     await raf.close();
     return file;
-
   }
 
   /// Qabul yopilgandan keyin blok qoyish
-/// test regionga so'rov yuborib tekshiraman region qaytmasa blok
+  /// test regionga so'rov yuborib tekshiraman region qaytmasa blok
 
-  NetworkEduChooseRegion   networkEduChooseRegion = NetworkEduChooseRegion();
+  NetworkEduChooseRegion networkEduChooseRegion = NetworkEduChooseRegion();
   bool boolGetTestRegionCheck = false;
   bool boolGetTestRegionCheckError = false;
   late ModelEduChooseRegion modelEduChooseRegion;
+
   Future getTestRegionForCheck(Function func) async {
     try {
       boolGetTestRegionCheck = false;
@@ -357,18 +364,13 @@ class ProviderCheckInformation extends ChangeNotifier
       boolGetTestRegionCheckError = false;
       notifyListeners();
       func();
-
     } catch (e) {
-
-        boolGetTestRegionCheck = false;
-        boolGetTestRegionCheckError = true;
-        notifyListeners();
-        func();
-
+      boolGetTestRegionCheck = false;
+      boolGetTestRegionCheckError = true;
+      notifyListeners();
+      func();
     }
   }
-
-
 }
 
 class ModelCheckInformationForDelete {
