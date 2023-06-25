@@ -51,7 +51,7 @@ class ProviderChooseEdu extends ChangeNotifier {
       String dataCert = await networkNationalCert.getNationalCert();
       log(dataCert);
       ModelCheckCertificate modelCheckCertificate =
-          ModelCheckCertificate.fromJson(jsonDecode(dataCert));
+      ModelCheckCertificate.fromJson(jsonDecode(dataCert));
       listCheckCertificate = modelCheckCertificate.data;
       for (int i = 0; i < listCheckCertificate.length; i++) {
         listCertificateCheckUse.add(ModelCertificateForServer(
@@ -60,9 +60,7 @@ class ProviderChooseEdu extends ChangeNotifier {
             certBall: listCheckCertificate[i].percent.toString(),
             certName: listCheckCertificate[i].name.toString(),
             cerId: listCheckCertificate[i].id.toString(),
-            isChecked: "1"
-        )
-        );
+            isChecked: "1"));
       }
       log(jsonEncode(listCertificateCheckUse));
       boolCheckUseCertificateData = true;
@@ -78,10 +76,9 @@ class ProviderChooseEdu extends ChangeNotifier {
   Map<String, String> mapCert = {};
   bool boolSetUserNationCert = false;
 
-  Future setUserNationCert(
-      {required int indexId,
-      required String certId,
-      required int userVal}) async {
+  Future setUserNationCert({required int indexId,
+    required String certId,
+    required int userVal}) async {
     log("certId $certId");
     log("userVal.toString() $userVal");
     log("indexId $indexId");
@@ -114,19 +111,19 @@ class ProviderChooseEdu extends ChangeNotifier {
   TextEditingController textSearchRegionEduChoose = TextEditingController();
   bool boolEduChoose = false;
 
-  Future getChooseRegion(
-      {required BuildContext context,
-      required ProviderChooseEdu providerChooseEdu}) async {
+  Future getChooseRegion({required BuildContext context,
+    required ProviderChooseEdu providerChooseEdu}) async {
     boolEduChoose = false;
     String data = await networkChooseEduRegion.getChooseEduRegion();
     modelEduChooseRegion = ModelEduChooseRegion.fromJson(jsonDecode(data));
     mapModelEduChoose = modelEduChooseRegion.data;
     listEduChooseRegion.clear();
     listEduChooseRegion = mapModelEduChoose.entries
-        .map((entry) => ListModelEduChooseRegion(
-              regionId: entry.key.toString(),
-              regionName: entry.value,
-            ))
+        .map((entry) =>
+        ListModelEduChooseRegion(
+          regionId: entry.key.toString(),
+          regionName: entry.value,
+        ))
         .toList();
     listEduChooseRegionTemp.clear();
     listEduChooseRegionTemp.addAll(listEduChooseRegion);
@@ -172,20 +169,19 @@ class ProviderChooseEdu extends ChangeNotifier {
 // Choose Language test
 
   NetworkEduLangEduChoose networkEduLangEduChooseTest =
-      NetworkEduLangEduChoose();
+  NetworkEduLangEduChoose();
   late ModelLangEduChoose modelLangEduChooseTest;
   List<DataLangEduChoose> listLangEduChooseTest = [];
   List<DataLangEduChoose> listLangEduChooseTestTemp = [];
   TextEditingController textLangEduChooseTestController =
-      TextEditingController();
+  TextEditingController();
   bool boolLangEduTest = false;
 
-  Future getLangEduChooseTest(
-      {required BuildContext context,
-      required ProviderChooseEdu providerChooseEdu}) async {
+  Future getLangEduChooseTest({required BuildContext context,
+    required ProviderChooseEdu providerChooseEdu}) async {
     boolLangEduTest = false;
     String dataLangEduTest =
-        await networkEduLangEduChooseTest.getLangEduChoose();
+    await networkEduLangEduChooseTest.getLangEduChoose();
     modelLangEduChooseTest =
         ModelLangEduChoose.fromJson(jsonDecode(dataLangEduTest));
     listLangEduChooseTest.clear();
@@ -258,7 +254,6 @@ class ProviderChooseEdu extends ChangeNotifier {
   //#Bloc31
   // Maqsadli maqsadsiz
   List<String> listmaqsadli = [
-
     "targeted".tr(),
     "aimless".tr(),
   ];
@@ -266,7 +261,6 @@ class ProviderChooseEdu extends ChangeNotifier {
     "targetedText".tr(),
     "aimlessText".tr(),
   ];
-
 
   String maqsadliId = "";
   String maqsadliName = "";
@@ -397,16 +391,17 @@ class ProviderChooseEdu extends ChangeNotifier {
       String emodeData = await networkEmodeChoose.getEmodeItem(langId: langId);
       modelEmodeGet = ModelEmodeGet.fromJson(jsonDecode(emodeData));
       listEmodeChoose = modelEmodeGet.data.entries
-          .map((entry) => DataEmodeChoose(
-                id: entry.key,
-                name: entry.value,
-              ))
+          .map((entry) =>
+          DataEmodeChoose(
+            id: entry.key,
+            name: entry.value,
+          ))
           .toList();
       log(jsonEncode(listEmodeChoose));
       boolGetEmode = true;
       notifyListeners();
     } catch (e) {
-      boolGetEmode= true;
+      boolGetEmode = true;
       notifyListeners();
       AwesomeDialog(
           context: context,
@@ -416,21 +411,25 @@ class ProviderChooseEdu extends ChangeNotifier {
           title: "BMBA",
           desc: "infoNoDir".tr(),
           titleTextStyle: TextStyle(
-              color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
+              color: MyColors.appColorBlue1(),
+              fontSize: 24,
+              fontWeight: FontWeight.bold),
           descTextStyle: TextStyle(
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-          btnCancelOnPress: () {
-
-          },
+          btnCancelOnPress: () {},
           btnCancelText: "OK")
-          .show().then((value) => Navigator.of(context).pop());
+          .show()
+          .then((value) => Navigator.of(context).pop());
       log(e.toString());
     }
   }
 
   late String emodeData;
 
-  Future getEmode2({required int indexEduDir, required BuildContext context,}) async {
+  Future getEmode2({
+    required int indexEduDir,
+    required BuildContext context,
+  }) async {
     try {
       boolGetEmode = false;
       if (indexEduDir == 1) {
@@ -467,15 +466,16 @@ class ProviderChooseEdu extends ChangeNotifier {
       log(emodeData);
       modelEmodeGet = ModelEmodeGet.fromJson(jsonDecode(emodeData));
       listEmodeChoose = modelEmodeGet.data.entries
-          .map((entry) => DataEmodeChoose(
-                id: entry.key,
-                name: entry.value,
-              ))
+          .map((entry) =>
+          DataEmodeChoose(
+            id: entry.key,
+            name: entry.value,
+          ))
           .toList();
       boolGetEmode = true;
       notifyListeners();
     } catch (e) {
-      boolGetEmode= true;
+      boolGetEmode = true;
       notifyListeners();
       AwesomeDialog(
           context: context,
@@ -485,14 +485,19 @@ class ProviderChooseEdu extends ChangeNotifier {
           title: "BMBA",
           desc: "infoNoDir".tr(),
           titleTextStyle: TextStyle(
-              color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
+              color: MyColors.appColorBlue1(),
+              fontSize: 24,
+              fontWeight: FontWeight.bold),
           descTextStyle: TextStyle(
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-          btnCancelOnPress: () {
-            Navigator.of(context).pop();
-          },
-          btnCancelText: "OK")
-          .show();
+          btnCancelOnPress: () {},
+          btnCancelText: "accepted".tr())
+          .show()
+          .then(
+            (value) {
+          Navigator.of(context).pop();
+        },
+      );
       log(e.toString());
     }
   }
@@ -501,13 +506,15 @@ class ProviderChooseEdu extends ChangeNotifier {
   String eModeId = "";
   Map<String, String> mapEmode = {};
 
-  Future setEMode(
-      {required BuildContext context,
-      required ProviderChooseEdu providerChooseEdu,
-      required String name,
-      required int titleEduDirId,
-      required String id,
-      required String emodeId}) async {
+  Future setEMode({required BuildContext context,
+    required ProviderChooseEdu providerChooseEdu,
+    required String name,
+    required int titleEduDirId,
+    required String id,
+    required String emodeId}) async {
+    log("titleEduDirId");
+    log(titleEduDirId.toString());
+
     eModeName = name;
     eModeId = id;
     listTitleEduDir[titleEduDirId].emode = id;
@@ -522,7 +529,7 @@ class ProviderChooseEdu extends ChangeNotifier {
       for (var item in listTitleEduDir)
         (int.parse(item.id) + 1).toString(): item.emode
     };
-    log(jsonEncode(mapCert));
+    // log(jsonEncode(mapCert));
 
     notifyListeners();
   }
@@ -612,29 +619,52 @@ class ProviderChooseEdu extends ChangeNotifier {
     notifyListeners();
   }
 
-  Map<String, String> mapOtm = {};
+  Map<String, String> mapOtm = {
+    "1": "",
+    "2": "",
+    "3": "",
+    "4": "",
+    "5": "",
+  };
 
-  Future setOtm1(
-      {required String name,
-      required String id,
-      required BuildContext contexts,
-      required ProviderChooseEdu providerChooseEdu,
-      required int titleEduDirId}) async {
-    // listOtmNameId[0] = DataOTM(id: id, name: name);
+  Future setOtm1({required String name,
+    required String id,
+    required BuildContext contexts,
+    required ProviderChooseEdu providerChooseEdu,
+    required int titleEduDirId,
+    required String index}) async {
     listTitleEduDir[titleEduDirId].nameEdu = name;
-    listTitleEduDir[titleEduDirId].eduId = id;
-    mapOtm = {
-      for (var item in listTitleEduDir)
-        (int.parse(item.id) + 1).toString(): item.eduId
-    };
+    listTitleEduDir[titleEduDirId].eduId = id.toString();
+    log("@@@");
+    log("$titleEduDirId -> $id");
+    log("@@@");
+    // mapOtm.update( (int.parse(index) + 1).toString(), (value) => id.toString(),);
+    // mapOtm = {
+    //   for (int i = 0; i < listTitleEduDir.length; i++)
+    //     (i + 1).toString(): listTitleEduDir[i].eduId
+    // };
+    for (int i = 0; i < listTitleEduDir.length; i++) {
+      log("###");
+      if (titleEduDirId == i) {
+        mapOtm.update(
+          (i + 1).toString(), (value) => listTitleEduDir[i].eduId);
+      }
+      log("${i.toString()} - > ${listTitleEduDir[i].eduId}");
+      log("###");
+    }
+
+    // mapOtm = {
+    //   for (var item in listTitleEduDir)
+    //
+    //     (int.parse(item.id) + 1).toString(): item.eduId
+    // };
+    notifyListeners();
     sheetDIRdu(
         contexts: contexts,
-        eduId:  listTitleEduDir[titleEduDirId].eduId,
-        eduName:  listTitleEduDir[titleEduDirId].nameEdu,
+        eduId: listTitleEduDir[titleEduDirId].eduId,
+        eduName: listTitleEduDir[titleEduDirId].nameEdu,
         providerChooseEdu: providerChooseEdu,
-
         titleEduDir: titleEduDirId);
-    notifyListeners();
   }
 
   bool boolForeignLang = false;
@@ -643,16 +673,13 @@ class ProviderChooseEdu extends ChangeNotifier {
   late ModelFanMasjmua modelFanMasjmua;
   bool boolFanmajuasi = false;
 
-
-  Future setDir1(
-      {required String nameDir,
-      required String idDir,
-      required String eduId,
-      required String eduName,
-
-      required String fLang,
-      required int titleEduDirId,
-      required BuildContext context}) async {
+  Future setDir1({required String nameDir,
+    required String idDir,
+    required String eduId,
+    required String eduName,
+    required String fLang,
+    required int titleEduDirId,
+    required BuildContext context}) async {
     listTitleEduDir[titleEduDirId].dirId = idDir;
     listTitleEduDir[titleEduDirId].nameEdu = eduName;
     listTitleEduDir[titleEduDirId].dirName = nameDir;
@@ -676,13 +703,14 @@ class ProviderChooseEdu extends ChangeNotifier {
         boolCheckUseCertificateData = false;
         notifyListeners();
         String data = await networkFanMaujmua.getFanMajmua(dirId: idDir);
-        modelFanMasjmua =
-            ModelFanMasjmua.fromJson(jsonDecode(data));
+        modelFanMasjmua = ModelFanMasjmua.fromJson(jsonDecode(data));
         boolFanmajuasi = true;
         boolCheckUseCertificateData = true;
         notifyListeners();
       }
-    } catch (e) {throw Exception(e.toString());}
+    } catch (e) {
+      throw Exception(e.toString());
+    }
     Navigator.of(context).pop();
     Navigator.of(context).pop();
     Navigator.of(context).pop();
@@ -723,7 +751,7 @@ class ProviderChooseEdu extends ChangeNotifier {
     try {
       boolForeignLanguage = false;
       String dataTestLang =
-          await networkLangTest.getTestLang(langId: listTitleEduDir[0].fLangId);
+      await networkLangTest.getTestLang(langId: listTitleEduDir[0].fLangId);
       modelLangTest = ModelLangTest.fromJson(jsonDecode(dataTestLang));
       listDataForeignLang = modelLangTest.data.entries
           .map(
@@ -735,7 +763,9 @@ class ProviderChooseEdu extends ChangeNotifier {
 
       boolForeignLanguage = true;
       notifyListeners();
-    } catch (e) {throw Exception(e.toString());}
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
 
   bool boolSelectForeignLang = false;
@@ -799,7 +829,8 @@ class ProviderChooseEdu extends ChangeNotifier {
             otmId: listTitleEduDir[2].eduId,
             dirId: listTitleEduDir[titleEduDir - 1].dirId,
             isItem:
-                "${listTitleEduDir[titleEduDir - 1].dirId},${listTitleEduDir[titleEduDir - 2].dirId}",
+            "${listTitleEduDir[titleEduDir - 1]
+                .dirId},${listTitleEduDir[titleEduDir - 2].dirId}",
             isMaqsadId: maqsadliId,
             langId: langId,
             emode: eModeId);
@@ -808,7 +839,9 @@ class ProviderChooseEdu extends ChangeNotifier {
             otmId: listTitleEduDir[3].eduId,
             dirId: listTitleEduDir[titleEduDir - 1].dirId,
             isItem:
-                "${listTitleEduDir[titleEduDir - 1].dirId},${listTitleEduDir[titleEduDir - 2].dirId},${listTitleEduDir[titleEduDir - 3].dirId}",
+            "${listTitleEduDir[titleEduDir - 1]
+                .dirId},${listTitleEduDir[titleEduDir - 2]
+                .dirId},${listTitleEduDir[titleEduDir - 3].dirId}",
             isMaqsadId: maqsadliId,
             langId: langId,
             emode: eModeId);
@@ -817,7 +850,10 @@ class ProviderChooseEdu extends ChangeNotifier {
             otmId: listTitleEduDir[4].eduId,
             dirId: listTitleEduDir[titleEduDir - 1].dirId,
             isItem:
-                "${listTitleEduDir[titleEduDir - 1].dirId},${listTitleEduDir[titleEduDir - 2].dirId},${listTitleEduDir[titleEduDir - 3].dirId},${listTitleEduDir[titleEduDir - 4].dirId}",
+            "${listTitleEduDir[titleEduDir - 1]
+                .dirId},${listTitleEduDir[titleEduDir - 2]
+                .dirId},${listTitleEduDir[titleEduDir - 3]
+                .dirId},${listTitleEduDir[titleEduDir - 4].dirId}",
             isMaqsadId: maqsadliId,
             langId: langId,
             emode: eModeId);
@@ -835,20 +871,22 @@ class ProviderChooseEdu extends ChangeNotifier {
       boolDirDownload = true;
       notifyListeners();
       AwesomeDialog(
-              context: context,
-              dialogType: DialogType.noHeader,
-              animType: AnimType.bottomSlide,
+          context: context,
+          dialogType: DialogType.noHeader,
+          animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-              title: "BMBA",
-              desc: "chooseOther".tr(),
-              titleTextStyle: TextStyle(
-                  color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),
-              descTextStyle: TextStyle(
-                  color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-              btnCancelOnPress: () {
-                Navigator.of(context).pop();
-              },
-              btnCancelText: "OK")
+          title: "BMBA",
+          desc: "chooseOther".tr(),
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(),
+              fontSize: 24,
+              fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () {
+            Navigator.of(context).pop();
+          },
+          btnCancelText: "OK")
           .show();
       // Navigator.of(context).pop();
       log(e.toString());
@@ -871,11 +909,16 @@ class ProviderChooseEdu extends ChangeNotifier {
           emodeId: mapEmode,
           eduId: mapOtm,
           planId: mapDir,
-          flangId: stringForeignLangId.isEmpty ? "0" : stringForeignLangId);
+          flangId: boolForeignLang
+              ? stringForeignLangId.isEmpty
+              ? "0"
+              : stringForeignLangId
+              : "0");
       log("send server");
       log(jsonEncode(modelSendServerInfo));
       String data = await networkSendServer.sendServerAll(
           allData: jsonEncode(modelSendServerInfo));
+
       log(data);
       ModelSms2 modelSms2 = ModelSms2.fromJson(jsonDecode(data));
 
@@ -892,6 +935,32 @@ class ProviderChooseEdu extends ChangeNotifier {
               captchaValue: modelSms2.data.smsId.toString(),
               registration: "7"));
     } catch (e) {
+
+      notifyListeners();
+      AwesomeDialog(
+        context: context,
+        title: "BMBA",
+        desc: "infoFillError".tr(),
+        dismissOnTouchOutside: false,
+        dialogType: DialogType.noHeader,
+        btnCancelText: "ОК",
+        btnCancelOnPress: () {},
+      ).show().then((value) {
+
+        getDefault(titleEduDir: -1);
+        mapEmode.clear();
+        mapOtm.clear();
+        mapDir.clear();
+        stringForeignLangId = "";
+        stringForeignLangName = "";
+        mapOtm = {
+          "1":"",
+          "2":"",
+          "3":"",
+          "4":"",
+          "5":"",
+        };
+      },);
       log(e.toString());
     }
   }

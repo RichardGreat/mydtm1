@@ -41,7 +41,9 @@ class _OTMEduState extends State<OTMEdu> {
 
   Future countValue() async {
     await widget.providerChooseEdu.getOtm1(titleEduDir: widget.titleEduDirId);
-    setState(() {});
+    setState(() {
+
+    });
   }
 
   @override
@@ -151,6 +153,7 @@ class _OTMEduState extends State<OTMEdu> {
                       ),
                       onTap: () {
                         widget.providerChooseEdu.setOtm1(
+                          index: index.toString(),
                             contexts: context,
                             titleEduDirId: widget.titleEduDirId,
                             providerChooseEdu: widget.providerChooseEdu,

@@ -21,7 +21,7 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class MainPages extends StatefulWidget {
-  String homeIdMainpage = "";
+  String homeIdMainpage;
    MainPages({Key? key, required this.homeIdMainpage }) : super(key: key);
 
   @override

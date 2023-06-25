@@ -70,7 +70,8 @@ class _EnterFirst0State extends State<EnterFirst0> {
                         onTap: () {
                           box.delete("language");
                           box.put("language", "1");
-                          context.locale = const Locale("uz", "UZ");
+                          context.setLocale(const Locale('uz', 'UZ'));
+                          // context.locale = const Locale("uz", "UZ");
                           Navigator.push(
                               context,
                               CupertinoPageRoute(
@@ -95,7 +96,8 @@ class _EnterFirst0State extends State<EnterFirst0> {
                         onTap: () {
                           box.delete("language");
                           box.put("language", "2");
-                          context.locale = const Locale("kk", "KK");
+                          context.setLocale(const Locale('kk', 'KK'));
+                          // context.locale = const Locale("kk", "KK");
                           Navigator.push(
                               context,
                               CupertinoPageRoute(
@@ -120,7 +122,8 @@ class _EnterFirst0State extends State<EnterFirst0> {
                         onTap: () {
                           box.delete("language");
                           box.put("language", "3");
-                          context.locale = const Locale("ru", "RU");
+                          context.setLocale(const Locale('ru', 'RU'));
+                          // context.locale = const Locale("ru", "RU");
                           Navigator.push(
                               context,
                               CupertinoPageRoute(

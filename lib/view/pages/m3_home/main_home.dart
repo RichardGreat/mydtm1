@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/body_main_home.dart';
@@ -7,7 +9,7 @@ import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 class MainHome extends StatefulWidget {
-  String homePageId = "";
+  String homePageId;
 
    MainHome({Key? key, required this.homePageId}) : super(key: key);
 
@@ -30,6 +32,7 @@ class _MainHomeState extends State<MainHome> {
 
   Future getServiceList() async {
     Future.delayed(Duration.zero);
+    log(widget.homePageId);
     //
     if(widget.homePageId == "1"){
       await providerMainHome.setLangUser();
