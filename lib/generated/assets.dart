@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String fontsInterMedium = 'assets/fonts/Inter-Medium.ttf';
   static const String fontsRobotoMedium = 'assets/fonts/Roboto-Medium.ttf';
   static const String imagesGerb = 'assets/images/gerb.png';
   static const String imagesIconPerson = 'assets/images/icon_person.png';

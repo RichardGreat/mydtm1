@@ -33,7 +33,7 @@
   "settings": "Sazlaw",
   "advice": "advice",
   "news": "Jańalıqlar",
-  "or": "Yamasa",
+  "or": "- Yamasa -",
   "year": "jıl",
   "bYear": "Tamamlaǵan jılı",
   "document": "Hújjet seriyası hám nomeri",
@@ -269,5 +269,6 @@
   "noServerConnection": "Server menen baylanıs jaq.",
   "wantBackPage": "Artqa qaytıwchimisiz?",
   "viewInformation": "Maǵlıwmatlardı kóriw",
-  "saveDateTime": "Maǵlıwmatlar saqlanǵan waqıt"
+  "saveDateTime": "Maǵlıwmatlar saqlanǵan waqıt",
+  "chooseLang": "Til saylań"
 }

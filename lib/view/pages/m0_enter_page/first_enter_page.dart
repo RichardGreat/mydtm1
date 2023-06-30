@@ -16,7 +16,6 @@ class EnterFirst0 extends StatefulWidget {
 var box = Hive.box("online");
 
 class _EnterFirst0State extends State<EnterFirst0> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +36,8 @@ class _EnterFirst0State extends State<EnterFirst0> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image.asset("assets/images/gerb.png", height: 80, fit: BoxFit.cover),
+                        Image.asset("assets/images/gerb.png",
+                            height: 80, fit: BoxFit.cover),
                         const SizedBox(width: 10),
                         MyWidgets.robotoFontText(
                             text: "BMBA",
@@ -53,6 +53,15 @@ class _EnterFirst0State extends State<EnterFirst0> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      "chooseLang".tr(),
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Inter-Medium",
+                          fontSize: 20),
+                    ),
+                    const SizedBox(height: 15),
                     Card(
                       elevation: 5,
                       shape: RoundedRectangleBorder(
@@ -60,10 +69,9 @@ class _EnterFirst0State extends State<EnterFirst0> {
                       child: ListTile(
                         textColor: MyColors.appColorBlack(),
                         title: MyWidgets.robotoFontText(
-                            text: "O'zbekcha", textFontWeight: FontWeight.w400),
+                            text: "uz".tr(), textFontWeight: FontWeight.w400),
                         leading: const CircleAvatar(
-                          backgroundImage:
-                          AssetImage("assets/images/uz.png"),
+                          backgroundImage: AssetImage("assets/images/uz.png"),
                           radius: 15,
                         ),
                         trailing: const Icon(CupertinoIcons.chevron_forward),
@@ -75,7 +83,8 @@ class _EnterFirst0State extends State<EnterFirst0> {
                           Navigator.push(
                               context,
                               CupertinoPageRoute(
-                                builder: (context) =>  MainPages(homeIdMainpage: "1"),
+                                builder: (context) =>
+                                    MainPages(homeIdMainpage: "1"),
                               ));
                         },
                       ),
@@ -87,7 +96,8 @@ class _EnterFirst0State extends State<EnterFirst0> {
                       child: ListTile(
                         textColor: MyColors.appColorBlack(),
                         title: MyWidgets.robotoFontText(
-                            text: "Qaraqalpaqsha", textFontWeight: FontWeight.w400),
+                            text: "Qaraqalpaq tili",
+                            textFontWeight: FontWeight.w400),
                         leading: const CircleAvatar(
                           backgroundImage: AssetImage("assets/images/kk.png"),
                           radius: 15,
@@ -101,7 +111,8 @@ class _EnterFirst0State extends State<EnterFirst0> {
                           Navigator.push(
                               context,
                               CupertinoPageRoute(
-                                builder: (context) =>  MainPages(homeIdMainpage: "1"),
+                                builder: (context) =>
+                                    MainPages(homeIdMainpage: "1"),
                               ));
                         },
                       ),
@@ -113,7 +124,8 @@ class _EnterFirst0State extends State<EnterFirst0> {
                       child: ListTile(
                         textColor: MyColors.appColorBlack(),
                         title: MyWidgets.robotoFontText(
-                            text: "Русский", textFontWeight: FontWeight.w400),
+                            text: "Русский язык",
+                            textFontWeight: FontWeight.w400),
                         leading: const CircleAvatar(
                           backgroundImage: AssetImage("assets/images/ru.png"),
                           radius: 15,
@@ -127,12 +139,12 @@ class _EnterFirst0State extends State<EnterFirst0> {
                           Navigator.push(
                               context,
                               CupertinoPageRoute(
-                                builder: (context) =>  MainPages(homeIdMainpage: "1"),
+                                builder: (context) =>
+                                    MainPages(homeIdMainpage: "1"),
                               ));
                         },
                       ),
                     ),
-
                   ],
                 ),
               ),

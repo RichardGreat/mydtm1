@@ -12,6 +12,7 @@ import 'package:mydtm/view/pages/m3_home/service_page/widgets/service_page_body.
 import 'package:mydtm/view/pages/m3_home/service_page/widgets/service_page_head.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class ServicePage extends StatefulWidget {
   late ServiceMainList serviceMainList;
@@ -30,51 +31,65 @@ class _ServicePageState extends State<ServicePage> {
 
   @override
   void initState() {
-    log(widget.serviceMainList.id.toString());
     super.initState();
+    showCaseServicePage();
   }
 
   var box = Hive.box("online");
 
-  // getDataCheckWork() async {
-  //   if (box
-  //       .get("token")
-  //       .toString()
-  //       .length > 30) {
-  //     if ((int.parse(widget.serviceMainList.id.toString()) >= 1 &&
-  //         int.parse(widget.serviceMainList.id.toString()) <= 10) ||
-  //         int.parse(widget.serviceMainList.id.toString()) == 64) {
-  //       providerServicePage.getCertificateIfHas(
-  //           natCertIds: widget.serviceMainList.id.toString());
-  //     }
-  //   }
-  // }
+  final GlobalKey oneServicePageGlobalKey = GlobalKey();
+  final GlobalKey twoServicePageGlobalKey = GlobalKey();
+  final GlobalKey threeServicePageGlobalKey = GlobalKey();
+
+  Future showCaseServicePage() async {
+    try {
+      box.get("token").toString().length > 30
+          ? {
+              if (box.get("showCaseServicePage").toString() != "1")
+                {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    ShowCaseWidget.of(context).startShowCase([
+                      oneServicePageGlobalKey,
+                      twoServicePageGlobalKey,
+                      threeServicePageGlobalKey
+                    ]);
+                  })
+                },
+              box.put("showCaseServicePage", "1"),
+            }
+          : {};
+    } catch (e) {
+      log(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => providerServicePage,
       child: Consumer<ProviderServicePage>(
-        builder: (context, value, child) =>
-            Scaffold(
-                backgroundColor: MyColors.appColorGrey100(),
-                appBar: appBarService(context: context),
-                body: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      servicePageHead(
-                          context: context,
-                          providerServicePage: providerServicePage,
-                          serviceMainList: widget.serviceMainList),
-                      const SizedBox(height: 20),
-                      servicePageBody(
-                          serviceMainList: widget.serviceMainList,
-                          context: context,
-                          providerServicePage: providerServicePage)
-                    ],
-                  ),
-                )),
+        builder: (context, value, child) => Scaffold(
+            backgroundColor: MyColors.appColorGrey100(),
+            appBar: appBarService(context: context),
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  servicePageHead(
+                      oneServicePageGlobal: oneServicePageGlobalKey,
+                      context: context,
+                      providerServicePage: providerServicePage,
+                      serviceMainList: widget.serviceMainList),
+                  const SizedBox(height: 20),
+                  servicePageBody(
+                      twoServicePageGlobalKey: twoServicePageGlobalKey,
+                      threeServicePageGlobalKey: threeServicePageGlobalKey,
+                      serviceMainList: widget.serviceMainList,
+                      context: context,
+                      providerServicePage: providerServicePage)
+                ],
+              ),
+            )),
       ),
     );
   }

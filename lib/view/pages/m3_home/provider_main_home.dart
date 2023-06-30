@@ -18,6 +18,7 @@ import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/pages/update_page/upadate_must.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:showcaseview/showcaseview.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProviderMainHome extends ChangeNotifier {
@@ -31,7 +32,7 @@ class ProviderMainHome extends ChangeNotifier {
   List<ServiceMainList> listDataServiceListTemp2 = [];
   var box = Hive.box("online");
   bool boolParseData = false;
-  bool boolErrorHandle  = false;
+  bool boolErrorHandle = false;
 
   MyColors myColors = MyColors();
   late NetworkServiceList networkServiceList = NetworkServiceList();
@@ -54,7 +55,6 @@ class ProviderMainHome extends ChangeNotifier {
       if (box.get("updateVersion").toString() !=
           modelCheckMobileVersion.data.version.toString()) {
         if (modelCheckMobileVersion.data.status.toString() == "1") {
-
         } else if (modelCheckMobileVersion.data.status.toString() == "2") {
           AwesomeDialog(
                   context: context,
@@ -99,28 +99,28 @@ class ProviderMainHome extends ChangeNotifier {
       boolParseData = true;
       boolErrorHandle = true;
       AwesomeDialog(
-          context: context,
-          dialogType: DialogType.noHeader,
-          animType: AnimType.bottomSlide,
-          title: "BMBA",
-          dismissOnTouchOutside: false,
-          desc: "noServerConnection".tr(),
-          titleTextStyle: TextStyle(
-              color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
-          descTextStyle: TextStyle(
-              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-          btnCancelOnPress: () {
-            // getDateService(context: context);
-            if (Platform.isIOS) {
-              // getDateService(context: context);
-              exit(0);
-            } else {
-              // getDateService(context: context);
-              SystemNavigator.pop();
-            }
-            Navigator.of(context).pop();
-          },
-          btnCancelText: "OK")
+              context: context,
+              dialogType: DialogType.noHeader,
+              animType: AnimType.bottomSlide,
+              title: "BMBA",
+              dismissOnTouchOutside: false,
+              desc: "noServerConnection".tr(),
+              titleTextStyle: TextStyle(
+                  color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(
+                  color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+              btnCancelOnPress: () {
+                // getDateService(context: context);
+                if (Platform.isIOS) {
+                  // getDateService(context: context);
+                  exit(0);
+                } else {
+                  // getDateService(context: context);
+                  SystemNavigator.pop();
+                }
+                Navigator.of(context).pop();
+              },
+              btnCancelText: "OK")
           .show();
       notifyListeners();
     }
@@ -132,7 +132,9 @@ class ProviderMainHome extends ChangeNotifier {
   Future openGooglePlayMarket() async {
     try {
       if (!await launchUrl(_url)) throw 'Could not launch $_url';
-    } catch (e) {throw Exception(e.toString());}
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
 
   Future setLangUser() async {
@@ -232,8 +234,12 @@ class ProviderMainHome extends ChangeNotifier {
       required ServiceMainList serviceMainList}) async {
     pushNewScreen(
       context,
-      screen: ServicePage(
-        serviceMainList: serviceMainList,
+      screen: ShowCaseWidget(
+        builder: Builder(
+          builder: (context) => ServicePage(
+            serviceMainList: serviceMainList,
+          ),
+        ),
       ),
       withNavBar: false,
       pageTransitionAnimation: PageTransitionAnimation.cupertino,

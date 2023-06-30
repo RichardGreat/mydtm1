@@ -1,4 +1,3 @@
-
 // ignore_for_file: must_be_immutable
 
 import 'dart:io';
@@ -11,34 +10,36 @@ import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/main.dart';
 import 'package:mydtm/view/pages/m3_home/main_home.dart';
-import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
-// import 'package:mydtm/view/pages/m3_home/main_home.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
 import 'package:mydtm/view/pages/m6_profile/main_profile.dart';
-import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class MainPages extends StatefulWidget {
   String homeIdMainpage;
-   MainPages({Key? key, required this.homeIdMainpage }) : super(key: key);
+
+  MainPages({Key? key, required this.homeIdMainpage}) : super(key: key);
 
   @override
   State<MainPages> createState() => _MainPagesState();
 }
 
 class _MainPagesState extends State<MainPages> {
-
-
   Future getBoshFunc() async {
     // await widget.providerCheckInformation.getQaydVaraqa2();
     setState(() {});
   }
 
   List<Widget> myPages() => [
-    MainHome(homePageId: widget.homeIdMainpage),
-    // ChooseEdu(funcState:getBoshFunc),
+        ShowCaseWidget(
+          builder: Builder(
+            builder: (context) => MainHome(homePageId: widget.homeIdMainpage),
+          ),
+        ),
+
+        // ChooseEdu(funcState:getBoshFunc),
         // MainMyStatement(numberParam: "0"),
         const MainMessages(),
         MainProfile(myFunction: getFunction),
@@ -59,7 +60,6 @@ class _MainPagesState extends State<MainPages> {
       box.delete("updateVersion");
       box.put("updateVersion", "1005");
     } catch (e) {
-
       throw Exception("Error update");
     }
   }
@@ -73,7 +73,6 @@ class _MainPagesState extends State<MainPages> {
   }
 
   Future screenLock123() async {
-
     await Future.delayed(const Duration(milliseconds: 10)).then((value) {
       if (box.get("langLock").toString().trim() == "1") {
         box.delete("langLock");
@@ -159,14 +158,14 @@ class _MainPagesState extends State<MainPages> {
                             //         btnCancelText: "OK")
                             //     .show();
                           },
-                          child:  Text("exet".tr())),
+                          child: Text("exet".tr())),
                       const SizedBox(width: 20),
                     ],
                   ),
                   // customizedButtonChild: const Icon(
                   //   Icons.fingerprint,
                   // ),
-                  title:  Text("pinPassword".tr()),
+                  title: Text("pinPassword".tr()),
                   config: const ScreenLockConfig(
                     backgroundColor: Colors.black,
                   ),
@@ -183,6 +182,7 @@ class _MainPagesState extends State<MainPages> {
       }
     });
   }
+
   //
   // final LocalAuthentication _auth = LocalAuthentication();
   //

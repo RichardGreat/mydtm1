@@ -9,6 +9,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 myViewButton(
     {required BuildContext context,
@@ -36,9 +37,9 @@ myViewButton(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width*0.5,
+                        width: MediaQuery.of(context).size.width * 0.5,
                         child: Text(
-                  "services".tr(),
+                          "services".tr(),
                           style: TextStyle(
                               color: MyColors.appColorBlack(),
                               fontSize: 24,
@@ -71,9 +72,20 @@ myViewButton(
 
                           pushNewScreen(
                             context,
-                            screen:  ServicePage(serviceMainList: myList[index]),
-                            withNavBar: true, // OPTIONAL VALUE. True by default.
-                            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                            screen: ShowCaseWidget(
+                              builder: Builder(
+                                  builder: (context) => ShowCaseWidget(
+                                        builder: Builder(
+                                          builder: (context) => ServicePage(
+                                              serviceMainList: myList[index]),
+                                        ),
+                                      )),
+                            ),
+
+                            withNavBar: true,
+                            // OPTIONAL VALUE. True by default.
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
                           );
 
                           // Navigator.push(
@@ -87,37 +99,38 @@ myViewButton(
                           //     ));
                         },
                         child: Container(
-
                           margin: const EdgeInsets.only(
                               left: 10, right: 10, top: 2, bottom: 2),
                           padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
                           decoration: BoxDecoration(
                               color: MyColors.appColorWhite(),
-                              boxShadow: [BoxShadow(color: MyColors.appColorGrey600(), blurRadius: 1, spreadRadius: 1)],
+                              boxShadow: [
+                                BoxShadow(
+                                    color: MyColors.appColorGrey600(),
+                                    blurRadius: 1,
+                                    spreadRadius: 1)
+                              ],
                               borderRadius: BorderRadius.circular(10)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               CachedNetworkImage(
-                                width: 60,
-                                height: 50,
-                                fit: BoxFit.fill,
-                                imageUrl: "${myList[index].mobilIcon}",
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) =>
-                                const   CupertinoActivityIndicator(),
-                                errorWidget: (context, url, error) =>
-                                Image.asset("assets/images/uzbmb.png")
-                              ),
-
+                                  width: 60,
+                                  height: 50,
+                                  fit: BoxFit.fill,
+                                  imageUrl: "${myList[index].mobilIcon}",
+                                  progressIndicatorBuilder:
+                                      (context, url, downloadProgress) =>
+                                          const CupertinoActivityIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset("assets/images/uzbmb.png")),
                               SizedBox(
                                 child: Text(
                                   box.get("language") == "1"
-                                      ?   myList[index].serviceName
+                                      ? myList[index].serviceName
                                       : box.get("language") == "2"
-                                      ?   myList[index].serviceNameQQ
-                                      :   myList[index].serviceNameRu,
-
+                                          ? myList[index].serviceNameQQ
+                                          : myList[index].serviceNameRu,
                                   textAlign: TextAlign.center,
                                   maxLines: 3,
                                   softWrap: true,

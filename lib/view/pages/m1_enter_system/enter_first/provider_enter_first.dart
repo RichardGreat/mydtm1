@@ -2,8 +2,11 @@
 
 import 'dart:convert';
 import 'dart:developer';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/authorize.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_captcha.dart';
@@ -71,14 +74,16 @@ class ProviderEnterFirst extends ChangeNotifier {
 
   Future getCaptcha() async {
     try {
-      box.get("clothe5Min").toString() == "1"?mainNtp():
-      box.get("clothe5Min").toString() == "2"?mainNtp():
-      {
-        boolGetCaptcha = false,
-        modelParseCaptcha = await NetworkGetCaptcha.getCaptcha(),
-        boolGetCaptcha = true,
-        notifyListeners(),
-      };
+      box.get("clothe5Min").toString() == "1"
+          ? mainNtp()
+          : box.get("clothe5Min").toString() == "2"
+              ? mainNtp()
+              : {
+                  boolGetCaptcha = false,
+                  modelParseCaptcha = await NetworkGetCaptcha.getCaptcha(),
+                  boolGetCaptcha = true,
+                  notifyListeners(),
+                };
     } catch (e) {
       /// error
     }
@@ -106,7 +111,7 @@ class ProviderEnterFirst extends ChangeNotifier {
       "captcha_val": textCaptchaEditingController.text.trim(),
       "app_id": "1"
     };
-    if(box.get("clothe5Min") == "1"){
+    if (box.get("clothe5Min") == "1") {
       mainNtp();
     }
 
@@ -129,23 +134,78 @@ class ProviderEnterFirst extends ChangeNotifier {
         box.put("phoneNumber", textAuthLogin.text);
         box.delete("langLock");
         box.put("langLock", "1");
+
         ///
         box.put("clothe5Min", "0");
         box.put("errorTry", "0");
-        Navigator.pushAndRemoveUntil(
-            context,
-            CupertinoPageRoute(
-              builder: (context) =>  MainPages(homeIdMainpage: "1"),
-            ),
-            (route) => false);
       }
+      AwesomeDialog(
+          context: context,
+          titleTextStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.blueAccent,
+          ),
+          dismissOnTouchOutside: false,
+          dismissOnBackKeyPress: false,
+          dialogType: DialogType.noHeader,
+          body: SizedBox(
+            height: 180,
+            child: Column(
+              children: [
+                Text(
+                  "BMBA",
+                  style: TextStyle(
+                      color: Colors.blue.shade800,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24),
+                ),
+                const SizedBox(height: 20),
+                Center(
+                  child: const Icon(
+                    Icons.check_circle,
+                    color: Colors.blueAccent,
+                    size: 82,
+                  )  .animate(
+                      onPlay: (controller) => controller
+                          .repeat(reverse: true))
+                      .scaleXY(
+                      end: 2.4,
+                      delay: const Duration(
+                          milliseconds: 600),
+                      curve: Curves.easeInOutCirc)
+                      .shimmer(
+                      color:
+                      Colors.lightBlue,
+                      delay: const Duration(
+                          milliseconds: 600))
+                      .elevation(end: 0),
+                ),
+              ],
+            ),
+          )).show().then(
+            (value) {
+          Navigator.pushAndRemoveUntil(
+              context,
+              CupertinoPageRoute(
+                builder: (context) => MainPages(homeIdMainpage: "1"),
+              ),
+                  (route) => false);
+        },
+      );
+      await  Future.delayed(const Duration(milliseconds: 900)).then(
+            (value) {
+      Navigator.of(context).pop();
+        },
+      );
+
       boolAuthorization = false;
       modelAuthorizationParse =
           ModelAuthorizationParse.fromJson(jsonDecode(dataData));
 
+
+
       notifyListeners();
     } catch (e) {
-
       getCaptcha();
       if (box.get("errorTry") == null || box.get("errorTry") == "0") {
         box.put("errorTry", "1");
@@ -201,11 +261,12 @@ class ProviderEnterFirst extends ChangeNotifier {
   final formKeyChangePasswords = GlobalKey<FormState>();
   NetworkChangePassword networkChangePassword = NetworkChangePassword();
   late String dataNetChangePhoneNumber;
-  Future getNewPassport(
-      {required BuildContext context,
-      required String phoneNumber,
-      required String captchaVal,
-      }) async {
+
+  Future getNewPassport({
+    required BuildContext context,
+    required String phoneNumber,
+    required String captchaVal,
+  }) async {
     Map<String, dynamic> mapForNewPassword = {
       "username": phoneNumber,
       "captcha_key": modelParseCaptcha.data.captchaKey.toString(),
@@ -216,21 +277,22 @@ class ProviderEnterFirst extends ChangeNotifier {
       log("captche key 2 si");
       log(jsonEncode(mapForNewPassword).toString());
       log("mapp pasti 3 si");
-      dataNetChangePhoneNumber = await networkChangePassword.getChangePhoneNumber(
-          mapChangePassword: mapForNewPassword);
+      dataNetChangePhoneNumber = await networkChangePassword
+          .getChangePhoneNumber(mapChangePassword: mapForNewPassword);
       ModelResetPassSms modelResetPassSms =
           ModelResetPassSms.fromJson(jsonDecode(dataNetChangePhoneNumber));
       textCaptchaEditingController.clear();
       getCaptcha();
-      modelResetPassSms.status == 1?
-      pushNewScreen(context,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          screen: SmsAutoFillUi(
-              phoneNum: phoneNumber,
-              password: "",
-              captchaKey: modelResetPassSms.data.smsId.toString(),
-              captchaValue: modelResetPassSms.data.endDate.toString(),
-              registration: "2")):{};
+      modelResetPassSms.status == 1
+          ? pushNewScreen(context,
+              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              screen: SmsAutoFillUi(
+                  phoneNum: phoneNumber,
+                  password: "",
+                  captchaKey: modelResetPassSms.data.smsId.toString(),
+                  captchaValue: modelResetPassSms.data.endDate.toString(),
+                  registration: "2"))
+          : {};
       notifyListeners();
     } catch (e) {
       log(e.toString());
@@ -238,7 +300,8 @@ class ProviderEnterFirst extends ChangeNotifier {
         textCaptchaEditingController.clear();
 
         ModelRegistrationCaptchaError modelRegistrationCaptchaError =
-            ModelRegistrationCaptchaError.fromJson(jsonDecode(dataNetChangePhoneNumber));
+            ModelRegistrationCaptchaError.fromJson(
+                jsonDecode(dataNetChangePhoneNumber));
         MyWidgets.awesomeDialogInfo(
             context: context, valueText: modelRegistrationCaptchaError.errors);
         notifyListeners();
@@ -261,11 +324,9 @@ class ProviderEnterFirst extends ChangeNotifier {
       currentTimeHour = myTime.hour;
       currentTimeMinute = myTime.minute;
 
-
-
-      if(box.get("clothe5Min") == "1") {
-         box.put("timeHour", myTime.hour.toString());
-         box.put("timeMinute", myTime.minute.toString());
+      if (box.get("clothe5Min") == "1") {
+        box.put("timeHour", myTime.hour.toString());
+        box.put("timeMinute", myTime.minute.toString());
       }
 
       log(getTimeDifferance().toString());
@@ -283,11 +344,10 @@ class ProviderEnterFirst extends ChangeNotifier {
       if (getTimeDifferance() >= 5) {
         box.put("clothe5Min", "0");
         box.put("errorTry", "0");
-     boolGetCaptcha = false;
-    modelParseCaptcha = await NetworkGetCaptcha.getCaptcha();
-    boolGetCaptcha = true;
-    notifyListeners();
-
+        boolGetCaptcha = false;
+        modelParseCaptcha = await NetworkGetCaptcha.getCaptcha();
+        boolGetCaptcha = true;
+        notifyListeners();
       } else {
         box.put("clothe5Min", "2");
       }
@@ -298,9 +358,12 @@ class ProviderEnterFirst extends ChangeNotifier {
   }
 
   int getTimeDifferance() {
-    return currentTimeHour - int.parse(box.get("timeHour")??"0".toString()) == 0
-        ? currentTimeMinute - int.parse(box.get("timeMinute")??"0".toString())
-        : (currentTimeHour - int.parse(box.get("timeHour")??"0".toString())) * 60 +
-            int.parse(box.get("timeMinute")??"0".toString()) - currentTimeMinute;
+    return currentTimeHour - int.parse(box.get("timeHour") ?? "0".toString()) ==
+            0
+        ? currentTimeMinute - int.parse(box.get("timeMinute") ?? "0".toString())
+        : (currentTimeHour - int.parse(box.get("timeHour") ?? "0".toString())) *
+                60 +
+            int.parse(box.get("timeMinute") ?? "0".toString()) -
+            currentTimeMinute;
   }
 }

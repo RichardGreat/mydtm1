@@ -33,7 +33,7 @@
   "settings": "Настройка",
   "advice": "#advice",
   "news": "Новости",
-  "or": "Или",
+  "or": "- Или -",
   "year": "г.",
   "bYear":"Год окончания",
   "document": "Серия и номер документа",
@@ -268,5 +268,6 @@
   "noServerConnection": "Нет связи с сервером.",
   "wantBackPage": "Вы хотите вернуться назад?",
   "viewInformation": "Просмотр данных",
-  "saveDateTime": "Время сохранения данных"
+  "saveDateTime": "Время сохранения данных",
+  "chooseLang": "Выберите язык"
 }
