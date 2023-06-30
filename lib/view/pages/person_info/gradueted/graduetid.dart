@@ -17,6 +17,7 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class Graduated extends StatefulWidget {
   Function funcState;
@@ -42,7 +43,7 @@ class _GraduatedState extends State<Graduated> {
   }
 
   Future getDataGradueted() async {
-     providerGraduated.getAllInfoGraduated(context: context);
+    providerGraduated.getAllInfoGraduated(context: context);
   }
 
   void getUpdate2022() {
@@ -60,14 +61,18 @@ class _GraduatedState extends State<Graduated> {
             if (widget.windowIdGraduated == "0") {
               widget.funcState();
 
-              pushNewScreen(context,
-                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  screen: CheckInformation(
-                      serviceName: box.get("categoryName").toString()));
+              pushNewScreen(
+                context,
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                screen: ShowCaseWidget(
+                  builder: Builder(
+                      builder: (context) => CheckInformation(
+                          serviceName: box.get("categoryName").toString())),
+                ),
+              );
             } else if (widget.windowIdGraduated == "1") {
               Navigator.of(context).pop();
-            }
-            else if (widget.windowIdGraduated == "2") {
+            } else if (widget.windowIdGraduated == "2") {
               Navigator.of(context).pop();
             }
             return true;
@@ -319,13 +324,12 @@ class _GraduatedState extends State<Graduated> {
                                     color: MyColors.appColorBlue1(),
                                     width: 1.5,
                                   ),
-
                                 ),
 
                                 // focusedBorder: UnderlineInputBorder(
                                 //   borderSide: BorderSide(color: MyColors.appColorBackC4()),
                                 // ),
-                              errorMaxLines: 2,
+                                errorMaxLines: 2,
                               ),
                               validator: (value3) {
                                 if (value3!.isEmpty || value3.length < 6) {
@@ -357,16 +361,17 @@ class _GraduatedState extends State<Graduated> {
                                 ? const SizedBox.shrink()
                                 : const SizedBox(height: 20),
 
-                            widget.windowIdGraduated !="2"?
-                            providerGraduated
-                                        .modelGraduatedInfo.data.graduatedYear
-                                        .toString() ==
-                                    "2023"
-                                ? const SizedBox.shrink()
-                                : updateInfoGradueted(
-                                    context: context,
-                                    function: getUpdate2022,
-                                    providerGraduated: providerGraduated):const SizedBox.shrink(),
+                            widget.windowIdGraduated != "2"
+                                ? providerGraduated.modelGraduatedInfo.data
+                                            .graduatedYear
+                                            .toString() ==
+                                        "2023"
+                                    ? const SizedBox.shrink()
+                                    : updateInfoGradueted(
+                                        context: context,
+                                        function: getUpdate2022,
+                                        providerGraduated: providerGraduated)
+                                : const SizedBox.shrink(),
                           ],
                         ),
                       ),

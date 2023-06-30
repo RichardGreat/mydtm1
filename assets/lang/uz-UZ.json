@@ -271,11 +271,11 @@
   "viewInformation": "Ma'lumotlarni ko'rish",
   "saveDateTime": "Ma'lumot saqlangan vaqt",
   "chooseLang": "Til tanlang",
-
   "welcome": "BMBA mobil ilovasiga xush kelibsiz",
   "please": "Iltimos",
   "fillSigInOrSigUp": "Xizmatdan foydalanishingiz uchun ro'yxatdan o'ting yoki mavjud login parolingiz orqali kiring",
   "enterLogPassword": "Login, parol orqali kirish",
   "enterRegistration": "Ro'yxatdan o'tish",
-  "regEducation": "Oliy taʼlim muassasasiga hujjat topshirish"
+  "regEducation": "Oliy taʼlim muassasasiga hujjat topshirish",
+  "viewAlls": "To'liq tanishing"
 }

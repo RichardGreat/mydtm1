@@ -88,7 +88,9 @@ class _AfertaState extends State<Aferta> {
                 color: widget.providerCheckInformation.boolAfertaButton
                     ? MyColors.appColorBlue1()
                     : Colors.blue.withOpacity(0.3),
-                child: Text("afertaAccept".tr(),
+                child: Text(
+                    !widget.providerCheckInformation.boolAfertaButton?"viewAlls".tr():
+                    "afertaAccept".tr(),
                     style: TextStyle(color: MyColors.appColorWhite())),
                 onPressed: () {
                   widget.providerCheckInformation.boolAfertaButton

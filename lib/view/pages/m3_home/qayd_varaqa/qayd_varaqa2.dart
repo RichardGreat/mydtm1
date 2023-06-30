@@ -52,7 +52,7 @@ class _QaydVaraqaEditState extends State<QaydVaraqaEdit> {
               child: Column(children: [
                 // SizedBox(
                 SizedBox(
-                  height: MediaQuery.of(context).size.height*0.75,
+                  height: MediaQuery.of(context).size.height*0.72,
                   child: PDFViewer(
                     document: widget.providerCheckInformation.doc,
                     lazyLoad: false,

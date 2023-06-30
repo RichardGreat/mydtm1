@@ -7,6 +7,7 @@ import 'package:mydtm/view/pages/person_info/privillage/provider_privilege.dart'
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 Widget bodyPrivilege({
   required BuildContext context,
@@ -22,44 +23,40 @@ Widget bodyPrivilege({
         Expanded(
           child: ListView.builder(
             itemCount: providerPrivilege.listCheckPrivilege.length,
-            itemBuilder: (context, index) =>
-                Container(
-                    padding: const EdgeInsets.all(12),
-                    margin: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: MyColors.appColorWhite(),
-                        boxShadow: [
-                          BoxShadow(
-                              color: MyColors.appColorGrey400(),
-                              blurRadius: 0.5,
-                              spreadRadius: 0.5)
-                        ]),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "${index + 1} "
-                              "${providerPrivilege.listCheckPrivilege[index]
-                              .typeName}",
-                          maxLines: 6,
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                              color: MyColors.appColorBlack(),
-                              fontSize: 17,
-                              fontWeight: FontWeight.normal,
-                              fontFamily: 'Roboto-Medium'),
-                        ),
-                        const Divider(),
-
-
+            itemBuilder: (context, index) => Container(
+                padding: const EdgeInsets.all(12),
+                margin: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: MyColors.appColorWhite(),
+                    boxShadow: [
+                      BoxShadow(
+                          color: MyColors.appColorGrey400(),
+                          blurRadius: 0.5,
+                          spreadRadius: 0.5)
+                    ]),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${index + 1} "
+                      "${providerPrivilege.listCheckPrivilege[index].typeName}",
+                      maxLines: 6,
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                          color: MyColors.appColorBlack(),
+                          fontSize: 17,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: 'Roboto-Medium'),
+                    ),
+                    const Divider(),
 
                     SizedBox(
-                      width: MediaQuery.of(context).size.width*0.9,
+                      width: MediaQuery.of(context).size.width * 0.9,
                       child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
+                        scrollDirection: Axis.horizontal,
                         child: SizedBox(
-                          width: MediaQuery.of(context).size.width*0.85,
+                          width: MediaQuery.of(context).size.width * 0.85,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -74,7 +71,8 @@ Widget bodyPrivilege({
                                     fontFamily: 'Roboto-Medium'),
                               ),
                               Text(
-                                providerPrivilege.listCheckPrivilege[index].serNum
+                                providerPrivilege
+                                    .listCheckPrivilege[index].serNum
                                     .toString(),
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
@@ -90,115 +88,118 @@ Widget bodyPrivilege({
                       ),
                     ),
 
-                        const Divider(),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width*0.9,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width*0.85,
-                              child:     Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  MyWidgets.robotoFontText(
-                                      textColor: MyColors.appColorGrey600(),
-                                      textSize: 14,
-                                      text: providerPrivilege
+                    const Divider(),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.85,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              MyWidgets.robotoFontText(
+                                  textColor: MyColors.appColorGrey600(),
+                                  textSize: 14,
+                                  text: providerPrivilege
+                                              .listCheckPrivilege[index]
+                                              .startDate
+                                              .toString()
+                                              .length >
+                                          10
+                                      ? providerPrivilege
                                           .listCheckPrivilege[index].startDate
+                                          .substring(0, 10)
                                           .toString()
-                                          .length > 10 ?
-                                      providerPrivilege.listCheckPrivilege[index]
-                                          .startDate.substring(0, 10)
-                                          .toString() :
-                                      providerPrivilege.listCheckPrivilege[index]
-                                          .startDate
-                                          .toString()
-                                  ),
-                                  Icon(Icons.arrow_forward_rounded,
-                                      size: 14, color: MyColors.appColorGrey600()),
-                                  MyWidgets.robotoFontText(
-                                      textColor: MyColors.appColorGrey600(),
-                                      textSize: 14,
-                                      text: providerPrivilege
+                                      : providerPrivilege
+                                          .listCheckPrivilege[index].startDate
+                                          .toString()),
+                              Icon(Icons.arrow_forward_rounded,
+                                  size: 14, color: MyColors.appColorGrey600()),
+                              MyWidgets.robotoFontText(
+                                  textColor: MyColors.appColorGrey600(),
+                                  textSize: 14,
+                                  text: providerPrivilege
+                                              .listCheckPrivilege[index].endDate
+                                              .toString()
+                                              .length >
+                                          10
+                                      ? providerPrivilege
                                           .listCheckPrivilege[index].endDate
-                                          .toString()
-                                          .length > 10 ?
-                                      providerPrivilege
-                                          .listCheckPrivilege[index].endDate.substring(0,10)
-                                          :providerPrivilege
+                                          .substring(0, 10)
+                                      : providerPrivilege
                                           .listCheckPrivilege[index].endDate
-                                          .toString()
-                                  ),
-                                ],
-                              ),
-                            ),
+                                          .toString()),
+                            ],
                           ),
                         ),
+                      ),
+                    ),
 
-                        // providerPrivilege.listCheckPrivilege[index].typeId
-                        //                 .toString() ==
-                        //             "2" &&
-                        //         providerPrivilege.listCheckPrivilege[index].status
-                        //                 .toString() ==
-                        //             "7"
-                        //     ? const Divider()
-                        //     : const SizedBox.shrink(),
-                        // providerPrivilege.listCheckPrivilege[index].typeId
-                        //                 .toString() ==
-                        //             "2" &&
-                        //         providerPrivilege.listCheckPrivilege[index].status
-                        //                 .toString() ==
-                        //             "7"
-                        //     ? Row(
-                        //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        //         children: [
-                        //             GestureDetector(
-                        //               onTap:(){
-                        //                 pushNewScreen(context, screen: const InvalidAdd(),
-                        //                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                        //                   withNavBar: false);
-                        //                 },
-                        //               child: Icon(Icons.edit,
-                        //                   color: MyColors.appColorBlue1()),
-                        //             ),
-                        //             GestureDetector(
-                        //               onTap:(){
-                        //
-                        //                 AwesomeDialog(
-                        //                     context: context,
-                        //                     dialogType: DialogType.noHeader,
-                        //                     animType: AnimType.bottomSlide,
-                        //                     dismissOnTouchOutside: false,
-                        //                     title: "BMBA",
-                        //                     desc: "wantToDelete".tr(),
-                        //                     titleTextStyle: TextStyle(
-                        //                         color: MyColors.appColorBlue1(),
-                        //                         fontSize: 24,
-                        //                         fontWeight: FontWeight.bold),
-                        //                     descTextStyle: TextStyle(
-                        //                         color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-                        //                     btnOkOnPress: (){
-                        //                       providerPrivilege.deleteInvalid(context: context);
-                        //                     },
-                        //                     btnCancelOnPress: () {},
-                        //
-                        //                     btnOkColor: MyColors.appColorGrey100(),
-                        //                     btnCancelColor: MyColors.appColorBlue1(),
-                        //
-                        //                     btnOkText: "yes".tr(),buttonsTextStyle: TextStyle(color: MyColors.appColorBlack()),
-                        //                     btnCancelText: "no".tr())
-                        //                     .show();
-                        //
-                        //
-                        //
-                        //               },
-                        //               child: Icon(Icons.delete_forever,
-                        //                   color: Colors.red.shade500),
-                        //             ),
-                        //           ])
-                        //     : const SizedBox.shrink(),
-                      ],
-                    )),
+                    // providerPrivilege.listCheckPrivilege[index].typeId
+                    //                 .toString() ==
+                    //             "2" &&
+                    //         providerPrivilege.listCheckPrivilege[index].status
+                    //                 .toString() ==
+                    //             "7"
+                    //     ? const Divider()
+                    //     : const SizedBox.shrink(),
+                    // providerPrivilege.listCheckPrivilege[index].typeId
+                    //                 .toString() ==
+                    //             "2" &&
+                    //         providerPrivilege.listCheckPrivilege[index].status
+                    //                 .toString() ==
+                    //             "7"
+                    //     ? Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //         children: [
+                    //             GestureDetector(
+                    //               onTap:(){
+                    //                 pushNewScreen(context, screen: const InvalidAdd(),
+                    //                   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                    //                   withNavBar: false);
+                    //                 },
+                    //               child: Icon(Icons.edit,
+                    //                   color: MyColors.appColorBlue1()),
+                    //             ),
+                    //             GestureDetector(
+                    //               onTap:(){
+                    //
+                    //                 AwesomeDialog(
+                    //                     context: context,
+                    //                     dialogType: DialogType.noHeader,
+                    //                     animType: AnimType.bottomSlide,
+                    //                     dismissOnTouchOutside: false,
+                    //                     title: "BMBA",
+                    //                     desc: "wantToDelete".tr(),
+                    //                     titleTextStyle: TextStyle(
+                    //                         color: MyColors.appColorBlue1(),
+                    //                         fontSize: 24,
+                    //                         fontWeight: FontWeight.bold),
+                    //                     descTextStyle: TextStyle(
+                    //                         color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+                    //                     btnOkOnPress: (){
+                    //                       providerPrivilege.deleteInvalid(context: context);
+                    //                     },
+                    //                     btnCancelOnPress: () {},
+                    //
+                    //                     btnOkColor: MyColors.appColorGrey100(),
+                    //                     btnCancelColor: MyColors.appColorBlue1(),
+                    //
+                    //                     btnOkText: "yes".tr(),buttonsTextStyle: TextStyle(color: MyColors.appColorBlack()),
+                    //                     btnCancelText: "no".tr())
+                    //                     .show();
+                    //
+                    //
+                    //
+                    //               },
+                    //               child: Icon(Icons.delete_forever,
+                    //                   color: Colors.red.shade500),
+                    //             ),
+                    //           ])
+                    //     : const SizedBox.shrink(),
+                  ],
+                )),
           ),
         ),
         const SizedBox(height: 30),
@@ -208,10 +209,7 @@ Widget bodyPrivilege({
           children: [
             MaterialButton(
               height: 50,
-              minWidth: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 0.7,
+              minWidth: MediaQuery.of(context).size.width * 0.7,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5)),
               color: MyColors.appColorBlue1(),
@@ -219,28 +217,32 @@ Widget bodyPrivilege({
                   style: TextStyle(color: MyColors.appColorWhite())),
               onPressed: () {
                 AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.noHeader,
-                    animType: AnimType.bottomSlide,
-                    title: "BMBA",
-                    desc: "chooseDirection".tr(),
-                    titleTextStyle: TextStyle(
-                        color: MyColors.appColorBlue1(),
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
-                    descTextStyle: TextStyle(
-                        color: MyColors.appColorBlack(),
-                        fontWeight: FontWeight.bold),
-                    btnCancelOnPress: () {
-                      pushNewScreen(context,
-                          pageTransitionAnimation:
-                          PageTransitionAnimation.cupertino,
-                          screen: CheckInformation(
-                              serviceName:
-                              box.get("categoryName").toString()));
-                    },
-                    btnCancelColor: MyColors.appColorBlue1(),
-                    btnCancelText: "OK")
+                        context: context,
+                        dialogType: DialogType.noHeader,
+                        animType: AnimType.bottomSlide,
+                        title: "BMBA",
+                        desc: "chooseDirection".tr(),
+                        titleTextStyle: TextStyle(
+                            color: MyColors.appColorBlue1(),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                        descTextStyle: TextStyle(
+                            color: MyColors.appColorBlack(),
+                            fontWeight: FontWeight.bold),
+                        btnCancelOnPress: () {
+                          pushNewScreen(context,
+                              pageTransitionAnimation:
+                                  PageTransitionAnimation.cupertino,
+                              screen: ShowCaseWidget(
+                                builder: Builder(
+                                  builder: (context) => CheckInformation(
+                                      serviceName:
+                                          box.get("categoryName").toString()),
+                                ),
+                              ));
+                        },
+                        btnCancelColor: MyColors.appColorBlue1(),
+                        btnCancelText: "OK")
                     .show();
               },
             ),

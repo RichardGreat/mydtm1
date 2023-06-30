@@ -52,9 +52,18 @@ class _MainHomeState extends State<MainHome> {
     await providerMainHome.checkVersion(context: context);
     if (box.get("token").toString().length > 30) {
       if (box.get("showCaseMainHome").toString() != "1") {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          ShowCaseWidget.of(context).startShowCase([firstMainHome]);
-        });
+
+        Future.delayed(const Duration(milliseconds: 400)).then(
+          (value) {
+           setState(() {
+
+           });
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              ShowCaseWidget.of(context).startShowCase([firstMainHome]);
+            });
+          },
+        );
+
         box.put("showCaseMainHome", "1");
       }
     } else {

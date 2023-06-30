@@ -8,6 +8,7 @@ import 'package:mydtm/view/texnikum/privillage/provider_privillage_texnika.dart'
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 Widget bodyPrivilegeTexnikum({
   required BuildContext context,
@@ -49,7 +50,6 @@ Widget bodyPrivilegeTexnikum({
                           fontFamily: 'Roboto-Medium'),
                     ),
                     const Divider(),
-
                     const SizedBox(height: 40),
                     providerPrivilegeTexnikum.massagePrivilageTexnikum.imie
                                     .toString() ==
@@ -60,61 +60,54 @@ Widget bodyPrivilegeTexnikum({
                                 "7"
                         ? const Divider()
                         : const SizedBox.shrink(),
-
-
                     Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                                GestureDetector(
-                                  onTap: () {
-
-                                    pushNewScreen(context,
-                                        screen: const InvalidAdd(),
-                                        pageTransitionAnimation:
-                                            PageTransitionAnimation.cupertino,
-                                        withNavBar: false);
-                                  },
-                                  child: Icon(Icons.edit,
-                                      color: MyColors.appColorBlue1()),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    AwesomeDialog(
-                                            context: context,
-                                            dialogType: DialogType.noHeader,
-                                            animType: AnimType.bottomSlide,
-                                            dismissOnTouchOutside: false,
-                                            title: "BMBA",
-                                            desc: "wantToDelete".tr(),
-                                            titleTextStyle: TextStyle(
-                                                color: MyColors.appColorBlue1(),
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.bold),
-                                            descTextStyle: TextStyle(
-                                                color: MyColors.appColorBlack(),
-                                                fontWeight: FontWeight.bold),
-                                            btnOkOnPress: () {
-                                              providerPrivilegeTexnikum
-                                                  .deleteInvalidTexnikum(
-                                                      context: context);
-                                            },
-                                            btnCancelOnPress: () {},
-                                            btnOkColor:
-                                                MyColors.appColorGrey100(),
-                                            btnCancelColor:
-                                                MyColors.appColorBlue1(),
-                                            btnOkText: "yes".tr(),
-                                            buttonsTextStyle: TextStyle(
-                                                color:
-                                                    MyColors.appColorBlack()),
-                                            btnCancelText: "no".tr())
-                                        .show();
-                                  },
-                                  child: Icon(Icons.delete_forever,
-                                      color: Colors.red.shade500),
-                                ),
-                              ])
-
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              pushNewScreen(context,
+                                  screen: const InvalidAdd(),
+                                  pageTransitionAnimation:
+                                      PageTransitionAnimation.cupertino,
+                                  withNavBar: false);
+                            },
+                            child: Icon(Icons.edit,
+                                color: MyColors.appColorBlue1()),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              AwesomeDialog(
+                                      context: context,
+                                      dialogType: DialogType.noHeader,
+                                      animType: AnimType.bottomSlide,
+                                      dismissOnTouchOutside: false,
+                                      title: "BMBA",
+                                      desc: "wantToDelete".tr(),
+                                      titleTextStyle: TextStyle(
+                                          color: MyColors.appColorBlue1(),
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold),
+                                      descTextStyle: TextStyle(
+                                          color: MyColors.appColorBlack(),
+                                          fontWeight: FontWeight.bold),
+                                      btnOkOnPress: () {
+                                        providerPrivilegeTexnikum
+                                            .deleteInvalidTexnikum(
+                                                context: context);
+                                      },
+                                      btnCancelOnPress: () {},
+                                      btnOkColor: MyColors.appColorGrey100(),
+                                      btnCancelColor: MyColors.appColorBlue1(),
+                                      btnOkText: "yes".tr(),
+                                      buttonsTextStyle: TextStyle(
+                                          color: MyColors.appColorBlack()),
+                                      btnCancelText: "no".tr())
+                                  .show();
+                            },
+                            child: Icon(Icons.delete_forever,
+                                color: Colors.red.shade500),
+                          ),
+                        ])
                   ],
                 )),
           ),
@@ -150,9 +143,13 @@ Widget bodyPrivilegeTexnikum({
                           pushNewScreen(context,
                               pageTransitionAnimation:
                                   PageTransitionAnimation.cupertino,
-                              screen: CheckInformation(
-                                  serviceName:
-                                      box.get("categoryName").toString()));
+                              screen: ShowCaseWidget(
+                                builder: Builder(
+                                  builder: (context) => CheckInformation(
+                                      serviceName:
+                                          box.get("categoryName").toString()),
+                                ),
+                              ));
                         },
                         btnCancelColor: MyColors.appColorBlue1(),
                         btnCancelText: "OK")
