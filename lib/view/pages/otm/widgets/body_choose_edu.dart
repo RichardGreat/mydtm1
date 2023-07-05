@@ -13,6 +13,13 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 Widget bodyChooseEdu({
   required BuildContext context,
   required ProviderChooseEdu providerChooseEdu,
+  required GlobalKey birChoose,
+  required GlobalKey ikkiChoose,
+  required GlobalKey uchChoose,
+  required GlobalKey tortChoose,
+  required GlobalKey beshChoose,
+  required GlobalKey oltiChoose,
+  required GlobalKey yettiChoos,
 }) {
   bool checkFillSelected() {
     return providerChooseEdu.langId.isNotEmpty &&

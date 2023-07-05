@@ -53,6 +53,14 @@ class _ChooseEduState extends State<ChooseEdu> {
     return 700;
   }
 
+  final GlobalKey birChooseEdu = GlobalKey();
+  final GlobalKey ikkiChooseEdu = GlobalKey();
+  final GlobalKey uchChooseEdu = GlobalKey();
+  final GlobalKey tortChooseEdu = GlobalKey();
+  final GlobalKey beshChooseEdu = GlobalKey();
+  final GlobalKey oltiChooseEdu = GlobalKey();
+  final GlobalKey yettiChooseEdu = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -61,24 +69,24 @@ class _ChooseEduState extends State<ChooseEdu> {
         builder: (contexts, value, child) => WillPopScope(
           onWillPop: () async {
             AwesomeDialog(
-                context: context,
-                dialogType: DialogType.noHeader,
-                animType: AnimType.rightSlide,
-                title: "BMBA",
-                desc: "wantBackPage".tr(),
-                descTextStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
-                btnOkColor: Colors.grey,
-                btnCancelColor: Colors.blueAccent,
-                btnCancelText: "no".tr(),
-                btnOkText: "yes".tr(),
-                btnCancelOnPress: () {
-                  // Navigator.of(context).pop();
-            },
-            btnOkOnPress: () {
-            widget.funcState();
-            Navigator.of(context).pop();
-            },
-
+              context: context,
+              dialogType: DialogType.noHeader,
+              animType: AnimType.rightSlide,
+              title: "BMBA",
+              desc: "wantBackPage".tr(),
+              descTextStyle: const TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.w600),
+              btnOkColor: Colors.grey,
+              btnCancelColor: Colors.blueAccent,
+              btnCancelText: "no".tr(),
+              btnOkText: "yes".tr(),
+              btnCancelOnPress: () {
+                // Navigator.of(context).pop();
+              },
+              btnOkOnPress: () {
+                widget.funcState();
+                Navigator.of(context).pop();
+              },
             ).show();
 
             return true;
@@ -95,7 +103,15 @@ class _ChooseEduState extends State<ChooseEdu> {
                     child: providerChooseEdu.boolCheckUseCertificateData
                         ? bodyChooseEdu(
                             context: context,
-                            providerChooseEdu: providerChooseEdu)
+                            providerChooseEdu: providerChooseEdu,
+                            birChoose: birChooseEdu,
+                            ikkiChoose: ikkiChooseEdu,
+                            uchChoose: uchChooseEdu,
+                            tortChoose: tortChooseEdu,
+                            beshChoose: beshChooseEdu,
+                            oltiChoose: oltiChooseEdu,
+                            yettiChoos: yettiChooseEdu,
+                          )
                         : Center(
                             child: MyWidgets.loaderDownload(context: context)),
                   ),

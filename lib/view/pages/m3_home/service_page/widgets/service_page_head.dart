@@ -20,21 +20,24 @@ Widget servicePageHead({required BuildContext context,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            box.get("language") == "1"
-                ? serviceMainList.serviceName
-                : box.get("language") == "2"
-                ? serviceMainList.serviceNameQQ
-                : serviceMainList.serviceNameRu,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              box.get("language") == "1"
+                  ? serviceMainList.serviceName
+                  : box.get("language") == "2"
+                  ? serviceMainList.serviceNameQQ
+                  : serviceMainList.serviceNameRu,
 
-            textAlign: TextAlign.start,
+              textAlign: TextAlign.start,
 
-            style: TextStyle(
+              style: TextStyle(
 
-                color: MyColors.appColorBlack(),
-                fontSize: 20,
-                fontWeight: FontWeight.normal,
-                fontFamily: 'Roboto-Medium'),
+                  color: MyColors.appColorBlack(),
+                  fontSize: 20,
+                  fontWeight: FontWeight.normal,
+                  fontFamily: 'Roboto-Medium'),
+            ),
           ),
 
           const SizedBox(height: 20),

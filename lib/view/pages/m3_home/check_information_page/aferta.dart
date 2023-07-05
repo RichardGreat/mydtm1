@@ -13,6 +13,7 @@ import 'package:mydtm/view/pages/m3_home/qayd_varaqa/qayd_varaqa2.dart';
 import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class Aferta extends StatefulWidget {
   Function function;
@@ -42,25 +43,20 @@ class _AfertaState extends State<Aferta> {
   @override
   void initState() {
     widget.providerCheckInformation.getTestRegionForCheck(getActionState);
-    setState(() {
-
-    });
+    setState(() {});
     super.initState();
   }
-  getActionState(){
-    setState(() {
 
-    });
+  getActionState() {
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.appColorWhite(),
-
-      body:  widget.providerCheckInformation. boolGetTestRegionCheck
+      body: widget.providerCheckInformation.boolGetTestRegionCheck
           ? Column(children: [
-
               Expanded(
                 // height: MediaQuery.of(context).size.height*0.7,
                 child: ListView.builder(
@@ -68,8 +64,9 @@ class _AfertaState extends State<Aferta> {
                     itemBuilder: (context, index) {
                       if (index == 0) {
                         getAction(myBools: false);
-                        return Text(myAfertaList[index],
-                        textAlign: TextAlign.justify,
+                        return Text(
+                          myAfertaList[index],
+                          textAlign: TextAlign.justify,
                         );
                       } else if (index == 1) {
                         getAction(myBools: true);
@@ -89,8 +86,9 @@ class _AfertaState extends State<Aferta> {
                     ? MyColors.appColorBlue1()
                     : Colors.blue.withOpacity(0.3),
                 child: Text(
-                    !widget.providerCheckInformation.boolAfertaButton?"viewAlls".tr():
-                    "afertaAccept".tr(),
+                    !widget.providerCheckInformation.boolAfertaButton
+                        ? "viewAlls".tr()
+                        : "afertaAccept".tr(),
                     style: TextStyle(color: MyColors.appColorWhite())),
                 onPressed: () {
                   widget.providerCheckInformation.boolAfertaButton
@@ -109,7 +107,14 @@ class _AfertaState extends State<Aferta> {
                                 )
                               : pushNewScreen(
                                   context,
-                                  screen: ChooseEdu(funcState: widget.function),
+                                  screen: ShowCaseWidget(
+                                      builder: Builder(
+                                          builder: (context) => ShowCaseWidget(
+                                                  builder: Builder(
+                                                builder: (context) => ChooseEdu(
+                                                    funcState: widget.function),
+                                              )))),
+                                  //
                                   withNavBar: false,
                                   pageTransitionAnimation:
                                       PageTransitionAnimation.cupertino,
@@ -119,12 +124,13 @@ class _AfertaState extends State<Aferta> {
                 },
               ),
             ])
-          :   widget.providerCheckInformation.boolGetTestRegionCheckError
+          : widget.providerCheckInformation.boolGetTestRegionCheckError
               ? Center(
                   child: Text("regEnd".tr(),
-                      style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black)),
                 )
-              :const Center(
+              : const Center(
                   child: CupertinoActivityIndicator(),
                 ),
     );
