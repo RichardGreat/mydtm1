@@ -44,7 +44,7 @@ Widget servicePageHead({required BuildContext context,
 
           Showcase(
             key: oneServicePageGlobal,
-            description: "Xizmatdan foydalanish knopkasini bosish orqali keyingi qadamga o'tasiz",
+            description: "Xizmatdan foydalanish tugmasini bosish orqali keyingi qadamga o'tasiz",
           child:   MaterialButton(
               onPressed: () {
                 providerServicePage.checkUserStatus(

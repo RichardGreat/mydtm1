@@ -9,6 +9,7 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 Widget bodyChooseEdu({
   required BuildContext context,
@@ -56,21 +57,21 @@ Widget bodyChooseEdu({
   String textEduList({required int index}) {
     if (index == 0) {
       if (providerChooseEdu.listTitleEduDir[0].dirName.isNotEmpty) {
-        return "${0 + 1}${" ${providerChooseEdu.listTitleEduDir[0].nameEdu}"}";
+        return "${0 + 1}.${" ${providerChooseEdu.listTitleEduDir[0].nameEdu}"}";
       } else {
         providerChooseEdu.listTitleEduDir[0].eduId = "";
         providerChooseEdu.listTitleEduDir[0].nameEdu = "";
-        return "${0 + 1}${" ${providerChooseEdu.listTitleEduDir[0].nameTitle}"}";
+        return "${0 + 1}.${" ${providerChooseEdu.listTitleEduDir[0].nameTitle}"}";
       }
     } else {
       if (providerChooseEdu.listTitleEduDir[index].dirName.length > 3) {
-        return "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
+        return "${index + 1}.${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
       } else {
         providerChooseEdu.listTitleEduDir[index].eduId = "";
         providerChooseEdu.listTitleEduDir[index].nameEdu = "";
         return providerChooseEdu.listTitleEduDir[index].nameEdu.length < 4
-            ? "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameTitle}"}"
-            : "${index + 1}${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
+            ? "${index + 1}.${" ${providerChooseEdu.listTitleEduDir[index].nameTitle}"}"
+            : "${index + 1}.${" ${providerChooseEdu.listTitleEduDir[index].nameEdu}"}";
       }
     }
   }
@@ -78,35 +79,35 @@ Widget bodyChooseEdu({
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      chooseDirect(context: context, providerChooseEdu: providerChooseEdu),
+      chooseDirect(
+          birChooses: birChoose,
+          ikkiChooses: ikkiChoose,
+          uchChooses: uchChoose,
+          tortChooses: tortChoose,
+          beshChooses: beshChoose,
+          context: context,
+          providerChooseEdu: providerChooseEdu),
       MyWidgets.robotoFontText(text: "selectedDirection".tr(), textSize: 18),
       const SizedBox(height: 20),
       Expanded(
-        child: Container(
-          decoration: BoxDecoration(
-            color: MyColors.appColorWhite(),
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
+        child: Showcase(
+          key: beshChoose,
+          description: "Ta'lim yo'nalishlarni tanlang",
+          child: Container(
+            decoration: BoxDecoration(
+              color: MyColors.appColorWhite(),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
             ),
-          ),
-          child: ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: providerChooseEdu.listTitleEduDir.length,
-            itemBuilder: (context, index) => GestureDetector(
-              onTap: () {
-                if (checkFillSelected() && checkFillDir(index: index)) {
-                  if (providerChooseEdu.boolCheckUseCertificateDataNot) {
-                    pushNewScreen(context,
-                        pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino,
-                        screen: SelectDirection(
-                          providerChooseEdu: providerChooseEdu,
-                          indexEduDir: int.parse(
-                              providerChooseEdu.listTitleEduDir[index].id),
-                        ));
-                  } else {
-                    if (providerChooseEdu.boolSetUserNationCert) {
+            child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: providerChooseEdu.listTitleEduDir.length,
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () {
+                  if (checkFillSelected() && checkFillDir(index: index)) {
+                    if (providerChooseEdu.boolCheckUseCertificateDataNot) {
                       pushNewScreen(context,
                           pageTransitionAnimation:
                               PageTransitionAnimation.cupertino,
@@ -116,35 +117,46 @@ Widget bodyChooseEdu({
                                 providerChooseEdu.listTitleEduDir[index].id),
                           ));
                     } else {
-                      MyWidgets.scaffoldMessengerBottom(
-                          context: context, valueText: "chooseCert".tr());
+                      if (providerChooseEdu.boolSetUserNationCert) {
+                        pushNewScreen(context,
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
+                            screen: SelectDirection(
+                              providerChooseEdu: providerChooseEdu,
+                              indexEduDir: int.parse(
+                                  providerChooseEdu.listTitleEduDir[index].id),
+                            ));
+                      } else {
+                        MyWidgets.scaffoldMessengerBottom(
+                            context: context, valueText: "chooseCert".tr());
+                      }
                     }
+                  } else {
+                    MyWidgets.scaffoldMessengerBottom(
+                        context: context, valueText: "fillUpRow".tr());
                   }
-                } else {
-                  MyWidgets.scaffoldMessengerBottom(
-                      context: context, valueText: "fillUpRow".tr());
-                }
-              },
-              child: ListTile(
-                subtitle: Text(
-                    providerChooseEdu.listTitleEduDir[index].dirName.isEmpty
-                        ? ""
-                        : "${providerChooseEdu.listTitleEduDir[index].emodeName} -> ${providerChooseEdu.listTitleEduDir[index].dirName}",
-                    maxLines: 1),
-                title: Text(
-                  textEduList(index: index),
-                  maxLines: 1,
-                  style: TextStyle(
-                      color: checkFillSelected()
-                          ? checkFillDir(index: index)
-                              ? MyColors.appColorBlack()
-                              : MyColors.appColorGrey400()
-                          : MyColors.appColorGrey400(),
-                      fontSize: 17,
-                      fontWeight: FontWeight.normal,
-                      fontFamily: 'Roboto-Medium'),
+                },
+                child: ListTile(
+                  subtitle: Text(
+                      providerChooseEdu.listTitleEduDir[index].dirName.isEmpty
+                          ? ""
+                          : "${providerChooseEdu.listTitleEduDir[index].emodeName} -> ${providerChooseEdu.listTitleEduDir[index].dirName}",
+                      maxLines: 1),
+                  title: Text(
+                    textEduList(index: index),
+                    maxLines: 1,
+                    style: TextStyle(
+                        color: checkFillSelected()
+                            ? checkFillDir(index: index)
+                                ? MyColors.appColorBlack()
+                                : MyColors.appColorGrey400()
+                            : MyColors.appColorGrey400(),
+                        fontSize: 17,
+                        fontWeight: FontWeight.normal,
+                        fontFamily: 'Roboto-Medium'),
+                  ),
+                  trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
                 ),
-                trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
               ),
             ),
           ),

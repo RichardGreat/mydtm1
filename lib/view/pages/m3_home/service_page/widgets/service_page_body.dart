@@ -130,7 +130,7 @@ Widget servicePageBody(
 
               Showcase(
                 key: threeServicePageGlobalKey,
-                description: "Ariza xaqida ma'lumot olish. Agar xizmat bo'yicha ariza topshirgan bo'lsangiz ma'lumotlaringiz bilan tanishishingiz mumkin",
+                description: "Ushbu xizmatdan foydalangan bo'lsangiz ma'lumotlaringiz bilan tanishishingiz mumkin",
                 child: ListTile(
                   onTap: () {
                     log(serviceMainList.id.toString());

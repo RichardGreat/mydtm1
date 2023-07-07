@@ -10,6 +10,7 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class ChooseEdu extends StatefulWidget {
   Function funcState;
@@ -27,7 +28,22 @@ class _ChooseEduState extends State<ChooseEdu> {
   @override
   initState() {
     providerChooseEdu.getCheckUseNationCertInfo();
-    // log(box.get("token"));
+    Future.delayed(const Duration(milliseconds: 400)).then(
+      (value) {
+        setState(() {});
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ShowCaseWidget.of(context).startShowCase([
+            birChooseEdu,
+            ikkiChooseEdu,
+            uchChooseEdu,
+            tortChooseEdu,
+            beshChooseEdu,
+            oltiChooseEdu,
+            yettiChooseEdu,
+          ]);
+        });
+      },
+    );
     super.initState();
   }
 

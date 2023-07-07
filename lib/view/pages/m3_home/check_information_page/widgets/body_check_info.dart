@@ -124,7 +124,7 @@ Widget bodyCheckInformation({
       Showcase(
         key: tortGK,
         description:
-            "Maktab, litsey, kollej yoki texnikum \nFaqat, yuqoridagilardan birini tugatganligingiz bo'yicha hujjat kiritasiz",
+            "Tugatgan maktab, litsey  yoki kasb-hunar maktabingiz to'g'risidagi ma'lumotlarni kiritasiz.\nJoriy yil bitiruvchilarining ma'lumotlari tegishli vazirliklardan olinadi",
         child: Container(
           decoration: BoxDecoration(
               color: MyColors.appColorWhite(),
@@ -159,7 +159,7 @@ Widget bodyCheckInformation({
       Showcase(
         key: beshGK,
         description:
-            "Chet tili bilish darajasi sertifikatingiz bo'lsa kiriting.",
+            "Chet tilidan milliy yoki xalqaro sertifikatingiz bo'lsa kiriting.",
         child: Container(
           decoration: BoxDecoration(
               color: MyColors.appColorWhite(),
@@ -232,7 +232,7 @@ Widget bodyCheckInformation({
       const SizedBox(height: 2),
       Showcase(
         key: yettiGK,
-        description: "Yuqoridagi ma'lumotlaringiz yetarli darajada(1,2,3) to'ldirilgandan so'ng oliy ta'lim uchun yo'nalish tanlay olasiz",
+        description: "Yuqoridagi ma'lumotlaringiz(1,2,3) to'liq to'ldirilgandan so'ng yo'nalishlarni tanlay olasiz",
         child: Container(
           decoration: BoxDecoration(
               color: MyColors.appColorWhite(),

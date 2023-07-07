@@ -11,8 +11,15 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'dart:developer';
 
+import 'package:showcaseview/showcaseview.dart';
+
 Widget chooseDirect(
     {required BuildContext context,
+     required GlobalKey birChooses,
+     required GlobalKey ikkiChooses,
+     required GlobalKey uchChooses,
+     required GlobalKey tortChooses,
+     required GlobalKey beshChooses,
     required ProviderChooseEdu providerChooseEdu}) {
   List<String> listDirection = [
     "chooseTestRegion".tr(),
@@ -28,173 +35,190 @@ Widget chooseDirect(
       const SizedBox(height: 20),
 
       /// test hudud
-      Container(
-        decoration: BoxDecoration(
-            color: MyColors.appColorWhite(),
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-            )),
-        child: ListTile(
-          minVerticalPadding: 0,
-          title: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MyWidgets.robotoFontText(text: listDirection[0], textSize: 17),
-              providerChooseEdu.testRegionNames.length > 4
-                  ? Icon(
-                      Icons.check_circle,
-                      color: MyColors.appColorGreen1(),
-                    )
-                  : const SizedBox.shrink()
-            ],
+
+
+      Showcase(
+        key: birChooses,
+        description: "Test topshirish hududini belgilash",
+        child: Container(
+          decoration: BoxDecoration(
+              color: MyColors.appColorWhite(),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              )),
+          child: ListTile(
+            minVerticalPadding: 0,
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MyWidgets.robotoFontText(text: listDirection[0], textSize: 17),
+                providerChooseEdu.testRegionNames.length > 4
+                    ? Icon(
+                        Icons.check_circle,
+                        color: MyColors.appColorGreen1(),
+                      )
+                    : const SizedBox.shrink()
+              ],
+            ),
+            trailing:  const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children:  [
+                SizedBox(height: 8),
+                Icon(Icons.arrow_forward_ios_sharp, size: 16),
+              ],
+            ),
+            subtitle: Text(providerChooseEdu.testRegionNames),
+            onTap: () {
+              log(MediaQuery.of(context).size.height.toString());
+              sheetRegionTest(
+                  context: context, providerChooseEdu: providerChooseEdu);
+            },
           ),
-          trailing:  const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children:  [
-              SizedBox(height: 8),
-              Icon(Icons.arrow_forward_ios_sharp, size: 16),
-            ],
-          ),
-          subtitle: Text(providerChooseEdu.testRegionNames),
-          onTap: () {
-            log(MediaQuery.of(context).size.height.toString());
-            sheetRegionTest(
-                context: context, providerChooseEdu: providerChooseEdu);
-          },
         ),
       ),
 
       /// ustuvorlik
-      Container(
-        decoration: BoxDecoration(color: MyColors.appColorWhite()),
-        child: ListTile(
-          title: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+      Showcase(
+        key: ikkiChooses,
+        description: "Tanlov ustuvorligini tanlash",
+        child: Container(
+          decoration: BoxDecoration(color: MyColors.appColorWhite()),
+          child: ListTile(
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
 
-              SizedBox(
-                width: MediaQuery.of(context).size.width*0.6,
-                child: Text(
-                  listDirection[1],
+                SizedBox(
+                  width: MediaQuery.of(context).size.width*0.6,
+                  child: Text(
+                    listDirection[1],
+                    softWrap: true,
+                    overflow: TextOverflow.visible,
+                    style: TextStyle(
+                        color: MyColors.appColorBlack(),
+                        fontSize: 17,
+                        fontWeight: FontWeight.normal,
+                        fontFamily: 'Roboto-Medium'),
+                  ),
+                ),
+
+                providerChooseEdu.grantContractName.length > 4
+                    ? Icon(
+                        Icons.check_circle,
+                        color: MyColors.appColorGreen1(),
+                      )
+                    : const SizedBox.shrink()
+              ],
+            ),
+            subtitle: Text(providerChooseEdu.grantContractName),
+            trailing:  const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children:  [
+                SizedBox(height: 8),
+                Icon(Icons.arrow_forward_ios_sharp, size: 16),
+              ],
+            ),
+            onTap: () {
+              sheetGrantContractChoose(
+                  context: context, providerChooseEdu: providerChooseEdu);
+            },
+          ),
+        ),
+      ),
+
+      /// maqsadli
+      Showcase(
+        key: uchChooses,
+        description: "Maqsadli qabulni tanlash yoki rad etish",
+        child: Container(
+          decoration: BoxDecoration(
+            color: MyColors.appColorWhite(),
+          ),
+          child: ListTile(
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                    width: MediaQuery.of(context).size.width*0.6,
+                    child: Text(
+                  listDirection[3],
                   softWrap: true,
-                  overflow: TextOverflow.visible,
+                  overflow: TextOverflow.fade,
                   style: TextStyle(
                       color: MyColors.appColorBlack(),
                       fontSize: 17,
                       fontWeight: FontWeight.normal,
                       fontFamily: 'Roboto-Medium'),
                 ),
-              ),
-
-              providerChooseEdu.grantContractName.length > 4
-                  ? Icon(
-                      Icons.check_circle,
-                      color: MyColors.appColorGreen1(),
-                    )
-                  : const SizedBox.shrink()
-            ],
+                ),
+                providerChooseEdu.maqsadliName.length > 4
+                    ? Icon(
+                        Icons.check_circle,
+                        color: MyColors.appColorGreen1(),
+                      )
+                    : const SizedBox.shrink()
+              ],
+            ),
+            trailing:  const Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children:  [
+                SizedBox(height: 8),
+                Icon(Icons.arrow_forward_ios_sharp, size: 16),
+              ],
+            ),
+            subtitle: Text(providerChooseEdu.maqsadliName),
+            onTap: () {
+              sheetMaqsadli(
+                  context: context, providerChooseEdu: providerChooseEdu);
+            },
           ),
-          subtitle: Text(providerChooseEdu.grantContractName),
-          trailing:  const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children:  [
-              SizedBox(height: 8),
-              Icon(Icons.arrow_forward_ios_sharp, size: 16),
-            ],
-          ),
-          onTap: () {
-            sheetGrantContractChoose(
-                context: context, providerChooseEdu: providerChooseEdu);
-          },
-        ),
-      ),
-
-      /// maqsadli
-      Container(
-        decoration: BoxDecoration(
-          color: MyColors.appColorWhite(),
-        ),
-        child: ListTile(
-          title: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-
-                  width: MediaQuery.of(context).size.width*0.6,
-
-                  child: Text(
-                listDirection[3],
-                softWrap: true,
-                overflow: TextOverflow.fade,
-                style: TextStyle(
-                    color: MyColors.appColorBlack(),
-                    fontSize: 17,
-                    fontWeight: FontWeight.normal,
-                    fontFamily: 'Roboto-Medium'),
-              ),
-              ),
-              providerChooseEdu.maqsadliName.length > 4
-                  ? Icon(
-                      Icons.check_circle,
-                      color: MyColors.appColorGreen1(),
-                    )
-                  : const SizedBox.shrink()
-            ],
-          ),
-          trailing:  const Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children:  [
-              SizedBox(height: 8),
-              Icon(Icons.arrow_forward_ios_sharp, size: 16),
-            ],
-          ),
-          subtitle: Text(providerChooseEdu.maqsadliName),
-          onTap: () {
-            sheetMaqsadli(
-                context: context, providerChooseEdu: providerChooseEdu);
-          },
         ),
       ),
 
       /// Ta'lim tili
-      Container(
-        decoration: BoxDecoration(
-          color: MyColors.appColorWhite(),
-        ),
-        child: ListTile(
-          title: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MyWidgets.robotoFontText(text: listDirection[2], textSize: 17),
-              providerChooseEdu.langName.length > 4
-                  ? Icon(
-                      Icons.check_circle,
-                      color: MyColors.appColorGreen1(),
-                    )
-                  : const SizedBox.shrink()
-            ],
+      Showcase(
+        key: tortChooses,
+
+        description: "Ta'lim tilini tanlash",
+        child: Container(
+          decoration: BoxDecoration(
+            color: MyColors.appColorWhite(),
           ),
-          trailing: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children:  [
-              SizedBox(height: 8),
-              Icon(Icons.arrow_forward_ios_sharp, size: 16),
-            ],
+          child: ListTile(
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MyWidgets.robotoFontText(text: listDirection[2], textSize: 17),
+                providerChooseEdu.langName.length > 4
+                    ? Icon(
+                        Icons.check_circle,
+                        color: MyColors.appColorGreen1(),
+                      )
+                    : const SizedBox.shrink()
+              ],
+            ),
+            trailing: const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children:  [
+                SizedBox(height: 8),
+                Icon(Icons.arrow_forward_ios_sharp, size: 16),
+              ],
+            ),
+            subtitle: Text(providerChooseEdu.langName),
+            onTap: () {
+              sheetLanguageChooseTest(
+                  context: context, providerChooseEdu: providerChooseEdu);
+            },
           ),
-          subtitle: Text(providerChooseEdu.langName),
-          onTap: () {
-            sheetLanguageChooseTest(
-                context: context, providerChooseEdu: providerChooseEdu);
-          },
         ),
       ),
 

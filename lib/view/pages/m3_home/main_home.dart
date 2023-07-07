@@ -107,15 +107,7 @@ class _MainHomeState extends State<MainHome> {
                         ),
                       ),
                       const Divider(),
-                      const SizedBox(height: 10),
-                      Text(
-                        "please".tr(),
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Inter-Medium",
-                            color: Colors.red,
-                            fontSize: 16),
-                      ),
+
                       const SizedBox(height: 20),
                       RichText(
                         textAlign: TextAlign.justify,
