@@ -16,6 +16,7 @@ Widget bodyCertificate(
       ? providerCertificate.boolCheckCertificateData
           ? Container(
               margin: const EdgeInsets.all(10),
+              padding:  const EdgeInsets.all(8),
               width: double.infinity,
               decoration: BoxDecoration(color: MyColors.appColorGrey100()),
               child: Column(

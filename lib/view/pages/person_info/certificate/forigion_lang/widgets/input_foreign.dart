@@ -16,22 +16,25 @@ Widget inputForeignCertificate(
       required Function f,
       required Function f2,
     required ProviderCertificate providerCertificate}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      MyWidgets.robotoFontText(
-          text: "addCertificate".tr(),
-          textColor: MyColors.appColorBlack(),
-          textSize: 30),
-      langSelect(ff:f,context: context, providerCertificate: providerCertificate),
-      typeSelect(ff:f,context: context, providerCertificate: providerCertificate),
-      degreeSelect(ff:f,context: context, providerCertificate: providerCertificate),
-      dateSelect(ff:f,context: context, providerCertificate: providerCertificate),
-      certificateGetSerNumber(ff:f,context: context, providerCertificate: providerCertificate),
-      imageCertificate(ff:f,context: context, providerCertificate: providerCertificate),
-      buttonCertificate(ff:f,
-          ff2: f2,
-          context: context, providerCertificate: providerCertificate)
-    ],
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        MyWidgets.robotoFontText(
+            text: "addCertificate".tr(),
+            textColor: MyColors.appColorBlack(),
+            textSize: 30),
+        langSelect(ff:f,context: context, providerCertificate: providerCertificate),
+        typeSelect(ff:f,context: context, providerCertificate: providerCertificate),
+        degreeSelect(ff:f,context: context, providerCertificate: providerCertificate),
+        dateSelect(ff:f,context: context, providerCertificate: providerCertificate),
+        certificateGetSerNumber(ff:f,context: context, providerCertificate: providerCertificate),
+        imageCertificate(ff:f,context: context, providerCertificate: providerCertificate),
+        buttonCertificate(ff:f,
+            ff2: f2,
+            context: context, providerCertificate: providerCertificate)
+      ],
+    ),
   );
 }
