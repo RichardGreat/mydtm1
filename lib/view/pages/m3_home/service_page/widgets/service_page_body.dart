@@ -50,7 +50,7 @@ Widget servicePageBody(
               index == 0 ?
               Showcase(
                 key: twoServicePageGlobalKey,
-                description: "Xizmat xaqida ma'lumot bilan tanishishingiz mumkin",
+                description: "infoService".tr(),
                 child: ListTile(
                 onTap: () {
                   log(serviceMainList.id.toString());
@@ -130,7 +130,7 @@ Widget servicePageBody(
 
               Showcase(
                 key: threeServicePageGlobalKey,
-                description: "Ushbu xizmatdan foydalangan bo'lsangiz ma'lumotlaringiz bilan tanishishingiz mumkin",
+                description: "userServiceInfo".tr(),
                 child: ListTile(
                   onTap: () {
                     log(serviceMainList.id.toString());

@@ -47,7 +47,6 @@ class _NewsSeeState extends State<NewsSee> {
         return <Widget>[
           SliverAppBar(
             iconTheme: IconThemeData(color: MyColors.appColorBlack()),
-
             backgroundColor: MyColors.appColorWhite(),
             floating: false,
             elevation: 0,
@@ -58,7 +57,7 @@ class _NewsSeeState extends State<NewsSee> {
           ),
           SliverToBoxAdapter(
             child:   Container(
-              margin: const EdgeInsets.all(5),
+
               height: MediaQuery.of(context).size.height * 0.3,
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(

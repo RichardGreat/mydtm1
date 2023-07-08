@@ -48,6 +48,7 @@ class _QaydVaraqaEditState extends State<QaydVaraqaEdit> {
       ),
       body: SafeArea(
           child: Container(
+            padding: const EdgeInsets.all(8),
         child: widget.providerCheckInformation.boolDataDownload1
             ? widget.providerCheckInformation.modelGetDownloadsData1.status == 1
                 ? SingleChildScrollView(

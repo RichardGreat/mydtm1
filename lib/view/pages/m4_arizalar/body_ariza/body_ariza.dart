@@ -61,6 +61,7 @@ Widget notInfoPerson({required BuildContext context, required ProviderAriza prov
         height: 400,
         child: SingleChildScrollView(
           child: Container(
+            padding:const EdgeInsets.all(10),
             height: 400,
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.all(15),

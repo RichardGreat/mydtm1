@@ -228,4 +228,8 @@ class FrenchString implements FlutterPwValidatorStrings {
   @override
   // TODO: implement uppercaseLetters
   String get uppercaseLetters => "enterCapitalLatter".tr();
+
+  @override
+  // TODO: implement lowercaseLetters
+  String get lowercaseLetters => throw UnimplementedError();
 }

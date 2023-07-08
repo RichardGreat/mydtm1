@@ -92,7 +92,7 @@ Widget bodyChooseEdu({
       Expanded(
         child: Showcase(
           key: beshChoose,
-          description: "Ta'lim yo'nalishlarni tanlang",
+          description: "chooseDirs".tr(),
           child: Container(
             decoration: BoxDecoration(
               color: MyColors.appColorWhite(),

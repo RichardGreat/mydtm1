@@ -16,35 +16,34 @@ Widget servicePageHead({required BuildContext context,
   return Container(
     decoration: BoxDecoration(color: MyColors.appColorWhite()),
     child: Container(
+      padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10),
       child: Column(
+
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              box.get("language") == "1"
-                  ? serviceMainList.serviceName
-                  : box.get("language") == "2"
-                  ? serviceMainList.serviceNameQQ
-                  : serviceMainList.serviceNameRu,
+          Text(
+            box.get("language") == "1"
+                ? serviceMainList.serviceName
+                : box.get("language") == "2"
+                ? serviceMainList.serviceNameQQ
+                : serviceMainList.serviceNameRu,
 
-              textAlign: TextAlign.start,
+            textAlign: TextAlign.start,
 
-              style: TextStyle(
+            style: TextStyle(
 
-                  color: MyColors.appColorBlack(),
-                  fontSize: 20,
-                  fontWeight: FontWeight.normal,
-                  fontFamily: 'Roboto-Medium'),
-            ),
+                color: MyColors.appColorBlack(),
+                fontSize: 20,
+                fontWeight: FontWeight.normal,
+                fontFamily: 'Roboto-Medium'),
           ),
 
           const SizedBox(height: 20),
 
           Showcase(
             key: oneServicePageGlobal,
-            description: "Xizmatdan foydalanish tugmasini bosish orqali keyingi qadamga o'tasiz",
+            description: "nextStepService".tr(),
           child:   MaterialButton(
               onPressed: () {
                 providerServicePage.checkUserStatus(

@@ -24,12 +24,12 @@ Widget bodyCheckInformation({
     children: [
       const SizedBox(height: 20),
       Showcase(
-          description: "Xizmat nomi",
+          description: "serviceName".tr(),
           key: birGK,
           child: MyWidgets.robotoFontText(text: serviceName, textSize: 22)),
       const SizedBox(height: 8),
       Text(
-      "userService".tr(),
+        "userService".tr(),
         style: TextStyle(
             color: MyColors.appColorGrey600(),
             fontSize: 17,
@@ -38,8 +38,7 @@ Widget bodyCheckInformation({
       const SizedBox(height: 20),
       Showcase(
         key: ikkiGK,
-        description:
-            "Pasport yoki ID karta ma'lumotingizni kiriting yoki mavjud ma'lumotingiz bilan tanishing",
+        description: "personalInformation".tr(),
         child: Container(
           decoration: BoxDecoration(
               color: MyColors.appColorWhite(),
@@ -56,7 +55,8 @@ Widget bodyCheckInformation({
             },
             trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
             leading: MyWidgets.robotoFontText(
-                text:"1. ${providerCheckInformation.myList[0].name}", textSize: 16),
+                text: "1. ${providerCheckInformation.myList[0].name}",
+                textSize: 16),
             title: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -72,8 +72,7 @@ Widget bodyCheckInformation({
       const SizedBox(height: 2),
       Showcase(
         key: uchGK,
-        description:
-            "Doimiy yashash manzilingiz tizimda aniqlanmasa manzilingizni kiriting",
+        description: "addressIfNotEnter".tr(),
         child: Container(
           decoration: BoxDecoration(
               color: MyColors.appColorWhite(),
@@ -123,8 +122,7 @@ Widget bodyCheckInformation({
       const SizedBox(height: 2),
       Showcase(
         key: tortGK,
-        description:
-            "Tugatgan maktab, litsey  yoki kasb-hunar maktabingiz to'g'risidagi ma'lumotlarni kiritasiz.\nJoriy yil bitiruvchilarining ma'lumotlari tegishli vazirliklardan olinadi",
+        description: "schoolEndInfo".tr(),
         child: Container(
           decoration: BoxDecoration(
               color: MyColors.appColorWhite(),
@@ -141,8 +139,8 @@ Widget bodyCheckInformation({
             },
             trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
             leading: MyWidgets.robotoFontText(
-                text:
-                "3. ${providerCheckInformation.myList[2].name}", textSize: 16),
+                text: "3. ${providerCheckInformation.myList[2].name}",
+                textSize: 16),
             title: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -158,8 +156,7 @@ Widget bodyCheckInformation({
       const SizedBox(height: 2),
       Showcase(
         key: beshGK,
-        description:
-            "Chet tilidan milliy yoki xalqaro sertifikatingiz bo'lsa kiriting.",
+        description: "certificateEnter".tr(),
         child: Container(
           decoration: BoxDecoration(
               color: MyColors.appColorWhite(),
@@ -178,7 +175,8 @@ Widget bodyCheckInformation({
             leading: SizedBox(
               width: MediaQuery.of(context).size.width * 0.6,
               child: MyWidgets.robotoFontText(
-                  text: "4. ${providerCheckInformation.myList[3].name}", textSize: 16),
+                  text: "4. ${providerCheckInformation.myList[3].name}",
+                  textSize: 16),
             ),
             title: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -195,8 +193,7 @@ Widget bodyCheckInformation({
       const SizedBox(height: 2),
       Showcase(
         key: oltiGK,
-        description:
-            "Oliy ta'limga kirish uchun imtiyozingiz mavjud bo'lsa ma'lumotingiz bilan tanishing.\nDIQQAT \nAgarda imtiyozingiz qayd varaqangizda ham shakllanmasa sizga imtiyoz bergan tashkilotga murojaat qiling",
+        description: "pravillageEnter".tr(),
         child: Container(
           decoration: BoxDecoration(
               color: MyColors.appColorWhite(),
@@ -215,7 +212,8 @@ Widget bodyCheckInformation({
             leading: SizedBox(
               width: MediaQuery.of(context).size.width * 0.6,
               child: MyWidgets.robotoFontText(
-                  text:"5. ${providerCheckInformation.myList[4].name}", textSize: 16),
+                  text: "5. ${providerCheckInformation.myList[4].name}",
+                  textSize: 16),
             ),
             title: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -232,7 +230,8 @@ Widget bodyCheckInformation({
       const SizedBox(height: 2),
       Showcase(
         key: yettiGK,
-        description: "Yuqoridagi ma'lumotlaringiz(1,2,3) to'liq to'ldirilgandan so'ng yo'nalishlarni tanlay olasiz",
+        description:
+  "chooseDirEdu".tr(),
         child: Container(
           decoration: BoxDecoration(
               color: MyColors.appColorWhite(),
@@ -252,13 +251,15 @@ Widget bodyCheckInformation({
               size: 14,
             ),
             leading: MyWidgets.robotoFontText(
-                text:"6. ${providerCheckInformation.myList[5].name}", textSize: 16),
+                text: "6. ${providerCheckInformation.myList[5].name}",
+                textSize: 16),
             title: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   providerCheckInformation.modelCheckUserInfo.bakalavr
-                      ? Icon(Icons.check_circle, color: MyColors.appColorGreen1())
+                      ? Icon(Icons.check_circle,
+                          color: MyColors.appColorGreen1())
                       : const SizedBox.shrink(),
                 ]),
           ),

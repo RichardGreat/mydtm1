@@ -28,6 +28,8 @@ class _ChooseEduState extends State<ChooseEdu> {
   @override
   initState() {
     providerChooseEdu.getCheckUseNationCertInfo();
+
+    if(box.get("showCaseChooseEdu").toString() != "1"){
     Future.delayed(const Duration(milliseconds: 400)).then(
       (value) {
         setState(() {});
@@ -44,27 +46,30 @@ class _ChooseEduState extends State<ChooseEdu> {
         });
       },
     );
+    box.put("showCaseChooseEdu", "1");
+    }
+
     super.initState();
   }
 
   double heightScreen() {
     if (MediaQuery.of(context).size.height >= 851) {
-      return MediaQuery.of(context).size.height * 1.2;
+      return MediaQuery.of(context).size.height * 1.2+30;
     } else if (MediaQuery.of(context).size.height >= 800 &&
         MediaQuery.of(context).size.height <= 850) {
-      return MediaQuery.of(context).size.height * 1.32;
+      return MediaQuery.of(context).size.height * 1.32+30;
     } else if (MediaQuery.of(context).size.height < 800 &&
         MediaQuery.of(context).size.height >= 700) {
-      return MediaQuery.of(context).size.height * 1.53;
+      return MediaQuery.of(context).size.height * 1.53+30;
     } else if (MediaQuery.of(context).size.height < 700 &&
         MediaQuery.of(context).size.height >= 600) {
-      return MediaQuery.of(context).size.height * 1.63;
+      return MediaQuery.of(context).size.height * 1.63+30;
     } else if (MediaQuery.of(context).size.height < 600 &&
         MediaQuery.of(context).size.height >= 500) {
-      return MediaQuery.of(context).size.height * 1.83;
+      return MediaQuery.of(context).size.height * 1.83+30;
     } else if (MediaQuery.of(context).size.height < 500 &&
         MediaQuery.of(context).size.height >= 400) {
-      return MediaQuery.of(context).size.height * 2.53;
+      return MediaQuery.of(context).size.height * 2.53+30;
     }
     return 700;
   }
@@ -113,23 +118,26 @@ class _ChooseEduState extends State<ChooseEdu> {
                   context: contexts, providerChooseEdu: providerChooseEdu),
               body: SafeArea(
                 child: SingleChildScrollView(
-                  child: Container(
-                    height: heightScreen(),
-                    margin: const EdgeInsets.all(15),
-                    child: providerChooseEdu.boolCheckUseCertificateData
-                        ? bodyChooseEdu(
-                            context: context,
-                            providerChooseEdu: providerChooseEdu,
-                            birChoose: birChooseEdu,
-                            ikkiChoose: ikkiChooseEdu,
-                            uchChoose: uchChooseEdu,
-                            tortChoose: tortChooseEdu,
-                            beshChoose: beshChooseEdu,
-                            oltiChoose: oltiChooseEdu,
-                            yettiChoos: yettiChooseEdu,
-                          )
-                        : Center(
-                            child: MyWidgets.loaderDownload(context: context)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: heightScreen(),
+                      margin: const EdgeInsets.all(15),
+                      child: providerChooseEdu.boolCheckUseCertificateData
+                          ? bodyChooseEdu(
+                              context: context,
+                              providerChooseEdu: providerChooseEdu,
+                              birChoose: birChooseEdu,
+                              ikkiChoose: ikkiChooseEdu,
+                              uchChoose: uchChooseEdu,
+                              tortChoose: tortChooseEdu,
+                              beshChoose: beshChooseEdu,
+                              oltiChoose: oltiChooseEdu,
+                              yettiChoos: yettiChooseEdu,
+                            )
+                          : Center(
+                              child: MyWidgets.loaderDownload(context: context)),
+                    ),
                   ),
                 ),
               )),

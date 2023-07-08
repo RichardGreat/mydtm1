@@ -10,6 +10,7 @@ import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/main.dart';
 import 'package:mydtm/view/pages/m3_home/main_home.dart';
+import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
 import 'package:mydtm/view/pages/m6_profile/main_profile.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -39,8 +40,9 @@ class _MainPagesState extends State<MainPages> {
           ),
         ),
 
+
         // ChooseEdu(funcState:getBoshFunc),
-        // MainMyStatement(numberParam: "0"),
+        MainMyStatement(numberParam: "0"),
         const MainMessages(),
         MainProfile(myFunction: getFunction),
       ];
@@ -260,22 +262,19 @@ List<PersistentBottomNavBarItem> navBarsItems() {
       activeColorSecondary: MyColors.appColorBlue1(),
       inactiveColorPrimary: MyColors.appColorGrey400(),
     ),
-//     PersistentBottomNavBarItem(
-//       // title: ("Settings"),
-//
-//       icon: const Icon(
-//         Icons.article,
-//         size: 36,
-//       ),
-//       inactiveIcon: const Icon(
-//         Icons.article_outlined,
-//         size: 32,
-//       ),
-// //             activeIcon:  Icon(Icons.settings, size: 32,),
-//       activeColorPrimary: MyColors.appColorBlue1(),
-//       activeColorSecondary: MyColors.appColorBlue1(),
-//       inactiveColorPrimary: MyColors.appColorGrey400(),
-//     ),
+    PersistentBottomNavBarItem(
+      icon: const Icon(
+        Icons.article,
+        size: 36,
+      ),
+      inactiveIcon: const Icon(
+        Icons.article_outlined,
+        size: 32,
+      ),
+      activeColorPrimary: MyColors.appColorBlue1(),
+      activeColorSecondary: MyColors.appColorBlue1(),
+      inactiveColorPrimary: MyColors.appColorGrey400(),
+    ),
     PersistentBottomNavBarItem(
       icon: const Icon(
         CupertinoIcons.bell_fill,

@@ -11,7 +11,7 @@ import 'package:easy_localization/easy_localization.dart';
 Widget bodyAriza1(
     {required BuildContext context, required ProviderAriza providerAriza}) {
   return Padding(
-    padding: const EdgeInsets.all(15.0),
+    padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

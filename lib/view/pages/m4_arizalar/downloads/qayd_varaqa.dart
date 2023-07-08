@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class QaydVaraqaDownload extends StatefulWidget {
@@ -41,6 +43,13 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
         backgroundColor: MyColors.appColorWhite(),
         iconTheme: IconThemeData(color: MyColors.appColorBlack()),
         elevation: 0,
+        actions: [
+          IconButton(onPressed: (){
+            Share.share(widget.providerAriza.modelGetDownloads1.src);
+          },
+          icon: const Icon(Icons.share),
+          )
+        ],
       ),
       body: SafeArea(
           child: Container(
@@ -51,15 +60,21 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.8,
                           child:
-                          PDFViewer(
-                            document: widget.providerAriza.doc,
-                            lazyLoad: false,
+                          GestureDetector(
+                            onTap: (){
+                              final Uri url = Uri.parse(widget.providerAriza.modelGetDownloads1.src);
+                              launchUrl(url);
+                            },
+                            child: PDFViewer(
+                              document: widget.providerAriza.doc,
+                              lazyLoad: false,
 
-                            scrollDirection: Axis.vertical,
-                            zoomSteps: 1,
-                            showIndicator: false,
-                            showPicker: false,
-                            showNavigation: false,
+                              scrollDirection: Axis.vertical,
+                              zoomSteps: 1,
+                              showIndicator: false,
+                              showPicker: false,
+                              showNavigation: false,
+                            ),
                           ),
                       ),
                       // Container(
