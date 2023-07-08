@@ -125,7 +125,7 @@ class _MainPagesState extends State<MainPages> {
                               },
                               btnOkText: "yes".tr(),
                               btnOkColor: MyColors.appColorGrey600(),
-                              btnCancelColor: Colors.blue.shade800,
+                              btnCancelColor: MyColors.appColorBBA(),
                               btnCancelOnPress: () {},
                               btnCancelText: "no".tr(),
                             ).show();
@@ -258,8 +258,8 @@ List<PersistentBottomNavBarItem> navBarsItems() {
         size: 36,
       ),
       // title: ("Home"),
-      activeColorPrimary: MyColors.appColorBlue1(),
-      activeColorSecondary: MyColors.appColorBlue1(),
+      activeColorPrimary: MyColors.appColorBBA(),
+      activeColorSecondary:MyColors.appColorBBA(),
       inactiveColorPrimary: MyColors.appColorGrey400(),
     ),
     PersistentBottomNavBarItem(
@@ -271,8 +271,8 @@ List<PersistentBottomNavBarItem> navBarsItems() {
         Icons.article_outlined,
         size: 32,
       ),
-      activeColorPrimary: MyColors.appColorBlue1(),
-      activeColorSecondary: MyColors.appColorBlue1(),
+      activeColorPrimary: MyColors.appColorBBA(),
+      activeColorSecondary:  MyColors.appColorBBA(),
       inactiveColorPrimary: MyColors.appColorGrey400(),
     ),
     PersistentBottomNavBarItem(
@@ -284,8 +284,8 @@ List<PersistentBottomNavBarItem> navBarsItems() {
         CupertinoIcons.bell,
         size: 32,
       ),
-      activeColorPrimary: MyColors.appColorBlue1(),
-      activeColorSecondary: MyColors.appColorBlue1(),
+      activeColorPrimary:  MyColors.appColorBBA(),
+      activeColorSecondary:  MyColors.appColorBBA(),
       inactiveColorPrimary: MyColors.appColorGrey400(),
     ),
     PersistentBottomNavBarItem(
@@ -298,8 +298,8 @@ List<PersistentBottomNavBarItem> navBarsItems() {
         size: 32,
       ),
       // title: ("Settings"),
-      activeColorPrimary: MyColors.appColorBlue1(),
-      activeColorSecondary: MyColors.appColorBlue1(),
+      activeColorPrimary: MyColors.appColorBBA(),
+      activeColorSecondary:  MyColors.appColorBBA(),
       inactiveColorPrimary: MyColors.appColorGrey400(),
     ),
   ];

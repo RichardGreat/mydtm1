@@ -67,7 +67,7 @@ class _MainHomeState extends State<MainHome> {
         box.put("showCaseMainHome", "1");
       }
     } else {
-      if (box.get("welcomeMainHome").toString() != "1") {
+      if (box.get("welcomeMainHome").toString() == "1") {
         await getMessage();
         box.put("welcomeMainHome", "1");
       } else {
@@ -134,9 +134,9 @@ class _MainHomeState extends State<MainHome> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 20),
                       MaterialButton(
-                        color: Colors.blueAccent,
+                        color: MyColors.appColorBBA(),
                         height: 40,
                         minWidth: double.infinity,
                         textColor: Colors.white,
@@ -162,8 +162,8 @@ class _MainHomeState extends State<MainHome> {
                       const SizedBox(height: 10),
                       Text(
                         "or".tr(),
-                        style: const TextStyle(
-                            color: Colors.blueAccent,
+                        style:  TextStyle(
+                            color: MyColors.appColorBBA(),
                             fontWeight: FontWeight.bold,
                             fontFamily: "Inter-Medium"),
                       ),
@@ -172,11 +172,11 @@ class _MainHomeState extends State<MainHome> {
                         color: Colors.white,
                         height: 40,
                         minWidth: double.infinity,
-                        textColor: Colors.blueAccent,
+                        textColor:MyColors.appColorBBA(),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(
-                                color: Colors.blueAccent, width: 1)),
+                            side:  BorderSide(
+                                color: MyColors.appColorBBA(), width: 1)),
                         onPressed: () {
                           // Navigator.of(context).push(CupertinoPageRoute(
                           //   builder: (context) =>  SignUps(),
@@ -219,12 +219,12 @@ class _MainHomeState extends State<MainHome> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                const Text(
-                  "BMBA",
+                 Text(
+                  "BBA",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: "Inter-Medium",
-                      color: Colors.blueAccent,
+                      color: MyColors.appColorBBA(),
                       fontSize: 16),
                 ),
                 const SizedBox(height: 20),
@@ -240,7 +240,7 @@ class _MainHomeState extends State<MainHome> {
                 ),
                 const SizedBox(height: 20),
                 MaterialButton(
-                  color: Colors.blueAccent,
+                  color: MyColors.appColorBBA(),
                   height: 40,
                   minWidth: double.infinity,
                   textColor: Colors.white,
@@ -267,8 +267,8 @@ class _MainHomeState extends State<MainHome> {
                 const SizedBox(height: 10),
                 Text(
                   "or".tr(),
-                  style: const TextStyle(
-                      color: Colors.blueAccent,
+                  style:  TextStyle(
+                      color: MyColors.appColorBBA(),
                       fontWeight: FontWeight.bold,
                       fontFamily: "Inter-Medium"),
                 ),
@@ -280,7 +280,7 @@ class _MainHomeState extends State<MainHome> {
                   textColor: MyColors.appColorBackC4(),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
-                      side: BorderSide(color: Colors.blueAccent, width: 1)),
+                      side: BorderSide(color: MyColors.appColorBBA(), width: 1)),
                   onPressed: () {
                     // Navigator.of(context).push(CupertinoPageRoute(
                     //   builder: (context) =>  SignUps(),
@@ -296,8 +296,8 @@ class _MainHomeState extends State<MainHome> {
                   },
                   child: Text(
                     "enterRegistration".tr(),
-                    style: const TextStyle(
-                        color: Colors.blueAccent,
+                    style:  TextStyle(
+                        color: MyColors.appColorBBA(),
                         fontWeight: FontWeight.bold,
                         fontFamily: "Inter-Medium"),
                   ),

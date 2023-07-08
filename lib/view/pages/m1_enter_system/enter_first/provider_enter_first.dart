@@ -153,7 +153,7 @@ class ProviderEnterFirst extends ChangeNotifier {
             child: Column(
               children: [
                 Text(
-                  "BMBA",
+                  "BBA",
                   style: TextStyle(
                       color: Colors.blue.shade800,
                       fontWeight: FontWeight.bold,
@@ -169,7 +169,7 @@ class ProviderEnterFirst extends ChangeNotifier {
                       onPlay: (controller) => controller
                           .repeat(reverse: true))
                       .scaleXY(
-                      end: 2.4,
+                      end: 2.2,
                       delay: const Duration(
                           milliseconds: 600),
                       curve: Curves.easeInOutCirc)

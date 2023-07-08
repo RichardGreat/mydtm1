@@ -11,7 +11,7 @@ Widget enterButton(
       MaterialButton(
           height: 50,
           minWidth: double.infinity,
-          color: MyColors.appColorBlue1(),
+          color: MyColors.appColorBBA(),
           textColor: MyColors.appColorWhite(),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -26,39 +26,40 @@ Widget enterButton(
           },
           child: MyWidgets.robotoFontText(
               text: "enterSystem".tr(), textColor: MyColors.appColorWhite())),
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        child: Stack(
-          children: [
-         const  Divider(),
-            Align(
-                alignment: Alignment.center,
-                child: Container(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
-                  color: MyColors.appColorWhite(),
-                  // margin: const EdgeInsets.only(left: 10, right: 10),
-                  child: Text(
-                    "or".tr(),
-                    style: TextStyle(backgroundColor: MyColors.appColorWhite()),
-                  ),
-                ))
-          ],
-        ),
-      ),
-      GestureDetector(
-        onTap: () {
-          providerEnterFirst.textCaptchaEditingController.clear();
-          providerEnterFirst.enterSignUp(context: context);
-        },
-        child: Container(
-            height: 50,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: MyColors.appColorBlack())),
-            child: Center(
-                child: MyWidgets.robotoFontText(text: "registration".tr()))),
-      ),
+      const SizedBox(height: 30),
+      // Padding(
+      //   padding: const EdgeInsets.symmetric(vertical: 10),
+      //   child: Stack(
+      //     children: [
+      //    const  Divider(),
+      //       Align(
+      //           alignment: Alignment.center,
+      //           child: Container(
+      //             padding: const EdgeInsets.only(left: 10, right: 10),
+      //             color: MyColors.appColorWhite(),
+      //             // margin: const EdgeInsets.only(left: 10, right: 10),
+      //             child: Text(
+      //               "or".tr(),
+      //               style: TextStyle(backgroundColor: MyColors.appColorWhite(), fontWeight: FontWeight.bold),
+      //             ),
+      //           ))
+      //     ],
+      //   ),
+      // ),
+      // GestureDetector(
+      //   onTap: () {
+      //     providerEnterFirst.textCaptchaEditingController.clear();
+      //     providerEnterFirst.enterSignUp(context: context);
+      //   },
+      //   child: Container(
+      //       height: 50,
+      //       width: double.infinity,
+      //       decoration: BoxDecoration(
+      //           borderRadius: BorderRadius.circular(10),
+      //           border: Border.all(color: MyColors.appColorBlack())),
+      //       child: Center(
+      //           child: MyWidgets.robotoFontText(text: "registration".tr()))),
+      // ),
     ],
   );
 }

@@ -5,6 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
+import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/billing_money.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/body_info_not_pay.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/downloads.dart';
@@ -13,6 +14,7 @@ import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+
 Widget bodyAriza({required BuildContext context, required ProviderAriza providerAriza}) {
   return providerAriza.boolQaydVaraqaDownload
       ? Container(
@@ -56,47 +58,132 @@ var box = Hive.box("online");
 
 Widget notInfoPerson({required BuildContext context, required ProviderAriza providerAriza}) {
   return SafeArea(
-    child: Center(
-      child: SizedBox(
-        height: 400,
-        child: SingleChildScrollView(
-          child: Container(
-            padding:const EdgeInsets.all(10),
-            height: 400,
-            width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.all(15),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // SelectableText("998489900", autofocus: true, ),
+    child: SingleChildScrollView(
+      child: Container(
+        padding:const EdgeInsets.all(10),
+        height: MediaQuery.of(context).size.height*0.9,
+        width: MediaQuery.of(context).size.width,
+        margin: const EdgeInsets.all(15),
+        child: (box.get("token").toString().length < 29)
+            ?  Container(
+          padding:const EdgeInsets.all(10),
+          height: MediaQuery.of(context).size.height*0.9,
+          child: Center(child:  Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
 
-                  MyWidgets.robotoFontText(
-                      text: "arizaNo".tr(),
-                      textColor: MyColors.appColorGrey400()),
-                  const SizedBox(height: 40),
-                  (box.get("token").toString().length < 29)
-                      ? MaterialButton(
-                      onPressed: () {
-                        pushNewScreen(context,
-                            pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino,
-                            screen:  EnterFirst(windowIdEnterFirst: "0"),
-                            withNavBar: false);
-                      },
-                      height: 50,
-                      minWidth: double.infinity,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      color: MyColors.appColorBlue1(),
-                      child: MyWidgets.robotoFontText(
-                        text: "enterSystem".tr(),
-                        textColor: MyColors.appColorWhite(),
-                      ))
-                      : const SizedBox.shrink()
-                ]),
-          ),
-        ),
+              Image.asset("assets/images/gerb.png", height: 100),
+              const SizedBox(height: 15),
+              Text(
+                "BBA",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Inter-Medium",
+                    color: MyColors.appColorBBA(),
+                    fontSize: 18),
+              ),
+
+              Expanded(
+                child:Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 15),
+                      RichText(
+                        textAlign: TextAlign.justify,
+                        text: TextSpan(
+                          text: "fillSigInOrSigUp".tr(),
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontFamily: "Inter-Medium",
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: MaterialButton(
+                          color: const Color.fromRGBO(51,110,100,1),
+
+                          height: 45,
+                          minWidth: double.infinity,
+                          textColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
+                          onPressed: () {
+                            pushNewScreen(
+                              context,
+                              screen: EnterFirst(windowIdEnterFirst: "1"),
+                              withNavBar: false,
+                              // OPTIONAL VALUE. True by default.
+                              pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                            );
+                          },
+                          child: Text(
+                            "enterLogPassword".tr(),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Inter-Medium"),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        "or".tr(),
+                        style:  TextStyle(
+                            color: MyColors.appColorBBA(),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Inter-Medium"),
+                      ),
+                      const SizedBox(height: 5),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: MaterialButton(
+                          color: Colors.white,
+                          height: 45,
+                          minWidth: double.infinity,
+                          textColor: MyColors.appColorBackC4(),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              side: BorderSide(color:MyColors.appColorBBA(), width: 1)),
+                          onPressed: () {
+                            // Navigator.of(context).push(CupertinoPageRoute(
+                            //   builder: (context) =>  SignUps(),
+                            // ));
+                            pushNewScreen(
+                              context,
+                              screen: SignUp(),
+                              withNavBar: false,
+                              // OPTIONAL VALUE. True by default.
+                              pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                            );
+                          },
+                          child: Text(
+                            "enterRegistration".tr(),
+                            style:  TextStyle(
+                                color: MyColors.appColorBBA(),
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Inter-Medium"),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
+
+            ],
+          )),
+        )
+            :  Center(child:  MyWidgets.robotoFontText(
+            text: "arizaNo".tr(),
+            textColor: MyColors.appColorGrey400()),),
       ),
     ),
   );
@@ -156,7 +243,10 @@ class _ArizaEnterState extends State<ArizaEnter> {
       backgroundColor: MyColors.appColorWhite(),
       appBar: AppBar(
           elevation: 0,
-          title:  MyWidgets.robotoFontText(text: "otmQabul".tr(), textSize: 22),
+          title:
+          box.get("token").toString().length > 30?
+          MyWidgets.robotoFontText(text: "otmQabul".tr(), textSize: 22)
+              :SizedBox.shrink(),
           backgroundColor: MyColors.appColorWhite(),
           iconTheme: IconThemeData(color: MyColors.appColorBlack())),
       body: SafeArea(

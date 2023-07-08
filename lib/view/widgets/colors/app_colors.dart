@@ -74,6 +74,12 @@ class MyColors {
     return const Color(0xFF66BB6A);
   }
 
+  static Color appColorBBA() {
+    return const Color.fromRGBO(51, 110, 100,1);
+  }
+
+
+
   Random random = Random();
 
 

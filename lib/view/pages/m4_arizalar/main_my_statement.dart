@@ -47,8 +47,10 @@ class _MainMyStatementState extends State<MainMyStatement> {
         backgroundColor: MyColors.appColorWhite(),
          elevation: 0,
          title:
+         box.get("token").toString().length > 30?
           MyWidgets.robotoFontText(
-              text: "applications".tr(), textSize: 24),
+              text: "applications".tr(), textSize: 24):
+      const  SizedBox.shrink(),
       ),
       body:
       providerAriza.boolQaydVaraqaDownload
