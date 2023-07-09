@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
+import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/provider_service_page.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/widgets/service_page_bottonsheet.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
@@ -173,28 +174,110 @@ Widget servicePageBody(
                         AwesomeDialog(
                             context: context,
                             dialogType: DialogType.noHeader,
-                            animType: AnimType.bottomSlide,
-                            title: "BBA",
-                            desc: "identification".tr(),
-                            titleTextStyle: TextStyle(
-                                color: MyColors.appColorBlue1(),
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold),
-                            descTextStyle: TextStyle(
-                                color: MyColors.appColorBlack(),
-                                fontWeight: FontWeight.bold),
-                            btnOkOnPress: () {
-                              pushNewScreen(
-                                context,
-                                screen:  EnterFirst(windowIdEnterFirst: "0"),
-                                withNavBar: false,
-                                pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                              );
-                            },
-                            btnOkColor: MyColors.appColorBlue1(),
-                            btnOkText: "enter".tr())
-                            .show();
+                            // title: "iTest",
+                            // titleTextStyle: TextStyle(color: Colors.black),
+                            body: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  // Text(
+                                  //   "Assalomu aleykum",
+                                  //   style: TextStyle(
+                                  //       fontWeight: FontWeight.bold,
+                                  //       fontFamily: "Inter-Medium",
+                                  //       color: MyColors.appColorBackC4(),
+                                  //       fontSize: 18),
+                                  // ),
+
+                                  // Divider(),
+                                  // SizedBox(height: 10),
+                                  Text(
+                                    "BBA",
+                                    style:  TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Inter-Medium",
+                                        color: MyColors.appColorBBA(),
+                                        fontSize: 18),
+                                  ),
+                                  const SizedBox(height: 15),
+                                  RichText(
+                                    textAlign: TextAlign.justify,
+                                    text: TextSpan(
+                                      text: "fillSigInOrSigUp".tr(),
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontFamily: "Inter-Medium",
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                  MaterialButton(
+                                    color: MyColors.appColorBBA(),
+                                    height: 40,
+                                    minWidth: double.infinity,
+                                    textColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8)),
+                                    onPressed: () {
+                                      pushNewScreen(
+                                        context,
+                                        screen: EnterFirst(windowIdEnterFirst: "1"),
+                                        withNavBar: false,
+                                        // OPTIONAL VALUE. True by default.
+                                        pageTransitionAnimation:
+                                        PageTransitionAnimation.cupertino,
+                                      );
+                                    },
+                                    child: Text(
+                                      "enterLogPassword".tr(),
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: "Inter-Medium"),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Text(
+                                    "or".tr(),
+                                    style: TextStyle(
+                                        color:  MyColors.appColorBBA(),
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Inter-Medium"),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  MaterialButton(
+                                    color: Colors.white,
+                                    height: 40,
+                                    minWidth: double.infinity,
+                                    textColor: MyColors.appColorBackC4(),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        side: BorderSide(
+                                            color:  MyColors.appColorBBA(), width: 1)),
+                                    onPressed: () {
+                                      // Navigator.of(context).push(CupertinoPageRoute(
+                                      //   builder: (context) =>  SignUps(),
+                                      // ));
+                                      pushNewScreen(
+                                        context,
+                                        screen:const SignUp(),
+                                        withNavBar: false,
+                                        // OPTIONAL VALUE. True by default.
+                                        pageTransitionAnimation:
+                                        PageTransitionAnimation.cupertino,
+                                      );
+                                    },
+                                    child: Text(
+                                      "enterRegistration".tr(),
+                                      style:  TextStyle(
+                                          color:  MyColors.appColorBBA(),
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: "Inter-Medium"),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )).show();
                       }
                     }
                   },

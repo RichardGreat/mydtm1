@@ -3,15 +3,12 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
-
-// import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/answersheet.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/ariza_check.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/qayd_varaqa.dart';
@@ -20,10 +17,7 @@ import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/model_qayd_varaqa.dart';
 import 'package:ntp/ntp.dart';
-
-// import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-// import 'package:permission_handler/permission_handler.dart';
 
 class ProviderAriza extends ChangeNotifier {
   NetworkArizaCheck networkArizaCheck = NetworkArizaCheck();
@@ -37,6 +31,8 @@ class ProviderAriza extends ChangeNotifier {
 
 // Load from URL
   late PDFDocument doc;
+  late PDFDocument doc2;
+  late PDFDocument doc3;
 
 // Load from file
 
@@ -127,6 +123,15 @@ class ProviderAriza extends ChangeNotifier {
         modelGetDownloadsData2 =
             ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
         modelGetDownloads2 = modelGetDownloadsData2.data;
+        doc2 = await PDFDocument.fromURL(modelGetDownloads1.src,
+            headers: {"X-Access-Token": box.get("token")},
+            cacheManager: CacheManager(
+              Config(
+                "customCacheKey",
+                stalePeriod: const Duration(milliseconds: 600),
+                maxNrOfCacheObjects: 1,
+              ),)
+        );
         boolDataDownload2 = true;
         notifyListeners();
       } catch (e) {
@@ -141,7 +146,15 @@ class ProviderAriza extends ChangeNotifier {
             ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
 
         modelGetDownloads3 = modelGetDownloadsData3.data;
-
+        doc3 = await PDFDocument.fromURL(modelGetDownloads3.src,
+            headers: {"X-Access-Token": box.get("token")},
+            cacheManager: CacheManager(
+              Config(
+                "customCacheKey",
+                stalePeriod: const Duration(milliseconds: 600),
+                maxNrOfCacheObjects: 1,
+              ),)
+        );
         boolDataDownload3 = true;
         notifyListeners();
         log(modelGetDownloadsData3.data.src);
@@ -165,6 +178,7 @@ class ProviderAriza extends ChangeNotifier {
 
   Future<File?> downloadFile(
       {required String url, required String name}) async {
+
     final appStore = await getApplicationDocumentsDirectory();
     final file = File('${appStore.path}/$name.pdf');
     final response = await Dio().get(url,
@@ -177,6 +191,36 @@ class ProviderAriza extends ChangeNotifier {
     final raf = file.openSync(mode: FileMode.write);
     raf.writeFromSync(response.data);
     await raf.close();
+    // if (Platform.isIOS || Platform.isAndroid) {
+    //   bool status = await Permission.storage.isGranted;
+    //
+    //   if (!status) await Permission.storage.request();
+    // }
+    // file.existsSync();
+    // // FileUtils.mkdir([dirloc]);
+    // String path = await FileSaver.instance.saveFile(
+    //   link: LinkDetails(link: url),
+    //     // filePath: "/storage/download/",
+    //
+    //     name: "BMBA",
+    //     //link:  linkController.text,
+    //     // bytes: Uint8List.fromList(response.data.encode()!),
+    //     ext: 'pdf',
+    //
+    //     ///extController.text,
+    //     mimeType: MimeType.pdf);
+    //   log(path);
+    // await FileSaver.instance.saveFile({
+    //   required String name,
+    //   Uint8List? bytes,
+    //   File? file,
+    //   String? filePath,
+    //   LinkDetails? link,
+    //   String ext = "",
+    //   MimeType mimeType = MimeType.other,
+    //   String? customMimeType
+    // });
+
     return file;
   }
 

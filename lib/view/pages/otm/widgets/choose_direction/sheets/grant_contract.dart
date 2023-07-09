@@ -85,7 +85,7 @@ class _MyChooseGrantContractState extends State<MyChooseGrantContract> {
                             });
                           },
                           color: indexValue == 0
-                              ? MyColors.appColorBlue1()
+                              ? MyColors.appColorBBA()
                               : Colors.grey.shade100,
                           shape:const  RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
@@ -100,7 +100,7 @@ class _MyChooseGrantContractState extends State<MyChooseGrantContract> {
                                   fontWeight: FontWeight.bold,
                                     color: indexValue == 0
                                         ? MyColors.appColorWhite()
-                                        : MyColors.appColorBlue1())),
+                                        : MyColors.appColorBBA())),
                           ),
                         ).animate(
 
@@ -123,7 +123,7 @@ class _MyChooseGrantContractState extends State<MyChooseGrantContract> {
                             height: 45,
                             color: indexValue != 1
                                 ? Colors.grey.shade100
-                                : MyColors.appColorBlue1(),
+                                : MyColors.appColorBBA(),
                             shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(10),
@@ -141,7 +141,7 @@ class _MyChooseGrantContractState extends State<MyChooseGrantContract> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: indexValue != 1
-                                        ? MyColors.appColorBlue1()
+                                        ? MyColors.appColorBBA()
                                         : MyColors.appColorWhite(),
                                   )),
                             )).animate(

@@ -31,7 +31,7 @@ Widget buttonAddressInfo(
           color: providerAddressInfo.boolAddressText &&
                   providerAddressInfo.districtName.length > 4 &&
                   providerAddressInfo.provinceName.length > 4
-              ? MyColors.appColorBlue1()
+              ? MyColors.appColorBBA()
               : MyColors.appColorGrey400(),
           height: 50,
           shape:

@@ -140,7 +140,7 @@ Widget bodyChooseEdu({
                   subtitle: Text(
                       providerChooseEdu.listTitleEduDir[index].dirName.isEmpty
                           ? ""
-                          : "${providerChooseEdu.listTitleEduDir[index].emodeName} -> ${providerChooseEdu.listTitleEduDir[index].dirName}",
+                          : "${providerChooseEdu.listTitleEduDir[index].emodeName} - ${providerChooseEdu.listTitleEduDir[index].dirName}",
                       maxLines: 1),
                   title: Text(
                     textEduList(index: index),
@@ -231,7 +231,7 @@ Widget bodyChooseEdu({
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color: checkFillSelected() && checkFillDir(index: 1)
             ? checkForeignLang()
-                ? MyColors.appColorBlue1()
+                ? MyColors.appColorBBA()
                 : MyColors.appColorGrey400()
             : MyColors.appColorGrey400(),
         minWidth: double.infinity,

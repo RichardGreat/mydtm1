@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable, file_names
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -25,11 +26,13 @@ class _AccessPaperDownloadState extends State<AccessPaperDownload> {
 
   Future getDownload() async {
     await widget.providerAriza.getDownloads(categoryId: 2);
+    // await widget.providerAriza.getDownloads(categoryId: 1);
     setState(() {});
   }
 
   Future getBoshFunc() async {
     await widget.providerAriza.getDownloads(categoryId: 2);
+    // await widget.providerAriza.getDownloads(categoryId: 1);
     setState(() {});
   }
 
@@ -49,21 +52,22 @@ class _AccessPaperDownloadState extends State<AccessPaperDownload> {
             margin: const EdgeInsets.all(15),
         child: widget.providerAriza.boolDataDownload2
             ? widget.providerAriza.modelGetDownloadsData2.status.toString() ==
+         // child: widget.providerAriza.boolDataDownload1
+         //    ? widget.providerAriza.modelGetDownloadsData1.status.toString() ==
                     "1"
                 ? SingleChildScrollView(
                     child: Column(children: [
-                      // SizedBox(
-                      //     height: MediaQuery.of(context).size.height * 0.6,
-                      //     child: const PDF(
-                      //       autoSpacing: false,
-                      //       fitEachPage: true,
-                      //     ).fromUrl(
-                      //       widget.providerAriza.modelGetDownloads2.src,
-                      //       placeholder: (progress) =>
-                      //           Center(child: Text('$progress %')),
-                      //       errorWidget: (error) =>
-                      //           Center(child: Text(error.toString())),
-                      //     )),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.6,
+                          child:PDFViewer(
+                            document: widget.providerAriza.doc2,
+                            lazyLoad: false,
+                            scrollDirection: Axis.vertical,
+                            zoomSteps: 1,
+                            showIndicator: false,
+                            showPicker: false,
+                            showNavigation: false,
+                          )),
                       Container(
                         margin: const EdgeInsets.all(15),
                         child: Column(children: [
@@ -76,7 +80,7 @@ class _AccessPaperDownloadState extends State<AccessPaperDownload> {
                             },
                             height: 50,
                             minWidth: double.infinity,
-                            color: MyColors.appColorBlue1(),
+                            color: MyColors.appColorBBA(),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
                             child: MyWidgets.robotoFontText(

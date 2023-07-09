@@ -39,7 +39,7 @@ class MyColors {
   }
 
   static Color appColorBlue1() {
-    return const Color.fromRGBO(66, 112, 218, 1);
+    return const Color.fromRGBO(51, 110, 100, 1);
   }
 
   static Color appColorBlue2() {

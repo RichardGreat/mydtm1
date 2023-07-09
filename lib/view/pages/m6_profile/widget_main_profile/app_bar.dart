@@ -127,7 +127,7 @@ PreferredSizeWidget appBarProfile(
                     box.get("lockScreen").toString().trim() != "null"
                     ? Icons.lock
                     : Icons.lock_open_sharp,
-                color: Colors.blue)),
+                color: MyColors.appColorBBA())),
       )
           :const Text(""),
 

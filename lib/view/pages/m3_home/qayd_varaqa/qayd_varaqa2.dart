@@ -103,10 +103,10 @@ class _QaydVaraqaEditState extends State<QaydVaraqaEdit> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 side: BorderSide(
-                                    color: MyColors.appColorBlack())),
+                                    color: MyColors.appColorBBA())),
                             child: MyWidgets.robotoFontText(
                                 text: "editEdu".tr(),
-                                textColor: MyColors.appColorBlack()),
+                                textColor: MyColors.appColorBBA()),
                           ),
                         ]),
                       ),

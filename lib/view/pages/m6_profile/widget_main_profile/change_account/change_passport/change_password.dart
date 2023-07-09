@@ -187,7 +187,7 @@ class _ChangeAccountPasswordsState extends State<ChangeAccountPasswords> {
                                     focusColor: Colors.blue.shade200,
                                     highlightColor: Colors.grey.shade200,
                                     icon: Icon(Icons.change_circle,
-                                        color: MyColors.appColorBlue2()),
+                                        color: MyColors.appColorBBA()),
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,

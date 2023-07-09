@@ -61,7 +61,7 @@ Widget servicePageHead({required BuildContext context,
               minWidth: double.infinity,
               height: 50,
               color: serviceMainList.status
-                  ? MyColors.appColorBlue1()
+                  ? MyColors.appColorBBA()
                   : Colors.blueAccent.withOpacity(0.2),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),

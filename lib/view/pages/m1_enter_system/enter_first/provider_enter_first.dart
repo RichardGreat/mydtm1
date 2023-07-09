@@ -7,6 +7,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_pw_validator/Resource/MyColors.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/authorize.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_captcha.dart';
@@ -152,10 +153,10 @@ class ProviderEnterFirst extends ChangeNotifier {
             height: 180,
             child: Column(
               children: [
-                Text(
+                const Text(
                   "BBA",
                   style: TextStyle(
-                      color: Colors.blue.shade800,
+                      color: Color.fromRGBO(51, 110, 100, 1),
                       fontWeight: FontWeight.bold,
                       fontSize: 24),
                 ),
@@ -163,46 +164,42 @@ class ProviderEnterFirst extends ChangeNotifier {
                 Center(
                   child: const Icon(
                     Icons.check_circle,
-                    color: Colors.blueAccent,
-                    size: 82,
-                  )  .animate(
-                      onPlay: (controller) => controller
-                          .repeat(reverse: true))
+                    color: Color.fromRGBO(51, 110, 100, 1),
+                    size: 60,
+                  )
+                      .animate(
+                          onPlay: (controller) =>
+                              controller.repeat(reverse: true))
                       .scaleXY(
-                      end: 2.2,
-                      delay: const Duration(
-                          milliseconds: 600),
-                      curve: Curves.easeInOutCirc)
+                          end: 2.2,
+                          delay: const Duration(milliseconds: 600),
+                          curve: Curves.easeInOutCirc)
                       .shimmer(
-                      color:
-                      Colors.lightBlue,
-                      delay: const Duration(
-                          milliseconds: 600))
+                          color: Colors.lightBlue,
+                          delay: const Duration(milliseconds: 600))
                       .elevation(end: 0),
                 ),
               ],
             ),
           )).show().then(
-            (value) {
+        (value) {
           Navigator.pushAndRemoveUntil(
               context,
               CupertinoPageRoute(
                 builder: (context) => MainPages(homeIdMainpage: "1"),
               ),
-                  (route) => false);
+              (route) => false);
         },
       );
-      await  Future.delayed(const Duration(milliseconds: 900)).then(
-            (value) {
-      Navigator.of(context).pop();
+      await Future.delayed(const Duration(milliseconds: 900)).then(
+        (value) {
+          Navigator.of(context).pop();
         },
       );
 
       boolAuthorization = false;
       modelAuthorizationParse =
           ModelAuthorizationParse.fromJson(jsonDecode(dataData));
-
-
 
       notifyListeners();
     } catch (e) {

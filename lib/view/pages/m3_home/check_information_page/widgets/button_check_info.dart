@@ -24,7 +24,7 @@ Widget bottomCheckInfo(
               func: functions1);
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        color: MyColors.appColorBlue1(),
+        color: MyColors.appColorBBA(),
         child: MyWidgets.robotoFontText(
             text: "continue".tr(), textColor: MyColors.appColorWhite()),
       ),
