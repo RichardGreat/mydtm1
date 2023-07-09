@@ -66,8 +66,12 @@ Widget bodyAriza1(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    MyWidgets.robotoFontText(
-                        text: "saveDateTime".tr(), textSize: 16),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width*0.5 ,
+
+                      child: MyWidgets.robotoFontText(
+                          text: "saveDateTime".tr(), textSize: 16),
+                    ),
                     MyWidgets.robotoFontText(
                         text: providerAriza.model.updatedAt
                             .toString()

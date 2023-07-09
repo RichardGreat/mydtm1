@@ -34,33 +34,50 @@ Widget infoAriza(
                         fontWeight: FontWeight.w400,
                         color: MyColors.appColorBlack())),
                 onTap: () {},
-                trailing: Text(providerAriza.person.id.toString(), style:const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),)),
+                trailing: Text(
+                  providerAriza.person.id.toString(),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500, fontSize: 16),
+                )),
             ListTile(
               title: Text("applicent".tr()),
               onTap: () {},
               trailing: Text(
-                  "${providerAriza.person.lname}.${providerAriza.person.fname.substring(0, 1)}.${providerAriza.person.mname.substring(0, 1)}", style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                  color: MyColors.appColorBlack()) ),
+                  "${providerAriza.person.lname}.${providerAriza.person.fname.substring(0, 1)}.${providerAriza.person.mname.substring(0, 1)}",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: MyColors.appColorBlack())),
             ),
             ListTile(
                 title: Text("holat".tr()),
                 onTap: () {},
-                trailing: Text(providerAriza.model.status == 1
-                    ? "accessed".tr()
-                    : "waiting".tr(),  style:const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),)),
+                trailing: Text(
+                  providerAriza.model.status == 1
+                      ? "accessed".tr()
+                      : "waiting".tr(),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500, fontSize: 16),
+                )),
             ListTile(
-              title: Text("lastChange".tr()),
+              title:
+               Text("lastChange".tr()),
               onTap: () {},
               trailing: Text(
-                  providerAriza.model.createdAt.toString().substring(0, 11),  style:const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
+                providerAriza.model.createdAt.toString().substring(0, 11),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+              ),
             ),
 
             ListTile(
               title: Text("testRegion".tr()),
               onTap: () {},
-              trailing: Text(providerAriza.model.tregion.toString(), style:const TextStyle(fontWeight: FontWeight.w500, fontSize: 16), ),
+              trailing: Text(
+                providerAriza.model.tregion.toString(),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+              ),
             ),
 
             // MyWidgets.robotoFontText(text: "Oliy ta'lim muassasalariga qabul"),
