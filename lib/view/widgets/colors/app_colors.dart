@@ -67,7 +67,7 @@ class MyColors {
   }
 
   static Color appColorGreen1() {
-    return  const Color.fromRGBO(25,178,141, 1);
+    return  Colors.teal;
   }
 
   static Color appColorGreen2() {
@@ -75,7 +75,8 @@ class MyColors {
   }
 
   static Color appColorBBA() {
-    return const Color.fromRGBO(51, 110, 100,1);
+    return  Colors.teal;
+    // return const Color.fromRGBO(51, 110, 100,1);
   }
 
 

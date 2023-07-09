@@ -31,7 +31,7 @@ dependencies:
   awesome_dialog: ^3.1.0
   carousel_slider: ^4.2.1
   flutter_widget_from_html_core: ^0.10.2
-  file_saver: ^0.2.6
+#  file_saver: ^0.2.6
   ntp: ^2.0.0
   easy_pdf_viewer: ^1.0.6
 #  permission_handler: ^10.4.2

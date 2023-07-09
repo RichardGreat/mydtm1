@@ -98,7 +98,7 @@ class _ChooseEduState extends State<ChooseEdu> {
               descTextStyle: const TextStyle(
                   color: Colors.black, fontWeight: FontWeight.w600),
               btnOkColor: Colors.grey,
-              btnCancelColor: Colors.blueAccent,
+              btnCancelColor: Colors.teal,
               btnCancelText: "no".tr(),
               btnOkText: "yes".tr(),
               btnCancelOnPress: () {

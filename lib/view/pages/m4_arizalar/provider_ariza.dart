@@ -6,7 +6,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
-import 'package:file_saver/file_saver.dart';
+// import 'package:file_saver/file_saver.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/answersheet.dart';
@@ -298,10 +298,10 @@ class ProviderAriza extends ChangeNotifier {
     notifyListeners();
 
     try {
-      await FileSaver.instance.saveFile(
-          name: "bmba_${DateFormat('yyyy-MM-dd – kk:mm').format(now)}.pdf",
-          link: LinkDetails(
-              link: urls, headers: {MainUrl.mainUrlHeader: box.get("token")}));
+      // await FileSaver.instance.saveFile(
+      //     name: "bmba_${DateFormat('yyyy-MM-dd – kk:mm').format(now)}.pdf",
+      //     link: LinkDetails(
+      //         link: urls, headers: {MainUrl.mainUrlHeader: box.get("token")}));
       //   {
       //     required String name,
       // Uint8List? bytes,
