@@ -13,7 +13,7 @@ Widget bodyAriza1(
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
     child: Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(6.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,11 +67,12 @@ Widget bodyAriza1(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      width: MediaQuery.of(context).size.width*0.5 ,
+                      width: MediaQuery.of(context).size.width*0.4 ,
 
                       child: MyWidgets.robotoFontText(
                           text: "saveDateTime".tr(), textSize: 16),
                     ),
+
                     MyWidgets.robotoFontText(
                         text: providerAriza.model.updatedAt
                             .toString()
@@ -105,11 +106,16 @@ Widget bodyAriza1(
                         children: [
                           MyWidgets.robotoFontText(
                               text: "numberInvoice".tr(), textSize: 16),
-                          MyWidgets.robotoFontText(
-                              text: providerAriza.model.serial
-                                  .toString()
-                                  .toString(),
-                              textSize: 14),
+
+                         Row(children: [
+                           const   Icon(Icons.copy, size: 15),
+                           MyWidgets.robotoFontText(
+                               text: providerAriza.model.serial
+                                   .toString()
+                                   .toString(),
+                               textSize: 14),
+                         ],),
+
                         ],
                       ),
                       const SizedBox(height: 5),
