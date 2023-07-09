@@ -38,7 +38,7 @@ Widget captchaSignUp(
 
                       focusColor: Colors.blue.shade200,
                       highlightColor:  Colors.grey.shade200,
-                      icon: Icon(Icons.change_circle, color: MyColors.appColorBlue2()),
+                      icon: Icon(Icons.change_circle, color: MyColors.appColorBBA()),
                     ),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,

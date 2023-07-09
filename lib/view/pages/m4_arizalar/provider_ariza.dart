@@ -19,6 +19,7 @@ import 'package:mydtm/data/internet_connections/m4_ariza/ruxsanoma.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/model_qayd_varaqa.dart';
+import 'package:ntp/ntp.dart';
 
 // import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -80,7 +81,9 @@ class ProviderAriza extends ChangeNotifier {
   bool boolDataDownload1 = false;
   bool boolDataDownload2 = false;
   bool boolDataDownload3 = false;
-
+ late DateTime myTime;
+ int day = 0;
+ int month = 0;
   Future getDownloads({required int categoryId}) async {
     /// String url o'zgartirish kerak
     if (categoryId == 1) {
@@ -100,6 +103,15 @@ class ProviderAriza extends ChangeNotifier {
                 maxNrOfCacheObjects: 1,
               ),)
         );
+
+        myTime = await NTP.now();
+         day = myTime.day;
+         month = myTime.month;
+         // log(myTime.timeZoneName);
+         // log(myTime.month.toString());
+         // log(myTime.day.toString());
+         // log(myTime.hour.toString());
+         // log(myTime.minute.toString());
         boolDataDownload1 = true;
         notifyListeners();
         // log(modelGetDownloadsData1.data.src);
