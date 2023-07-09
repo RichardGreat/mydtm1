@@ -97,7 +97,7 @@ class _MainPagesState extends State<MainPages> {
                               context: context,
                               dialogType: DialogType.noHeader,
                               animType: AnimType.bottomSlide,
-                              title: "BMBA",
+                              title: "BBA",
                               desc: "logUot".tr(),
                               titleTextStyle: TextStyle(
                                   color: MyColors.appColorBlue1(),

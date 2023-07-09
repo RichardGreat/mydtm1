@@ -37,10 +37,10 @@ class _EnterFirst0State extends State<EnterFirst0> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Image.asset("assets/images/gerb.png",
-                            height: 80, fit: BoxFit.cover),
+                            height: 110, fit: BoxFit.cover),
                         const SizedBox(width: 10),
                         MyWidgets.robotoFontText(
-                            text: "BMBA",
+                            text: "BBA",
                             textColor: MyColors.appColorBlack(),
                             textSize: 28)
                       ],

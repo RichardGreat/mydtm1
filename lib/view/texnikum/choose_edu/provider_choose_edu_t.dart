@@ -237,7 +237,7 @@ class ProviderChooseEduTexnikum extends ChangeNotifier {
               dialogType: DialogType.noHeader,
               animType: AnimType.bottomSlide,
               dismissOnTouchOutside: false,
-              title: "BMBA",
+              title: "BBA",
               desc: "saved".tr(),
               btnCancelColor: MyColors.appColorBlue1(),
               titleTextStyle: TextStyle(

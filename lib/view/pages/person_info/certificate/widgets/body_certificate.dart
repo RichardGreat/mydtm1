@@ -246,7 +246,7 @@ Widget bodyCertificate(
                                           context: context,
                                       dialogType: DialogType.noHeader,
                                       animType: AnimType.bottomSlide,
-                                          title: "BMBA",
+                                          title: "BBA",
                                           desc: "certSubjectName".tr(args: [
                                             providerCertificate
                                                 .listCheckCertificate[index]

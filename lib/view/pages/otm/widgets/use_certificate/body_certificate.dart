@@ -68,7 +68,7 @@ Widget bodyCertificateOTM(
                                         context: context,
                                         dialogType: DialogType.noHeader,
                                         animType: AnimType.bottomSlide,
-                                        title: "BMBA",
+                                        title: "BBA",
 
                                         desc: "certSubjectName".tr(args: [
                                           providerChooseEdu
@@ -109,7 +109,7 @@ Widget bodyCertificateOTM(
                                         context: context,
                                         dialogType: DialogType.noHeader,
                                         animType: AnimType.bottomSlide,
-                                        title: "BMBA",
+                                        title: "BBA",
 
                                         desc: "certSubjectNameNo".tr(args: [
                                           providerChooseEdu

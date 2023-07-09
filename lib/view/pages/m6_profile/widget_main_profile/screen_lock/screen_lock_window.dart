@@ -40,7 +40,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                 context: context,
                 dialogType: DialogType.noHeader,
                 animType: AnimType.bottomSlide,
-                title: "BMBA",
+                title: "BBA",
                 body: Container(
                   margin: const EdgeInsets.all(15),
                   child: Column(
@@ -78,7 +78,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                             context: context,
                             dialogType: DialogType.noHeader,
                             animType: AnimType.bottomSlide,
-                            title: "BMBA",
+                            title: "BBA",
                             body: Container(
                               margin: const EdgeInsets.all(15),
                               child: Column(
@@ -111,7 +111,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                             context: context,
                         dialogType: DialogType.noHeader,
                         animType: AnimType.bottomSlide,
-                            title: "BMBA",
+                            title: "BBA",
                             body: Container(
                               margin: const EdgeInsets.all(15),
                               child: Column(
@@ -151,7 +151,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                             context: context,
                             dialogType: DialogType.noHeader,
                             animType: AnimType.bottomSlide,
-                            title: "BMBA",
+                            title: "BBA",
                             body: Container(
                               margin: const EdgeInsets.all(15),
                               child: Column(
@@ -185,7 +185,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                             context: context,
                             dialogType: DialogType.noHeader,
                             animType: AnimType.bottomSlide,
-                            title: "BMBA",
+                            title: "BBA",
                             body: Container(
                               margin: const EdgeInsets.all(15),
                               child: Column(
@@ -331,7 +331,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                                     context: context,
                                     dialogType: DialogType.noHeader,
                                     animType: AnimType.bottomSlide,
-                                    title: "BMBA",
+                                    title: "BBA",
                                     body: Container(
                                       margin: const EdgeInsets.all(15),
                                       child: Column(

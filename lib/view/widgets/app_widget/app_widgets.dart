@@ -120,7 +120,7 @@ class MyWidgets {
             dialogType: DialogType.noHeader,
             animType: AnimType.bottomSlide,
             dismissOnTouchOutside: false,
-            title: "BMBA",
+            title: "BBA",
             desc: valueText,
             titleTextStyle: TextStyle(
                 color: MyColors.appColorBlue1(),
@@ -141,7 +141,7 @@ class MyWidgets {
             dialogType: DialogType.noHeader,
             animType: AnimType.bottomSlide,
             dismissOnTouchOutside: false,
-            title: "BMBA",
+            title: "BBA",
             desc: valueText,
             titleTextStyle: TextStyle(
                 color: MyColors.appColorBlue1(),

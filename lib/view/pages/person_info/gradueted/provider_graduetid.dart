@@ -98,7 +98,7 @@ class ProviderGraduated extends ChangeNotifier {
           dialogType: DialogType.noHeader,
           animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-          title: "BMBA",
+          title: "BBA",
           desc: "wantUpdateInfo2".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),
@@ -687,7 +687,7 @@ class ProviderGraduated extends ChangeNotifier {
             dialogType: DialogType.noHeader,
             animType: AnimType.bottomSlide,
             dismissOnTouchOutside: false,
-            title: "BMBA",
+            title: "BBA",
             desc: "saved".tr(),
             titleTextStyle: TextStyle(
                 color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
@@ -756,7 +756,7 @@ class ProviderGraduated extends ChangeNotifier {
           dialogType: DialogType.noHeader,
           animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-          title: "BMBA",
+          title: "BBA",
           desc: "infoNotFind".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),
@@ -787,7 +787,7 @@ class ProviderGraduated extends ChangeNotifier {
             dialogType: DialogType.noHeader,
             animType: AnimType.bottomSlide,
             dismissOnTouchOutside: false,
-            title: "BMBA",
+            title: "BBA",
             desc: "wantUpdateInfo2".tr(),
             titleTextStyle: TextStyle(
                 color: MyColors.appColorBlue1(),
@@ -826,7 +826,7 @@ class ProviderGraduated extends ChangeNotifier {
           dialogType: DialogType.noHeader,
           animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-          title: "BMBA",
+          title: "BBA",
           desc: "wantUpdateInfo2".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),

@@ -61,7 +61,7 @@ class ProviderMainHome extends ChangeNotifier {
                   dialogType: DialogType.noHeader,
                   animType: AnimType.bottomSlide,
                   dismissOnBackKeyPress: false,
-                  title: "BMBA",
+                  title: "BBA",
                   desc: box.get("language").toString() == "1"
                       ? modelCheckMobileVersion.data.versionText
                       : box.get("language").toString() == "2"
@@ -102,7 +102,7 @@ class ProviderMainHome extends ChangeNotifier {
               context: context,
               dialogType: DialogType.noHeader,
               animType: AnimType.bottomSlide,
-              title: "BMBA",
+              title: "BBA",
               dismissOnTouchOutside: false,
               desc: "noServerConnection".tr(),
               titleTextStyle: TextStyle(
@@ -204,7 +204,7 @@ class ProviderMainHome extends ChangeNotifier {
               context: context,
               dialogType: DialogType.noHeader,
               animType: AnimType.bottomSlide,
-              title: "BMBA",
+              title: "BBA",
               dismissOnTouchOutside: false,
               desc: "noServerConnection".tr(),
               titleTextStyle: TextStyle(

@@ -192,7 +192,7 @@ class ProviderAriza extends ChangeNotifier {
             break;
           }
 
-          newPath = "$newPath/BMBA";
+          newPath = "$newPath/BBA";
           directory = Directory(newPath);
         }
         // }

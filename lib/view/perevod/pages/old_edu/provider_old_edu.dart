@@ -439,7 +439,7 @@ class ProviderOldEdu extends ChangeNotifier {
               dialogType: DialogType.noHeader,
               animType: AnimType.bottomSlide,
                   dismissOnTouchOutside: false,
-                  title: "BMBA",
+                  title: "BBA",
                   desc: "imageMaxSize".tr(),
                   titleTextStyle: TextStyle(
                       color: MyColors.appColorBlue1(),
@@ -524,7 +524,7 @@ class ProviderOldEdu extends ChangeNotifier {
                 dialogType: DialogType.noHeader,
                 animType: AnimType.bottomSlide,
                     dismissOnTouchOutside: false,
-                    title: "BMBA",
+                    title: "BBA",
                     desc: "infoFillError".tr(),
                     titleTextStyle: TextStyle(
                         color: MyColors.appColorBlue1(),
@@ -544,7 +544,7 @@ class ProviderOldEdu extends ChangeNotifier {
             dialogType: DialogType.noHeader,
             animType: AnimType.bottomSlide,
                 dismissOnTouchOutside: false,
-                title: "BMBA",
+                title: "BBA",
                 desc: "infoFillError".tr(),
                 titleTextStyle: TextStyle(
                     color: MyColors.appColorBlue1(),
@@ -563,7 +563,7 @@ class ProviderOldEdu extends ChangeNotifier {
           dialogType: DialogType.noHeader,
           animType: AnimType.bottomSlide,
               dismissOnTouchOutside: false,
-              title: "BMBA",
+              title: "BBA",
               desc: "pictureNotInfo".tr(),
               titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(),

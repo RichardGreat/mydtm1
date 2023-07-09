@@ -93,7 +93,7 @@ class _ChooseEduState extends State<ChooseEdu> {
               context: context,
               dialogType: DialogType.noHeader,
               animType: AnimType.rightSlide,
-              title: "BMBA",
+              title: "BBA",
               desc: "wantBackPage".tr(),
               descTextStyle: const TextStyle(
                   color: Colors.black, fontWeight: FontWeight.w600),

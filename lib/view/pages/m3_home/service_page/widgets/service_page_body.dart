@@ -94,7 +94,7 @@ Widget servicePageBody(
                           context: context,
                           dialogType: DialogType.noHeader,
                           animType: AnimType.bottomSlide,
-                          title: "BMBA",
+                          title: "BBA",
                           desc: "identification".tr(),
                           titleTextStyle: TextStyle(
                               color: MyColors.appColorBlue1(),
@@ -174,7 +174,7 @@ Widget servicePageBody(
                             context: context,
                             dialogType: DialogType.noHeader,
                             animType: AnimType.bottomSlide,
-                            title: "BMBA",
+                            title: "BBA",
                             desc: "identification".tr(),
                             titleTextStyle: TextStyle(
                                 color: MyColors.appColorBlue1(),

@@ -220,7 +220,7 @@ class _InvalidAddState extends State<InvalidAdd> {
                                             dialogType: DialogType.noHeader,
                                             animType: AnimType.bottomSlide,
                                             dismissOnTouchOutside: false,
-                                            title: "BMBA",
+                                            title: "BBA",
                                             desc: "fillUpRow".tr(),
                                             titleTextStyle: TextStyle(
                                                 color: MyColors.appColorBlue1(),

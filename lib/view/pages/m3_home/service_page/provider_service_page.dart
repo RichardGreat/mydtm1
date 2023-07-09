@@ -55,7 +55,7 @@ class ProviderServicePage extends ChangeNotifier {
                           // Divider(),
                           // SizedBox(height: 10),
                           Text(
-                            "BMBA",
+                            "BBA",
                             style:  TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "Inter-Medium",
@@ -169,7 +169,7 @@ class ProviderServicePage extends ChangeNotifier {
                             context: context,
                             dialogType: DialogType.noHeader,
                             animType: AnimType.bottomSlide,
-                            title: "BMBA",
+                            title: "BBA",
                             desc: "serviceNot".tr(),
                             titleTextStyle: TextStyle(
                                 color: MyColors.appColorBlue1(),
@@ -214,7 +214,7 @@ class ProviderServicePage extends ChangeNotifier {
                     //         dialogType: DialogType.noHeader,
                     //         animType: AnimType.bottomSlide,
                     //         dismissOnTouchOutside: false,
-                    //         title: "BMBA",
+                    //         title: "BBA",
                     //         desc: "regEnd".tr(),
                     //         titleTextStyle: TextStyle(
                     //             color: MyColors.appColorBlue1(),
@@ -255,7 +255,7 @@ class ProviderServicePage extends ChangeNotifier {
                         context: context,
                         dialogType: DialogType.noHeader,
                         animType: AnimType.bottomSlide,
-                        title: "BMBA",
+                        title: "BBA",
                         desc: "serviceWorkSoon".tr(),
                         titleTextStyle: TextStyle(
                             color: MyColors.appColorBlue1(),
@@ -277,7 +277,7 @@ class ProviderServicePage extends ChangeNotifier {
                         context: context,
                         dialogType: DialogType.noHeader,
                         animType: AnimType.bottomSlide,
-                        title: "BMBA",
+                        title: "BBA",
                         desc: "identification".tr(),
                         titleTextStyle: TextStyle(
                             color: MyColors.appColorBlue1(),
@@ -313,7 +313,7 @@ class ProviderServicePage extends ChangeNotifier {
                     context: context,
                     dialogType: DialogType.noHeader,
                     animType: AnimType.bottomSlide,
-                    title: "BMBA",
+                    title: "BBA",
                     desc: "identification".tr(),
                     titleTextStyle: TextStyle(
                         color: MyColors.appColorBlue1(),

@@ -81,7 +81,7 @@ Widget bodyPrivilegeTexnikum({
                                       dialogType: DialogType.noHeader,
                                       animType: AnimType.bottomSlide,
                                       dismissOnTouchOutside: false,
-                                      title: "BMBA",
+                                      title: "BBA",
                                       desc: "wantToDelete".tr(),
                                       titleTextStyle: TextStyle(
                                           color: MyColors.appColorBlue1(),
@@ -130,7 +130,7 @@ Widget bodyPrivilegeTexnikum({
                         context: context,
                         dialogType: DialogType.noHeader,
                         animType: AnimType.bottomSlide,
-                        title: "BMBA",
+                        title: "BBA",
                         desc: "chooseDirection".tr(),
                         titleTextStyle: TextStyle(
                             color: MyColors.appColorBlue1(),

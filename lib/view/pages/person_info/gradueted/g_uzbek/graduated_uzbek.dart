@@ -210,7 +210,7 @@ Widget graduatedUzbek(
                                   context: context,
                                   dialogType: DialogType.noHeader,
                                   animType: AnimType.bottomSlide,
-                                  title: "BMBA",
+                                  title: "BBA",
                                   desc: "noInfoGraduatedName".tr(),
 
                                   titleTextStyle: TextStyle(
