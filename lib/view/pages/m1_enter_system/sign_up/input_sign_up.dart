@@ -242,5 +242,5 @@ class FrenchStrings implements FlutterPwValidatorStrings {
 
   @override
   // TODO: implement lowercaseLetters
-  String get lowercaseLetters => "enterCapitalLatter".tr();
+  String get lowercaseLetters => "enterLowerCase".tr();
 }

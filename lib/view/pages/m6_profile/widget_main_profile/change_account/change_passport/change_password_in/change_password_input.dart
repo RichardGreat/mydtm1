@@ -148,16 +148,16 @@ class _ChangePasswordInputState extends State<ChangePasswordInput> {
                               numericCharCount: 1,
                               specialCharCount: 1,
                               width: MediaQuery.of(context).size.width * 0.8,
-                              height:
-                              MediaQuery.of(context).size.height > 900
-                                  ? MediaQuery.of(context).size.height * 0.35
-                                  : MediaQuery.of(context).size.height > 800
-                                  ? MediaQuery.of(context).size.height * 0.38
-                                  : MediaQuery.of(context).size.height > 700
-                                  ? MediaQuery.of(context).size.height * 0.43
-                                  : MediaQuery.of(context).size.height > 600
-                                  ? MediaQuery.of(context).size.height * 0.5
-                                  : MediaQuery.of(context).size.height * 0.5,
+                              height: 170,
+                              // MediaQuery.of(context).size.height > 900
+                              //     ? MediaQuery.of(context).size.height * 0.35
+                              //     : MediaQuery.of(context).size.height > 800
+                              //     ? MediaQuery.of(context).size.height * 0.38
+                              //     : MediaQuery.of(context).size.height > 700
+                              //     ? MediaQuery.of(context).size.height * 0.43
+                              //     : MediaQuery.of(context).size.height > 600
+                              //     ? MediaQuery.of(context).size.height * 0.5
+                              //     : MediaQuery.of(context).size.height * 0.5,
                               successColor: MyColors.appColorBlue1(),
 
                               strings: FrenchString(),
@@ -231,5 +231,5 @@ class FrenchString implements FlutterPwValidatorStrings {
 
   @override
   // TODO: implement lowercaseLetters
-  String get lowercaseLetters => throw UnimplementedError();
+  String get lowercaseLetters => "enterLowerCase".tr();
 }
