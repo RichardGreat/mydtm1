@@ -11,6 +11,8 @@ import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'dart:async';
 
+import 'package:mydtm/view/perevod/pages/old_edu/old_edu_add.dart';
+
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 // import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
 
@@ -175,7 +177,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 box.get("language") == "2" ||
                 box.get("language") == "3"
             ? //MainPages()//
-             MainPages(homeIdMainpage: "0",)//
+        OldEduAdd()
+             // MainPages(homeIdMainpage: "0",)//
         // TestDownload()
             : const EnterFirst0(),
       ),

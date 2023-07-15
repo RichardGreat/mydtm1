@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:typed_data';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -25,9 +27,9 @@ class _ImageToPdfState extends State<ImageToPdf> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: ()async{
-        // if(widget.providerOldEdu.listFiles.isNotEmpty) {
-        //   await widget.providerOldEdu.createPdfFile(contexts: context);
-        // }
+        if(widget.providerOldEdu.listFiles.isNotEmpty) {
+          await widget.providerOldEdu.createPdfFile(contexts: context);
+        }
         Navigator.of(context).pop();
         return true;
       },
@@ -45,9 +47,9 @@ class _ImageToPdfState extends State<ImageToPdf> {
               widget.providerOldEdu.listFiles.isNotEmpty
                   ? MaterialButton(
                       onPressed: () async {
-                        // await widget.providerOldEdu
-                        //     .createPdfFile(contexts: context);
-                        // widget.providerOldEdu.openFiles(pdfFile);
+                        await widget.providerOldEdu
+                            .createPdfFile(contexts: context);
+                        widget.providerOldEdu.openFiles(pdfFile);
                         Navigator.of(context).pop();
                         setState(() {});
                       },
