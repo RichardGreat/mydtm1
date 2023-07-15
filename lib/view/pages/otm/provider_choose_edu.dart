@@ -408,7 +408,7 @@ class ProviderChooseEdu extends ChangeNotifier {
           dialogType: DialogType.noHeader,
           animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-          title: "BMBA",
+          title: "BBA",
           desc: "infoNoDir".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),
@@ -482,7 +482,7 @@ class ProviderChooseEdu extends ChangeNotifier {
           dialogType: DialogType.noHeader,
           animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-          title: "BMBA",
+          title: "BBA",
           desc: "infoNoDir".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),
@@ -875,7 +875,7 @@ class ProviderChooseEdu extends ChangeNotifier {
           dialogType: DialogType.noHeader,
           animType: AnimType.bottomSlide,
           dismissOnTouchOutside: false,
-          title: "BMBA",
+          title: "BBA",
           desc: "chooseOther".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(),
@@ -939,7 +939,7 @@ class ProviderChooseEdu extends ChangeNotifier {
       notifyListeners();
       AwesomeDialog(
         context: context,
-        title: "BMBA",
+        title: "BBA",
         desc: "infoFillError".tr(),
         dismissOnTouchOutside: false,
         dialogType: DialogType.noHeader,

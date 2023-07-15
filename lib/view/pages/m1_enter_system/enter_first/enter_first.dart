@@ -64,19 +64,19 @@ class _EnterFirstState extends State<EnterFirst> {
                             child: providerEnterFirst.boolAuthorization
                                 ? MyWidgets.loaderDownload(context: context)
                                 : Padding(
-                                    padding: const EdgeInsets.all(10),
+                                    padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                                     child: SingleChildScrollView(
                                       child: Column(
                                         children: [
                                           const SizedBox(height: 20),
                                           Image.asset("assets/images/gerb.png",
-                                              height: 70),
+                                              height: 100),
                                           const SizedBox(height: 10),
-                                          const Text(
-                                            "BMBA",
+                                           Text(
+                                            "BBA",
                                             style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w600,
+                                                color: MyColors.appColorBBA(),
+                                                fontWeight: FontWeight.bold,
                                                 fontSize: 25),
                                           ),
                                           const SizedBox(height: 25),

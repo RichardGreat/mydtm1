@@ -39,7 +39,7 @@ Widget chooseDirect(
 
       Showcase(
         key: birChooses,
-        description: "Test topshirish hududini belgilash",
+        description: "chooseTestRegionTest".tr(),
         child: Container(
           decoration: BoxDecoration(
               color: MyColors.appColorWhite(),
@@ -83,7 +83,7 @@ Widget chooseDirect(
       /// ustuvorlik
       Showcase(
         key: ikkiChooses,
-        description: "Tanlov ustuvorligini tanlash",
+        description: "chooseUstuvorlik".tr(),
         child: Container(
           decoration: BoxDecoration(color: MyColors.appColorWhite()),
           child: ListTile(
@@ -134,7 +134,7 @@ Widget chooseDirect(
       /// maqsadli
       Showcase(
         key: uchChooses,
-        description: "Maqsadli qabulni tanlash yoki rad etish",
+        description: "chooseMaqsadli".tr(),
         child: Container(
           decoration: BoxDecoration(
             color: MyColors.appColorWhite(),
@@ -186,7 +186,7 @@ Widget chooseDirect(
       Showcase(
         key: tortChooses,
 
-        description: "Ta'lim tilini tanlash",
+        description: "chooseLangEducation".tr(),
         child: Container(
           decoration: BoxDecoration(
             color: MyColors.appColorWhite(),

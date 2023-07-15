@@ -16,7 +16,6 @@ import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
-import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s2_ui_text.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
@@ -390,7 +389,7 @@ Widget bodyProfile(
                           context: context,
                           dialogType: DialogType.noHeader,
                           animType: AnimType.bottomSlide,
-                          title: "BMBA",
+                          title: "BBA",
                           desc: "logUot".tr(),
                           titleTextStyle: TextStyle(
                               color: MyColors.appColorBlue1(),

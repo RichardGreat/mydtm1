@@ -15,7 +15,7 @@ Widget updateInfoGradueted(
           dialogType: DialogType.noHeader,
           animType: AnimType.bottomSlide,
               dismissOnTouchOutside: false,
-              title: "BMBA",
+              title: "BBA",
               desc:
                   "wantUpdateInfo".tr(),
               titleTextStyle: TextStyle(

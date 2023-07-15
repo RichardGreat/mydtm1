@@ -228,7 +228,7 @@ class ProviderSms extends ChangeNotifier {
                 context: context,
                 dialogType: DialogType.info,
                 animType: AnimType.bottomSlide,
-                title: "BMBA",
+                title: "BBA",
                 desc: "infoFillError".tr(),
                 titleTextStyle: TextStyle(
                     color: MyColors.appColorBlue1(),
@@ -297,7 +297,7 @@ class ProviderSms extends ChangeNotifier {
                 context: context,
                 dialogType: DialogType.info,
                 animType: AnimType.bottomSlide,
-                title: "BMBA",
+                title: "BBA",
                 desc: "saved".tr(),
                 titleTextStyle: TextStyle(
                     color: MyColors.appColorBlue1(),
@@ -323,7 +323,7 @@ class ProviderSms extends ChangeNotifier {
               context: context,
               dialogType: DialogType.info,
               animType: AnimType.bottomSlide,
-              title: "BMBA",
+              title: "BBA",
               desc: "reTry".tr(),
               titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),

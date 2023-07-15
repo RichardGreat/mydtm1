@@ -39,7 +39,7 @@ class MyColors {
   }
 
   static Color appColorBlue1() {
-    return const Color.fromRGBO(66, 112, 218, 1);
+    return const Color.fromRGBO(51, 110, 100, 1);
   }
 
   static Color appColorBlue2() {
@@ -67,12 +67,19 @@ class MyColors {
   }
 
   static Color appColorGreen1() {
-    return  const Color.fromRGBO(25,178,141, 1);
+    return  Colors.teal;
   }
 
   static Color appColorGreen2() {
     return const Color(0xFF66BB6A);
   }
+
+  static Color appColorBBA() {
+    return  Colors.teal;
+    // return const Color.fromRGBO(51, 110, 100,1);
+  }
+
+
 
   Random random = Random();
 

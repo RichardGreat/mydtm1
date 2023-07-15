@@ -22,7 +22,7 @@ PreferredSizeWidget appBarProfile(
   return AppBar(
     backgroundColor: MyColors.appColorWhite(),
     elevation: 0,
-    title: box.get("token").toString().length > 30
+    title: box.get("token").toString().length > 29
         ? MyWidgets.robotoFontText(text: "personalInfo".tr(), textSize: 24)
         : const Text(""),
     actions: [
@@ -36,7 +36,7 @@ PreferredSizeWidget appBarProfile(
                 context: context,
                 dialogType: DialogType.noHeader,
                 animType: AnimType.bottomSlide,
-                title: "BMBA",
+                title: "BBA",
                 body: Container(
                   margin: const EdgeInsets.all(15),
                   child: Column(children: [
@@ -127,7 +127,7 @@ PreferredSizeWidget appBarProfile(
                     box.get("lockScreen").toString().trim() != "null"
                     ? Icons.lock
                     : Icons.lock_open_sharp,
-                color: Colors.blue)),
+                color: MyColors.appColorBBA())),
       )
           :const Text(""),
 

@@ -150,7 +150,7 @@ Widget graduatedUzbek(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.82,
+                          width: MediaQuery.of(context).size.width * 0.76,
                           child: GestureDetector(
                             child: Container(
                               height: 50,
@@ -167,7 +167,7 @@ Widget graduatedUzbek(
                                 children: [
                                   SizedBox(
                                     width:
-                                        MediaQuery.of(context).size.width * 0.6,
+                                        MediaQuery.of(context).size.width * 0.5,
                                     child: Text(
                                       providerGradueted
                                                   .graduatedEduName.length <
@@ -210,13 +210,15 @@ Widget graduatedUzbek(
                                   context: context,
                                   dialogType: DialogType.noHeader,
                                   animType: AnimType.bottomSlide,
-                                  title: "BMBA",
+                                  title: "BBA",
                                   desc: "noInfoGraduatedName".tr(),
+
                                   titleTextStyle: TextStyle(
                                       color: MyColors.appColorBlue1(),
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                   descTextStyle: TextStyle(
+
                                       color: MyColors.appColorBlack(),
                                       fontWeight: FontWeight.bold),
                                   btnCancelOnPress: () {},

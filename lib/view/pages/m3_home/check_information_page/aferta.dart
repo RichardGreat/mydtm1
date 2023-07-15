@@ -83,8 +83,8 @@ class _AfertaState extends State<Aferta> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5)),
                 color: widget.providerCheckInformation.boolAfertaButton
-                    ? MyColors.appColorBlue1()
-                    : Colors.blue.withOpacity(0.3),
+                    ? MyColors.appColorBBA()
+                    : const Color.fromRGBO(51,110,100,0.5),
                 child: Text(
                     !widget.providerCheckInformation.boolAfertaButton
                         ? "viewAlls".tr()

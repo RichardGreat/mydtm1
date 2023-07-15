@@ -84,7 +84,7 @@ class ProviderAddInvalide extends ChangeNotifier{
         dialogType: DialogType.noHeader,
         animType: AnimType.bottomSlide,
         dismissOnTouchOutside: false,
-        title: "BMBA",
+        title: "BBA",
         desc: "saved".tr(),
         titleTextStyle: TextStyle(
             color: MyColors.appColorBlue1(),

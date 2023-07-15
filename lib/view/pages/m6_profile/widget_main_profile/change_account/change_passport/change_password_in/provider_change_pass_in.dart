@@ -52,7 +52,7 @@ class ProviderChangePasswordInputs extends ChangeNotifier {
               context: context,
               dialogType: DialogType.noHeader,
               animType: AnimType.bottomSlide,
-              title: "BMBA",
+              title: "BBA",
               desc: "passwordChange".tr(),
               titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
@@ -77,7 +77,7 @@ class ProviderChangePasswordInputs extends ChangeNotifier {
               context: context,
               dialogType: DialogType.noHeader,
               animType: AnimType.bottomSlide,
-              title: "BMBA",
+              title: "BBA",
               desc: "reTry".tr(),
               titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),

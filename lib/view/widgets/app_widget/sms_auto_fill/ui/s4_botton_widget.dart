@@ -10,6 +10,7 @@ Widget bottomUI(
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
+      providerSms.timeFormatString =="00:01"?
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -17,18 +18,19 @@ Widget bottomUI(
           GestureDetector(
             child: Text("reSentSms".tr()),
             onTap: () {
+
               Navigator.of(context).pop();
             },
           ),
         ],
-      ),
+      ):const SizedBox.shrink(),
       const SizedBox(height: 25),
       providerSms.timeFormatString == "00:00" ? const SizedBox.shrink() :
       MaterialButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         minWidth: double.infinity,
         height: 45,
-        color: MyColors.appColorBlue1(),
+        color: MyColors.appColorBBA(),
         onPressed: () {
           providerSms.boolSentServerRequest ? {
           if (5 > 4) {

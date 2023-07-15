@@ -45,7 +45,9 @@ Widget tableFanMajmua({required BuildContext context,  required ProviderChooseEd
       scrollDirection: Axis.horizontal,
    child:Table(
      defaultColumnWidth: const IntrinsicColumnWidth(),
-     border: TableBorder.all(borderRadius: BorderRadius.circular(4),color: MyColors.appColorGrey400()),
+     border: TableBorder.all(borderRadius: BorderRadius.circular(4),
+
+         color: MyColors.appColorGrey400()),
      columnWidths: const <int, TableColumnWidth>{
        0: IntrinsicColumnWidth(),
        1: IntrinsicColumnWidth(),

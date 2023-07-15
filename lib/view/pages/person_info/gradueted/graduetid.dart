@@ -88,6 +88,7 @@ class _GraduatedState extends State<Graduated> {
                     child: SingleChildScrollView(
                       child: Container(
                         margin: const EdgeInsets.all(15),
+                        padding:  const EdgeInsets.all(8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

@@ -56,8 +56,10 @@ Widget bodyCertificateOTM(
                           Expanded(
                               child: RadioListTile(
                                   title: Text("use".tr(),
+
                                       style: const TextStyle(fontSize: 14)),
                                   value: 1,
+                                  activeColor: MyColors.appColorBBA(),
                                   groupValue:int.parse(providerChooseEdu
                                       .listCertificateCheckUse[index].certId),
                                   onChanged: (val) {
@@ -68,7 +70,7 @@ Widget bodyCertificateOTM(
                                         context: context,
                                         dialogType: DialogType.noHeader,
                                         animType: AnimType.bottomSlide,
-                                        title: "BMBA",
+                                        title: "BBA",
 
                                         desc: "certSubjectName".tr(args: [
                                           providerChooseEdu
@@ -77,7 +79,7 @@ Widget bodyCertificateOTM(
                                               .toString()
                                         ]),
                                         titleTextStyle: TextStyle(
-                                            color: MyColors.appColorBlue1(),
+                                            color: MyColors.appColorBBA(),
                                             fontSize: 22,
                                             fontWeight: FontWeight.bold),
                                         descTextStyle: TextStyle(
@@ -86,7 +88,7 @@ Widget bodyCertificateOTM(
                                         btnCancelOnPress: () {},
                                         btnCancelText: "access".tr(),
                                         btnCancelColor:
-                                        MyColors.appColorBlue1())
+                                        MyColors.appColorBBA())
                                         .show();
                                     providerChooseEdu.setUserNationCert(
                                         indexId: index,
@@ -98,6 +100,9 @@ Widget bodyCertificateOTM(
                                   })),
                           Expanded(
                               child: RadioListTile(
+                                hoverColor: MyColors.appColorBBA(),
+
+                                  activeColor: MyColors.appColorBBA(),
                                   title: Text("rejection".tr(),
                                       style: const TextStyle(fontSize: 14)),
                                   value: 0,
@@ -109,7 +114,7 @@ Widget bodyCertificateOTM(
                                         context: context,
                                         dialogType: DialogType.noHeader,
                                         animType: AnimType.bottomSlide,
-                                        title: "BMBA",
+                                        title: "BBA",
 
                                         desc: "certSubjectNameNo".tr(args: [
                                           providerChooseEdu
@@ -121,7 +126,7 @@ Widget bodyCertificateOTM(
                                               .toString()
                                         ]),
                                         titleTextStyle: TextStyle(
-                                            color: MyColors.appColorBlue1(),
+                                            color: MyColors.appColorBBA(),
                                             fontSize: 22,
                                             fontWeight: FontWeight.bold),
                                         descTextStyle: TextStyle(
@@ -130,7 +135,7 @@ Widget bodyCertificateOTM(
                                         btnCancelOnPress: () {},
                                         btnCancelText: "access".tr(),
                                         btnCancelColor:
-                                        MyColors.appColorBlue1())
+                                        MyColors.appColorBBA())
                                         .show();
                                     providerChooseEdu.setUserNationCert(
                                         indexId: index,
@@ -160,7 +165,7 @@ Widget bodyCertificateOTM(
           MaterialButton(
             shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            color: MyColors.appColorBlue1(),
+            color: MyColors.appColorBBA(),
             height: 50,
             minWidth: double.infinity,
             onPressed: () {

@@ -65,7 +65,7 @@ class _CertificateApplicationState extends State<CertificateApplication> {
           body: providerServicePage.boolDownloadData
               ? SafeArea(
                   child: Padding(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

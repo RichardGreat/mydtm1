@@ -37,7 +37,7 @@ Widget buttonCertificate(
             context: context,
             dialogType: DialogType.noHeader,
             animType: AnimType.bottomSlide,
-            title: "BMBA",
+            title: "BBA",
             desc: "fillInField".tr(),
             titleTextStyle: TextStyle(
                 color: MyColors.appColorBlue1(),fontSize: 24, fontWeight: FontWeight.bold),

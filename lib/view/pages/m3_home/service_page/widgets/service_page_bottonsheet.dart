@@ -19,8 +19,10 @@ serviceSheetBottomSheet(
           height: MediaQuery.of(context).size.height*0.6,
           child: SingleChildScrollView(
             child: Container(
+
               height: MediaQuery.of(context).size.height*0.55,
               margin:const  EdgeInsets.all(10),
+              padding:const  EdgeInsets.all(10),
               child: Column(
                 children: [
                   Row(

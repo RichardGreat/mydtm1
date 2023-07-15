@@ -47,7 +47,6 @@ class _NewsSeeState extends State<NewsSee> {
         return <Widget>[
           SliverAppBar(
             iconTheme: IconThemeData(color: MyColors.appColorBlack()),
-
             backgroundColor: MyColors.appColorWhite(),
             floating: false,
             elevation: 0,
@@ -58,23 +57,26 @@ class _NewsSeeState extends State<NewsSee> {
           ),
           SliverToBoxAdapter(
             child:   Container(
-              margin: const EdgeInsets.all(5),
+
               height: MediaQuery.of(context).size.height * 0.3,
               width: MediaQuery.of(context).size.width * 0.9,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.white,
                   boxShadow: const [BoxShadow(color: Colors.grey)]),
-              child: CachedNetworkImage(
-                height: 80,
-                width: 100,
-                fit: BoxFit.fill,
-                imageUrl: widget.imgUrl,
-                progressIndicatorBuilder:
-                    (context, url, downloadProgress) =>
-                const CupertinoActivityIndicator(),
-                errorWidget: (context, url, error) =>
-                const Icon(Icons.error),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CachedNetworkImage(
+                  height: 80,
+                  width: 100,
+                  fit: BoxFit.fill,
+                  imageUrl: widget.imgUrl,
+                  progressIndicatorBuilder:
+                      (context, url, downloadProgress) =>
+                  const CupertinoActivityIndicator(),
+                  errorWidget: (context, url, error) =>
+                  const Icon(Icons.error),
+                ),
               ),
             ),
           )
@@ -86,6 +88,7 @@ class _NewsSeeState extends State<NewsSee> {
       )
           : Scaffold(body: SafeArea(
           child: Container(
+            padding: const EdgeInsets.all(8),
             height:  MediaQuery.of(context).size.height,
             margin: const EdgeInsets.all(15),
             child: Column(

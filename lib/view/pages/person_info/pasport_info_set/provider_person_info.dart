@@ -154,7 +154,7 @@ class ProviderPersonInfo extends ChangeNotifier {
                 context: context,
                 dialogType: DialogType.noHeader,
                 animType: AnimType.bottomSlide,
-                title: "BMBA",
+                title: "BBA",
                 desc: "saved".tr(),
                 titleTextStyle: TextStyle(
                     color: MyColors.appColorBlue1(),

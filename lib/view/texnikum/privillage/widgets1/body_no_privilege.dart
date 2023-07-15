@@ -76,7 +76,7 @@ Widget bodyNoPrivilegeTexnikum(
                         dialogType: DialogType.noHeader,
                         animType: AnimType.bottomSlide,
                         dismissOnTouchOutside: false,
-                        title: "BMBA",
+                        title: "BBA",
                         desc: "chooseDirection".tr(),
                         titleTextStyle: TextStyle(
                             color: MyColors.appColorBlue1(),

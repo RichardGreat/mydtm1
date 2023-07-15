@@ -74,6 +74,7 @@ class _AddressInfoState extends State<AddressInfo> {
                       ? SafeArea(
                           child: Container(
                           margin: const EdgeInsets.all(10),
+                          padding:  const EdgeInsets.all(8),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,

@@ -10,6 +10,7 @@ class NetworkCheckVersions {
     Response response;
     response = await dio.get(
       "${MainUrl.mainUrls}/home/version",
+
       // "https://api.dtm.uz/home/version",
     );
     return jsonEncode(response.data);

@@ -354,7 +354,7 @@ class ProviderCertificate extends ChangeNotifier {
           context: context,
           dialogType: DialogType.noHeader,
           animType: AnimType.bottomSlide,
-          title: "BMBA",
+          title: "BBA",
           desc: "infoAccessWait".tr(),
           titleTextStyle: TextStyle(
               color: MyColors.appColorBlue1(), fontSize: 24, fontWeight: FontWeight.bold),

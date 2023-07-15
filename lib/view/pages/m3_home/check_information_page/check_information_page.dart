@@ -74,6 +74,7 @@ class _CheckInformationState extends State<CheckInformation> {
                         child: SingleChildScrollView(
                           child: Container(
                             margin: const EdgeInsets.all(15),
+                            padding: const EdgeInsets.all(8),
                             child: bodyCheckInformation(
                                 functions: getCheckUserInfo,
                                 context: context,

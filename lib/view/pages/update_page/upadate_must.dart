@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -57,7 +55,7 @@ class _UpdateMustState extends State<UpdateMust> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("BMBA",
+                const Text("BBA",
                     style: TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.black)),
                 const SizedBox(height: 25),

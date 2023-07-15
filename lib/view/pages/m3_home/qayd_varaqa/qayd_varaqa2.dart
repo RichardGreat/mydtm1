@@ -48,6 +48,7 @@ class _QaydVaraqaEditState extends State<QaydVaraqaEdit> {
       ),
       body: SafeArea(
           child: Container(
+            padding: const EdgeInsets.all(8),
         child: widget.providerCheckInformation.boolDataDownload1
             ? widget.providerCheckInformation.modelGetDownloadsData1.status == 1
                 ? SingleChildScrollView(
@@ -102,10 +103,10 @@ class _QaydVaraqaEditState extends State<QaydVaraqaEdit> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 side: BorderSide(
-                                    color: MyColors.appColorBlack())),
+                                    color: MyColors.appColorBBA())),
                             child: MyWidgets.robotoFontText(
                                 text: "editEdu".tr(),
-                                textColor: MyColors.appColorBlack()),
+                                textColor: MyColors.appColorBBA()),
                           ),
                         ]),
                       ),

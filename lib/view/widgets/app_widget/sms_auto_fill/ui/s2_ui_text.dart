@@ -35,12 +35,12 @@ Widget uiText({required BuildContext context, required String phoneNum, required
                 labelText: "enterSms".tr(),
                 labelStyle: const TextStyle(
                     color: Color.fromRGBO(
-                        48, 192, 192, 1)),
+                        48, 110, 100, 1)),
                 focusedBorder:
                 const UnderlineInputBorder(
                   borderSide: BorderSide(
                       color: Color.fromRGBO(
-                          48, 192, 192, 1)),
+                          48, 110, 100, 1)),
                 ),
                 errorStyle: const TextStyle(
                   color: Color(0xFFB71C1C),

@@ -55,12 +55,12 @@ class ProviderServicePage extends ChangeNotifier {
                           // Divider(),
                           // SizedBox(height: 10),
                           Text(
-                            "BMBA",
+                            "BBA",
                             style:  TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "Inter-Medium",
-                                color: Colors.blue.shade900,
-                                fontSize: 16),
+                                color: MyColors.appColorBBA(),
+                                fontSize: 18),
                           ),
                           const SizedBox(height: 15),
                           RichText(
@@ -73,9 +73,9 @@ class ProviderServicePage extends ChangeNotifier {
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
-                          SizedBox(height: 20),
+                         const SizedBox(height: 20),
                           MaterialButton(
-                            color: Colors.blueAccent,
+                            color: MyColors.appColorBBA(),
                             height: 40,
                             minWidth: double.infinity,
                             textColor: Colors.white,
@@ -103,7 +103,7 @@ class ProviderServicePage extends ChangeNotifier {
                           Text(
                             "or".tr(),
                             style: TextStyle(
-                                color: Colors.blueAccent,
+                                color:  MyColors.appColorBBA(),
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "Inter-Medium"),
                           ),
@@ -116,14 +116,14 @@ class ProviderServicePage extends ChangeNotifier {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 side: BorderSide(
-                                    color: Colors.blueAccent, width: 1)),
+                                    color:  MyColors.appColorBBA(), width: 1)),
                             onPressed: () {
                               // Navigator.of(context).push(CupertinoPageRoute(
                               //   builder: (context) =>  SignUps(),
                               // ));
                               pushNewScreen(
                                 context,
-                                screen: SignUp(),
+                                screen:const SignUp(),
                                 withNavBar: false,
                                 // OPTIONAL VALUE. True by default.
                                 pageTransitionAnimation:
@@ -132,8 +132,8 @@ class ProviderServicePage extends ChangeNotifier {
                             },
                             child: Text(
                               "enterRegistration".tr(),
-                              style: const TextStyle(
-                                  color: Colors.blueAccent,
+                              style:  TextStyle(
+                                  color:  MyColors.appColorBBA(),
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "Inter-Medium"),
                             ),
@@ -169,7 +169,7 @@ class ProviderServicePage extends ChangeNotifier {
                             context: context,
                             dialogType: DialogType.noHeader,
                             animType: AnimType.bottomSlide,
-                            title: "BMBA",
+                            title: "BBA",
                             desc: "serviceNot".tr(),
                             titleTextStyle: TextStyle(
                                 color: MyColors.appColorBlue1(),
@@ -214,7 +214,7 @@ class ProviderServicePage extends ChangeNotifier {
                     //         dialogType: DialogType.noHeader,
                     //         animType: AnimType.bottomSlide,
                     //         dismissOnTouchOutside: false,
-                    //         title: "BMBA",
+                    //         title: "BBA",
                     //         desc: "regEnd".tr(),
                     //         titleTextStyle: TextStyle(
                     //             color: MyColors.appColorBlue1(),
@@ -255,7 +255,7 @@ class ProviderServicePage extends ChangeNotifier {
                         context: context,
                         dialogType: DialogType.noHeader,
                         animType: AnimType.bottomSlide,
-                        title: "BMBA",
+                        title: "BBA",
                         desc: "serviceWorkSoon".tr(),
                         titleTextStyle: TextStyle(
                             color: MyColors.appColorBlue1(),
@@ -277,7 +277,7 @@ class ProviderServicePage extends ChangeNotifier {
                         context: context,
                         dialogType: DialogType.noHeader,
                         animType: AnimType.bottomSlide,
-                        title: "BMBA",
+                        title: "BBA",
                         desc: "identification".tr(),
                         titleTextStyle: TextStyle(
                             color: MyColors.appColorBlue1(),
@@ -313,7 +313,7 @@ class ProviderServicePage extends ChangeNotifier {
                     context: context,
                     dialogType: DialogType.noHeader,
                     animType: AnimType.bottomSlide,
-                    title: "BMBA",
+                    title: "BBA",
                     desc: "identification".tr(),
                     titleTextStyle: TextStyle(
                         color: MyColors.appColorBlue1(),
