@@ -6,6 +6,7 @@ import 'dart:io';
 import 'dart:developer';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/perevod/internet/countrys.dart';
@@ -20,6 +21,7 @@ import 'package:mydtm/data/perevod/model/edu_lang_old.dart';
 import 'package:mydtm/data/perevod/model/edu_type.dart';
 import 'package:mydtm/data/perevod/model/model_mvdir.dart';
 import 'package:mydtm/data/perevod/model/sent_server_result.dart';
+import 'package:mydtm/view/perevod/pages/new_edu_perevod/new_edu_perevod.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -77,7 +79,7 @@ class ProviderOldEdu extends ChangeNotifier {
       boolForeignCountry = false;
       String dataNet = await networkCountryPerevod.getCountries();
       ModelGetCountryPerevod modelGetCountryPerevod =
-          ModelGetCountryPerevod.fromJson(jsonDecode(dataNet));
+      ModelGetCountryPerevod.fromJson(jsonDecode(dataNet));
       listDataCountryPerevod = modelGetCountryPerevod.masseage;
       listDataCountryPerevodTemp.clear();
       listDataCountryPerevodTemp.addAll(listDataCountryPerevod);
@@ -135,7 +137,7 @@ class ProviderOldEdu extends ChangeNotifier {
       boolEduType = false;
       String dataNet = await networkEduTypePerevod.getEduType();
       ModelGetEduTypePerevod modelGetEduTypePerevod =
-          ModelGetEduTypePerevod.fromJson(jsonDecode(dataNet));
+      ModelGetEduTypePerevod.fromJson(jsonDecode(dataNet));
       listDataEduType = modelGetEduTypePerevod.masseage;
       listDataEduTypeTemp.clear();
       listDataEduTypeTemp.addAll(listDataEduType);
@@ -173,7 +175,7 @@ class ProviderOldEdu extends ChangeNotifier {
       String dataEduLang = await networkEduLangPerevod.getEduLangType(
           emodeID: setEduTypePerevodId);
       ModelEduLangPerevod modelEduLangPerevod =
-          ModelEduLangPerevod.fromJson(jsonDecode(dataEduLang));
+      ModelEduLangPerevod.fromJson(jsonDecode(dataEduLang));
       listDataLangOld = modelEduLangPerevod.lang;
       boolEduLang = true;
       notifyListeners();
@@ -263,7 +265,7 @@ class ProviderOldEdu extends ChangeNotifier {
       String data = await networkUzbEduDirPerevod.getUzbEduDir(
           emod: setEduTypePerevodId, langId: eduLangId, eduId: eduUzbId);
       ModelEduMvDirPerevod modelEduMvDirPerevod =
-          ModelEduMvDirPerevod.fromJson(jsonDecode(data));
+      ModelEduMvDirPerevod.fromJson(jsonDecode(data));
       listDataMVDir = modelEduMvDirPerevod.mvdir;
       listDataMVDirTemp.clear();
       listDataMVDirTemp.addAll(listDataMVDir);
@@ -349,10 +351,11 @@ class ProviderOldEdu extends ChangeNotifier {
       pw.MultiPage(
         crossAxisAlignment: pw.CrossAxisAlignment.center,
         mainAxisAlignment: pw.MainAxisAlignment.center,
-        build: (context) => [
+        build: (context) =>
+        [
           pw.SizedBox(
-            height: MediaQuery.of(contexts).size.height,
-            width: MediaQuery.of(contexts).size.width,
+            height: 700,
+            width: 400,
             child: pw.Image(
               pw.MemoryImage(
                 base64Decode(
@@ -364,31 +367,43 @@ class ProviderOldEdu extends ChangeNotifier {
           ),
           listImagesByte.length >= 2
               ? pw.SizedBox(
-                  height: MediaQuery.of(contexts).size.height,
-                  width: MediaQuery.of(contexts).size.width,
-                  child: pw.Image(
-                    pw.MemoryImage(
-                      base64Decode(
-                        listImagesByte[1],
-                      ),
-                    ),
-                    fit: pw.BoxFit.fill,
-                  ),
-                )
+            height: MediaQuery
+                .of(contexts)
+                .size
+                .height,
+            width: MediaQuery
+                .of(contexts)
+                .size
+                .width,
+            child: pw.Image(
+              pw.MemoryImage(
+                base64Decode(
+                  listImagesByte[1],
+                ),
+              ),
+              fit: pw.BoxFit.fill,
+            ),
+          )
               : pw.SizedBox.shrink(),
           listImagesByte.length >= 3
               ? pw.SizedBox(
-                  height: MediaQuery.of(contexts).size.height,
-                  width: MediaQuery.of(contexts).size.width,
-                  child: pw.Image(
-                    pw.MemoryImage(
-                      base64Decode(
-                        listImagesByte[2],
-                      ),
-                    ),
-                    fit: pw.BoxFit.fill,
-                  ),
-                )
+            height: MediaQuery
+                .of(contexts)
+                .size
+                .height,
+            width: MediaQuery
+                .of(contexts)
+                .size
+                .width,
+            child: pw.Image(
+              pw.MemoryImage(
+                base64Decode(
+                  listImagesByte[2],
+                ),
+              ),
+              fit: pw.BoxFit.fill,
+            ),
+          )
               : pw.SizedBox.shrink(),
         ],
       ),
@@ -497,21 +512,21 @@ class ProviderOldEdu extends ChangeNotifier {
         final mb = kb / 1024;
         if (mb > 8) {
           AwesomeDialog(
-                  context: context,
-                  dialogType: DialogType.noHeader,
-                  animType: AnimType.bottomSlide,
-                  dismissOnTouchOutside: false,
-                  title: "BMBA",
-                  desc: "imageMaxSize".tr(),
-                  titleTextStyle: TextStyle(
-                      color: MyColors.appColorBlue1(),
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                  descTextStyle: TextStyle(
-                      color: MyColors.appColorBlack(),
-                      fontWeight: FontWeight.bold),
-                  btnCancelOnPress: () {},
-                  btnCancelText: "OK")
+              context: context,
+              dialogType: DialogType.noHeader,
+              animType: AnimType.bottomSlide,
+              dismissOnTouchOutside: false,
+              title: "BMBA",
+              desc: "imageMaxSize".tr(),
+              titleTextStyle: TextStyle(
+                  color: MyColors.appColorBlue1(),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(
+                  color: MyColors.appColorBlack(),
+                  fontWeight: FontWeight.bold),
+              btnCancelOnPress: () {},
+              btnCancelText: "OK")
               .show();
         } else {
           if (restRegionNamePerevod.length > 4 &&
@@ -537,7 +552,8 @@ class ProviderOldEdu extends ChangeNotifier {
               networkData = await networkSetOldEduPerevod.setServerOldEdu(
                   formDate: formData);
               ModelDataSendServerPerevod modelDataSendServerPerevod =
-                  ModelDataSendServerPerevod.fromJson(jsonDecode(networkData));
+              ModelDataSendServerPerevod.fromJson(jsonDecode(networkData));
+              log(networkData.toString());
               messageSendServerPerevod = modelDataSendServerPerevod.masseage;
               boolUploadIndicatorServer = true;
               AwesomeDialog(
@@ -569,7 +585,10 @@ class ProviderOldEdu extends ChangeNotifier {
                     color: MyColors.appColorBlack(),
                     fontWeight: FontWeight.bold),
                 btnCancelOnPress: () {},
-                btnOkOnPress: () {},
+                btnOkOnPress: () {
+                  Navigator.push(context, CupertinoPageRoute(
+                    builder: (context) => NewEduPerevod(),));
+                },
                 btnOkColor: MyColors.appColorBlue1(),
                 btnCancelColor: MyColors.appColorGrey400(),
                 btnOkText: "yes".tr(),
@@ -582,27 +601,6 @@ class ProviderOldEdu extends ChangeNotifier {
             }
           } else {
             AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.noHeader,
-                    animType: AnimType.bottomSlide,
-                    dismissOnTouchOutside: false,
-                    title: "BMBA",
-                    desc: "infoFillError".tr(),
-                    titleTextStyle: TextStyle(
-                        color: MyColors.appColorBlue1(),
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
-                    descTextStyle: TextStyle(
-                        color: MyColors.appColorBlack(),
-                        fontWeight: FontWeight.bold),
-                    btnCancelOnPress: () {},
-                    btnCancelText: "OK")
-                .show();
-          }
-        }
-      } catch (e) {
-        log(e.toString());
-        AwesomeDialog(
                 context: context,
                 dialogType: DialogType.noHeader,
                 animType: AnimType.bottomSlide,
@@ -618,24 +616,45 @@ class ProviderOldEdu extends ChangeNotifier {
                     fontWeight: FontWeight.bold),
                 btnCancelOnPress: () {},
                 btnCancelText: "OK")
+                .show();
+          }
+        }
+      } catch (e) {
+        log(e.toString());
+        AwesomeDialog(
+            context: context,
+            dialogType: DialogType.noHeader,
+            animType: AnimType.bottomSlide,
+            dismissOnTouchOutside: false,
+            title: "BMBA",
+            desc: "infoFillError".tr(),
+            titleTextStyle: TextStyle(
+                color: MyColors.appColorBlue1(),
+                fontSize: 24,
+                fontWeight: FontWeight.bold),
+            descTextStyle: TextStyle(
+                color: MyColors.appColorBlack(),
+                fontWeight: FontWeight.bold),
+            btnCancelOnPress: () {},
+            btnCancelText: "OK")
             .show();
       }
     } else {
       AwesomeDialog(
-              context: context,
-              dialogType: DialogType.noHeader,
-              animType: AnimType.bottomSlide,
-              dismissOnTouchOutside: false,
-              title: "BMBA",
-              desc: "pictureNotInfo".tr(),
-              titleTextStyle: TextStyle(
-                  color: MyColors.appColorBlue1(),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
-              descTextStyle: TextStyle(
-                  color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-              btnCancelOnPress: () {},
-              btnCancelText: "OK")
+          context: context,
+          dialogType: DialogType.noHeader,
+          animType: AnimType.bottomSlide,
+          dismissOnTouchOutside: false,
+          title: "BMBA",
+          desc: "pictureNotInfo".tr(),
+          titleTextStyle: TextStyle(
+              color: MyColors.appColorBlue1(),
+              fontSize: 24,
+              fontWeight: FontWeight.bold),
+          descTextStyle: TextStyle(
+              color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+          btnCancelOnPress: () {},
+          btnCancelText: "OK")
           .show();
     }
   }

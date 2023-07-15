@@ -49,7 +49,7 @@ class _ImageToPdfState extends State<ImageToPdf> {
                       onPressed: () async {
                         await widget.providerOldEdu
                             .createPdfFile(contexts: context);
-                        widget.providerOldEdu.openFiles(pdfFile);
+                        // widget.providerOldEdu.openFiles(pdfFile);
                          // ignore: use_build_context_synchronously
                          Navigator.of(context).pop();
                         setState(() {});
