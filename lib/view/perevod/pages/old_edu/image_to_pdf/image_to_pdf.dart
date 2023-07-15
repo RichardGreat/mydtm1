@@ -50,7 +50,8 @@ class _ImageToPdfState extends State<ImageToPdf> {
                         await widget.providerOldEdu
                             .createPdfFile(contexts: context);
                         widget.providerOldEdu.openFiles(pdfFile);
-                        Navigator.of(context).pop();
+                         // ignore: use_build_context_synchronously
+                         Navigator.of(context).pop();
                         setState(() {});
                       },
                       height: 45,

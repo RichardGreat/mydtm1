@@ -26,7 +26,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 class ProviderOldEdu extends ChangeNotifier {
-
   TextEditingController textEditingDirection = TextEditingController();
   TextEditingController textEditingEducation = TextEditingController();
 
@@ -178,7 +177,9 @@ class ProviderOldEdu extends ChangeNotifier {
       listDataLangOld = modelEduLangPerevod.lang;
       boolEduLang = true;
       notifyListeners();
-    } catch (e) {log(e.toString());}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   /// Edu lang
@@ -288,7 +289,9 @@ class ProviderOldEdu extends ChangeNotifier {
       }
       boolEduDirection = true;
       notifyListeners();
-    } catch (e) {log(e.toString());}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   Future setEduDirection(
@@ -397,6 +400,64 @@ class ProviderOldEdu extends ChangeNotifier {
     return saveDocument(name: "dtm2", pdf: pdf);
   }
 
+  // Future<File> createPdfFile({required BuildContext contexts}) async {
+  //   boolConvertImageToPdf = false;
+  //   var pdf = pw.Document();
+  //   pdf.addPage(
+  //     pw.MultiPage(
+  //       crossAxisAlignment: pw.CrossAxisAlignment.center,
+  //       mainAxisAlignment: pw.MainAxisAlignment.center,
+  //       build: (context) => [
+  //         pw.SizedBox(
+  //           height: MediaQuery.of(contexts).size.height,
+  //           width: MediaQuery.of(contexts).size.width,
+  //           child: pw.Image(
+  //             pw.MemoryImage(
+  //               base64Decode(
+  //                 listImagesByte[0],
+  //               ),
+  //             ),
+  //             fit: pw.BoxFit.fill,
+  //           ),
+  //         ),
+  //         listImagesByte.length >= 2
+  //             ? pw.SizedBox(
+  //                 height: MediaQuery.of(contexts).size.height,
+  //                 width: MediaQuery.of(contexts).size.width,
+  //                 child: pw.Image(
+  //                   pw.MemoryImage(
+  //                     base64Decode(
+  //                       listImagesByte[1],
+  //                     ),
+  //                   ),
+  //                   fit: pw.BoxFit.fill,
+  //                 ),
+  //               )
+  //             : pw.SizedBox.shrink(),
+  //         listImagesByte.length >= 3
+  //             ? pw.SizedBox(
+  //                 height: MediaQuery.of(contexts).size.height,
+  //                 width: MediaQuery.of(contexts).size.width,
+  //                 child: pw.Image(
+  //                   pw.MemoryImage(
+  //                     base64Decode(
+  //                       listImagesByte[2],
+  //                     ),
+  //                   ),
+  //                   fit: pw.BoxFit.fill,
+  //                 ),
+  //               )
+  //             : pw.SizedBox.shrink(),
+  //       ],
+  //     ),
+  //   );
+  //   boolConvertImageToPdf = true;
+  //
+  //   notifyListeners();
+  //
+  //   return saveDocument(name: "dtm2", pdf: pdf);
+  // }
+
   Future openFiles(File file) async {
     final url = file.path;
     await OpenFile.open(url);
@@ -437,8 +498,8 @@ class ProviderOldEdu extends ChangeNotifier {
         if (mb > 8) {
           AwesomeDialog(
                   context: context,
-              dialogType: DialogType.noHeader,
-              animType: AnimType.bottomSlide,
+                  dialogType: DialogType.noHeader,
+                  animType: AnimType.bottomSlide,
                   dismissOnTouchOutside: false,
                   title: "BMBA",
                   desc: "imageMaxSize".tr(),
@@ -522,8 +583,8 @@ class ProviderOldEdu extends ChangeNotifier {
           } else {
             AwesomeDialog(
                     context: context,
-                dialogType: DialogType.noHeader,
-                animType: AnimType.bottomSlide,
+                    dialogType: DialogType.noHeader,
+                    animType: AnimType.bottomSlide,
                     dismissOnTouchOutside: false,
                     title: "BMBA",
                     desc: "infoFillError".tr(),
@@ -543,8 +604,8 @@ class ProviderOldEdu extends ChangeNotifier {
         log(e.toString());
         AwesomeDialog(
                 context: context,
-            dialogType: DialogType.noHeader,
-            animType: AnimType.bottomSlide,
+                dialogType: DialogType.noHeader,
+                animType: AnimType.bottomSlide,
                 dismissOnTouchOutside: false,
                 title: "BMBA",
                 desc: "infoFillError".tr(),
@@ -562,8 +623,8 @@ class ProviderOldEdu extends ChangeNotifier {
     } else {
       AwesomeDialog(
               context: context,
-          dialogType: DialogType.noHeader,
-          animType: AnimType.bottomSlide,
+              dialogType: DialogType.noHeader,
+              animType: AnimType.bottomSlide,
               dismissOnTouchOutside: false,
               title: "BMBA",
               desc: "pictureNotInfo".tr(),
