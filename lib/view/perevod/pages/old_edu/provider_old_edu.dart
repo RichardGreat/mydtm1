@@ -21,8 +21,8 @@ import 'package:mydtm/data/perevod/model/edu_type.dart';
 import 'package:mydtm/data/perevod/model/model_mvdir.dart';
 import 'package:mydtm/data/perevod/model/sent_server_result.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-// import 'package:open_file/open_file.dart';
-// import 'package:pdf/widgets.dart' as pw;
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 class ProviderOldEdu extends ChangeNotifier {
 
@@ -338,79 +338,79 @@ class ProviderOldEdu extends ChangeNotifier {
   bool boolConvertImageToPdf = false;
   File? fileToServerPerevod;
 
-  // Future<File> createPdfFile({required BuildContext contexts}) async {
-  //   boolConvertImageToPdf = false;
-  //   var pdf = pw.Document();
-  //   pdf.addPage(
-  //     pw.MultiPage(
-  //       crossAxisAlignment: pw.CrossAxisAlignment.center,
-  //       mainAxisAlignment: pw.MainAxisAlignment.center,
-  //       build: (context) => [
-  //         pw.SizedBox(
-  //           height: MediaQuery.of(contexts).size.height,
-  //           width: MediaQuery.of(contexts).size.width,
-  //           child: pw.Image(
-  //             pw.MemoryImage(
-  //               base64Decode(
-  //                 listImagesByte[0],
-  //               ),
-  //             ),
-  //             fit: pw.BoxFit.fill,
-  //           ),
-  //         ),
-  //         listImagesByte.length >= 2
-  //             ? pw.SizedBox(
-  //                 height: MediaQuery.of(contexts).size.height,
-  //                 width: MediaQuery.of(contexts).size.width,
-  //                 child: pw.Image(
-  //                   pw.MemoryImage(
-  //                     base64Decode(
-  //                       listImagesByte[1],
-  //                     ),
-  //                   ),
-  //                   fit: pw.BoxFit.fill,
-  //                 ),
-  //               )
-  //             : pw.SizedBox.shrink(),
-  //         listImagesByte.length >= 3
-  //             ? pw.SizedBox(
-  //                 height: MediaQuery.of(contexts).size.height,
-  //                 width: MediaQuery.of(contexts).size.width,
-  //                 child: pw.Image(
-  //                   pw.MemoryImage(
-  //                     base64Decode(
-  //                       listImagesByte[2],
-  //                     ),
-  //                   ),
-  //                   fit: pw.BoxFit.fill,
-  //                 ),
-  //               )
-  //             : pw.SizedBox.shrink(),
-  //       ],
-  //     ),
-  //   );
-  //   boolConvertImageToPdf = true;
-  //
-  //   notifyListeners();
-  //
-  //   return saveDocument(name: "dtm2", pdf: pdf);
-  // }
+  Future<File> createPdfFile({required BuildContext contexts}) async {
+    boolConvertImageToPdf = false;
+    var pdf = pw.Document();
+    pdf.addPage(
+      pw.MultiPage(
+        crossAxisAlignment: pw.CrossAxisAlignment.center,
+        mainAxisAlignment: pw.MainAxisAlignment.center,
+        build: (context) => [
+          pw.SizedBox(
+            height: MediaQuery.of(contexts).size.height,
+            width: MediaQuery.of(contexts).size.width,
+            child: pw.Image(
+              pw.MemoryImage(
+                base64Decode(
+                  listImagesByte[0],
+                ),
+              ),
+              fit: pw.BoxFit.fill,
+            ),
+          ),
+          listImagesByte.length >= 2
+              ? pw.SizedBox(
+                  height: MediaQuery.of(contexts).size.height,
+                  width: MediaQuery.of(contexts).size.width,
+                  child: pw.Image(
+                    pw.MemoryImage(
+                      base64Decode(
+                        listImagesByte[1],
+                      ),
+                    ),
+                    fit: pw.BoxFit.fill,
+                  ),
+                )
+              : pw.SizedBox.shrink(),
+          listImagesByte.length >= 3
+              ? pw.SizedBox(
+                  height: MediaQuery.of(contexts).size.height,
+                  width: MediaQuery.of(contexts).size.width,
+                  child: pw.Image(
+                    pw.MemoryImage(
+                      base64Decode(
+                        listImagesByte[2],
+                      ),
+                    ),
+                    fit: pw.BoxFit.fill,
+                  ),
+                )
+              : pw.SizedBox.shrink(),
+        ],
+      ),
+    );
+    boolConvertImageToPdf = true;
+
+    notifyListeners();
+
+    return saveDocument(name: "dtm2", pdf: pdf);
+  }
 
   Future openFiles(File file) async {
     // final url = file.path;
     // await OpenFile.open(url);
   }
 
-  // Future<File> saveDocument(
-  //     {required String name, required pw.Document pdf}) async {
-  //   final bytes = await pdf.save();
-  //   final dir = await getApplicationDocumentsDirectory();
-  //   final file = File("${dir.path}/$name");
-  //   await file.writeAsBytes(bytes);
-  //   fileToServerPerevod = file;
-  //   notifyListeners();
-  //   return file;
-  // }
+  Future<File> saveDocument(
+      {required String name, required pw.Document pdf}) async {
+    final bytes = await pdf.save();
+    final dir = await getApplicationDocumentsDirectory();
+    final file = File("${dir.path}/$name");
+    await file.writeAsBytes(bytes);
+    fileToServerPerevod = file;
+    notifyListeners();
+    return file;
+  }
 
   Future deleteItemList({required int index}) async {
     listImagesPDF.removeAt(index);
