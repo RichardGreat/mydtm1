@@ -7,6 +7,7 @@ import 'dart:developer';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/perevod/internet/countrys.dart';
 import 'package:mydtm/data/perevod/internet/edu_lang_perevod.dart';
@@ -21,11 +22,12 @@ import 'package:mydtm/data/perevod/model/edu_type.dart';
 import 'package:mydtm/data/perevod/model/model_mvdir.dart';
 import 'package:mydtm/data/perevod/model/sent_server_result.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 class ProviderOldEdu extends ChangeNotifier {
-
   TextEditingController textEditingDirection = TextEditingController();
   TextEditingController textEditingEducation = TextEditingController();
 
@@ -41,6 +43,7 @@ class ProviderOldEdu extends ChangeNotifier {
   String dirIds = "";
   String graduatedYear = "";
   String graduatedYearNames = "";
+  var box = Hive.box("online");
 
   bool getDirectionBool() {
     if (restRegionNamePerevodId == "860") {
@@ -177,7 +180,9 @@ class ProviderOldEdu extends ChangeNotifier {
       listDataLangOld = modelEduLangPerevod.lang;
       boolEduLang = true;
       notifyListeners();
-    } catch (e) {log(e.toString());}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   /// Edu lang
@@ -287,7 +292,9 @@ class ProviderOldEdu extends ChangeNotifier {
       }
       boolEduDirection = true;
       notifyListeners();
-    } catch (e) {log(e.toString());}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   Future setEduDirection(
@@ -338,29 +345,81 @@ class ProviderOldEdu extends ChangeNotifier {
   bool boolConvertImageToPdf = false;
   File? fileToServerPerevod;
 
+  Future<pw.PageTheme> pageThemes(PdfPageFormat format) async {
+
+    final materialIcons = await rootBundle.load("assets/fonts/Roboto-Medium.ttf");
+
+    final materialIconsTtf = pw.Font.ttf(materialIcons);
+    return pw.PageTheme(
+      pageFormat: format,
+      theme: pw.ThemeData.withFont(
+        icons: materialIconsTtf,
+      ),
+    );
+  }
+
   Future<File> createPdfFile({required BuildContext contexts}) async {
+    final materialIcons = await rootBundle.load("assets/fonts/Roboto-Medium.ttf");
     boolConvertImageToPdf = false;
     var pdf = pw.Document();
     pdf.addPage(
       pw.MultiPage(
+        // maxPages: 3,
+        // pageFormat: PdfPageFormat.a4,
+        pageTheme:await pageThemes(PdfPageFormat.a4),
         crossAxisAlignment: pw.CrossAxisAlignment.center,
         mainAxisAlignment: pw.MainAxisAlignment.center,
+        header: (pw.Context context) {
+          if (context.pageNumber == 1) {
+            return pw.SizedBox(
+              width: 220,
+              child: pw.Text(box.get("fio").toString(),
+              style: pw.TextStyle(
+                font: pw.Font.ttf(materialIcons),
+              //   fontSize: 25,
+              )),
+            );
+          }else{
+            return   pw.SizedBox(
+              width: 220,
+              child: pw.Text(box.get("fio").toString(),
+                  style: pw.TextStyle(
+                    font: pw.Font.ttf(materialIcons),
+                    //   fontSize: 25,
+                  )),
+
+              // style: pw.TextStyle(
+              //   font: pw.Font.ttf(materialIcons),
+              //   fontSize: 25,
+              // ),
+            );
+          }
+        },
+
         build: (context) => [
+
           pw.SizedBox(
-            height: MediaQuery.of(contexts).size.height,
-            width: MediaQuery.of(contexts).size.width,
-            child: pw.Image(
-              pw.MemoryImage(
-                base64Decode(
-                  listImagesByte[0],
+              height: 700,
+              width: MediaQuery.of(contexts).size.width,
+              child: pw.Stack(children: [
+                pw.Image(
+
+                  pw.MemoryImage(
+
+                    base64Decode(
+                      listImagesByte[0],
+                    ),
+                  ),
+                  fit: pw.BoxFit.cover,
                 ),
-              ),
-              fit: pw.BoxFit.fill,
-            ),
-          ),
+                pw.Align(
+                  alignment: pw.Alignment.topCenter,
+                  child: pw.Text("F.I.O"),
+                )
+              ])),
           listImagesByte.length >= 2
               ? pw.SizedBox(
-                  height: MediaQuery.of(contexts).size.height,
+                  height: 700,
                   width: MediaQuery.of(contexts).size.width,
                   child: pw.Image(
                     pw.MemoryImage(
@@ -374,7 +433,7 @@ class ProviderOldEdu extends ChangeNotifier {
               : pw.SizedBox.shrink(),
           listImagesByte.length >= 3
               ? pw.SizedBox(
-                  height: MediaQuery.of(contexts).size.height,
+                  height: 700,
                   width: MediaQuery.of(contexts).size.width,
                   child: pw.Image(
                     pw.MemoryImage(
@@ -393,12 +452,12 @@ class ProviderOldEdu extends ChangeNotifier {
 
     notifyListeners();
 
-    return saveDocument(name: "dtm2", pdf: pdf);
+    return saveDocument(name: "bmba.pdf", pdf: pdf);
   }
 
   Future openFiles(File file) async {
-    // final url = file.path;
-    // await OpenFile.open(url);
+    final url = file.path;
+    await OpenFile.open(url);
   }
 
   Future<File> saveDocument(
@@ -421,7 +480,6 @@ class ProviderOldEdu extends ChangeNotifier {
 
   ///
 
-  var box = Hive.box("online");
   NetworkSetOldEduPerevod networkSetOldEduPerevod = NetworkSetOldEduPerevod();
   bool boolUploadIndicatorServer = true;
 
@@ -436,8 +494,8 @@ class ProviderOldEdu extends ChangeNotifier {
         if (mb > 8) {
           AwesomeDialog(
                   context: context,
-              dialogType: DialogType.noHeader,
-              animType: AnimType.bottomSlide,
+                  dialogType: DialogType.noHeader,
+                  animType: AnimType.bottomSlide,
                   dismissOnTouchOutside: false,
                   title: "BBA",
                   desc: "imageMaxSize".tr(),
@@ -521,8 +579,8 @@ class ProviderOldEdu extends ChangeNotifier {
           } else {
             AwesomeDialog(
                     context: context,
-                dialogType: DialogType.noHeader,
-                animType: AnimType.bottomSlide,
+                    dialogType: DialogType.noHeader,
+                    animType: AnimType.bottomSlide,
                     dismissOnTouchOutside: false,
                     title: "BBA",
                     desc: "infoFillError".tr(),
@@ -541,8 +599,8 @@ class ProviderOldEdu extends ChangeNotifier {
       } catch (e) {
         AwesomeDialog(
                 context: context,
-            dialogType: DialogType.noHeader,
-            animType: AnimType.bottomSlide,
+                dialogType: DialogType.noHeader,
+                animType: AnimType.bottomSlide,
                 dismissOnTouchOutside: false,
                 title: "BBA",
                 desc: "infoFillError".tr(),
@@ -560,8 +618,8 @@ class ProviderOldEdu extends ChangeNotifier {
     } else {
       AwesomeDialog(
               context: context,
-          dialogType: DialogType.noHeader,
-          animType: AnimType.bottomSlide,
+              dialogType: DialogType.noHeader,
+              animType: AnimType.bottomSlide,
               dismissOnTouchOutside: false,
               title: "BBA",
               desc: "pictureNotInfo".tr(),

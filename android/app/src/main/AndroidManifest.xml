@@ -21,7 +21,7 @@
     </queries>
 
    <application
-        android:label="BMBA"
+        android:label="BBA"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="false"

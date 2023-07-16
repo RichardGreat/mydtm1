@@ -20,17 +20,20 @@ class ImageToPdf extends StatefulWidget {
 class _ImageToPdfState extends State<ImageToPdf> {
   List<Uint8List> imagesUint8list = [];
 
-   getActionState(){
-    setState((){});
+  getActionState() {
+    setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()async{
-        if(widget.providerOldEdu.listFiles.isNotEmpty) {
+      onWillPop: () async {
+        if (widget.providerOldEdu.listFiles.isNotEmpty) {
           await widget.providerOldEdu.createPdfFile(contexts: context);
         }
-        Navigator.of(context).pop();
+        widget.providerOldEdu
+            .openFiles(widget.providerOldEdu.fileToServerPerevod!);
+        //Navigator.of(context).pop();
         return true;
       },
       child: Scaffold(
@@ -50,8 +53,8 @@ class _ImageToPdfState extends State<ImageToPdf> {
                         await widget.providerOldEdu
                             .createPdfFile(contexts: context);
                         // widget.providerOldEdu.openFiles(pdfFile);
-                         // ignore: use_build_context_synchronously
-                         Navigator.of(context).pop();
+                        // ignore: use_build_context_synchronously
+                        Navigator.of(context).pop();
                         setState(() {});
                       },
                       height: 45,
@@ -64,7 +67,8 @@ class _ImageToPdfState extends State<ImageToPdf> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text("access".tr(),
-                              style: TextStyle(color: MyColors.appColorBlack())),
+                              style:
+                                  TextStyle(color: MyColors.appColorBlack())),
                         ],
                       ),
                     )
@@ -127,8 +131,8 @@ class _ImageToPdfState extends State<ImageToPdf> {
                                         providerOldEdu: widget.providerOldEdu,
                                       )),
                                 ).then((value) => (value) {
-                                  Navigator.of(context).pop();
-                                });
+                                      Navigator.of(context).pop();
+                                    });
 
                                 setState(() {});
                               },
@@ -162,35 +166,35 @@ class _ImageToPdfState extends State<ImageToPdf> {
             ]),
           ),
         ),
-
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            widget.providerOldEdu.listFiles.length >= 3?{}:
-            showModalBottomSheet(
-              context: context,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              enableDrag: true,
-              builder: (context) => Container(
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(5),
-                    topLeft: Radius.circular(5),
-                  )),
-                  height: 200,
-                  child: ChooseImagesPerevod(
-                    function: getActionState,
-                    providerOldEdu: widget.providerOldEdu,
-                  )),
-            ).then((value) => (value) {
-              Navigator.of(context).pop();
-            });
+            widget.providerOldEdu.listFiles.length >= 3
+                ? {}
+                : showModalBottomSheet(
+                    context: context,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    enableDrag: true,
+                    builder: (context) => Container(
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(5),
+                          topLeft: Radius.circular(5),
+                        )),
+                        height: 200,
+                        child: ChooseImagesPerevod(
+                          function: getActionState,
+                          providerOldEdu: widget.providerOldEdu,
+                        )),
+                  ).then((value) => (value) {
+                      Navigator.of(context).pop();
+                    });
             setState(() {});
           },
-          backgroundColor:
-          widget.providerOldEdu.listFiles.length < 3?
-          MyColors.appColorBlue1():MyColors.appColorGrey400(),
+          backgroundColor: widget.providerOldEdu.listFiles.length < 3
+              ? MyColors.appColorBlue1()
+              : MyColors.appColorGrey400(),
           child: const Icon(Icons.add),
         ),
       ),

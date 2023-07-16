@@ -359,7 +359,7 @@ Widget bodyProfile(
                 pushNewScreenWithRouteSettings(context,
                     pageTransitionAnimation: PageTransitionAnimation.cupertino,
                     screen: MainPages(homeIdMainpage: "0"),
-                    settings: RouteSettings(),
+                    settings:const RouteSettings(),
                     withNavBar: false);
               },
               btnOkText: "yes".tr(),

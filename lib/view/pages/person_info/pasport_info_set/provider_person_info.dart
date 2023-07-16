@@ -71,6 +71,8 @@ class ProviderPersonInfo extends ChangeNotifier {
       box.delete("imie");
       box.delete("psnum");
       box.delete("personImage");
+      box.delete("fio");
+      box.put("fio", "$lname $fname $mname");
       box.put("imie", imie);
       box.put("psnum", psnum);
       box.put("personImage", image);
@@ -119,6 +121,8 @@ class ProviderPersonInfo extends ChangeNotifier {
       box.delete("imie");
       box.delete("psnum");
       box.delete("personImage");
+      box.delete("fio");
+      box.put("fio", "$lname $fname $mname");
       box.put("imie", imie);
       box.put("psnum", psnum);
       box.put("personImage", image);

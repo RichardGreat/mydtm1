@@ -99,9 +99,12 @@ class ProviderProfile extends ChangeNotifier {
       box.delete("imie");
       box.delete("psnum");
       box.delete("personImage");
+      box.delete("fio");
+      box.put("fio", "$lname $fname $mname");
       box.put("imie", imie);
       box.put("psnum", psnum);
       box.put("personImage", image);
+
       boolHasTokenNoImie = false;
       boolGetProfileData = true;
       notifyListeners();
@@ -165,8 +168,9 @@ class ProviderProfile extends ChangeNotifier {
       textChangePhoneNum.clear();
       log(data);
     } catch (e) {
-      MyWidgets.awesomeDialogError(context: context, valueText: "telephoneHasNum".tr());
-      log(e.toString()); 
+      MyWidgets.awesomeDialogError(
+          context: context, valueText: "telephoneHasNum".tr());
+      log(e.toString());
     }
   }
 
@@ -174,7 +178,7 @@ class ProviderProfile extends ChangeNotifier {
   Future goLoginPage({required BuildContext context}) async {
     pushNewScreen(
       context,
-      screen:  EnterFirst(windowIdEnterFirst: "0"),
+      screen: EnterFirst(windowIdEnterFirst: "0"),
       withNavBar: false,
       pageTransitionAnimation: PageTransitionAnimation.cupertino,
     );
@@ -212,7 +216,6 @@ class ProviderProfile extends ChangeNotifier {
             ? {
                 dataLang =
                     await networkSetLanguage.setLanguageUser(setLang: "uz"),
-
               }
             : box.get("language") == "2"
                 ? {
@@ -265,6 +268,7 @@ class ProviderProfile extends ChangeNotifier {
 
   /// Change Phone
   final Uri url = Uri.parse("https://lex.uz/docs/-4396419");
+
   Future<void> launchInBrowser(Uri url) async {
     if (!await launchUrl(
       url,
@@ -274,9 +278,9 @@ class ProviderProfile extends ChangeNotifier {
     }
   }
 
-
-  Future changeLang({required String langId, required BuildContext context})async{
-    if(langId == "0"){
+  Future changeLang(
+      {required String langId, required BuildContext context}) async {
+    if (langId == "0") {
       context.setLocale(const Locale('uz', 'UZ'));
 
       box.delete("language");
@@ -287,12 +291,10 @@ class ProviderProfile extends ChangeNotifier {
       // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
         context,
-        CupertinoPageRoute(
-            builder: (context) =>const MyApp( )),
-            (route) => false,
+        CupertinoPageRoute(builder: (context) => const MyApp()),
+        (route) => false,
       );
-    }
-    else if(langId == "1"){
+    } else if (langId == "1") {
       context.setLocale(const Locale('kk', 'KK'));
       box.delete("language");
       box.put("language", "2");
@@ -302,38 +304,34 @@ class ProviderProfile extends ChangeNotifier {
       // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
         context,
-        CupertinoPageRoute(
-            builder: (context) => const MyApp()),
-            (route) => false,
+        CupertinoPageRoute(builder: (context) => const MyApp()),
+        (route) => false,
       );
-    }
-    else if(langId == "2"){
+    } else if (langId == "2") {
       context.setLocale(const Locale('ru', 'RU'));
       box.delete("language");
       box.put("language", "3");
       box.delete("langLock");
       box.put("langLock", "1");
-    await setLangUser();
+      await setLangUser();
       // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
         context,
-        CupertinoPageRoute(
-            builder: (context) => const MyApp()),
-            (route) => false,
+        CupertinoPageRoute(builder: (context) => const MyApp()),
+        (route) => false,
       );
-
     }
   }
 
-  final Uri urlDeleteAccount = Uri.parse("https://my.uzbmb.uz/site/delete-account");
+  final Uri urlDeleteAccount =
+      Uri.parse("https://my.uzbmb.uz/site/delete-account");
+
   Future<void> launchDeleteAccountInBrowser() async {
     if (!await launchUrl(
       urlDeleteAccount,
       mode: LaunchMode.externalApplication,
-
     )) {
       throw 'Could not launch $url';
     }
   }
-
 }

@@ -9,6 +9,7 @@ import 'package:hive_flutter/adapters.dart';
 // import 'package:local_auth/local_auth.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
+import 'package:mydtm/view/perevod/check_info_perevod/check_info_perevodga.dart';
 import 'dart:async';
 
 import 'package:mydtm/view/perevod/pages/old_edu/old_edu_add.dart';
