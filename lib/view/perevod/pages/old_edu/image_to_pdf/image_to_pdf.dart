@@ -26,13 +26,14 @@ class _ImageToPdfState extends State<ImageToPdf> {
 
   @override
   Widget build(BuildContext context) {
+    widget.providerOldEdu.listFiles.length > 3 ?{Navigator.of(context).pop()}:{};
     return WillPopScope(
       onWillPop: () async {
         if (widget.providerOldEdu.listFiles.isNotEmpty) {
           await widget.providerOldEdu.createPdfFile(contexts: context);
         }
-        widget.providerOldEdu
-            .openFiles(widget.providerOldEdu.fileToServerPerevod!);
+        // widget.providerOldEdu
+        //     .openFiles(widget.providerOldEdu.fileToServerPerevod!);
         //Navigator.of(context).pop();
         return true;
       },
@@ -52,6 +53,8 @@ class _ImageToPdfState extends State<ImageToPdf> {
                       onPressed: () async {
                         await widget.providerOldEdu
                             .createPdfFile(contexts: context);
+                        // widget.providerOldEdu
+                        //     .openFiles(widget.providerOldEdu.fileToServerPerevod!);
                         // widget.providerOldEdu.openFiles(pdfFile);
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).pop();
@@ -169,7 +172,9 @@ class _ImageToPdfState extends State<ImageToPdf> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             widget.providerOldEdu.listFiles.length >= 3
-                ? {}
+                ? {
+            // Navigator.of(context).pop(),
+            }
                 : showModalBottomSheet(
                     context: context,
                     shape: RoundedRectangleBorder(
@@ -183,10 +188,12 @@ class _ImageToPdfState extends State<ImageToPdf> {
                           topLeft: Radius.circular(5),
                         )),
                         height: 200,
-                        child: ChooseImagesPerevod(
+                        child:
+                        widget.providerOldEdu.listFiles.length <= 3?
+                        ChooseImagesPerevod(
                           function: getActionState,
                           providerOldEdu: widget.providerOldEdu,
-                        )),
+                        ) :const SizedBox.shrink()),
                   ).then((value) => (value) {
                       Navigator.of(context).pop();
                     });

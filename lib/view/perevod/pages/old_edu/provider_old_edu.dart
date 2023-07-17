@@ -338,6 +338,7 @@ class ProviderOldEdu extends ChangeNotifier {
   }
 
   Future getImageFile({required File file}) async {
+
     listFiles.add(file);
     notifyListeners();
   }
@@ -453,10 +454,12 @@ class ProviderOldEdu extends ChangeNotifier {
     notifyListeners();
 
     return saveDocument(name: "bmba.pdf", pdf: pdf);
+
   }
 
   Future openFiles(File file) async {
     final url = file.path;
+    // log(file.path);
     await OpenFile.open(url);
   }
 
@@ -466,6 +469,7 @@ class ProviderOldEdu extends ChangeNotifier {
     final dir = await getApplicationDocumentsDirectory();
     final file = File("${dir.path}/$name");
     await file.writeAsBytes(bytes);
+
     fileToServerPerevod = file;
     notifyListeners();
     return file;

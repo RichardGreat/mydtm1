@@ -15,7 +15,8 @@ class ChooseImagesPerevod extends StatefulWidget {
   ProviderOldEdu providerOldEdu;
   Function function;
 
-  ChooseImagesPerevod({Key? key, required this.providerOldEdu, required this.function})
+  ChooseImagesPerevod(
+      {Key? key, required this.providerOldEdu, required this.function})
       : super(key: key);
 
   @override
@@ -29,11 +30,17 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
   String? img64;
 
   var box = Hive.box("online");
+
   @override
-  initState(){
+  initState() {
     widget.providerOldEdu.mbSizeZero = 0;
+
+    if( widget.providerOldEdu.listFiles.length >= 3){
+      Navigator.of(context).pop();
+    }
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -48,58 +55,76 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(),
-                Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            color: MyColors.appColorBlue1(), width: 1)),
-                    child: Column(
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              _pickImage(ImageSource.camera);
-                              // Navigator.of(context).pop();
-                            },
-                            icon: Icon(Icons.add_a_photo_outlined,
-                                color: MyColors.appColorBlue1(), size: 25)),
-                        Text(
-                          "Camera",
-                          style: TextStyle(color: MyColors.appColorBlue1()),
-                        )
-                      ],
-                    )),
-                Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            color: MyColors.appColorBlue1(), width: 1)),
-                    child: Column(
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              _pickImage(ImageSource.gallery);
-                              // Navigator.of(context).pop();
-                            },
-                            icon: Icon(
-                              Icons.add_photo_alternate_outlined,
-                              color: MyColors.appColorBlue1(),
-                              size: 25,
-                            )),
-                        Text(
-                          "Galery",
-                          style: TextStyle(color: MyColors.appColorBlue1()),
-                        )
-                      ],
-                    )),
-                Container(),
-              ],
-            ),
+            widget.providerOldEdu.listFiles.length < 3
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(),
+                      Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                  color: MyColors.appColorBlue1(), width: 1)),
+                          child: Column(
+                            children: [
+                              IconButton(
+                                  onPressed: () {
+                                    widget.providerOldEdu.listFiles.length <3?
+                                    _pickImage(ImageSource.camera):
+                                    Navigator.of(context).pop();
+                                  },
+                                  icon: Icon(Icons.add_a_photo_outlined,
+                                      color: MyColors.appColorBlue1(),
+                                      size: 25)),
+                              Text(
+                                "Camera",
+                                style:
+                                    TextStyle(color: MyColors.appColorBlue1()),
+                              )
+                            ],
+                          )),
+                      Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                  color: MyColors.appColorBlue1(), width: 1)),
+                          child: Column(
+                            children: [
+                              IconButton(
+                                  onPressed: () {
+                                    widget.providerOldEdu.listFiles.length <3?
+                                    _pickImage(ImageSource.gallery):
+                                    Navigator.of(context).pop();
+                                    // Navigator.of(context).pop();
+                                  },
+                                  icon: Icon(
+                                    Icons.add_photo_alternate_outlined,
+                                    color: MyColors.appColorBlue1(),
+                                    size: 25,
+                                  )),
+                              Text(
+                                "Galery",
+                                style:
+                                    TextStyle(color: MyColors.appColorBlue1()),
+                              )
+                            ],
+                          )),
+                      Container(),
+                    ],
+                  )
+                : MaterialButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    height: 40,
+                    color: MyColors.appColorBackC4(),
+                    textColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Text("access".tr()),
+                  ),
           ],
         ),
       ),
@@ -107,6 +132,7 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
   }
 
   Future<void> _pickImage(ImageSource imageSource) async {
+
     final pickedImage = await ImagePicker().pickImage(source: imageSource);
     imageFile = pickedImage != null ? File(pickedImage.path) : null;
     if (imageFile != null) {
@@ -116,9 +142,8 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
     }
   }
 
-   num mb = 0;
-   num mbSize = 0;
-
+  num mb = 0;
+  num mbSize = 0;
 
   Future<void> _cropImage() async {
     ImageCropper cropper = ImageCropper();
@@ -165,7 +190,6 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
       final kb = bytes / 1024;
       mb = kb / 1024;
 
-
       widget.providerOldEdu
           .getImageString(imageString: img64.toString().trim());
       widget.providerOldEdu.getImageFile(file: imageFile!);
@@ -182,8 +206,8 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
         final bytesSize = val.readAsBytesSync().lengthInBytes;
         final kbSize = bytesSize / 1024;
         mbSize = kbSize / 1024;
-        widget.providerOldEdu.mbSizeZero+= mbSize;
-        if(widget.providerOldEdu.mbSizeZero > 7.8){
+        widget.providerOldEdu.mbSizeZero += mbSize;
+        if (widget.providerOldEdu.mbSizeZero > 7.8) {
           AwesomeDialog(
             context: context,
             dialogType: DialogType.info,
@@ -201,7 +225,6 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
         }
         widget.function();
       }
-
     } else {
       AwesomeDialog(
         context: context,
