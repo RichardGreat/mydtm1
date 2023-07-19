@@ -269,7 +269,7 @@ class ProviderNewEduPerevod extends ChangeNotifier {
   NetworkForeignLangPerevod networkForeignLangPerevod = NetworkForeignLangPerevod();
   List<DataMvdirLangNewPerevod> listForeignLang= [];
   late ModelTestLangNewPerevod modelTestLangNewPerevod;
-  bool boolCheckForeignLanguage = true;
+  bool boolCheckForeignLanguage = false;
 
   Future checkForeignLang({required String dirIds})async{
     try{

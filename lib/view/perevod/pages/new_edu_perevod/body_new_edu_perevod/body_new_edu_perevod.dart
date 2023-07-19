@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/body_new_edu_perevod/n1_test_region.dart';
@@ -86,8 +88,26 @@ Widget bodyNewPerevod(
                 providerNewEduPerevod.eduTypeNames.length > 4 &&
                 providerNewEduPerevod.langNames.length > 4 &&
                 providerNewEduPerevod.eduNames.length > 4 &&
-                providerNewEduPerevod.dirNames.length > 4 &&
-                providerNewEduPerevod.foreignLangName.length > 4) {}
+                providerNewEduPerevod.dirNames.length > 4
+                ) {
+              if(providerNewEduPerevod.listForeignLang.length > 1 &&
+                  providerNewEduPerevod.foreignLangName.isNotEmpty){
+                /// Chet tilisi bor tanladi
+              }else{
+                /// Chet tilisi bor tanlamadi
+              }
+              log("log");
+            }else{
+              log(providerNewEduPerevod.boolCheckForeignLanguage.toString());
+              log(providerNewEduPerevod.testRegionNames.toString());
+              log(providerNewEduPerevod.eduTypeNames.toString());
+              log(providerNewEduPerevod.langNames.toString());
+              log(providerNewEduPerevod.eduNames.toString());
+              log(providerNewEduPerevod.dirNames.toString());
+              log(providerNewEduPerevod.foreignLangName.toString());
+
+              log("log2");
+            }
           },
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           height: 50,

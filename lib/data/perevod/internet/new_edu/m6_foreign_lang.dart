@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -14,7 +15,7 @@ class NetworkForeignLangPerevod {
     response = await dio.get(
         "${MainUrl.mainUrls}/v1/transfer-qabul/flang?id=$dirID",
         options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
-
+    log(jsonEncode(response.data));
     return jsonEncode(response.data);
   }
 }
