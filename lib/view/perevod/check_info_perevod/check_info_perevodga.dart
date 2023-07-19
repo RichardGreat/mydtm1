@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -28,6 +30,7 @@ class _CheckInformationPerevodgaState extends State<CheckInformationPerevodga> {
   initState() {
     // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
     getCheckUserInfo();
+    log(box.get("token"));
     super.initState();
   }
 

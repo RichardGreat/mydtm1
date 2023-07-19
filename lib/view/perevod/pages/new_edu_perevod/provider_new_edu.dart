@@ -211,6 +211,7 @@ class ProviderNewEduPerevod extends ChangeNotifier {
     foreignLangName = "";
     foreignLangId = "";
     boolCheckForeignLanguage = false;
+    listForeignLang.clear();
     notifyListeners();
   }
 
@@ -297,10 +298,12 @@ class ProviderNewEduPerevod extends ChangeNotifier {
     notifyListeners();
   }
 
+  TextEditingController  txtEduIzox = TextEditingController();
+
   Future setAllData()async{
     try{
-      // String dataSetAll = await
-
+    //   String dataSetAll = await
+    // log(dirIds);
     }catch(e){throw Exception(e.toString());}
   }
 }

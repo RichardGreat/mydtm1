@@ -7,7 +7,6 @@
   "solve": "Arfimetik amalni bajaring",
   "changePassport": "Parolni o‘zgartirish",
   "addressAlways": "Doimiy yashash manzili",
-
   "identification": "Xizmatdan foydalanish uchun identifikatsiya orqali kirishingiz kerak",
   "serviceNot": "Xizmat vaqtingcha yopiq",
   "fillInField": "Maydonlarni to‘ldiring",
@@ -63,14 +62,12 @@
   "targeted": "Maqsadli tanlovga roziman",
   "aimless": "Maqsadli tanlovga rozi emasman",
   "personInformation": "Shaxsiy ma’lumotlar",
-
   "schoolInfo": "Umumta’lim muassasasi",
   "certificates": "Sertifikatlar",
   "privileges": "Imtiyozlar",
   "noPrivileges": "Imtiyoz mavjud emas",
   "noPrivilegesText": "Agar abituriyentning imtiyozi chiqmasa, abituriyent imtiyozni taqdim etgan vazirlik yoki idoraga murojaat qilishi lozim.",
   "telephone": "Telefon",
-
   "kodLength": "Telefon raqam uzunligi 9 birlik bo‘lishi kerak",
   "kodLength6": "Ma’lumot 6 birlikdan ko‘p bo‘lishi kerak",
   "phoneNumberNewPassword": "Telefon raqam va yangi parol kiriting",
@@ -292,5 +289,6 @@
   "chooseTestRegionTest": "Test topshirish hududini belgilash",
   "chooseUstuvorlik":"Tanlov ustuvorligini tanlash",
   "chooseMaqsadli": "Maqsadli qabulni tanlash yoki rad etish",
-  "chooseLangEducation": "Ta'lim tilini tanlash"
+  "chooseLangEducation": "Ta'lim tilini tanlash",
+  "note": "Izoh"
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/provider_new_edu.dart';
@@ -16,7 +18,8 @@ modelSheetEduTypeNewPerevod(
       enableDrag: true,
       isScrollControlled: true,
       builder: (_) {
-        return SizedBox(
+        return Container(
+                  margin:const EdgeInsets.all(10),
             height: MediaQuery.of(contexts).size.height * 0.4,
             child: GetTestEduTypeNewPerevod(
                 providerNewEduPerevod: providerNewEduPerevod));
@@ -61,7 +64,13 @@ class _GetTestEduTypeNewPerevodState extends State<GetTestEduTypeNewPerevod> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
-                  MyWidgets.robotoFontText(text: "chooseEduType".tr()),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: MyWidgets.robotoFontText(text: "chooseEduType".tr(),
+                    textSize: 18,
+                      textColor: MyColors.appColorBBA()
+                    ),
+                  ),
                   const SizedBox(height: 10),
                   Expanded(
                     child: ListView.builder(
@@ -75,6 +84,7 @@ class _GetTestEduTypeNewPerevodState extends State<GetTestEduTypeNewPerevod> {
                             child: MyWidgets.robotoFontText(
                               text: widget.providerNewEduPerevod
                                   .listEduTypeNewPerevod[index].name,
+                              textSize: 18
                             ),
                           ),
                         ),

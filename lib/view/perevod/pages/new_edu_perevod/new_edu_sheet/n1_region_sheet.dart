@@ -12,6 +12,7 @@ modelSheetTestRegionPerevod(
       required ProviderNewEduPerevod providerNewEduPerevod}) {
 
   showModalBottomSheet<void>(
+
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10), topRight: Radius.circular(10))),
@@ -19,8 +20,11 @@ modelSheetTestRegionPerevod(
       context: contexts,
       enableDrag: true,
       isScrollControlled: true,
+      
       builder: (_) {
-        return SizedBox(
+        return Container(
+          margin: const EdgeInsets.all(10),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
             height: MediaQuery.of(contexts).size.height * 0.85,
             child: GetTestRegionPerevod(providerNewEduPerevod: providerNewEduPerevod));
       });
@@ -48,15 +52,20 @@ class _GetTestRegionPerevodState extends State<GetTestRegionPerevod> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body:  widget.providerNewEduPerevod
+    return Scaffold(
+
+      body:  widget.providerNewEduPerevod
         .boolTestRegion
         ? Container(
-        height: MediaQuery.of(context).size.height * 0.8,
+
+        height: MediaQuery.of(context).size.height * 0.85,
         decoration: BoxDecoration(
+
             color: Colors.white,
-            borderRadius: BorderRadius.circular(8)),
+            borderRadius: BorderRadius.circular(10)),
         child: Column(
           children: [
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -138,6 +147,8 @@ class _GetTestRegionPerevodState extends State<GetTestRegionPerevod> {
                       child: MyWidgets.robotoFontText(
                         text: widget.providerNewEduPerevod
                             .listTestRegionTemp[index].name,
+                        textSize: 18
+
                       ),
                     ),
                   ),

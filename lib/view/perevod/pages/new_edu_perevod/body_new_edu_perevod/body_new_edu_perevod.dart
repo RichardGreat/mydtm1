@@ -71,6 +71,7 @@ Widget bodyNewPerevod(
                       context: context,
                       providerNewEduPerevod: providerNewEduPerevod),
                 ),
+
                 /// Izoh
                 editInputPerevod(
                     context: context,
@@ -88,16 +89,22 @@ Widget bodyNewPerevod(
                 providerNewEduPerevod.eduTypeNames.length > 4 &&
                 providerNewEduPerevod.langNames.length > 4 &&
                 providerNewEduPerevod.eduNames.length > 4 &&
-                providerNewEduPerevod.dirNames.length > 4
-                ) {
-              if(providerNewEduPerevod.listForeignLang.length > 1 &&
-                  providerNewEduPerevod.foreignLangName.isNotEmpty){
+                providerNewEduPerevod.dirNames.length > 4 &&
+                providerNewEduPerevod.txtEduIzox.text.length > 2
+            ) {
+
+              if (providerNewEduPerevod.listForeignLang.length > 1 &&
+                  providerNewEduPerevod.foreignLangName.length > 3) {
                 /// Chet tilisi bor tanladi
-              }else{
+                log("123");
+                providerNewEduPerevod.setAllData();
+              } else {
                 /// Chet tilisi bor tanlamadi
+                providerNewEduPerevod.setAllData();
+                log("456");
               }
               log("log");
-            }else{
+            } else {
               log(providerNewEduPerevod.boolCheckForeignLanguage.toString());
               log(providerNewEduPerevod.testRegionNames.toString());
               log(providerNewEduPerevod.eduTypeNames.toString());

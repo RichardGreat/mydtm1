@@ -291,5 +291,7 @@
   "chooseTestRegionTest":"Выбрать регион тестирования",
   "chooseUstuvorlik":"Выбор приоритета конкурса",
   "chooseMaqsadli":"Выбор или отказ от целевого приема",
-  "chooseLangEducation":"Выбор языка обучения"
+  "chooseLangEducation":"Выбор языка обучения",
+  "note": "Комментарий",
+
 }

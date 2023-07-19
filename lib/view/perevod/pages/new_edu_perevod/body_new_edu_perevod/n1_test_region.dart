@@ -7,7 +7,8 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 Widget testRegion({required BuildContext context, required ProviderNewEduPerevod providerNewEduPerevod}){
 
-  return             Container(
+  return  Container(
+
     decoration: BoxDecoration(
         color: MyColors.appColorWhite(),
         borderRadius: const BorderRadius.only(
@@ -38,7 +39,7 @@ Widget testRegion({required BuildContext context, required ProviderNewEduPerevod
               : const SizedBox.shrink()
         ],
       ),
-      trailing:  Column(
+      trailing: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children:  [

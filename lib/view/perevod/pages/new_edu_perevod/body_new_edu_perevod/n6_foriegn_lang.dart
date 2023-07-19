@@ -8,10 +8,9 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 Widget eduTestForeignLangNewPerevod({required BuildContext context, required ProviderNewEduPerevod providerNewEduPerevod}){
 
-  return
-    providerNewEduPerevod
-        .boolCheckForeignLanguage ?
-    Container(
+  if (providerNewEduPerevod
+        .boolCheckForeignLanguage) {
+    return Container(
     decoration: BoxDecoration(
       color: MyColors.appColorWhite(),
     ),
@@ -30,7 +29,7 @@ Widget eduTestForeignLangNewPerevod({required BuildContext context, required Pro
               : const SizedBox.shrink()
         ],
       ),
-      trailing:  Column(
+      trailing:const  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children:  [
@@ -41,9 +40,10 @@ Widget eduTestForeignLangNewPerevod({required BuildContext context, required Pro
       subtitle: Text(providerNewEduPerevod.foreignLangName),
       onTap: () {
         modelSheetForeignLangPerevod(contexts: context, providerNewEduPerevod: providerNewEduPerevod);
-        // sheetLanguageChooseTest(
-        //     context: context, providerChooseEdu: providerChooseEdu);
-      },
+        },
     ),
-  ):const Center(child: CupertinoActivityIndicator(),);
+  );
+  } else {
+    return const Center(child: CupertinoActivityIndicator(),);
+  }
 }

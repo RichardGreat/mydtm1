@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/provider_new_edu.dart';
@@ -16,7 +18,8 @@ modelSheetDirNewPerevod(
       enableDrag: true,
       isScrollControlled: true,
       builder: (_) {
-        return SizedBox(
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 10),
             height: MediaQuery.of(contexts).size.height * 0.85,
             child: GetTestDirNewPerevod(
                 providerNewEduPerevod: providerNewEduPerevod));
@@ -55,6 +58,7 @@ class _GetTestDirNewPerevodState extends State<GetTestDirNewPerevod> {
                   color: Colors.white, borderRadius: BorderRadius.circular(8)),
               child: Column(
                 children: [
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -35,7 +35,7 @@ Widget eduDirNewPerevod(
               : const SizedBox.shrink()
         ],
       ),
-      trailing:  Column(
+      trailing: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children:  [

@@ -67,22 +67,37 @@ class _MainMessagesState extends State<MainMessages> {
                                     ]),
                                 child: ListTile(
                                   onTap: () {
-                                    pushNewScreen(context,
-                                        pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                        screen: NewsSee(
-                                            id: providerDtmNews
-                                                .modelDtmNews2[index].id
-                                                .toString(),
-                                            date: providerDtmNews
-                                                .modelDtmNews2[index].createdDate
-                                                .toString(),
-                                            titleName: providerDtmNews
-                                                .modelDtmNews2[index].title
-                                                .toString(),
-                                            imgUrl: providerDtmNews
-                                                .modelDtmNews2[index].imageUrl
-                                                .toString(),
-                                            providerDtmNews: providerDtmNews));
+
+                                    showModalBottomSheet<void>(
+                                        shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+                                        barrierColor: Colors.black.withOpacity(0.2),
+                                        context: context,
+                                        enableDrag: true,
+                                        isScrollControlled: true,
+                                        builder: (_) {
+                                          return Container(
+                                              margin:const EdgeInsets.all(10),
+                                              height: MediaQuery.of(context).size.height * 0.7,
+                                              child:  NewsSee(
+                                                  id: providerDtmNews
+                                                      .modelDtmNews2[index].id
+                                                      .toString(),
+                                                  date: providerDtmNews
+                                                      .modelDtmNews2[index].createdDate
+                                                      .toString(),
+                                                  titleName: providerDtmNews
+                                                      .modelDtmNews2[index].title
+                                                      .toString(),
+                                                  imgUrl: providerDtmNews
+                                                      .modelDtmNews2[index].imageUrl
+                                                      .toString(),
+                                                  providerDtmNews: providerDtmNews));
+                                        });
+                                    // pushNewScreen(context,
+                                    //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                    //     screen:);
                                   },
                                   leading: CachedNetworkImage(
                                     height: 80,

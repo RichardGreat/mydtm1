@@ -8,8 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 modelSheetEduLangPerevod(
     {required BuildContext contexts,
-      required ProviderNewEduPerevod providerNewEduPerevod}) {
-
+    required ProviderNewEduPerevod providerNewEduPerevod}) {
   showModalBottomSheet<void>(
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -19,15 +18,19 @@ modelSheetEduLangPerevod(
       enableDrag: true,
       isScrollControlled: true,
       builder: (_) {
-        return SizedBox(
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 10),
             height: MediaQuery.of(contexts).size.height * 0.6,
-            child: GetEduLangPerevod(providerNewEduPerevod: providerNewEduPerevod));
+            child: GetEduLangPerevod(
+                providerNewEduPerevod: providerNewEduPerevod));
       });
 }
 
 class GetEduLangPerevod extends StatefulWidget {
   ProviderNewEduPerevod providerNewEduPerevod;
-  GetEduLangPerevod({Key? key, required this.providerNewEduPerevod}) : super(key: key);
+
+  GetEduLangPerevod({Key? key, required this.providerNewEduPerevod})
+      : super(key: key);
 
   @override
   State<GetEduLangPerevod> createState() => _GetEduLangPerevodState();
@@ -35,63 +38,74 @@ class GetEduLangPerevod extends StatefulWidget {
 
 class _GetEduLangPerevodState extends State<GetEduLangPerevod> {
   @override
-  initState(){
+  initState() {
     getEduLang();
     super.initState();
   }
 
-  Future getEduLang()async{
+  Future getEduLang() async {
     await widget.providerNewEduPerevod.getEduLangPerevod();
-    setState((){});
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.appColorWhite(),
-      body:  widget.providerNewEduPerevod
-        .boolEduLang
-        ? Container(
-        height: MediaQuery.of(context).size.height * 0.6,
-        margin:const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 10),
-          MyWidgets.robotoFontText(text: "chooseLangEmode".tr()),
-            const  SizedBox(height: 10),
-            Expanded(
-              child: ListView.builder(
-                itemCount:widget. providerNewEduPerevod.listDataLang.length,
-                itemBuilder: (context, index) => GestureDetector(
-                  child: Card(
-                    margin: const EdgeInsets.all(8),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: MyWidgets.robotoFontText(
-                        text: widget.providerNewEduPerevod
-                            .listDataLang[index].name,
+      body: widget.providerNewEduPerevod.boolEduLang
+          ? Container(
+              height: MediaQuery.of(context).size.height * 0.6,
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(8)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: MyWidgets.robotoFontText(
+                      text: "chooseLangEmode".tr(),
+                      textColor: MyColors.appColorBBA(),
+                      textSize: 18
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount:
+                          widget.providerNewEduPerevod.listDataLang.length,
+                      itemBuilder: (context, index) => GestureDetector(
+                        child: Card(
+                          margin: const EdgeInsets.all(8),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: MyWidgets.robotoFontText(
+                              text: widget.providerNewEduPerevod
+                                  .listDataLang[index].name,
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          setState(() {});
+                          widget.providerNewEduPerevod.setLangEdu(
+                              langName: widget.providerNewEduPerevod
+                                  .listDataLang[index].name
+                                  .toString(),
+                              langId: widget.providerNewEduPerevod
+                                  .listDataLang[index].langId
+                                  .toString()
+                                  .toString());
+
+                          Navigator.of(context).pop();
+                        },
                       ),
                     ),
                   ),
-                  onTap: () {
-                    setState((){});
-                    widget.providerNewEduPerevod.setLangEdu(
-                          langName: widget.providerNewEduPerevod.listDataLang[index].name.toString(),
-                        langId: widget.providerNewEduPerevod.listDataLang[index].langId.toString()
-                            .toString());
-
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ),
-            ),
-          ],
-        ))
-        : Center(child: MyWidgets.loaderDownload(context: context)),);
+                ],
+              ))
+          : Center(child: MyWidgets.loaderDownload(context: context)),
+    );
   }
 }
