@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:mydtm/data/perevod/internet/new_edu/create_qabul.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/m1_test_region.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/m2_test_edu_type.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/m3_edu_langs.dart';
@@ -299,11 +300,19 @@ class ProviderNewEduPerevod extends ChangeNotifier {
   }
 
   TextEditingController  txtEduIzox = TextEditingController();
-
+  NetworkTestCreatePerevod networkTestCreatePerevod = NetworkTestCreatePerevod();
   Future setAllData()async{
     try{
-    //   String dataSetAll = await
-    // log(dirIds);
+      String dataSetAll = await networkTestCreatePerevod.setCreatePerevod(
+        testRegionId:testRegionId,
+        emodeId: eduTypeIds,
+        langId:langIds,
+        eduId: eduIds,
+        directionId:dirIds,
+        text: txtEduIzox.text.toString().trim(),
+        flangId: foreignLangId.isEmpty ?"0":foreignLangId,
+      );
+    log(dataSetAll);
     }catch(e){throw Exception(e.toString());}
   }
 }

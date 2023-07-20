@@ -24,26 +24,26 @@ Widget editInputPerevod(
       hintText: "note".tr(),
       enabled: providerNewEduPerevod.dirNames.length > 4,
       focusedBorder: OutlineInputBorder(
-        borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
+        // borderRadius: const BorderRadius.only(
+        //     bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
         borderSide: BorderSide(
           color: MyColors.appColorBlue1(),
         ),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
+        // borderRadius: const BorderRadius.only(
+        //     bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
         borderSide: BorderSide(
           color: MyColors.appColorGrey100(),
-          width: 2.0,
+          width: 1.0,
         ),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
+            bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
         borderSide: BorderSide(
           color: MyColors.appColorGrey100(),
-          width: 2.0,
+          width: 1.0,
         ),
       ),
       errorMaxLines: 2,
@@ -52,11 +52,11 @@ Widget editInputPerevod(
         fontWeight: FontWeight.w500,
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
+        // borderRadius: const BorderRadius.only(
+        //     bottomLeft: Radius.circular(4), bottomRight: Radius.circular(4)),
         borderSide: BorderSide(
           color: MyColors.appColorGrey100(),
-          width: 2.0,
+          width: 1.0,
         ),
       ),
     ),
