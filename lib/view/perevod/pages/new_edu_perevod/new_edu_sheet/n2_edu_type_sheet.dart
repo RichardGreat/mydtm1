@@ -19,6 +19,7 @@ modelSheetEduTypeNewPerevod(
       isScrollControlled: true,
       builder: (_) {
         return Container(
+          color: Colors.white,
                   margin:const EdgeInsets.all(10),
             height: MediaQuery.of(contexts).size.height * 0.4,
             child: GetTestEduTypeNewPerevod(
@@ -52,9 +53,10 @@ class _GetTestEduTypeNewPerevodState extends State<GetTestEduTypeNewPerevod> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.appColorWhite(),
+      backgroundColor: Colors.white,
       body: widget.providerNewEduPerevod.boolEduTypeNewPerevod
           ? Container(
+
               margin: const EdgeInsets.all(10),
               height: MediaQuery.of(context).size.height * 0.4,
               decoration: BoxDecoration(

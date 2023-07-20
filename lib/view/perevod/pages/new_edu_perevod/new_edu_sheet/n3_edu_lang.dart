@@ -19,6 +19,7 @@ modelSheetEduLangPerevod(
       isScrollControlled: true,
       builder: (_) {
         return Container(
+          color: Colors.white,
           margin: const EdgeInsets.symmetric(horizontal: 10),
             height: MediaQuery.of(contexts).size.height * 0.6,
             child: GetEduLangPerevod(

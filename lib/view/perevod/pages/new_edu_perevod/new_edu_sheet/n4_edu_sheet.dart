@@ -65,7 +65,7 @@ class _GetEduPerevodState extends State<GetEduPerevod> {
                 Container(
                   margin: const EdgeInsets.all(10),
                   height: 50,
-                  width: MediaQuery.of(context).size.width * 0.8,
+                  width: MediaQuery.of(context).size.width * 0.7,
                   child: TextFormField(
                     controller:
                     widget. providerNewEduPerevod.textEditEdu,

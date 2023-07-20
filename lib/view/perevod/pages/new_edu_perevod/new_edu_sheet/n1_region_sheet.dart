@@ -72,7 +72,7 @@ class _GetTestRegionPerevodState extends State<GetTestRegionPerevod> {
                 Container(
                   margin: const EdgeInsets.all(10),
                   height: 50,
-                  width: MediaQuery.of(context).size.width * 0.8,
+                  width: MediaQuery.of(context).size.width * 0.75,
                   child: TextFormField(
                     controller:
                     widget. providerNewEduPerevod.textEditNewEduSearch,
