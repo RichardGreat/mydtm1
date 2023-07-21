@@ -16,15 +16,17 @@ import 'package:provider/provider.dart';
 class CheckInformationPerevodga extends StatefulWidget {
   String serviceName;
 
-  CheckInformationPerevodga({Key? key, required this.serviceName}) : super(key: key);
+  CheckInformationPerevodga({Key? key, required this.serviceName})
+      : super(key: key);
 
   @override
-  State<CheckInformationPerevodga> createState() => _CheckInformationPerevodgaState();
+  State<CheckInformationPerevodga> createState() =>
+      _CheckInformationPerevodgaState();
 }
 
 class _CheckInformationPerevodgaState extends State<CheckInformationPerevodga> {
   ProviderCheckInfoPerevod providerCheckInfoPerevod =
-  ProviderCheckInfoPerevod();
+      ProviderCheckInfoPerevod();
 
   @override
   initState() {
@@ -38,36 +40,45 @@ class _CheckInformationPerevodgaState extends State<CheckInformationPerevodga> {
     await providerCheckInfoPerevod.getInfoUser();
     setState(() {});
   }
+
   var box = Hive.box("online");
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => providerCheckInfoPerevod,
       child: Consumer<ProviderCheckInfoPerevod>(
-          builder: (context, value, child) => WillPopScope(child: Scaffold(
-            backgroundColor: MyColors.appColorGrey100(),
-            appBar: appBarCheckInfo(context: context),
-            body: providerCheckInfoPerevod.boolCheckUserInfo
-                ? SafeArea(
-              child: SingleChildScrollView(
-                child: Container(
-                  margin: const EdgeInsets.all(15),
-                  child: bodyCheckInfoPerevod(
-                      functions: getCheckUserInfo,
-                      context: context,
-                      providerCheckInfoPerevod: providerCheckInfoPerevod,
-                      serviceName: widget.serviceName),
-                ),
+          builder: (context, value, child) => WillPopScope(
+              child: Scaffold(
+                backgroundColor: MyColors.appColorGrey100(),
+                appBar: appBarCheckInfo(context: context),
+                body: providerCheckInfoPerevod.boolCheckUserInfo
+                    ? SafeArea(
+                        child: SingleChildScrollView(
+                          child: Container(
+                            margin: const EdgeInsets.all(15),
+                            child: bodyCheckInfoPerevod(
+                                functions: getCheckUserInfo,
+                                context: context,
+                                providerCheckInfoPerevod:
+                                    providerCheckInfoPerevod,
+                                serviceName: widget.serviceName),
+                          ),
+                        ),
+                      )
+                    : MyWidgets.loaderDownload(context: context),
               ),
-            )
-                : MyWidgets.loaderDownload(context: context),
-          ), onWillPop: ()async{
-            box.delete("langLock");
-            box.put("langLock", "1");
-            Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) =>  MainPages(homeIdMainpage: "0"),), (route) => false);
-            return true;
-          })
-      ),
+              onWillPop: () async {
+                box.delete("langLock");
+                box.put("langLock", "1");
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) => MainPages(homeIdMainpage: "0"),
+                    ),
+                    (route) => false);
+                return true;
+              })),
     );
   }
 }

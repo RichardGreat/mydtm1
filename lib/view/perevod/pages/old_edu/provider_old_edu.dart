@@ -28,8 +28,9 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 class ProviderOldEdu extends ChangeNotifier {
-  TextEditingController textEditingDirection = TextEditingController();
   TextEditingController textEditingEducation = TextEditingController();
+  TextEditingController textEditingDirection = TextEditingController();
+
 
   late String restRegionNamePerevod = "";
   late String eduTypeName = "";
@@ -50,14 +51,14 @@ class ProviderOldEdu extends ChangeNotifier {
       /// Uzb
       ///  eduLangName = name;
       //     eduLangId = id;
-      if (eduLangName.length > 4) {
+      if (eduUzbName.length > 4) {
         return true;
       } else {
         return false;
       }
     } else {
       /// Chet el
-      if (textEditingEducation.text.length > 8) {
+      if (eduLangName.length > 4) {
         return true;
       } else {
         return false;
@@ -189,6 +190,8 @@ class ProviderOldEdu extends ChangeNotifier {
   Future setEduLangOld({required String name, required String id}) async {
     eduLangName = name;
     eduLangId = id;
+    log(eduLangName);
+    log(eduLangId);
     eduUzbName = "";
     eduUzbId = "";
     dirNames = "";
@@ -250,7 +253,7 @@ class ProviderOldEdu extends ChangeNotifier {
     dirIds = "";
     graduatedYear = "";
     graduatedYearNames = "";
-
+    getDirectionBool();
     notifyListeners();
   }
 

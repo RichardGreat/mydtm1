@@ -71,7 +71,8 @@ Widget editMuassasa (
           validator: (value) {
             if (value.toString().length > 8) {}
             return null;
-          }),
+          },
+      ),
     ),
   );
 }
