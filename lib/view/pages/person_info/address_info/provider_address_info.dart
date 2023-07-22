@@ -217,7 +217,7 @@ class ProviderAddressInfo extends ChangeNotifier {
               btnCancelOnPress: () {
             pushNewScreen(context,
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                screen: Graduated(funcState: getActions,  windowIdGraduated: windowsIdAddress), withNavBar: false);
+                screen: Graduated(funcState: getActions,  windowIdGraduated: "2"), withNavBar: false);
           },
               btnCancelColor: MyColors.appColorBlue1(),
           btnCancelText: "continue".tr(),)

@@ -60,11 +60,12 @@ Widget bodyCheckInfoPerevod(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
+            providerCheckInfoPerevod.modeCheckUserPerevod.person?
             providerCheckInfoPerevod.checkInfo(
                 providerCheckInfoPerevod: providerCheckInfoPerevod,
                 index: 1,
                 context: context,
-                func: functions);
+                func: functions):{};
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
           leading: Column(
@@ -105,11 +106,12 @@ Widget bodyCheckInfoPerevod(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
+            providerCheckInfoPerevod.modeCheckUserPerevod.personAddress?
             providerCheckInfoPerevod.checkInfo(
                 providerCheckInfoPerevod: providerCheckInfoPerevod,
                 index: 2,
                 context: context,
-                func: functions);
+                func: functions):{};
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
           leading: MyWidgets.robotoFontText(
@@ -133,11 +135,12 @@ Widget bodyCheckInfoPerevod(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
+            providerCheckInfoPerevod.modeCheckUserPerevod.personGeneralEdu?
             providerCheckInfoPerevod.checkInfo(
                 providerCheckInfoPerevod: providerCheckInfoPerevod,
                 index: 3,
                 context: context,
-                func: functions);
+                func: functions):{};
           },
           trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 14),
           leading: SizedBox(
@@ -164,11 +167,12 @@ Widget bodyCheckInfoPerevod(
           dense: true,
           visualDensity: const VisualDensity(vertical: 0),
           onTap: () {
+            providerCheckInfoPerevod.modeCheckUserPerevod.oldEdu?
             providerCheckInfoPerevod.checkInfo(
                 providerCheckInfoPerevod: providerCheckInfoPerevod,
                 index: 4,
                 context: context,
-                func: functions);
+                func: functions):{};
           },
           trailing: const Icon(
             Icons.arrow_forward_ios_sharp,

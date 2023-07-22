@@ -80,7 +80,7 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
         pushNewScreen(
           context,
           screen: PersonInformation(
-              funcState: func, idFunction: "0", windowIdPassport: "0"),
+              funcState: func, idFunction: "0", windowIdPassport: "2"),
           withNavBar: false,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
