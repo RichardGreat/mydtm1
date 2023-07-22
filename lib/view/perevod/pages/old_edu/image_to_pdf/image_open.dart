@@ -35,7 +35,7 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
   initState() {
     widget.providerOldEdu.mbSizeZero = 0;
 
-    if( widget.providerOldEdu.listFiles.length >= 3){
+    if( widget.providerOldEdu.listImagesPDF.length >= 3){
       Navigator.of(context).pop();
     }
     super.initState();
@@ -55,7 +55,7 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            widget.providerOldEdu.listFiles.length < 3
+            widget.providerOldEdu.listImagesPDF.length < 3
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [

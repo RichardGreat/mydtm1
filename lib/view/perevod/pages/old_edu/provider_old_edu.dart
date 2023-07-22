@@ -46,7 +46,7 @@ class ProviderOldEdu extends ChangeNotifier {
   String graduatedYearNames = "";
   var box = Hive.box("online");
 
-  bool getDirectionBool() {
+  bool getMuassasaBool() {
     if (restRegionNamePerevodId == "860") {
       /// Uzb
       ///  eduLangName = name;
@@ -59,6 +59,26 @@ class ProviderOldEdu extends ChangeNotifier {
     } else {
       /// Chet el
       if (eduLangName.length > 4) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  bool getDirectionBool() {
+    if (restRegionNamePerevodId == "860") {
+      /// Uzb
+      ///  eduLangName = name;
+      //     eduLangId = id;
+      if (eduUzbName.length > 4) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      /// Chet el
+      if (textEditingEducation.text.trim().length > 4) {
         return true;
       } else {
         return false;
@@ -120,6 +140,8 @@ class ProviderOldEdu extends ChangeNotifier {
     graduatedYear = "";
     graduatedYearNames = "";
     listImagesPDF.clear();
+    listFiles.clear();
+    listImagesByte.clear();
     notifyListeners();
   }
 
@@ -165,6 +187,8 @@ class ProviderOldEdu extends ChangeNotifier {
     graduatedYear = "";
     graduatedYearNames = "";
     listImagesPDF.clear();
+    listFiles.clear();
+    listImagesByte.clear();
     notifyListeners();
   }
 
@@ -203,6 +227,8 @@ class ProviderOldEdu extends ChangeNotifier {
     graduatedYear = "";
     graduatedYearNames = "";
     listImagesPDF.clear();
+    listFiles.clear();
+    listImagesByte.clear();
     notifyListeners();
   }
 
@@ -257,6 +283,8 @@ class ProviderOldEdu extends ChangeNotifier {
     graduatedYear = "";
     graduatedYearNames = "";
     listImagesPDF.clear();
+    listFiles.clear();
+    listImagesByte.clear();
     getDirectionBool();
     notifyListeners();
   }
@@ -312,6 +340,8 @@ class ProviderOldEdu extends ChangeNotifier {
       graduatedYear = "";
       graduatedYearNames = "";
       listImagesPDF.clear();
+      listFiles.clear();
+      listImagesByte.clear();
       notifyListeners();
     } catch (e) {
       log(e.toString());
@@ -324,6 +354,8 @@ class ProviderOldEdu extends ChangeNotifier {
     graduatedYear = year;
     graduatedYearNames = graduatedYearName;
     listImagesPDF.clear();
+    listFiles.clear();
+    listImagesByte.clear();
     notifyListeners();
   }
 
@@ -421,10 +453,6 @@ class ProviderOldEdu extends ChangeNotifier {
                   ),
                   fit: pw.BoxFit.cover,
                 ),
-                pw.Align(
-                  alignment: pw.Alignment.topCenter,
-                  child: pw.Text("F.I.O"),
-                )
               ])),
           listImagesByte.length >= 2
               ? pw.SizedBox(
@@ -522,14 +550,16 @@ class ProviderOldEdu extends ChangeNotifier {
                   btnCancelText: "OK")
               .show();
         } else {
-          if (restRegionNamePerevod.length > 4 &&
+          if (
+          restRegionNamePerevodId == "860"&&
+          restRegionNamePerevod.length > 4 &&
               eduTypeName.length > 4 &&
               eduLangName.length > 4 &&
               eduUzbName.length > 4 &&
               textEditingDirection.text.trim().length > 4 &&
               graduatedYearNames.length > 4 &&
               mb < 8
-            &&  listImagesPDF.isNotEmpty
+            &&  listFiles.isNotEmpty
           ) {
             String networkData = "";
             boolUploadIndicatorServer = false;
@@ -539,9 +569,9 @@ class ProviderOldEdu extends ChangeNotifier {
               "emode_id": setEduTypePerevodId,
               "syear": graduatedYear,
               "edu_name": eduUzbName,
-              "mvdir_name": dirNames,
+              "mvdir_name": textEditingDirection.text.trim(),
               "image": await MultipartFile.fromFile(fileToServerPerevod!.path,
-                  filename: "dtm_${box.get("token")}.pdf")
+                  filename: "mobil_${box.get("token")}.pdf")
             });
             try {
               networkData = await networkSetOldEduPerevod.setServerOldEdu(
@@ -590,7 +620,79 @@ class ProviderOldEdu extends ChangeNotifier {
               log("#888");
               log(e.toString());
             }
-          } else {
+          } else if (
+          restRegionNamePerevodId != "860"&&
+              restRegionNamePerevod.length > 4 &&
+              eduTypeName.length > 4 &&
+              eduLangName.length > 4 &&
+              textEditingEducation.text.trim().length > 4 &&
+              textEditingDirection.text.trim().length > 4 &&
+              graduatedYearNames.length > 4 &&
+              mb < 8
+              &&  listFiles.isNotEmpty
+          ) {
+
+            String networkData = "";
+            boolUploadIndicatorServer = false;
+            notifyListeners();
+            FormData formData = FormData.fromMap({
+              "region_id": restRegionNamePerevodId,
+              "emode_id": setEduTypePerevodId,
+              "syear": graduatedYear,
+              "edu_name": textEditingEducation.text.trim(),
+              "mvdir_name": textEditingDirection.text.trim(),
+              "image": await MultipartFile.fromFile(fileToServerPerevod!.path,
+                  filename: "mobil_${box.get("token")}.pdf")
+            });
+            try {
+              networkData = await networkSetOldEduPerevod.setServerOldEdu(
+                  formDate: formData);
+              ModelDataSendServerPerevod modelDataSendServerPerevod =
+              ModelDataSendServerPerevod.fromJson(jsonDecode(networkData));
+              messageSendServerPerevod = modelDataSendServerPerevod.masseage;
+              boolUploadIndicatorServer = true;
+              AwesomeDialog(
+                context: context,
+                dialogType: DialogType.noHeader,
+                animType: AnimType.bottomSlide,
+                dismissOnTouchOutside: false,
+                body: Column(
+                  children: [
+                    Text("saved".tr(),
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500,
+                            color: MyColors.appColorBlue1())),
+                    const Divider(),
+                    const SizedBox(height: 20),
+                    Text("continue".tr(),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        )),
+                  ],
+                ),
+                titleTextStyle: TextStyle(
+                    color: MyColors.appColorBlue1(),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+                descTextStyle: TextStyle(
+                    color: MyColors.appColorBlack(),
+                    fontWeight: FontWeight.bold),
+                btnCancelOnPress: () {},
+                btnOkOnPress: () {},
+                btnOkColor: MyColors.appColorBlue1(),
+                btnCancelColor: MyColors.appColorGrey400(),
+                btnOkText: "yes".tr(),
+                btnCancelText: "no".tr(),
+              ).show();
+              notifyListeners();
+            } catch (e) {
+              log("#888");
+              log(e.toString());
+            }
+            ///
+
             AwesomeDialog(
                     context: context,
                     dialogType: DialogType.noHeader,

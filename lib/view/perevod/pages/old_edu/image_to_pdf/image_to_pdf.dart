@@ -32,8 +32,8 @@ class _ImageToPdfState extends State<ImageToPdf> {
         if (widget.providerOldEdu.listFiles.isNotEmpty) {
           await widget.providerOldEdu.createPdfFile(contexts: context);
         }
-        // widget.providerOldEdu
-        //     .openFiles(widget.providerOldEdu.fileToServerPerevod!);
+        widget.providerOldEdu
+            .openFiles(widget.providerOldEdu.fileToServerPerevod!);
         //Navigator.of(context).pop();
         return true;
       },
@@ -77,7 +77,7 @@ class _ImageToPdfState extends State<ImageToPdf> {
                     )
                   : const SizedBox.shrink(),
               const SizedBox(height: 20),
-              widget.providerOldEdu.listFiles.isNotEmpty
+              widget.providerOldEdu.listImagesPDF.isNotEmpty
                   ? Expanded(
                       child: ListView.builder(
                         itemCount: widget.providerOldEdu.listImagesPDF.length,
@@ -171,7 +171,7 @@ class _ImageToPdfState extends State<ImageToPdf> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            widget.providerOldEdu.listFiles.length >= 3
+            widget.providerOldEdu.listImagesPDF.length >= 3
                 ? {
             // Navigator.of(context).pop(),
             }
@@ -189,7 +189,7 @@ class _ImageToPdfState extends State<ImageToPdf> {
                         )),
                         height: 200,
                         child:
-                        widget.providerOldEdu.listFiles.length <= 3?
+                        widget.providerOldEdu.listImagesPDF.length <= 3?
                         ChooseImagesPerevod(
                           function: getActionState,
                           providerOldEdu: widget.providerOldEdu,
@@ -199,7 +199,7 @@ class _ImageToPdfState extends State<ImageToPdf> {
                     });
             setState(() {});
           },
-          backgroundColor: widget.providerOldEdu.listFiles.length < 3
+          backgroundColor: widget.providerOldEdu.listImagesPDF.length < 3
               ? MyColors.appColorBlue1()
               : MyColors.appColorGrey400(),
           child: const Icon(Icons.add),

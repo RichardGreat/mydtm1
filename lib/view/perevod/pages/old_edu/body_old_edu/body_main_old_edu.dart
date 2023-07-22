@@ -55,13 +55,15 @@ Widget bodyMainOldEdu(
         MaterialButton(
           onPressed: () {
 
-            providerOldEdu.getDirectionBool() ? {
+            providerOldEdu.restRegionNamePerevod == "860"? {
             if (providerOldEdu.restRegionNamePerevod.length > 4 &&
             providerOldEdu.eduTypeName.length > 4 &&
             providerOldEdu.eduLangName.length > 4 &&
             providerOldEdu.eduUzbName.length > 4 &&
             providerOldEdu.textEditingDirection.text.length > 4 &&
-            providerOldEdu.graduatedYearNames.length > 4) {
+            providerOldEdu.graduatedYearNames.length > 4
+            && providerOldEdu.listFiles.isNotEmpty
+            ) {
               providerOldEdu.sentServerData(context: context),
             } else {
             AwesomeDialog(
@@ -86,8 +88,11 @@ Widget bodyMainOldEdu(
               if (providerOldEdu.restRegionNamePerevod.length > 4 &&
                   providerOldEdu.eduTypeName.length > 4 &&
                   providerOldEdu.eduLangName.length > 4 &&
+                  providerOldEdu.textEditingEducation.text.length > 4 &&
                   providerOldEdu.textEditingDirection.text.length > 4 &&
-                  providerOldEdu.graduatedYearNames.length > 4) {
+                  providerOldEdu.graduatedYearNames.length > 4
+              && providerOldEdu.listFiles.isNotEmpty
+              ) {
                 providerOldEdu.sentServerData(context: context),
               } else {
                 AwesomeDialog(
