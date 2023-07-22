@@ -119,6 +119,7 @@ class ProviderOldEdu extends ChangeNotifier {
     textEditingEducation.text = "";
     graduatedYear = "";
     graduatedYearNames = "";
+    listImagesPDF.clear();
     notifyListeners();
   }
 
@@ -163,6 +164,7 @@ class ProviderOldEdu extends ChangeNotifier {
     dirIds = "";
     graduatedYear = "";
     graduatedYearNames = "";
+    listImagesPDF.clear();
     notifyListeners();
   }
 
@@ -200,6 +202,7 @@ class ProviderOldEdu extends ChangeNotifier {
     textEditingEducation.text = "";
     graduatedYear = "";
     graduatedYearNames = "";
+    listImagesPDF.clear();
     notifyListeners();
   }
 
@@ -253,6 +256,7 @@ class ProviderOldEdu extends ChangeNotifier {
     dirIds = "";
     graduatedYear = "";
     graduatedYearNames = "";
+    listImagesPDF.clear();
     getDirectionBool();
     notifyListeners();
   }
@@ -307,6 +311,7 @@ class ProviderOldEdu extends ChangeNotifier {
       dirIds = dirId;
       graduatedYear = "";
       graduatedYearNames = "";
+      listImagesPDF.clear();
       notifyListeners();
     } catch (e) {
       log(e.toString());
@@ -318,6 +323,7 @@ class ProviderOldEdu extends ChangeNotifier {
       {required String year, required String graduatedYearName}) async {
     graduatedYear = year;
     graduatedYearNames = graduatedYearName;
+    listImagesPDF.clear();
     notifyListeners();
   }
 
@@ -399,7 +405,6 @@ class ProviderOldEdu extends ChangeNotifier {
             );
           }
         },
-
         build: (context) => [
 
           pw.SizedBox(
@@ -521,9 +526,11 @@ class ProviderOldEdu extends ChangeNotifier {
               eduTypeName.length > 4 &&
               eduLangName.length > 4 &&
               eduUzbName.length > 4 &&
-              textEditingDirection.text.length > 4 &&
+              textEditingDirection.text.trim().length > 4 &&
               graduatedYearNames.length > 4 &&
-              mb < 8) {
+              mb < 8
+            &&  listImagesPDF.isNotEmpty
+          ) {
             String networkData = "";
             boolUploadIndicatorServer = false;
             notifyListeners();

@@ -11,8 +11,6 @@ import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 // import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/check_info_perevodga.dart';
 import 'dart:async';
-
-
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 // import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
 

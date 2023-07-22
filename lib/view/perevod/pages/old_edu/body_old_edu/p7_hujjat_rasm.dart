@@ -20,7 +20,7 @@ Widget hujjatRasm(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           MyWidgets.robotoFontText(text: "imageDoc".tr(), textSize: 17, textColor: providerOldEdu.graduatedYearNames.length > 4?MyColors.appColorBlack():MyColors.appColorGrey400()),
-    providerOldEdu.boolConvertImageToPdf
+    providerOldEdu.boolConvertImageToPdf && providerOldEdu.listImagesPDF.isNotEmpty
               ? Icon(
                   Icons.check_circle,
                   color: MyColors.appColorGreen1(),

@@ -22,7 +22,7 @@ Widget kursBosqichi(
           MyWidgets.robotoFontText(
               text: "oldEduNumberCourse".tr(),
               textSize: 17,
-              textColor: providerOldEdu.textEditingDirection.text.length > 4
+              textColor: providerOldEdu.textEditingDirection.text.trim().length >= 4
                   ? MyColors.appColorBlack()
                   : MyColors.appColorGrey400()),
           providerOldEdu.graduatedYearNames.length > 4
@@ -33,7 +33,7 @@ Widget kursBosqichi(
               : const SizedBox.shrink()
         ],
       ),
-      trailing:  Column(
+      trailing: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children:  [
@@ -46,7 +46,7 @@ Widget kursBosqichi(
         maxLines: 1,
       ),
       onTap: () {
-        providerOldEdu.textEditingDirection.text.length > 4
+        providerOldEdu.textEditingDirection.text.trim().length >= 4
             ? modelSheetGraduatedYearPerevod(
                 contexts: context, providerOldEdu: providerOldEdu)
             : {};
