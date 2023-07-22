@@ -526,6 +526,7 @@ class ProviderOldEdu extends ChangeNotifier {
   late MessageSendServerPerevod messageSendServerPerevod;
 
   Future sentServerData({required BuildContext context}) async {
+    log("#0");
     if (listFiles.isNotEmpty) {
       try {
         final bytes = (await fileToServerPerevod!.readAsBytes()).lengthInBytes;
@@ -692,7 +693,7 @@ class ProviderOldEdu extends ChangeNotifier {
               log(e.toString());
             }
             ///
-
+            log("#1");
             AwesomeDialog(
                     context: context,
                     dialogType: DialogType.noHeader,
@@ -713,6 +714,7 @@ class ProviderOldEdu extends ChangeNotifier {
           }
         }
       } catch (e) {
+        log("#2");
         AwesomeDialog(
                 context: context,
                 dialogType: DialogType.noHeader,

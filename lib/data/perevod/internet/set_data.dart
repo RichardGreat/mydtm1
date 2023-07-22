@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
@@ -10,11 +11,20 @@ class NetworkSetOldEduPerevod {
     var dio = Dio();
     Response response;
 
-    response = await dio.post(
-        "${MainUrl.mainUrls}/v1/transfer-qabul/first-edu",
-        data: formDate,
+    try{
+      response =
+          await dio.post("${MainUrl.mainUrls}/v1/transfer-qabul/first-edu",
+              data: formDate,
+              options: Options(
+                headers: {MainUrl.mainUrlHeader: box.get("token")},
+                receiveTimeout: const Duration(seconds: 10),
+              ));
+      log(jsonEncode(response.data).toString());
+      return jsonEncode(response.data);
+    }catch(e){
+      log(e.toString());
+      return "";
+    }
 
-        options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}, receiveTimeout: const Duration(seconds: 10),));
-    return jsonEncode(response.data);
   }
 }

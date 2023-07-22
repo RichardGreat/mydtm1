@@ -55,7 +55,7 @@ Widget bodyMainOldEdu(
         MaterialButton(
           onPressed: () {
 
-            providerOldEdu.restRegionNamePerevod == "860"? {
+            providerOldEdu.restRegionNamePerevodId == "860"? {
             if (providerOldEdu.restRegionNamePerevod.length > 4 &&
             providerOldEdu.eduTypeName.length > 4 &&
             providerOldEdu.eduLangName.length > 4 &&
@@ -66,6 +66,7 @@ Widget bodyMainOldEdu(
             ) {
               providerOldEdu.sentServerData(context: context),
             } else {
+              print("#-1"),
             AwesomeDialog(
             context: context,
                 dialogType: DialogType.noHeader,
@@ -84,7 +85,8 @@ Widget bodyMainOldEdu(
             btnCancelText: "OK")
                 .show(),
             }
-            }:{
+            }:
+            {
               if (providerOldEdu.restRegionNamePerevod.length > 4 &&
                   providerOldEdu.eduTypeName.length > 4 &&
                   providerOldEdu.eduLangName.length > 4 &&
@@ -95,6 +97,7 @@ Widget bodyMainOldEdu(
               ) {
                 providerOldEdu.sentServerData(context: context),
               } else {
+            print("#-2"),
                 AwesomeDialog(
                     context: context,
                     dialogType: DialogType.noHeader,
