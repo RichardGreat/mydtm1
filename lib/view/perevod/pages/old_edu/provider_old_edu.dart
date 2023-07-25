@@ -572,8 +572,14 @@ class ProviderOldEdu extends ChangeNotifier {
               "edu_name": eduUzbName,
               "mvdir_name": textEditingDirection.text.trim(),
               "image": await MultipartFile.fromFile(fileToServerPerevod!.path,
-                  filename: "mobil_${box.get("token")}.pdf")
+                  filename: "bmba.pdf")
             });
+            log(restRegionNamePerevodId);
+            log(setEduTypePerevodId);
+            log(graduatedYear);
+            log(eduUzbName);
+            log(textEditingDirection.text.trim());
+            log(fileToServerPerevod!.path);
             try {
               networkData = await networkSetOldEduPerevod.setServerOldEdu(
                   formDate: formData);
@@ -643,8 +649,15 @@ class ProviderOldEdu extends ChangeNotifier {
               "edu_name": textEditingEducation.text.trim(),
               "mvdir_name": textEditingDirection.text.trim(),
               "image": await MultipartFile.fromFile(fileToServerPerevod!.path,
-                  filename: "mobil_${box.get("token")}.pdf")
+                  filename: "bmba.pdf")
             });
+
+            log(restRegionNamePerevodId);
+            log(setEduTypePerevodId);
+            log(graduatedYear);
+            log(textEditingEducation.text.trim());
+            log(textEditingDirection.text.trim());
+            log(fileToServerPerevod!.path);
             try {
               networkData = await networkSetOldEduPerevod.setServerOldEdu(
                   formDate: formData);
@@ -693,24 +706,24 @@ class ProviderOldEdu extends ChangeNotifier {
               log(e.toString());
             }
             ///
-            log("#1");
-            AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.noHeader,
-                    animType: AnimType.bottomSlide,
-                    dismissOnTouchOutside: false,
-                    title: "BBA",
-                    desc: "infoFillError".tr(),
-                    titleTextStyle: TextStyle(
-                        color: MyColors.appColorBlue1(),
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
-                    descTextStyle: TextStyle(
-                        color: MyColors.appColorBlack(),
-                        fontWeight: FontWeight.bold),
-                    btnCancelOnPress: () {},
-                    btnCancelText: "OK")
-                .show();
+            // log("#1");
+            // AwesomeDialog(
+            //         context: context,
+            //         dialogType: DialogType.noHeader,
+            //         animType: AnimType.bottomSlide,
+            //         dismissOnTouchOutside: false,
+            //         title: "BBA",
+            //         desc: "infoFillError".tr(),
+            //         titleTextStyle: TextStyle(
+            //             color: MyColors.appColorBlue1(),
+            //             fontSize: 24,
+            //             fontWeight: FontWeight.bold),
+            //         descTextStyle: TextStyle(
+            //             color: MyColors.appColorBlack(),
+            //             fontWeight: FontWeight.bold),
+            //         btnCancelOnPress: () {},
+            //         btnCancelText: "OK")
+            //     .show();
           }
         }
       } catch (e) {

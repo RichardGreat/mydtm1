@@ -66,7 +66,7 @@ Widget bodyMainOldEdu(
             ) {
               providerOldEdu.sentServerData(context: context),
             } else {
-              print("#-1"),
+
             AwesomeDialog(
             context: context,
                 dialogType: DialogType.noHeader,

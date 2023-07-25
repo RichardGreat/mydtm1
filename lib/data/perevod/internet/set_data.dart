@@ -17,9 +17,8 @@ class NetworkSetOldEduPerevod {
               data: formDate,
               options: Options(
                 headers: {MainUrl.mainUrlHeader: box.get("token")},
-                receiveTimeout: const Duration(seconds: 10),
+                receiveTimeout: const Duration(seconds: 20),
               ));
-      log(jsonEncode(response.data).toString());
       return jsonEncode(response.data);
     }catch(e){
       log(e.toString());
