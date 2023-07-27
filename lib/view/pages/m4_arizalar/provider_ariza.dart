@@ -1,23 +1,25 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'dart:convert';
+import 'dart:core';
 import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
-// import 'package:file_saver/file_saver.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/answersheet.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/ariza_check.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/qayd_varaqa.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/ruxsanoma.dart';
-import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
 import 'package:mydtm/data/model_parse/m4_qayd_var/model_qayd_varaqa.dart';
+import 'package:mydtm/data/perevod/internet/get_ariza.dart';
+import 'package:mydtm/data/perevod/model/model_get_ariza.dart';
 import 'package:ntp/ntp.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProviderAriza extends ChangeNotifier {
   NetworkArizaCheck networkArizaCheck = NetworkArizaCheck();
@@ -36,6 +38,8 @@ class ProviderAriza extends ChangeNotifier {
 
 // Load from file
 
+  List<ArizaBodyService> listArizaBodyService = [];
+
   Future getQaydVaraqa() async {
     try {
       boolQaydVaraqaDownload = false;
@@ -43,21 +47,62 @@ class ProviderAriza extends ChangeNotifier {
       ModelArizaQadVaraqa modelArizaQadVaraqa =
           ModelArizaQadVaraqa.fromJson(jsonDecode(dataAriza));
 
-      DataArizaQadVaraqa dataArizaQadVaraqa = modelArizaQadVaraqa.dataArizaQadVaraqa;
+      DataArizaQadVaraqa dataArizaQadVaraqa =
+          modelArizaQadVaraqa.dataArizaQadVaraqa;
       model = dataArizaQadVaraqa.model;
-      if (model.invoice == null  ) {
+      if (model.invoice == null) {
         boolBitiruvchi = true;
         notifyListeners();
       }
       person = dataArizaQadVaraqa.person;
 
-      boolQaydVaraqaDownload = true;
+      listArizaBodyService.add(ArizaBodyService(
+          statusCheckPerevod: "99",
+          serviceName: "otmQabul".tr(),
+          id: person.id.toString(),
+          bitiruvchi:
+              dataArizaQadVaraqa.education.graduatedYear.toString() == "2023"
+                  ? "1"
+                  : "0",
+          fish: "${person.lname} ${person.fname}",
+          updateTime: model.updatedAt.toString(),
+          invoice: model.invoice.toString(),
+          holat: model.pay.toString(),
+          data1: "",
+          data2: ""));
+      getPerevodAriza();
       notifyListeners();
     } catch (e) {
       boolQaydVaraqaDownloadNot = true;
-      boolQaydVaraqaDownload = true;
+      // boolQaydVaraqaDownload = true;
       notifyListeners();
       log(e.toString());
+    }
+  }
+
+  NetworkGetArizaPerevod networkGetArizaPerevod = NetworkGetArizaPerevod();
+  late ModelGetArizaPerevod modelGetArizaPerevod;
+
+  Future getPerevodAriza() async {
+    try {
+      String data = await networkGetArizaPerevod.getArizaPerevod();
+      modelGetArizaPerevod = ModelGetArizaPerevod.fromJson(jsonDecode(data));
+      listArizaBodyService.add(ArizaBodyService(
+          statusCheckPerevod: modelGetArizaPerevod.abitur.checkStatus.toString(),
+          serviceName: "perevod1".tr(),
+          id: modelGetArizaPerevod.abitur.id.toString(),
+          bitiruvchi: "0",
+          fish:
+              "${modelGetArizaPerevod.abitur.lname} ${modelGetArizaPerevod.abitur.fname}",
+          updateTime: modelGetArizaPerevod.abitur.updatedAt.toString(),
+          invoice: modelGetArizaPerevod.abitur.invoice.toString(),
+          holat: modelGetArizaPerevod.abitur.checkStatus.toString(),
+          data1: modelGetArizaPerevod.abitur.comment.toString(),
+          data2: modelGetArizaPerevod.abitur.comments.toString()));
+      boolQaydVaraqaDownload = true;
+      notifyListeners();
+    } catch (e) {
+      boolQaydVaraqaDownload = true;
     }
   }
 
@@ -70,16 +115,16 @@ class ProviderAriza extends ChangeNotifier {
   late ModelGetDownloads modelGetDownloadsData1;
   late ModelGetDownloads modelGetDownloadsData2;
   late ModelGetDownloads modelGetDownloadsData3;
-
   late DataGetDownloads modelGetDownloads1;
   late DataGetDownloads modelGetDownloads2;
   late DataGetDownloads modelGetDownloads3;
   bool boolDataDownload1 = false;
   bool boolDataDownload2 = false;
   bool boolDataDownload3 = false;
- late DateTime myTime;
- int day = 0;
- int month = 0;
+  late DateTime myTime;
+  int day = 0;
+  int month = 0;
+
   Future getDownloads({required int categoryId}) async {
     /// String url o'zgartirish kerak
     if (categoryId == 1) {
@@ -97,17 +142,12 @@ class ProviderAriza extends ChangeNotifier {
                 "customCacheKey",
                 stalePeriod: const Duration(milliseconds: 600),
                 maxNrOfCacheObjects: 1,
-              ),)
-        );
+              ),
+            ));
 
         myTime = await NTP.now();
-         day = myTime.day;
-         month = myTime.month;
-         // log(myTime.timeZoneName);
-         // log(myTime.month.toString());
-         // log(myTime.day.toString());
-         // log(myTime.hour.toString());
-         // log(myTime.minute.toString());
+        day = myTime.day;
+        month = myTime.month;
         boolDataDownload1 = true;
         notifyListeners();
         // log(modelGetDownloadsData1.data.src);
@@ -130,8 +170,8 @@ class ProviderAriza extends ChangeNotifier {
                 "customCacheKey",
                 stalePeriod: const Duration(milliseconds: 600),
                 maxNrOfCacheObjects: 1,
-              ),)
-        );
+              ),
+            ));
         boolDataDownload2 = true;
         notifyListeners();
       } catch (e) {
@@ -153,8 +193,8 @@ class ProviderAriza extends ChangeNotifier {
                 "customCacheKey",
                 stalePeriod: const Duration(milliseconds: 600),
                 maxNrOfCacheObjects: 1,
-              ),)
-        );
+              ),
+            ));
         boolDataDownload3 = true;
         notifyListeners();
         log(modelGetDownloadsData3.data.src);
@@ -170,17 +210,17 @@ class ProviderAriza extends ChangeNotifier {
       final file = await downloadFile(url: url, name: fileName);
       if (file == null) return;
 
-      // OpenFile.open(file.path);
+      OpenFile.open(file.path
+      );
     } catch (e) {
       log(e.toString());
     }
   }
-
+  late final fileUrl;
   Future<File?> downloadFile(
       {required String url, required String name}) async {
-
     final appStore = await getApplicationDocumentsDirectory();
-    final file = File('${appStore.path}/$name.pdf');
+    fileUrl = File('${appStore.path}/$name.pdf');
     final response = await Dio().get(url,
         options: Options(
           responseType: ResponseType.bytes,
@@ -188,7 +228,7 @@ class ProviderAriza extends ChangeNotifier {
           receiveTimeout: const Duration(seconds: 60),
         ));
 
-    final raf = file.openSync(mode: FileMode.write);
+    final raf = fileUrl.openSync(mode: FileMode.write);
     raf.writeFromSync(response.data);
     await raf.close();
     // if (Platform.isIOS || Platform.isAndroid) {
@@ -221,7 +261,7 @@ class ProviderAriza extends ChangeNotifier {
     //   String? customMimeType
     // });
 
-    return file;
+    return fileUrl;
   }
 
   ///
@@ -327,5 +367,57 @@ class ProviderAriza extends ChangeNotifier {
 //       return false;
 //     }
 }
+
 // }
 // }
+class ArizaBodyService {
+  String statusCheckPerevod,
+      bitiruvchi,
+      serviceName,
+      id,
+      fish,
+      updateTime,
+      invoice,
+      holat,
+      data1,
+      data2;
+
+  ArizaBodyService({
+    required this.statusCheckPerevod,
+    required this.bitiruvchi,
+    required this.serviceName,
+    required this.id,
+    required this.fish,
+    required this.updateTime,
+    required this.invoice,
+    required this.holat,
+    required this.data1,
+    required this.data2,
+  });
+
+  factory ArizaBodyService.fromJson(Map<String, dynamic> json) =>
+      ArizaBodyService(
+          statusCheckPerevod: json["statusCheckPerevod"],
+          bitiruvchi: json["bitiruvchi"],
+          serviceName: json["serviceName"],
+          id: json["id"],
+          fish: json["fish"],
+          updateTime: json["updateTime"],
+          invoice: json["invoice"],
+          holat: json["holat"],
+          data1: json["data1"],
+          data2: json["data2"]);
+
+  Map<String, dynamic> toJson() => {
+        "statusCheckPerevod": statusCheckPerevod,
+        "bitiruvchi": bitiruvchi,
+        "serviceName": serviceName,
+        "id": id,
+        "fish": fish,
+        "updateTime": updateTime,
+        "invoice": invoice,
+        "holat": holat,
+        "data1": data1,
+        "data2": data2,
+      };
+}

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/create_qabul.dart';
@@ -14,9 +16,10 @@ import 'package:mydtm/data/perevod/model/new_edu/m4_edu_new_perevod.dart';
 import 'dart:developer';
 import 'package:mydtm/data/perevod/model/new_edu/m5_dir_new_perevod.dart';
 import 'package:mydtm/data/perevod/model/new_edu/m6_test_foreign_lang_new_perevod.dart';
+import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderNewEduPerevod extends ChangeNotifier {
-
   String testRegionNames = "";
   String testRegionId = "";
   String eduTypeNames = "";
@@ -46,7 +49,9 @@ class ProviderNewEduPerevod extends ChangeNotifier {
       listTestRegionTemp.addAll(listTestRegion);
       boolTestRegion = true;
       notifyListeners();
-    } catch (e) {throw Exception(e.toString());}
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
 
   Future searchTestRegion({required String val}) async {
@@ -64,8 +69,6 @@ class ProviderNewEduPerevod extends ChangeNotifier {
     Navigator.of(context).pop();
   }
 
-
-
   Future setTestRegionNewEdu(
       {required String regionId, required String regionName}) async {
     testRegionId = regionId;
@@ -80,7 +83,7 @@ class ProviderNewEduPerevod extends ChangeNotifier {
     dirIds = "";
     foreignLangName = "";
     foreignLangId = "";
-    boolCheckForeignLanguage = false;
+    listForeignLang.clear();
     notifyListeners();
   }
 
@@ -100,10 +103,10 @@ class ProviderNewEduPerevod extends ChangeNotifier {
       listEduTypeNewPerevod = modelEmodeNewPerevod.masseage;
       boolEduTypeNewPerevod = true;
       notifyListeners();
-    } catch (e) {throw Exception(e.toString());}
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
-
-
 
   Future setEfuNewPerevod(
       {required String eduTypeName, required String eduTypeId}) async {
@@ -117,7 +120,7 @@ class ProviderNewEduPerevod extends ChangeNotifier {
     dirIds = "";
     foreignLangName = "";
     foreignLangId = "";
-    boolCheckForeignLanguage = false;
+    listForeignLang.clear();
     notifyListeners();
   }
 
@@ -139,10 +142,10 @@ class ProviderNewEduPerevod extends ChangeNotifier {
       listDataLang = modelEduLangNewPerevod.lang;
       boolEduLang = true;
       notifyListeners();
-    } catch (e) {throw Exception(e.toString());}
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
-
-
 
   Future setLangEdu({required String langId, required String langName}) async {
     langIds = langId;
@@ -153,7 +156,7 @@ class ProviderNewEduPerevod extends ChangeNotifier {
     dirIds = "";
     foreignLangName = "";
     foreignLangId = "";
-    boolCheckForeignLanguage = false;
+    listForeignLang.clear();
     notifyListeners();
   }
 
@@ -211,7 +214,7 @@ class ProviderNewEduPerevod extends ChangeNotifier {
     dirIds = "";
     foreignLangName = "";
     foreignLangId = "";
-    boolCheckForeignLanguage = false;
+
     listForeignLang.clear();
     notifyListeners();
   }
@@ -235,7 +238,9 @@ class ProviderNewEduPerevod extends ChangeNotifier {
       listMvDirTemp.addAll(listMvDir);
       boolDir = true;
       notifyListeners();
-    } catch (e) {throw Exception(e.toString());}
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
 
   Future searchDir({required String value}) async {
@@ -257,34 +262,35 @@ class ProviderNewEduPerevod extends ChangeNotifier {
     Navigator.of(context).pop();
   }
 
-
-  Future setDir({required String dirName, required   String dirId})async{
+  Future setDir({required String dirName, required String dirId}) async {
     dirNames = dirName;
     dirIds = dirId;
     foreignLangName = "";
     foreignLangId = "";
-    boolCheckForeignLanguage = false;
+    listForeignLang.clear();
     checkForeignLang(dirIds: dirId);
     notifyListeners();
   }
 
-  NetworkForeignLangPerevod networkForeignLangPerevod = NetworkForeignLangPerevod();
-  List<DataMvdirLangNewPerevod> listForeignLang= [];
+  NetworkForeignLangPerevod networkForeignLangPerevod =
+      NetworkForeignLangPerevod();
+  List<DataMvdirLangNewPerevod> listForeignLang = [];
   late ModelTestLangNewPerevod modelTestLangNewPerevod;
   bool boolCheckForeignLanguage = false;
 
-  Future checkForeignLang({required String dirIds})async{
-    try{
-      boolCheckForeignLanguage = false;
+  Future checkForeignLang({required String dirIds}) async {
+    try {
+      listForeignLang.clear();
       notifyListeners();
-      String data = await networkForeignLangPerevod.getForeignLang(dirID: dirIds);
-      modelTestLangNewPerevod = ModelTestLangNewPerevod.fromJson(jsonDecode(data));
+      String data =
+          await networkForeignLangPerevod.getForeignLang(dirID: dirIds);
+      modelTestLangNewPerevod =
+          ModelTestLangNewPerevod.fromJson(jsonDecode(data));
       listForeignLang = modelTestLangNewPerevod.mvdir;
       boolCheckForeignLanguage = true;
       notifyListeners();
-
-    }catch(e){
-      boolCheckForeignLanguage = true;
+    } catch (e) {
+      // boolCheckForeignLanguage = true;
       notifyListeners();
       log(e.toString());
     }
@@ -293,26 +299,37 @@ class ProviderNewEduPerevod extends ChangeNotifier {
   String foreignLangName = "";
   String foreignLangId = "";
 
-  Future setForeignLanguage({required String langName, required String langId})async{
+  Future setForeignLanguage(
+      {required String langName, required String langId}) async {
     foreignLangName = langName;
     foreignLangId = langId;
     notifyListeners();
   }
 
-  TextEditingController  txtEduIzox = TextEditingController();
-  NetworkTestCreatePerevod networkTestCreatePerevod = NetworkTestCreatePerevod();
-  Future setAllData()async{
-    try{
+  TextEditingController txtEduIzox = TextEditingController();
+  NetworkTestCreatePerevod networkTestCreatePerevod =
+      NetworkTestCreatePerevod();
+
+  // bool boolGet
+  Future setAllData({required BuildContext context}) async {
+    try {
       String dataSetAll = await networkTestCreatePerevod.setCreatePerevod(
-        testRegionId:testRegionId,
+        testRegionId: testRegionId,
         emodeId: eduTypeIds,
-        langId:langIds,
+        langId: langIds,
         eduId: eduIds,
-        directionId:dirIds,
+        directionId: dirIds,
         text: txtEduIzox.text.toString().trim(),
-        flangId: foreignLangId.isEmpty ?"0":foreignLangId,
+        flangId: foreignLangId.isEmpty ? "0" : foreignLangId,
       );
-    log(dataSetAll);
-    }catch(e){throw Exception(e.toString());}
+      log("dataSetAll");
+      pushNewScreen(context,
+          pageTransitionAnimation:
+          PageTransitionAnimation.cupertino,
+          screen: MainMyStatement(numberParam: "0"));
+      log(dataSetAll);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
 }

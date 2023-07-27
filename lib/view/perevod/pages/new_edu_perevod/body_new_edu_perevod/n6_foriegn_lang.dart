@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/new_edu_sheet/n6_foriegn_lang_sheet.dart';
 import 'package:mydtm/view/perevod/pages/new_edu_perevod/provider_new_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -20,7 +21,16 @@ Widget eduTestForeignLangNewPerevod({required BuildContext context, required Pro
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           MyWidgets.robotoFontText(
-              text: "chooseLangEmode".tr(), textSize: 17),
+              text: "chooseLangEmode".tr(), textSize: 17) .animate(
+        onPlay: (controller) => controller.repeat(reverse: true))
+        .scaleXY(
+        end: 1,
+        delay: const Duration(milliseconds: 1500),
+        curve: Curves.linear)
+        .shimmer(
+        color: Colors.green,
+        delay: const Duration(milliseconds: 1500))
+        .elevation(end: 0),
           providerNewEduPerevod.foreignLangName.length > 4
               ? Icon(
             Icons.check_circle,

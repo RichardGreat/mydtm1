@@ -8,6 +8,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/widgets/app_bar_check_info.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/body_check_info_perevod.dart';
+import 'package:mydtm/view/perevod/check_info_perevod/body_has_ariza.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/provider_check_perevod.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -32,6 +33,7 @@ class _CheckInformationPerevodgaState extends State<CheckInformationPerevodga> {
   initState() {
     // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
     getCheckUserInfo();
+
     log(box.get("token"));
     super.initState();
   }
@@ -40,6 +42,8 @@ class _CheckInformationPerevodgaState extends State<CheckInformationPerevodga> {
     await providerCheckInfoPerevod.getInfoUser();
     setState(() {});
   }
+
+
 
   var box = Hive.box("online");
 
@@ -52,8 +56,13 @@ class _CheckInformationPerevodgaState extends State<CheckInformationPerevodga> {
               child: Scaffold(
                 backgroundColor: MyColors.appColorGrey100(),
                 appBar: appBarCheckInfo(context: context),
-                body: providerCheckInfoPerevod.boolCheckUserInfo
-                    ? SafeArea(
+                body:
+                // providerCheckInfoPerevod.boolNotEdit?
+                providerCheckInfoPerevod.boolCheckUserInfo
+                    ?
+                    providerCheckInfoPerevod.boolNotEdit
+                        ?bodyHasArizaPerevod(context: context, providerCheckInfoPerevod: providerCheckInfoPerevod):
+                SafeArea(
                         child: SingleChildScrollView(
                           child: Container(
                             margin: const EdgeInsets.all(15),
@@ -66,7 +75,9 @@ class _CheckInformationPerevodgaState extends State<CheckInformationPerevodga> {
                           ),
                         ),
                       )
-                    : MyWidgets.loaderDownload(context: context),
+
+                    :
+                  MyWidgets.loaderDownload(context: context),
               ),
               onWillPop: () async {
                 box.delete("langLock");

@@ -60,30 +60,30 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(),
-                      Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                  color: MyColors.appColorBlue1(), width: 1)),
-                          child: Column(
-                            children: [
-                              IconButton(
-                                  onPressed: () {
-                                    widget.providerOldEdu.listFiles.length <3?
-                                    _pickImage(ImageSource.camera):
-                                    Navigator.of(context).pop();
-                                  },
-                                  icon: Icon(Icons.add_a_photo_outlined,
-                                      color: MyColors.appColorBlue1(),
-                                      size: 25)),
-                              Text(
-                                "Camera",
-                                style:
-                                    TextStyle(color: MyColors.appColorBlue1()),
-                              )
-                            ],
-                          )),
+                      // Container(
+                      //     padding: const EdgeInsets.all(10),
+                      //     decoration: BoxDecoration(
+                      //         borderRadius: BorderRadius.circular(10),
+                      //         border: Border.all(
+                      //             color: MyColors.appColorBlue1(), width: 1)),
+                      //     child: Column(
+                      //       children: [
+                      //         IconButton(
+                      //             onPressed: () {
+                      //               widget.providerOldEdu.listFiles.length <3?
+                      //               _pickImage(ImageSource.camera):
+                      //               Navigator.of(context).pop();
+                      //             },
+                      //             icon: Icon(Icons.add_a_photo_outlined,
+                      //                 color: MyColors.appColorBlue1(),
+                      //                 size: 25)),
+                      //         Text(
+                      //           "Camera",
+                      //           style:
+                      //               TextStyle(color: MyColors.appColorBlue1()),
+                      //         )
+                      //       ],
+                      //     )),
                       Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(

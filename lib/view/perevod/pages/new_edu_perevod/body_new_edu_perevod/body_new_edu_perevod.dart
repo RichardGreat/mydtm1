@@ -84,7 +84,7 @@ Widget bodyNewPerevod(
         const SizedBox(height: 10),
         MaterialButton(
           onPressed: () {
-            if (providerNewEduPerevod.boolCheckForeignLanguage &&
+            if (providerNewEduPerevod.listForeignLang.length > 1  &&
                 providerNewEduPerevod.testRegionNames.length > 4 &&
                 providerNewEduPerevod.eduTypeNames.length > 4 &&
                 providerNewEduPerevod.langNames.length > 4 &&
@@ -96,24 +96,27 @@ Widget bodyNewPerevod(
               if (providerNewEduPerevod.listForeignLang.length > 1 &&
                   providerNewEduPerevod.foreignLangName.length > 3) {
                 /// Chet tilisi bor tanladi
-                log("123");
-                providerNewEduPerevod.setAllData();
+                providerNewEduPerevod.setAllData(context: context);
               } else {
                 /// Chet tilisi bor tanlamadi
-                providerNewEduPerevod.setAllData();
-                log("456");
+                // providerNewEduPerevod.setAllData();
+                log("a123");
+                MyWidgets.scaffoldMessengerBottom(context: context, valueText: "checkField".tr());
               }
-              log("log");
-            } else {
-              log(providerNewEduPerevod.boolCheckForeignLanguage.toString());
-              log(providerNewEduPerevod.testRegionNames.toString());
-              log(providerNewEduPerevod.eduTypeNames.toString());
-              log(providerNewEduPerevod.langNames.toString());
-              log(providerNewEduPerevod.eduNames.toString());
-              log(providerNewEduPerevod.dirNames.toString());
-              log(providerNewEduPerevod.foreignLangName.toString());
+            } else if(
+            providerNewEduPerevod.listForeignLang.length <= 1  &&
+                providerNewEduPerevod.testRegionNames.length > 4 &&
+                providerNewEduPerevod.eduTypeNames.length > 4 &&
+                providerNewEduPerevod.langNames.length > 4 &&
+                providerNewEduPerevod.eduNames.length > 4 &&
+                providerNewEduPerevod.dirNames.length > 4 &&
+                providerNewEduPerevod.txtEduIzox.text.length > 2
+            ){
+              providerNewEduPerevod.setAllData(context: context);
 
-              log("log2");
+            }else{
+              log("a456");
+              MyWidgets.scaffoldMessengerBottom(context: context, valueText: "checkField".tr());
             }
           },
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

@@ -94,7 +94,6 @@
   "textArizaEduInfo": "Ariza holatini arizalarim bo‘limidan kuzatib boring",
   "goArizaSection": "Arizalarim bo‘limiga o‘tish",
   "enterNewPhone": "Yangi telefon raqam kiriting",
-
   "newInputPassport": "Yangi parolni kiriting",
   "passwordNotMatch": "Parollar mos emas",
   "certificate": "Sertifikat",
@@ -290,5 +289,8 @@
   "chooseUstuvorlik":"Tanlov ustuvorligini tanlash",
   "chooseMaqsadli": "Maqsadli qabulni tanlash yoki rad etish",
   "chooseLangEducation": "Ta'lim tilini tanlash",
-  "note": "Izoh"
+  "note": "Izoh",
+  "perevod1": "O‘qishni ko‘chirish (xorijiy va nodavlat)",
+  "arizaKorishda": "Ko'rib chiqish uchun qabul qilingan",
+  "perevodQaytaAriza": "Qayta ariza topshirish"
 }

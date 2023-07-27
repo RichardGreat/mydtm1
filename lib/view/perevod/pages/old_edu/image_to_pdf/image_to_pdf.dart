@@ -32,8 +32,8 @@ class _ImageToPdfState extends State<ImageToPdf> {
         if (widget.providerOldEdu.listFiles.isNotEmpty) {
           await widget.providerOldEdu.createPdfFile(contexts: context);
         }
-        widget.providerOldEdu
-            .openFiles(widget.providerOldEdu.fileToServerPerevod!);
+        // widget.providerOldEdu
+        //     .openFiles(widget.providerOldEdu.fileToServerPerevod!);
         //Navigator.of(context).pop();
         return true;
       },

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:share_plus/share_plus.dart';
 
 class AccessPaperDownload extends StatefulWidget {
   ProviderAriza providerAriza;
@@ -46,6 +47,14 @@ class _AccessPaperDownloadState extends State<AccessPaperDownload> {
         backgroundColor: MyColors.appColorWhite(),
         iconTheme: IconThemeData(color: MyColors.appColorBlack()),
         elevation: 0,
+        actions: [
+          IconButton(onPressed: (){
+            widget.providerAriza.downloadFile(url: widget.providerAriza.modelGetDownloads2.src, name: "bmba");
+            Share.share(widget.providerAriza.fileUrl.path);
+          },
+          icon: const Icon(Icons.share),
+          )
+        ],
       ),
       body: SafeArea(
           child: Container(
@@ -73,6 +82,7 @@ class _AccessPaperDownloadState extends State<AccessPaperDownload> {
                         child: Column(children: [
                           MaterialButton(
                             onPressed: () {
+
                               widget.providerAriza.openFile(
                                   url: widget
                                       .providerAriza.modelGetDownloads2.src,

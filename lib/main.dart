@@ -8,8 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 // import 'package:local_auth/local_auth.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
+import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 // import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
-import 'package:mydtm/view/perevod/check_info_perevod/check_info_perevodga.dart';
 import 'dart:async';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 // import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
@@ -174,10 +174,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         home: box.get("language") == "1" ||
                 box.get("language") == "2" ||
                 box.get("language") == "3"
-            ? //MainPages()//
-        CheckInformationPerevodga(serviceName: "qwe",)
+            ?
+        // CheckInformationPerevodga(serviceName: "qwe",)
         // OldEduAdd()
-        //      MainPages(homeIdMainpage: "0",)//
+             MainPages(homeIdMainpage: "0",)//
         // TestDownload()
             : const EnterFirst0(),
       ),

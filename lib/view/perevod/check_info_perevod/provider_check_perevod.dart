@@ -12,7 +12,9 @@ import 'package:mydtm/data/internet_connections/person_info/privilege_check/priv
 import 'package:mydtm/data/model_parse/m4_qayd_var/downloads.dart';
 import 'package:mydtm/data/model_parse/person_info/privilege_model/privilege_model1.dart';
 import 'package:mydtm/data/perevod/internet/check_user_perevod_info.dart';
+import 'package:mydtm/data/perevod/internet/get_ariza.dart';
 import 'package:mydtm/data/perevod/model/check_user_perevod.dart';
+import 'package:mydtm/data/perevod/model/model_get_ariza.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
@@ -62,7 +64,7 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
       modeCheckUserPerevod =
           ModeCheckUserPerevod.fromJson(jsonDecode(dataCheckInfo));
 
-      boolCheckUserInfo = true;
+      getDataStatusEdit();
       notifyListeners();
     } catch (e) {throw Exception(e.toString());}
     // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
@@ -338,6 +340,27 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
     raf.writeFromSync(response.data);
     await raf.close();
     return file;
+  }
+
+  NetworkGetArizaPerevod networkGetArizaPerevod = NetworkGetArizaPerevod();
+  late ModelGetArizaPerevod modelGetArizaPerevod;
+  bool boolNotEdit = false;
+  Future getDataStatusEdit()async{
+    try{
+
+      String dataPerevod = await networkGetArizaPerevod.getArizaPerevod();
+      modelGetArizaPerevod = ModelGetArizaPerevod.fromJson(jsonDecode(dataPerevod));
+
+      modelGetArizaPerevod.abitur.checkStatus != "1"?
+      boolNotEdit = true
+          :
+      boolNotEdit = false;
+      boolCheckUserInfo = true;
+      notifyListeners();
+    }catch(e){
+      boolCheckUserInfo = true;
+      notifyListeners();
+    }
   }
 }
 
