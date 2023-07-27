@@ -264,6 +264,68 @@ class ProviderAriza extends ChangeNotifier {
     return fileUrl;
   }
 
+
+  Future openFileJavobVaraqa({required String url, required String fileName}) async {
+    try {
+      final file = await downloadFileJavobVaraqa(url: url, name: fileName);
+      if (file == null) return;
+
+      OpenFile.open(file.path
+      );
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  late final fileUrlJavobVaraqa;
+  Future<File?> downloadFileJavobVaraqa(
+      {required String url, required String name}) async {
+    final appStore = await getApplicationDocumentsDirectory();
+    fileUrlJavobVaraqa = File('${appStore.path}/$name.pdf');
+    final response = await Dio().get(url,
+        options: Options(
+          responseType: ResponseType.bytes,
+          followRedirects: false,
+          receiveTimeout: const Duration(seconds: 60),
+        ));
+
+    final raf = fileUrlJavobVaraqa.openSync(mode: FileMode.write);
+    raf.writeFromSync(response.data);
+    await raf.close();
+    // if (Platform.isIOS || Platform.isAndroid) {
+    //   bool status = await Permission.storage.isGranted;
+    //
+    //   if (!status) await Permission.storage.request();
+    // }
+    // file.existsSync();
+    // // FileUtils.mkdir([dirloc]);
+    // String path = await FileSaver.instance.saveFile(
+    //   link: LinkDetails(link: url),
+    //     // filePath: "/storage/download/",
+    //
+    //     name: "BMBA",
+    //     //link:  linkController.text,
+    //     // bytes: Uint8List.fromList(response.data.encode()!),
+    //     ext: 'pdf',
+    //
+    //     ///extController.text,
+    //     mimeType: MimeType.pdf);
+    //   log(path);
+    // await FileSaver.instance.saveFile({
+    //   required String name,
+    //   Uint8List? bytes,
+    //   File? file,
+    //   String? filePath,
+    //   LinkDetails? link,
+    //   String ext = "",
+    //   MimeType mimeType = MimeType.other,
+    //   String? customMimeType
+    // });
+
+    return fileUrlJavobVaraqa;
+  }
+
+
   ///
 
   bool loading = false;

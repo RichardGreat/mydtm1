@@ -48,12 +48,15 @@ class _AccessPaperDownloadState extends State<AccessPaperDownload> {
         iconTheme: IconThemeData(color: MyColors.appColorBlack()),
         elevation: 0,
         actions: [
-          IconButton(onPressed: (){
+          widget.providerAriza.boolDataDownload2
+              ? widget.providerAriza.modelGetDownloadsData2.status.toString() == "1"?
+              IconButton(onPressed: (){
             widget.providerAriza.downloadFile(url: widget.providerAriza.modelGetDownloads2.src, name: "bmba");
             Share.share(widget.providerAriza.fileUrl.path);
-          },
-          icon: const Icon(Icons.share),
-          )
+          }, icon: const Icon(Icons.share),)
+              :SizedBox.shrink()
+              :SizedBox.shrink()
+
         ],
       ),
       body: SafeArea(

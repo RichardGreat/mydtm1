@@ -1,10 +1,12 @@
 // ignore_for_file: file_names
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:share_plus/share_plus.dart';
 
 // ignore: must_be_immutable
 class AnswerSheetDownload extends StatefulWidget {
@@ -44,33 +46,49 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
         backgroundColor: MyColors.appColorWhite(),
         iconTheme: IconThemeData(color: MyColors.appColorBlack()),
         elevation: 0,
+        actions: [
+          widget.providerAriza.boolDataDownload3
+              ? widget.providerAriza.modelGetDownloadsData3.status.toString() ==
+              "1"?
+
+          IconButton(
+            onPressed: () {
+              widget.providerAriza.openFileJavobVaraqa(
+                  url: widget.providerAriza.modelGetDownloads3.src,
+                  fileName: "javob_varaqa");
+              Share.share(widget.providerAriza.fileUrl.path);
+            },
+            icon: const Icon(Icons.share),
+          )
+              :SizedBox.shrink()
+              :SizedBox.shrink()
+        ],
       ),
       body: SafeArea(
           child: Container(
-            margin: const EdgeInsets.all(15),
+        margin: const EdgeInsets.all(15),
         child: widget.providerAriza.boolDataDownload3
             ? widget.providerAriza.modelGetDownloadsData3.status.toString() ==
                     "1"
                 ? SingleChildScrollView(
                     child: Column(children: [
-                      // SizedBox(
-                      //     height: MediaQuery.of(context).size.height * 0.6,
-                      //     child: const PDF(
-                      //       autoSpacing: false,
-                      //       fitEachPage: true,
-                      //     ).fromUrl(
-                      //       widget.providerAriza.modelGetDownloads3.src,
-                      //       placeholder: (progress) =>
-                      //           Center(child: Text('$progress %')),
-                      //       errorWidget: (error) =>
-                      //           Center(child: Text(error.toString())),
-                      //     )),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.6,
+                          child: PDFViewer(
+                            document: widget.providerAriza.doc3,
+                            lazyLoad: false,
+                            scrollDirection: Axis.vertical,
+                            zoomSteps: 1,
+                            showIndicator: false,
+                            showPicker: false,
+                            showNavigation: false,
+                          )),
                       Container(
                         margin: const EdgeInsets.all(15),
                         child: Column(children: [
                           MaterialButton(
                             onPressed: () {
-                              widget.providerAriza.openFile(
+                              widget.providerAriza.openFileJavobVaraqa(
                                   url: widget
                                       .providerAriza.modelGetDownloads3.src,
                                   fileName: "javob_varaqa");
@@ -91,9 +109,16 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
                 : Center(
                     child: MyWidgets.loaderDownload(context: context),
                   )
-            : Center(child:Text( "noInfoAbiturResult".tr(),
-          textAlign: TextAlign.center,
-          style: TextStyle(color: MyColors.appColorBlack(), fontWeight: FontWeight.w500, fontSize: 18, ),)),
+            : Center(
+                child: Text(
+                "noInfoAbiturResult".tr(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: MyColors.appColorBlack(),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                ),
+              )),
       )),
     );
   }
