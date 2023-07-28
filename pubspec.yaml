@@ -34,9 +34,10 @@ dependencies:
   rive: ^0.11.4
 #  file_saver: ^0.2.6
   ntp: ^2.0.0
-  easy_pdf_viewer: ^1.0.6
+#  easy_pdf_viewer: ^1.0.6
 #  permission_handler: ^10.4.2
 #  pdf_viewer_plugin: ^2.0.1
+  flutter_cached_pdfview: ^0.4.2
   cached_network_image: ^3.2.3
   url_launcher: ^6.1.11
   flutter_screen_lock: ^9.0.1

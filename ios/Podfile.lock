@@ -1,7 +1,7 @@
 PODS:
-  - easy_pdf_viewer (1.0.1):
-    - Flutter
   - Flutter (1.0.0)
+  - flutter_pdfview (1.0.2):
+    - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -30,8 +30,8 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - easy_pdf_viewer (from `.symlinks/plugins/easy_pdf_viewer/ios`)
   - Flutter (from `Flutter`)
+  - flutter_pdfview (from `.symlinks/plugins/flutter_pdfview/ios`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - open_file (from `.symlinks/plugins/open_file/ios`)
@@ -48,10 +48,10 @@ SPEC REPOS:
     - TOCropViewController
 
 EXTERNAL SOURCES:
-  easy_pdf_viewer:
-    :path: ".symlinks/plugins/easy_pdf_viewer/ios"
   Flutter:
     :path: Flutter
+  flutter_pdfview:
+    :path: ".symlinks/plugins/flutter_pdfview/ios"
   image_cropper:
     :path: ".symlinks/plugins/image_cropper/ios"
   image_picker_ios:
@@ -72,8 +72,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  easy_pdf_viewer: 0b396564ff0e65320c2a505551fb6de05d57f512
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_pdfview: 25f53dd6097661e6395b17de506e6060585946bd
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_cropper: 60c2789d1f1a78c873235d4319ca0c34a69f2d98
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5

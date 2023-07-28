@@ -5,7 +5,7 @@ import 'dart:core';
 import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
+// import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/answersheet.dart';
@@ -32,9 +32,9 @@ class ProviderAriza extends ChangeNotifier {
   // Load from assets
 
 // Load from URL
-  late PDFDocument doc;
-  late PDFDocument doc2;
-  late PDFDocument doc3;
+//   late PDFDocument doc;
+//   late PDFDocument doc2;
+//   late PDFDocument doc3;
 
 // Load from file
 
@@ -68,12 +68,19 @@ class ProviderAriza extends ChangeNotifier {
           updateTime: model.updatedAt.toString(),
           invoice: model.invoice.toString(),
           holat: model.pay.toString(),
+          pay: model.pay.toString(),
+
           data1: "",
-          data2: ""));
+          data2: "",
+          otmNomi: "",
+          otmYunalish: "",
+
+      ));
       getPerevodAriza();
       notifyListeners();
     } catch (e) {
       boolQaydVaraqaDownloadNot = true;
+      getPerevodAriza();
       // boolQaydVaraqaDownload = true;
       notifyListeners();
       log(e.toString());
@@ -88,21 +95,27 @@ class ProviderAriza extends ChangeNotifier {
       String data = await networkGetArizaPerevod.getArizaPerevod();
       modelGetArizaPerevod = ModelGetArizaPerevod.fromJson(jsonDecode(data));
       listArizaBodyService.add(ArizaBodyService(
-          statusCheckPerevod: modelGetArizaPerevod.abitur.checkStatus.toString(),
-          serviceName: "perevod1".tr(),
-          id: modelGetArizaPerevod.abitur.id.toString(),
-          bitiruvchi: "0",
-          fish:
-              "${modelGetArizaPerevod.abitur.lname} ${modelGetArizaPerevod.abitur.fname}",
-          updateTime: modelGetArizaPerevod.abitur.updatedAt.toString(),
-          invoice: modelGetArizaPerevod.abitur.invoice.toString(),
-          holat: modelGetArizaPerevod.abitur.checkStatus.toString(),
-          data1: modelGetArizaPerevod.abitur.comment.toString(),
-          data2: modelGetArizaPerevod.abitur.comments.toString()));
+        statusCheckPerevod: modelGetArizaPerevod.abitur.checkStatus.toString(),
+        serviceName: "perevod1".tr(),
+        id: modelGetArizaPerevod.abitur.id.toString(),
+        bitiruvchi: "0",
+        fish:
+            "${modelGetArizaPerevod.abitur.lname} ${modelGetArizaPerevod.abitur.fname}",
+        updateTime: modelGetArizaPerevod.abitur.updatedAt.toString(),
+        invoice: modelGetArizaPerevod.abitur.invoice.toString(),
+        holat: modelGetArizaPerevod.abitur.checkStatus.toString(),
+        pay:  modelGetArizaPerevod.abitur.pay.toString(),
+        data1: modelGetArizaPerevod.abitur.comment.toString(),
+        data2: modelGetArizaPerevod.abitur.comments.toString(),
+        otmNomi: modelGetArizaPerevod.abitur.educ.toString(),
+        otmYunalish: modelGetArizaPerevod.abitur.science.toString(),
+      ));
       boolQaydVaraqaDownload = true;
+      boolQaydVaraqaDownloadNot = false;
       notifyListeners();
     } catch (e) {
       boolQaydVaraqaDownload = true;
+      notifyListeners();
     }
   }
 
@@ -135,15 +148,15 @@ class ProviderAriza extends ChangeNotifier {
         modelGetDownloadsData1 =
             ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
         modelGetDownloads1 = modelGetDownloadsData1.data;
-        doc = await PDFDocument.fromURL(modelGetDownloads1.src,
-            headers: {"X-Access-Token": box.get("token")},
-            cacheManager: CacheManager(
-              Config(
-                "customCacheKey",
-                stalePeriod: const Duration(milliseconds: 600),
-                maxNrOfCacheObjects: 1,
-              ),
-            ));
+        // doc = await PDFDocument.fromURL(modelGetDownloads1.src,
+        //     headers: {"X-Access-Token": box.get("token")},
+        //     cacheManager: CacheManager(
+        //       Config(
+        //         "customCacheKey",
+        //         stalePeriod: const Duration(milliseconds: 600),
+        //         maxNrOfCacheObjects: 1,
+        //       ),
+        //     ));
 
         myTime = await NTP.now();
         day = myTime.day;
@@ -163,15 +176,15 @@ class ProviderAriza extends ChangeNotifier {
         modelGetDownloadsData2 =
             ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
         modelGetDownloads2 = modelGetDownloadsData2.data;
-        doc2 = await PDFDocument.fromURL(modelGetDownloads1.src,
-            headers: {"X-Access-Token": box.get("token")},
-            cacheManager: CacheManager(
-              Config(
-                "customCacheKey",
-                stalePeriod: const Duration(milliseconds: 600),
-                maxNrOfCacheObjects: 1,
-              ),
-            ));
+        // doc2 = await PDFDocument.fromURL(modelGetDownloads1.src,
+        //     headers: {"X-Access-Token": box.get("token")},
+        //     cacheManager: CacheManager(
+        //       Config(
+        //         "customCacheKey",
+        //         stalePeriod: const Duration(milliseconds: 600),
+        //         maxNrOfCacheObjects: 1,
+        //       ),
+        //     ));
         boolDataDownload2 = true;
         notifyListeners();
       } catch (e) {
@@ -186,15 +199,15 @@ class ProviderAriza extends ChangeNotifier {
             ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
 
         modelGetDownloads3 = modelGetDownloadsData3.data;
-        doc3 = await PDFDocument.fromURL(modelGetDownloads3.src,
-            headers: {"X-Access-Token": box.get("token")},
-            cacheManager: CacheManager(
-              Config(
-                "customCacheKey",
-                stalePeriod: const Duration(milliseconds: 600),
-                maxNrOfCacheObjects: 1,
-              ),
-            ));
+        // doc3 = await PDFDocument.fromURL(modelGetDownloads3.src,
+        //     headers: {"X-Access-Token": box.get("token")},
+        //     cacheManager: CacheManager(
+        //       Config(
+        //         "customCacheKey",
+        //         stalePeriod: const Duration(milliseconds: 600),
+        //         maxNrOfCacheObjects: 1,
+        //       ),
+        //     ));
         boolDataDownload3 = true;
         notifyListeners();
         log(modelGetDownloadsData3.data.src);
@@ -210,13 +223,14 @@ class ProviderAriza extends ChangeNotifier {
       final file = await downloadFile(url: url, name: fileName);
       if (file == null) return;
 
-      OpenFile.open(file.path
-      );
+      OpenFile.open(file.path);
     } catch (e) {
       log(e.toString());
     }
   }
+
   late final fileUrl;
+
   Future<File?> downloadFile(
       {required String url, required String name}) async {
     final appStore = await getApplicationDocumentsDirectory();
@@ -264,20 +278,20 @@ class ProviderAriza extends ChangeNotifier {
     return fileUrl;
   }
 
-
-  Future openFileJavobVaraqa({required String url, required String fileName}) async {
+  Future openFileJavobVaraqa(
+      {required String url, required String fileName}) async {
     try {
       final file = await downloadFileJavobVaraqa(url: url, name: fileName);
       if (file == null) return;
 
-      OpenFile.open(file.path
-      );
+      OpenFile.open(file.path);
     } catch (e) {
       log(e.toString());
     }
   }
 
   late final fileUrlJavobVaraqa;
+
   Future<File?> downloadFileJavobVaraqa(
       {required String url, required String name}) async {
     final appStore = await getApplicationDocumentsDirectory();
@@ -324,7 +338,6 @@ class ProviderAriza extends ChangeNotifier {
 
     return fileUrlJavobVaraqa;
   }
-
 
   ///
 
@@ -442,7 +455,10 @@ class ArizaBodyService {
       invoice,
       holat,
       data1,
-      data2;
+      data2,
+      otmNomi,
+      otmYunalish,
+      pay;
 
   ArizaBodyService({
     required this.statusCheckPerevod,
@@ -455,20 +471,27 @@ class ArizaBodyService {
     required this.holat,
     required this.data1,
     required this.data2,
+    required this.otmNomi,
+    required this.otmYunalish,
+    required this.pay,
   });
 
   factory ArizaBodyService.fromJson(Map<String, dynamic> json) =>
       ArizaBodyService(
-          statusCheckPerevod: json["statusCheckPerevod"],
-          bitiruvchi: json["bitiruvchi"],
-          serviceName: json["serviceName"],
-          id: json["id"],
-          fish: json["fish"],
-          updateTime: json["updateTime"],
-          invoice: json["invoice"],
-          holat: json["holat"],
-          data1: json["data1"],
-          data2: json["data2"]);
+        statusCheckPerevod: json["statusCheckPerevod"],
+        bitiruvchi: json["bitiruvchi"],
+        serviceName: json["serviceName"],
+        id: json["id"],
+        fish: json["fish"],
+        updateTime: json["updateTime"],
+        invoice: json["invoice"],
+        holat: json["holat"],
+        data1: json["data1"],
+        data2: json["data2"],
+        otmNomi: json["otmNomi"],
+        otmYunalish: json["otmYunalish"],
+        pay: json["pay"],
+      );
 
   Map<String, dynamic> toJson() => {
         "statusCheckPerevod": statusCheckPerevod,
@@ -481,5 +504,8 @@ class ArizaBodyService {
         "holat": holat,
         "data1": data1,
         "data2": data2,
+        "otmNomi": otmNomi,
+        "otmYunalish": otmYunalish,
+        "pay": pay,
       };
 }

@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
+
+// import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_information.dart';
 import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -48,24 +50,26 @@ class _QaydVaraqaEditState extends State<QaydVaraqaEdit> {
       ),
       body: SafeArea(
           child: Container(
-            padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: widget.providerCheckInformation.boolDataDownload1
             ? widget.providerCheckInformation.modelGetDownloadsData1.status == 1
                 ? SingleChildScrollView(
                     child: Column(children: [
                       // SizedBox(
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.72,
-                        child: PDFViewer(
-                          document: widget.providerCheckInformation.doc,
-                          lazyLoad: false,
-                          scrollDirection: Axis.vertical,
-                          zoomSteps: 1,
-                          showIndicator: false,
-                          showPicker: false,
-                          showNavigation: false,
-                        ),
-                      ),
+                          height: MediaQuery.of(context).size.height * 0.72,
+                          child: PDF().cachedFromUrl(widget
+                              .providerCheckInformation.modelGetDownloads1.src)
+                          // PDFViewer(
+                          //   document: widget.providerCheckInformation.doc,
+                          //   lazyLoad: false,
+                          //   scrollDirection: Axis.vertical,
+                          //   zoomSteps: 1,
+                          //   showIndicator: false,
+                          //   showPicker: false,
+                          //   showNavigation: false,
+                          // ),
+                          ),
                       Container(
                         margin: const EdgeInsets.all(15),
                         child: Column(children: [
@@ -102,8 +106,8 @@ class _QaydVaraqaEditState extends State<QaydVaraqaEdit> {
                             color: MyColors.appColorWhite(),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                side: BorderSide(
-                                    color: MyColors.appColorBBA())),
+                                side:
+                                    BorderSide(color: MyColors.appColorBBA())),
                             child: MyWidgets.robotoFontText(
                                 text: "editEdu".tr(),
                                 textColor: MyColors.appColorBBA()),

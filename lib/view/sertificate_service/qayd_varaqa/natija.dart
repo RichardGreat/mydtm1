@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
+// import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/data/model_parse/mod_certificate_nation/model_natija.dart';
@@ -35,7 +36,7 @@ class _CertificateResultsViewState extends State<CertificateResultsView> {
     super.initState();
   }
 
-  late PDFDocument doc;
+  // late PDFDocument doc;
   bool isLoading = false;
 
   bool boolGetAllowLink = false;
@@ -69,11 +70,11 @@ class _CertificateResultsViewState extends State<CertificateResultsView> {
       maxBall = modelCertificateResults.data.answer.commonBall.toString();
       setState(() => isLoading = false);
       try {
-        doc = await PDFDocument.fromURL(link, headers: {
-          "X-Access-Token": widget.boolGetNatija
-              ? "b90beeaac6416018196aeae417fefc96"
-              : box.get("token")
-        });
+        // doc = await PDFDocument.fromURL(link, headers: {
+        //   "X-Access-Token": widget.boolGetNatija
+        //       ? "b90beeaac6416018196aeae417fefc96"
+        //       : box.get("token")
+        // });
       } catch (e) {
         log(e.toString());
       }
@@ -154,18 +155,7 @@ class _CertificateResultsViewState extends State<CertificateResultsView> {
                           child:    !isLoading
                               ? const Center(child: CircularProgressIndicator())
                               : boolNotCertificate
-                              ? PDFViewer(
-                            document: doc,
-                            lazyLoad: false,
-                            // showPicker: false,
-                            // showNavigation: false,
-
-                            zoomSteps: 1,
-                            progressIndicator: const Center(
-                                child: CircularProgressIndicator()),
-                            showIndicator: false,
-                            backgroundColor: Colors.white,
-                          )
+                              ? PDF().cachedFromUrl(modelCertificateResults.data.answer.link.toString())
                               : ListView.builder(
                             itemCount: modelCertificateResults
                                 .data.answer.ans.length,

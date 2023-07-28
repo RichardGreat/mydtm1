@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
+// import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mydtm/data/internet_connections/main_url.dart';
 import 'package:mydtm/data/model_parse/mod_certificate_nation/model_cert_allow.dart';
@@ -41,7 +42,7 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
   bool boolGetAllowLinkError = true;
   var dio = Dio();
   String link = "";
-  late PDFDocument doc;
+  // late PDFDocument doc;
   bool isLoading = false;
 
   getAllowLink() async {
@@ -63,11 +64,11 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
           .allow
           .toString();
       setState(() => isLoading = false);
-
-      doc = await PDFDocument.fromURL(link,
-          headers: {"X-Access-Token": box.get("token")});
-      boolGetAllowLink = true;
-      boolGetAllowLinkError = false;
+      //
+      // doc = await PDFDocument.fromURL(link,
+      //     headers: {"X-Access-Token": box.get("token")});
+      // boolGetAllowLink = true;
+      // boolGetAllowLinkError = false;
       setState(() => isLoading = true);
     } catch (e) {
       boolGetAllowLinkError = false;
@@ -98,18 +99,7 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
                           height: MediaQuery.of(context).size.height * 0.75,
                           child: !isLoading
                               ? const Center(child: CircularProgressIndicator())
-                              : PDFViewer(
-                                  document: doc,
-                                  lazyLoad: false,
-                                  zoomSteps: 1,
-                                  progressIndicator: const Center(
-                                      child: CircularProgressIndicator()),
-                                  showIndicator: false,
-                                  backgroundColor: Colors.white,
-                                  numberPickerConfirmWidget: const Text(
-                                    "",
-                                  ),
-                                ),
+                              : PDF().cachedFromUrl(link),
                         ),
                       ]),
                 )

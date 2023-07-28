@@ -1,8 +1,9 @@
 // ignore_for_file: file_names
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
+// import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -74,15 +75,7 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
                     child: Column(children: [
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.6,
-                          child: PDFViewer(
-                            document: widget.providerAriza.doc3,
-                            lazyLoad: false,
-                            scrollDirection: Axis.vertical,
-                            zoomSteps: 1,
-                            showIndicator: false,
-                            showPicker: false,
-                            showNavigation: false,
-                          )),
+                          child: PDF().cachedFromUrl(widget.providerAriza.modelGetDownloads3.src)),
                       Container(
                         margin: const EdgeInsets.all(15),
                         child: Column(children: [

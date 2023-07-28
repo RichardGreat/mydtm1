@@ -476,81 +476,83 @@ class _MainHomeState extends State<MainHome> {
                                                               );
 
                                                             },
-                                                            child: index == 0
-                                                                ? Showcase(
-                                                                    key:
-                                                                        firstMainHome,
-                                                                    description:
-                                                                        "regEducation".tr(),
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          155,
-                                                                      width:
-                                                                          125,
-                                                                      padding:
-                                                                          const EdgeInsets.all(
-                                                                              10),
-                                                                      margin:
-                                                                          const EdgeInsets.all(
-                                                                              5),
-                                                                      decoration: BoxDecoration(
-                                                                          color: MyColors
-                                                                              .appColorWhite(),
-                                                                          boxShadow: [
-                                                                            BoxShadow(
-                                                                                color: MyColors.appColorGrey400(),
-                                                                                spreadRadius: 1,
-                                                                                blurRadius: 1)
-                                                                          ],
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(10)),
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.center,
-                                                                        children: [
-                                                                          const SizedBox(
-                                                                              height: 1),
-                                                                          CachedNetworkImage(
-                                                                              height: 40,
-                                                                              width: 40,
-                                                                              filterQuality: FilterQuality.high,
-                                                                              fit: BoxFit.fill,
-                                                                              imageUrl: "${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
-                                                                              progressIndicatorBuilder: (context, url, downloadProgress) => const CupertinoActivityIndicator(),
-                                                                              errorWidget: (context, url, error) =>
-                                                                                  // Text(url.toString())
-                                                                                  Image.asset(
-                                                                                    "assets/images/uzbmb.png",
-                                                                                  )
-                                                                              //
-                                                                              //     fit: BoxFit.fill),
-                                                                              ),
-                                                                          Text(
-                                                                            box.get("language") == "1"
-                                                                                ? providerMainHome.listDataServiceList[index].service[index2].serviceName
-                                                                                : box.get("language") == "2"
-                                                                                    ? providerMainHome.listDataServiceList[index].service[index2].serviceNameQQ
-                                                                                    : providerMainHome.listDataServiceList[index].service[index2].serviceNameRu,
-
-                                                                            textAlign:
-                                                                                TextAlign.center,
-                                                                            overflow:
-                                                                                TextOverflow.ellipsis,
-                                                                            maxLines:
-                                                                                3,
-                                                                            // softWrap: true,
-                                                                            style:
-                                                                                const TextStyle(fontFamily: 'Roboto-Medium'),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  )
-                                                                : Container(
+                                                            child:
+                                                            // index == 0
+                                                            //     ? Showcase(
+                                                            //         key:
+                                                            //             firstMainHome,
+                                                            //         description:
+                                                            //             "regEducation".tr(),
+                                                            //         child:
+                                                            //             Container(
+                                                            //           height:
+                                                            //               155,
+                                                            //           width:
+                                                            //               125,
+                                                            //           padding:
+                                                            //               const EdgeInsets.all(
+                                                            //                   10),
+                                                            //           margin:
+                                                            //               const EdgeInsets.all(
+                                                            //                   5),
+                                                            //           decoration: BoxDecoration(
+                                                            //               color: MyColors
+                                                            //                   .appColorWhite(),
+                                                            //               boxShadow: [
+                                                            //                 BoxShadow(
+                                                            //                     color: MyColors.appColorGrey400(),
+                                                            //                     spreadRadius: 1,
+                                                            //                     blurRadius: 1)
+                                                            //               ],
+                                                            //               borderRadius:
+                                                            //                   BorderRadius.circular(10)),
+                                                            //           child:
+                                                            //               Column(
+                                                            //             mainAxisAlignment:
+                                                            //                 MainAxisAlignment.spaceBetween,
+                                                            //             crossAxisAlignment:
+                                                            //                 CrossAxisAlignment.center,
+                                                            //             children: [
+                                                            //               const SizedBox(
+                                                            //                   height: 1),
+                                                            //               CachedNetworkImage(
+                                                            //                   height: 40,
+                                                            //                   width: 40,
+                                                            //                   filterQuality: FilterQuality.high,
+                                                            //                   fit: BoxFit.fill,
+                                                            //                   imageUrl: "${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
+                                                            //                   progressIndicatorBuilder: (context, url, downloadProgress) => const CupertinoActivityIndicator(),
+                                                            //                   errorWidget: (context, url, error) =>
+                                                            //                       // Text(url.toString())
+                                                            //                       Image.asset(
+                                                            //                         "assets/images/uzbmb.png",
+                                                            //                       )
+                                                            //                   //
+                                                            //                   //     fit: BoxFit.fill),
+                                                            //                   ),
+                                                            //               Text(
+                                                            //                 box.get("language") == "1"
+                                                            //                     ? providerMainHome.listDataServiceList[index].service[index2].serviceName
+                                                            //                     : box.get("language") == "2"
+                                                            //                         ? providerMainHome.listDataServiceList[index].service[index2].serviceNameQQ
+                                                            //                         : providerMainHome.listDataServiceList[index].service[index2].serviceNameRu,
+                                                            //
+                                                            //                 textAlign:
+                                                            //                     TextAlign.center,
+                                                            //                 overflow:
+                                                            //                     TextOverflow.ellipsis,
+                                                            //                 maxLines:
+                                                            //                     3,
+                                                            //                 // softWrap: true,
+                                                            //                 style:
+                                                            //                     const TextStyle(fontFamily: 'Roboto-Medium'),
+                                                            //               ),
+                                                            //             ],
+                                                            //           ),
+                                                            //         ),
+                                                            //       )
+                                                            //     :
+                                                            Container(
                                                                     height: 155,
                                                                     width: 125,
                                                                     padding:

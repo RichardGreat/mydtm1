@@ -99,6 +99,8 @@ myViewButton(
                           //     ));
                         },
                         child: Container(
+                          width: 60,
+                          height: 60,
                           margin: const EdgeInsets.only(
                               left: 10, right: 10, top: 2, bottom: 2),
                           padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
@@ -116,9 +118,9 @@ myViewButton(
                             children: [
                               CachedNetworkImage(
                                   width: 60,
-                                  height: 50,
+                                  height: 60,
                                   fit: BoxFit.fill,
-                                  imageUrl: "${myList[index].mobilIcon}",
+                                  imageUrl: myList[index].mobilIcon,
                                   progressIndicatorBuilder:
                                       (context, url, downloadProgress) =>
                                           const CupertinoActivityIndicator(),

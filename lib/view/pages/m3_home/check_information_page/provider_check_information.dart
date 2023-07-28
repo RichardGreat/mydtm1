@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
+// import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/region/choose_region.dart';
@@ -284,7 +284,7 @@ class ProviderCheckInformation extends ChangeNotifier {
   late ModelGetDownloads modelGetDownloadsData1;
   late DataGetDownloads modelGetDownloads1;
   bool boolDataDownload1 = false;
-  late PDFDocument doc;
+  // late PDFDocument doc;
 
   Future getQaydVaraqa2() async {
     try {
@@ -294,17 +294,17 @@ class ProviderCheckInformation extends ChangeNotifier {
       modelGetDownloadsData1 =
           ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
       modelGetDownloads1 = modelGetDownloadsData1.data;
-      doc = await PDFDocument.fromURL(modelGetDownloads1.src,
-          headers: {
-            "X-Access-Token": box.get("token"),
-          },
-          cacheManager: CacheManager(
-            Config(
-              "customCacheKey",
-              stalePeriod: const Duration(milliseconds: 600),
-              maxNrOfCacheObjects: 1,
-            ),
-          ));
+      // doc = await PDFDocument.fromURL(modelGetDownloads1.src,
+      //     headers: {
+      //       "X-Access-Token": box.get("token"),
+      //     },
+      //     cacheManager: CacheManager(
+      //       Config(
+      //         "customCacheKey",
+      //         stalePeriod: const Duration(milliseconds: 600),
+      //         maxNrOfCacheObjects: 1,
+      //       ),
+      //     ));
 
       boolDataDownload1 = true;
       notifyListeners();

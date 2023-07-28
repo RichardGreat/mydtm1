@@ -1,12 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/body_ariza.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
+import 'package:mydtm/view/perevod/check_info_perevod/check_info_perevodga.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 Widget bodyAriza1(
     {required BuildContext context, required ProviderAriza providerAriza}) {
@@ -78,6 +79,26 @@ Widget bodyAriza1(
                 ],
               ),
               const SizedBox(height: 15),
+              providerAriza.listArizaBodyService[index].serviceName ==
+                      "perevod1".tr()
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        MyWidgets.robotoFontText(
+                            text: "muassasa".tr(), textSize: 16),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          child: Text(
+                            "${providerAriza.listArizaBodyService[index].otmNomi}  ${providerAriza.listArizaBodyService[index].otmYunalish}",
+                            textAlign: TextAlign.right,
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ],
+                    )
+                  : const SizedBox.shrink(),
+              const SizedBox(height: 10),
 
               /// TO'LOV
               providerAriza.listArizaBodyService[index].statusCheckPerevod
@@ -151,34 +172,37 @@ Widget bodyAriza1(
                                                   ? MyColors.appColorRed()
                                                   : MyColors.appColorBlue2()),
                                           child: Center(
-                                            child: MyWidgets.robotoFontText(
-                                                    text: providerAriza.model.pay == 0
-                                                        ? "noPayed".tr()
-                                                        : "payed".tr(),
-                                                    textColor: MyColors
-                                                        .appColorWhite(),
-                                                    textFontWeight:
-                                                        FontWeight.w600,
-                                                    textSize: 15)
-                                                .animate(
-                                                    onPlay: (controller) =>
-                                                        controller.repeat(
-                                                            reverse: true))
-                                                .scaleXY(
-                                                    end: 1,
-                                                    delay: const Duration(
-                                                        milliseconds: 3000),
-                                                    curve: Curves.linear)
-                                                .shimmer(
-                                                    color: providerAriza
-                                                                .listArizaBodyService[index]
-                                                                .holat ==
-                                                            "0"
-                                                        ? Colors.red
-                                                        : Colors.blue,
-                                                    delay: const Duration(milliseconds: 3000))
-                                                .elevation(end: 0),
-                                          ),
+                                              child: MyWidgets.robotoFontText(
+                                                  text:
+                                                      providerAriza.model.pay ==
+                                                              0
+                                                          ? "noPayed".tr()
+                                                          : "payed".tr(),
+                                                  textColor:
+                                                      MyColors.appColorWhite(),
+                                                  textFontWeight:
+                                                      FontWeight.w600,
+                                                  textSize: 15)
+
+                                              // .animate(
+                                              //     onPlay: (controller) =>
+                                              //         controller.repeat(
+                                              //             reverse: true))
+                                              // .scaleXY(
+                                              //     end: 1,
+                                              //     delay: const Duration(
+                                              //         milliseconds: 3000),
+                                              //     curve: Curves.linear)
+                                              // .shimmer(
+                                              //     color: providerAriza
+                                              //                 .listArizaBodyService[index]
+                                              //                 .holat ==
+                                              //             "0"
+                                              //         ? Colors.red
+                                              //         : Colors.blue,
+                                              //     delay: const Duration(milliseconds: 3000))
+                                              // .elevation(end: 0),
+                                              ),
                                         ),
                                 ],
                               ),
@@ -271,33 +295,37 @@ Widget bodyAriza1(
                                                       : MyColors
                                                           .appColorBlue2()),
                                               child: Center(
-                                                child: MyWidgets.robotoFontText(
-                                                        text: providerAriza.model.pay == 0
-                                                            ? "noPayed".tr()
-                                                            : "payed".tr(),
-                                                        textColor: MyColors
-                                                            .appColorWhite(),
-                                                        textFontWeight:
-                                                            FontWeight.w600,
-                                                        textSize: 15)
-                                                    .animate(
-                                                        onPlay: (controller) =>
-                                                            controller.repeat(
-                                                                reverse: true))
-                                                    .scaleXY(
-                                                        end: 1,
-                                                        delay: const Duration(
-                                                            milliseconds: 3000),
-                                                        curve: Curves.linear)
-                                                    .shimmer(
-                                                        color:
-                                                            providerAriza.listArizaBodyService[index].holat ==
-                                                                    "0"
-                                                                ? Colors.red
-                                                                : Colors.blue,
-                                                        delay: const Duration(milliseconds: 3000))
-                                                    .elevation(end: 0),
-                                              ),
+                                                  child: MyWidgets.robotoFontText(
+                                                      text: providerAriza
+                                                                  .listArizaBodyService[
+                                                                      index]
+                                                                  .pay ==
+                                                              "0"
+                                                          ? "noPayed".tr()
+                                                          : "payed".tr(),
+                                                      textColor: MyColors
+                                                          .appColorWhite(),
+                                                      textFontWeight:
+                                                          FontWeight.w600,
+                                                      textSize: 15)
+                                                  // .animate(
+                                                  //     onPlay: (controller) =>
+                                                  //         controller.repeat(
+                                                  //             reverse: true))
+                                                  // .scaleXY(
+                                                  //     end: 1,
+                                                  //     delay: const Duration(
+                                                  //         milliseconds: 3000),
+                                                  //     curve: Curves.linear)
+                                                  // .shimmer(
+                                                  //     color:
+                                                  //         providerAriza.listArizaBodyService[index].holat ==
+                                                  //                 "0"
+                                                  //             ? Colors.red
+                                                  //             : Colors.blue,
+                                                  //     delay: const Duration(milliseconds: 3000))
+                                                  // .elevation(end: 0),
+                                                  ),
                                             ),
                                     ],
                                   ),
@@ -311,7 +339,9 @@ Widget bodyAriza1(
                               ),
                             )
                           : const SizedBox.shrink(),
-              index == 0
+
+              providerAriza.listArizaBodyService[index].serviceName !=
+                      "perevod1".tr()
                   ? Align(
                       alignment: Alignment.bottomCenter,
                       child: GestureDetector(
@@ -338,54 +368,99 @@ Widget bodyAriza1(
                     )
                   : Column(
                       children: [
-
-
-                        providerAriza.listArizaBodyService[1].statusCheckPerevod != "0"?
-                        Text(
-                          providerAriza.listArizaBodyService[1].data2
-                              .toString(),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: providerAriza.listArizaBodyService[index]
-                                          .statusCheckPerevod
-                                          .toString() !=
-                                      "2"
-                                  ? Colors.red
-                                  : Colors.black),
-                        )
-                        :Align(
-                            alignment: Alignment.bottomRight,
-                            child: Container(
-                                height: 45,
-                                decoration: BoxDecoration(
-                                    color: MyColors.appColorBBA(),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Center(
-                                    child: Text(
+                        providerAriza.listArizaBodyService[index]
+                                    .statusCheckPerevod !=
+                                "99"
+                            ? Text(
+                                providerAriza.listArizaBodyService[index].data2
+                                    .toString(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: providerAriza
+                                                .listArizaBodyService[index]
+                                                .statusCheckPerevod
+                                                .toString() !=
+                                            "2"
+                                        ? Colors.red
+                                        : Colors.black),
+                              )
+                                .animate(
+                                    onPlay: (controller) =>
+                                        controller.repeat(reverse: true))
+                                .scaleXY(
+                                    end: 1,
+                                    delay: const Duration(milliseconds: 3000),
+                                    curve: Curves.linear)
+                                .shimmer(
+                                    color: providerAriza
+                                                .listArizaBodyService[index]
+                                                .holat ==
+                                            "0"
+                                        ? Colors.white
+                                        : Colors.blue,
+                                    delay: const Duration(milliseconds: 3000))
+                                .elevation(end: 0)
+                            : Align(
+                                alignment: Alignment.bottomRight,
+                                child: Container(
+                                    height: 45,
+                                    decoration: BoxDecoration(
+                                        color: MyColors.appColorBBA(),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Center(
+                                        child: Text(
                                       "arizaKorishda".tr(),
                                       style: const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     )))),
-
                         const SizedBox(height: 20),
-                        providerAriza.listArizaBodyService[1].statusCheckPerevod == "1"?
-                        Align(
-                            alignment: Alignment.bottomRight,
-                            child: Container(
-                                height: 45,
-                                decoration: BoxDecoration(
-                                    color: MyColors.appColorBBA(),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Center(
-                                    child: Text(
-                                      "perevodQaytaAriza".tr(),
+                        providerAriza.listArizaBodyService[index]
+                                    .statusCheckPerevod ==
+                                "1"
+                            ? Align(
+                                alignment: Alignment.bottomRight,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    pushNewScreen(context,
+                                        pageTransitionAnimation:
+                                            PageTransitionAnimation.cupertino,
+                                        screen: CheckInformationPerevodga(
+                                            serviceName: providerAriza
+                                                .listArizaBodyService[index]
+                                                .serviceName));
+                                  },
+                                  child: Container(
+                                      height: 45,
+                                      decoration: BoxDecoration(
+                                          color: MyColors.appColorBBA(),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                          child: Text(
+                                        "perevodQaytaAriza".tr(),
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ))),
+                                ))
+                            : Align(
+                                alignment: Alignment.bottomRight,
+                                child: Container(
+                                    height: 45,
+                                    decoration: BoxDecoration(
+                                        color: MyColors.appColorBBA(),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Center(
+                                        child: Text(
+                                      "arizaKorishda".tr(),
                                       style: const TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
-                                    ))))
-                        :const SizedBox.shrink(),
+                                    )))),
                       ],
                     ),
             ],
