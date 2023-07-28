@@ -32,10 +32,7 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
     setState(() {});
   }
 
-  Future getBoshFunc() async {
-    await widget.providerAriza.getDownloads(categoryId: 3);
-    setState(() {});
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +50,11 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
               "1"?
 
           IconButton(
-            onPressed: () {
-              widget.providerAriza.openFileJavobVaraqa(
+            onPressed: () async{
+           await   widget.providerAriza.downloadFileJavobVaraqa(
                   url: widget.providerAriza.modelGetDownloads3.src,
-                  fileName: "javob_varaqa");
-              Share.share(widget.providerAriza.fileUrl.path);
+                  name: "javob_varaqa");
+              Share.share(widget.providerAriza.fileUrlJavobVaraqa.path);
             },
             icon: const Icon(Icons.share),
           )
@@ -74,29 +71,33 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
                 ? SingleChildScrollView(
                     child: Column(children: [
                       SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.6,
-                          child: PDF().cachedFromUrl(widget.providerAriza.modelGetDownloads3.src)),
-                      Container(
-                        margin: const EdgeInsets.all(15),
-                        child: Column(children: [
-                          MaterialButton(
-                            onPressed: () {
-                              widget.providerAriza.openFileJavobVaraqa(
-                                  url: widget
-                                      .providerAriza.modelGetDownloads3.src,
-                                  fileName: "javob_varaqa");
-                            },
-                            height: 50,
-                            minWidth: double.infinity,
-                            color: MyColors.appColorBBA(),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            child: MyWidgets.robotoFontText(
-                                text: "download".tr(),
-                                textColor: MyColors.appColorWhite()),
-                          ),
-                        ]),
-                      ),
+                          height: MediaQuery.of(context).size.height * 0.8,
+                          child: const PDF(
+                            fitEachPage: true,
+                            autoSpacing: true,
+                            enableSwipe: true
+                          ).cachedFromUrl(widget.providerAriza.modelGetDownloads3.src)),
+                      // Container(
+                      //   margin: const EdgeInsets.all(15),
+                      //   child: Column(children: [
+                      //     MaterialButton(
+                      //       onPressed: () {
+                      //         widget.providerAriza.openFileJavobVaraqa(
+                      //             url: widget
+                      //                 .providerAriza.modelGetDownloads3.src,
+                      //             fileName: "javob_varaqa");
+                      //       },
+                      //       height: 50,
+                      //       minWidth: double.infinity,
+                      //       color: MyColors.appColorBBA(),
+                      //       shape: RoundedRectangleBorder(
+                      //           borderRadius: BorderRadius.circular(10)),
+                      //       child: MyWidgets.robotoFontText(
+                      //           text: "download".tr(),
+                      //           textColor: MyColors.appColorWhite()),
+                      //     ),
+                      //   ]),
+                      // ),
                     ]),
                   )
                 : Center(

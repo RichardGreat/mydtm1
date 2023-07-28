@@ -10,9 +10,10 @@ class NetworkDownloadsRuxsatnoma {
     var dio = Dio();
     Response response;
     // response = await dio.get("${MainUrl.mainUrls}/v1/qabul/application",
+        // {"status":1,"src":"https://my.uzbmb.uz/allow-download/072137568522ec7611d6789cc3f4f7db"}
     response = await dio.get("${MainUrl.mainUrls}/v1/qabul/allow",
         options: Options(headers: {MainUrl.mainUrlHeader:  box.get("token")})); // {MainUrl.mainUrlHeader: box.get("token")}));
     log(jsonEncode(response.data));
-    return jsonEncode(response.data);
+    return jsonEncode(response.data).toString();
   }
 }

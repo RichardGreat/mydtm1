@@ -34,3 +34,23 @@ class DataGetDownloads {
     "src": src,
   };
 }
+
+class ModelGetDownloads2 {
+  int status;
+  String src;
+
+  ModelGetDownloads2({
+    required this.status,
+    required this.src,
+  });
+
+  factory ModelGetDownloads2.fromJson(Map<String, dynamic> json) => ModelGetDownloads2(
+    status: json["status"],
+    src: json["src"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "status": status,
+    "src": src,
+  };
+}

@@ -17,7 +17,6 @@ import 'package:mydtm/data/model_parse/m4_qayd_var/model_qayd_varaqa.dart';
 import 'package:mydtm/data/perevod/internet/get_ariza.dart';
 import 'package:mydtm/data/perevod/model/model_get_ariza.dart';
 import 'package:ntp/ntp.dart';
-import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -126,10 +125,10 @@ class ProviderAriza extends ChangeNotifier {
   NetworkDownloadsAnswerSheet networkDownloadsAnswerSheet =
       NetworkDownloadsAnswerSheet();
   late ModelGetDownloads modelGetDownloadsData1;
-  late ModelGetDownloads modelGetDownloadsData2;
+  late ModelGetDownloads2 modelGetDownloadsData2;
   late ModelGetDownloads modelGetDownloadsData3;
   late DataGetDownloads modelGetDownloads1;
-  late DataGetDownloads modelGetDownloads2;
+  // late DataGetDownloads modelGetDownloads2;
   late DataGetDownloads modelGetDownloads3;
   bool boolDataDownload1 = false;
   bool boolDataDownload2 = false;
@@ -174,8 +173,8 @@ class ProviderAriza extends ChangeNotifier {
         String dataDownloads =
             await networkDownloadsRuxsatnoma.getCheckDownloads();
         modelGetDownloadsData2 =
-            ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
-        modelGetDownloads2 = modelGetDownloadsData2.data;
+            ModelGetDownloads2.fromJson(jsonDecode(dataDownloads));
+        // modelGetDownloads2 = modelGetDownloadsData2.data;
         // doc2 = await PDFDocument.fromURL(modelGetDownloads1.src,
         //     headers: {"X-Access-Token": box.get("token")},
         //     cacheManager: CacheManager(
@@ -218,21 +217,22 @@ class ProviderAriza extends ChangeNotifier {
     }
   }
 
-  Future openFile({required String url, required String fileName}) async {
-    try {
-      final file = await downloadFile(url: url, name: fileName);
-      if (file == null) return;
+  // Future openFile({required String url, required String fileName}) async {
+  //   try {
+  //     final file = await downloadFile(url: url, name: fileName);
+  //     if (file == null) return;
+  //
+  //     OpenFile.open(file.path);
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
 
-      OpenFile.open(file.path);
-    } catch (e) {
-      log(e.toString());
-    }
-  }
 
-  late final fileUrl;
-
+late File fileUrl;
   Future<File?> downloadFile(
       {required String url, required String name}) async {
+
     final appStore = await getApplicationDocumentsDirectory();
     fileUrl = File('${appStore.path}/$name.pdf');
     final response = await Dio().get(url,
@@ -245,50 +245,22 @@ class ProviderAriza extends ChangeNotifier {
     final raf = fileUrl.openSync(mode: FileMode.write);
     raf.writeFromSync(response.data);
     await raf.close();
-    // if (Platform.isIOS || Platform.isAndroid) {
-    //   bool status = await Permission.storage.isGranted;
-    //
-    //   if (!status) await Permission.storage.request();
-    // }
-    // file.existsSync();
-    // // FileUtils.mkdir([dirloc]);
-    // String path = await FileSaver.instance.saveFile(
-    //   link: LinkDetails(link: url),
-    //     // filePath: "/storage/download/",
-    //
-    //     name: "BMBA",
-    //     //link:  linkController.text,
-    //     // bytes: Uint8List.fromList(response.data.encode()!),
-    //     ext: 'pdf',
-    //
-    //     ///extController.text,
-    //     mimeType: MimeType.pdf);
-    //   log(path);
-    // await FileSaver.instance.saveFile({
-    //   required String name,
-    //   Uint8List? bytes,
-    //   File? file,
-    //   String? filePath,
-    //   LinkDetails? link,
-    //   String ext = "",
-    //   MimeType mimeType = MimeType.other,
-    //   String? customMimeType
-    // });
+
 
     return fileUrl;
   }
 
-  Future openFileJavobVaraqa(
-      {required String url, required String fileName}) async {
-    try {
-      final file = await downloadFileJavobVaraqa(url: url, name: fileName);
-      if (file == null) return;
-
-      OpenFile.open(file.path);
-    } catch (e) {
-      log(e.toString());
-    }
-  }
+  // Future openFileJavobVaraqa(
+  //     {required String url, required String fileName}) async {
+  //   try {
+  //     final file = await downloadFileJavobVaraqa(url: url, name: fileName);
+  //     if (file == null) return;
+  //
+  //     OpenFile.open(file.path);
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
 
   late final fileUrlJavobVaraqa;
 
