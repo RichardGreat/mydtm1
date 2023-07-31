@@ -54,7 +54,7 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
            await   widget.providerAriza.downloadFileJavobVaraqa(
                   url: widget.providerAriza.modelGetDownloads3.src,
                   name: "javob_varaqa");
-              Share.share(widget.providerAriza.fileUrlJavobVaraqa.path);
+           Share.shareXFiles([(widget.providerAriza.fileUrlJavobVaraqa.path)], text: 'Javob varaqa');
             },
             icon: const Icon(Icons.share),
           )

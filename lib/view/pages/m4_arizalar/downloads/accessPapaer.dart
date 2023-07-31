@@ -52,7 +52,8 @@ class _AccessPaperDownloadState extends State<AccessPaperDownload> {
                        await widget.providerAriza.downloadFile(
                             url: widget.providerAriza.modelGetDownloadsData2.src,
                             name: "bmba");
-                        Share.share(widget.providerAriza.fileUrl.path);
+                        // Share.share(widget.providerAriza.fileUrl.path);
+                       Share.shareFiles([(widget.providerAriza.fileUrl.path)], text: 'Ruxsatnoma');
                       },
                       icon: const Icon(Icons.share),
                     )
