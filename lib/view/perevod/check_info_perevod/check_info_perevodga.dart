@@ -1,17 +1,14 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, use_build_context_synchronously
 
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:mydtm/main.dart';
-import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/widgets/app_bar_check_info.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/body_check_info_perevod.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/body_has_ariza.dart';
 import 'package:mydtm/view/perevod/check_info_perevod/provider_check_perevod.dart';
-import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
@@ -40,11 +37,43 @@ class _CheckInformationPerevodgaState extends State<CheckInformationPerevodga> {
   }
 
   Future getCheckUserInfo() async {
-    await providerCheckInfoPerevod.getInfoUser();
+    await providerCheckInfoPerevod.getInfoUser().then((value) {
+      providerCheckInfoPerevod.boolCheckUserInfo
+          ? providerCheckInfoPerevod.boolNotEdit
+          ? showModalBottomSheet(
+          context: context,
+          isDismissible: false,
+          enableDrag: false,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          builder: (context) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height*0.75,
+                child: ArizaBorPerevod(
+                    providerCheckInfoPerevod: providerCheckInfoPerevod),
+              ),
+            );
+          })
+          : {}
+          : {};
+
+    },);
+    // showModalBottomSheet(
+    //     context: context,
+    //     builder: (context) {
+    //       return SizedBox(
+    //         height: 300,
+    //         child: ArizaBorPerevod(
+    //
+    //             providerCheckInfoPerevod: providerCheckInfoPerevod),
+    //       );
+    //     });
+
+    log(providerCheckInfoPerevod.boolCheckUserInfo.toString());
+    log(providerCheckInfoPerevod.boolNotEdit.toString());
     setState(() {});
   }
-
-
 
   var box = Hive.box("online");
 
@@ -55,31 +84,25 @@ class _CheckInformationPerevodgaState extends State<CheckInformationPerevodga> {
       child: Consumer<ProviderCheckInfoPerevod>(
           builder: (context, value, child) => WillPopScope(
               child: Scaffold(
-                backgroundColor: MyColors.appColorGrey100(),
-                appBar: appBarCheckInfo(context: context),
-                body:
-                // providerCheckInfoPerevod.boolNotEdit?
-                providerCheckInfoPerevod.boolCheckUserInfo
-                    ?
-                    providerCheckInfoPerevod.boolNotEdit
-                        ?bodyHasArizaPerevod(context: context, providerCheckInfoPerevod: providerCheckInfoPerevod):
-                SafeArea(
-                        child: SingleChildScrollView(
-                          child: Container(
-                            margin: const EdgeInsets.all(15),
-                            child: bodyCheckInfoPerevod(
-                                functions: getCheckUserInfo,
-                                context: context,
-                                providerCheckInfoPerevod:
-                                    providerCheckInfoPerevod,
-                                serviceName: widget.serviceName),
+                  backgroundColor: MyColors.appColorGrey100(),
+                  appBar: appBarCheckInfo(context: context),
+                  body: providerCheckInfoPerevod.boolCheckUserInfo
+                      ? SafeArea(
+                          child: SingleChildScrollView(
+                            child: Container(
+                              margin: const EdgeInsets.all(15),
+                              child: bodyCheckInfoPerevod(
+                                  functions: getCheckUserInfo,
+                                  context: context,
+                                  providerCheckInfoPerevod:
+                                      providerCheckInfoPerevod,
+                                  serviceName: widget.serviceName),
+                            ),
                           ),
-                        ),
-                      )
-
-                    :
-                  MyWidgets.loaderDownload(context: context),
-              ),
+                        )
+                      : const Center(
+                          child: CupertinoActivityIndicator(),
+                        )),
               onWillPop: () async {
                 box.delete("langLock");
                 box.put("langLock", "1");

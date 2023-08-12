@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
 
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -43,7 +44,7 @@ class _MainHomeState extends State<MainHome> {
 
   Future getServiceList() async {
     Future.delayed(Duration.zero);
-    log(widget.homePageId);
+    // log(widget.homePageId);
     //
     if (widget.homePageId == "1") {
       await providerMainHome.setLangUser();
@@ -203,7 +204,7 @@ class _MainHomeState extends State<MainHome> {
         );
       }
     } catch (e) {
-      log(e.toString());
+      // log(e.toString());
     }
   }
 
@@ -306,7 +307,7 @@ class _MainHomeState extends State<MainHome> {
             ),
           )).show();
     } catch (e) {
-      log(e.toString());
+      // log(e.toString());
     }
   }
 
@@ -314,13 +315,49 @@ class _MainHomeState extends State<MainHome> {
     setState(() {});
   }
 
+
+
+  /// random color
+
+  Random random = Random();
+
+  List<Color> myColors = [
+    const Color.fromRGBO(254, 246, 225, 1),
+    const Color.fromRGBO(232, 147,44, 1),
+    const Color.fromRGBO(232, 247, 244, 1),
+    Colors.blue.withOpacity(0.3),
+    Colors.green.withOpacity(0.3),
+    Colors.yellow.withOpacity(0.3),
+    Colors.brown.withOpacity(0.3),
+    Colors.deepPurple.withOpacity(0.3),
+    Colors.amber.withOpacity(0.3),
+    Colors.tealAccent.withOpacity(0.3)
+  ];
+
+  Color randomColor() {
+    return myColors[random.nextInt(9)];
+  }
+  ///
+  /// icon
+  List<IconData> icons = [
+    Icons.ac_unit,
+    CupertinoIcons.ant,
+    Icons.subject,
+    Icons.add_alert_outlined,
+  ];
+  IconData randomIcon() {
+    return icons[random.nextInt(4)];
+  }
+
+  ///
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => providerMainHome,
       child: Consumer<ProviderMainHome>(
         builder: (context, value, child) => Scaffold(
-          backgroundColor: MyColors.appColorWhite(),
+          backgroundColor: const Color.fromRGBO(48, 192, 192, 0.04),
           // appBar:   searchMain(context: context, providerMainHome: providerMainHome),
           body: SafeArea(
             child: RefreshIndicator(
@@ -340,13 +377,15 @@ class _MainHomeState extends State<MainHome> {
                                   flexibleSpace: searchMain(
                                       context: context,
                                       providerMainHome: providerMainHome),
-                                  foregroundColor: MyColors.appColorWhite(),
+                                  foregroundColor: const Color.fromRGBO(48, 192, 192, 0.04),
                                   excludeHeaderSemantics: true,
                                 ),
                                 SliverToBoxAdapter(
+
                                   child: carouselMain(
                                       context: context,
                                       providerMainHome: providerMainHome),
+
                                 )
                               ];
                             },
@@ -363,7 +402,7 @@ class _MainHomeState extends State<MainHome> {
                                                   .service
                                                   .isNotEmpty
                                               ? SizedBox(
-                                                  height: 180,
+                                                  height: 200,
                                                   child: Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
@@ -553,16 +592,15 @@ class _MainHomeState extends State<MainHome> {
                                                             //       )
                                                             //     :
                                                             Container(
-                                                                    height: 155,
-                                                                    width: 125,
+                                                                    height: 170,
+                                                                    width: 180,
                                                                     padding:
                                                                         const EdgeInsets.all(
                                                                             10),
                                                                     margin: const EdgeInsets
                                                                         .all(5),
                                                                     decoration: BoxDecoration(
-                                                                        color: MyColors
-                                                                            .appColorWhite(),
+                                                                        color: randomColor(),
                                                                         boxShadow: [
                                                                           BoxShadow(
                                                                               color: MyColors.appColorGrey400(),
@@ -583,27 +621,30 @@ class _MainHomeState extends State<MainHome> {
                                                                         const SizedBox(
                                                                             height:
                                                                                 1),
-                                                                        CachedNetworkImage(
-                                                                            height:
-                                                                                40,
-                                                                            width:
-                                                                                40,
-                                                                            filterQuality: FilterQuality
-                                                                                .high,
-                                                                            fit: BoxFit
-                                                                                .fill,
-                                                                            imageUrl:
-                                                                                "${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
-                                                                            progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                                                const CupertinoActivityIndicator(),
-                                                                            errorWidget: (context, url, error) =>
-                                                                                // Text(url.toString())
-                                                                                Image.asset(
-                                                                                  "assets/images/uzbmb.png",
-                                                                                )
-                                                                            //
-                                                                            //     fit: BoxFit.fill),
-                                                                            ),
+                                                                        Icon(randomIcon(), size: 50),
+
+                                                                        /// image
+                                                                        // CachedNetworkImage(
+                                                                        //     height:
+                                                                        //         60,
+                                                                        //     width:
+                                                                        //         60,
+                                                                        //     filterQuality: FilterQuality
+                                                                        //         .high,
+                                                                        //     fit: BoxFit
+                                                                        //         .fill,
+                                                                        //     imageUrl:
+                                                                        //         "${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
+                                                                        //     progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                                        //         const CupertinoActivityIndicator(),
+                                                                        //     errorWidget: (context, url, error) =>
+                                                                        //         // Text(url.toString())
+                                                                        //         Image.asset(
+                                                                        //           "assets/images/uzbmb.png",
+                                                                        //         )
+                                                                        //     //
+                                                                        //     //     fit: BoxFit.fill),
+                                                                        //     ),
                                                                         Text(
                                                                           box.get("language") == "1"
                                                                               ? providerMainHome.listDataServiceList[index].service[index2].serviceName

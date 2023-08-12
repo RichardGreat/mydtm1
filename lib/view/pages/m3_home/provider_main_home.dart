@@ -177,16 +177,100 @@ class ProviderMainHome extends ChangeNotifier {
         // log("####");
       }
 
+
       modelServiceList =
           ModelServiceList.fromJson(jsonDecode(box.get("dataServiceList")));
-      listDataServiceList.addAll(modelServiceList.data);
+      // modelServiceList.data.add(DataServiceList(
+      //     id: "1",
+      //     categoryName: "Top xizmatlar",
+      //     categoryNameRu: "Топ услуги",
+      //     categoryNameQQ: "Tap xızmetler",
+      //     service: [ServiceMainList(
+      //         id: '0',
+      //         serviceName: "Mandat",
+      //         serviceText: "Мандат",
+      //         serviceTextRu:  "Мандат",
+      //         serviceTextQQ:  "Мандат",
+      //         serviceNameRu:  "Мандат",
+      //         serviceNameQQ:  "Мандат",
+      //         status: "1",
+      //         mobilIcon: "https://uzbmb.uz/upload/file/sliders/slide-3.png",
+      //         link: "https://uzbmb.uz/upload/file/sliders/slide-3.png",
+      //         icon: "https://uzbmb.uz/upload/file/sliders/slide-3.png",
+      //         catId: "",
+      //         cod: "",
+      //         sortId: "1",
+      //         createdAt: "",
+      //         updatedAt: "",
+      //         deleted: "0"),
+      //       ServiceMainList(
+      //           id: '0',
+      //           serviceName: "Mandat",
+      //           serviceText: "Мандат",
+      //           serviceTextRu:  "Мандат",
+      //           serviceTextQQ:  "Мандат",
+      //           serviceNameRu:  "Мандат",
+      //           serviceNameQQ:  "Мандат",
+      //           status: "1",
+      //           mobilIcon: "https://uzbmb.uz/upload/file/sliders/slide-3.png",
+      //           link: "https://uzbmb.uz/upload/file/sliders/slide-3.png",
+      //           icon: "https://uzbmb.uz/upload/file/sliders/slide-3.png",
+      //           catId: "",
+      //           cod: "",
+      //           sortId: "1",
+      //           createdAt: "",
+      //           updatedAt: "",
+      //           deleted: "0")
+      //     ]));
+      listDataServiceList
+          .addAll(modelServiceList.data);
+      listDataServiceList[0].service.addAll([
+        ServiceMainList(
+          id: '0',
+          serviceName: "Mandat",
+          serviceText: "Мандат",
+          serviceTextRu:  "Мандат",
+          serviceTextQQ:  "Мандат",
+          serviceNameRu:  "Мандат",
+          serviceNameQQ:  "Мандат",
+          status: "1",
+          mobilIcon: "https://uzbmb.uz/upload/file/sliders/slide-3.png",
+          link: "https://uzbmb.uz/upload/file/sliders/slide-3.png",
+          icon: "https://uzbmb.uz/upload/file/sliders/slide-3.png",
+          catId: "",
+          cod: "",
+          sortId: "1",
+          createdAt: "",
+          updatedAt: "",
+          deleted: "0"),
+        ServiceMainList(
+            id: '0',
+            serviceName: "Telegram bot",
+            serviceText: "Telegram bot",
+            serviceTextRu:  "Telegram bot",
+            serviceTextQQ:  "Telegram bot",
+            serviceNameRu:  "Телеграм бот",
+            serviceNameQQ:  "Telegram bot",
+            status: "1",
+            mobilIcon: "https://uzbmb.uz/upload/file/sliders/slide-4.png",
+            link: "https://uzbmb.uz/upload/file/sliders/slide-4.png",
+            icon: "https://uzbmb.uz/upload/file/sliders/slide-4.png",
+            catId: "",
+            cod: "",
+            sortId: "1",
+            createdAt: "",
+            updatedAt: "",
+            deleted: "0"),
+
+
+      ]);
 
       // for (var value in listDataServiceList) {
       //   value.service.sort((a, b) => (a.sortId));
       // }
       listDataServiceListTemp.clear();
       listDataServiceListTemp2.clear();
-
+        log(jsonEncode(listDataServiceList).toString());
       for (var val in listDataServiceList) {
         listDataServiceListTemp.addAll(val.service);
         listDataServiceListTemp2.addAll(val.service);

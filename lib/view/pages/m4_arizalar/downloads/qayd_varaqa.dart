@@ -71,45 +71,45 @@ class _QaydVaraqaDownloadState extends State<QaydVaraqaDownload> {
                             errorWidget: (dynamic error) =>
                                 Center(child: Text(error.toString())),
                           )),
-                      // Container(
-                      //   margin: const EdgeInsets.all(15),
-                      //   child: Column(children: [
-                      //     widget.providerAriza.loading
-                      //         ? LinearProgressIndicator(
-                      //             minHeight: 10,
-                      //             value: widget.providerAriza.progress,
-                      //           )
-                      //         : MaterialButton(
-                      //             onPressed: () {
-                      //               if (widget.providerAriza.month.toString() ==
-                      //                       "7" &&
-                      //                   widget.providerAriza.day <= 20) {
-                      //                 pushNewScreen(context,
-                      //                     pageTransitionAnimation:
-                      //                         PageTransitionAnimation.cupertino,
-                      //                     screen: ShowCaseWidget(
-                      //                       builder: Builder(
-                      //                         builder: (context) => ChooseEdu(
-                      //                             funcState: getBoshFunc),
-                      //                       ),
-                      //                     ));
-                      //               }else{
-                      //
-                      //               }
-                      //
-                      //               ///
-                      //             },
-                      //             height: 50,
-                      //             minWidth: double.infinity,
-                      //             color: MyColors.appColorBBA(),
-                      //             shape: RoundedRectangleBorder(
-                      //                 borderRadius: BorderRadius.circular(10)),
-                      //             child: MyWidgets.robotoFontText(
-                      //                 text: "editEdu".tr(),
-                      //                 textColor: MyColors.appColorWhite()),
-                      //           ),
-                      //   ]),
-                      // ),
+                      Container(
+                        margin: const EdgeInsets.all(15),
+                        child: Column(children: [
+                          widget.providerAriza.loading
+                              ? LinearProgressIndicator(
+                                  minHeight: 10,
+                                  value: widget.providerAriza.progress,
+                                )
+                              : MaterialButton(
+                                  onPressed: () {
+                                    if (widget.providerAriza.month.toString() ==
+                                            "7" &&
+                                        widget.providerAriza.day <= 20) {
+                                      // pushNewScreen(context,
+                                      //     pageTransitionAnimation:
+                                      //         PageTransitionAnimation.cupertino,
+                                      //     screen: ShowCaseWidget(
+                                      //       builder: Builder(
+                                      //         builder: (context) => ChooseEdu(
+                                      //             funcState: getBoshFunc),
+                                      //       ),
+                                      //     ));
+                                    }else{
+
+                                    }
+
+                                    ///
+                                  },
+                                  height: 50,
+                                  minWidth: double.infinity,
+                                  color: MyColors.appColorBBA(),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: MyWidgets.robotoFontText(
+                                      text: "editEdu".tr(),
+                                      textColor: MyColors.appColorWhite()),
+                                ),
+                        ]),
+                      ),
                       const SizedBox(height: 20)
                     ]),
                   )

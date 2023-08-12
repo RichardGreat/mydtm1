@@ -99,8 +99,8 @@ myViewButton(
                           //     ));
                         },
                         child: Container(
-                          width: 60,
-                          height: 60,
+                          width: 80,
+                          height: 100,
                           margin: const EdgeInsets.only(
                               left: 10, right: 10, top: 2, bottom: 2),
                           padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),

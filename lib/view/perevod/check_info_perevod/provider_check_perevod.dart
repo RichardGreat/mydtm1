@@ -64,13 +64,11 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
       modeCheckUserPerevod =
           ModeCheckUserPerevod.fromJson(jsonDecode(dataCheckInfo));
 
-      getDataStatusEdit();
+     await getDataStatusEdit();
       notifyListeners();
     } catch (e) {throw Exception(e.toString());}
     // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
   }
-
-  // final Uri _url = Uri.parse("https://lex.uz/docs/-4396419");
 
   Future checkInfo(
       {required int index,
@@ -344,17 +342,25 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
 
   NetworkGetArizaPerevod networkGetArizaPerevod = NetworkGetArizaPerevod();
   late ModelGetArizaPerevod modelGetArizaPerevod;
-  bool boolNotEdit = false;
+  bool boolNotEdit = true;
   Future getDataStatusEdit()async{
     try{
 
       String dataPerevod = await networkGetArizaPerevod.getArizaPerevod();
       modelGetArizaPerevod = ModelGetArizaPerevod.fromJson(jsonDecode(dataPerevod));
 
-      modelGetArizaPerevod.abitur.checkStatus != "1"?
-      boolNotEdit = true
-          :
-      boolNotEdit = false;
+      // modelGetArizaPerevod.abitur.checkStatus.toString() == "2"?
+      // boolNotEdit = true
+      //     :
+      // boolNotEdit = false;
+      if( modelGetArizaPerevod.abitur.checkStatus.toString() == "1" || modelGetArizaPerevod.abitur.checkStatus.toString() == "0"){
+        boolNotEdit = true;
+        notifyListeners();
+      }else{
+        boolNotEdit = true;
+        notifyListeners();
+      }
+
       boolCheckUserInfo = true;
       notifyListeners();
     }catch(e){

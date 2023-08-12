@@ -9,7 +9,7 @@ PreferredSizeWidget searchMain(
     required ProviderMainHome providerMainHome}) {
 
   return AppBar(
-    backgroundColor: MyColors.appColorWhite(),
+    backgroundColor: const Color.fromRGBO(48, 192, 192, 0.04),
     elevation: 0,
     centerTitle: true,
     title: GestureDetector(

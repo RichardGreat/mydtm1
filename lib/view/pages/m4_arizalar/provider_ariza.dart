@@ -41,6 +41,7 @@ class ProviderAriza extends ChangeNotifier {
 
   Future getQaydVaraqa() async {
     try {
+      listArizaBodyService.clear();
       boolQaydVaraqaDownload = false;
       String dataAriza = await networkArizaCheck.getCheckAriza();
       ModelArizaQadVaraqa modelArizaQadVaraqa =
@@ -94,7 +95,7 @@ class ProviderAriza extends ChangeNotifier {
       String data = await networkGetArizaPerevod.getArizaPerevod();
       modelGetArizaPerevod = ModelGetArizaPerevod.fromJson(jsonDecode(data));
       listArizaBodyService.add(ArizaBodyService(
-        statusCheckPerevod: modelGetArizaPerevod.abitur.checkStatus.toString(),
+        statusCheckPerevod:modelGetArizaPerevod.abitur.checkStatus.toString(),
         serviceName: "perevod1".tr(),
         id: modelGetArizaPerevod.abitur.id.toString(),
         bitiruvchi: "0",
@@ -126,10 +127,10 @@ class ProviderAriza extends ChangeNotifier {
       NetworkDownloadsAnswerSheet();
   late ModelGetDownloads modelGetDownloadsData1;
   late ModelGetDownloads2 modelGetDownloadsData2;
-  late ModelGetDownloads modelGetDownloadsData3;
+  late ModelGetDownloads2 modelGetDownloadsData3;
   late DataGetDownloads modelGetDownloads1;
   // late DataGetDownloads modelGetDownloads2;
-  late DataGetDownloads modelGetDownloads3;
+  // late DataGetDownloads modelGetDownloads3;
   bool boolDataDownload1 = false;
   bool boolDataDownload2 = false;
   bool boolDataDownload3 = false;
@@ -195,9 +196,9 @@ class ProviderAriza extends ChangeNotifier {
         String dataDownloads =
             await networkDownloadsAnswerSheet.getCheckAnswerSheet();
         modelGetDownloadsData3 =
-            ModelGetDownloads.fromJson(jsonDecode(dataDownloads));
+            ModelGetDownloads2.fromJson(jsonDecode(dataDownloads));
 
-        modelGetDownloads3 = modelGetDownloadsData3.data;
+        // modelGetDownloads3 = modelGetDownloadsData3.src;
         // doc3 = await PDFDocument.fromURL(modelGetDownloads3.src,
         //     headers: {"X-Access-Token": box.get("token")},
         //     cacheManager: CacheManager(
@@ -209,7 +210,7 @@ class ProviderAriza extends ChangeNotifier {
         //     ));
         boolDataDownload3 = true;
         notifyListeners();
-        log(modelGetDownloadsData3.data.src);
+        log(modelGetDownloadsData3.src);
       } catch (e) {
         modelGetDownloadsData3.status = 0;
         notifyListeners();

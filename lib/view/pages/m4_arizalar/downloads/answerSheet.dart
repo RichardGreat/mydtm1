@@ -52,7 +52,7 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
           IconButton(
             onPressed: () async{
            await   widget.providerAriza.downloadFileJavobVaraqa(
-                  url: widget.providerAriza.modelGetDownloads3.src,
+                  url: widget.providerAriza.modelGetDownloadsData3.src,
                   name: "javob_varaqa");
            Share.shareXFiles([(widget.providerAriza.fileUrlJavobVaraqa.path)], text: 'Javob varaqa');
             },
@@ -76,7 +76,7 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
                             fitEachPage: true,
                             autoSpacing: true,
                             enableSwipe: true
-                          ).cachedFromUrl(widget.providerAriza.modelGetDownloads3.src)),
+                          ).cachedFromUrl(widget.providerAriza.modelGetDownloadsData3.src)),
                       // Container(
                       //   margin: const EdgeInsets.all(15),
                       //   child: Column(children: [

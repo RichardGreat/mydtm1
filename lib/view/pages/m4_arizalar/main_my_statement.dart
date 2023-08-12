@@ -25,9 +25,16 @@ class _MainMyStatementState extends State<MainMyStatement> {
   ProviderAriza providerAriza = ProviderAriza();
   @override
   initState(){
-    providerAriza.getQaydVaraqa();
+    getAriza();
     super.initState();
   }
+
+  Future getAriza()async{
+    try{
+      await providerAriza.getQaydVaraqa();
+    }catch(e){}
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(create: (context) => providerAriza,
@@ -51,6 +58,12 @@ class _MainMyStatementState extends State<MainMyStatement> {
           MyWidgets.robotoFontText(
               text: "applications".tr(), textSize: 24):
       const  SizedBox.shrink(),
+        actions: [Padding(
+          padding: const EdgeInsets.only(right: 15),
+          child: IconButton(onPressed: (){
+            getAriza();
+          }, icon: const Icon(Icons.refresh)),
+        )],
       ),
       body:
       providerAriza.boolQaydVaraqaDownload

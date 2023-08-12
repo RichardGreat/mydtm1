@@ -108,7 +108,7 @@ class Abitur {
     comment: json["comment"],
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_At"]),
-    checkStatus: json["check_status"],
+    checkStatus:  json["check_status"],
     invoice: json["invoice"],
     pay: json["pay"],
     sum: json["sum"],

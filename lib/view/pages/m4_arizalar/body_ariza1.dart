@@ -222,7 +222,7 @@ Widget bodyAriza1(
                       : providerAriza.listArizaBodyService[index]
                                   .statusCheckPerevod
                                   .toString() ==
-                              "2"
+                              "1"
                           ? GestureDetector(
                               onTap: () {
                                 Clipboard.setData(ClipboardData(
@@ -289,8 +289,8 @@ Widget bodyAriza1(
                                                   color: providerAriza
                                                               .listArizaBodyService[
                                                                   index]
-                                                              .holat ==
-                                                          "0"
+                                                              .holat.toString() !=
+                                                          "1"
                                                       ? MyColors.appColorRed()
                                                       : MyColors
                                                           .appColorBlue2()),
@@ -300,7 +300,7 @@ Widget bodyAriza1(
                                                                   .listArizaBodyService[
                                                                       index]
                                                                   .pay ==
-                                                              "0"
+                                                              "1"
                                                           ? "noPayed".tr()
                                                           : "payed".tr(),
                                                       textColor: MyColors
@@ -381,7 +381,7 @@ Widget bodyAriza1(
                                                 .listArizaBodyService[index]
                                                 .statusCheckPerevod
                                                 .toString() !=
-                                            "2"
+                                            "1"
                                         ? Colors.red
                                         : Colors.black),
                               )
@@ -419,7 +419,7 @@ Widget bodyAriza1(
                         const SizedBox(height: 20),
                         providerAriza.listArizaBodyService[index]
                                     .statusCheckPerevod ==
-                                "1"
+                                "2"
                             ? Align(
                                 alignment: Alignment.bottomRight,
                                 child: GestureDetector(
