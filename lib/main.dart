@@ -11,6 +11,8 @@ import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 // import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'dart:async';
+
+import 'package:mydtm/view/widgets/colors/app_colors.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 // import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
 
@@ -36,6 +38,9 @@ Future main() async {
   // FlutterNativeSplash.removeAfter(initialization);
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: MyColors.appColorBBA(), // status bar color
+  ));
   await EasyLocalization.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
   await Hive.initFlutter();
@@ -170,6 +175,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
+
+    theme:  ThemeData(
+    colorSchemeSeed:  MyColors.appColorBBA()),
         debugShowCheckedModeBanner: false,
         home: box.get("language") == "1" ||
                 box.get("language") == "2" ||

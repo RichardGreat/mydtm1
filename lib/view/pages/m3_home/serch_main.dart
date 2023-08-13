@@ -1,15 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 PreferredSizeWidget searchMain(
     {required BuildContext context,
     required ProviderMainHome providerMainHome}) {
-
   return AppBar(
-    backgroundColor: const Color.fromRGBO(48, 192, 192, 0.04),
+    backgroundColor: MyColors.appColorBBA(),
     elevation: 0,
     centerTitle: true,
     title: GestureDetector(
@@ -40,7 +41,9 @@ PreferredSizeWidget searchMain(
     //MyWidgets.robotoFontText(text:"search", ),
   );
 }
+
 var box = Hive.box("online");
+
 mainSearchBottomSheet(
     {required BuildContext context,
     required ProviderMainHome providerMainHome}) {
@@ -65,19 +68,24 @@ mainSearchBottomSheet(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: TextFormField(
                       controller: providerMainHome.textEditController,
-                      onChanged: (val){
+                      onChanged: (val) {
                         providerMainHome.searchServicesItem(searchValue: val);
-                        state((){});
+                        state(() {});
                       },
                       maxLines: 1,
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
                             onPressed: () {
-                              providerMainHome.searchServicesItem(searchValue: "");
+                              providerMainHome.searchServicesItem(
+                                  searchValue: "");
                               providerMainHome.textEditController.clear();
-                              state((){});
-                            }, icon: const Icon(Icons.clear, size: 13,)),
+                              state(() {});
+                            },
+                            icon: const Icon(
+                              Icons.clear,
+                              size: 13,
+                            )),
                         prefixIcon: const Icon(Icons.search),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
@@ -102,48 +110,74 @@ mainSearchBottomSheet(
                         providerMainHome.closeSearchMain();
                         Navigator.of(context).pop();
                       },
-                      icon: const Icon(Icons.keyboard_arrow_down_sharp, size: 32,))
+                      icon: const Icon(
+                        Icons.keyboard_arrow_down_sharp,
+                        size: 32,
+                      ))
                 ],
               ),
               const SizedBox(height: 20),
               Expanded(
-                  child:ListView.builder(
-                  itemCount: providerMainHome.listDataServiceListTemp.length,
-                  itemBuilder:
-                    (context, index) => Container(
+                  child: ListView.builder(
+                itemCount: providerMainHome.listDataServiceListTemp.length,
+                itemBuilder: (context, index) => Container(
                     margin: const EdgeInsets.fromLTRB(3, 1, 3, 1),
                     decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(
                                 width: 1, color: MyColors.appColorGrey100()))),
                     child: GestureDetector(
-                      onTap: (){
+                      onTap: () async {
                         Navigator.of(context).pop();
-                        providerMainHome.goServicePage(
-                            context: context,
-                            serviceMainList:  providerMainHome.listDataServiceListTemp[index]
-                        );
+
+                        if (providerMainHome
+                            .listDataServiceListTemp[index].id
+                                .toString() ==
+                            "100000") {
+                          final Uri _url =
+                              Uri.parse("https://mandat.uzbmb.uz/");
+                          await launchUrl(
+                            _url,
+                            mode: LaunchMode.inAppWebView,
+                          );
+                        } else if (providerMainHome
+                            .listDataServiceListTemp[index].id
+                                .toString() ==
+                            "100001") {
+                          final Uri _url2 = Uri.parse("https://t.me/e_dtm_bot");
+                          await launchUrl(
+                            _url2,
+                            mode: LaunchMode.inAppWebView,
+                          );
+                        } else {
+                          providerMainHome.goServicePage(
+                              context: context,
+                              serviceMainList: providerMainHome
+                                  .listDataServiceListTemp[index]);
+                        }
                       },
                       child: Card(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8, horizontal: 8),
                           child: MyWidgets.robotoFontText(
-                              text:
-                              box.get("language") == "1"
-                                  ?   providerMainHome
-                                  .listDataServiceListTemp[index].serviceName
+                              text: box.get("language") == "1"
+                                  ? providerMainHome
+                                      .listDataServiceListTemp[index]
+                                      .serviceName
                                   : box.get("language") == "2"
-                                  ?    providerMainHome
-                                  .listDataServiceListTemp[index].serviceNameQQ
-                                  :  providerMainHome
-                                  .listDataServiceListTemp[index].serviceNameRu,
-
+                                      ? providerMainHome
+                                          .listDataServiceListTemp[index]
+                                          .serviceNameQQ
+                                      : providerMainHome
+                                          .listDataServiceListTemp[index]
+                                          .serviceNameRu,
                               textColor: Colors.black.withOpacity(0.9),
                               textSize: 17),
                         ),
                       ),
-                    )),)
-              )
+                    )),
+              ))
             ]),
           ),
         );

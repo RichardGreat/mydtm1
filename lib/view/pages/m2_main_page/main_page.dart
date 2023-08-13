@@ -237,11 +237,13 @@ class _MainPagesState extends State<MainPages> {
       decoration: NavBarDecoration(
         borderRadius: const BorderRadius.only(
             topRight: Radius.circular(10), topLeft: Radius.circular(10)),
-        colorBehindNavBar: MyColors.appColorBlue1(),
+        colorBehindNavBar: MyColors.appColorBBA(),
       ),
       popAllScreensOnTapOfSelectedTab: true,
+
       popActionScreens: PopActionScreensType.all,
-      navBarStyle: NavBarStyle.style3,
+      navBarStyle: NavBarStyle.style6,
+
     );
   }
 }
