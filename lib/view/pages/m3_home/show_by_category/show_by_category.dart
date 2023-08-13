@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
@@ -15,6 +18,18 @@ myViewButton(
     {required BuildContext context,
     required List<ServiceMainList> myList,
     required ProviderMainHome providerMainHome}) {
+  Random random = Random();
+  List<IconData> icons = [
+    FontAwesomeIcons.school,
+    FontAwesomeIcons.userGraduate,
+    FontAwesomeIcons.bookOpen,
+    FontAwesomeIcons.atom,
+  ];
+
+  IconData randomIcon() {
+    return icons[random.nextInt(4)];
+  }
+
   var box = Hive.box("online");
   showModalBottomSheet(
       context: context,
@@ -116,16 +131,20 @@ myViewButton(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              CachedNetworkImage(
-                                  width: 60,
-                                  height: 60,
-                                  fit: BoxFit.fill,
-                                  imageUrl: myList[index].mobilIcon,
-                                  progressIndicatorBuilder:
-                                      (context, url, downloadProgress) =>
-                                          const CupertinoActivityIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      Image.asset("assets/images/uzbmb.png")),
+                              // CachedNetworkImage(
+                              //     width: 60,
+                              //     height: 60,
+                              //     fit: BoxFit.fill,
+                              //     imageUrl: myList[index].mobilIcon,
+                              //     progressIndicatorBuilder:
+                              //         (context, url, downloadProgress) =>
+                              //             const CupertinoActivityIndicator(),
+                              //     errorWidget: (context, url, error) =>
+                              //         Image.asset("assets/images/uzbmb.png")),
+                              Icon(randomIcon(),
+                                  size: 40,
+                                  color: MyColors
+                                      .appColorBBA()),
                               SizedBox(
                                 child: Text(
                                   box.get("language") == "1"

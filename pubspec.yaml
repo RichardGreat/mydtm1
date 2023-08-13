@@ -48,6 +48,7 @@ dependencies:
   showcaseview: ^2.0.3
   webview_flutter: ^4.2.2
   webview_flutter_wkwebview: ^3.7.3
+  fwfh_webview: ^0.7.0+2
 
 #  freerasp: ^6.0.0
 #  flutter_cached_pdfview: ^0.4.1

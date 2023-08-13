@@ -14,6 +14,7 @@ import 'package:mydtm/view/pages/m3_home/carousel.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/serch_main.dart';
 import 'package:mydtm/view/pages/m3_home/show_by_category/show_by_category.dart';
+import 'package:mydtm/view/pages/m3_home/webview_window/webv_telegram.dart';
 import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -554,7 +555,10 @@ class _MainHomeState extends State<MainHome> {
                                                                   .id
                                                                   .toString() ==
                                                               "100000") {
-                                                            pushNewScreen(context, screen: WebViewWindow(), withNavBar: true);
+                                                            pushNewScreen(context, screen: WebViewWindow(
+                                                              urlService: "https://mandat.uzbmb.uz/",
+                                                              titleName: "mandat.uzbmb.uz",
+                                                            ), withNavBar: true);
                                                             // final Uri _url =
                                                             //     Uri.parse(
                                                             //         "https://mandat.uzbmb.uz/");
@@ -571,14 +575,18 @@ class _MainHomeState extends State<MainHome> {
                                                                   .id
                                                                   .toString() ==
                                                               "100001") {
-                                                            final Uri _url2 =
-                                                                Uri.parse(
-                                                                    "https://t.me/e_dtm_bot");
-                                                            await launchUrl(
-                                                              _url2,
-                                                              mode: LaunchMode
-                                                                  .inAppWebView,
-                                                            );
+                                                            // final Uri _url2 =
+                                                            //     Uri.parse(
+                                                            //         "https://t.me/e_dtm_bot");
+                                                            // await launchUrl(
+                                                            //   _url2,
+                                                            //   mode: LaunchMode
+                                                            //       .inAppWebView,
+                                                            // );
+                                                            pushNewScreen(context, screen: WebViewTelegram(
+                                                              urlService: "https://t.me/e_dtm_bot",
+                                                              titleName: "Telegram bot",
+                                                            ), withNavBar: true);
                                                           } else {
                                                             providerMainHome
                                                                 .goServicePage(

@@ -3,17 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class WebViewWindow extends StatefulWidget {
+class WebViewTelegram extends StatefulWidget {
   String urlService;
   String titleName;
 
-  WebViewWindow({super.key, required this.urlService, required this.titleName});
+  WebViewTelegram({super.key, required this.urlService, required this.titleName});
 
   @override
-  State<WebViewWindow> createState() => _WebViewWindowState();
+  State<WebViewTelegram> createState() => _WebViewTelegramState();
 }
 
-class _WebViewWindowState extends State<WebViewWindow> {
+class _WebViewTelegramState extends State<WebViewTelegram> {
   WebViewController controller = WebViewController()
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
     ..setBackgroundColor(const Color(0x00000000))
@@ -34,7 +34,7 @@ class _WebViewWindowState extends State<WebViewWindow> {
         },
       ),
     )
-    ..loadRequest(Uri.parse("https://mandat.uzbmb.uz/"));
+    ..loadRequest(Uri.parse("https://t.me/e_dtm_bot"));
 
   @override
   Widget build(BuildContext context) {
