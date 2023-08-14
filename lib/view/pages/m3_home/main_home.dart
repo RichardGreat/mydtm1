@@ -547,13 +547,7 @@ class _MainHomeState extends State<MainHome> {
                                                           (context, index2)
                                                           {
                                                             return
-                                                            providerMainHome
-                                                              .listDataServiceList[
-                                                          index]
-                                                              .service[index2]
-                                                              .id
-                                                              .toString()
-                                                              .length < 4 ?
+
                                                           GestureDetector(
                                                             onTap: () async {
                                                               /// go service page
@@ -592,26 +586,16 @@ class _MainHomeState extends State<MainHome> {
                                                               index2]
                                                                   .id
                                                                   .toString().length > 5) {
-                                                                final Uri _url2 =
-                                                                    Uri.parse(
-                                                                        providerMainHome
-                                                                            .listDataServiceList[
-                                                                        index]
-                                                                            .service[
-                                                                        index2]
-                                                                            .link);
-                                                                await launchUrl(
-                                                                  _url2,
-                                                                  mode: LaunchMode
-                                                                      .inAppWebView,
-                                                                );
-                                                                // pushNewScreen(
-                                                                //     context,
-                                                                //     screen: WebViewTelegram(
-                                                                //       urlService: "https://t.me/e_dtm_bot",
-                                                                //       titleName: "Telegram bot",
-                                                                //     ),
-                                                                //     withNavBar: true);
+                                                                pushNewScreen(
+                                                                    context,
+                                                                    screen: WebViewWindow(
+                                                                      modelServiceMainList: providerMainHome
+                                                                          .listDataServiceList[
+                                                                      index]
+                                                                          .service[
+                                                                      index2],
+                                                                    ),
+                                                                    withNavBar: true);
                                                               } else {
                                                                 providerMainHome
                                                                     .goServicePage(
@@ -840,7 +824,7 @@ class _MainHomeState extends State<MainHome> {
                                                                 ],
                                                               ),
                                                             ),
-                                                          ) :SizedBox.shrink();},
+                                                          ) ;},
                                                     ),
                                                   )
                                                 ],

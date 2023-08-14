@@ -190,7 +190,10 @@ class ProviderMainHome extends ChangeNotifier {
         listModelGetSlider = (jsonDecode(jsonDecode(getSlider)) as List)
             .map((e) => ModelGetSlider.fromJson(e))
             .toList();
-      }catch(e){
+        listModelGetSlider.sort((a, b) => a.ves.compareTo(b.ves));
+        notifyListeners();
+
+    }catch(e){
         log(e.toString());
       }
 

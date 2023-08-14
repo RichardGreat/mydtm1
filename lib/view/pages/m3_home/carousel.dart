@@ -106,28 +106,36 @@ Widget carouselMain(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const SizedBox(height: 10),
-                        SizedBox(
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
 
-                          width: MediaQuery.of(context).size.width*0.5,
-                          height: i.id.toString().length > 4?150: 100,
-                          child: CachedNetworkImage(
-                              filterQuality: FilterQuality.high,
-                              fit: i.id.toString().length > 4?BoxFit.fitHeight: BoxFit.fitHeight,
-                              height: MediaQuery.of(context).size.height*0.3,
-                              imageUrl: "${i.mobilIcon}",
-                              progressIndicatorBuilder:
-                                  (context, url, downloadProgress) =>
-                                      const CupertinoActivityIndicator(),
-                              errorWidget: (context, url, error) => Text(
-                                    url.toString(),
-                                  )),
+                            width: MediaQuery.of(context).size.width*0.44,
+                            height: i.id.toString().length > 4?150: 100,
+                            child: CachedNetworkImage(
+                                filterQuality: FilterQuality.high,
+                                fit: i.id.toString().length > 4?BoxFit.fitHeight: BoxFit.fitHeight,
+                                height: MediaQuery.of(context).size.height*0.3,
+                                imageUrl: "${i.mobilIcon}",
+                                progressIndicatorBuilder:
+                                    (context, url, downloadProgress) =>
+                                        const CupertinoActivityIndicator(),
+                                errorWidget: (context, url, error) => Text(
+                                      url.toString(),
+                                    )),
+                          ),
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width*0.4,
-                          child: Text(i.serviceText.toString(),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                          maxLines: 4,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width*0.4,
+                            child: Text(i.serviceText.toString(),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize:
+                            i.serviceText.toString().length < 30?
+                            20:16, fontWeight: FontWeight.bold),
+                            maxLines: 8,
+                            ),
                           ),
                         ),
                         const SizedBox(height:4),
