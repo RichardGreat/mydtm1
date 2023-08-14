@@ -395,7 +395,9 @@ class _MainHomeState extends State<MainHome> {
                                 SliverToBoxAdapter(
                                   child: carouselMain(
                                       context: context,
-                                      providerMainHome: providerMainHome),
+                                      providerMainHome: providerMainHome,
+                                  service: providerMainHome.listDataServiceList[0].service
+                                  ),
                                 )
                               ];
                             },
@@ -542,64 +544,87 @@ class _MainHomeState extends State<MainHome> {
                                                           .service
                                                           .length,
                                                       itemBuilder:
-                                                          (context, index2) =>
-                                                              GestureDetector(
-                                                        onTap: () async {
-                                                          /// go service page
-
-                                                          if (providerMainHome
-                                                                  .listDataServiceList[
-                                                                      index]
-                                                                  .service[
-                                                                      index2]
-                                                                  .id
-                                                                  .toString() ==
-                                                              "100000") {
-                                                            pushNewScreen(context, screen: WebViewWindow(
-                                                              urlService: "https://mandat.uzbmb.uz/",
-                                                              titleName: "mandat.uzbmb.uz",
-                                                            ), withNavBar: true);
-                                                            // final Uri _url =
-                                                            //     Uri.parse(
-                                                            //         "https://mandat.uzbmb.uz/");
-                                                            // await launchUrl(
-                                                            //   _url,
-                                                            //   mode: LaunchMode
-                                                            //       .inAppWebView,
-                                                            // );
-                                                          } else if (providerMainHome
-                                                                  .listDataServiceList[
-                                                                      index]
-                                                                  .service[
-                                                                      index2]
-                                                                  .id
-                                                                  .toString() ==
-                                                              "100001") {
-                                                            // final Uri _url2 =
-                                                            //     Uri.parse(
-                                                            //         "https://t.me/e_dtm_bot");
-                                                            // await launchUrl(
-                                                            //   _url2,
-                                                            //   mode: LaunchMode
-                                                            //       .inAppWebView,
-                                                            // );
-                                                            pushNewScreen(context, screen: WebViewTelegram(
-                                                              urlService: "https://t.me/e_dtm_bot",
-                                                              titleName: "Telegram bot",
-                                                            ), withNavBar: true);
-                                                          } else {
+                                                          (context, index2)
+                                                          {
+                                                            return
                                                             providerMainHome
-                                                                .goServicePage(
-                                                              context: context,
-                                                              serviceMainList:
+                                                              .listDataServiceList[
+                                                          index]
+                                                              .service[index2]
+                                                              .id
+                                                              .toString()
+                                                              .length < 4 ?
+                                                          GestureDetector(
+                                                            onTap: () async {
+                                                              /// go service page
+
+                                                              if (providerMainHome
+                                                                  .listDataServiceList[
+                                                              index]
+                                                                  .service[
+                                                              index2]
+                                                                  .id
+                                                                  .toString() ==
+                                                                  "100000") {
+                                                                pushNewScreen(
+                                                                    context,
+                                                                    screen: WebViewWindow(
+                                                                     modelServiceMainList: providerMainHome
+                                                                         .listDataServiceList[
+                                                                     index]
+                                                                         .service[
+                                                                     index2],
+                                                                    ),
+                                                                    withNavBar: true);
+                                                                // final Uri _url =
+                                                                //     Uri.parse(
+                                                                //         "https://mandat.uzbmb.uz/");
+                                                                // await launchUrl(
+                                                                //   _url,
+                                                                //   mode: LaunchMode
+                                                                //       .inAppWebView,
+                                                                // );
+                                                              } else
+                                                              if (providerMainHome
+                                                                  .listDataServiceList[
+                                                              index]
+                                                                  .service[
+                                                              index2]
+                                                                  .id
+                                                                  .toString().length > 5) {
+                                                                final Uri _url2 =
+                                                                    Uri.parse(
+                                                                        providerMainHome
+                                                                            .listDataServiceList[
+                                                                        index]
+                                                                            .service[
+                                                                        index2]
+                                                                            .link);
+                                                                await launchUrl(
+                                                                  _url2,
+                                                                  mode: LaunchMode
+                                                                      .inAppWebView,
+                                                                );
+                                                                // pushNewScreen(
+                                                                //     context,
+                                                                //     screen: WebViewTelegram(
+                                                                //       urlService: "https://t.me/e_dtm_bot",
+                                                                //       titleName: "Telegram bot",
+                                                                //     ),
+                                                                //     withNavBar: true);
+                                                              } else {
+                                                                providerMainHome
+                                                                    .goServicePage(
+                                                                  context: context,
+                                                                  serviceMainList:
                                                                   providerMainHome
                                                                       .listDataServiceList[
-                                                                          index]
+                                                                  index]
                                                                       .service[index2],
-                                                            );
-                                                          }
-                                                        },
-                                                        child:
+                                                                );
+                                                              }
+                                                            },
+                                                            child:
                                                             // index == 0
                                                             //     ? Showcase(
                                                             //         key:
@@ -676,35 +701,36 @@ class _MainHomeState extends State<MainHome> {
                                                             //       )
                                                             //     :
                                                             Container(
-                                                          height: 200,
-                                                          width: 180,
-                                                          padding:
+                                                              height: 200,
+                                                              width: 180,
+                                                              padding:
                                                               const EdgeInsets
                                                                   .all(10),
-                                                          margin:
+                                                              margin:
                                                               const EdgeInsets
                                                                   .all(5),
-                                                          decoration:
+                                                              decoration:
                                                               BoxDecoration(
 
                                                                   color:
-                                                                  index % 2 == 0?
+                                                                  index % 2 == 0
+                                                                      ?
                                                                   index2 %
-                                                                              2 ==
-                                                                          0
+                                                                      2 ==
+                                                                      0
                                                                       ? const Color
-                                                                              .fromRGBO(
-                                                                          252,
-                                                                          246,
-                                                                          225,
-                                                                          1)
+                                                                      .fromRGBO(
+                                                                      252,
+                                                                      246,
+                                                                      225,
+                                                                      1)
                                                                       : const Color
-                                                                              .fromRGBO(
-                                                                          232,
-                                                                          247,
-                                                                          244,
-                                                                          1)
-                                                                  :
+                                                                      .fromRGBO(
+                                                                      232,
+                                                                      247,
+                                                                      244,
+                                                                      1)
+                                                                      :
                                                                   index2 %
                                                                       2 !=
                                                                       0
@@ -733,84 +759,88 @@ class _MainHomeState extends State<MainHome> {
                                                                   //           1)
                                                                   // ],
                                                                   borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              10)),
-                                                          child: Column(
-                                                            mainAxisAlignment:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                      10)),
+                                                              child: Column(
+                                                                mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .spaceBetween,
-                                                            crossAxisAlignment:
+                                                                crossAxisAlignment:
                                                                 CrossAxisAlignment
                                                                     .center,
-                                                            children: [
-                                                              const SizedBox(
-                                                                  height: 1),
-                                                              Icon(randomIcon(),
-                                                                  size: 50,
-                                                                  color: MyColors
-                                                                      .appColorBBA()),
+                                                                children: [
+                                                                  const SizedBox(
+                                                                      height: 1),
+                                                                  Icon(
+                                                                      randomIcon(),
+                                                                      size: 50,
+                                                                      color: MyColors
+                                                                          .appColorBBA()),
 
-                                                              /// image
-                                                              // CachedNetworkImage(
-                                                              //     height:
-                                                              //         60,
-                                                              //     width:
-                                                              //         60,
-                                                              //     filterQuality: FilterQuality
-                                                              //         .high,
-                                                              //     fit: BoxFit
-                                                              //         .fill,
-                                                              //     imageUrl:
-                                                              //         "${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
-                                                              //     progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                              //         const CupertinoActivityIndicator(),
-                                                              //     errorWidget: (context, url, error) =>
-                                                              //         // Text(url.toString())
-                                                              //         Image.asset(
-                                                              //           "assets/images/uzbmb.png",
-                                                              //         )
-                                                              //     //
-                                                              //     //     fit: BoxFit.fill),
-                                                              //     ),
-                                                              Text(
-                                                                box.get("language") ==
+                                                                  /// image
+                                                                  // CachedNetworkImage(
+                                                                  //     height:
+                                                                  //         60,
+                                                                  //     width:
+                                                                  //         60,
+                                                                  //     filterQuality: FilterQuality
+                                                                  //         .high,
+                                                                  //     fit: BoxFit
+                                                                  //         .fill,
+                                                                  //     imageUrl:
+                                                                  //         "${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
+                                                                  //     progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                                  //         const CupertinoActivityIndicator(),
+                                                                  //     errorWidget: (context, url, error) =>
+                                                                  //         // Text(url.toString())
+                                                                  //         Image.asset(
+                                                                  //           "assets/images/uzbmb.png",
+                                                                  //         )
+                                                                  //     //
+                                                                  //     //     fit: BoxFit.fill),
+                                                                  //     ),
+                                                                  Text(
+                                                                    box.get(
+                                                                        "language") ==
                                                                         "1"
-                                                                    ? providerMainHome
-                                                                        .listDataServiceList[
-                                                                            index]
-                                                                        .service[
-                                                                            index2]
-                                                                        .serviceName
-                                                                    : box.get("language") ==
-                                                                            "2"
                                                                         ? providerMainHome
-                                                                            .listDataServiceList[
-                                                                                index]
-                                                                            .service[
-                                                                                index2]
-                                                                            .serviceNameQQ
+                                                                        .listDataServiceList[
+                                                                    index]
+                                                                        .service[
+                                                                    index2]
+                                                                        .serviceName
+                                                                        : box
+                                                                        .get(
+                                                                        "language") ==
+                                                                        "2"
+                                                                        ? providerMainHome
+                                                                        .listDataServiceList[
+                                                                    index]
+                                                                        .service[
+                                                                    index2]
+                                                                        .serviceNameQQ
                                                                         : providerMainHome
-                                                                            .listDataServiceList[index]
-                                                                            .service[index2]
-                                                                            .serviceNameRu,
+                                                                        .listDataServiceList[index]
+                                                                        .service[index2]
+                                                                        .serviceNameRu,
 
-                                                                textAlign:
+                                                                    textAlign:
                                                                     TextAlign
                                                                         .center,
-                                                                overflow:
+                                                                    overflow:
                                                                     TextOverflow
                                                                         .ellipsis,
-                                                                maxLines: 2,
-                                                                // softWrap: true,
-                                                                style: const TextStyle(
-                                                                    fontFamily:
+                                                                    maxLines: 2,
+                                                                    // softWrap: true,
+                                                                    style: const TextStyle(
+                                                                        fontFamily:
                                                                         'Roboto-Medium'),
+                                                                  ),
+                                                                ],
                                                               ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
+                                                            ),
+                                                          ) :SizedBox.shrink();},
                                                     ),
                                                   )
                                                 ],

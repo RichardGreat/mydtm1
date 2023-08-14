@@ -10,8 +10,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/check_version.dart';
+import 'package:mydtm/data/internet_connections/m3_home/internet_get_slider.dart';
 import 'package:mydtm/data/internet_connections/m3_home/service_list.dart';
 import 'package:mydtm/data/internet_connections/person_info/set_lang.dart';
+import 'package:mydtm/data/model_parse/m3_home/model_get_slider.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/data/model_parse/model_check_mobile_version.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
@@ -164,6 +166,11 @@ class ProviderMainHome extends ChangeNotifier {
 
   late ModelServiceList modelServiceList;
 
+  /// slider qo'shimcha
+  NetworkGetSlider networkGetSlider = NetworkGetSlider();
+   List<ModelGetSlider> listModelGetSlider = [];
+   List<Uri> listUri = [];
+
   Future getDateService({required BuildContext context}) async {
     try {
       if (box.get("numberApi").toString().trim() !=
@@ -176,59 +183,58 @@ class ProviderMainHome extends ChangeNotifier {
         // log(box.get("numberApi"));
         // log("####");
       }
-
+      try{
+        String getSlider = await networkGetSlider.getSlider();
+        log("@@@");
+        log(jsonDecode(getSlider).toString());
+        listModelGetSlider = (jsonDecode(jsonDecode(getSlider)) as List)
+            .map((e) => ModelGetSlider.fromJson(e))
+            .toList();
+      }catch(e){
+        log(e.toString());
+      }
 
       modelServiceList =
           ModelServiceList.fromJson(jsonDecode(box.get("dataServiceList")));
-      listDataServiceList
-          .addAll(modelServiceList.data);
-      listDataServiceList[0].service.addAll([
-        ServiceMainList(
-          id: '100000',
-          serviceName: "Mandat",
-          serviceText: "Mandat",
-          serviceTextRu:  "Мандат",
-          serviceTextQQ:  "Мандат",
-          serviceNameRu:  "Мандат",
-          serviceNameQQ:  "Мандат",
-          status: true,
-          mobilIcon: "https://uzbmb.uz/upload/file/sliders/slide-3.png",
-          link: "https://uzbmb.uz/upload/file/sliders/slide-3.png",
-          icon: "https://uzbmb.uz/upload/file/sliders/slide-3.png",
-          catId: "",
-          cod: "",
-          sortId: "1",
-          createdAt: "",
-          updatedAt: "",
-          deleted: "0"),
-        ServiceMainList(
-            id: '100001',
-            serviceName: "Telegram bot",
-            serviceText: "Telegram bot",
-            serviceTextRu:  "Telegram bot",
-            serviceTextQQ:  "Telegram bot",
-            serviceNameRu:  "Телеграм бот",
-            serviceNameQQ:  "Telegram bot",
-            status: true,
-            mobilIcon: "https://uzbmb.uz/upload/file/sliders/slide-4.png",
-            link: "https://uzbmb.uz/upload/file/sliders/slide-4.png",
-            icon: "https://uzbmb.uz/upload/file/sliders/slide-4.png",
-            catId: "",
-            cod: "",
-            sortId: "1",
-            createdAt: "",
-            updatedAt: "",
-            deleted: "0"),
+      listDataServiceList.addAll(modelServiceList.data);
+      for (int i = 0; i < listModelGetSlider.length; i++) {
+        listDataServiceList[0].service.add(
+              ServiceMainList(
+                  id: (int.parse(listModelGetSlider[i].id.toString())*100000).toString(),
+                  serviceName: listModelGetSlider[i].description.toString(),
+                  serviceText: listModelGetSlider[i].description.toString(),
+                  serviceTextRu: listModelGetSlider[i].description.toString(),
+                  serviceTextQQ: listModelGetSlider[i].description.toString(),
+                  serviceNameRu: listModelGetSlider[i].description.toString(),
+                  serviceNameQQ: listModelGetSlider[i].description.toString(),
+                  status: listModelGetSlider[i].status.toString() == "1"
+                      ? true
+                      : false,
+                  mobilIcon: listModelGetSlider[i].imageUrl.toString(),
+                  link: listModelGetSlider[i].link.toString(),
+                  icon: listModelGetSlider[i].imageUrl.toString(),
+                  catId: "",
+                  cod: "",
+                  sortId: listModelGetSlider[i].ves.toString(),
+                  createdAt: "",
+                  updatedAt: "",
+                  deleted: "0"),
+            );
+      }
+      listUri.clear();
+      for (int i = 0; i < listDataServiceList[0].service.length; i++) {
 
-
-      ]);
-
-      // for (var value in listDataServiceList) {
-      //   value.service.sort((a, b) => (a.sortId));
-      // }
+        // if(listDataServiceList[0].service[i].id.toString().length > 5) {
+          listUri.add(Uri.parse(listDataServiceList[0].service[i].link));
+          // log("###message");
+          // log(listDataServiceList[0].service[i].link.toString());
+        // }else{
+        //
+        //}
+      }
       listDataServiceListTemp.clear();
       listDataServiceListTemp2.clear();
-        log(jsonEncode(listDataServiceList).toString());
+
       for (var val in listDataServiceList) {
         listDataServiceListTemp.addAll(val.service);
         listDataServiceListTemp2.addAll(val.service);
@@ -238,7 +244,7 @@ class ProviderMainHome extends ChangeNotifier {
       boolErrorHandle = false;
       notifyListeners();
     } catch (e) {
-      // log(e.toString());
+      log(e.toString());
       boolParseData = true;
       boolErrorHandle = true;
       notifyListeners();

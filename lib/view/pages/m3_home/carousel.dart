@@ -1,35 +1,22 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
-import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 Widget carouselMain(
     {required BuildContext context,
-    required ProviderMainHome providerMainHome}) {
-  var box = Hive.box("online");
+    required ProviderMainHome providerMainHome,
+    required  List<ServiceMainList> service
+    }) {
 
-  List<Color> myColors = [
-    const Color.fromRGBO(252, 246, 225, 1),
-    const Color.fromRGBO(252, 246, 225, 1),
-    const Color.fromRGBO(252, 246, 225, 1),
-    const Color.fromRGBO(252, 246, 225, 1),
-    const Color.fromRGBO(252, 246, 225, 1),
-    const Color.fromRGBO(232, 247, 244, 1),
-    const Color.fromRGBO(232, 247, 244, 1),
-    const Color.fromRGBO(232, 247, 244, 1),
-    const Color.fromRGBO(232, 247, 244, 1),
-    const Color.fromRGBO(232, 247, 244, 1),
-  ];
-  Random random = Random();
-  Color randomColor() {
-    return myColors[random.nextInt(10)];
-  }
+
   return Container(
     margin: const EdgeInsets.only(top: 10),
     child: CarouselSlider(
@@ -37,46 +24,66 @@ Widget carouselMain(
       options: CarouselOptions(
         height: 200,
           padEnds: false,
-        //   aspectRatio: 90,
-        //   enlargeCenterPage: true,
           viewportFraction: 1,
           autoPlay: true,
           enableInfiniteScroll: true,
-
           autoPlayInterval: const Duration(seconds: 8)),
       items: providerMainHome.listDataServiceList[0].service.map((i) {
-
-        // items: ["1" ,"2","3","4" ].map((i) {
-        return Builder(
+        return    Builder(
           builder: (BuildContext context) {
             return Container(
               height: 180,
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.symmetric(vertical: 10),
-              child: GestureDetector(
+              child:
+
+              GestureDetector(
                 onTap: () async{
-                  if (i.id
-                      .toString() ==
-                      "100000") {
-                    final Uri _url =
-                    Uri.parse(
-                        "https://mandat.uzbmb.uz/");
-                    await launchUrl(
-                    _url,
-                    mode: LaunchMode
-                        .inAppWebView,
-                    );
-                  } else if (i.id
-                      .toString() ==
-                      "100001") {
-                    final Uri _url2 =
-                    Uri.parse(
-                        "https://t.me/e_dtm_bot");
-                    await launchUrl(
-                    _url2,
-                    mode: LaunchMode
-                        .inAppWebView,
-                    );}else{
+
+
+                  if(i.id.toString().length > 5){
+                    // print(providerMainHome.listUri[0].toString());
+                    // print(i.serviceText.toString());
+                    // String a = i.serviceName.toString().contains(other)
+                    pushNewScreen(
+                        context,
+                        screen: WebViewWindow(
+                        modelServiceMainList: i,
+                        ),
+                        withNavBar: true);
+                    // final Uri _url =
+                    // Uri.parse(
+                    //     "${i.link}");
+                    // await launchUrl(
+                    //   _url,
+                    //   mode: LaunchMode
+                    //       .inAppWebView,
+                    // );
+                  }
+
+                  // if (i.id
+                  //     .toString() ==
+                  //     "100000") {
+                  //   final Uri _url =
+                  //   Uri.parse(
+                  //       "https://mandat.uzbmb.uz/");
+                  //   await launchUrl(
+                  //   _url,
+                  //   mode: LaunchMode
+                  //       .inAppWebView,
+                  //   );
+                  // } else if (i.id
+                  //     .toString() ==
+                  //     "100001") {
+                  //   final Uri _url2 =
+                  //   Uri.parse(
+                  //       "https://t.me/e_dtm_bot");
+                  //   await launchUrl(
+                  //   _url2,
+                  //   mode: LaunchMode
+                  //       .inAppWebView,
+                  //   );}
+                  else{
                   providerMainHome.goServicePage(
                       context: context, serviceMainList: i);}
                 },

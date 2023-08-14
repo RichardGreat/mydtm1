@@ -5,7 +5,6 @@ import 'package:mydtm/view/pages/m5_xabarlar/one_page_news/one_news.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/provider_news.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 

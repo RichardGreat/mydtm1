@@ -2,8 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
+import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 PreferredSizeWidget searchMain(
@@ -132,23 +134,16 @@ mainSearchBottomSheet(
 
                         if (providerMainHome
                             .listDataServiceListTemp[index].id
-                                .toString() ==
-                            "100000") {
-                          final Uri _url =
-                              Uri.parse("https://mandat.uzbmb.uz/");
-                          await launchUrl(
-                            _url,
-                            mode: LaunchMode.inAppWebView,
-                          );
-                        } else if (providerMainHome
-                            .listDataServiceListTemp[index].id
-                                .toString() ==
-                            "100001") {
-                          final Uri _url2 = Uri.parse("https://t.me/e_dtm_bot");
-                          await launchUrl(
-                            _url2,
-                            mode: LaunchMode.inAppWebView,
-                          );
+                                .toString().length > 5) {
+                          pushNewScreen(context, screen: WebViewWindow(modelServiceMainList: providerMainHome
+                              .listDataServiceListTemp[index]));
+
+                          // final Uri _url =
+                          //     Uri.parse("https://mandat.uzbmb.uz/");
+                          // await launchUrl(
+                          //   _url,
+                          //   mode: LaunchMode.inAppWebView,
+                          // );
                         } else {
                           providerMainHome.goServicePage(
                               context: context,

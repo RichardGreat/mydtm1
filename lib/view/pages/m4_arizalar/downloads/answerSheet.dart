@@ -76,7 +76,8 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
                             fitEachPage: true,
                             autoSpacing: true,
                             enableSwipe: true
-                          ).cachedFromUrl(widget.providerAriza.modelGetDownloadsData3.src)),
+
+                          ).fromUrl(widget.providerAriza.modelGetDownloadsData3.src)),
                       // Container(
                       //   margin: const EdgeInsets.all(15),
                       //   child: Column(children: [
