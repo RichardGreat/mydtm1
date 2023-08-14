@@ -201,6 +201,7 @@ class ProviderMainHome extends ChangeNotifier {
           ModelServiceList.fromJson(jsonDecode(box.get("dataServiceList")));
       listDataServiceList.addAll(modelServiceList.data);
       for (int i = 0; i < listModelGetSlider.length; i++) {
+        listModelGetSlider[i].status.toString() == "1"?
         listDataServiceList[0].service.add(
               ServiceMainList(
                   id: (int.parse(listModelGetSlider[i].id.toString())*100000).toString(),
@@ -222,7 +223,7 @@ class ProviderMainHome extends ChangeNotifier {
                   createdAt: "",
                   updatedAt: "",
                   deleted: "0"),
-            );
+            ):{};
       }
       listUri.clear();
       for (int i = 0; i < listDataServiceList[0].service.length; i++) {
