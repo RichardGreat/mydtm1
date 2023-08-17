@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/screen_lock/screen_lock_window.dart';
-import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
@@ -23,7 +22,11 @@ PreferredSizeWidget appBarProfile(
     backgroundColor: MyColors.appColorWhite(),
     elevation: 0,
     title: box.get("token").toString().length > 29
-        ? MyWidgets.robotoFontText(text: "personalInfo".tr(), textSize: 24)
+        ? Text("personalInfo".tr(),
+    maxLines: 3,
+    textAlign: TextAlign.center,
+    style: const TextStyle(color: Colors.black),
+    ) //MyWidgets.robotoFontText(text: "personalInfo".tr(), textSize: 24)
         : const Text(""),
     actions: [
       box.get("token").toString().length > 30

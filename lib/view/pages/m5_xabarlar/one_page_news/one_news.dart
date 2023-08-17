@@ -36,7 +36,9 @@ class _NewsSeeState extends State<NewsSee> {
 
   Future getOneNew() async {
     await widget.providerDtmNews.getBodyById(id: widget.id);
-    setState(() {});
+setState(() {
+
+});
   }
 
   @override
@@ -48,9 +50,15 @@ class _NewsSeeState extends State<NewsSee> {
           SliverAppBar(
             iconTheme: IconThemeData(color: MyColors.appColorBlack()),
             backgroundColor: MyColors.appColorWhite(),
-            floating: false,
+            floating: true,
+            forceElevated: true,
+
             elevation: 0,
             expandedHeight: 10,
+            centerTitle: true,
+            title: Text(widget.titleName,
+                textAlign: TextAlign.start,
+                style: const TextStyle(color: Colors.black), maxLines: 2),
             // flexibleSpace:
             foregroundColor: MyColors.appColorWhite(),
             excludeHeaderSemantics: true,
@@ -100,6 +108,7 @@ class _NewsSeeState extends State<NewsSee> {
                 Expanded(
                   child: SingleChildScrollView(
                     child: HtmlWidget(
+
                       jsonDecode(widget.providerDtmNews.data)
                           .toString()
                           .replaceAll("[", "")

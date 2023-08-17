@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/one_page_news/one_news.dart';
@@ -6,7 +7,6 @@ import 'package:mydtm/view/pages/m5_xabarlar/provider_news.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class MainMessages extends StatefulWidget {
   const MainMessages({Key? key}) : super(key: key);
@@ -44,83 +44,195 @@ class _MainMessagesState extends State<MainMessages> {
             ),
             body: providerDtmNews.boolDtmNews
                 ? RefreshIndicator(
-              onRefresh: (){
-                return getDtmNews();
-              },
-                  child: SafeArea(
+                    onRefresh: () {
+                      return getDtmNews();
+                    },
+                    child: SafeArea(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListView.builder(
                             itemCount: providerDtmNews.modelDtmNews2.length,
                             itemBuilder: (context, index) => Container(
-                                margin: const EdgeInsets.only(
-                                    right: 4, left: 5, bottom: 3, top: 3),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: MyColors.appColorWhite(),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: MyColors.appColorGrey400(),
-                                          spreadRadius: 1,
-                                          blurRadius: 1)
-                                    ]),
-                                child: ListTile(
-                                  onTap: () {
-
-                                    showModalBottomSheet<void>(
-                                        shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(10), topRight: Radius.circular(10))),
-                                        barrierColor: Colors.black.withOpacity(0.2),
-                                        context: context,
-                                        enableDrag: true,
-                                        isScrollControlled: true,
-                                        builder: (_) {
-                                          return Container(
-                                              margin:const EdgeInsets.all(10),
-                                              height: MediaQuery.of(context).size.height * 0.7,
-                                              child:  NewsSee(
-                                                  id: providerDtmNews
-                                                      .modelDtmNews2[index].id
+                                  margin: const EdgeInsets.only(
+                                      right: 4, left: 5, bottom: 8, top: 3),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: MyColors.appColorWhite(),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.grey.withOpacity(0.4),
+                                            spreadRadius: 1,
+                                            blurRadius: 0.5)
+                                      ]),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      showModalBottomSheet<void>(
+                                          shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(10),
+                                                  topRight:
+                                                      Radius.circular(10))),
+                                          barrierColor:
+                                              Colors.black.withOpacity(0.2),
+                                          context: context,
+                                          enableDrag: true,
+                                          isScrollControlled: true,
+                                          builder: (_) {
+                                            return Container(
+                                                margin:
+                                                    const EdgeInsets.all(10),
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.8,
+                                                child: NewsSee(
+                                                    id: providerDtmNews
+                                                        .modelDtmNews2[index].id
+                                                        .toString(),
+                                                    date: providerDtmNews
+                                                        .modelDtmNews2[index]
+                                                        .createdDate
+                                                        .toString(),
+                                                    titleName: providerDtmNews
+                                                        .modelDtmNews2[index]
+                                                        .title
+                                                        .toString(),
+                                                    imgUrl: providerDtmNews
+                                                        .modelDtmNews2[index]
+                                                        .imageUrl
+                                                        .toString(),
+                                                    providerDtmNews:
+                                                        providerDtmNews));
+                                          });
+                                      // pushNewScreen(context,
+                                      //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                      //     screen:);
+                                    },
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10, top: 8, bottom: 7),
+                                              child: Row(
+                                                children: [
+                                                  Image.asset(
+                                                    "assets/images/logobba.png",
+                                                    height: 30,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10, top: 5, bottom: 5),
+                                              child: Text(
+                                                  providerDtmNews
+                                                      .modelDtmNews2[index]
+                                                      .createdDate
                                                       .toString(),
-                                                  date: providerDtmNews
-                                                      .modelDtmNews2[index].createdDate
+                                                  style:const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600)),
+                                            ),
+                                          ],
+                                        ),
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                          child: CachedNetworkImage(
+                                            fadeOutCurve: Curves.easeInCirc,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.9,
+                                            fit: BoxFit.fill,
+                                            imageUrl: providerDtmNews
+                                                .modelDtmNews2[index].imageUrl,
+                                            progressIndicatorBuilder: (context,
+                                                    url, downloadProgress) =>
+                                                const CupertinoActivityIndicator(),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    const Icon(Icons.error),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.9,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10,
+                                                    right: 10,
+                                                    top: 5,
+                                                    bottom: 15),
+                                                child: Text(
+                                                  providerDtmNews
+                                                      .modelDtmNews2[index]
+                                                      .title
                                                       .toString(),
-                                                  titleName: providerDtmNews
-                                                      .modelDtmNews2[index].title
-                                                      .toString(),
-                                                  imgUrl: providerDtmNews
-                                                      .modelDtmNews2[index].imageUrl
-                                                      .toString(),
-                                                  providerDtmNews: providerDtmNews));
-                                        });
-                                    // pushNewScreen(context,
-                                    //     pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    //     screen:);
-                                  },
-                                  leading: CachedNetworkImage(
-                                    height: 80,
-                                    width: 100,
-                                    fit: BoxFit.fill,
-                                    imageUrl: providerDtmNews
-                                        .modelDtmNews2[index].imageUrl,
-                                    progressIndicatorBuilder:
-                                        (context, url, downloadProgress) =>
-                                            const CupertinoActivityIndicator(),
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
+                                                  textAlign: TextAlign.justify,
+                                                  maxLines: 3,
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 16),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              8, 8, 8, 10),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              const Icon(
+                                                Icons.keyboard_arrow_down,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.remove_red_eye,
+                                                    size: 22,
+                                                    color: Colors.teal
+                                                        .withOpacity(0.7),
+                                                  ),
+                                                  const SizedBox(width: 5),
+                                                  Text(providerDtmNews
+                                                      .modelDtmNews2[index]
+                                                      .views
+                                                      .toString()),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  title: Text(
-                                      providerDtmNews.modelDtmNews2[index].title
-                                          .toString(),
-                                      maxLines: 3),
-                                  trailing: Text(providerDtmNews
-                                      .modelDtmNews2[index].createdDate
-                                      .toString()),
-                                ))),
+                                )),
                       ),
                     ),
-                )
+                  )
                 : MyWidgets.loaderDownload(context: context)),
       ),
     );

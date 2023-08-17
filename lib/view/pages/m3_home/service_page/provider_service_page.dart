@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -8,7 +7,6 @@ import 'package:mydtm/data/internet_connections/certificate_nation/get_regLang.d
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
-import 'package:mydtm/view/perevod/check_info_perevod/check_info_perevodga.dart';
 import 'package:mydtm/view/texnikum/main_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -228,17 +226,18 @@ class ProviderServicePage extends ChangeNotifier {
                     //         btnCancelText: "OK")
                     //     .show(),
                   }
-                else if (categoryId == "41")
-                  {
-                    pushNewScreen(
-                      context,
-                      screen:
-                          CheckInformationPerevodga(serviceName: categoryName),
-                      withNavBar: false,
-                      pageTransitionAnimation:
-                          PageTransitionAnimation.cupertino,
-                    )
-                  }
+                /// Perevod page
+                // else if (categoryId == "41")
+                //   {
+                    // pushNewScreen(
+                    //   context,
+                    //   screen:
+                    //       CheckInformationPerevodga(serviceName: categoryName),
+                    //   withNavBar: false,
+                    //   pageTransitionAnimation:
+                    //       PageTransitionAnimation.cupertino,
+                    // )
+                  // }
                 else if (categoryId == "44")
                   {
                     pushNewScreen(

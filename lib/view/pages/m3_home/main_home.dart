@@ -14,14 +14,13 @@ import 'package:mydtm/view/pages/m3_home/carousel.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/serch_main.dart';
 import 'package:mydtm/view/pages/m3_home/show_by_category/show_by_category.dart';
-import 'package:mydtm/view/pages/m3_home/webview_window/webv_telegram.dart';
 import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
+import 'package:mydtm/view/pages/m6_profile/main_profile.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 import 'package:showcaseview/showcaseview.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class MainHome extends StatefulWidget {
   String homePageId;
@@ -838,6 +837,9 @@ class _MainHomeState extends State<MainHome> {
                     : const Center(child: CupertinoActivityIndicator())
                 // bodyMainHome(context: context, providerMainHome: providerMainHome),
                 ),
+          ),
+          drawer: Drawer(
+            child: MainProfile(myFunction:gerRefresh),
           ),
         ),
       ),

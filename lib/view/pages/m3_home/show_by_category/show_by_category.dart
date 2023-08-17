@@ -120,7 +120,7 @@ myViewButton(
                               color: MyColors.appColorWhite(),
                               boxShadow: [
                                 BoxShadow(
-                                    color: MyColors.appColorGrey600(),
+                                    color: Colors.teal.withOpacity(0.3),
                                     blurRadius: 1,
                                     spreadRadius: 1)
                               ],

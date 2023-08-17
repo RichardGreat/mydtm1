@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mydtm/view/pages/m4_arizalar/body_ariza/body_ariza.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
-import 'package:mydtm/view/perevod/check_info_perevod/check_info_perevodga.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
@@ -417,50 +416,50 @@ Widget bodyAriza1(
                                           fontWeight: FontWeight.bold),
                                     )))),
                         const SizedBox(height: 20),
-                        providerAriza.listArizaBodyService[index]
-                                    .statusCheckPerevod ==
-                                "2"
-                            ? Align(
-                                alignment: Alignment.bottomRight,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    pushNewScreen(context,
-                                        pageTransitionAnimation:
-                                            PageTransitionAnimation.cupertino,
-                                        screen: CheckInformationPerevodga(
-                                            serviceName: providerAriza
-                                                .listArizaBodyService[index]
-                                                .serviceName));
-                                  },
-                                  child: Container(
-                                      height: 45,
-                                      decoration: BoxDecoration(
-                                          color: MyColors.appColorBBA(),
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Center(
-                                          child: Text(
-                                        "perevodQaytaAriza".tr(),
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      ))),
-                                ))
-                            : Align(
-                                alignment: Alignment.bottomRight,
-                                child: Container(
-                                    height: 45,
-                                    decoration: BoxDecoration(
-                                        color: MyColors.appColorBBA(),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                        child: Text(
-                                      "arizaKorishda".tr(),
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    )))),
+                        // providerAriza.listArizaBodyService[index]
+                        //             .statusCheckPerevod ==
+                        //         "2"
+                        //     ? Align(
+                        //         alignment: Alignment.bottomRight,
+                        //         child: GestureDetector(
+                        //           onTap: () {
+                        //             pushNewScreen(context,
+                        //                 pageTransitionAnimation:
+                        //                     PageTransitionAnimation.cupertino,
+                        //                 screen: CheckInformationPerevodga(
+                        //                     serviceName: providerAriza
+                        //                         .listArizaBodyService[index]
+                        //                         .serviceName));
+                        //           },
+                        //           child: Container(
+                        //               height: 45,
+                        //               decoration: BoxDecoration(
+                        //                   color: MyColors.appColorBBA(),
+                        //                   borderRadius:
+                        //                       BorderRadius.circular(10)),
+                        //               child: Center(
+                        //                   child: Text(
+                        //                 "perevodQaytaAriza".tr(),
+                        //                 style: const TextStyle(
+                        //                     color: Colors.white,
+                        //                     fontWeight: FontWeight.bold),
+                        //               ))),
+                        //         ))
+                        //     : Align(
+                        //         alignment: Alignment.bottomRight,
+                        //         child: Container(
+                        //             height: 45,
+                        //             decoration: BoxDecoration(
+                        //                 color: MyColors.appColorBBA(),
+                        //                 borderRadius:
+                        //                     BorderRadius.circular(10)),
+                        //             child: Center(
+                        //                 child: Text(
+                        //               "arizaKorishda".tr(),
+                        //               style: const TextStyle(
+                        //                   color: Colors.white,
+                        //                   fontWeight: FontWeight.bold),
+                        //             )))),
                       ],
                     ),
             ],

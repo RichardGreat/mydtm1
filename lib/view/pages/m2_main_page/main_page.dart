@@ -12,7 +12,6 @@ import 'package:mydtm/main.dart';
 import 'package:mydtm/view/pages/m3_home/main_home.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
-import 'package:mydtm/view/pages/m6_profile/main_profile.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -44,7 +43,7 @@ class _MainPagesState extends State<MainPages> {
         // ChooseEdu(funcState:getBoshFunc),
         MainMyStatement(numberParam: "0"),
         const MainMessages(),
-        MainProfile(myFunction: getFunction),
+        // MainProfile(myFunction: getFunction),
       ];
   int index = 0;
   PersistentTabController controller = PersistentTabController(initialIndex: 0);
@@ -222,8 +221,14 @@ class _MainPagesState extends State<MainPages> {
 
   @override
   Widget build(BuildContext context) {
+
     return PersistentTabView(
+
       context,
+      screenTransitionAnimation:const ScreenTransitionAnimation(
+        animateTabTransition: true,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.linear),
       screens: myPages(),
       items: navBarsItems(),
       confineInSafeArea: true,
@@ -290,19 +295,19 @@ List<PersistentBottomNavBarItem> navBarsItems() {
       activeColorSecondary:  MyColors.appColorBBA(),
       inactiveColorPrimary: MyColors.appColorGrey400(),
     ),
-    PersistentBottomNavBarItem(
-      icon: const Icon(
-        Icons.account_circle,
-        size: 36,
-      ),
-      inactiveIcon: const Icon(
-        Icons.account_circle_outlined,
-        size: 32,
-      ),
-      // title: ("Settings"),
-      activeColorPrimary: MyColors.appColorBBA(),
-      activeColorSecondary:  MyColors.appColorBBA(),
-      inactiveColorPrimary: MyColors.appColorGrey400(),
-    ),
+    // PersistentBottomNavBarItem(
+    //   icon: const Icon(
+    //     Icons.account_circle,
+    //     size: 36,
+    //   ),
+    //   inactiveIcon: const Icon(
+    //     Icons.account_circle_outlined,
+    //     size: 32,
+    //   ),
+    //   // title: ("Settings"),
+    //   activeColorPrimary: MyColors.appColorBBA(),
+    //   activeColorSecondary:  MyColors.appColorBBA(),
+    //   inactiveColorPrimary: MyColors.appColorGrey400(),
+    // ),
   ];
 }

@@ -1,20 +1,17 @@
 import 'dart:io';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:connection_notifier/connection_notifier.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:freerasp/freerasp.dart';
 import 'package:hive_flutter/adapters.dart';
-// import 'package:local_auth/local_auth.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
-// import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'dart:async';
 
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-// import 'package:flutter_native_splash/flutter_native_splash.dart';
-// import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
+import 'package:page_transition/page_transition.dart';
 
 
 class MyHttpOverrides extends HttpOverrides {
@@ -177,17 +174,25 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         locale: context.locale,
 
     theme:  ThemeData(
-    colorSchemeSeed:  MyColors.appColorBBA()),
+    colorSchemeSeed:  Colors.white),
         debugShowCheckedModeBanner: false,
-        home: box.get("language") == "1" ||
+        home:
+        AnimatedSplashScreen(
+            duration: 2000,
+            animationDuration: const Duration(milliseconds:  2000),
+            splash: "assets/images/bmba.gif",
+            splashIconSize: 150,
+            nextScreen:   box.get("language") == "1" ||
                 box.get("language") == "2" ||
                 box.get("language") == "3"
-            ?
-        // CheckInformationPerevodga(serviceName: "qwe",)
-        // OldEduAdd()
-             MainPages(homeIdMainpage: "0",)//
-        // TestDownload()
-            : const EnterFirst0(),
+                ?
+            MainPages(homeIdMainpage: "0",)
+                : const EnterFirst0(),
+            splashTransition: SplashTransition.fadeTransition,
+            pageTransitionType: PageTransitionType.fade,
+            backgroundColor: Colors.white)
+
+
       ),
     );
   }

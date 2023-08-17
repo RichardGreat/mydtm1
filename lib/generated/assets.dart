@@ -8,6 +8,7 @@ class Assets {
   static const String imagesIconPerson = 'assets/images/icon_person.png';
   static const String imagesIdCard = 'assets/images/id_card.png';
   static const String imagesKk = 'assets/images/kk.png';
+  static const String imagesLogobba = 'assets/images/logobba.png';
   static const String imagesPassport = 'assets/images/passport.png';
   static const String imagesRu = 'assets/images/ru.png';
   static const String imagesUz = 'assets/images/uz.png';

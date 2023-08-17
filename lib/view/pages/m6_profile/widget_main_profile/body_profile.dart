@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
@@ -39,51 +38,56 @@ Widget bodyProfile(
   return Container(
     height: MediaQuery.of(context).size.height * 1.12,
     margin: const EdgeInsets.only(left: 10, right: 10),
+    color: Colors.white,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.all(10),
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(color: MyColors.appColorWhite()),
-              child: providerProfile.boolHasTokenNoImie
-                  ? Image.asset("assets/images/icon_person.png",
-                      height: 70, fit: BoxFit.fill)
-                  : Image.memory(
-                      base64Decode(box
-                          .get("personImage")
-                          .toString()
-                          .replaceAll("\n", "")
-                          .substring(23)
-                          .trim()),
-                      fit: BoxFit.cover,
-                      height: 90,
+        Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                margin:const EdgeInsets.all(15),
+                padding:const EdgeInsets.all(5),
+                height: 120,
+                width: 100,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(300),
+                  child: providerProfile.boolHasTokenNoImie
+                      ? Image.asset("assets/images/icon_person.png",
+                          height: 80, fit: BoxFit.fill)
+                      : Image.memory(
+                          base64Decode(box
+                              .get("personImage")
+                              .toString()
+                              .replaceAll("\n", "")
+                              .substring(23)
+                              .trim()),
+                          fit: BoxFit.cover,
+                    width: 100,
+                    height: 100,
+                        ),
+                ),
+              ),
+              const SizedBox(height: 5),
+              providerProfile.boolHasTokenNoImie
+                  ? const SizedBox.shrink()
+                  : Text(
+                      providerProfile.dataGetImieInfo.lname +
+                          " " +
+                          providerProfile.dataGetImieInfo.fname +
+                          " " +
+                          providerProfile.dataGetImieInfo.mname,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-            providerProfile.boolHasTokenNoImie
-                ? const SizedBox.shrink()
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MyWidgets.robotoFontText(
-                          text: providerProfile.dataGetImieInfo.lname),
-                      const SizedBox(height: 5),
-                      MyWidgets.robotoFontText(
-                          text: providerProfile.dataGetImieInfo.fname),
-                      const SizedBox(height: 5),
-                      MyWidgets.robotoFontText(
-                          text: providerProfile.dataGetImieInfo.mname),
-                    ],
-                  )
-          ],
+              const SizedBox(height: 10),
+            ],
+          ),
         ),
         Divider(
           color: MyColors.appColorGrey100(),
@@ -359,7 +363,7 @@ Widget bodyProfile(
                 pushNewScreenWithRouteSettings(context,
                     pageTransitionAnimation: PageTransitionAnimation.cupertino,
                     screen: MainPages(homeIdMainpage: "0"),
-                    settings:const RouteSettings(),
+                    settings: const RouteSettings(),
                     withNavBar: false);
               },
               btnOkText: "yes".tr(),
@@ -417,7 +421,8 @@ Widget bodyProfile(
                             //       (route) => false,
                             // );
                             pushNewScreenWithRouteSettings(context,
-                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                pageTransitionAnimation:
+                                    PageTransitionAnimation.cupertino,
                                 screen: EnterFirst(windowIdEnterFirst: "1"),
                                 settings: const RouteSettings(),
                                 withNavBar: false);
