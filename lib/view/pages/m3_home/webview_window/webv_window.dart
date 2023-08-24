@@ -33,6 +33,18 @@ class WebViewWindow extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: Text(modelServiceMainList.serviceName.toString()),
+          backgroundColor: Colors.transparent,
+          flexibleSpace: Container(
+            decoration:  BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.teal,
+                    Colors.teal,
+                    Colors.teal.withOpacity(0.8),]),
+            ),
+          ),
           elevation: 0),
       body: WebViewWidget(controller: controller),
     );

@@ -12,9 +12,9 @@ import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
 import 'package:mydtm/view/pages/m3_home/carousel.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
-import 'package:mydtm/view/pages/m3_home/serch_main.dart';
 import 'package:mydtm/view/pages/m3_home/show_by_category/show_by_category.dart';
 import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
+import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
 import 'package:mydtm/view/pages/m6_profile/main_profile.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -70,7 +70,7 @@ class _MainHomeState extends State<MainHome> {
         await getMessage();
         box.put("welcomeMainHome", "1");
       } else {
-        await getMessage2();
+        await getMessage();
       }
     }
   }
@@ -95,6 +95,13 @@ class _MainHomeState extends State<MainHome> {
                         text: TextSpan(
                           // style: DefaultTextStyle.of(context).style,
                           children: <TextSpan>[
+                            const TextSpan(
+                                text: "Assalomu aleykum !!!\n",
+                                style: TextStyle(
+                                    fontFamily: "Inter-Medium",
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold)),
                             TextSpan(
                                 text: "welcome".tr(),
                                 style: const TextStyle(
@@ -343,7 +350,6 @@ class _MainHomeState extends State<MainHome> {
     return myColors[random.nextInt(9)];
   }
 
-  ///
   /// icon
   List<IconData> icons = [
     FontAwesomeIcons.school,
@@ -361,488 +367,503 @@ class _MainHomeState extends State<MainHome> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => providerMainHome,
-      child: Consumer<ProviderMainHome>(
-        builder: (context, value, child) => Scaffold(
-          backgroundColor: const Color.fromRGBO(48, 192, 192, 0.01),
-          appBar:
-              searchMain(context: context, providerMainHome: providerMainHome),
-          body: SafeArea(
-            child: RefreshIndicator(
-                onRefresh: gerRefresh,
-                child: providerMainHome.boolParseData
-                    ? !providerMainHome.boolErrorHandle
-                        ? NestedScrollView(
-                            floatHeaderSlivers: true,
-                            headerSliverBuilder: (BuildContext context,
-                                bool innerBoxIsScrolled) {
-                              return <Widget>[
-                                // SliverAppBar(
-                                //   automaticallyImplyLeading: false,
-                                //    backgroundColor: MyColors.appColorBBA(),//const Color.fromRGBO(48, 192, 192, 0.01),
-                                //   floating: false,
-                                //   elevation: 0,
-                                //   expandedHeight: 10,
-                                //   flexibleSpace: searchMain(
-                                //       context: context,
-                                //       providerMainHome: providerMainHome),
-                                //   foregroundColor:
-                                //       const Color.fromRGBO(48, 192, 192, 0.04),
-                                //   excludeHeaderSemantics: true,
-                                //
-                                // ),
-                                SliverToBoxAdapter(
-                                  child: carouselMain(
-                                      context: context,
-                                      providerMainHome: providerMainHome,
-                                  service: providerMainHome.listDataServiceList[0].service
-                                  ),
-                                )
-                              ];
-                            },
-                            body: Container(
-                                margin: const EdgeInsets.fromLTRB(10, 2, 10, 8),
-                                child: ListView.builder(
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: providerMainHome
-                                      .listDataServiceList.length,
-                                  itemBuilder: (context, index) =>
-                                      providerMainHome
-                                              .listDataServiceList[index]
-                                              .service
-                                              .isNotEmpty
-                                          ? SizedBox(
-                                              height: 220,
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  const SizedBox(height: 10),
-                                                  SizedBox(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width,
-                                                    height: 1.5,
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                          gradient:
-                                                              LinearGradient(
-                                                                  colors: [
-                                                            Colors.grey.shade300,
-                                                            // Colors.grey,
-                                                            Colors.grey.shade300,
-                                                            Colors.grey.shade100,
-                                                            Colors.grey.shade50,
-                                                          ])),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(height: 15),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        box.get("language") ==
-                                                                "1"
-                                                            ? providerMainHome
-                                                                .listDataServiceList[
-                                                                    index]
-                                                                .categoryName
-                                                            : box.get("language") ==
-                                                                    "2"
-                                                                ? providerMainHome
-                                                                    .listDataServiceList[
-                                                                        index]
-                                                                    .categoryNameQQ
-                                                                : providerMainHome
-                                                                    .listDataServiceList[
-                                                                        index]
-                                                                    .categoryNameRu,
-                                                        style:const TextStyle(
-                                                            color: Colors.black,
-                                                            fontSize: 17,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontFamily:
-                                                                'Roboto-Medium'),
-                                                        maxLines: 3,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        softWrap: true,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      GestureDetector(
-                                                        onTap: () async {
-                                                          if (providerMainHome
-                                                              .listDataServiceList[
-                                                                  index]
-                                                              .service
-                                                              .isNotEmpty) {
-                                                            myViewButton(
-                                                                context:
-                                                                    context,
-                                                                providerMainHome:
-                                                                    providerMainHome,
-                                                                myList: providerMainHome
-                                                                    .listDataServiceList[
-                                                                        index]
-                                                                    .service);
-                                                          }
-                                                        },
-                                                        child: Container(
-                                                          padding:
-                                                              const EdgeInsets.only(
-                                                                  right: 8,
-                                                                  left: 8,
-                                                                  bottom: 5,
-                                                                  top: 5),
-                                                          margin:
-                                                          const    EdgeInsets.only(
-                                                                  right: 10),
-                                                          decoration: BoxDecoration(
-                                                              color:MyColors.appColorBBA(),
-                                                              // Colors.blue
-                                                              //     .withOpacity(
-                                                              //         0.6),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5)),
-                                                          child: MyWidgets
-                                                              .robotoFontText(
-                                                                  text: "all"
-                                                                      .tr(),
-                                                                  textColor:
-                                                                      Colors
-                                                                          .white,
-                                                                  textSize: 15),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  const SizedBox(height: 10),
-                                                  Expanded(
-                                                    child: ListView.builder(
-                                                      scrollDirection:
-                                                          Axis.horizontal,
-                                                      itemCount: providerMainHome
-                                                          .listDataServiceList[
-                                                              index]
-                                                          .service
-                                                          .length,
-                                                      itemBuilder:
-                                                          (context, index2)
-                                                          {
-                                                            return
+        create: (context) => providerMainHome,
+        child: Consumer<ProviderMainHome>(
+          builder: (context, value, child) => Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                  Colors.teal,
+                  Colors.teal.withOpacity(0.4),
+                  Colors.teal.withOpacity(0.06),
+                  Colors.teal.withOpacity(0.05),
+                  Colors.teal.withOpacity(0.001),
+                ])),
+            child:
+            providerMainHome.boolParseData
+                ? !providerMainHome.boolErrorHandle
+                ?
+            Scaffold(
+              // backgroundColor: const Color.fromRGBO(48, 192, 192, 0.01),
+              backgroundColor: Colors.transparent,
+              appBar: AppBar(
+                elevation: 0,
+                // title: Text("bba".tr()),
+                actions: [
+                  GestureDetector(
+                    onTap: () {
+                      pushNewScreen(context, screen: const MainMessages());
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.fromLTRB(0, 8, 14, 0),
+                      child: Icon(
+                        CupertinoIcons.bell_fill,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+                backgroundColor: Colors.transparent,
+                flexibleSpace: Container(
+                  decoration:  BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.teal,
+                          Colors.teal.withOpacity(0.1),
+                          Colors.teal.withOpacity(0.04),]),
+                  ),
+                ),
+              ),
 
-                                                          GestureDetector(
-                                                            onTap: () async {
-                                                              /// go service page
-
-                                                              if (providerMainHome
-                                                                  .listDataServiceList[
-                                                              index]
-                                                                  .service[
-                                                              index2]
-                                                                  .id
-                                                                  .toString() ==
-                                                                  "100000") {
-                                                                pushNewScreen(
-                                                                    context,
-                                                                    screen: WebViewWindow(
-                                                                     modelServiceMainList: providerMainHome
-                                                                         .listDataServiceList[
-                                                                     index]
-                                                                         .service[
-                                                                     index2],
-                                                                    ),
-                                                                    withNavBar: true);
-                                                                // final Uri _url =
-                                                                //     Uri.parse(
-                                                                //         "https://mandat.uzbmb.uz/");
-                                                                // await launchUrl(
-                                                                //   _url,
-                                                                //   mode: LaunchMode
-                                                                //       .inAppWebView,
-                                                                // );
-                                                              } else
-                                                              if (providerMainHome
-                                                                  .listDataServiceList[
-                                                              index]
-                                                                  .service[
-                                                              index2]
-                                                                  .id
-                                                                  .toString().length > 5) {
-                                                                pushNewScreen(
-                                                                    context,
-                                                                    screen: WebViewWindow(
-                                                                      modelServiceMainList: providerMainHome
-                                                                          .listDataServiceList[
-                                                                      index]
-                                                                          .service[
-                                                                      index2],
-                                                                    ),
-                                                                    withNavBar: true);
-                                                              } else {
-                                                                providerMainHome
-                                                                    .goServicePage(
-                                                                  context: context,
-                                                                  serviceMainList:
-                                                                  providerMainHome
-                                                                      .listDataServiceList[
-                                                                  index]
-                                                                      .service[index2],
-                                                                );
-                                                              }
-                                                            },
-                                                            child:
-                                                            // index == 0
-                                                            //     ? Showcase(
-                                                            //         key:
-                                                            //             firstMainHome,
-                                                            //         description:
-                                                            //             "regEducation".tr(),
-                                                            //         child:
-                                                            //             Container(
-                                                            //           height:
-                                                            //               155,
-                                                            //           width:
-                                                            //               125,
-                                                            //           padding:
-                                                            //               const EdgeInsets.all(
-                                                            //                   10),
-                                                            //           margin:
-                                                            //               const EdgeInsets.all(
-                                                            //                   5),
-                                                            //           decoration: BoxDecoration(
-                                                            //               color: MyColors
-                                                            //                   .appColorWhite(),
-                                                            //               boxShadow: [
-                                                            //                 BoxShadow(
-                                                            //                     color: MyColors.appColorGrey400(),
-                                                            //                     spreadRadius: 1,
-                                                            //                     blurRadius: 1)
-                                                            //               ],
-                                                            //               borderRadius:
-                                                            //                   BorderRadius.circular(10)),
-                                                            //           child:
-                                                            //               Column(
-                                                            //             mainAxisAlignment:
-                                                            //                 MainAxisAlignment.spaceBetween,
-                                                            //             crossAxisAlignment:
-                                                            //                 CrossAxisAlignment.center,
-                                                            //             children: [
-                                                            //               const SizedBox(
-                                                            //                   height: 1),
-                                                            //               CachedNetworkImage(
-                                                            //                   height: 40,
-                                                            //                   width: 40,
-                                                            //                   filterQuality: FilterQuality.high,
-                                                            //                   fit: BoxFit.fill,
-                                                            //                   imageUrl: "${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
-                                                            //                   progressIndicatorBuilder: (context, url, downloadProgress) => const CupertinoActivityIndicator(),
-                                                            //                   errorWidget: (context, url, error) =>
-                                                            //                       // Text(url.toString())
-                                                            //                       Image.asset(
-                                                            //                         "assets/images/uzbmb.png",
-                                                            //                       )
-                                                            //                   //
-                                                            //                   //     fit: BoxFit.fill),
-                                                            //                   ),
-                                                            //               Text(
-                                                            //                 box.get("language") == "1"
-                                                            //                     ? providerMainHome.listDataServiceList[index].service[index2].serviceName
-                                                            //                     : box.get("language") == "2"
-                                                            //                         ? providerMainHome.listDataServiceList[index].service[index2].serviceNameQQ
-                                                            //                         : providerMainHome.listDataServiceList[index].service[index2].serviceNameRu,
-                                                            //
-                                                            //                 textAlign:
-                                                            //                     TextAlign.center,
-                                                            //                 overflow:
-                                                            //                     TextOverflow.ellipsis,
-                                                            //                 maxLines:
-                                                            //                     3,
-                                                            //                 // softWrap: true,
-                                                            //                 style:
-                                                            //                     const TextStyle(fontFamily: 'Roboto-Medium'),
-                                                            //               ),
-                                                            //             ],
-                                                            //           ),
-                                                            //         ),
-                                                            //       )
-                                                            //     :
-                                                            Container(
-                                                              height: 200,
-                                                              width: 180,
-                                                              padding:
-                                                              const EdgeInsets
-                                                                  .all(10),
-                                                              margin:
-                                                              const EdgeInsets
-                                                                  .all(5),
+              // searchMain(context: context, providerMainHome: providerMainHome),
+              body: SafeArea(
+                child: RefreshIndicator(
+                    onRefresh: gerRefresh,
+                    child: providerMainHome.boolParseData
+                        ? !providerMainHome.boolErrorHandle
+                            ? NestedScrollView(
+                                floatHeaderSlivers: true,
+                                headerSliverBuilder: (BuildContext context,
+                                    bool innerBoxIsScrolled) {
+                                  return <Widget>[
+                                    // SliverAppBar(
+                                    //   automaticallyImplyLeading: false,
+                                    //    backgroundColor: MyColors.appColorBBA(),//const Color.fromRGBO(48, 192, 192, 0.01),
+                                    //   floating: false,
+                                    //   elevation: 0,
+                                    //   expandedHeight: 10,
+                                    //   flexibleSpace: searchMain(
+                                    //       context: context,
+                                    //       providerMainHome: providerMainHome),
+                                    //   foregroundColor:
+                                    //       const Color.fromRGBO(48, 192, 192, 0.04),
+                                    //   excludeHeaderSemantics: true,
+                                    //
+                                    // ),
+                                    SliverToBoxAdapter(
+                                      child: carouselMain(
+                                          context: context,
+                                          providerMainHome: providerMainHome,
+                                          service: providerMainHome
+                                              .listDataServiceList[0].service),
+                                    )
+                                  ];
+                                },
+                                body: Container(
+                                    margin:
+                                        const EdgeInsets.fromLTRB(10, 2, 10, 8),
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: providerMainHome
+                                          .listDataServiceList.length,
+                                      itemBuilder:
+                                          (context, index) =>
+                                              providerMainHome
+                                                      .listDataServiceList[
+                                                          index]
+                                                      .service
+                                                      .isNotEmpty
+                                                  ? SizedBox(
+                                                      height: 220,
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          const SizedBox(
+                                                              height: 10),
+                                                          SizedBox(
+                                                            width:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                            height: 1.5,
+                                                            child: Container(
                                                               decoration:
-                                                              BoxDecoration(
-
-                                                                  color:
-                                                                  index % 2 == 0
-                                                                      ?
-                                                                  index2 %
-                                                                      2 ==
-                                                                      0
-                                                                      ? const Color
-                                                                      .fromRGBO(
-                                                                      252,
-                                                                      246,
-                                                                      225,
-                                                                      1)
-                                                                      : const Color
-                                                                      .fromRGBO(
-                                                                      232,
-                                                                      247,
-                                                                      244,
-                                                                      1)
-                                                                      :
-                                                                  index2 %
-                                                                      2 !=
-                                                                      0
-                                                                      ? const Color
-                                                                      .fromRGBO(
-                                                                      252,
-                                                                      246,
-                                                                      225,
-                                                                      1)
-                                                                      : const Color
-                                                                      .fromRGBO(
-                                                                      232,
-                                                                      247,
-                                                                      244,
-                                                                      1)
-                                                                  ,
-
-                                                                  // randomColor(),
-                                                                  // boxShadow: [
-                                                                  //   BoxShadow(
-                                                                  //       color: MyColors
-                                                                  //           .appColorGrey400(),
-                                                                  //       spreadRadius:
-                                                                  //           1,
-                                                                  //       blurRadius:
-                                                                  //           1)
-                                                                  // ],
-                                                                  borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                      10)),
-                                                              child: Column(
-                                                                mainAxisAlignment:
+                                                                  BoxDecoration(
+                                                                      gradient:
+                                                                          LinearGradient(
+                                                                              colors: [
+                                                                    Colors.teal
+                                                                        .shade100,
+                                                                    // Colors.grey,
+                                                                    Colors.teal
+                                                                        .shade100,
+                                                                    Colors.teal
+                                                                        .shade100,
+                                                                    Colors
+                                                                        .white,
+                                                                  ])),
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                              height: 15),
+                                                          Row(
+                                                            mainAxisAlignment:
                                                                 MainAxisAlignment
-                                                                    .spaceBetween,
-                                                                crossAxisAlignment:
+                                                                    .center,
+                                                            crossAxisAlignment:
                                                                 CrossAxisAlignment
                                                                     .center,
-                                                                children: [
-                                                                  const SizedBox(
-                                                                      height: 1),
-                                                                  Icon(
-                                                                      randomIcon(),
-                                                                      size: 50,
-                                                                      color: MyColors
-                                                                          .appColorBBA()),
-
-                                                                  /// image
-                                                                  // CachedNetworkImage(
-                                                                  //     height:
-                                                                  //         60,
-                                                                  //     width:
-                                                                  //         60,
-                                                                  //     filterQuality: FilterQuality
-                                                                  //         .high,
-                                                                  //     fit: BoxFit
-                                                                  //         .fill,
-                                                                  //     imageUrl:
-                                                                  //         "${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
-                                                                  //     progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                                                  //         const CupertinoActivityIndicator(),
-                                                                  //     errorWidget: (context, url, error) =>
-                                                                  //         // Text(url.toString())
-                                                                  //         Image.asset(
-                                                                  //           "assets/images/uzbmb.png",
-                                                                  //         )
-                                                                  //     //
-                                                                  //     //     fit: BoxFit.fill),
-                                                                  //     ),
-                                                                  Text(
-                                                                    box.get(
-                                                                        "language") ==
+                                                            children: [
+                                                              Text(
+                                                                box.get("language") ==
                                                                         "1"
-                                                                        ? providerMainHome
+                                                                    ? providerMainHome
                                                                         .listDataServiceList[
-                                                                    index]
-                                                                        .service[
-                                                                    index2]
-                                                                        .serviceName
-                                                                        : box
-                                                                        .get(
-                                                                        "language") ==
-                                                                        "2"
+                                                                            index]
+                                                                        .categoryName
+                                                                    : box.get("language") ==
+                                                                            "2"
                                                                         ? providerMainHome
-                                                                        .listDataServiceList[
-                                                                    index]
-                                                                        .service[
-                                                                    index2]
-                                                                        .serviceNameQQ
+                                                                            .listDataServiceList[
+                                                                                index]
+                                                                            .categoryNameQQ
                                                                         : providerMainHome
-                                                                        .listDataServiceList[index]
-                                                                        .service[index2]
-                                                                        .serviceNameRu,
-
-                                                                    textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                    overflow:
+                                                                            .listDataServiceList[index]
+                                                                            .categoryNameRu,
+                                                                style: const TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        17,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontFamily:
+                                                                        'Roboto-Medium'),
+                                                                maxLines: 3,
+                                                                overflow:
                                                                     TextOverflow
                                                                         .ellipsis,
-                                                                    maxLines: 2,
-                                                                    // softWrap: true,
-                                                                    style: const TextStyle(
-                                                                        fontFamily:
-                                                                        'Roboto-Medium'),
-                                                                  ),
-                                                                ],
+                                                                softWrap: true,
                                                               ),
+                                                            ],
+                                                          ),
+                                                          const SizedBox(
+                                                              height: 10),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
+                                                            children: [
+                                                              GestureDetector(
+                                                                onTap:
+                                                                    () async {
+                                                                  if (providerMainHome
+                                                                      .listDataServiceList[
+                                                                          index]
+                                                                      .service
+                                                                      .isNotEmpty) {
+                                                                    myViewButton(
+                                                                        context:
+                                                                            context,
+                                                                        providerMainHome:
+                                                                            providerMainHome,
+                                                                        myList: providerMainHome
+                                                                            .listDataServiceList[index]
+                                                                            .service);
+                                                                  }
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      right: 8,
+                                                                      left: 8,
+                                                                      bottom: 5,
+                                                                      top: 5),
+                                                                  margin: const EdgeInsets
+                                                                          .only(
+                                                                      right:
+                                                                          10),
+                                                                  decoration: BoxDecoration(
+                                                                      color: MyColors.appColorBBA(),
+                                                                      // Colors.blue
+                                                                      //     .withOpacity(
+                                                                      //         0.6),
+                                                                      borderRadius: BorderRadius.circular(5)),
+                                                                  child: MyWidgets.robotoFontText(
+                                                                      text: "all"
+                                                                          .tr(),
+                                                                      textColor:
+                                                                          Colors
+                                                                              .white,
+                                                                      textSize:
+                                                                          15),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          const SizedBox(
+                                                              height: 10),
+                                                          Expanded(
+                                                            child: ListView
+                                                                .builder(
+                                                              scrollDirection:
+                                                                  Axis.horizontal,
+                                                              itemCount:
+                                                                  providerMainHome
+                                                                      .listDataServiceList[
+                                                                          index]
+                                                                      .service
+                                                                      .length,
+                                                              itemBuilder:
+                                                                  (context,
+                                                                      index2) {
+                                                                return GestureDetector(
+                                                                  onTap:
+                                                                      () async {
+                                                                    /// go service page
+
+                                                                    if (providerMainHome
+                                                                            .listDataServiceList[
+                                                                                index]
+                                                                            .service[
+                                                                                index2]
+                                                                            .id
+                                                                            .toString() ==
+                                                                        "100000") {
+                                                                      pushNewScreen(
+                                                                          context,
+                                                                          screen:
+                                                                              WebViewWindow(
+                                                                            modelServiceMainList:
+                                                                                providerMainHome.listDataServiceList[index].service[index2],
+                                                                          ),
+                                                                          withNavBar:
+                                                                              true);
+                                                                      // final Uri _url =
+                                                                      //     Uri.parse(
+                                                                      //         "https://mandat.uzbmb.uz/");
+                                                                      // await launchUrl(
+                                                                      //   _url,
+                                                                      //   mode: LaunchMode
+                                                                      //       .inAppWebView,
+                                                                      // );
+                                                                    } else if (providerMainHome
+                                                                            .listDataServiceList[index]
+                                                                            .service[index2]
+                                                                            .id
+                                                                            .toString()
+                                                                            .length >
+                                                                        5) {
+                                                                      pushNewScreen(
+                                                                          context,
+                                                                          screen:
+                                                                              WebViewWindow(
+                                                                            modelServiceMainList:
+                                                                                providerMainHome.listDataServiceList[index].service[index2],
+                                                                          ),
+                                                                          withNavBar:
+                                                                              true);
+                                                                    } else {
+                                                                      providerMainHome
+                                                                          .goServicePage(
+                                                                        context:
+                                                                            context,
+                                                                        serviceMainList: providerMainHome
+                                                                            .listDataServiceList[index]
+                                                                            .service[index2],
+                                                                      );
+                                                                    }
+                                                                  },
+                                                                  child:
+                                                                      // index == 0
+                                                                      //     ? Showcase(
+                                                                      //         key:
+                                                                      //             firstMainHome,
+                                                                      //         description:
+                                                                      //             "regEducation".tr(),
+                                                                      //         child:
+                                                                      //             Container(
+                                                                      //           height:
+                                                                      //               155,
+                                                                      //           width:
+                                                                      //               125,
+                                                                      //           padding:
+                                                                      //               const EdgeInsets.all(
+                                                                      //                   10),
+                                                                      //           margin:
+                                                                      //               const EdgeInsets.all(
+                                                                      //                   5),
+                                                                      //           decoration: BoxDecoration(
+                                                                      //               color: MyColors
+                                                                      //                   .appColorWhite(),
+                                                                      //               boxShadow: [
+                                                                      //                 BoxShadow(
+                                                                      //                     color: MyColors.appColorGrey400(),
+                                                                      //                     spreadRadius: 1,
+                                                                      //                     blurRadius: 1)
+                                                                      //               ],
+                                                                      //               borderRadius:
+                                                                      //                   BorderRadius.circular(10)),
+                                                                      //           child:
+                                                                      //               Column(
+                                                                      //             mainAxisAlignment:
+                                                                      //                 MainAxisAlignment.spaceBetween,
+                                                                      //             crossAxisAlignment:
+                                                                      //                 CrossAxisAlignment.center,
+                                                                      //             children: [
+                                                                      //               const SizedBox(
+                                                                      //                   height: 1),
+                                                                      //               CachedNetworkImage(
+                                                                      //                   height: 40,
+                                                                      //                   width: 40,
+                                                                      //                   filterQuality: FilterQuality.high,
+                                                                      //                   fit: BoxFit.fill,
+                                                                      //                   imageUrl: "${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
+                                                                      //                   progressIndicatorBuilder: (context, url, downloadProgress) => const CupertinoActivityIndicator(),
+                                                                      //                   errorWidget: (context, url, error) =>
+                                                                      //                       // Text(url.toString())
+                                                                      //                       Image.asset(
+                                                                      //                         "assets/images/uzbmb.png",
+                                                                      //                       )
+                                                                      //                   //
+                                                                      //                   //     fit: BoxFit.fill),
+                                                                      //                   ),
+                                                                      //               Text(
+                                                                      //                 box.get("language") == "1"
+                                                                      //                     ? providerMainHome.listDataServiceList[index].service[index2].serviceName
+                                                                      //                     : box.get("language") == "2"
+                                                                      //                         ? providerMainHome.listDataServiceList[index].service[index2].serviceNameQQ
+                                                                      //                         : providerMainHome.listDataServiceList[index].service[index2].serviceNameRu,
+                                                                      //
+                                                                      //                 textAlign:
+                                                                      //                     TextAlign.center,
+                                                                      //                 overflow:
+                                                                      //                     TextOverflow.ellipsis,
+                                                                      //                 maxLines:
+                                                                      //                     3,
+                                                                      //                 // softWrap: true,
+                                                                      //                 style:
+                                                                      //                     const TextStyle(fontFamily: 'Roboto-Medium'),
+                                                                      //               ),
+                                                                      //             ],
+                                                                      //           ),
+                                                                      //         ),
+                                                                      //       )
+                                                                      //     :
+                                                                      Container(
+                                                                    height: 200,
+                                                                    width: 180,
+                                                                    padding:
+                                                                        const EdgeInsets.all(
+                                                                            10),
+                                                                    margin: const EdgeInsets
+                                                                        .all(5),
+                                                                    decoration: BoxDecoration(
+                                                                        color: index % 2 == 0
+                                                                            ? index2 % 2 == 0
+                                                                                ? const Color.fromRGBO(252, 246, 225, 1)
+                                                                                : const Color.fromRGBO(232, 247, 244, 1)
+                                                                            : index2 % 2 != 0
+                                                                                ? const Color.fromRGBO(252, 246, 225, 1)
+                                                                                : const Color.fromRGBO(232, 247, 244, 1),
+
+                                                                        // randomColor(),
+                                                                        // boxShadow: [
+                                                                        //   BoxShadow(
+                                                                        //       color: MyColors
+                                                                        //           .appColorGrey400(),
+                                                                        //       spreadRadius:
+                                                                        //           1,
+                                                                        //       blurRadius:
+                                                                        //           1)
+                                                                        // ],
+                                                                        borderRadius: BorderRadius.circular(10)),
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        const SizedBox(
+                                                                            height:
+                                                                                1),
+                                                                        Icon(
+                                                                            randomIcon(),
+                                                                            size:
+                                                                                50,
+                                                                            color:
+                                                                                MyColors.appColorBBA()),
+
+                                                                        /// image
+                                                                        // CachedNetworkImage(
+                                                                        //     height:
+                                                                        //         60,
+                                                                        //     width:
+                                                                        //         60,
+                                                                        //     filterQuality: FilterQuality
+                                                                        //         .high,
+                                                                        //     fit: BoxFit
+                                                                        //         .fill,
+                                                                        //     imageUrl:
+                                                                        //         "${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
+                                                                        //     progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                                                        //         const CupertinoActivityIndicator(),
+                                                                        //     errorWidget: (context, url, error) =>
+                                                                        //         // Text(url.toString())
+                                                                        //         Image.asset(
+                                                                        //           "assets/images/uzbmb.png",
+                                                                        //         )
+                                                                        //     //
+                                                                        //     //     fit: BoxFit.fill),
+                                                                        //     ),
+                                                                        Text(
+                                                                          box.get("language") == "1"
+                                                                              ? providerMainHome.listDataServiceList[index].service[index2].serviceName
+                                                                              : box.get("language") == "2"
+                                                                                  ? providerMainHome.listDataServiceList[index].service[index2].serviceNameQQ
+                                                                                  : providerMainHome.listDataServiceList[index].service[index2].serviceNameRu,
+
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          overflow:
+                                                                              TextOverflow.ellipsis,
+                                                                          maxLines:
+                                                                              2,
+                                                                          // softWrap: true,
+                                                                          style:
+                                                                              const TextStyle(fontFamily: 'Roboto-Medium'),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
                                                             ),
-                                                          ) ;},
-                                                    ),
-                                                  )
-                                                ],
-                                              ))
-                                          : const SizedBox.shrink(),
-                                )),
-                          )
-                        : const Center(
-                            child: SizedBox.shrink(),
-                          )
-                    : const Center(child: CupertinoActivityIndicator())
-                // bodyMainHome(context: context, providerMainHome: providerMainHome),
-                ),
+                                                          )
+                                                        ],
+                                                      ))
+                                                  : const SizedBox.shrink(),
+                                    )),
+                              )
+                            : const Center(
+                                child: SizedBox.shrink(),
+                              )
+                        : const Center(child: CupertinoActivityIndicator())
+                    // bodyMainHome(context: context, providerMainHome: providerMainHome),
+                    ),
+              ),
+              drawer: Drawer(
+                child: MainProfile(myFunction: gerRefresh),
+              ),
+            )
+            :const Scaffold(body: Center(child: CupertinoActivityIndicator()),)
+                :const Scaffold(body: Center(child: CupertinoActivityIndicator()))
           ),
-          drawer: Drawer(
-            child: MainProfile(myFunction:gerRefresh),
-          ),
-        ),
-      ),
-    );
+        ));
   }
 }

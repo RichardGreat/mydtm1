@@ -90,8 +90,8 @@ Widget bodyProfile(
           ),
         ),
         Divider(
-          color: MyColors.appColorGrey100(),
-          thickness: 3,
+          color: Colors.teal.withOpacity(0.2),
+          thickness: 2,
         ),
         MyWidgets.robotoFontText(
             text: "account".tr(),
@@ -194,7 +194,7 @@ Widget bodyProfile(
           trailing: Icon(
             Icons.arrow_forward_ios_rounded,
             size: 16,
-            color: MyColors.appColorGrey400(),
+            color: Colors.teal.shade800,
           ),
         ),
         ListTile(
@@ -221,7 +221,7 @@ Widget bodyProfile(
           trailing: Icon(
             Icons.arrow_forward_ios_rounded,
             size: 16,
-            color: MyColors.appColorGrey400(),
+            color: Colors.teal.shade800
           ),
         ),
         ListTile(
@@ -248,7 +248,7 @@ Widget bodyProfile(
           trailing: Icon(
             Icons.arrow_forward_ios_rounded,
             size: 16,
-            color: MyColors.appColorGrey400(),
+            color: Colors.teal.shade800
           ),
         ),
         ListTile(
@@ -277,11 +277,12 @@ Widget bodyProfile(
           trailing: Icon(
             Icons.arrow_forward_ios_rounded,
             size: 16,
-            color: MyColors.appColorGrey400(),
+            color: Colors.teal.shade800
           ),
         ),
-        const Divider(
-          thickness: 0.4,
+         Divider(
+          color: Colors.teal.withOpacity(0.2),
+          thickness: 1,
         ),
         ListTile(
           onTap: () {
@@ -306,7 +307,7 @@ Widget bodyProfile(
           trailing: Icon(
             Icons.arrow_forward_ios_rounded,
             size: 16,
-            color: MyColors.appColorGrey400(),
+            color: Colors.teal.shade800
           ),
         ),
         const SizedBox(
@@ -329,7 +330,7 @@ Widget bodyProfile(
           trailing: Icon(
             Icons.arrow_forward_ios_rounded,
             size: 16,
-            color: MyColors.appColorGrey400(),
+            color: Colors.teal.shade800
           ),
         ),
         ListTile(
@@ -382,7 +383,7 @@ Widget bodyProfile(
           trailing: Icon(
             Icons.arrow_forward_ios_rounded,
             size: 16,
-            color: MyColors.appColorGrey400(),
+            color: Colors.teal.shade800
           ),
         ),
         box.get("token").toString().length > 30
@@ -444,12 +445,12 @@ Widget bodyProfile(
                 trailing: Icon(
                   Icons.arrow_forward_ios_rounded,
                   size: 16,
-                  color: MyColors.appColorGrey400(),
+                  color: Colors.teal.shade800
                 ),
               )
             : const SizedBox.shrink(),
         Divider(
-          color: MyColors.appColorGrey100(),
+          color: Colors.teal.withOpacity(0.2),
           thickness: 1,
         ),
       ],

@@ -22,7 +22,7 @@ Widget infoAriza(
               BoxShadow(
                   spreadRadius: 1,
                   blurRadius: 1,
-                  color: MyColors.appColorGrey400())
+                  color: Colors.teal.withOpacity(0.5))
             ]),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

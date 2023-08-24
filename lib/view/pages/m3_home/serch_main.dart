@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -6,13 +8,24 @@ import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 PreferredSizeWidget searchMain(
     {required BuildContext context,
     required ProviderMainHome providerMainHome}) {
   return AppBar(
-    backgroundColor: MyColors.appColorBBA(),
+    // backgroundColor: MyColors.appColorBBA(),
+    backgroundColor: Colors.transparent,
+    flexibleSpace: Container(
+      decoration:  BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.teal,
+              Colors.teal,
+              Colors.teal.withOpacity(0.8),]),
+      ),
+    ),
     elevation: 0,
     centerTitle: true,
     title: GestureDetector(
@@ -71,6 +84,7 @@ mainSearchBottomSheet(
                     child: TextFormField(
                       controller: providerMainHome.textEditController,
                       onChanged: (val) {
+                        log("##1");
                         providerMainHome.searchServicesItem(searchValue: val);
                         state(() {});
                       },
@@ -131,12 +145,16 @@ mainSearchBottomSheet(
                     child: GestureDetector(
                       onTap: () async {
                         Navigator.of(context).pop();
-
-                        if (providerMainHome
-                            .listDataServiceListTemp[index].id
-                                .toString().length > 5) {
-                          pushNewScreen(context, screen: WebViewWindow(modelServiceMainList: providerMainHome
-                              .listDataServiceListTemp[index]));
+                        log(providerMainHome.listDataServiceListTemp[index].id
+                            .toString());
+                        if (providerMainHome.listDataServiceListTemp[index].id
+                                .toString()
+                                .length >
+                            5) {
+                          pushNewScreen(context,
+                              screen: WebViewWindow(
+                                  modelServiceMainList: providerMainHome
+                                      .listDataServiceListTemp[index]));
 
                           // final Uri _url =
                           //     Uri.parse("https://mandat.uzbmb.uz/");

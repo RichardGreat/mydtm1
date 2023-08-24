@@ -168,8 +168,8 @@ class ProviderMainHome extends ChangeNotifier {
 
   /// slider qo'shimcha
   NetworkGetSlider networkGetSlider = NetworkGetSlider();
-   List<ModelGetSlider> listModelGetSlider = [];
-   List<Uri> listUri = [];
+  List<ModelGetSlider> listModelGetSlider = [];
+  List<Uri> listUri = [];
 
   Future getDateService({required BuildContext context}) async {
     try {
@@ -183,7 +183,7 @@ class ProviderMainHome extends ChangeNotifier {
         // log(box.get("numberApi"));
         // log("####");
       }
-      try{
+      try {
         String getSlider = await networkGetSlider.getSlider();
         log("@@@");
         log(jsonDecode(getSlider).toString());
@@ -192,8 +192,7 @@ class ProviderMainHome extends ChangeNotifier {
             .toList();
         listModelGetSlider.sort((a, b) => a.ves.compareTo(b.ves));
         notifyListeners();
-
-    }catch(e){
+      } catch (e) {
         log(e.toString());
       }
 
@@ -201,41 +200,140 @@ class ProviderMainHome extends ChangeNotifier {
           ModelServiceList.fromJson(jsonDecode(box.get("dataServiceList")));
       listDataServiceList.addAll(modelServiceList.data);
       for (int i = 0; i < listModelGetSlider.length; i++) {
-        listModelGetSlider[i].status.toString() == "1"?
-        listDataServiceList[0].service.add(
-              ServiceMainList(
-                  id: (int.parse(listModelGetSlider[i].id.toString())*100000).toString(),
-                  serviceName: listModelGetSlider[i].description.toString(),
-                  serviceText: listModelGetSlider[i].description.toString(),
-                  serviceTextRu: listModelGetSlider[i].description.toString(),
-                  serviceTextQQ: listModelGetSlider[i].description.toString(),
-                  serviceNameRu: listModelGetSlider[i].description.toString(),
-                  serviceNameQQ: listModelGetSlider[i].description.toString(),
-                  status: listModelGetSlider[i].status.toString() == "1"
-                      ? true
-                      : false,
-                  mobilIcon: listModelGetSlider[i].imageUrl.toString(),
-                  link: listModelGetSlider[i].link.toString(),
-                  icon: listModelGetSlider[i].imageUrl.toString(),
-                  catId: "",
-                  cod: "",
-                  sortId: listModelGetSlider[i].ves.toString(),
-                  createdAt: "",
-                  updatedAt: "",
-                  deleted: "0"),
-            ):{};
+        listModelGetSlider[i].status.toString() == "1"
+            ? listDataServiceList[0].service.add(
+                  ServiceMainList(
+                      id: (int.parse(listModelGetSlider[i].id.toString()) *
+                              100000)
+                          .toString(),
+                      serviceName: listModelGetSlider[i].description.toString(),
+                      serviceText: listModelGetSlider[i].description.toString(),
+                      serviceTextRu:
+                          listModelGetSlider[i].description.toString(),
+                      serviceTextQQ:
+                          listModelGetSlider[i].description.toString(),
+                      serviceNameRu:
+                          listModelGetSlider[i].description.toString(),
+                      serviceNameQQ:
+                          listModelGetSlider[i].description.toString(),
+                      status: listModelGetSlider[i].status.toString() == "1"
+                          ? true
+                          : false,
+                      mobilIcon: listModelGetSlider[i].imageUrl.toString(),
+                      link: listModelGetSlider[i].link.toString(),
+                      icon: listModelGetSlider[i].imageUrl.toString(),
+                      catId: "",
+                      cod: "",
+                      sortId: listModelGetSlider[i].ves.toString(),
+                      createdAt: "",
+                      updatedAt: "",
+                      deleted: "0"),
+                )
+            : {};
       }
+      listDataServiceList.add(DataServiceList(
+          id: "999",
+          categoryName: "Davlat xizmatlari (my.gov.uz)",
+          categoryNameRu: "Государственные услуги (my.gov.uz)",
+          categoryNameQQ: "Gosudarstvennie uslugi (my.gov. uz)",
+          service: [
+            ServiceMainList(
+                id: "8000000",
+                serviceName:
+                    "Oliy ta'lim muassasalarining bakalavriat ta'lim yo'nalishilariga qabul qilish bo'yicha test sinovlarini o'tkazish",
+                serviceText:
+                    "Oliy ta'lim muassasalarining bakalavriat ta'lim yo'nalishilariga qabul qilish bo'yicha test sinovlarini o'tkazish",
+                serviceTextRu:
+                    "Oliy ta'lim muassasalarining bakalavriat ta'lim yo'nalishilariga qabul qilish bo'yicha test sinovlarini o'tkazish",
+                serviceTextQQ:
+                    "Oliy ta'lim muassasalarining bakalavriat ta'lim yo'nalishilariga qabul qilish bo'yicha test sinovlarini o'tkazish",
+                serviceNameRu:
+                    "Oliy ta'lim muassasalarining bakalavriat ta'lim yo'nalishilariga qabul qilish bo'yicha test sinovlarini o'tkazish",
+                serviceNameQQ:
+                    "Oliy ta'lim muassasalarining bakalavriat ta'lim yo'nalishilariga qabul qilish bo'yicha test sinovlarini o'tkazish",
+                status: true,
+
+                mobilIcon: "mobilIcon",
+                link: "https://my.gov.uz/oz/service/259",
+                icon: "",
+                catId: "2023",
+                cod: "1",
+                sortId: "1",
+                createdAt: "2023",
+                updatedAt: "2023",
+                deleted: "0"),
+            ServiceMainList(
+                id: "8000001",
+                serviceName: "Chet tilini bilish darajasini aniqlash",
+                serviceText: "Chet tilini bilish darajasini aniqlash",
+                serviceTextRu: "Chet tilini bilish darajasini aniqlash",
+                serviceTextQQ: "Chet tilini bilish darajasini aniqlash",
+                serviceNameRu: "Chet tilini bilish darajasini aniqlash",
+                serviceNameQQ: "Chet tilini bilish darajasini aniqlash",
+                status: true,
+                mobilIcon: "",
+                link: "https://my.gov.uz/oz/service/559",
+                icon: "",
+                catId: "2023",
+                cod: "2",
+                sortId: "2",
+                createdAt: "2023",
+                updatedAt: "2023",
+                deleted: "0"),
+            ServiceMainList(
+                id: "8000002",
+                serviceName:
+                    "Xorijiy davlatda ta'lim olganlik to'g'risidagi hujjatni tan olish va nostrifikatsiyalash(ekvivalentligini qayd etish)",
+                serviceText:
+                    "Xorijiy davlatda ta'lim olganlik to'g'risidagi hujjatni tan olish va nostrifikatsiyalash(ekvivalentligini qayd etish)",
+                serviceTextRu:
+                    "Xorijiy davlatda ta'lim olganlik to'g'risidagi hujjatni tan olish va nostrifikatsiyalash(ekvivalentligini qayd etish)",
+                serviceTextQQ:
+                    "Xorijiy davlatda ta'lim olganlik to'g'risidagi hujjatni tan olish va nostrifikatsiyalash(ekvivalentligini qayd etish)",
+                serviceNameRu:
+                    "Xorijiy davlatda ta'lim olganlik to'g'risidagi hujjatni tan olish va nostrifikatsiyalash(ekvivalentligini qayd etish)",
+                serviceNameQQ:
+                    "Xorijiy davlatda ta'lim olganlik to'g'risidagi hujjatni tan olish va nostrifikatsiyalash(ekvivalentligini qayd etish)",
+                status: true,
+                mobilIcon: "",
+                link: "https://my.gov.uz/oz/service/210",
+                icon: "",
+                catId: "2023",
+                cod: "3",
+                sortId: "3",
+                createdAt: "2023",
+                updatedAt: "2023",
+                deleted: "0"),
+            ServiceMainList(
+                id: "8000003",
+                serviceName:
+                    "Yuridik texnikumlarga kirish test sinovlarini o'tkazish davlat xizmati",
+                serviceText:
+                    "Yuridik texnikumlarga kirish test sinovlarini o'tkazish davlat xizmati",
+                serviceTextRu:
+                    "Yuridik texnikumlarga kirish test sinovlarini o'tkazish davlat xizmati",
+                serviceTextQQ:
+                    "Yuridik texnikumlarga kirish test sinovlarini o'tkazish davlat xizmati",
+                serviceNameRu:
+                    "Yuridik texnikumlarga kirish test sinovlarini o'tkazish davlat xizmati",
+                serviceNameQQ:
+                    "Yuridik texnikumlarga kirish test sinovlarini o'tkazish davlat xizmati",
+                status: true,
+                mobilIcon: "",
+                link: "https://my.gov.uz/oz/service/493",
+                icon: "",
+                catId: "2023",
+                cod: "4",
+                sortId: "4",
+                createdAt: "2023",
+                updatedAt: "2023",
+                deleted: "0"),
+          ]));
       listUri.clear();
       for (int i = 0; i < listDataServiceList[0].service.length; i++) {
-
-        // if(listDataServiceList[0].service[i].id.toString().length > 5) {
-          listUri.add(Uri.parse(listDataServiceList[0].service[i].link));
-          // log("###message");
-          // log(listDataServiceList[0].service[i].link.toString());
-        // }else{
-        //
-        //}
+        listUri.add(Uri.parse(listDataServiceList[0].service[i].link));
       }
+
       listDataServiceListTemp.clear();
       listDataServiceListTemp2.clear();
 

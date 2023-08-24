@@ -11,6 +11,7 @@ import 'package:mydtm/data/model_parse/m5_model/model_news.dart';
 class ProviderDtmNews extends ChangeNotifier {
   late ModelDtmNews modelDtmNews;
   List<ModelDtmNews> modelDtmNews2 = [];
+  List<ModelDtmNews> modelDtmNews3Temp = [];
   bool boolDtmNews = false;
   var box = Hive.box("online");
   String langNames="";
@@ -19,11 +20,10 @@ class ProviderDtmNews extends ChangeNotifier {
       boolDtmNews = false;
       getLang(); /// get local lang
       String dataNews = await NetworkDtmNews.getCheckDownloads(langName: langNames.isEmpty ?"uz": langNames);
-      log("dataNews");
-      log(dataNews);
       modelDtmNews2 = (jsonDecode(dataNews) as List).
       map((e)=>ModelDtmNews.fromJson(e)).toList();
-      // modelDtmNews2.sort((b,a) => a.createdDate.compareTo(b.createdDate));
+      modelDtmNews3Temp.addAll(modelDtmNews2);
+      modelDtmNews3Temp.sort((b,a) => a.views.compareTo(b.views));
       boolDtmNews = true;
       notifyListeners();
     } catch (e) {

@@ -30,7 +30,7 @@ Widget bodyAriza1(
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-              const Divider(),
+               Divider(color: Colors.teal.withOpacity(0.7),),
               const SizedBox(height: 10),
 
               /// ID RAQAM
@@ -465,7 +465,7 @@ Widget bodyAriza1(
             ],
           ),
           const SizedBox(height: 20),
-          const Divider(),
+           Divider(color: Colors.teal.withOpacity(0.7)),
         ],
       ),
     ),

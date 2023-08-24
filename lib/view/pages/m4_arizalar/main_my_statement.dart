@@ -48,21 +48,33 @@ class _MainMyStatementState extends State<MainMyStatement> {
     return true;
     },
     child: Scaffold(
-      backgroundColor: MyColors.appColorWhite(),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         iconTheme: IconThemeData(color: MyColors.appColorBlack()),
-        backgroundColor: MyColors.appColorWhite(),
+        // backgroundColor: MyColors.appColorBBA(),
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration:  BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.teal,
+                  Colors.teal,
+                  Colors.teal.withOpacity(0.8),]),
+          ),
+        ),
          elevation: 0,
          title:
          box.get("token").toString().length > 30?
           MyWidgets.robotoFontText(
-              text: "applications".tr(), textSize: 24):
+              text: "applications".tr(), textSize: 24, textColor: Colors.white):
       const  SizedBox.shrink(),
         actions: [Padding(
           padding: const EdgeInsets.only(right: 15),
           child: IconButton(onPressed: (){
             getAriza();
-          }, icon: const Icon(Icons.refresh)),
+          }, icon: const Icon(Icons.refresh, color: Colors.white,)),
         )],
       ),
       body:
@@ -70,7 +82,7 @@ class _MainMyStatementState extends State<MainMyStatement> {
           ? providerAriza.boolQaydVaraqaDownloadNot
           ? notInfoPerson(context: context, providerAriza: providerAriza):
       SafeArea(child: bodyAriza1(context: context, providerAriza: providerAriza)):MyWidgets.loaderDownload(context: context),
-      
+
     ),),
     ),);
   }

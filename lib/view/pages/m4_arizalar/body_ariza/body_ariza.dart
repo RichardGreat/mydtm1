@@ -246,7 +246,7 @@ class _ArizaEnterState extends State<ArizaEnter> {
           title:
           box.get("token").toString().length > 30?
           MyWidgets.robotoFontText(text: "otmQabul".tr(), textSize: 22)
-              :SizedBox.shrink(),
+              :const SizedBox.shrink(),
           backgroundColor: MyColors.appColorWhite(),
           iconTheme: IconThemeData(color: MyColors.appColorBlack())),
       body: SafeArea(

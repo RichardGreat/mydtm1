@@ -292,5 +292,12 @@
   "note": "Izoh",
   "perevod1": "O‘qishni ko‘chirish (xorijiy va nodavlat)",
   "arizaKorishda": "Ko'rib chiqish uchun qabul qilingan",
-  "perevodQaytaAriza": "Qayta ariza topshirish"
+  "perevodQaytaAriza": "Qayta ariza topshirish",
+  "last": "Oxirgi",
+  "mostSee": "Eng ko'p ko'rilgan",
+  "checkCertificate": "Sertifikat tekshirish",
+  "bba": "BBA",
+  "workSoon": "Xizmat yaqin vaqtda ishga tushadi"
+
+
 }
