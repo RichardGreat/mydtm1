@@ -7,6 +7,7 @@ import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 Widget bodyAriza1(
     {required BuildContext context, required ProviderAriza providerAriza}) {
@@ -77,6 +78,7 @@ Widget bodyAriza1(
                       textSize: 14),
                 ],
               ),
+
               const SizedBox(height: 15),
               providerAriza.listArizaBodyService[index].serviceName ==
                       "perevod1".tr()
@@ -205,6 +207,12 @@ Widget bodyAriza1(
                                         ),
                                 ],
                               ),
+                              QrImageView(
+                                data: providerAriza.listArizaBodyService[index].invoice
+                                    .toString(),
+                                version: QrVersions.auto,
+                                size: 150.0,
+                              ),
                               // const SizedBox(height: 5),
                               // MyWidgets.robotoFontText(
                               //     text: "editEdu".tr(),
@@ -220,7 +228,7 @@ Widget bodyAriza1(
                       ? const SizedBox.shrink()
                       : providerAriza.listArizaBodyService[index]
                                   .statusCheckPerevod
-                                  .toString() ==
+                                  .toString() !=
                               "1"
                           ? GestureDetector(
                               onTap: () {
@@ -338,7 +346,20 @@ Widget bodyAriza1(
                               ),
                             )
                           : const SizedBox.shrink(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
 
+                  QrImageView(
+                    data: providerAriza
+                        .listArizaBodyService[index].invoice
+                        .toString(),
+                    version: QrVersions.auto,
+                    size: 150.0,
+                  ),
+                ],
+              ),
               providerAriza.listArizaBodyService[index].serviceName !=
                       "perevod1".tr()
                   ? Align(

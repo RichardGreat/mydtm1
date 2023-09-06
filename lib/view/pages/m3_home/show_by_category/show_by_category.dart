@@ -5,6 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
+import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
@@ -81,34 +82,31 @@ myViewButton(
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).pop();
-
-                          pushNewScreen(
-                            context,
-                            screen: ShowCaseWidget(
-                              builder: Builder(
-                                  builder: (context) => ShowCaseWidget(
-                                        builder: Builder(
-                                          builder: (context) => ServicePage(
-                                              serviceMainList: myList[index]),
-                                        ),
-                                      )),
-                            ),
-
-                            withNavBar: true,
-                            // OPTIONAL VALUE. True by default.
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                          );
-
-                          // Navigator.push(
-                          //     context,
-                          //     CupertinoPageRoute(
-                          //       builder: (context) => ServicePage(
-                          //           status: myList[index].status,
-                          //           serviceId: myList[index].id,
-                          //           category: myList[index].category,
-                          //           categoryName: myList[index].name),
-                          //     ));
+                          print(myList[index].id.toString());
+                          if (myList[index].id.toString().length > 5) {
+                            pushNewScreen(context,
+                                screen: WebViewWindow(
+                                  modelServiceMainList:myList[index],
+                                ),
+                                withNavBar: true);
+                          }else {
+                            pushNewScreen(
+                              context,
+                              screen: ShowCaseWidget(
+                                builder: Builder(
+                                    builder: (context) => ShowCaseWidget(
+                                          builder: Builder(
+                                            builder: (context) => ServicePage(
+                                                serviceMainList: myList[index]),
+                                          ),
+                                        )),
+                              ),
+                              withNavBar: true,
+                              // OPTIONAL VALUE. True by default.
+                              pageTransitionAnimation:
+                                  PageTransitionAnimation.cupertino,
+                            );
+                          }
                         },
                         child: Container(
                           width: 80,

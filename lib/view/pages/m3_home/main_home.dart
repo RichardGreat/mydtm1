@@ -95,13 +95,14 @@ class _MainHomeState extends State<MainHome> {
                         text: TextSpan(
                           // style: DefaultTextStyle.of(context).style,
                           children: <TextSpan>[
-                            const TextSpan(
-                                text: "Assalomu aleykum !!!\n",
-                                style: TextStyle(
-                                    fontFamily: "Inter-Medium",
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold)),
+                            // const TextSpan(
+                                // text: "Assalomu aleykum !!!\n",
+                                // style: TextStyle(
+                                //     fontFamily: "Inter-Medium",
+                                //     color: Colors.black,
+                                //     fontSize: 16,
+                                //     fontWeight: FontWeight.bold)
+                            // ),
                             TextSpan(
                                 text: "welcome".tr(),
                                 style: const TextStyle(

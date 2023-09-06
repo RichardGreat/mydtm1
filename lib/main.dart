@@ -180,8 +180,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         debugShowCheckedModeBanner: false,
         home:
         // AnimatedSplashScreen(
-        //     duration: 2900,
-        //     animationDuration: const Duration(milliseconds:  2900),
+        //     duration: 2800,
+        //     animationDuration: const Duration(milliseconds:  2800),
         //     splash: "assets/images/bmba.gif",
         //     splashIconSize: 150,
         //     nextScreen:
