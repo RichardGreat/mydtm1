@@ -1,19 +1,15 @@
 // ignore_for_file: must_be_immutable
-
 import 'dart:io';
-
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/main.dart';
-import 'package:mydtm/view/pages/check_sertificate/check_cert/check_cert.dart';
-import 'package:mydtm/view/pages/check_sertificate/check_sertificats.dart';
+import 'package:mydtm/view/pages/check_certificate/check_cert/check_cert.dart';
+import 'package:mydtm/view/pages/check_certificate/check_sertificats.dart';
 import 'package:mydtm/view/pages/m3_home/main_home.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
-import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -45,7 +41,7 @@ class _MainPagesState extends State<MainPages> {
         // ChooseEdu(funcState:getBoshFunc),
         MainMyStatement(numberParam: "0"),
         const CheckInfoCertificate(),
-        CheckCertificate()
+        const CheckCertificate()
         // MainProfile(myFunction: getFunction),
       ];
   int index = 0;
@@ -187,7 +183,6 @@ class _MainPagesState extends State<MainPages> {
     });
   }
 
-  //
   // final LocalAuthentication _auth = LocalAuthentication();
   //
   // Future<bool> hasEnrolledBiometrics() async {

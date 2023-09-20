@@ -28,7 +28,7 @@ Widget inputPassportInfo(
           // modelSheetPassportIdCard
           GestureDetector(
             onTap: (){
-              modelSheetPassportIdCard(context: context, providerPersonInfo: providerPersonInfo);
+              modelSheetPassportIdCard(context: context,);
             },
             child: MyWidgets.robotoFontText(
                 text: "howToKnow".tr(),

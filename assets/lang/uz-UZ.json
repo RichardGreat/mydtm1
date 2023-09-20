@@ -297,7 +297,8 @@
   "mostSee": "Eng ko'p ko'rilgan",
   "checkCertificate": "Sertifikat tekshirish",
   "bba": "BBA",
-  "workSoon": "Xizmat yaqin vaqtda ishga tushadi"
+  "workSoon": "Xizmat yaqin vaqtda ishga tushadi",
+  "noCertificate": "Sizda ayni vaqtda Bilim va malakalarni baholash agentligi tomonidan berilgan sertifikat mavjud emas"
 
 
 }

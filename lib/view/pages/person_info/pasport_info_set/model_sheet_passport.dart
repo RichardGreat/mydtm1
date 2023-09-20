@@ -5,8 +5,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 modelSheetPassportIdCard(
-    {required BuildContext context,
-    required ProviderPersonInfo providerPersonInfo}) {
+    {required BuildContext context,}) {
   showModalBottomSheet<void>(
       isScrollControlled: true,
 
