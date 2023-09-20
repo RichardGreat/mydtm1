@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:date_count_down/date_count_down.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +8,7 @@ import 'package:mydtm/view/pages/check_certificate/check_cert/certificate_view.d
 import 'package:mydtm/view/pages/check_certificate/check_cert/check_provider.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class CheckCertificate extends StatefulWidget {
   const CheckCertificate({super.key});
@@ -172,21 +175,37 @@ class _CheckCertificateState extends State<CheckCertificate> {
                                                         providerCheckCertificate.modelCheckCert[0].data[index2].fname,
                                                         style: const TextStyle(fontWeight: FontWeight.bold),
                                                       )),
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    children: [
+                                                      QrImageView(
+                                                        data: providerCheckCertificate.modelCheckCert[0].data[index2].url.toString(),
+                                                        version: QrVersions.auto,
+                                                        size: 150.0,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(height: 20),
                                                   Padding(
                                                     padding: const EdgeInsets.only(left: 10, right: 10, bottom: 8),
                                                     child: Row(
                                                       crossAxisAlignment: CrossAxisAlignment.end,
                                                       mainAxisAlignment: MainAxisAlignment.end,
                                                       children: [
+
+
                                                         MaterialButton(
                                                           onPressed: () {
-                                                            pushNewScreen(context, screen: CertificateView(linkCert: providerCheckCertificate.modelCheckCert[0].data[index2].certLink));
+                                                            log(providerCheckCertificate.modelCheckCert[0].data[index2].url);
+                                                            pushNewScreen(context, screen: CertificateView(linkCert: providerCheckCertificate.modelCheckCert[0].data[index2].url));
                                                           },
                                                           height: 50,
                                                           color: Colors.teal.shade700,
                                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                                           child:const Text("Sertifikat ko'rish", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
                                                         ),
+
                                                       ],
                                                     ),
                                                   )

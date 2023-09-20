@@ -60,7 +60,7 @@ class _CertificateViewState extends State<CertificateView> {
       ),
       body: SafeArea(
           child: Container(
-              margin: const EdgeInsets.all(15),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
               child:
               // widget.providerAriza.boolDataDownload2
               //     ? widget.providerAriza.modelGetDownloadsData2.status.toString() == "1"
