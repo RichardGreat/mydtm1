@@ -298,7 +298,9 @@
   "checkCertificate": "Sertifikat tekshirish",
   "bba": "BBA",
   "workSoon": "Xizmat yaqin vaqtda ishga tushadi",
-  "noCertificate": "Sizda ayni vaqtda Bilim va malakalarni baholash agentligi tomonidan berilgan sertifikat mavjud emas"
+  "noCertificate": "Sizda ayni vaqtda Bilim va malakalarni baholash agentligi tomonidan berilgan sertifikat mavjud emas",
+  "regionSection": "Hududiy bo'limlar"
+
 
 
 }

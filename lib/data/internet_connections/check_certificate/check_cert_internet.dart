@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -7,8 +8,10 @@ class InternetCheckCert {
   Future<List<ModelCheckCertificate>> getData({required String pnfl}) async {
     var dio = Dio();
     try {
+      log("https://mandat.uzbmb.uz/API/GetCert?PNFL=$pnfl");
       Response response =
           await dio.get("https://mandat.uzbmb.uz/API/GetCert?PNFL=$pnfl");
+      log(jsonEncode(response.data).toString());
       return  (response.data as List).map ((e) => ModelCheckCertificate.fromJson(e)).toList();
     } catch (e) {
       log(e.toString());

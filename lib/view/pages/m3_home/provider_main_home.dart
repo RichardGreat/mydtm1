@@ -11,9 +11,11 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/check_version.dart';
 import 'package:mydtm/data/internet_connections/m3_home/internet_get_slider.dart';
+import 'package:mydtm/data/internet_connections/m3_home/internet_subjects.dart';
 import 'package:mydtm/data/internet_connections/m3_home/service_list.dart';
 import 'package:mydtm/data/internet_connections/person_info/set_lang.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_get_slider.dart';
+import 'package:mydtm/data/model_parse/m3_home/model_get_subject.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/data/model_parse/model_check_mobile_version.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
@@ -30,6 +32,9 @@ class ProviderMainHome extends ChangeNotifier {
   // late Map<int, List<ModelListForDelete>> releaseDateMap;
 
   List<DataServiceList> listDataServiceList = [];
+
+  // List<DataServiceList> listDataServiceListSubject = [];
+  List<ServiceMainList> listDataServiceListSubject = [];
   List<ServiceMainList> listDataServiceListTemp = [];
   List<ServiceMainList> listDataServiceListTemp2 = [];
   var box = Hive.box("online");
@@ -171,11 +176,16 @@ class ProviderMainHome extends ChangeNotifier {
   List<ModelGetSlider> listModelGetSlider = [];
   List<Uri> listUri = [];
 
+  /// subject terib olish
+  NetworkSubjectList networkSubjectList = NetworkSubjectList();
+  List<ModelSubjectGet> listModelSubjectGet = [];
+
   Future getDateService({required BuildContext context}) async {
     try {
       if (box.get("numberApi").toString().trim() !=
           numberAPIUpdate.toString().trim()) {
         String dataServiceList = await networkServiceList.getServiceList();
+
         // log(dataServiceList);
         box.put("dataServiceList", dataServiceList);
         box.put("numberApi", numberAPIUpdate);
@@ -193,6 +203,16 @@ class ProviderMainHome extends ChangeNotifier {
         listModelGetSlider.sort((a, b) => a.ves.compareTo(b.ves));
         notifyListeners();
       } catch (e) {
+        log(e.toString());
+      }
+
+      try {
+        String data = await networkSubjectList.getSubjectList();
+        listModelSubjectGet = (jsonDecode(jsonDecode(data)) as List)
+            .map((e) => ModelSubjectGet.fromJson(e))
+            .toList();
+      } catch (e) {
+        log("###7");
         log(e.toString());
       }
 
@@ -231,6 +251,35 @@ class ProviderMainHome extends ChangeNotifier {
                 )
             : {};
       }
+      log(listModelGetSlider.length.toString());
+      listDataServiceListSubject.clear();
+      for (int i = 0; i < listModelSubjectGet.length; i++) {
+        listDataServiceListSubject.add(ServiceMainList(
+            id: "88888888",
+            serviceName: listModelSubjectGet[i].subjectName,
+            serviceText: listModelSubjectGet[i].subjectName,
+            serviceTextRu: listModelSubjectGet[i].subjectName,
+            serviceTextQQ: listModelSubjectGet[i].subjectName,
+            serviceNameRu: listModelSubjectGet[i].subjectName,
+            serviceNameQQ: listModelSubjectGet[i].subjectName,
+            status: true,
+            mobilIcon: listModelSubjectGet[i].subjectImgLink,
+            link: listModelSubjectGet[i].pdfLink,
+            icon: listModelSubjectGet[i].subjectImgLink,
+            catId: "$i",
+            cod: "$i",
+            sortId: "$i",
+            createdAt: "2023",
+            updatedAt: "2024",
+            deleted: "1"));
+      }
+      listDataServiceList.add(DataServiceList(
+          id: "88888888",
+          categoryName: "Fanlar",
+          categoryNameRu: "Fanlar",
+          categoryNameQQ: "Fanlar",
+          service: listDataServiceListSubject));
+
       listDataServiceList.add(DataServiceList(
           id: "999",
           categoryName: "Davlat xizmatlari (my.gov.uz)",
@@ -252,7 +301,6 @@ class ProviderMainHome extends ChangeNotifier {
                 serviceNameQQ:
                     "Oliy ta'lim muassasalarining bakalavriat ta'lim yo'nalishilariga qabul qilish bo'yicha test sinovlarini o'tkazish",
                 status: true,
-
                 mobilIcon: "mobilIcon",
                 link: "https://my.gov.uz/oz/service/259",
                 icon: "",

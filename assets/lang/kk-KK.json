@@ -300,5 +300,7 @@
   "checkCertificate": "Sertifikat tekseriw",
   "bba": "BBA",
   "workSoon": "Xızmet jaqın waqıtta jumısqa túsedi",
-  "noCertificate": "Sizda ayni vaqtda Bilim va malakalarni baholash agentligi tomonidan berilgan sertifikat mavjud emas"
+  "noCertificate": "Sizda ayni vaqtda Bilim va malakalarni baholash agentligi tomonidan berilgan sertifikat mavjud emas",
+
+  "regionSection": "Aymaqliq bo'limler"
 }

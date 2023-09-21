@@ -7,7 +7,7 @@ import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-Widget bodyNoProfileInfo({required BuildContext context, required ProviderProfile providerProfile}){
+Widget bodyNoProfileInfo({required BuildContext context}){
   return Padding(
     padding: const EdgeInsets.all(25),
     child: SingleChildScrollView(

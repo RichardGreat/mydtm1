@@ -301,6 +301,7 @@
   "checkCertificate": "Проверка сертификата",
   "bba": "BBA",
   "workSoon": "Услуга будет запущена в ближайшее время",
-  "noCertificate": "Sizda ayni vaqtda Bilim va malakalarni baholash agentligi tomonidan berilgan sertifikat mavjud emas"
+  "noCertificate": "Sizda ayni vaqtda Bilim va malakalarni baholash agentligi tomonidan berilgan sertifikat mavjud emas",
+  "regionSection": "Региональные отделения"
 
 }

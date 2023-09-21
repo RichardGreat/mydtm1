@@ -4,9 +4,11 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
+import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
 import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/change_passport/change_password.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/change_account/phone_change.dart';
@@ -23,20 +25,22 @@ Widget myText() {
   return box.get("language") == "1"
       ? Text("uz".tr())
       : box.get("language") == "2"
-          ? Text("qq".tr())
-          : Text("ru".tr());
+      ? Text("qq".tr())
+      : Text("ru".tr());
 }
 
 late ModelCheckUserInfo modelCheckUserInfo;
 
-Widget bodyProfile(
-    {required BuildContext context,
-    required Function function,
-    required ProviderProfile providerProfile,
-    required Function functions}) {
+Widget bodyProfile({required BuildContext context,
+  required Function function,
+  required ProviderProfile providerProfile,
+  required Function functions}) {
   var box = Hive.box("online");
   return Container(
-    height: MediaQuery.of(context).size.height * 1.12,
+    height: MediaQuery
+        .of(context)
+        .size
+        .height * 1.12,
     margin: const EdgeInsets.only(left: 10, right: 10),
     color: Colors.white,
     child: Column(
@@ -52,39 +56,39 @@ Widget bodyProfile(
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                 ),
-                margin:const EdgeInsets.all(15),
-                padding:const EdgeInsets.all(5),
+                margin: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(5),
                 height: 120,
                 width: 100,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(300),
                   child: providerProfile.boolHasTokenNoImie
                       ? Image.asset("assets/images/icon_person.png",
-                          height: 80, fit: BoxFit.fill)
+                      height: 80, fit: BoxFit.fill)
                       : Image.memory(
-                          base64Decode(box
-                              .get("personImage")
-                              .toString()
-                              .replaceAll("\n", "")
-                              .substring(23)
-                              .trim()),
-                          fit: BoxFit.cover,
+                    base64Decode(box
+                        .get("personImage")
+                        .toString()
+                        .replaceAll("\n", "")
+                        .substring(23)
+                        .trim()),
+                    fit: BoxFit.cover,
                     width: 100,
                     height: 100,
-                        ),
+                  ),
                 ),
               ),
               const SizedBox(height: 5),
               providerProfile.boolHasTokenNoImie
                   ? const SizedBox.shrink()
                   : Text(
-                      providerProfile.dataGetImieInfo.lname +
-                          " " +
-                          providerProfile.dataGetImieInfo.fname +
-                          " " +
-                          providerProfile.dataGetImieInfo.mname,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                providerProfile.dataGetImieInfo.lname +
+                    " " +
+                    providerProfile.dataGetImieInfo.fname +
+                    " " +
+                    providerProfile.dataGetImieInfo.mname,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 10),
             ],
           ),
@@ -114,13 +118,19 @@ Widget bodyProfile(
             //       Navigator.of(context).pop();
             //     });
 
-            if (box.get("personImage").toString().length > 50) {
+            if (box
+                .get("personImage")
+                .toString()
+                .length > 50) {
               pushNewScreen(
                 context,
                 screen: PersonInformation(
                     funcState: function,
                     windowIdPassport: "1",
-                    idFunction: box.get("personImage").toString().length > 50
+                    idFunction: box
+                        .get("personImage")
+                        .toString()
+                        .length > 50
                         ? "1"
                         : "99"),
                 withNavBar: false,
@@ -159,13 +169,16 @@ Widget bodyProfile(
                       screen: PersonInformation(
                           funcState: function,
                           idFunction:
-                              box.get("personImage").toString().length > 50
-                                  ? "1"
-                                  : "99",
+                          box
+                              .get("personImage")
+                              .toString()
+                              .length > 50
+                              ? "1"
+                              : "99",
                           windowIdPassport: "0"),
                       withNavBar: false,
                       pageTransitionAnimation:
-                          PageTransitionAnimation.cupertino,
+                      PageTransitionAnimation.cupertino,
                     );
                   },
                   btnOkText: "iAgree".tr(),
@@ -199,7 +212,10 @@ Widget bodyProfile(
         ),
         ListTile(
           onTap: () {
-            if (box.get("personImage").toString().length > 50) {
+            if (box
+                .get("personImage")
+                .toString()
+                .length > 50) {
               pushNewScreen(
                 context,
                 screen: AddressInfo(funcState: function, addressWindowId: "1"),
@@ -219,14 +235,17 @@ Widget bodyProfile(
             text: "addressAlways".tr(),
           ),
           trailing: Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: 16,
-            color: Colors.teal.shade800
+              Icons.arrow_forward_ios_rounded,
+              size: 16,
+              color: Colors.teal.shade800
           ),
         ),
         ListTile(
           onTap: () {
-            if (box.get("personImage").toString().length > 50) {
+            if (box
+                .get("personImage")
+                .toString()
+                .length > 50) {
               pushNewScreen(
                 context,
                 screen: Graduated(funcState: function, windowIdGraduated: "1"),
@@ -246,9 +265,9 @@ Widget bodyProfile(
             text: "schoolInfo".tr(),
           ),
           trailing: Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: 16,
-            color: Colors.teal.shade800
+              Icons.arrow_forward_ios_rounded,
+              size: 16,
+              color: Colors.teal.shade800
           ),
         ),
         ListTile(
@@ -275,15 +294,12 @@ Widget bodyProfile(
             text: "phoneNumberChange".tr(),
           ),
           trailing: Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: 16,
-            color: Colors.teal.shade800
+              Icons.arrow_forward_ios_rounded,
+              size: 16,
+              color: Colors.teal.shade800
           ),
         ),
-         Divider(
-          color: Colors.teal.withOpacity(0.2),
-          thickness: 1,
-        ),
+
         ListTile(
           onTap: () {
             pushNewScreen(
@@ -305,13 +321,17 @@ Widget bodyProfile(
               textColor: MyColors.appColorGrey400(),
               textFontWeight: FontWeight.w100),
           trailing: Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: 16,
-            color: Colors.teal.shade800
+              Icons.arrow_forward_ios_rounded,
+              size: 16,
+              color: Colors.teal.shade800
           ),
         ),
         const SizedBox(
           height: 2,
+        ),
+        Divider(
+          color: Colors.teal.withOpacity(0.2),
+          thickness: 1,
         ),
         ListTile(
           onTap: () {
@@ -328,9 +348,47 @@ Widget bodyProfile(
           title: MyWidgets.robotoFontText(text: "languageApp".tr()),
           subtitle: myText(),
           trailing: Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: 16,
-            color: Colors.teal.shade800
+              Icons.arrow_forward_ios_rounded,
+              size: 16,
+              color: Colors.teal.shade800
+          ),
+        ),
+        ListTile(
+          onTap: () {
+            pushNewScreen(context,
+                screen: WebViewWindow(
+                  modelServiceMainList: ServiceMainList(
+                      id: "600000",
+                      serviceName: "regionSection".tr(),
+                      serviceText: "regionSection".tr(),
+                      serviceTextRu: "regionSection".tr(),
+                      serviceTextQQ: "regionSection".tr(),
+                      serviceNameRu: "regionSection".tr(),
+                      serviceNameQQ: "",
+                      status: true,
+                      mobilIcon: "",
+                      link: "https://uzbmb.uz/page/representatives",
+                      icon: "",
+                      catId: "",
+                      cod: "",
+                      sortId: "",
+                      createdAt: "",
+                      updatedAt: "",
+                      deleted: "") ,
+                ),
+                withNavBar: true);
+          },
+          leading: Icon(
+            Icons.person_pin_circle_outlined,
+            color: MyColors.appColorBlue1(),
+            size: 24,
+          ),
+          title: MyWidgets.robotoFontText(text: "regionSection".tr()),
+
+          trailing: Icon(
+              Icons.arrow_forward_ios_rounded,
+              size: 16,
+              color: Colors.teal.shade800
           ),
         ),
         ListTile(
@@ -381,73 +439,79 @@ Widget bodyProfile(
           ),
           title: MyWidgets.robotoFontText(text: "deleteAccount".tr()),
           trailing: Icon(
-            Icons.arrow_forward_ios_rounded,
-            size: 16,
-            color: Colors.teal.shade800
+              Icons.arrow_forward_ios_rounded,
+              size: 16,
+              color: Colors.teal.shade800
           ),
         ),
-        box.get("token").toString().length > 30
+        box
+            .get("token")
+            .toString()
+            .length > 30
             ? ListTile(
-                onTap: () {
-                  box.get("token").toString().length > 30
-                      ? AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.noHeader,
-                          animType: AnimType.bottomSlide,
-                          title: "BBA",
-                          desc: "logUot".tr(),
-                          titleTextStyle: TextStyle(
-                              color: MyColors.appColorBlue1(),
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold),
-                          descTextStyle: TextStyle(
-                              color: MyColors.appColorBlack(),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),
-                          btnOkOnPress: () {
-                            box.delete("token");
-                            box.delete("imie");
-                            box.delete("psnum");
-                            box.delete("personImage");
-                            box.delete("boxAllPersonInfo");
-                            box.delete("langLock");
-                            box.delete("lockScreen");
-                            box.delete("notShowAgain1");
-                            box.delete("phoneNumber");
-
-                            // Navigator.pushAndRemoveUntil(
-                            //   context,
-                            //   CupertinoPageRoute(
-                            //       builder: (context) =>const EnterFirst()),
-                            //       (route) => false,
-                            // );
-                            pushNewScreenWithRouteSettings(context,
-                                pageTransitionAnimation:
-                                    PageTransitionAnimation.cupertino,
-                                screen: EnterFirst(windowIdEnterFirst: "1"),
-                                settings: const RouteSettings(),
-                                withNavBar: false);
-                          },
-                          btnOkText: "yes".tr(),
-                          btnOkColor: MyColors.appColorBlue1(),
-                          btnCancelColor: MyColors.appColorGrey600(),
-                          btnCancelOnPress: () {},
-                          btnCancelText: "no".tr(),
-                        ).show()
-                      : {};
-                },
-                leading: Icon(
-                  Icons.logout,
+          onTap: () {
+            box
+                .get("token")
+                .toString()
+                .length > 30
+                ? AwesomeDialog(
+              context: context,
+              dialogType: DialogType.noHeader,
+              animType: AnimType.bottomSlide,
+              title: "BBA",
+              desc: "logUot".tr(),
+              titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(),
-                  size: 24,
-                ),
-                title: MyWidgets.robotoFontText(text: "logOut1".tr()),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 16,
-                  color: Colors.teal.shade800
-                ),
-              )
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(
+                  color: MyColors.appColorBlack(),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500),
+              btnOkOnPress: () {
+                box.delete("token");
+                box.delete("imie");
+                box.delete("psnum");
+                box.delete("personImage");
+                box.delete("boxAllPersonInfo");
+                box.delete("langLock");
+                box.delete("lockScreen");
+                box.delete("notShowAgain1");
+                box.delete("phoneNumber");
+
+                // Navigator.pushAndRemoveUntil(
+                //   context,
+                //   CupertinoPageRoute(
+                //       builder: (context) =>const EnterFirst()),
+                //       (route) => false,
+                // );
+                pushNewScreenWithRouteSettings(context,
+                    pageTransitionAnimation:
+                    PageTransitionAnimation.cupertino,
+                    screen: EnterFirst(windowIdEnterFirst: "1"),
+                    settings: const RouteSettings(),
+                    withNavBar: false);
+              },
+              btnOkText: "yes".tr(),
+              btnOkColor: MyColors.appColorBlue1(),
+              btnCancelColor: MyColors.appColorGrey600(),
+              btnCancelOnPress: () {},
+              btnCancelText: "no".tr(),
+            ).show()
+                : {};
+          },
+          leading: Icon(
+            Icons.logout,
+            color: MyColors.appColorBlue1(),
+            size: 24,
+          ),
+          title: MyWidgets.robotoFontText(text: "logOut1".tr()),
+          trailing: Icon(
+              Icons.arrow_forward_ios_rounded,
+              size: 16,
+              color: Colors.teal.shade800
+          ),
+        )
             : const SizedBox.shrink(),
         Divider(
           color: Colors.teal.withOpacity(0.2),

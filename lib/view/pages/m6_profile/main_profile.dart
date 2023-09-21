@@ -71,7 +71,7 @@ class _MainProfileState extends State<MainProfile> {
                       ),
                     )
                     : bodyNoProfileInfo(
-                        context: context, providerProfile: providerProfile)):MyWidgets.loaderDownload(context: context)
+                        context: context, )):MyWidgets.loaderDownload(context: context)
                 
         ),
       ),

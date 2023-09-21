@@ -5,16 +5,16 @@ class ModelCheckCertificate {
   List<DataCheckCertificate> data;
 
   ModelCheckCertificate({
-    required this.status,
-    required this.count,
-    required this.message,
+     this.status,
+     this.count,
+     this.message,
     required this.data,
   });
 
   factory ModelCheckCertificate.fromJson(Map<String, dynamic> json) => ModelCheckCertificate(
-    status: json["status"],
-    count: json["count"],
-    message: json["message"],
+    status: json["status"]??"",
+    count: json["count"]??"",
+    message: json["message"??""],
     data: List<DataCheckCertificate>.from(json["data"].map((x) => DataCheckCertificate.fromJson(x))),
   );
 
@@ -79,14 +79,14 @@ class DataCheckCertificate {
 
   factory DataCheckCertificate.fromJson(Map<String, dynamic> json) => DataCheckCertificate(
     lname: json["lname"]??"",
-    fname: json["fname"] +" "+json["mname"]+" "+json["mname"],
+    fname: json["lname"] +" "+json["fname"]+" "+json["mname"]??"",
     mname: json["mname"]??"",
     imie: json["imie"]??"",
     psser: json["psser"]??"",
     psnum: json["psnum"]??"",
-    subjectName: json["subject_name"]??json["science_name"],
+    subjectName: json["subject_name"]??json["science_name"]??"",
     level: json["level"]??"",
-    commonBall: json["common_ball"],
+    commonBall: json["common_ball"]??"",
     endDate: json["end_date"]??"",
     startDate: json["start_date"]??"",
     serNum: json["ser_num"]??"",

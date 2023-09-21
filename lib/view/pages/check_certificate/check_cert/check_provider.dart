@@ -24,8 +24,9 @@ class ProviderCheckCertificate extends ChangeNotifier {
   Future checkDataCertificate() async {
     try {
       boolGetCertInfo = false;
+      log(box.get("imie").toString());
       modelCheckCert = await _internetCheckCert.getData(pnfl:box.get("imie"));
-      log(jsonEncode(modelCheckCert).toString());
+
       boolGetCertInfo = true;
 
       notifyListeners();

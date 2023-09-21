@@ -1,15 +1,16 @@
 import 'dart:math';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
+import 'package:mydtm/view/pages/check_certificate/check_cert/certificate_view.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-
-import 'package:easy_localization/easy_localization.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 myViewButton(
@@ -82,14 +83,22 @@ myViewButton(
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).pop();
-                          print(myList[index].id.toString());
-                          if (myList[index].id.toString().length > 5) {
+                          // print(myList[index].id.toString());
+                          // if (myList[index].id.toString() == "88888888") {
+                          //   pushNewScreen(context,
+                          //       withNavBar: false,
+                          //       screen: CertificateView(
+                          //           linkCert: myList[index].link));
+                          // }
+                          if (myList[index].id.toString().length > 5 &&
+                              myList[index].id.toString().length < 9) {
+
                             pushNewScreen(context,
                                 screen: WebViewWindow(
-                                  modelServiceMainList:myList[index],
+                                  modelServiceMainList: myList[index],
                                 ),
                                 withNavBar: true);
-                          }else {
+                          } else {
                             pushNewScreen(
                               context,
                               screen: ShowCaseWidget(
@@ -137,9 +146,7 @@ myViewButton(
                               //     errorWidget: (context, url, error) =>
                               //         Image.asset("assets/images/uzbmb.png")),
                               Icon(randomIcon(),
-                                  size: 40,
-                                  color: MyColors
-                                      .appColorBBA()),
+                                  size: 40, color: MyColors.appColorBBA()),
                               SizedBox(
                                 child: Text(
                                   box.get("language") == "1"
