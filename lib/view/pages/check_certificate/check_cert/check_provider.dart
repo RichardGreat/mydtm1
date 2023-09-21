@@ -8,6 +8,7 @@ import 'package:mydtm/data/model_parse/check_certificates/model_check_certificat
 class ProviderCheckCertificate extends ChangeNotifier {
   List<ModelCheckCertificate> modelCheckCert = [];
   bool boolGetCertInfo = false;
+  bool boolNotCertInfo = false;
   final InternetCheckCert _internetCheckCert = InternetCheckCert();
   var box = Hive.box("online");
   TextEditingController textEditingController = TextEditingController();
@@ -25,12 +26,17 @@ class ProviderCheckCertificate extends ChangeNotifier {
     try {
       boolGetCertInfo = false;
       log(box.get("imie").toString());
-      modelCheckCert = await _internetCheckCert.getData(pnfl:box.get("imie"));
-
+     String  data = await _internetCheckCert.getData(pnfl:box.get("imie"));
+     modelCheckCert =   (data as List)
+         .map((e) => ModelCheckCertificate.fromJson(e))
+         .toList();
+      boolNotCertInfo = false;
       boolGetCertInfo = true;
 
       notifyListeners();
     } catch (e) {
+      boolNotCertInfo = true;
+      notifyListeners();
       log(e.toString());
     }
   }

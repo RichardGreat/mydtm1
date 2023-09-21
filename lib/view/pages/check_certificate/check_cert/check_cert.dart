@@ -359,6 +359,16 @@ class _CheckCertificateState extends State<CheckCertificate> {
                                             fontWeight: FontWeight.bold),
                                       )),
                               )
+                            : providerCheckCertificate.boolNotCertInfo
+                            ? Center(
+                            child: Text(
+                              "noCertificate".tr(),
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                              color: Colors.black
+                              ),
+                            ))
                             : const Center(child: CupertinoActivityIndicator()),
                       )
                     : bodyNoProfileInfo(
