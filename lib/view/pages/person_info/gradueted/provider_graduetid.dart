@@ -5,6 +5,7 @@ import 'dart:developer';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_district.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_region.dart';
@@ -30,7 +31,6 @@ import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_typ
 import 'package:mydtm/view/pages/person_info/gradueted/model_sheet/graduated_year.dart';
 
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderGraduated extends ChangeNotifier {
   final formKeyGraduated = GlobalKey<FormState>();
@@ -698,9 +698,8 @@ class ProviderGraduated extends ChangeNotifier {
                   Navigator.of(context).pop();
                   // Navigator.of(context).pop();
               }else if(idWindowId == "0"){
-                pushNewScreen(context,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                    screen: Certificates(funcState: functions));
+                Navigator.push(context, CupertinoPageRoute(builder: (context) =>  Certificates(funcState: functions),));
+
               }
 
 

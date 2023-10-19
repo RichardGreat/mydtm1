@@ -1,13 +1,14 @@
 import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+
 
 PreferredSizeWidget searchMain(
     {required BuildContext context,
@@ -151,10 +152,9 @@ mainSearchBottomSheet(
                                 .toString()
                                 .length >
                             5) {
-                          pushNewScreen(context,
-                              screen: WebViewWindow(
-                                  modelServiceMainList: providerMainHome
-                                      .listDataServiceListTemp[index]));
+                          Navigator.push(context, CupertinoPageRoute(builder: (context) =>  WebViewWindow(
+                              modelServiceMainList: providerMainHome
+                                  .listDataServiceListTemp[index]),));
 
                           // final Uri _url =
                           //     Uri.parse("https://mandat.uzbmb.uz/");

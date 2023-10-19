@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
@@ -18,7 +19,6 @@ import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 Widget myText() {
   var box = Hive.box("online");
@@ -37,10 +37,10 @@ Widget bodyProfile({required BuildContext context,
   required Function functions}) {
   var box = Hive.box("online");
   return Container(
-    height: MediaQuery
-        .of(context)
-        .size
-        .height * 1.12,
+    // height: MediaQuery
+    //     .of(context)
+    //     .size
+    //     .height * 1.12,
     margin: const EdgeInsets.only(left: 10, right: 10),
     color: Colors.white,
     child: Column(
@@ -122,20 +122,20 @@ Widget bodyProfile({required BuildContext context,
                 .get("personImage")
                 .toString()
                 .length > 50) {
-              pushNewScreen(
-                context,
-                screen: PersonInformation(
-                    funcState: function,
-                    windowIdPassport: "1",
-                    idFunction: box
-                        .get("personImage")
-                        .toString()
-                        .length > 50
-                        ? "1"
-                        : "99"),
-                withNavBar: false,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              );
+              Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) => PersonInformation(
+                        funcState: function,
+                        windowIdPassport: "1",
+                        idFunction: box
+                            .get("personImage")
+                            .toString()
+                            .length > 50
+                            ? "1"
+                            : "99"),
+                  ));
+
             } else {
               AwesomeDialog(
                   context: context,
@@ -164,22 +164,17 @@ Widget bodyProfile({required BuildContext context,
                       color: MyColors.appColorBlack(),
                       fontWeight: FontWeight.bold),
                   btnOkOnPress: () {
-                    pushNewScreen(
-                      context,
-                      screen: PersonInformation(
-                          funcState: function,
-                          idFunction:
-                          box
-                              .get("personImage")
-                              .toString()
-                              .length > 50
-                              ? "1"
-                              : "99",
-                          windowIdPassport: "0"),
-                      withNavBar: false,
-                      pageTransitionAnimation:
-                      PageTransitionAnimation.cupertino,
-                    );
+                    Navigator.push(context,CupertinoPageRoute(builder: (context) =>  PersonInformation(
+                        funcState: function,
+                        idFunction:
+                        box
+                            .get("personImage")
+                            .toString()
+                            .length > 50
+                            ? "1"
+                            : "99",
+                        windowIdPassport: "0"),));
+
                   },
                   btnOkText: "iAgree".tr(),
                   btnOkColor: MyColors.appColorBlue1(),
@@ -216,12 +211,8 @@ Widget bodyProfile({required BuildContext context,
                 .get("personImage")
                 .toString()
                 .length > 50) {
-              pushNewScreen(
-                context,
-                screen: AddressInfo(funcState: function, addressWindowId: "1"),
-                withNavBar: false,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              );
+              Navigator.push(context,CupertinoPageRoute(builder: (context) => AddressInfo(funcState: function, addressWindowId: "1"),));
+
             } else {
               MyWidgets.awesomeDialogError(
                   context: context, valueText: "passportFillInfo".tr());
@@ -246,12 +237,8 @@ Widget bodyProfile({required BuildContext context,
                 .get("personImage")
                 .toString()
                 .length > 50) {
-              pushNewScreen(
-                context,
-                screen: Graduated(funcState: function, windowIdGraduated: "1"),
-                withNavBar: false,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              );
+              Navigator.push(context,CupertinoPageRoute(builder: (context) =>  Graduated(funcState: function, windowIdGraduated: "1"),));
+
             } else {
               MyWidgets.awesomeDialogError(
                   context: context, valueText: "passportFillInfo".tr());
@@ -272,14 +259,8 @@ Widget bodyProfile({required BuildContext context,
         ),
         ListTile(
           onTap: () {
-            pushNewScreen(
-              context,
-              screen: ChangePhoneNumber(
-                  providerProfile: providerProfile, function: functions),
-              withNavBar: false,
-              // OPTIONAL VALUE. True by default.
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(context,CupertinoPageRoute(builder: (context) =>ChangePhoneNumber(
+                providerProfile: providerProfile, function: functions) ,));
           },
           leading: Icon(
             Icons.phone,
@@ -302,13 +283,7 @@ Widget bodyProfile({required BuildContext context,
 
         ListTile(
           onTap: () {
-            pushNewScreen(
-              context,
-              screen: ChangeAccountPasswords(providerProfile: providerProfile),
-              withNavBar: false,
-              // OPTIONAL VALUE. True by default.
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(context,CupertinoPageRoute(builder: (context) =>  ChangeAccountPasswords(providerProfile: providerProfile),));
           },
           leading: Icon(
             Icons.lock,
@@ -335,10 +310,7 @@ Widget bodyProfile({required BuildContext context,
         ),
         ListTile(
           onTap: () {
-            pushNewScreen(context,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                screen: LangChangeAll(providerProfile: providerProfile),
-                withNavBar: false);
+            Navigator.push(context,CupertinoPageRoute(builder: (context) => LangChangeAll(providerProfile: providerProfile) ,));
           },
           leading: Icon(
             Icons.language,
@@ -355,28 +327,27 @@ Widget bodyProfile({required BuildContext context,
         ),
         ListTile(
           onTap: () {
-            pushNewScreen(context,
-                screen: WebViewWindow(
-                  modelServiceMainList: ServiceMainList(
-                      id: "600000",
-                      serviceName: "regionSection".tr(),
-                      serviceText: "regionSection".tr(),
-                      serviceTextRu: "regionSection".tr(),
-                      serviceTextQQ: "regionSection".tr(),
-                      serviceNameRu: "regionSection".tr(),
-                      serviceNameQQ: "",
-                      status: true,
-                      mobilIcon: "",
-                      link: "https://uzbmb.uz/page/representatives",
-                      icon: "",
-                      catId: "",
-                      cod: "",
-                      sortId: "",
-                      createdAt: "",
-                      updatedAt: "",
-                      deleted: "") ,
-                ),
-                withNavBar: true);
+            Navigator.push(context,CupertinoPageRoute(builder: (context) =>  WebViewWindow(
+              modelServiceMainList: ServiceMainList(
+                  id: "600000",
+                  serviceName: "regionSection".tr(),
+                  serviceText: "regionSection".tr(),
+                  serviceTextRu: "regionSection".tr(),
+                  serviceTextQQ: "regionSection".tr(),
+                  serviceNameRu: "regionSection".tr(),
+                  serviceNameQQ: "",
+                  status: true,
+                  mobilIcon: "",
+                  link: "https://uzbmb.uz/page/representatives",
+                  icon: "",
+                  catId: "",
+                  cod: "",
+                  sortId: "",
+                  createdAt: "",
+                  updatedAt: "",
+                  deleted: "") ,
+            ),));
+
           },
           leading: Icon(
             Icons.person_pin_circle_outlined,
@@ -384,6 +355,40 @@ Widget bodyProfile({required BuildContext context,
             size: 24,
           ),
           title: MyWidgets.robotoFontText(text: "regionSection".tr()),
+
+          trailing: Icon(
+              Icons.arrow_forward_ios_rounded,
+              size: 16,
+              color: Colors.teal.shade800
+          ),
+        ),
+        ListTile(
+          onTap: () {
+
+          },
+          leading: Icon(
+            Icons.phone,
+            color: MyColors.appColorBlue1(),
+            size: 24,
+          ),
+          title: MyWidgets.robotoFontText(text: "Call markaz"),
+
+          trailing: Icon(
+              Icons.arrow_forward_ios_rounded,
+              size: 16,
+              color: Colors.teal.shade800
+          ),
+        ),
+        ListTile(
+          onTap: () {
+
+          },
+          leading: Icon(
+            CupertinoIcons.phone,
+            color: MyColors.appColorBlue1(),
+            size: 24,
+          ),
+          title: MyWidgets.robotoFontText(text: "Ishonch telefoni"),
 
           trailing: Icon(
               Icons.arrow_forward_ios_rounded,
@@ -419,11 +424,7 @@ Widget bodyProfile({required BuildContext context,
                 box.delete("notShowAgain1");
                 box.delete("phoneNumber");
                 //
-                pushNewScreenWithRouteSettings(context,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                    screen: MainPages(homeIdMainpage: "0"),
-                    settings: const RouteSettings(),
-                    withNavBar: false);
+                Navigator.push(context,CupertinoPageRoute(builder: (context) => MainPages(homeIdMainpage: "0"),));
               },
               btnOkText: "yes".tr(),
               btnOkColor: MyColors.appColorBlue1(),
@@ -485,12 +486,8 @@ Widget bodyProfile({required BuildContext context,
                 //       builder: (context) =>const EnterFirst()),
                 //       (route) => false,
                 // );
-                pushNewScreenWithRouteSettings(context,
-                    pageTransitionAnimation:
-                    PageTransitionAnimation.cupertino,
-                    screen: EnterFirst(windowIdEnterFirst: "1"),
-                    settings: const RouteSettings(),
-                    withNavBar: false);
+                Navigator.push(context,CupertinoPageRoute(builder: (context) => EnterFirst(windowIdEnterFirst: "1"),));
+
               },
               btnOkText: "yes".tr(),
               btnOkColor: MyColors.appColorBlue1(),

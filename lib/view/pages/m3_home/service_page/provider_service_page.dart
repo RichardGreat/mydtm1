@@ -1,6 +1,8 @@
 import 'dart:developer';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/certificate_nation/get_regLang.dart';
@@ -10,7 +12,6 @@ import 'package:mydtm/view/pages/m3_home/check_information_page/check_informatio
 import 'package:mydtm/view/texnikum/main_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 class ProviderServicePage extends ChangeNotifier {
@@ -54,7 +55,7 @@ class ProviderServicePage extends ChangeNotifier {
                           // SizedBox(height: 10),
                           Text(
                             "BBA",
-                            style:  TextStyle(
+                            style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "Inter-Medium",
                                 color: MyColors.appColorBBA(),
@@ -71,7 +72,7 @@ class ProviderServicePage extends ChangeNotifier {
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
-                         const SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           MaterialButton(
                             color: MyColors.appColorBBA(),
                             height: 40,
@@ -80,14 +81,12 @@ class ProviderServicePage extends ChangeNotifier {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                             onPressed: () {
-                              pushNewScreen(
-                                context,
-                                screen: EnterFirst(windowIdEnterFirst: "1"),
-                                withNavBar: false,
-                                // OPTIONAL VALUE. True by default.
-                                pageTransitionAnimation:
-                                    PageTransitionAnimation.cupertino,
-                              );
+                              Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                    builder: (context) =>
+                                        EnterFirst(windowIdEnterFirst: "1"),
+                                  ));
                             },
                             child: Text(
                               "enterLogPassword".tr(),
@@ -101,7 +100,7 @@ class ProviderServicePage extends ChangeNotifier {
                           Text(
                             "or".tr(),
                             style: TextStyle(
-                                color:  MyColors.appColorBBA(),
+                                color: MyColors.appColorBBA(),
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "Inter-Medium"),
                           ),
@@ -114,24 +113,21 @@ class ProviderServicePage extends ChangeNotifier {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 side: BorderSide(
-                                    color:  MyColors.appColorBBA(), width: 1)),
+                                    color: MyColors.appColorBBA(), width: 1)),
                             onPressed: () {
                               // Navigator.of(context).push(CupertinoPageRoute(
                               //   builder: (context) =>  SignUps(),
                               // ));
-                              pushNewScreen(
-                                context,
-                                screen:const SignUp(),
-                                withNavBar: false,
-                                // OPTIONAL VALUE. True by default.
-                                pageTransitionAnimation:
-                                    PageTransitionAnimation.cupertino,
-                              );
+                              Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                    builder: (context) => const SignUp(),
+                                  ));
                             },
                             child: Text(
                               "enterRegistration".tr(),
-                              style:  TextStyle(
-                                  color:  MyColors.appColorBBA(),
+                              style: TextStyle(
+                                  color: MyColors.appColorBBA(),
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "Inter-Medium"),
                             ),
@@ -193,20 +189,16 @@ class ProviderServicePage extends ChangeNotifier {
                   // else if ("42" == "42")
                   {
                     log("42##"),
-                    pushNewScreen(
-                      context,
-                      screen: ShowCaseWidget(
-                        builder: Builder(
-                          builder: (context) =>
-                              CheckInformation(serviceName: categoryName),
-                        ),
-                      ),
-
-                      // screen: CheckInformation(serviceName: "42"),
-                      withNavBar: false,
-                      pageTransitionAnimation:
-                          PageTransitionAnimation.cupertino,
-                    ),
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => ShowCaseWidget(
+                            builder: Builder(
+                              builder: (context) =>
+                                  CheckInformation(serviceName: categoryName),
+                            ),
+                          ),
+                        )),
                     // AwesomeDialog(
                     //         context: context,
                     //         dialogType: DialogType.noHeader,
@@ -226,27 +218,22 @@ class ProviderServicePage extends ChangeNotifier {
                     //         btnCancelText: "OK")
                     //     .show(),
                   }
+
                 /// Perevod page
                 // else if (categoryId == "41")
                 //   {
-                    // pushNewScreen(
-                    //   context,
-                    //   screen:
-                    //       CheckInformationPerevodga(serviceName: categoryName),
-                    //   withNavBar: false,
-                    //   pageTransitionAnimation:
-                    //       PageTransitionAnimation.cupertino,
-                    // )
-                  // }
+                // pushNewScreen(
+                //   context,
+                //   screen:
+                //       CheckInformationPerevodga(serviceName: categoryName),
+                //   withNavBar: false,
+                //   pageTransitionAnimation:
+                //       PageTransitionAnimation.cupertino,
+                // )
+                // }
                 else if (categoryId == "44")
                   {
-                    pushNewScreen(
-                      context,
-                      screen: MainTexnikum(serviceName: categoryName),
-                      withNavBar: false,
-                      pageTransitionAnimation:
-                          PageTransitionAnimation.cupertino,
-                    )
+                    Navigator.push(context,CupertinoPageRoute(builder: (context) => MainTexnikum(serviceName: categoryName),))
                   }
                 else if (box.get("token").toString().length > 29)
                   {
@@ -286,13 +273,7 @@ class ProviderServicePage extends ChangeNotifier {
                             color: MyColors.appColorBlack(),
                             fontWeight: FontWeight.bold),
                         btnOkOnPress: () {
-                          pushNewScreen(
-                            context,
-                            screen: EnterFirst(windowIdEnterFirst: "0"),
-                            withNavBar: false,
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                          );
+                          Navigator.push(context,CupertinoPageRoute(builder: (context) => EnterFirst(windowIdEnterFirst: "0"),));
                         },
                         btnOkColor: MyColors.appColorBlue1(),
                         btnOkText: "enter".tr())
@@ -322,13 +303,7 @@ class ProviderServicePage extends ChangeNotifier {
                         color: MyColors.appColorBlack(),
                         fontWeight: FontWeight.bold),
                     btnOkOnPress: () {
-                      pushNewScreen(
-                        context,
-                        screen: EnterFirst(windowIdEnterFirst: "0"),
-                        withNavBar: false,
-                        pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino,
-                      );
+                      Navigator.push(context,CupertinoPageRoute(builder: (context) =>EnterFirst(windowIdEnterFirst: "0"),));
                     },
                     btnOkColor: MyColors.appColorBlue1(),
                     btnOkText: "enter".tr())

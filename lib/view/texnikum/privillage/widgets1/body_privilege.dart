@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
@@ -7,7 +8,7 @@ import 'package:mydtm/view/pages/person_info/privillage/add_invalid/add_invalid.
 import 'package:mydtm/view/texnikum/privillage/provider_privillage_texnika.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+
 import 'package:showcaseview/showcaseview.dart';
 
 Widget bodyPrivilegeTexnikum({
@@ -65,11 +66,8 @@ Widget bodyPrivilegeTexnikum({
                         children: [
                           GestureDetector(
                             onTap: () {
-                              pushNewScreen(context,
-                                  screen: const InvalidAdd(),
-                                  pageTransitionAnimation:
-                                      PageTransitionAnimation.cupertino,
-                                  withNavBar: false);
+                              Navigator.push(context,CupertinoPageRoute(builder: (context) => InvalidAdd(),));
+
                             },
                             child: Icon(Icons.edit,
                                 color: MyColors.appColorBlue1()),
@@ -140,16 +138,13 @@ Widget bodyPrivilegeTexnikum({
                             color: MyColors.appColorBlack(),
                             fontWeight: FontWeight.bold),
                         btnCancelOnPress: () {
-                          pushNewScreen(context,
-                              pageTransitionAnimation:
-                                  PageTransitionAnimation.cupertino,
-                              screen: ShowCaseWidget(
-                                builder: Builder(
-                                  builder: (context) => CheckInformation(
-                                      serviceName:
-                                          box.get("categoryName").toString()),
-                                ),
-                              ));
+                          Navigator.push(context,CupertinoPageRoute(builder: (context) => ShowCaseWidget(
+                            builder: Builder(
+                              builder: (context) => CheckInformation(
+                                  serviceName:
+                                  box.get("categoryName").toString()),
+                            ),
+                          )));
                         },
                         btnCancelColor: MyColors.appColorBlue1(),
                         btnCancelText: "OK")

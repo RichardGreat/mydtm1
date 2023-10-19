@@ -1,13 +1,19 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
 
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/data/internet_connections/m6_profile/get_imie.dart';
+import 'package:mydtm/data/model_parse/m6_model/get_imie_info.dart';
+import 'package:mydtm/view/pages/check_certificate/check_cert/certificate_view.dart';
+import 'package:mydtm/view/pages/loc_notification/notifications.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
 import 'package:mydtm/view/pages/m3_home/carousel.dart';
@@ -18,9 +24,7 @@ import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
 import 'package:mydtm/view/pages/m6_profile/main_profile.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
-import 'package:showcaseview/showcaseview.dart';
 
 class MainHome extends StatefulWidget {
   String homePageId;
@@ -33,46 +37,161 @@ class MainHome extends StatefulWidget {
 
 class _MainHomeState extends State<MainHome> {
   ProviderMainHome providerMainHome = ProviderMainHome();
-  final GlobalKey firstMainHome = GlobalKey();
+  // final GlobalKey firstMainHome = GlobalKey();
 
+  NotificationService notificationService = NotificationService();
   @override
   void initState() {
+
     getServiceList();
+    getNot();
     super.initState();
   }
 
   var box = Hive.box("online");
 
+  Future getNot()async{
+
+
+
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+    flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>()?.requestPermission();
+
+    AndroidInitializationSettings androidInitializationSettings =
+    const AndroidInitializationSettings('@mipmap/ic_launcher');
+
+    var initializationSettingsIos = DarwinInitializationSettings(
+        requestAlertPermission: true,
+        requestBadgePermission: true,
+        requestSoundPermission: true,
+        requestCriticalPermission: true,
+        requestProvisionalPermission: true,
+        onDidReceiveLocalNotification:
+            (int id, String? title, String? body, String? payload) async {
+
+        });
+    InitializationSettings initializationSettings = InitializationSettings(
+      android: androidInitializationSettings,
+      iOS: initializationSettingsIos,
+    );
+    await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveNotificationResponse:
+          (NotificationResponse notificationResponse) async {
+            Navigator.push(context, CupertinoPageRoute(builder: (context) => CertificateView(linkCert: "https://uzbmb.uz/"),));
+
+      },
+    );
+
+    // Future.delayed(const Duration(seconds: 4)).then((value){
+    //    notificationService.showNotification(
+    //           title: "Sertifikat", body: "Sizning sertifikatingiz muddati tugashiga 45 kun qoldi", payLoad: "12343", id: 0);
+    // });
+  }
+
+  bool boolGetProfileData = false;
+  late ModelGetImieInfo modelGetImieInfo;
+  late DataGetImieInfo dataGetImieInfo;
+  NetworkGetIMie networkGetIMie = NetworkGetIMie();
+  late String psser,
+      psnum,
+      imie,
+      lname,
+      fname,
+      mname,
+      bdate,
+      sex,
+      nationId,
+      image;
+  Future getProfile() async {
+    try {
+      boolGetProfileData = false;
+      if (box.get("boxAllPersonInfo").toString().length > 200) {
+        modelGetImieInfo = ModelGetImieInfo.fromJson(
+            jsonDecode(box.get("boxAllPersonInfo").toString()));
+      } else {
+        String dataInfo = await networkGetIMie.getIMieInformation();
+        box.delete("boxAllPersonInfo");
+        box.put("boxAllPersonInfo", dataInfo);
+        modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
+        // dataGetImieInfo = modelGetImieInfo.data;
+        // psnum = dataGetImieInfo.psnum.toString();
+        // imie = dataGetImieInfo.imie.toString();
+        // image = dataGetImieInfo.image;
+        //
+        // box.delete("imie");
+        // box.delete("psnum");
+        // box.delete("personImage");
+        // box.put("imie", imie);
+        // box.put("psnum", psnum);
+        // box.put("personImage", image);
+      }
+
+      dataGetImieInfo = modelGetImieInfo.data;
+      psser = dataGetImieInfo.psser;
+      psnum = dataGetImieInfo.psnum.toString();
+      imie = dataGetImieInfo.imie.toString();
+      lname = dataGetImieInfo.lname;
+      fname = dataGetImieInfo.fname;
+      mname = dataGetImieInfo.mname;
+      bdate = dataGetImieInfo.bdate.toString();
+      sex = dataGetImieInfo.sex.toString();
+      nationId = dataGetImieInfo.nationId.toString();
+      image = dataGetImieInfo.image;
+      box.delete("imie");
+      box.delete("psnum");
+      box.delete("personImage");
+      box.delete("fio");
+      box.put("fio", "$lname $fname $mname");
+      box.put("imie", imie);
+      box.put("psnum", psnum);
+      box.put("personImage", image);
+
+      // boolHasTokenNoImie = false;
+      // boolGetProfileData = true;
+      // notifyListeners();
+    } catch (e) {
+      // no profile
+      // boolHasTokenNoImie = true;
+      // boolGetProfileData = true;
+      // notifyListeners();
+    }
+  }
+
   Future getServiceList() async {
+
     Future.delayed(Duration.zero);
     // log(widget.homePageId);
     //
+    getProfile();
     if (widget.homePageId == "1") {
       await providerMainHome.setLangUser();
     }
     await providerMainHome.getDateService(context: context);
     await providerMainHome.checkVersion(context: context);
     if (box.get("token").toString().length > 30) {
-      if (box.get("showCaseMainHome").toString() != "1") {
-        Future.delayed(const Duration(milliseconds: 400)).then(
-          (value) {
-            setState(() {});
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              ShowCaseWidget.of(context).startShowCase([firstMainHome]);
-            });
-          },
-        );
+      // if (box.get("showCaseMainHome").toString() != "1") {
+        // Future.delayed(const Duration(milliseconds: 400)).then(
+        //   (value) {
+        //     setState(() {});
+        //     WidgetsBinding.instance.addPostFrameCallback((_) {
+        //       ShowCaseWidget.of(context).startShowCase([firstMainHome]);
+        //     });
+        //   },
+        // );
 
-        box.put("showCaseMainHome", "1");
-      }
+        // box.put("showCaseMainHome", "1");
+      // }
     } else {
-      if (box.get("welcomeMainHome").toString() == "1") {
+    //   if (box.get("welcomeMainHome").toString() == "1") {
         await getMessage();
-        box.put("welcomeMainHome", "1");
-      } else {
-        await getMessage();
+        // box.put("welcomeMainHome", "1");
+      // } else {
+      //   await getMessage();
       }
-    }
+    // }
   }
 
   // final GlobalKey _secondMainHome = GlobalKey();
@@ -149,14 +268,7 @@ class _MainHomeState extends State<MainHome> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8)),
                         onPressed: () {
-                          pushNewScreen(
-                            context,
-                            screen: EnterFirst(windowIdEnterFirst: "1"),
-                            withNavBar: false,
-                            // OPTIONAL VALUE. True by default.
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                          );
+                          Navigator.push(context, CupertinoPageRoute(builder: (context) => EnterFirst(windowIdEnterFirst: "1"),));
                         },
                         child: Text("enterLogPassword".tr(),
                             style: const TextStyle(
@@ -184,17 +296,10 @@ class _MainHomeState extends State<MainHome> {
                             side: BorderSide(
                                 color: MyColors.appColorBBA(), width: 1)),
                         onPressed: () {
-                          // Navigator.of(context).push(CupertinoPageRoute(
-                          //   builder: (context) =>  SignUps(),
-                          // ));
-                          pushNewScreen(
-                            context,
-                            screen: SignUp(),
-                            withNavBar: false,
-                            // OPTIONAL VALUE. True by default.
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                          );
+                          Navigator.of(context).push(CupertinoPageRoute(
+                            builder: (context) =>  SignUp(),
+                          ));
+
                         },
                         child: Text("enterRegistration".tr(),
                             style: const TextStyle(
@@ -252,14 +357,8 @@ class _MainHomeState extends State<MainHome> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
                   onPressed: () {
-                    pushNewScreen(
-                      context,
-                      screen: EnterFirst(windowIdEnterFirst: "1"),
-                      withNavBar: false,
-                      // OPTIONAL VALUE. True by default.
-                      pageTransitionAnimation:
-                          PageTransitionAnimation.cupertino,
-                    );
+                    Navigator.push(context, CupertinoPageRoute(builder: (context) => EnterFirst(windowIdEnterFirst: "1"),));
+
                   },
                   child: Text(
                     "enterLogPassword".tr(),
@@ -291,14 +390,8 @@ class _MainHomeState extends State<MainHome> {
                     // Navigator.of(context).push(CupertinoPageRoute(
                     //   builder: (context) =>  SignUps(),
                     // ));
-                    pushNewScreen(
-                      context,
-                      screen: SignUp(),
-                      withNavBar: false,
-                      // OPTIONAL VALUE. True by default.
-                      pageTransitionAnimation:
-                          PageTransitionAnimation.cupertino,
-                    );
+                    Navigator.push(context, CupertinoPageRoute(builder: (context) =>SignUp(),));
+
                   },
                   child: Text(
                     "enterRegistration".tr(),
@@ -363,6 +456,8 @@ class _MainHomeState extends State<MainHome> {
     return icons[random.nextInt(4)];
   }
 
+
+
   ///
 
   @override
@@ -387,6 +482,7 @@ class _MainHomeState extends State<MainHome> {
                 ? !providerMainHome.boolErrorHandle
                 ?
             Scaffold(
+              extendBodyBehindAppBar: true,
               // backgroundColor: const Color.fromRGBO(48, 192, 192, 0.01),
               backgroundColor: Colors.transparent,
               appBar: AppBar(
@@ -394,8 +490,9 @@ class _MainHomeState extends State<MainHome> {
                 // title: Text("bba".tr()),
                 actions: [
                   GestureDetector(
-                    onTap: () {
-                      pushNewScreen(context, screen: const MainMessages());
+                    onTap: () async{
+                      Navigator.push(context,CupertinoPageRoute(builder: (context) =>  MainMessages(),));
+
                     },
                     child: const Padding(
                       padding: EdgeInsets.fromLTRB(0, 8, 14, 0),
@@ -565,6 +662,8 @@ class _MainHomeState extends State<MainHome> {
                                                                       .service
                                                                       .isNotEmpty) {
                                                                     myViewButton(
+                                                                      serviceName:providerMainHome
+                                                                          .listDataServiceList[index].categoryName,
                                                                         context:
                                                                             context,
                                                                         providerMainHome:
@@ -633,15 +732,11 @@ class _MainHomeState extends State<MainHome> {
                                                                             .id
                                                                             .toString() ==
                                                                         "100000") {
-                                                                      pushNewScreen(
-                                                                          context,
-                                                                          screen:
-                                                                              WebViewWindow(
-                                                                            modelServiceMainList:
-                                                                                providerMainHome.listDataServiceList[index].service[index2],
-                                                                          ),
-                                                                          withNavBar:
-                                                                              true);
+                                                                      Navigator.push(context,CupertinoPageRoute(builder: (context) =>    WebViewWindow(
+                                                                        modelServiceMainList:
+                                                                        providerMainHome.listDataServiceList[index].service[index2],
+                                                                      ),));
+
                                                                       // final Uri _url =
                                                                       //     Uri.parse(
                                                                       //         "https://mandat.uzbmb.uz/");
@@ -657,15 +752,11 @@ class _MainHomeState extends State<MainHome> {
                                                                             .toString()
                                                                             .length >
                                                                         5) {
-                                                                      pushNewScreen(
-                                                                          context,
-                                                                          screen:
-                                                                              WebViewWindow(
-                                                                            modelServiceMainList:
-                                                                                providerMainHome.listDataServiceList[index].service[index2],
-                                                                          ),
-                                                                          withNavBar:
-                                                                              true);
+                                                                      Navigator.push(context,CupertinoPageRoute(builder: (context) =>    WebViewWindow(
+                                                                        modelServiceMainList:
+                                                                        providerMainHome.listDataServiceList[index].service[index2],
+                                                                      ),));
+
                                                                     } else {
                                                                       providerMainHome
                                                                           .goServicePage(
@@ -678,81 +769,6 @@ class _MainHomeState extends State<MainHome> {
                                                                     }
                                                                   },
                                                                   child:
-                                                                      // index == 0
-                                                                      //     ? Showcase(
-                                                                      //         key:
-                                                                      //             firstMainHome,
-                                                                      //         description:
-                                                                      //             "regEducation".tr(),
-                                                                      //         child:
-                                                                      //             Container(
-                                                                      //           height:
-                                                                      //               155,
-                                                                      //           width:
-                                                                      //               125,
-                                                                      //           padding:
-                                                                      //               const EdgeInsets.all(
-                                                                      //                   10),
-                                                                      //           margin:
-                                                                      //               const EdgeInsets.all(
-                                                                      //                   5),
-                                                                      //           decoration: BoxDecoration(
-                                                                      //               color: MyColors
-                                                                      //                   .appColorWhite(),
-                                                                      //               boxShadow: [
-                                                                      //                 BoxShadow(
-                                                                      //                     color: MyColors.appColorGrey400(),
-                                                                      //                     spreadRadius: 1,
-                                                                      //                     blurRadius: 1)
-                                                                      //               ],
-                                                                      //               borderRadius:
-                                                                      //                   BorderRadius.circular(10)),
-                                                                      //           child:
-                                                                      //               Column(
-                                                                      //             mainAxisAlignment:
-                                                                      //                 MainAxisAlignment.spaceBetween,
-                                                                      //             crossAxisAlignment:
-                                                                      //                 CrossAxisAlignment.center,
-                                                                      //             children: [
-                                                                      //               const SizedBox(
-                                                                      //                   height: 1),
-                                                                      //               CachedNetworkImage(
-                                                                      //                   height: 40,
-                                                                      //                   width: 40,
-                                                                      //                   filterQuality: FilterQuality.high,
-                                                                      //                   fit: BoxFit.fill,
-                                                                      //                   imageUrl: "${providerMainHome.listDataServiceList[index].service[index2].mobilIcon}",
-                                                                      //                   progressIndicatorBuilder: (context, url, downloadProgress) => const CupertinoActivityIndicator(),
-                                                                      //                   errorWidget: (context, url, error) =>
-                                                                      //                       // Text(url.toString())
-                                                                      //                       Image.asset(
-                                                                      //                         "assets/images/uzbmb.png",
-                                                                      //                       )
-                                                                      //                   //
-                                                                      //                   //     fit: BoxFit.fill),
-                                                                      //                   ),
-                                                                      //               Text(
-                                                                      //                 box.get("language") == "1"
-                                                                      //                     ? providerMainHome.listDataServiceList[index].service[index2].serviceName
-                                                                      //                     : box.get("language") == "2"
-                                                                      //                         ? providerMainHome.listDataServiceList[index].service[index2].serviceNameQQ
-                                                                      //                         : providerMainHome.listDataServiceList[index].service[index2].serviceNameRu,
-                                                                      //
-                                                                      //                 textAlign:
-                                                                      //                     TextAlign.center,
-                                                                      //                 overflow:
-                                                                      //                     TextOverflow.ellipsis,
-                                                                      //                 maxLines:
-                                                                      //                     3,
-                                                                      //                 // softWrap: true,
-                                                                      //                 style:
-                                                                      //                     const TextStyle(fontFamily: 'Roboto-Medium'),
-                                                                      //               ),
-                                                                      //             ],
-                                                                      //           ),
-                                                                      //         ),
-                                                                      //       )
-                                                                      //     :
                                                                       Container(
                                                                     height: 200,
                                                                     width: 180,

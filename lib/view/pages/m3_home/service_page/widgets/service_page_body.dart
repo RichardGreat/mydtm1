@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
@@ -13,7 +14,7 @@ import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
 import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+
 import 'package:showcaseview/showcaseview.dart';
 
 Widget servicePageBody(
@@ -68,24 +69,22 @@ Widget servicePageBody(
                         ///
                         log(serviceMainList.id.toString());
                         if(serviceMainList.status.toString() == "true"){
-                          pushNewScreen(context,
-                              pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                              screen: CertificateApplication(
-                                serviceId: serviceMainList.id.toString(),
-                                certName: box.get("language") == "1"
-                                    ? serviceMainList.serviceName
-                                    : box.get("language") == "2"
-                                    ? serviceMainList.serviceNameQQ
-                                    : serviceMainList.serviceNameRu,
-                              ));
+
+
+                          Navigator.push(context, CupertinoPageRoute(builder: (context) => CertificateApplication(
+                            serviceId: serviceMainList.id.toString(),
+                            certName: box.get("language") == "1"
+                                ? serviceMainList.serviceName
+                                : box.get("language") == "2"
+                                ? serviceMainList.serviceNameQQ
+                                : serviceMainList.serviceNameRu,
+                          )));
+
+
                         }else{}
 
                       } else if (serviceMainList.id.toString().trim() == "42") {
-                        pushNewScreen(context,
-                            pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino,
-                            screen: MainMyStatement(numberParam: "0"));
+                        Navigator.push(context, CupertinoPageRoute(builder: (context) => MainMyStatement(numberParam: "0")));
                       } else {
                         MyWidgets.awesomeDialogError(
                             context: context, valueText: "arizaNo".tr());
@@ -105,13 +104,7 @@ Widget servicePageBody(
                               color: MyColors.appColorBlack(),
                               fontWeight: FontWeight.bold),
                           btnOkOnPress: () {
-                            pushNewScreen(
-                              context,
-                              screen:  EnterFirst(windowIdEnterFirst: "0"),
-                              withNavBar: false,
-                              pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                            );
+                            Navigator.push(context, CupertinoPageRoute(builder: (context) => EnterFirst(windowIdEnterFirst: "0"),));
                           },
                           btnOkColor: MyColors.appColorBlue1(),
                           btnOkText: "enter".tr())
@@ -148,24 +141,20 @@ Widget servicePageBody(
                           ///
                           log(serviceMainList.id.toString());
                           if(serviceMainList.status.toString() == "true"){
-                            pushNewScreen(context,
-                                pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                                screen: CertificateApplication(
-                                  serviceId: serviceMainList.id.toString(),
-                                  certName: box.get("language") == "1"
-                                      ? serviceMainList.serviceName
-                                      : box.get("language") == "2"
-                                      ? serviceMainList.serviceNameQQ
-                                      : serviceMainList.serviceNameRu,
-                                ));
+                            Navigator.push(context, CupertinoPageRoute(builder: (context) =>  CertificateApplication(
+                              serviceId: serviceMainList.id.toString(),
+                              certName: box.get("language") == "1"
+                                  ? serviceMainList.serviceName
+                                  : box.get("language") == "2"
+                                  ? serviceMainList.serviceNameQQ
+                                  : serviceMainList.serviceNameRu,
+                            )));
+
                           }else{}
 
                         } else if (serviceMainList.id.toString().trim() == "42") {
-                          pushNewScreen(context,
-                              pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                              screen: MainMyStatement(numberParam: "0"));
+                          Navigator.push(context, CupertinoPageRoute(builder: (context) =>  MainMyStatement(numberParam: "0")));
+
                         } else {
                           MyWidgets.awesomeDialogError(
                               context: context, valueText: "arizaNo".tr());
@@ -219,14 +208,9 @@ Widget servicePageBody(
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8)),
                                     onPressed: () {
-                                      pushNewScreen(
-                                        context,
-                                        screen: EnterFirst(windowIdEnterFirst: "1"),
-                                        withNavBar: false,
-                                        // OPTIONAL VALUE. True by default.
-                                        pageTransitionAnimation:
-                                        PageTransitionAnimation.cupertino,
-                                      );
+
+                                      Navigator.push(context, CupertinoPageRoute(builder: (context) =>  EnterFirst(windowIdEnterFirst: "1")));
+
                                     },
                                     child: Text(
                                       "enterLogPassword".tr(),
@@ -258,14 +242,7 @@ Widget servicePageBody(
                                       // Navigator.of(context).push(CupertinoPageRoute(
                                       //   builder: (context) =>  SignUps(),
                                       // ));
-                                      pushNewScreen(
-                                        context,
-                                        screen:const SignUp(),
-                                        withNavBar: false,
-                                        // OPTIONAL VALUE. True by default.
-                                        pageTransitionAnimation:
-                                        PageTransitionAnimation.cupertino,
-                                      );
+                                      Navigator.push(context, CupertinoPageRoute(builder: (context) =>  SignUp()));
                                     },
                                     child: Text(
                                       "enterRegistration".tr(),

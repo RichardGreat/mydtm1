@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 
 // import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_i
 import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 // ignore: must_be_immutable
@@ -92,14 +92,11 @@ class _QaydVaraqaEditState extends State<QaydVaraqaEdit> {
                           // const SizedBox(height: 10),
                           MaterialButton(
                             onPressed: () {
-                              pushNewScreen(context,
-                                  pageTransitionAnimation:
-                                      PageTransitionAnimation.cupertino,
-                                  screen: ShowCaseWidget(
-                                      builder: Builder(
-                                    builder: (context) =>
-                                        ChooseEdu(funcState: getBoshFunc),
-                                  )));
+                              Navigator.push(context, CupertinoPageRoute(builder: (context) => ShowCaseWidget(
+                                builder: Builder(
+                                  builder: (context) =>
+                                      ChooseEdu(funcState: getBoshFunc),
+                                ),)));
                             },
                             height: 50,
                             minWidth: double.infinity,

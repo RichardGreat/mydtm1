@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:mydtm/view/pages/otm/provider_choose_edu.dart';
@@ -8,7 +9,6 @@ import 'package:mydtm/view/pages/otm/widgets/select_direction/select_direction.d
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 Widget bodyChooseEdu({
@@ -108,24 +108,22 @@ Widget bodyChooseEdu({
                 onTap: () {
                   if (checkFillSelected() && checkFillDir(index: index)) {
                     if (providerChooseEdu.boolCheckUseCertificateDataNot) {
-                      pushNewScreen(context,
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                          screen: SelectDirection(
-                            providerChooseEdu: providerChooseEdu,
-                            indexEduDir: int.parse(
-                                providerChooseEdu.listTitleEduDir[index].id),
-                          ));
+
+                      Navigator.push(context, CupertinoPageRoute(builder: (context) =>  SelectDirection(
+                        providerChooseEdu: providerChooseEdu,
+                        indexEduDir: int.parse(
+                            providerChooseEdu.listTitleEduDir[index].id),
+                      )));
+
                     } else {
                       if (providerChooseEdu.boolSetUserNationCert) {
-                        pushNewScreen(context,
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                            screen: SelectDirection(
-                              providerChooseEdu: providerChooseEdu,
-                              indexEduDir: int.parse(
-                                  providerChooseEdu.listTitleEduDir[index].id),
-                            ));
+
+                       Navigator.push(context, CupertinoPageRoute(builder: (context) =>  SelectDirection(
+                         providerChooseEdu: providerChooseEdu,
+                         indexEduDir: int.parse(
+                             providerChooseEdu.listTitleEduDir[index].id),
+                       )));
+
                       } else {
                         MyWidgets.scaffoldMessengerBottom(
                             context: context, valueText: "chooseCert".tr());

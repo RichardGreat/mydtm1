@@ -5,17 +5,15 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+
 
 class MyWidgets {
   var box = Hive.box("online");
 
   Future goEnterFirst({required BuildContext context}) async {
     box.delete("token");
-    pushNewScreen(context,
-        pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        screen: EnterFirst(windowIdEnterFirst: "0"),
-        withNavBar: false);
+    Navigator.push(context,CupertinoPageRoute(builder: (context) => EnterFirst(windowIdEnterFirst: "0"),));
+
   }
 
   static Widget loaderDownload({required BuildContext context}) {

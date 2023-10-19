@@ -6,7 +6,6 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/check_certificate/check_cert/certificate_view.dart';
 import 'package:mydtm/view/pages/check_certificate/check_cert/check_provider.dart';
 import 'package:mydtm/view/pages/m6_profile/widget_main_profile/body_no_profile_info.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -157,9 +156,9 @@ class _CheckCertificateState extends State<CheckCertificate> {
                                                               )),
                                                         ),
                                                         ListTile(
-                                                          leading: const Text(
-                                                              "Muddat",
-                                                              style: TextStyle(
+                                                          leading: Text(
+                                                              "muddat".tr(),
+                                                              style: const TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold)),
@@ -202,7 +201,8 @@ class _CheckCertificateState extends State<CheckCertificate> {
                                                                   minutesTextLong:
                                                                       "",
                                                                   daysTextLong:
-                                                                      " kun qoldi",
+                                                                      "dayHave"
+                                                                          .tr(),
                                                                   style: const TextStyle(
                                                                       color: Colors
                                                                           .black,
@@ -243,7 +243,8 @@ class _CheckCertificateState extends State<CheckCertificate> {
                                                                   minutesTextLong:
                                                                       "",
                                                                   daysTextLong:
-                                                                      " kun qoldi",
+                                                                      "dayHave"
+                                                                          .tr(),
                                                                   style: const TextStyle(
                                                                       color: Colors
                                                                           .black,
@@ -253,9 +254,9 @@ class _CheckCertificateState extends State<CheckCertificate> {
                                                                 ),
                                                         ),
                                                         ListTile(
-                                                            leading: const Text(
-                                                                "F.I.Sh",
-                                                                style: TextStyle(
+                                                            leading: Text(
+                                                                "fish".tr(),
+                                                                style: const TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
@@ -301,7 +302,7 @@ class _CheckCertificateState extends State<CheckCertificate> {
                                                         Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                      .only(
+                                                                  .only(
                                                                   left: 10,
                                                                   right: 10,
                                                                   bottom: 8),
@@ -316,14 +317,14 @@ class _CheckCertificateState extends State<CheckCertificate> {
                                                               MaterialButton(
                                                                 onPressed: () {
                                                                   // log(providerCheckCertificate.modelCheckCert[0].data[index2].url.toString());
-                                                                  pushNewScreen(
+
+                                                                  Navigator.push(
                                                                       context,
-                                                                      screen: CertificateView(
-                                                                          linkCert: providerCheckCertificate
-                                                                              .modelCheckCert[0]
-                                                                              .data[index2]
-                                                                              .url
-                                                                              .toString()));
+                                                                      CupertinoPageRoute(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                CertificateView(linkCert: providerCheckCertificate.modelCheckCert[0].data[index2].url.toString()),
+                                                                      ));
                                                                 },
                                                                 height: 50,
                                                                 color: Colors
@@ -333,9 +334,10 @@ class _CheckCertificateState extends State<CheckCertificate> {
                                                                     borderRadius:
                                                                         BorderRadius.circular(
                                                                             10)),
-                                                                child: const Text(
-                                                                    "Sertifikat ko'rish",
-                                                                    style: TextStyle(
+                                                                child: Text(
+                                                                    "certView"
+                                                                        .tr(),
+                                                                    style: const TextStyle(
                                                                         fontWeight:
                                                                             FontWeight
                                                                                 .bold,
@@ -360,16 +362,16 @@ class _CheckCertificateState extends State<CheckCertificate> {
                                       )),
                               )
                             : providerCheckCertificate.boolNotCertInfo
-                            ? Center(
-                            child: Text(
-                              "noCertificate".tr(),
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                              color: Colors.black
-                              ),
-                            ))
-                            : const Center(child: CupertinoActivityIndicator()),
+                                ? Center(
+                                    child: Text(
+                                    "noCertificate".tr(),
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black),
+                                  ))
+                                : const Center(
+                                    child: CupertinoActivityIndicator()),
                       )
                     : bodyNoProfileInfo(
                         context: context,

@@ -12,7 +12,7 @@ import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_i
 import 'package:mydtm/view/pages/m3_home/qayd_varaqa/qayd_varaqa2.dart';
 import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+
 import 'package:showcaseview/showcaseview.dart';
 
 class Aferta extends StatefulWidget {
@@ -96,29 +96,31 @@ class _AfertaState extends State<Aferta> {
                           Navigator.of(context).pop(),
                           widget.providerCheckInformation.modelCheckUserInfo
                                   .bakalavr
-                              ? pushNewScreen(
-                                  context,
-                                  screen: QaydVaraqaEdit(
-                                      providerCheckInformation:
-                                          widget.providerCheckInformation),
-                                  withNavBar: false,
-                                  pageTransitionAnimation:
-                                      PageTransitionAnimation.cupertino,
-                                )
-                              : pushNewScreen(
-                                  context,
-                                  screen: ShowCaseWidget(
-                                      builder: Builder(
-                                          builder: (context) => ShowCaseWidget(
-                                                  builder: Builder(
-                                                builder: (context) => ChooseEdu(
-                                                    funcState: widget.function),
-                                              )))),
-                                  //
-                                  withNavBar: false,
-                                  pageTransitionAnimation:
-                                      PageTransitionAnimation.cupertino,
-                                ),
+                              ?
+
+
+                  Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                  builder:
+                  (context) =>
+                      QaydVaraqaEdit(
+                          providerCheckInformation:
+                          widget.providerCheckInformation),))
+
+
+                              :
+
+                          Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                builder:
+                                    (context) =>
+                                        ShowCaseWidget(
+                                            builder: Builder(
+                                              builder: (context) => ChooseEdu(
+                                                  funcState: widget.function),
+                                            )),))
                         }
                       : {};
                 },

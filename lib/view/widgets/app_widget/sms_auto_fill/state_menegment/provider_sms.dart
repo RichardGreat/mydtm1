@@ -26,7 +26,6 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms_not_match.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/networks/network_sms.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderSms extends ChangeNotifier {
   final scaffoldKey = GlobalKey();
@@ -207,11 +206,9 @@ class ProviderSms extends ChangeNotifier {
 
       ModelResetPassToken2 modelResetPassToken2 =
           ModelResetPassToken2.fromJson(jsonDecode(dataSmsResetPassword));
-      pushNewScreen(context,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          screen: ChangePasswordInput(
-              phoneNumber: phoneNum,
-              passResetToken: modelResetPassToken2.data.passwordResetToken));
+      Navigator.push(context,CupertinoPageRoute(builder: (context) => ChangePasswordInput(
+          phoneNumber: phoneNum,
+          passResetToken: modelResetPassToken2.data.passwordResetToken)));
       boolData = true;
       timer.cancel();
       boolSentServerRequest = true;
@@ -454,11 +451,10 @@ class ProviderSms extends ChangeNotifier {
 
       if (modelEduSuccess.status == 1) {
         // ProviderAriza providerAriza = ProviderAriza();
-        pushNewScreen(context,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            screen: MainMyStatement(
-              numberParam: "2",
-            ));
+        Navigator.push(context,CupertinoPageRoute(builder: (context) => MainMyStatement(
+          numberParam: "2",
+        )));
+
       } else {
         MyWidgets.awesomeDialogError(
             context: context, valueText: "infoFillError".tr());

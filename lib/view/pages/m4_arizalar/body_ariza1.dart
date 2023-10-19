@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -6,7 +7,6 @@ import 'package:mydtm/view/pages/m4_arizalar/body_ariza/body_ariza.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 Widget bodyAriza1(
@@ -31,7 +31,9 @@ Widget bodyAriza1(
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-               Divider(color: Colors.teal.withOpacity(0.7),),
+              Divider(
+                color: Colors.teal.withOpacity(0.7),
+              ),
               const SizedBox(height: 10),
 
               /// ID RAQAM
@@ -208,7 +210,8 @@ Widget bodyAriza1(
                                 ],
                               ),
                               QrImageView(
-                                data: providerAriza.listArizaBodyService[index].invoice
+                                data: providerAriza
+                                    .listArizaBodyService[index].invoice
                                     .toString(),
                                 version: QrVersions.auto,
                                 size: 150.0,
@@ -218,7 +221,13 @@ Widget bodyAriza1(
                               //     text: "editEdu".tr(),
                               //     textColor: MyColors.appColorBlack()),
 
-                              const SizedBox(height: 20),
+                              SizedBox(
+                                height: 20,
+                                child: Row(children: [
+                                  Image.asset("assets/images/click.png"),
+                                  Image.asset("assets/images/payme.png")
+                                ]),
+                              ),
                             ],
                           ),
                         )
@@ -296,7 +305,8 @@ Widget bodyAriza1(
                                                   color: providerAriza
                                                               .listArizaBodyService[
                                                                   index]
-                                                              .holat.toString() !=
+                                                              .holat
+                                                              .toString() !=
                                                           "1"
                                                       ? MyColors.appColorRed()
                                                       : MyColors
@@ -350,15 +360,65 @@ Widget bodyAriza1(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-
                   QrImageView(
-                    data: providerAriza
-                        .listArizaBodyService[index].invoice
+                    data: providerAriza.listArizaBodyService[index].invoice
                         .toString(),
                     version: QrVersions.auto,
                     size: 150.0,
                   ),
                 ],
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.08,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.all(4),
+                        padding: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  blurRadius: 1,
+                                  spreadRadius: 1)
+                            ]),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.asset(
+                            "assets/images/click.png",
+                            height: MediaQuery.of(context).size.height * 0.052,
+                            width: MediaQuery.of(context).size.width * 0.27,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(4),
+                        padding: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  blurRadius: 1,
+                                  spreadRadius: 1)
+                            ]),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.asset(
+                            "assets/images/payme.png",
+                            height: MediaQuery.of(context).size.height * 0.075,
+                            width: MediaQuery.of(context).size.width * 0.25,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ]),
               ),
               providerAriza.listArizaBodyService[index].serviceName !=
                       "perevod1".tr()
@@ -366,10 +426,12 @@ Widget bodyAriza1(
                       alignment: Alignment.bottomCenter,
                       child: GestureDetector(
                         onTap: () {
-                          pushNewScreen(context,
-                              pageTransitionAnimation:
-                                  PageTransitionAnimation.cupertino,
-                              screen: ArizaEnter(providerAriza: providerAriza));
+                          Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                builder: (context) => ArizaEnter(providerAriza: providerAriza)
+                              ));
+
                         },
                         child: Container(
                           height: 45,
@@ -486,7 +548,7 @@ Widget bodyAriza1(
             ],
           ),
           const SizedBox(height: 20),
-           Divider(color: Colors.teal.withOpacity(0.7)),
+          Divider(color: Colors.teal.withOpacity(0.7)),
         ],
       ),
     ),

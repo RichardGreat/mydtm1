@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m4_ariza/qayd_varaqa.dart';
@@ -22,9 +23,7 @@ import 'package:mydtm/view/perevod/pages/new_edu_perevod/new_edu_perevod.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/old_edu_add.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-// import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderCheckInfoPerevod extends ChangeNotifier {
   List<ModelCheckInformationForDelete> myList = [
@@ -64,9 +63,11 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
       modeCheckUserPerevod =
           ModeCheckUserPerevod.fromJson(jsonDecode(dataCheckInfo));
 
-     await getDataStatusEdit();
+      await getDataStatusEdit();
       notifyListeners();
-    } catch (e) {throw Exception(e.toString());}
+    } catch (e) {
+      throw Exception(e.toString());
+    }
     // https://api.dtm.uz/v1/imtiyoz/check-data?imie=30309975270036
   }
 
@@ -77,44 +78,39 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
       required Function func}) async {
     if (modeCheckUserPerevod.person) {
       if (index == 0) {
-        pushNewScreen(
-          context,
-          screen: PersonInformation(
-              funcState: func, idFunction: "0", windowIdPassport: "2"),
-          withNavBar: false,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+        Navigator.push(
+            context,
+            CupertinoPageRoute(
+              builder: (context) => PersonInformation(
+                  funcState: func, idFunction: "0", windowIdPassport: "2"),
+            ));
       } else if (modeCheckUserPerevod.personAddress) {
         if (index == 1) {
-          pushNewScreen(
-            context,
-            screen: AddressInfo(funcState: func, addressWindowId: "2"),
-            withNavBar: false,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          );
+          Navigator.push(
+              context,
+              CupertinoPageRoute(
+                  builder: (context) =>
+                      AddressInfo(funcState: func, addressWindowId: "2")));
         }
         if (modeCheckUserPerevod.personGeneralEdu) {
           if (index == 2) {
-            pushNewScreen(
-              context,
-              screen: Graduated(funcState: func, windowIdGraduated: "2"),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                    builder: (context) =>
+                        Graduated(funcState: func, windowIdGraduated: "2")));
           } else if (index == 3) {
-            pushNewScreen(
-              context,
-              screen: const OldEduAdd(),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => const OldEduAdd(),
+                ));
           } else if (index == 4) {
-            pushNewScreen(
-              context,
-              screen:const NewEduPerevod(),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => const NewEduPerevod(),
+                ));
           } else if (index == 5) {
             // infoAferta(context: context, function: func);
             inFoAferta(
@@ -124,12 +120,12 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
           }
         } else {
           if (index == 2) {
-            pushNewScreen(
-              context,
-              screen: Graduated(funcState: func, windowIdGraduated: "2"),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) =>
+                      Graduated(funcState: func, windowIdGraduated: "2"),
+                ));
           } else {
             MyWidgets.awesomeDialogError(
                 context: context, valueText: "eduEndSchool".tr());
@@ -137,12 +133,12 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
         }
       } else {
         if (index == 1) {
-          pushNewScreen(
-            context,
-            screen: AddressInfo(funcState: func, addressWindowId: "2"),
-            withNavBar: false,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          );
+          Navigator.push(
+              context,
+              CupertinoPageRoute(
+                builder: (context) =>
+                    AddressInfo(funcState: func, addressWindowId: "2"),
+              ));
         } else {
           MyWidgets.awesomeDialogError(
               context: context, valueText: "addressFillInfo".tr());
@@ -176,13 +172,14 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
             descTextStyle: TextStyle(
                 color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
             btnOkOnPress: () {
-              pushNewScreen(
-                context,
-                screen: PersonInformation(
-                    funcState: func, idFunction: "0", windowIdPassport: "0"),
-                withNavBar: false,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              );
+              Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) => PersonInformation(
+                        funcState: func,
+                        idFunction: "0",
+                        windowIdPassport: "0"),
+                  ));
             },
             btnOkText: "iAgree".tr(),
             btnOkColor: MyColors.appColorBlue1(),
@@ -343,27 +340,29 @@ class ProviderCheckInfoPerevod extends ChangeNotifier {
   NetworkGetArizaPerevod networkGetArizaPerevod = NetworkGetArizaPerevod();
   late ModelGetArizaPerevod modelGetArizaPerevod;
   bool boolNotEdit = true;
-  Future getDataStatusEdit()async{
-    try{
 
+  Future getDataStatusEdit() async {
+    try {
       String dataPerevod = await networkGetArizaPerevod.getArizaPerevod();
-      modelGetArizaPerevod = ModelGetArizaPerevod.fromJson(jsonDecode(dataPerevod));
+      modelGetArizaPerevod =
+          ModelGetArizaPerevod.fromJson(jsonDecode(dataPerevod));
 
       // modelGetArizaPerevod.abitur.checkStatus.toString() == "2"?
       // boolNotEdit = true
       //     :
       // boolNotEdit = false;
-      if( modelGetArizaPerevod.abitur.checkStatus.toString() == "1" || modelGetArizaPerevod.abitur.checkStatus.toString() == "0"){
+      if (modelGetArizaPerevod.abitur.checkStatus.toString() == "1" ||
+          modelGetArizaPerevod.abitur.checkStatus.toString() == "0") {
         boolNotEdit = true;
         notifyListeners();
-      }else{
+      } else {
         boolNotEdit = true;
         notifyListeners();
       }
 
       boolCheckUserInfo = true;
       notifyListeners();
-    }catch(e){
+    } catch (e) {
       boolCheckUserInfo = true;
       notifyListeners();
     }

@@ -1,10 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/texnikum/certificate/forigion_lang/foreigion_lang_add.dart';
 import 'package:mydtm/view/texnikum/certificate/provider_certificate_texnikum.dart';
 import 'package:mydtm/view/texnikum/privillage/privillage_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 Widget bodyCertificateTexnikuim(
@@ -34,12 +34,12 @@ Widget bodyCertificateTexnikuim(
                                         .dataCheckForeignCertificate.status ==
                                     1
                                 ? {}
-                                : pushNewScreen(context,
-                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    screen: ForeignLanguageAddTexnikum(
-                                      providerCertificateTexnikum: providerCertificateTexnikum,
-                                      function: func,
-                                    ));
+                                :
+                            Navigator.push(context,CupertinoPageRoute(builder: (context) => ForeignLanguageAddTexnikum(
+                              providerCertificateTexnikum: providerCertificateTexnikum,
+                              function: func,
+                            )));
+
                           },
                           child: Container(
                             height: 50,
@@ -131,10 +131,9 @@ Widget bodyCertificateTexnikuim(
                     children: [
                       MaterialButton(
                         onPressed: () {
-                          pushNewScreen(context,
-                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                              screen: PrivilegeTexnikum(funcState: func, windowId: "0"),
-                              withNavBar: false);
+
+                          Navigator.push(context,CupertinoPageRoute(builder: (context) =>  PrivilegeTexnikum(funcState: func, windowId: "0"),));
+
                         },
                         height: 50,
                         color: MyColors.appColorBlue1(),

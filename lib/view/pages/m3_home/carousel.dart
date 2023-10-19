@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+
 
 Widget carouselMain(
     {required BuildContext context,
@@ -31,17 +31,16 @@ Widget carouselMain(
               height: 250,
 
               width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 3),
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(10)),
               child: GestureDetector(
                 onTap: () async {
                   if (i.id.toString().length > 5) {
-                    pushNewScreen(context,
-                        screen: WebViewWindow(
-                          modelServiceMainList: i,
-                        ),
-                        withNavBar: true);
+                    Navigator.push(context, CupertinoPageRoute(builder: (context) => WebViewWindow(
+                      modelServiceMainList: i,
+                    ),));
+
                   }
                   else {
                     providerMainHome.goServicePage(
@@ -70,7 +69,7 @@ Widget carouselMain(
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.44,
+                            width: MediaQuery.of(context).size.width * 0.43,
                             height: i.id.toString().length > 4 ? 150 : 100,
                             child: CachedNetworkImage(
                                 filterQuality: FilterQuality.high,

@@ -15,7 +15,6 @@ import 'package:mydtm/data/model_parse/m6_model/get_country.dart';
 import 'package:mydtm/data/model_parse/person_info/model_address.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderAddressInfo extends ChangeNotifier {
   final keyAddressInfo = GlobalKey<FormState>();
@@ -213,11 +212,8 @@ class ProviderAddressInfo extends ChangeNotifier {
               color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),
           descTextStyle: TextStyle(
               color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-
               btnCancelOnPress: () {
-            pushNewScreen(context,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                screen: Graduated(funcState: getActions,  windowIdGraduated: "2"), withNavBar: false);
+            Navigator.push(context, CupertinoPageRoute(builder: (context) => Graduated(funcState: getActions,  windowIdGraduated: "2"),));
           },
               btnCancelColor: MyColors.appColorBlue1(),
           btnCancelText: "continue".tr(),)

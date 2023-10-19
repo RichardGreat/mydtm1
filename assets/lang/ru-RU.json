@@ -301,7 +301,11 @@
   "checkCertificate": "Проверка сертификата",
   "bba": "BBA",
   "workSoon": "Услуга будет запущена в ближайшее время",
-  "noCertificate": "Sizda ayni vaqtda Bilim va malakalarni baholash agentligi tomonidan berilgan sertifikat mavjud emas",
-  "regionSection": "Региональные отделения"
-
+  "noCertificate": "У вас нет сертификата",
+  "regionSection": "Региональные отделения",
+  "callCenter": "Колл-центр",
+  "secPhone": "Телефон доверия",
+  "muddat": "Срок годности",
+  "dayHave": " день остался",
+  "certView": "Посмотреть"
 }

@@ -9,7 +9,6 @@ import 'package:mydtm/view/pages/person_info/address_info/provider_address_info.
 import 'package:mydtm/view/pages/person_info/address_info/region_set_info/region_set_inputs.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:showcaseview/showcaseview.dart';
@@ -46,15 +45,11 @@ class _AddressInfoState extends State<AddressInfo> {
             onWillPop: () async {
               if (widget.addressWindowId == "0") {
                 widget.funcState();
-                pushNewScreen(
-                  context,
-                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  screen: ShowCaseWidget(
-                    builder: Builder(
-                        builder: (context) => CheckInformation(
-                            serviceName: box.get("categoryName").toString())),
-                  ),
-                );
+                Navigator.push(context, CupertinoPageRoute(builder: (context) => ShowCaseWidget(
+                  builder: Builder(
+                      builder: (context) => CheckInformation(
+                          serviceName: box.get("categoryName").toString())),
+                ),));
               } else if (widget.addressWindowId == "1") {
                 Navigator.of(context).pop();
               } else if (widget.addressWindowId == "2") {

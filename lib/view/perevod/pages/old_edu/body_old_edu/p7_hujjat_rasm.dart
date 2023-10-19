@@ -1,10 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/image_to_pdf/image_to_pdf.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 Widget hujjatRasm(
     {required BuildContext context, required ProviderOldEdu providerOldEdu}) {
@@ -19,20 +19,26 @@ Widget hujjatRasm(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          MyWidgets.robotoFontText(text: "imageDoc".tr(), textSize: 17, textColor: providerOldEdu.graduatedYearNames.length > 4?MyColors.appColorBlack():MyColors.appColorGrey400()),
-    providerOldEdu.boolConvertImageToPdf && providerOldEdu.listImagesPDF.isNotEmpty
+          MyWidgets.robotoFontText(text: "imageDoc".tr(),
+              textSize: 17,
+              textColor: providerOldEdu.graduatedYearNames.length > 4 ? MyColors
+                  .appColorBlack() : MyColors.appColorGrey400()),
+          providerOldEdu.boolConvertImageToPdf &&
+              providerOldEdu.listImagesPDF.isNotEmpty
               ? Icon(
-                  Icons.check_circle,
-                  color: MyColors.appColorGreen1(),
-                )
+            Icons.check_circle,
+            color: MyColors.appColorGreen1(),
+          )
               : const SizedBox.shrink()
         ],
       ),
       trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 16),
       onTap: () {
-
         providerOldEdu.graduatedYearNames.length > 4 ?
-        pushNewScreen(context, screen: ImageToPdf(providerOldEdu: providerOldEdu), withNavBar: false):{};
+        Navigator.push(context, CupertinoPageRoute(
+            builder: (context) => ImageToPdf(providerOldEdu: providerOldEdu)))
+
+        :{};
 // sheetLanguageChooseTest(
 //     context: context, providerChooseEdu: providerChooseEdu);
       },

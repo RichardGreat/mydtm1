@@ -1,8 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/m1_internet/get_captcha.dart';
 import 'package:mydtm/data/internet_connections/m3_home/service_list.dart';
@@ -18,9 +20,6 @@ import 'package:mydtm/main.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'dart:developer';
-
 import 'package:url_launcher/url_launcher.dart';
 
 class ProviderProfile extends ChangeNotifier {
@@ -156,15 +155,13 @@ class ProviderProfile extends ChangeNotifier {
           phoneNumber: textChangePhoneNum.text);
       ModelPhoneChange modelPhoneChange =
           ModelPhoneChange.fromJson(jsonDecode(data));
-      // ignore: use_build_context_synchronously
-      pushNewScreen(context,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          screen: SmsAutoFillUi(
-              phoneNum: modelPhoneChange.data.phone.toString(),
-              password: "",
-              captchaKey: modelPhoneChange.data.smsId.toString(),
-              captchaValue: "",
-              registration: "3"));
+      Navigator.push(context, CupertinoPageRoute(builder: (context) => SmsAutoFillUi(
+          phoneNum: modelPhoneChange.data.phone.toString(),
+          password: "",
+          captchaKey: modelPhoneChange.data.smsId.toString(),
+          captchaValue: "",
+          registration: "3")));
+
       textChangePhoneNum.clear();
       log(data);
     } catch (e) {
@@ -176,12 +173,7 @@ class ProviderProfile extends ChangeNotifier {
 
   ///
   Future goLoginPage({required BuildContext context}) async {
-    pushNewScreen(
-      context,
-      screen: EnterFirst(windowIdEnterFirst: "0"),
-      withNavBar: false,
-      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-    );
+    Navigator.push(context, CupertinoPageRoute(builder: (context) =>  EnterFirst(windowIdEnterFirst: "0"),));
   }
 
   Future logOut() async {}
@@ -252,15 +244,13 @@ class ProviderProfile extends ChangeNotifier {
           ModelResetPassSms.fromJson(jsonDecode(dataNet));
       textCaptchaEditingControllerPassport.clear();
 
-      // ignore: use_build_context_synchronously
-      pushNewScreen(context,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          screen: SmsAutoFillUi(
-              phoneNum: box.get("phoneNumber"),
-              password: "",
-              captchaKey: modelResetPassSms.data.smsId.toString(),
-              captchaValue: modelResetPassSms.data.endDate.toString(),
-              registration: "2"));
+      Navigator.push(context, CupertinoPageRoute(builder: (context) =>  SmsAutoFillUi(
+          phoneNum: box.get("phoneNumber"),
+          password: "",
+          captchaKey: modelResetPassSms.data.smsId.toString(),
+          captchaValue: modelResetPassSms.data.endDate.toString(),
+          registration: "2")));
+
     } catch (e) {
       log(e.toString());
     }
@@ -282,18 +272,15 @@ class ProviderProfile extends ChangeNotifier {
       {required String langId, required BuildContext context}) async {
     if (langId == "0") {
       context.setLocale(const Locale('uz', 'UZ'));
-
       box.delete("language");
       box.put("language", "1");
       box.delete("langLock");
       box.put("langLock", "1");
       await setLangUser();
-      // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
-        context,
-        CupertinoPageRoute(builder: (context) => const MyApp()),
-        (route) => false,
-      );
+          context,
+          CupertinoPageRoute(builder: (context) => const MyApp()),
+          (route) => false);
     } else if (langId == "1") {
       context.setLocale(const Locale('kk', 'KK'));
       box.delete("language");
@@ -301,12 +288,10 @@ class ProviderProfile extends ChangeNotifier {
       box.delete("langLock");
       box.put("langLock", "1");
       await setLangUser();
-      // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
-        context,
-        CupertinoPageRoute(builder: (context) => const MyApp()),
-        (route) => false,
-      );
+          context,
+          CupertinoPageRoute(builder: (context) => const MyApp()),
+          (route) => false);
     } else if (langId == "2") {
       context.setLocale(const Locale('ru', 'RU'));
       box.delete("language");
@@ -314,12 +299,10 @@ class ProviderProfile extends ChangeNotifier {
       box.delete("langLock");
       box.put("langLock", "1");
       await setLangUser();
-      // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
-        context,
-        CupertinoPageRoute(builder: (context) => const MyApp()),
-        (route) => false,
-      );
+          context,
+          CupertinoPageRoute(builder: (context) => const MyApp()),
+          (route) => false);
     }
   }
 

@@ -26,7 +26,7 @@ import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_captcha_error.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
 import 'package:ntp/ntp.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+
 
 class ProviderEnterFirst extends ChangeNotifier {
   ///#offline App Logic
@@ -281,14 +281,20 @@ class ProviderEnterFirst extends ChangeNotifier {
       textCaptchaEditingController.clear();
       getCaptcha();
       modelResetPassSms.status == 1
-          ? pushNewScreen(context,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              screen: SmsAutoFillUi(
-                  phoneNum: phoneNumber,
-                  password: "",
-                  captchaKey: modelResetPassSms.data.smsId.toString(),
-                  captchaValue: modelResetPassSms.data.endDate.toString(),
-                  registration: "2"))
+          ?
+
+      Navigator.push(
+          context,
+          CupertinoPageRoute(
+              builder:
+                  (context) =>
+                      SmsAutoFillUi(
+                          phoneNum: phoneNumber,
+                          password: "",
+                          captchaKey: modelResetPassSms.data.smsId.toString(),
+                          captchaValue: modelResetPassSms.data.endDate.toString(),
+                          registration: "2")
+          ))
           : {};
       notifyListeners();
     } catch (e) {

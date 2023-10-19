@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/texnikum/internet/check_info_user/check_user_texnikum.dart';
 import 'package:mydtm/data/texnikum/internet/get_all_qayd.dart';
@@ -9,13 +10,12 @@ import 'package:mydtm/data/texnikum/models/user_check/model_user_check.dart';
 import 'package:mydtm/view/pages/person_info/address_info/adress_info.dart';
 import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
-import 'package:mydtm/view/texnikum/aerta_texnikum.dart';
+import 'package:mydtm/view/texnikum/oferta_texnikum.dart';
 import 'package:mydtm/view/texnikum/certificate/certificate_texnikum.dart';
 import 'package:mydtm/view/texnikum/choose_edu/choose_edu_texnikum.dart';
 import 'package:mydtm/view/texnikum/privillage/privillage_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'dart:developer';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -104,53 +104,27 @@ class ProviderTexnikum extends ChangeNotifier {
       required Function func}) async {
     if (modelCheckUserInfoTexnikum.person) {
       if (index == 0) {
-        pushNewScreen(
-          context,
-          screen: PersonInformation(
-              funcState: func, idFunction: "0", windowIdPassport: "1"),
-          withNavBar: false,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+        Navigator.push(context,CupertinoPageRoute(builder: (context) =>  PersonInformation(
+            funcState: func, idFunction: "0", windowIdPassport: "1"),));
       } else if (modelCheckUserInfoTexnikum.personAddress) {
         if (index == 1) {
-          pushNewScreen(
-            context,
-            screen: AddressInfo(funcState: func, addressWindowId: "1"),
-            withNavBar: false,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          );
+          Navigator.push(context,CupertinoPageRoute(builder: (context) =>  AddressInfo(funcState: func, addressWindowId: "1"),));
+
         }
         if (modelCheckUserInfoTexnikum.personGeneralEdu) {
           if (index == 2) {
-            pushNewScreen(
-              context,
-              screen: Graduated(funcState: func, windowIdGraduated: "1"),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(context,CupertinoPageRoute(builder: (context) =>  Graduated(funcState: func, windowIdGraduated: "1"),));
+
           } else if (index == 3) {
-            pushNewScreen(
-              context,
-              screen: CertificateTexnikum(funcState: func),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(context,CupertinoPageRoute(builder: (context) => CertificateTexnikum(funcState: func),));
+
           } else if (index == 4) {
-            pushNewScreen(
-              context,
-              screen: PrivilegeTexnikum(funcState: func, windowId: "0"),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(context,CupertinoPageRoute(builder: (context) =>  PrivilegeTexnikum(funcState: func, windowId: "0"),));
+
           } else if (index == 5) {
             // Navigator.of(context).pop();
-            pushNewScreen(
-              context,
-              screen: const ChooseEduTexnikum(),
-              //QaydVaraqaEdit(providerCheckInformation: widget.providerTexnikum),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(context,CupertinoPageRoute(builder: (context) => const ChooseEduTexnikum(),));
+
             // inFoAferta(
             //     context: context,
             //     function: func,
@@ -158,12 +132,8 @@ class ProviderTexnikum extends ChangeNotifier {
           }
         } else {
           if (index == 2) {
-            pushNewScreen(
-              context,
-              screen: Graduated(funcState: func, windowIdGraduated: "0"),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(context,CupertinoPageRoute(builder: (context) => Graduated(funcState: func, windowIdGraduated: "0"),));
+
           } else {
             MyWidgets.awesomeDialogError(
                 context: context, valueText: "eduEndSchool".tr());
@@ -171,12 +141,8 @@ class ProviderTexnikum extends ChangeNotifier {
         }
       } else {
         if (index == 1) {
-          pushNewScreen(
-            context,
-            screen: AddressInfo(funcState: func, addressWindowId: "0"),
-            withNavBar: false,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          );
+          Navigator.push(context,CupertinoPageRoute(builder: (context) => AddressInfo(funcState: func, addressWindowId: "0"),));
+
         } else {
           MyWidgets.awesomeDialogError(
               context: context, valueText: "addressFillInfo".tr());
@@ -210,13 +176,9 @@ class ProviderTexnikum extends ChangeNotifier {
             descTextStyle: TextStyle(
                 color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
             btnOkOnPress: () {
-              pushNewScreen(
-                context,
-                screen: PersonInformation(
-                    funcState: func, idFunction: "0", windowIdPassport: "0"),
-                withNavBar: false,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              );
+              Navigator.push(context,CupertinoPageRoute(builder: (context) => PersonInformation(
+                  funcState: func, idFunction: "0", windowIdPassport: "0"),));
+
             },
             btnOkText: "iAgree".tr(),
             btnOkColor: MyColors.appColorBlue1(),

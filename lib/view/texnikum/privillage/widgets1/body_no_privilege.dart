@@ -6,7 +6,7 @@ import 'package:mydtm/view/pages/m3_home/check_information_page/check_informatio
 import 'package:easy_localization/easy_localization.dart';
 import 'package:mydtm/view/texnikum/privillage/provider_privillage_texnika.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+
 import 'package:showcaseview/showcaseview.dart';
 
 Widget bodyNoPrivilegeTexnikum(
@@ -86,16 +86,13 @@ Widget bodyNoPrivilegeTexnikum(
                             color: MyColors.appColorBlack(),
                             fontWeight: FontWeight.bold),
                         btnCancelOnPress: () {
-                          pushNewScreen(context,
-                              pageTransitionAnimation:
-                                  PageTransitionAnimation.cupertino,
-                              screen: ShowCaseWidget(
-                                builder: Builder(
-                                  builder: (context) => CheckInformation(
-                                      serviceName:
-                                          box.get("categoryName").toString()),
-                                ),
-                              ));
+                          Navigator.push(context, CupertinoPageRoute(builder: (context) => ShowCaseWidget(
+                            builder: Builder(
+                              builder: (context) => CheckInformation(
+                                  serviceName:
+                                  box.get("categoryName").toString()),
+                            ),
+                          )));
                         },
                         btnCancelColor: MyColors.appColorBlue1(),
                         btnCancelText: "OK")

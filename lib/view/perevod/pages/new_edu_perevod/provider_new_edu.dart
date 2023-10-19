@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/create_qabul.dart';
 import 'package:mydtm/data/perevod/internet/new_edu/m1_test_region.dart';
@@ -17,7 +18,6 @@ import 'dart:developer';
 import 'package:mydtm/data/perevod/model/new_edu/m5_dir_new_perevod.dart';
 import 'package:mydtm/data/perevod/model/new_edu/m6_test_foreign_lang_new_perevod.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class ProviderNewEduPerevod extends ChangeNotifier {
   String testRegionNames = "";
@@ -323,10 +323,9 @@ class ProviderNewEduPerevod extends ChangeNotifier {
         flangId: foreignLangId.isEmpty ? "0" : foreignLangId,
       );
       log("dataSetAll");
-      pushNewScreen(context,
-          pageTransitionAnimation:
-          PageTransitionAnimation.cupertino,
-          screen: MainMyStatement(numberParam: "0"));
+
+      Navigator.push(context,CupertinoPageRoute(builder: (context) => MainMyStatement(numberParam: "0"),));
+
       log(dataSetAll);
     } catch (e) {
       throw Exception(e.toString());

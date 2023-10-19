@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/certificate_nation/create_nat_cert.dart';
 import 'package:mydtm/data/internet_connections/certificate_nation/get_regLang.dart';
@@ -12,7 +13,6 @@ import 'package:mydtm/view/sertificate_service/service_pages/sertificate_view.da
 import 'package:mydtm/view/sertificate_service/widget_cert_nation/list_choose_lang.dart';
 import 'package:mydtm/view/sertificate_service/widget_cert_nation/list_choose_regions.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class ProviderCertificateService extends ChangeNotifier {
@@ -136,12 +136,12 @@ class ProviderCertificateService extends ChangeNotifier {
       required String sername // sertifikat nomi
       }) {
     try {
-      pushNewScreen(context,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          screen: CertificateApplication(
-            serviceId: certId,
-            certName: sername,
-          ));
+
+      Navigator.push(context,CupertinoPageRoute(builder: (context) => CertificateApplication(
+        serviceId: certId,
+        certName: sername,
+      )));
+
     } catch (e) {
       log(e.toString());
     }

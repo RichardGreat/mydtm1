@@ -1,10 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m4_arizalar/downloads/accessPapaer.dart';
 import 'package:mydtm/view/pages/m4_arizalar/downloads/answerSheet.dart';
 import 'package:mydtm/view/pages/m4_arizalar/downloads/qayd_varaqa.dart';
 import 'package:mydtm/view/pages/m4_arizalar/provider_ariza.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 Widget downloads({required BuildContext context, required ProviderAriza providerAriza}){
@@ -28,36 +28,23 @@ Widget downloads({required BuildContext context, required ProviderAriza provider
         ListTile(
           title: Text("notePaper".tr(), style: TextStyle(color: MyColors.appColorBlack(),),),
           onTap: () {
-            pushNewScreen(
-              context,
-              screen:   QaydVaraqaDownload(providerAriza: providerAriza),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(context,CupertinoPageRoute(builder: (context) =>  QaydVaraqaDownload(providerAriza: providerAriza),));
+
           },
           trailing:const  Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ),
         ListTile(
           title: Text("accessPaper".tr(),style: TextStyle(color: MyColors.appColorBlack(),)),
           onTap: () {
-            pushNewScreen(
-              context,
-              screen:    AccessPaperDownload(providerAriza: providerAriza),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(context,CupertinoPageRoute(builder: (context) =>  AccessPaperDownload(providerAriza: providerAriza),));
+
           },
           trailing: const  Icon(Icons.arrow_forward_ios_sharp, size: 16),
         ),
         ListTile(
           title: Text("answerSheet".tr(),style: TextStyle(color: MyColors.appColorBlack(), )),
           onTap: () {
-            pushNewScreen(
-              context,
-              screen:  AnswerSheetDownload(providerAriza: providerAriza),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            Navigator.push(context,CupertinoPageRoute(builder: (context) =>  AnswerSheetDownload(providerAriza: providerAriza),));
 
           },
           trailing:const   Icon(Icons.arrow_forward_ios_sharp, size: 16),

@@ -299,8 +299,10 @@
   "bba": "BBA",
   "workSoon": "Xizmat yaqin vaqtda ishga tushadi",
   "noCertificate": "Sizda ayni vaqtda Bilim va malakalarni baholash agentligi tomonidan berilgan sertifikat mavjud emas",
-  "regionSection": "Hududiy bo'limlar"
-
-
-
+  "regionSection": "Hududiy bo'limlar",
+  "callCenter": "Call sentr",
+  "secPhone": "Ishonch telefoni",
+  "muddat": "Muddat",
+  "dayHave": " kun qoldi",
+  "certView": "Sertifikat ko'rish"
 }

@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
-import 'package:mydtm/view/pages/m6_profile/provider_profile.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+
 
 Widget bodyNoProfileInfo({required BuildContext context}){
   return Padding(
@@ -60,14 +59,11 @@ Widget bodyNoProfileInfo({required BuildContext context}){
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8)),
                         onPressed: () {
-                          pushNewScreen(
-                            context,
-                            screen: EnterFirst(windowIdEnterFirst: "1"),
-                            withNavBar: false,
-                            // OPTIONAL VALUE. True by default.
-                            pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino,
-                          );
+                          Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                builder: (context) =>  EnterFirst(windowIdEnterFirst: "1"),
+                              ));
                         },
                         child: Text(
                           "enterLogPassword".tr(),
@@ -101,14 +97,13 @@ Widget bodyNoProfileInfo({required BuildContext context}){
                           // Navigator.of(context).push(CupertinoPageRoute(
                           //   builder: (context) =>  SignUps(),
                           // ));
-                          pushNewScreen(
-                            context,
-                            screen: SignUp(),
-                            withNavBar: false,
-                            // OPTIONAL VALUE. True by default.
-                            pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino,
-                          );
+
+                          Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                builder: (context) => SignUp(),
+                              ));
+
                         },
                         child: Text(
                           "enterRegistration".tr(),

@@ -1,21 +1,21 @@
 import 'dart:math';
 
-import 'package:easy_localization/easy_localization.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
-import 'package:mydtm/view/pages/check_certificate/check_cert/certificate_view.dart';
 import 'package:mydtm/view/pages/m3_home/provider_main_home.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:showcaseview/showcaseview.dart';
 
 myViewButton(
     {required BuildContext context,
     required List<ServiceMainList> myList,
+    required String serviceName,
     required ProviderMainHome providerMainHome}) {
   Random random = Random();
   List<IconData> icons = [
@@ -36,6 +36,7 @@ myViewButton(
       isDismissible: false,
       isScrollControlled: true,
       backgroundColor: MyColors.appColorWhite(),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       builder: (BuildContext context) {
         return Container(
             height: MediaQuery.of(context).size.height * 0.7,
@@ -53,10 +54,11 @@ myViewButton(
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.5,
                         child: Text(
-                          "services".tr(),
+                          // "services".tr(),
+                          serviceName,
                           style: TextStyle(
                               color: MyColors.appColorBlack(),
-                              fontSize: 24,
+                              fontSize: 20,
                               fontWeight: FontWeight.normal,
                               fontFamily: 'Roboto-Medium'),
                           maxLines: 3,
@@ -76,6 +78,7 @@ myViewButton(
                     ],
                   ),
                 ),
+                const SizedBox(height: 10),
                 Expanded(
                   child: GridView.builder(
                     itemCount: myList.length,
@@ -92,29 +95,29 @@ myViewButton(
                           // }
                           if (myList[index].id.toString().length > 5 &&
                               myList[index].id.toString().length < 9) {
-
-                            pushNewScreen(context,
-                                screen: WebViewWindow(
-                                  modelServiceMainList: myList[index],
-                                ),
-                                withNavBar: true);
+                            Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) => WebViewWindow(
+                                    modelServiceMainList: myList[index],
+                                  ),
+                                ));
                           } else {
-                            pushNewScreen(
-                              context,
-                              screen: ShowCaseWidget(
-                                builder: Builder(
-                                    builder: (context) => ShowCaseWidget(
-                                          builder: Builder(
-                                            builder: (context) => ServicePage(
-                                                serviceMainList: myList[index]),
-                                          ),
-                                        )),
-                              ),
-                              withNavBar: true,
-                              // OPTIONAL VALUE. True by default.
-                              pageTransitionAnimation:
-                                  PageTransitionAnimation.cupertino,
-                            );
+                            Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) => ShowCaseWidget(
+                                    builder: Builder(
+                                        builder: (context) => ShowCaseWidget(
+                                              builder: Builder(
+                                                builder: (context) =>
+                                                    ServicePage(
+                                                        serviceMainList:
+                                                            myList[index]),
+                                              ),
+                                            )),
+                                  ),
+                                ));
                           }
                         },
                         child: Container(
@@ -135,18 +138,24 @@ myViewButton(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              // CachedNetworkImage(
-                              //     width: 60,
-                              //     height: 60,
-                              //     fit: BoxFit.fill,
-                              //     imageUrl: myList[index].mobilIcon,
-                              //     progressIndicatorBuilder:
-                              //         (context, url, downloadProgress) =>
-                              //             const CupertinoActivityIndicator(),
-                              //     errorWidget: (context, url, error) =>
-                              //         Image.asset("assets/images/uzbmb.png")),
-                              Icon(randomIcon(),
-                                  size: 40, color: MyColors.appColorBBA()),
+                              myList[index].id.toString().length > 5 &&
+                                      myList[index].id.toString().length < 9
+                                  ? CachedNetworkImage(
+                                      width: 60,
+                                      height: 60,
+                                      fit: BoxFit.cover,
+                                      imageUrl: myList[index].mobilIcon,
+                                      progressIndicatorBuilder: (context, url,
+                                              downloadProgress) =>
+                                          const CupertinoActivityIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          Image.asset(
+                                              "assets/images/uzbmb.png"))
+                                  : Icon(randomIcon(),
+                                      size: 40, color: MyColors.appColorBBA()),
+                              const SizedBox(
+                                height: 10,
+                              ),
                               SizedBox(
                                 child: Text(
                                   box.get("language") == "1"

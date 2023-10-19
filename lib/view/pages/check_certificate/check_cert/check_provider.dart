@@ -27,7 +27,8 @@ class ProviderCheckCertificate extends ChangeNotifier {
       boolGetCertInfo = false;
       log(box.get("imie").toString());
      String  data = await _internetCheckCert.getData(pnfl:box.get("imie"));
-     modelCheckCert =   (data as List)
+      log(data.toString());
+     modelCheckCert =   (jsonDecode(data) as List)
          .map((e) => ModelCheckCertificate.fromJson(e))
          .toList();
       boolNotCertInfo = false;
@@ -36,8 +37,9 @@ class ProviderCheckCertificate extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       boolNotCertInfo = true;
-      notifyListeners();
+      log("error parse cert");
       log(e.toString());
+      notifyListeners();
     }
   }
 }

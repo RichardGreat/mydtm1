@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/texnikum/privillage/add_invalid/add_invalid.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+
 
 Widget chooseInvalidType({required BuildContext context}) {
   return Center(
@@ -22,13 +23,10 @@ Widget chooseInvalidType({required BuildContext context}) {
             children: [
               GestureDetector(
                 onTap: (){
-                  pushNewScreen(context,
-                      screen: InvalidAddTexnikum(
-                          titleName: "privilegeEyeTexnikum".tr(),
-                          typeWindow: "1"),
-                      pageTransitionAnimation:
-                      PageTransitionAnimation.cupertino,
-                      withNavBar: false);
+                  Navigator.push(context, CupertinoPageRoute(builder: (context) => InvalidAddTexnikum(
+                      titleName: "privilegeEyeTexnikum".tr(),
+                      typeWindow: "1"),));
+
                 },
                 child: Container(height: 50,
                   width: MediaQuery
@@ -49,13 +47,10 @@ Widget chooseInvalidType({required BuildContext context}) {
               const SizedBox(height: 10),
               GestureDetector(
                 onTap: (){
-                  pushNewScreen(context,
-                      screen: InvalidAddTexnikum(
-                          titleName: "privilegeEyeTexnikum".tr(),
-                          typeWindow: "2"),
-                      pageTransitionAnimation:
-                      PageTransitionAnimation.cupertino,
-                      withNavBar: false);
+                  Navigator.push(context,CupertinoPageRoute(builder: (context) => InvalidAddTexnikum(
+                      titleName: "privilegeEyeTexnikum".tr(),
+                      typeWindow: "2"),));
+
                 },
                 child: Container(height: 50,
                   width: MediaQuery

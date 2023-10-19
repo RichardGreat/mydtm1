@@ -37,8 +37,9 @@ Future main() async {
   // FlutterNativeSplash.remove();
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: MyColors.appColorBBA(), // status bar color
+
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.teal,
   ));
   await EasyLocalization.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
@@ -93,6 +94,7 @@ Future main() async {
     ),
   );
 }
+
 // FlutterNativeSplash.remove();
 // Future initializations()async{
 // await Future.delayed(const Duration(milliseconds: 1800));

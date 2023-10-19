@@ -21,7 +21,6 @@ import 'package:mydtm/data/model_parse/model_check_mobile_version.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/pages/update_page/upadate_must.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -91,11 +90,8 @@ class ProviderMainHome extends ChangeNotifier {
               .show();
         } else if (modelCheckMobileVersion.data.status.toString() == "3") {
           box.put("updateMobileText", modelCheckMobileVersion.data.versionText);
+        Navigator.push(context, CupertinoPageRoute(builder: (context) =>  UpdateMust(),));
 
-          pushNewScreen(context,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-              screen: const UpdateMust(),
-              withNavBar: false);
         }
       }
       boolParseData = true;
@@ -176,11 +172,10 @@ class ProviderMainHome extends ChangeNotifier {
   List<ModelGetSlider> listModelGetSlider = [];
   List<Uri> listUri = [];
 
-  /// subject terib olish
-  NetworkSubjectList networkSubjectList = NetworkSubjectList();
-  List<ModelSubjectGet> listModelSubjectGet = [];
-
   Future getDateService({required BuildContext context}) async {
+    modelServiceList = ModelServiceList(status: 0, data: []);
+    boolParseData = false;
+    notifyListeners();
     try {
       if (box.get("numberApi").toString().trim() !=
           numberAPIUpdate.toString().trim()) {
@@ -203,16 +198,6 @@ class ProviderMainHome extends ChangeNotifier {
         listModelGetSlider.sort((a, b) => a.ves.compareTo(b.ves));
         notifyListeners();
       } catch (e) {
-        log(e.toString());
-      }
-
-      try {
-        String data = await networkSubjectList.getSubjectList();
-        listModelSubjectGet = (jsonDecode(jsonDecode(data)) as List)
-            .map((e) => ModelSubjectGet.fromJson(e))
-            .toList();
-      } catch (e) {
-        log("###7");
         log(e.toString());
       }
 
@@ -253,31 +238,12 @@ class ProviderMainHome extends ChangeNotifier {
       }
       log(listModelGetSlider.length.toString());
       listDataServiceListSubject.clear();
-      for (int i = 0; i < listModelSubjectGet.length; i++) {
-        listDataServiceListSubject.add(ServiceMainList(
-            id: "88888888",
-            serviceName: listModelSubjectGet[i].subjectName,
-            serviceText: listModelSubjectGet[i].subjectName,
-            serviceTextRu: listModelSubjectGet[i].subjectName,
-            serviceTextQQ: listModelSubjectGet[i].subjectName,
-            serviceNameRu: listModelSubjectGet[i].subjectName,
-            serviceNameQQ: listModelSubjectGet[i].subjectName,
-            status: true,
-            mobilIcon: listModelSubjectGet[i].subjectImgLink,
-            link: listModelSubjectGet[i].pdfLink,
-            icon: listModelSubjectGet[i].subjectImgLink,
-            catId: "$i",
-            cod: "$i",
-            sortId: "$i",
-            createdAt: "2023",
-            updatedAt: "2024",
-            deleted: "1"));
-      }
+
       listDataServiceList.add(DataServiceList(
           id: "88888888",
-          categoryName: "Fanlar",
-          categoryNameRu: "Fanlar",
-          categoryNameQQ: "Fanlar",
+          categoryName: "Na'munaviy test topshiriqlari",
+          categoryNameRu: "Примерные тестовые задания",
+          categoryNameQQ: "Úlgi ushín test tapsírmalarí",
           service: listDataServiceListSubject));
 
       listDataServiceList.add(DataServiceList(
@@ -389,7 +355,6 @@ class ProviderMainHome extends ChangeNotifier {
         listDataServiceListTemp.addAll(val.service);
         listDataServiceListTemp2.addAll(val.service);
       }
-
       boolParseData = true;
       boolErrorHandle = false;
       notifyListeners();
@@ -430,18 +395,10 @@ class ProviderMainHome extends ChangeNotifier {
   Future goServicePage(
       {required BuildContext context,
       required ServiceMainList serviceMainList}) async {
-    pushNewScreen(
-      context,
-      screen: ShowCaseWidget(
-        builder: Builder(
-          builder: (context) => ServicePage(
-            serviceMainList: serviceMainList,
-          ),
-        ),
-      ),
-      withNavBar: false,
-      pageTransitionAnimation: PageTransitionAnimation.cupertino,
-    );
+    Navigator.push(context, CupertinoPageRoute(builder: (context) =>  ServicePage(
+      serviceMainList: serviceMainList,
+    ),));
+
   }
 
   /// search

@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
@@ -15,7 +16,6 @@ import 'package:mydtm/view/pages/person_info/gradueted/provider_graduetid.dart';
 // import 'package:mydtm/view/pages/person_info/gradueted/update_info.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 import 'package:showcaseview/showcaseview.dart';
 
@@ -60,16 +60,11 @@ class _GraduatedState extends State<Graduated> {
           onWillPop: () async {
             if (widget.windowIdGraduated == "0") {
               widget.funcState();
-
-              pushNewScreen(
-                context,
-                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                screen: ShowCaseWidget(
-                  builder: Builder(
-                      builder: (context) => CheckInformation(
-                          serviceName: box.get("categoryName").toString())),
-                ),
-              );
+              Navigator.push(context, CupertinoPageRoute(builder: (context) =>  ShowCaseWidget(
+                builder: Builder(
+                    builder: (context) => CheckInformation(
+                        serviceName: box.get("categoryName").toString())),
+              ),));
             } else if (widget.windowIdGraduated == "1") {
               Navigator.of(context).pop();
             } else if (widget.windowIdGraduated == "2") {

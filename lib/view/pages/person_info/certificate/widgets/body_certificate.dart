@@ -1,11 +1,11 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/pages/person_info/certificate/forigion_lang/foreigion_lang_add.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/pages/person_info/privillage/privillage.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 Widget bodyCertificate(
@@ -32,12 +32,12 @@ Widget bodyCertificate(
                                         .dataCheckForeignCertificate.status ==
                                     1
                                 ? {}
-                                : pushNewScreen(context,
-                                pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                                    screen: ForeignLanguageAdd(
-                                      providerCertificate: providerCertificate,
-                                      function: func,
-                                    ));
+                                :
+                            Navigator.push(context, CupertinoPageRoute(builder: (context) =>  ForeignLanguageAdd(
+                              providerCertificate: providerCertificate,
+                              function: func,
+                            )));
+
                           },
                           child: Container(
                             height: 50,
@@ -274,10 +274,8 @@ Widget bodyCertificate(
                     children: [
                       MaterialButton(
                         onPressed: () {
-                          pushNewScreen(context,
-                              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                              screen: Privilege(funcState: func),
-                              withNavBar: false);
+                          Navigator.push(context, CupertinoPageRoute(builder: (context) =>  Privilege(funcState: func),));
+
                         },
                         height: 50,
                         color: MyColors.appColorBlue1(),

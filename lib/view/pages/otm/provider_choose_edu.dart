@@ -5,6 +5,7 @@ import 'dart:developer';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/edu_lang/lang_choose_edu.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/edu_lang/test_lang.dart';
@@ -30,7 +31,6 @@ import 'package:mydtm/view/pages/otm/widgets/select_direction/otm/dir.dart';
 import 'package:mydtm/view/pages/otm/widgets/select_direction/otm/otm.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 import '../../../data/internet_connections/person_info/certificate/national_certificate.dart';
 
@@ -925,15 +925,13 @@ class ProviderChooseEdu extends ChangeNotifier {
       log(modelSms2.data.phone.toString());
       log(modelSms2.data.logId.toString());
       log(modelSms2.data.smsId.toString());
+      Navigator.push(context, CupertinoPageRoute(builder: (context) =>  SmsAutoFillUi(
+          phoneNum: modelSms2.data.phone.toString(),
+          password: "123",
+          captchaKey: modelSms2.data.logId.toString(),
+          captchaValue: modelSms2.data.smsId.toString(),
+          registration: "7")));
 
-      pushNewScreen(context,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          screen: SmsAutoFillUi(
-              phoneNum: modelSms2.data.phone.toString(),
-              password: "123",
-              captchaKey: modelSms2.data.logId.toString(),
-              captchaValue: modelSms2.data.smsId.toString(),
-              registration: "7"));
     } catch (e) {
 
       notifyListeners();

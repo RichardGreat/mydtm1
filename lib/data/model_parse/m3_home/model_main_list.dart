@@ -24,7 +24,7 @@ class ModelServiceList {
 }
 
 class DataServiceList {
-  var box = Hive.box("online");
+
   DataServiceList({
    required this.id,
    required this.categoryName,
@@ -38,10 +38,11 @@ class DataServiceList {
  dynamic categoryNameRu;
  dynamic categoryNameQQ;
   List<ServiceMainList> service;
-
+  var box = Hive.box("online");
   factory DataServiceList.fromJson(Map<String, dynamic> json) => DataServiceList(
     id: json["id"],
-    categoryName: json["name"],
+    categoryName:  json["name"],
+    // categoryName: box.get("language") == "1" ? json["name"]: box.get("language") == "2" ?  json["name_qq"]:  json["name_ru"],
     categoryNameRu: json["name_ru"],
     categoryNameQQ: json["name_qq"],
         service:
