@@ -301,11 +301,12 @@
   "bba": "BBA",
   "workSoon": "Xızmet jaqın waqıtta jumısqa túsedi",
   "noCertificate": "Sizda ayni vaqtda Bilim va malakalarni baholash agentligi tomonidan berilgan sertifikat mavjud emas",
-
   "regionSection": "Aymaqliq bo'limler",
   "callCenter": "Call sentr",
   "secPhone": "Isenim telefonı",
   "muddat": "Múddeti",
   "dayHave": " kún qaldı",
-  "certView": "Sertifikat kóriw"
+  "certView": "Sertifikat kóriw",
+  "standartTest": "ÚLGI USHÍN TEST TAPSÍRMALARÍ"
+
 }

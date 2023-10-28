@@ -209,25 +209,21 @@ Widget bodyAriza1(
                                         ),
                                 ],
                               ),
-                              QrImageView(
-                                data: providerAriza
-                                    .listArizaBodyService[index].invoice
-                                    .toString(),
-                                version: QrVersions.auto,
-                                size: 150.0,
-                              ),
-                              // const SizedBox(height: 5),
-                              // MyWidgets.robotoFontText(
-                              //     text: "editEdu".tr(),
-                              //     textColor: MyColors.appColorBlack()),
+                              // QrImageView(
+                              //   data: providerAriza
+                              //       .listArizaBodyService[index].invoice
+                              //       .toString(),
+                              //   version: QrVersions.auto,
+                              //   size: 150.0,
+                              // ),
+                              // SizedBox(
+                              //   height: 20,
+                              //   child: Row(children: [
+                              //     Image.asset("assets/images/click.png"),
+                              //     Image.asset("assets/images/payme.png")
+                              //   ]),
+                              // ),
 
-                              SizedBox(
-                                height: 20,
-                                child: Row(children: [
-                                  Image.asset("assets/images/click.png"),
-                                  Image.asset("assets/images/payme.png")
-                                ]),
-                              ),
                             ],
                           ),
                         )
@@ -420,6 +416,7 @@ Widget bodyAriza1(
                       ),
                     ]),
               ),
+              const SizedBox(height: 20),
               providerAriza.listArizaBodyService[index].serviceName !=
                       "perevod1".tr()
                   ? Align(

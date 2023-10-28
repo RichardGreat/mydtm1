@@ -1,7 +1,5 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_local_notifications (0.0.1):
-    - Flutter
   - flutter_pdfview (1.0.2):
     - Flutter
   - FMDB (2.7.5):
@@ -33,7 +31,6 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_pdfview (from `.symlinks/plugins/flutter_pdfview/ios`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
@@ -53,8 +50,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  flutter_local_notifications:
-    :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_pdfview:
     :path: ".symlinks/plugins/flutter_pdfview/ios"
   image_cropper:
@@ -78,7 +73,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   flutter_pdfview: 25f53dd6097661e6395b17de506e6060585946bd
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_cropper: a3291c624a953049bc6a02e1f8c8ceb162a24b25
@@ -94,4 +88,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 5cc53ce91ac9978c7ae7a4dd56930cb19541c1af
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.14.0

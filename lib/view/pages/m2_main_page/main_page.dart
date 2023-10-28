@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
@@ -14,7 +16,6 @@ import 'package:mydtm/view/pages/m2_book_question/book_questions.dart';
 import 'package:mydtm/view/pages/m3_home/main_home.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class MainPages extends StatefulWidget {
   String homeIdMainpage;
@@ -55,8 +56,6 @@ class _MainPagesState extends State<MainPages> {
   var heart = false;
   PageController controller = PageController();
 
-
-
   getFunction() {
     setState(() {});
   }
@@ -90,106 +89,106 @@ class _MainPagesState extends State<MainPages> {
       } else {
         box.get("lockScreen").toString().trim().length == 4 &&
                 box.get("lockScreen").toString() != "null"
-        ? {
-            screenLock(
-              useBlur: true,
-              context: navigatorKey.currentContext!,
-              correctString: box.get("lockScreen").toString(),
-              canCancel: false,
-              footer: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.noHeader,
-                          animType: AnimType.bottomSlide,
-                          title: "BBA",
-                          desc: "logUot".tr(),
-                          titleTextStyle: TextStyle(
-                              color: MyColors.appColorBlue1(),
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold),
-                          descTextStyle: TextStyle(
-                              color: MyColors.appColorBlack(),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),
-                          btnOkOnPress: () {
-                            box.delete("token");
-                            box.delete("imie");
-                            box.delete("psnum");
-                            box.delete("personImage");
-                            box.delete("boxAllPersonInfo");
-                            box.delete("langLock");
-                            box.delete("lockScreen");
+            ? {
+                screenLock(
+                  useBlur: true,
+                  context: navigatorKey.currentContext!,
+                  correctString: box.get("lockScreen").toString(),
+                  canCancel: false,
+                  footer: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                          onTap: () {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.noHeader,
+                              animType: AnimType.bottomSlide,
+                              title: "BBA",
+                              desc: "logUot".tr(),
+                              titleTextStyle: TextStyle(
+                                  color: MyColors.appColorBlue1(),
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold),
+                              descTextStyle: TextStyle(
+                                  color: MyColors.appColorBlack(),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500),
+                              btnOkOnPress: () {
+                                box.delete("token");
+                                box.delete("imie");
+                                box.delete("psnum");
+                                box.delete("personImage");
+                                box.delete("boxAllPersonInfo");
+                                box.delete("langLock");
+                                box.delete("lockScreen");
 
-                            if (Platform.isIOS) {
-                              exit(0);
-                            } else {
-                              SystemNavigator.pop();
-                            }
-                            Navigator.of(context).pop();
+                                if (Platform.isIOS) {
+                                  exit(0);
+                                } else {
+                                  SystemNavigator.pop();
+                                }
+                                Navigator.of(context).pop();
+                              },
+                              btnOkText: "yes".tr(),
+                              btnOkColor: MyColors.appColorGrey600(),
+                              btnCancelColor: MyColors.appColorBBA(),
+                              btnCancelOnPress: () {},
+                              btnCancelText: "no".tr(),
+                            ).show();
+                            // AwesomeDialog(
+                            //         context: context,
+                            //         dialogType: DialogType.noHeader,
+                            //         animType: AnimType.bottomSlide,
+                            //         title: "DTM",
+                            //         desc: "logUot".tr(),
+                            //         titleTextStyle: TextStyle(
+                            //             color: MyColors.appColorBlue1(),
+                            //             fontSize: 24,
+                            //             fontWeight: FontWeight.bold),
+                            //         descTextStyle: TextStyle(
+                            //             color: MyColors.appColorBlack(),
+                            //             fontWeight: FontWeight.bold),
+                            //         btnCancelOnPress: () {
+                            //           if (Platform.isIOS) {
+                            //             exit(0);
+                            //           } else {
+                            //             SystemNavigator.pop();
+                            //           }
+                            //           Navigator.of(context).pop();
+                            //           box.delete("lockScreen");
+                            //           box.delete("token");
+                            //           box.delete("imie");
+                            //           box.delete("psnum");
+                            //           box.delete("personImage");
+                            //           box.delete("boxAllPersonInfo");
+                            //         },
+                            //         btnCancelColor: MyColors.appColorBlue1(),
+                            //         btnCancelText: "OK")
+                            //     .show();
                           },
-                          btnOkText: "yes".tr(),
-                          btnOkColor: MyColors.appColorGrey600(),
-                          btnCancelColor: MyColors.appColorBBA(),
-                          btnCancelOnPress: () {},
-                          btnCancelText: "no".tr(),
-                        ).show();
-                        // AwesomeDialog(
-                        //         context: context,
-                        //         dialogType: DialogType.noHeader,
-                        //         animType: AnimType.bottomSlide,
-                        //         title: "DTM",
-                        //         desc: "logUot".tr(),
-                        //         titleTextStyle: TextStyle(
-                        //             color: MyColors.appColorBlue1(),
-                        //             fontSize: 24,
-                        //             fontWeight: FontWeight.bold),
-                        //         descTextStyle: TextStyle(
-                        //             color: MyColors.appColorBlack(),
-                        //             fontWeight: FontWeight.bold),
-                        //         btnCancelOnPress: () {
-                        //           if (Platform.isIOS) {
-                        //             exit(0);
-                        //           } else {
-                        //             SystemNavigator.pop();
-                        //           }
-                        //           Navigator.of(context).pop();
-                        //           box.delete("lockScreen");
-                        //           box.delete("token");
-                        //           box.delete("imie");
-                        //           box.delete("psnum");
-                        //           box.delete("personImage");
-                        //           box.delete("boxAllPersonInfo");
-                        //         },
-                        //         btnCancelColor: MyColors.appColorBlue1(),
-                        //         btnCancelText: "OK")
-                        //     .show();
-                      },
-                      child: Text("exet".tr())),
-                  const SizedBox(width: 20),
-                ],
-              ),
-              // customizedButtonChild: const Icon(
-              //   Icons.fingerprint,
-              // ),
-              title: Text("pinPassword".tr()),
-              config: const ScreenLockConfig(
-                backgroundColor: Colors.black,
-              ),
-              // customizedButtonTap: () async {
-              //   await authenticate(context: context);
-              // },
-              // didOpened: () async {
-              //   await authenticate(context: context);
-              // },
-            ),
-            box.delete("lockHasEnter")
-          }
-        : {};
+                          child: Text("exet".tr())),
+                      const SizedBox(width: 20),
+                    ],
+                  ),
+                  // customizedButtonChild: const Icon(
+                  //   Icons.fingerprint,
+                  // ),
+                  title: Text("pinPassword".tr()),
+                  config: const ScreenLockConfig(
+                    backgroundColor: Colors.black,
+                  ),
+                  // customizedButtonTap: () async {
+                  //   await authenticate(context: context);
+                  // },
+                  // didOpened: () async {
+                  //   await authenticate(context: context);
+                  // },
+                ),
+                box.delete("lockHasEnter")
+              }
+            : {};
       }
     });
   }
@@ -240,11 +239,11 @@ class _MainPagesState extends State<MainPages> {
   // ];
 
   final List<IconData> icons = [
-    Icons.search,
+    Icons.my_library_books_rounded,
     Icons.book,
     // Icons.home,
-    Icons.bookmark_add_outlined,
-    Icons.bookmark_border_outlined,
+    Icons.manage_search_rounded,
+    Icons.library_add_check,
   ];
 
   final List pages = [
@@ -287,9 +286,9 @@ class _MainPagesState extends State<MainPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
 
-      extendBody: true,
+      // extendBody: true,
       //to make floating action button notch transparent
 
       //to avoid the floating action button overlapping behavior,
@@ -395,10 +394,17 @@ class _MainPagesState extends State<MainPages> {
       // ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      appBar: AppBar(
+        backgroundColor:
+            Color.lerp(Colors.teal.withOpacity(0.9), Colors.teal, 1),
+        elevation: 0,
+        toolbarHeight: 1,
+      ),
       body: SafeArea(child: bottomBarPages[_bottomNavIndex]),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
-        child: Icon(Icons.home, color: _bottomNavIndex == 4 ?Colors.teal:Colors.grey),
+        child: Icon(Icons.home,
+            color: _bottomNavIndex == 4 ? Colors.teal : Colors.grey),
         onPressed: () {
           _bottomNavIndex = 4;
           setState(() {});

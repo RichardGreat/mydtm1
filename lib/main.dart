@@ -1,5 +1,6 @@
+import 'dart:async';
 import 'dart:io';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
+
 import 'package:connection_notifier/connection_notifier.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,11 +9,6 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
-import 'dart:async';
-// import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:page_transition/page_transition.dart';
-
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -37,15 +33,26 @@ Future main() async {
   // FlutterNativeSplash.remove();
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.teal,
-  ));
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  //     systemNavigationBarColor: Colors.blue, // navigation bar color
+  //     statusBarColor: Colors.pink, // status bar color
+  //   ));
+  //
+  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  //   statusBarColor: Colors.teal,
+  //   // statusBarBrightness: Brightness.light
+  // ));
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+  //   systemNavigationBarColor: Colors.red,
+  //
+  //   statusBarColor: Colors.red, // optional
+  // ));
   await EasyLocalization.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
   await Hive.initFlutter();
   await Hive.openBox("online");
   await initialization(null);
+
   // final config = TalsecConfig(
   //   /// For Android
   //   androidConfig: AndroidConfig(
@@ -110,6 +117,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   var box = Hive.box("online");
+
   // LocalAuthentication auth = LocalAuthentication();
   //
   // Future<void> localAuth(BuildContext context) async {
@@ -152,8 +160,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+
     return ConnectionNotifier(
-      disconnectedContent: const Center(child: Row(
+      disconnectedContent: const Center(
+          child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -162,7 +172,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           Text("Internet", style: TextStyle(fontWeight: FontWeight.w600)),
         ],
       )),
-      connectedContent:const Center(child: Row(
+      connectedContent: const Center(
+          child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -176,26 +187,26 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-
-    theme:  ThemeData(
-    colorSchemeSeed:  Colors.white),
+        // theme:  ThemeData(
+        // colorSchemeSeed:  Colors.white),
         debugShowCheckedModeBanner: false,
         home:
-        // AnimatedSplashScreen(
-        //     duration: 2800,
-        //     animationDuration: const Duration(milliseconds:  2800),
-        //     splash: "assets/images/bmba.gif",
-        //     splashIconSize: 150,
-        //     nextScreen:
+            // AnimatedSplashScreen(
+            //     duration: 2800,
+            //     animationDuration: const Duration(milliseconds:  2800),
+            //     splash: "assets/images/bmba.gif",
+            //     splashIconSize: 150,
+            //     nextScreen:
             box.get("language") == "1" ||
-                box.get("language") == "2" ||
-                box.get("language") == "3"
-                ?
-            MainPages(homeIdMainpage: "0",)
+                    box.get("language") == "2" ||
+                    box.get("language") == "3"
+                ? MainPages(
+                    homeIdMainpage: "0",
+                  )
                 : const EnterFirst0(),
-            // splashTransition: SplashTransition.fadeTransition,
-            // pageTransitionType: PageTransitionType.fade,
-            // backgroundColor: Colors.white)
+        // splashTransition: SplashTransition.fadeTransition,
+        // pageTransitionType: PageTransitionType.fade,
+        // backgroundColor: Colors.white)
       ),
     );
   }

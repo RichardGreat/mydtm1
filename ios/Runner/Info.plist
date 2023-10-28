@@ -70,5 +70,10 @@
 		<true/>
 		<key>io.flutter.embedded_views_preview</key>
 		<string>YES</string>
+		<key>UIUserInterfaceStyle</key>
+            <string>Light</string>
+            <key>UIViewControllerBasedStatusBarAppearance</key>
+            <true/>
 	</dict>
+
 </plist>

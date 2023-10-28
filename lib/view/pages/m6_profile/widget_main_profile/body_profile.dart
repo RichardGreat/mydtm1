@@ -328,6 +328,7 @@ Widget bodyProfile({required BuildContext context,
         ListTile(
           onTap: () {
             Navigator.push(context,CupertinoPageRoute(builder: (context) =>  WebViewWindow(
+
               modelServiceMainList: ServiceMainList(
                   id: "600000",
                   serviceName: "regionSection".tr(),
