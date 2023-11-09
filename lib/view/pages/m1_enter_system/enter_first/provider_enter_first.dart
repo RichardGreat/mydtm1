@@ -31,7 +31,7 @@ import 'package:ntp/ntp.dart';
 class ProviderEnterFirst extends ChangeNotifier {
   ///#offline App Logic
   bool boolPasswordVisible = true;
-  final formKey = GlobalKey<FormState>();
+  final formKey12345 = GlobalKey<FormState>();
   bool myBoolWidget = false;
   bool boolButtonColor1 = false;
   TextEditingController textAuthLogin = TextEditingController();

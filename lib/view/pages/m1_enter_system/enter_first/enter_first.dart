@@ -58,7 +58,7 @@ class _EnterFirstState extends State<EnterFirst> {
                             ),
                           )
                         : Form(
-                            key: providerEnterFirst.formKey,
+                            key: providerEnterFirst.formKey12345,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             child: providerEnterFirst.boolAuthorization

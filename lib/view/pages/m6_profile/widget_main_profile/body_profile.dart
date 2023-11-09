@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -19,6 +20,7 @@ import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Widget myText() {
   var box = Hive.box("online");
@@ -30,6 +32,14 @@ Widget myText() {
 }
 
 late ModelCheckUserInfo modelCheckUserInfo;
+Future<void> _makePhoneCall(String phoneNumber) async {
+
+  final Uri launchUri = Uri(
+    scheme: 'tel',
+    path: phoneNumber,
+  );
+  await launchUrl(launchUri);
+}
 
 Widget bodyProfile({required BuildContext context,
   required Function function,
@@ -365,7 +375,12 @@ Widget bodyProfile({required BuildContext context,
         ),
         ListTile(
           onTap: () {
-
+            try{
+              log("1223");
+              _makePhoneCall("1195");
+            }catch(e){
+              log(e.toString());
+            }
           },
           leading: Icon(
             Icons.phone,
@@ -382,7 +397,7 @@ Widget bodyProfile({required BuildContext context,
         ),
         ListTile(
           onTap: () {
-
+            _makePhoneCall("951991914");
           },
           leading: Icon(
             CupertinoIcons.phone,
@@ -513,6 +528,18 @@ Widget bodyProfile({required BuildContext context,
             : const SizedBox.shrink(),
         Divider(
           color: Colors.teal.withOpacity(0.2),
+          thickness: 1,
+        ),
+         Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(width: 10),
+            Text("${"versionMobil".tr()}: 4.5.11", style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.grey, fontSize: 13)),
+          ],
+        ),
+        const Divider(
+          color: Colors.white,
           thickness: 1,
         ),
       ],

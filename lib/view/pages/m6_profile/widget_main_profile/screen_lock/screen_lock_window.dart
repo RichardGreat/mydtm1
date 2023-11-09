@@ -21,7 +21,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
   TextEditingController textEditingController = TextEditingController();
 
   var box = Hive.box("online");
-  final formKey = GlobalKey<FormState>();
+  final formKey0001 = GlobalKey<FormState>();
   bool boolChangePassword = false;
 
   String textBody() {
@@ -228,7 +228,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
       ),
       body: Form(
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        key: formKey,
+        key: formKey0001,
         child: SafeArea(
             child: Container(
           margin: const EdgeInsets.all(15),
@@ -314,7 +314,7 @@ class _ScreenLockWindowState extends State<ScreenLockWindow> {
                     // box.put("lockScreen", "1234");
                     setState(() {});
                       if(textEditingController.text.isNotEmpty) {
-                      if (!formKey.currentState!.validate()) {
+                      if (!formKey0001.currentState!.validate()) {
                         !boolChangePassword
                             ? checkInputs(
                                 textInputLock: textEditingController.text

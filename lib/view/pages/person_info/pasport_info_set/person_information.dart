@@ -61,7 +61,7 @@ class _PersonInformationState extends State<PersonInformation> {
               Navigator.pushAndRemoveUntil(
                   context,
                   CupertinoPageRoute(
-                    builder: (context) => const MyApp(),
+                    builder: (context) =>  MyApp(),
                   ),
                   (route) => false);
             }

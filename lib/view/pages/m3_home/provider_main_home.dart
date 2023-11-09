@@ -3,11 +3,13 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/check_version.dart';
 import 'package:mydtm/data/internet_connections/m3_home/internet_get_slider.dart';
@@ -141,7 +143,6 @@ class ProviderMainHome extends ChangeNotifier {
   }
 
   Future setLangUser() async {
-    log(box.get("token").toString());
     try {
       if (box.get("token").toString().length > 30) {
         box.get("language") == "1"
@@ -158,10 +159,8 @@ class ProviderMainHome extends ChangeNotifier {
                     dataLang =
                         await networkSetLanguage.setLanguageUser(setLang: "ru")
                   };
-        log(dataLang);
       }
     } catch (e) {
-      log(e.toString());
     }
   }
 
@@ -190,15 +189,12 @@ class ProviderMainHome extends ChangeNotifier {
       }
       try {
         String getSlider = await networkGetSlider.getSlider();
-        log("@@@");
-        log(jsonDecode(getSlider).toString());
         listModelGetSlider = (jsonDecode(jsonDecode(getSlider)) as List)
             .map((e) => ModelGetSlider.fromJson(e))
             .toList();
         listModelGetSlider.sort((a, b) => a.ves.compareTo(b.ves));
         notifyListeners();
       } catch (e) {
-        log(e.toString());
       }
 
       modelServiceList =
@@ -236,7 +232,6 @@ class ProviderMainHome extends ChangeNotifier {
                 )
             : {};
       }
-      log(listModelGetSlider.length.toString());
       listDataServiceListSubject.clear();
 
       listDataServiceList.add(DataServiceList(
@@ -352,6 +347,9 @@ class ProviderMainHome extends ChangeNotifier {
       listDataServiceListTemp2.clear();
 
       for (var val in listDataServiceList) {
+        for(int i = 0; i < val.service.length; i++){
+          val.service[i].icon = randomIcon();
+        }
         listDataServiceListTemp.addAll(val.service);
         listDataServiceListTemp2.addAll(val.service);
       }
@@ -359,7 +357,6 @@ class ProviderMainHome extends ChangeNotifier {
       boolErrorHandle = false;
       notifyListeners();
     } catch (e) {
-      log(e.toString());
       boolParseData = true;
       boolErrorHandle = true;
       notifyListeners();
@@ -391,6 +388,19 @@ class ProviderMainHome extends ChangeNotifier {
   }
 
   /// Go service page
+  Random random = Random();
+
+  // icon
+  List<IconData> icons = [
+    FontAwesomeIcons.school,
+    FontAwesomeIcons.userGraduate,
+    FontAwesomeIcons.bookOpen,
+    FontAwesomeIcons.atom,
+  ];
+
+  IconData randomIcon() {
+    return icons[random.nextInt(4)];
+  }
 
   Future goServicePage(
       {required BuildContext context,

@@ -35,7 +35,7 @@ class _SignUpState extends State<SignUp> {
             appBar:
                 appBarSignUp(context: context, providerSignUp: providerSignUp),
             body: Form(
-                key: providerSignUp.formKey,
+                key: providerSignUp.formKey123456,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: SingleChildScrollView(
                   child: Padding(

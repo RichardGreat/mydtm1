@@ -56,6 +56,7 @@ class _LangChangeAllState extends State<LangChangeAll> {
                                   color: MyColors.appColorGrey400()),
                               ListTile(
                                 onTap: () {
+
                                   widget.providerProfile.changeLang(langId: "0", context: context);
 
 

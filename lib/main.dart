@@ -22,8 +22,8 @@ class MyHttpOverrides extends HttpOverrides {
 Future initialization(BuildContext? context) async {
   await Future.delayed(const Duration(milliseconds: 1900));
 }
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -96,7 +96,7 @@ Future main() async {
         ],
         path: 'assets/lang',
         fallbackLocale: const Locale('uz', 'UZ'),
-        child: const MyApp(),
+        child:  MyApp(),
       ),
     ),
   );
@@ -108,7 +108,7 @@ Future main() async {
 // }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+   MyApp({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -117,6 +117,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   var box = Hive.box("online");
+
 
   // LocalAuthentication auth = LocalAuthentication();
   //
@@ -183,7 +184,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         ],
       )),
       child: MaterialApp(
-        navigatorKey: navigatorKey,
+        navigatorKey:  navigatorKey,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

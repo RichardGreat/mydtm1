@@ -21,7 +21,7 @@ Widget buttonSignUp(
     child: MyWidgets.robotoFontText(
         text: "registration".tr(), textColor: MyColors.appColorWhite()),
     onPressed: () {
-      if(providerSignUp.formKey.currentState!.validate()){}
+      if(providerSignUp.formKey123456.currentState!.validate()){}
       if( providerSignUp.boolButtonColor1 &&
           providerSignUp.boolButtonColor2 &&
           providerSignUp.textCaptchaSignUpController.text.isNotEmpty){

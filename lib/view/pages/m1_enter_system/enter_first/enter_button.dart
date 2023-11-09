@@ -17,7 +17,7 @@ Widget enterButton(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           onPressed: () {
             // providerEnterFirst.enterPersonPassport(context: context);
-            if(providerEnterFirst.formKey.currentState!.validate() && providerEnterFirst.textCaptchaEditingController.text.trim().isNotEmpty){
+            if(providerEnterFirst.formKey12345.currentState!.validate() && providerEnterFirst.textCaptchaEditingController.text.trim().isNotEmpty){
               providerEnterFirst.getAuthorization(context: context);
               providerEnterFirst.textCaptchaEditingController.clear();
             }else{

@@ -18,6 +18,7 @@ import 'package:mydtm/data/model_parse/m6_model/change_phone/phone_changes.dart'
 import 'package:mydtm/data/model_parse/m6_model/get_imie_info.dart';
 import 'package:mydtm/main.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
+import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -279,7 +280,7 @@ class ProviderProfile extends ChangeNotifier {
       await setLangUser();
       Navigator.pushAndRemoveUntil(
           context,
-          CupertinoPageRoute(builder: (context) => const MyApp()),
+          CupertinoPageRoute(builder: (context) =>  MainPages(homeIdMainpage: "0")),
           (route) => false);
     } else if (langId == "1") {
       context.setLocale(const Locale('kk', 'KK'));
@@ -290,7 +291,7 @@ class ProviderProfile extends ChangeNotifier {
       await setLangUser();
       Navigator.pushAndRemoveUntil(
           context,
-          CupertinoPageRoute(builder: (context) => const MyApp()),
+          CupertinoPageRoute(builder: (context) =>  MainPages(homeIdMainpage: "0")),
           (route) => false);
     } else if (langId == "2") {
       context.setLocale(const Locale('ru', 'RU'));
@@ -301,7 +302,7 @@ class ProviderProfile extends ChangeNotifier {
       await setLangUser();
       Navigator.pushAndRemoveUntil(
           context,
-          CupertinoPageRoute(builder: (context) => const MyApp()),
+          CupertinoPageRoute(builder: (context) =>  MainPages(homeIdMainpage: "0")),
           (route) => false);
     }
   }

@@ -5,12 +5,11 @@ import 'package:mydtm/view/pages/m3_home/service_page/provider_service_page.dart
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:showcaseview/showcaseview.dart';
 
 Widget servicePageHead({required BuildContext context,
   required ProviderServicePage providerServicePage,
   required ServiceMainList serviceMainList,
-  required GlobalKey oneServicePageGlobal
+  // required GlobalKey oneServicePageGlobal
 }) {
   var box = Hive.box("online");
   return Container(
@@ -41,10 +40,11 @@ Widget servicePageHead({required BuildContext context,
 
           const SizedBox(height: 20),
 
-          Showcase(
-            key: oneServicePageGlobal,
-            description: "nextStepService".tr(),
-          child:   MaterialButton(
+          // Showcase(
+          //   key: oneServicePageGlobal,
+          //   description: "nextStepService".tr(),
+          // child:
+          MaterialButton(
               onPressed: () {
                 providerServicePage.checkUserStatus(
                   categoryId: serviceMainList.id.toString(),
@@ -68,7 +68,7 @@ Widget servicePageHead({required BuildContext context,
               child: MyWidgets.robotoFontText(
                   text: "userService".tr(),
                   textColor: MyColors.appColorWhite())),
-          ),
+          // ),
 
           const SizedBox(height: 20),
         ],

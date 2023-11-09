@@ -32,7 +32,7 @@ class _WebViewWindowState extends State<WebViewWindow> {
     MainMyStatement(numberParam: "0"),
     const BookQuestions(),
     const CheckInfoCertificate(),
-    const CheckCertificate(),
+     CheckCertificate( actionAnimationValue: 1),
   ];
 
   void onItemTapped(int index) async {
@@ -58,7 +58,7 @@ class _WebViewWindowState extends State<WebViewWindow> {
     MainMyStatement(numberParam: "0"),
     const BookQuestions(),
     const CheckInfoCertificate(),
-    const CheckCertificate(),
+     CheckCertificate(actionAnimationValue: 1),
     MainHome(homePageId: "0"),
   ];
 

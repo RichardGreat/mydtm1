@@ -5,7 +5,7 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_
 import 'dart:developer';
 class ProviderSignUp extends ChangeNotifier {
   ///# offline
-  final formKey = GlobalKey<FormState>();
+  final formKey123456 = GlobalKey<FormState>();
   bool myBoolWidget = false;
   TextEditingController textSingUpLogin = TextEditingController();
   TextEditingController textSingUpPassword = TextEditingController();

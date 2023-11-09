@@ -21,8 +21,8 @@ Widget servicePageBody(
     {required BuildContext context,
     required ServiceMainList serviceMainList,
     required ProviderServicePage providerServicePage,
-    required GlobalKey twoServicePageGlobalKey,
-    required GlobalKey threeServicePageGlobalKey
+    // required GlobalKey twoServicePageGlobalKey,
+    // required GlobalKey threeServicePageGlobalKey
 
     }) {
   List<String> myList = [
@@ -49,11 +49,12 @@ Widget servicePageBody(
         child: ListView.builder(
           itemCount: 2,
           itemBuilder: (context, index) =>
-              index == 0 ?
-              Showcase(
-                key: twoServicePageGlobalKey,
-                description: "infoService".tr(),
-                child: ListTile(
+              // index == 0 ?
+              // Showcase(
+              //   key: twoServicePageGlobalKey,
+              //   description: "infoService".tr(),
+              //   child:
+                ListTile(
                 onTap: () {
                   log(serviceMainList.id.toString());
                   if (index == 0) {
@@ -120,153 +121,156 @@ Widget servicePageBody(
                 leading: MyWidgets.robotoFontText(
                     text: myList[index], textColor: MyColors.appColorBlack()),
                 trailing: const Icon(Icons.arrow_forward_ios_outlined),
-              ),):
+              ),
+              // ):
 
-              Showcase(
-                key: threeServicePageGlobalKey,
-                description: "userServiceInfo".tr(),
-                child: ListTile(
-                  onTap: () {
-                    log(serviceMainList.id.toString());
-                    if (index == 0) {
-                      serviceSheetBottomSheet(
-                          serviceMainList: serviceMainList,
-                          context: context,
-                          providerServicePage: providerServicePage);
-                    } else if (index == 1) {
-                      if (box.get("token").toString().length > 29) {
-                        if ((int.parse(serviceMainList.id.toString()) >= 1 &&
-                            int.parse(serviceMainList.id.toString()) <= 10) ||
-                            serviceMainList.id.toString().trim() == "64") {
-                          ///
-                          log(serviceMainList.id.toString());
-                          if(serviceMainList.status.toString() == "true"){
-                            Navigator.push(context, CupertinoPageRoute(builder: (context) =>  CertificateApplication(
-                              serviceId: serviceMainList.id.toString(),
-                              certName: box.get("language") == "1"
-                                  ? serviceMainList.serviceName
-                                  : box.get("language") == "2"
-                                  ? serviceMainList.serviceNameQQ
-                                  : serviceMainList.serviceNameRu,
-                            )));
-
-                          }else{}
-
-                        } else if (serviceMainList.id.toString().trim() == "42") {
-                          Navigator.push(context, CupertinoPageRoute(builder: (context) =>  MainMyStatement(numberParam: "0")));
-
-                        } else {
-                          MyWidgets.awesomeDialogError(
-                              context: context, valueText: "arizaNo".tr());
-                        }
-                      } else {
-                        AwesomeDialog(
-                            context: context,
-                            dialogType: DialogType.noHeader,
-                            // title: "iTest",
-                            // titleTextStyle: TextStyle(color: Colors.black),
-                            body: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  // Text(
-                                  //   "Assalomu aleykum",
-                                  //   style: TextStyle(
-                                  //       fontWeight: FontWeight.bold,
-                                  //       fontFamily: "Inter-Medium",
-                                  //       color: MyColors.appColorBackC4(),
-                                  //       fontSize: 18),
-                                  // ),
-
-                                  // Divider(),
-                                  // SizedBox(height: 10),
-                                  Text(
-                                    "BBA",
-                                    style:  TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: "Inter-Medium",
-                                        color: MyColors.appColorBBA(),
-                                        fontSize: 18),
-                                  ),
-                                  const SizedBox(height: 15),
-                                  RichText(
-                                    textAlign: TextAlign.justify,
-                                    text: TextSpan(
-                                      text: "fillSigInOrSigUp".tr(),
-                                      style: const TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: "Inter-Medium",
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 20),
-                                  MaterialButton(
-                                    color: MyColors.appColorBBA(),
-                                    height: 40,
-                                    minWidth: double.infinity,
-                                    textColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8)),
-                                    onPressed: () {
-
-                                      Navigator.push(context, CupertinoPageRoute(builder: (context) =>  EnterFirst(windowIdEnterFirst: "1")));
-
-                                    },
-                                    child: Text(
-                                      "enterLogPassword".tr(),
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: "Inter-Medium"),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    "or".tr(),
-                                    style: TextStyle(
-                                        color:  MyColors.appColorBBA(),
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: "Inter-Medium"),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  MaterialButton(
-                                    color: Colors.white,
-                                    height: 40,
-                                    minWidth: double.infinity,
-                                    textColor: MyColors.appColorBackC4(),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                        side: BorderSide(
-                                            color:  MyColors.appColorBBA(), width: 1)),
-                                    onPressed: () {
-                                      // Navigator.of(context).push(CupertinoPageRoute(
-                                      //   builder: (context) =>  SignUps(),
-                                      // ));
-                                      Navigator.push(context, CupertinoPageRoute(builder: (context) =>  SignUp()));
-                                    },
-                                    child: Text(
-                                      "enterRegistration".tr(),
-                                      style:  TextStyle(
-                                          color:  MyColors.appColorBBA(),
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: "Inter-Medium"),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )).show();
-                      }
-                    }
-                  },
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: MyColors.appColorGrey100(),
-                        width: 1,
-                      )),
-                  leading: MyWidgets.robotoFontText(
-                      text: myList[index], textColor: MyColors.appColorBlack()),
-                  trailing: const Icon(Icons.arrow_forward_ios_outlined),
-                ),)
+              // Showcase(
+              //   key: threeServicePageGlobalKey,
+              //   description: "userServiceInfo".tr(),
+              //   child:
+              //   ListTile(
+              //     onTap: () {
+              //       log(serviceMainList.id.toString());
+              //       if (index == 0) {
+              //         serviceSheetBottomSheet(
+              //             serviceMainList: serviceMainList,
+              //             context: context,
+              //             providerServicePage: providerServicePage);
+              //       } else if (index == 1) {
+              //         if (box.get("token").toString().length > 29) {
+              //           if ((int.parse(serviceMainList.id.toString()) >= 1 &&
+              //               int.parse(serviceMainList.id.toString()) <= 10) ||
+              //               serviceMainList.id.toString().trim() == "64") {
+              //             ///
+              //             log(serviceMainList.id.toString());
+              //             if(serviceMainList.status.toString() == "true"){
+              //               Navigator.push(context, CupertinoPageRoute(builder: (context) =>  CertificateApplication(
+              //                 serviceId: serviceMainList.id.toString(),
+              //                 certName: box.get("language") == "1"
+              //                     ? serviceMainList.serviceName
+              //                     : box.get("language") == "2"
+              //                     ? serviceMainList.serviceNameQQ
+              //                     : serviceMainList.serviceNameRu,
+              //               )));
+              //
+              //             }else{}
+              //
+              //           } else if (serviceMainList.id.toString().trim() == "42") {
+              //             Navigator.push(context, CupertinoPageRoute(builder: (context) =>  MainMyStatement(numberParam: "0")));
+              //
+              //           } else {
+              //             MyWidgets.awesomeDialogError(
+              //                 context: context, valueText: "arizaNo".tr());
+              //           }
+              //         } else {
+              //           AwesomeDialog(
+              //               context: context,
+              //               dialogType: DialogType.noHeader,
+              //               // title: "iTest",
+              //               // titleTextStyle: TextStyle(color: Colors.black),
+              //               body: Padding(
+              //                 padding: const EdgeInsets.all(8.0),
+              //                 child: Column(
+              //                   children: [
+              //                     // Text(
+              //                     //   "Assalomu aleykum",
+              //                     //   style: TextStyle(
+              //                     //       fontWeight: FontWeight.bold,
+              //                     //       fontFamily: "Inter-Medium",
+              //                     //       color: MyColors.appColorBackC4(),
+              //                     //       fontSize: 18),
+              //                     // ),
+              //
+              //                     // Divider(),
+              //                     // SizedBox(height: 10),
+              //                     Text(
+              //                       "BBA",
+              //                       style:  TextStyle(
+              //                           fontWeight: FontWeight.bold,
+              //                           fontFamily: "Inter-Medium",
+              //                           color: MyColors.appColorBBA(),
+              //                           fontSize: 18),
+              //                     ),
+              //                     const SizedBox(height: 15),
+              //                     RichText(
+              //                       textAlign: TextAlign.justify,
+              //                       text: TextSpan(
+              //                         text: "fillSigInOrSigUp".tr(),
+              //                         style: const TextStyle(
+              //                             color: Colors.black,
+              //                             fontFamily: "Inter-Medium",
+              //                             fontWeight: FontWeight.bold),
+              //                       ),
+              //                     ),
+              //                     const SizedBox(height: 20),
+              //                     MaterialButton(
+              //                       color: MyColors.appColorBBA(),
+              //                       height: 40,
+              //                       minWidth: double.infinity,
+              //                       textColor: Colors.white,
+              //                       shape: RoundedRectangleBorder(
+              //                           borderRadius: BorderRadius.circular(8)),
+              //                       onPressed: () {
+              //
+              //                         Navigator.push(context, CupertinoPageRoute(builder: (context) =>  EnterFirst(windowIdEnterFirst: "1")));
+              //
+              //                       },
+              //                       child: Text(
+              //                         "enterLogPassword".tr(),
+              //                         style: const TextStyle(
+              //                             color: Colors.white,
+              //                             fontWeight: FontWeight.bold,
+              //                             fontFamily: "Inter-Medium"),
+              //                       ),
+              //                     ),
+              //                     const SizedBox(height: 10),
+              //                     Text(
+              //                       "or".tr(),
+              //                       style: TextStyle(
+              //                           color:  MyColors.appColorBBA(),
+              //                           fontWeight: FontWeight.bold,
+              //                           fontFamily: "Inter-Medium"),
+              //                     ),
+              //                     const SizedBox(height: 10),
+              //                     MaterialButton(
+              //                       color: Colors.white,
+              //                       height: 40,
+              //                       minWidth: double.infinity,
+              //                       textColor: MyColors.appColorBackC4(),
+              //                       shape: RoundedRectangleBorder(
+              //                           borderRadius: BorderRadius.circular(8),
+              //                           side: BorderSide(
+              //                               color:  MyColors.appColorBBA(), width: 1)),
+              //                       onPressed: () {
+              //                         // Navigator.of(context).push(CupertinoPageRoute(
+              //                         //   builder: (context) =>  SignUps(),
+              //                         // ));
+              //                         Navigator.push(context, CupertinoPageRoute(builder: (context) =>  SignUp()));
+              //                       },
+              //                       child: Text(
+              //                         "enterRegistration".tr(),
+              //                         style:  TextStyle(
+              //                             color:  MyColors.appColorBBA(),
+              //                             fontWeight: FontWeight.bold,
+              //                             fontFamily: "Inter-Medium"),
+              //                       ),
+              //                     )
+              //                   ],
+              //                 ),
+              //               )).show();
+              //         }
+              //       }
+              //     },
+              //     shape: RoundedRectangleBorder(
+              //         side: BorderSide(
+              //           color: MyColors.appColorGrey100(),
+              //           width: 1,
+              //         )),
+              //     leading: MyWidgets.robotoFontText(
+              //         text: myList[index], textColor: MyColors.appColorBlack()),
+              //     trailing: const Icon(Icons.arrow_forward_ios_outlined),
+              //   ),
+              // )
         ),
       )
     ],

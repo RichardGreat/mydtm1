@@ -32,36 +32,36 @@ class _ServicePageState extends State<ServicePage> {
   @override
   void initState() {
     super.initState();
-    showCaseServicePage();
+    // showCaseServicePage();
   }
 
   var box = Hive.box("online");
 
-  final GlobalKey oneServicePageGlobalKey = GlobalKey();
-  final GlobalKey twoServicePageGlobalKey = GlobalKey();
-  final GlobalKey threeServicePageGlobalKey = GlobalKey();
+  // final GlobalKey oneServicePageGlobalKey = GlobalKey();
+  // final GlobalKey twoServicePageGlobalKey = GlobalKey();
+  // final GlobalKey threeServicePageGlobalKey = GlobalKey();
 
-  Future showCaseServicePage() async {
-    try {
-      box.get("token").toString().length > 30
-          ? {
-              if (box.get("showCaseServicePage").toString() != "1")
-                {
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    ShowCaseWidget.of(context).startShowCase([
-                      oneServicePageGlobalKey,
-                      twoServicePageGlobalKey,
-                      threeServicePageGlobalKey
-                    ]);
-                  })
-                },
-              box.put("showCaseServicePage", "1"),
-            }
-          : {};
-    } catch (e) {
-      log(e.toString());
-    }
-  }
+  // Future showCaseServicePage() async {
+  //   try {
+  //     box.get("token").toString().length > 30
+  //         ? {
+  //             if (box.get("showCaseServicePage").toString() != "1")
+  //               {
+  //                 WidgetsBinding.instance.addPostFrameCallback((_) {
+  //                   ShowCaseWidget.of(context).startShowCase([
+  //                     oneServicePageGlobalKey,
+  //                     twoServicePageGlobalKey,
+  //                     threeServicePageGlobalKey
+  //                   ]);
+  //                 })
+  //               },
+  //             box.put("showCaseServicePage", "1"),
+  //           }
+  //         : {};
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -76,14 +76,14 @@ class _ServicePageState extends State<ServicePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   servicePageHead(
-                      oneServicePageGlobal: oneServicePageGlobalKey,
+                      // oneServicePageGlobal: oneServicePageGlobalKey,
                       context: context,
                       providerServicePage: providerServicePage,
                       serviceMainList: widget.serviceMainList),
                   const SizedBox(height: 20),
                   servicePageBody(
-                      twoServicePageGlobalKey: twoServicePageGlobalKey,
-                      threeServicePageGlobalKey: threeServicePageGlobalKey,
+                      // twoServicePageGlobalKey: twoServicePageGlobalKey,
+                      // threeServicePageGlobalKey: threeServicePageGlobalKey,
                       serviceMainList: widget.serviceMainList,
                       context: context,
                       providerServicePage: providerServicePage)
