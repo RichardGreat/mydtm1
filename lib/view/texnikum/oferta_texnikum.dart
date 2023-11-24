@@ -71,7 +71,7 @@ class _AfertaTexnikumState extends State<AfertaTexnikum> {
                     Navigator.push(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => ChooseEduTexnikum(),
+                          builder: (context) => const ChooseEduTexnikum(),
                         ))
                   }
                 : {};

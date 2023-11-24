@@ -58,8 +58,8 @@ class _AnswerSheetDownloadState extends State<AnswerSheetDownload> {
             },
             icon: const Icon(Icons.share),
           )
-              :SizedBox.shrink()
-              :SizedBox.shrink()
+              :const SizedBox.shrink()
+              :const SizedBox.shrink()
         ],
       ),
       body: SafeArea(

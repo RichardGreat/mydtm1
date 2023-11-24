@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mydtm/view/sertificate_service/service_page_sert/provider_sertificates.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 

@@ -1,13 +1,9 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:convert';
-import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mydtm/data/internet_connections/edu_choose/region/choose_region.dart';
-import 'package:mydtm/data/model_parse/edu_choose/region.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_information.dart';
 import 'package:mydtm/view/pages/m3_home/qayd_varaqa/qayd_varaqa2.dart';
 import 'package:mydtm/view/pages/otm/choose_edu.dart';

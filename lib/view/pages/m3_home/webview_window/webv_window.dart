@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/check_certificate/check_cert/check_cert.dart';
@@ -64,11 +63,11 @@ class _WebViewWindowState extends State<WebViewWindow> {
 
   List<bool> listBool = [true, true, true, true, false];
 
-  int _bottomNavIndex = 4;
+  final int _bottomNavIndex = 4;
 
   @override
   Widget build(BuildContext context) {
-    final Uri _url2 = Uri.parse(widget.modelServiceMainList.link );
+    final Uri url2 = Uri.parse(widget.modelServiceMainList.link );
     WebViewController controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
@@ -86,7 +85,7 @@ class _WebViewWindowState extends State<WebViewWindow> {
           },
         ),
       )
-      ..loadRequest(_url2);
+      ..loadRequest(url2);
     return Scaffold(
       extendBodyBehindAppBar: true,
 

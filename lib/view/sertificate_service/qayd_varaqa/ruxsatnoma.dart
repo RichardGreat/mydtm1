@@ -99,7 +99,7 @@ class _CertRuxsatnomaViewState extends State<CertRuxsatnomaView> {
                           height: MediaQuery.of(context).size.height * 0.75,
                           child: !isLoading
                               ? const Center(child: CircularProgressIndicator())
-                              : PDF().cachedFromUrl(link),
+                              : const PDF().cachedFromUrl(link),
                         ),
                       ]),
                 )

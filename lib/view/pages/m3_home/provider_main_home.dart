@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'dart:math';
 
@@ -13,17 +12,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/internet_connections/check_version.dart';
 import 'package:mydtm/data/internet_connections/m3_home/internet_get_slider.dart';
-import 'package:mydtm/data/internet_connections/m3_home/internet_subjects.dart';
 import 'package:mydtm/data/internet_connections/m3_home/service_list.dart';
 import 'package:mydtm/data/internet_connections/person_info/set_lang.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_get_slider.dart';
-import 'package:mydtm/data/model_parse/m3_home/model_get_subject.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/data/model_parse/model_check_mobile_version.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/service_page.dart';
 import 'package:mydtm/view/pages/update_page/upadate_must.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:showcaseview/showcaseview.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProviderMainHome extends ChangeNotifier {
@@ -92,7 +88,7 @@ class ProviderMainHome extends ChangeNotifier {
               .show();
         } else if (modelCheckMobileVersion.data.status.toString() == "3") {
           box.put("updateMobileText", modelCheckMobileVersion.data.versionText);
-        Navigator.push(context, CupertinoPageRoute(builder: (context) =>  UpdateMust(),));
+        Navigator.push(context, CupertinoPageRoute(builder: (context) =>  const UpdateMust(),));
 
         }
       }

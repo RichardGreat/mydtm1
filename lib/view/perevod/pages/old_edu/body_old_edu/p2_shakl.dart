@@ -26,7 +26,7 @@ Widget shakl({required BuildContext context, required ProviderOldEdu providerOld
               : const SizedBox.shrink()
         ],
       ),
-      trailing:  Column(
+      trailing:  const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children:  [

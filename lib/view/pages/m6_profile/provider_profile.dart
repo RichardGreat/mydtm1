@@ -16,7 +16,6 @@ import 'package:mydtm/data/internet_connections/person_info/set_lang.dart';
 import 'package:mydtm/data/model_parse/m1_model/parse_captche.dart';
 import 'package:mydtm/data/model_parse/m6_model/change_phone/phone_changes.dart';
 import 'package:mydtm/data/model_parse/m6_model/get_imie_info.dart';
-import 'package:mydtm/main.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';

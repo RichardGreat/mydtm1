@@ -149,7 +149,7 @@ Widget notInfoPerson({required BuildContext context, required ProviderAriza prov
                             // Navigator.of(context).push(CupertinoPageRoute(
                             //   builder: (context) =>  SignUps(),
                             // ));
-                            Navigator.push(context,CupertinoPageRoute(builder: (context) =>  SignUp(),));
+                            Navigator.push(context,CupertinoPageRoute(builder: (context) =>  const SignUp(),));
                           },
                           child: Text(
                             "enterRegistration".tr(),

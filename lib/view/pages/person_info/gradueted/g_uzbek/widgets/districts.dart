@@ -130,7 +130,7 @@ class _SheetDistrictState extends State<SheetDistrict> {
                               softWrap: true,
                               maxLines: 3,
                               textAlign: TextAlign.start,
-                              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
+                              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
                             ),
                           ),
                         ),

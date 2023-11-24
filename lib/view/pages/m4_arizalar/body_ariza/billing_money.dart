@@ -60,7 +60,7 @@ Widget infoMoneyBilling(
                         content: Text(
                           "${"copy".tr()} ${providerAriza.model.invoice}"
 
-                          ,style: TextStyle(fontWeight: FontWeight.w600),
+                          ,style: const TextStyle(fontWeight: FontWeight.w600),
                         )));
                   }),
               leading: Text(
@@ -79,7 +79,7 @@ Widget infoMoneyBilling(
                     duration: const Duration(seconds: 2),
                     content: Text(
                       "${"copy".tr()} ${providerAriza.model.invoice}",
-                      style: TextStyle(fontWeight: FontWeight.w600),
+                      style: const TextStyle(fontWeight: FontWeight.w600),
                     )));
               },
               trailing: Container(

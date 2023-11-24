@@ -58,7 +58,7 @@ class _QaydVaraqaEditState extends State<QaydVaraqaEdit> {
                       // SizedBox(
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.72,
-                          child: PDF().cachedFromUrl(widget
+                          child: const PDF().cachedFromUrl(widget
                               .providerCheckInformation.modelGetDownloads1.src)
                           // PDFViewer(
                           //   document: widget.providerCheckInformation.doc,

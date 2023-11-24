@@ -69,7 +69,7 @@ class _CertQaydVaraqaViewState extends State<CertQaydVaraqaView> {
                   height: MediaQuery.of(context).size.height * 0.7,
                   child: !isLoading
                       ? const Center(child: CircularProgressIndicator())
-                      : PDF().cachedFromUrl(
+                      : const PDF().cachedFromUrl(
                           "${MainUrl.mainUrls}/v1/national/pdf-aplication/${widget.certQaytVaraqaId}")),
               //
               // PDFViewer(

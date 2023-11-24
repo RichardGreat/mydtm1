@@ -223,7 +223,7 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
                                 color: MyColors.appColorBBA(), width: 1)),
                         onPressed: () {
                           Navigator.of(context).push(CupertinoPageRoute(
-                            builder: (context) => SignUp(),
+                            builder: (context) => const SignUp(),
                           ));
                         },
                         child: Text("enterRegistration".tr(),
@@ -283,7 +283,7 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
                                   Navigator.push(
                                       context,
                                       CupertinoPageRoute(
-                                        builder: (context) => MainMessages(),
+                                        builder: (context) => const MainMessages(),
                                       ));
                                 },
                                 child: const Padding(
@@ -379,7 +379,7 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
                                                                         .isNotEmpty
                                                                     ? SizedBox(
                                                                         height:
-                                                                            220,
+                                                                            225,
                                                                         child:
                                                                             Column(
                                                                           mainAxisAlignment:

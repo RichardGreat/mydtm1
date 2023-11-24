@@ -17,7 +17,7 @@ sheetGrantContractChoose(
       enableDrag: false,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       builder: (context) {
-        return Container(
+        return SizedBox(
 
             height: MediaQuery.of(context).size.height*0.9,
             child: MyChooseGrantContract(providerChooseEdu: providerChooseEdu));

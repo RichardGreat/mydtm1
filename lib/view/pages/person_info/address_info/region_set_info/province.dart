@@ -35,8 +35,7 @@ Widget province(
             SizedBox(
               width:MediaQuery.of(context).size.width*0.7,
               child: Text(
-                providerAddressInfo.provinceName.toString().length < 4 ||
-                        providerAddressInfo.provinceName == null
+                providerAddressInfo.provinceName.toString().length < 4
                     ? "choose".tr()
                     : providerAddressInfo.provinceName,
                 overflow: TextOverflow.ellipsis,
@@ -44,8 +43,7 @@ Widget province(
                 maxLines: 1,
                 style: TextStyle(
                     color: providerAddressInfo.provinceName.toString().length <
-                                5 ||
-                            providerAddressInfo.provinceName == null
+                                5
                         ? MyColors.appColorGrey400()
                         : MyColors.appColorBlack(),
                     fontSize: 17,

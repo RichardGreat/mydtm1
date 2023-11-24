@@ -66,7 +66,7 @@ class _LangGraphicChooseTestState extends State<LangGraphicChooseTest> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold)),
                   ),
-                  Divider(),
+                  const Divider(),
                   Expanded(
                     child: ListView.builder(
                       itemCount: listLangGraphic.length,

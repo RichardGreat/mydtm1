@@ -47,15 +47,16 @@ class ProviderPersonInfo extends ChangeNotifier {
     try {
       boolNetworkGetData = true;
 
-      if (box.get("boxAllPersonInfo").toString().length > 200) {
-        modelGetImieInfo = ModelGetImieInfo.fromJson(
-            jsonDecode(box.get("boxAllPersonInfo").toString()));
-      } else {
+      // if (box.get("boxAllPersonInfo").toString().length > 200) {
+      //   modelGetImieInfo = ModelGetImieInfo.fromJson(
+      //       jsonDecode(box.get("boxAllPersonInfo").toString()));
+      // } else {
         String dataInfo = await networkGetIMie.getIMieInformation();
         box.delete("boxAllPersonInfo");
         box.put("boxAllPersonInfo", dataInfo);
         modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
-      }
+
+      // }
 
       dataGetImieInfo = modelGetImieInfo.data;
       psser = dataGetImieInfo.psser;
@@ -151,7 +152,7 @@ class ProviderPersonInfo extends ChangeNotifier {
           passSer: psSer, passNum: psNum);
       PassportAgainStatus passportAgainStatus =
           PassportAgainStatus.fromJson(jsonDecode(data));
-      if (passportAgainStatus.data.status == 1) {
+      if (passportAgainStatus.data.status.toString() == "1") {
         getPersonInformation(context: context, function: function1);
 
         AwesomeDialog(

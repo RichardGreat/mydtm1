@@ -16,7 +16,7 @@ class _EduArriveInfoState extends State<EduArriveInfo> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: SafeArea(
+      body: const SafeArea(
           child: Center(
         child: Text(""),
       )),

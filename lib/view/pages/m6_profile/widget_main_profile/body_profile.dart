@@ -535,7 +535,7 @@ Widget bodyProfile({required BuildContext context,
         mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(width: 10),
-            Text("${"versionMobil".tr()}: 4.5.11", style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.grey, fontSize: 13)),
+            Text("${"versionMobil".tr()}: 4.5.12", style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.grey, fontSize: 13)),
           ],
         ),
         const Divider(

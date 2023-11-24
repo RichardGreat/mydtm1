@@ -155,7 +155,7 @@ class _CertificateResultsViewState extends State<CertificateResultsView> {
                           child:    !isLoading
                               ? const Center(child: CircularProgressIndicator())
                               : boolNotCertificate
-                              ? PDF().cachedFromUrl(modelCertificateResults.data.answer.link.toString())
+                              ? const PDF().cachedFromUrl(modelCertificateResults.data.answer.link.toString())
                               : ListView.builder(
                             itemCount: modelCertificateResults
                                 .data.answer.ans.length,

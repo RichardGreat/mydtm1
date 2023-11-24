@@ -1,8 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
@@ -12,7 +10,6 @@ import 'package:mydtm/view/pages/m3_home/service_page/widgets/service_page_body.
 import 'package:mydtm/view/pages/m3_home/service_page/widgets/service_page_head.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
-import 'package:showcaseview/showcaseview.dart';
 
 class ServicePage extends StatefulWidget {
   late ServiceMainList serviceMainList;

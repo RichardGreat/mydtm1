@@ -12,16 +12,22 @@ class NetworkSetPassportAgain{
     var dio = Dio();
     Response response;
     // response = await dio.post("${MainUrl.mainUrls}/v1/qabul/pasport-change",
-    response = await dio.post("${MainUrl.mainUrls}/v1/qabul/pasport-change",
-        data: {
-          "psser":passSer,
-          "psnum":passNum
-        },
-        options: Options(headers: {MainUrl.mainUrlHeader:box.get("token")})
-    );
-    log(jsonEncode(response.data));
-    return jsonEncode(response.data);
+      try  {
+        log("${MainUrl.mainUrls}/v1/qabul/pasport-change");
+        log(MainUrl.mainUrlHeader);
+        log(box.get("token"));
+        log(passSer);
+        log(passNum);
 
+      response = await dio.post("${MainUrl.mainUrls}/v1/qabul/pasport-change",
+          data: {"psser": passSer, "psnum": passNum},
+          options: Options(headers: {MainUrl.mainUrlHeader: box.get("token")}));
+      log(jsonEncode(response.data));
+      return jsonEncode(response.data);
+    }catch(e){
+        log(e.toString());
+        return "excaption";
+      }
   }
 
 }

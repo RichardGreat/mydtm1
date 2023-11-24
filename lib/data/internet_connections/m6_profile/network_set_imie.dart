@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -10,6 +11,7 @@ class NetworkSetImie {
   Future setImie({required String data}) async {
     var dio = Dio();
     Response response;
+    log(data);
     response = await dio.post("${MainUrl.mainUrls}/v1/person-data/set-imie",
         data: data,
         options: Options(headers: {"X-Access-Token": box.get("token")}));

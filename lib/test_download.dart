@@ -1,8 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 // import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:mydtm/data/internet_connections/main_url.dart';
 
 class TestDownload extends StatefulWidget {
   const TestDownload({Key? key}) : super(key: key);

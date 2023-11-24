@@ -66,7 +66,7 @@ Widget bodyPrivilegeTexnikum({
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(context,CupertinoPageRoute(builder: (context) => InvalidAdd(),));
+                              Navigator.push(context,CupertinoPageRoute(builder: (context) => const InvalidAdd(),));
 
                             },
                             child: Icon(Icons.edit,

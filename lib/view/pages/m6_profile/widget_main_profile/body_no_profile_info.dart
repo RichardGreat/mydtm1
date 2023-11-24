@@ -101,7 +101,7 @@ Widget bodyNoProfileInfo({required BuildContext context}){
                           Navigator.push(
                               context,
                               CupertinoPageRoute(
-                                builder: (context) => SignUp(),
+                                builder: (context) => const SignUp(),
                               ));
 
                         },

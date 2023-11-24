@@ -19,7 +19,7 @@ class _BookQuestionsState extends State<BookQuestions>
     with TickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
-  ControllerBookQuestion _controllerBookQuestion = ControllerBookQuestion();
+  final ControllerBookQuestion _controllerBookQuestion = ControllerBookQuestion();
 
   @override
   initState() {

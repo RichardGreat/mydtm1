@@ -96,7 +96,7 @@ Future main() async {
         ],
         path: 'assets/lang',
         fallbackLocale: const Locale('uz', 'UZ'),
-        child:  MyApp(),
+        child:  const MyApp(),
       ),
     ),
   );
@@ -108,7 +108,7 @@ Future main() async {
 // }
 
 class MyApp extends StatefulWidget {
-   MyApp({Key? key}) : super(key: key);
+   const MyApp({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api

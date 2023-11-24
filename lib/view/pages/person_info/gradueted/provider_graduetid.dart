@@ -6,7 +6,6 @@ import 'dart:developer';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_district.dart';
 import 'package:mydtm/data/internet_connections/m6_profile/get_region.dart';
 import 'package:mydtm/data/internet_connections/person_info/graduated/country.dart';

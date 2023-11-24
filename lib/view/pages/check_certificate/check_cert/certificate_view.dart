@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:share_plus/share_plus.dart';
 
 class CertificateView extends StatefulWidget {
@@ -37,7 +36,7 @@ class _CertificateViewState extends State<CertificateView> {
         title: MyWidgets.robotoFontText(text: "Sertifikat", textSize: 18),
         centerTitle: true,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color:Colors.black),
+        iconTheme: const IconThemeData(color:Colors.black),
         elevation: 0,
         actions: [
           // widget.providerAriza.boolDataDownload2

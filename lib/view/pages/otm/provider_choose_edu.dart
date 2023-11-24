@@ -6,7 +6,6 @@ import 'dart:developer';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/edu_lang/lang_choose_edu.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/edu_lang/test_lang.dart';
 import 'package:mydtm/data/internet_connections/edu_choose/emode/emode_choose.dart';
