@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 class CertificateTexnikum extends StatefulWidget {
   Function funcState;
 
-  CertificateTexnikum({Key? key, required this.funcState}) : super(key: key);
+  CertificateTexnikum({super.key, required this.funcState});
 
   @override
   State<CertificateTexnikum> createState() => _CertificateTexnikumState();

@@ -13,8 +13,7 @@ import 'package:share_plus/share_plus.dart';
 class AccessPaperDownload extends StatefulWidget {
   ProviderAriza providerAriza;
 
-  AccessPaperDownload({Key? key, required this.providerAriza})
-      : super(key: key);
+  AccessPaperDownload({super.key, required this.providerAriza});
 
   @override
   State<AccessPaperDownload> createState() => _AccessPaperDownloadState();

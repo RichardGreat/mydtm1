@@ -28,7 +28,7 @@ modelSheetCountryPerevod(
 
 class GetCountryPerevod extends StatefulWidget {
   ProviderOldEdu providerOldEdu;
-   GetCountryPerevod({Key? key, required this.providerOldEdu}) : super(key: key);
+   GetCountryPerevod({super.key, required this.providerOldEdu});
 
   @override
   State<GetCountryPerevod> createState() => _GetCountryPerevodState();

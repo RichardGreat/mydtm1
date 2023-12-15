@@ -7,7 +7,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class EnterFirst0 extends StatefulWidget {
-  const EnterFirst0({Key? key}) : super(key: key);
+  const EnterFirst0({super.key});
 
   @override
   State<EnterFirst0> createState() => _EnterFirst0State();

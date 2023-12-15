@@ -16,11 +16,12 @@ import 'package:mydtm/view/pages/m2_book_question/book_questions.dart';
 import 'package:mydtm/view/pages/m3_home/main_home.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:ntp/ntp.dart';
 
 class MainPages extends StatefulWidget {
   String homeIdMainpage;
 
-  MainPages({Key? key, required this.homeIdMainpage}) : super(key: key);
+  MainPages({super.key, required this.homeIdMainpage});
 
   @override
   State<MainPages> createState() => _MainPagesState();
@@ -33,7 +34,8 @@ class _MainPagesState extends State<MainPages> {
   }
 
   int index = 0;
-   // GlobalKey<NavigatorState> navigatorKey0012 = GlobalKey<NavigatorState>();
+
+  // GlobalKey<NavigatorState> navigatorKey0012 = GlobalKey<NavigatorState>();
   ///
   dynamic selected;
   var heart = false;
@@ -60,8 +62,23 @@ class _MainPagesState extends State<MainPages> {
     getFirstAction();
   }
 
+  timerM() async {
+    DateTime myTime;
+    myTime = await NTP.now();
+    List<int> montDayCount = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    int indexMonth1 = 0, indexMonth2 = 0;
+    indexMonth1 = myTime.month - 1;
+    indexMonth2 = myTime.month - 2;
+    int curTime = 10;
+    int today = 10;
+    log("######");
+    log((today +
+        montDayCount[indexMonth1 != -1 ? indexMonth1 : 12 - 1] -curTime).toString());
+    log("######");
+  }
 
   Future screenLock123() async {
+    timerM();
     await Future.delayed(const Duration(milliseconds: 10)).then((value) {
       if (box.get("langLock").toString().trim() == "1") {
         box.delete("langLock");
@@ -142,6 +159,7 @@ class _MainPagesState extends State<MainPages> {
   ];
 
   int animationWindowValue = 1;
+
   /// widget list
   final List<Widget> bottomBarPages = [
     MainMyStatement(numberParam: "0"),
@@ -161,6 +179,7 @@ class _MainPagesState extends State<MainPages> {
         elevation: 0,
         toolbarHeight: 1,
       ),
+      // drawer: Drawer(),
       body: Container(child: bottomBarPages[_bottomNavIndex]),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
@@ -168,9 +187,9 @@ class _MainPagesState extends State<MainPages> {
             color: _bottomNavIndex == 4 ? Colors.teal : Colors.grey),
         onPressed: () {
           if (index >= 1) {
-            box.put("animationWindowValue",0.6);
-          } else{
-            box.put("animationWindowValue",-0.6);
+            box.put("animationWindowValue", 0.6);
+          } else {
+            box.put("animationWindowValue", -0.6);
           }
           _bottomNavIndex = 4;
           setState(() {});
@@ -199,20 +218,19 @@ class _MainPagesState extends State<MainPages> {
         gapLocation: GapLocation.center,
         notchSmoothness: NotchSmoothness.softEdge,
         onTap: (index) => setState(() {
-            log(index.toString());
+          log(index.toString());
           if (_bottomNavIndex != 4) {
             if (_bottomNavIndex > index) {
-              box.put("animationWindowValue",0.7);
-            } else{
-              box.put("animationWindowValue",-0.7);
+              box.put("animationWindowValue", 0.7);
+            } else {
+              box.put("animationWindowValue", -0.7);
             }
-          } else{
+          } else {
             if (index > 1) {
-              box.put("animationWindowValue",0.7);
-            } else{
-              box.put("animationWindowValue",-0.7);
+              box.put("animationWindowValue", 0.7);
+            } else {
+              box.put("animationWindowValue", -0.7);
             }
-
           }
 
           _bottomNavIndex = index;

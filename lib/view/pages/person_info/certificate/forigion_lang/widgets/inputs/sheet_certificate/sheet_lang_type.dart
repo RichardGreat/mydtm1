@@ -21,7 +21,7 @@ modelGetLangType(
 class SheetGetSetLangType extends StatefulWidget {
   ProviderCertificate providerCertificate;
    Function ff;
-  SheetGetSetLangType({Key? key, required this.providerCertificate, required this. ff,}) : super(key: key);
+  SheetGetSetLangType({super.key, required this.providerCertificate, required this. ff,});
 
   @override
   State<SheetGetSetLangType> createState() => _SheetGetSetLangTypeState();

@@ -25,7 +25,7 @@ modelSheetGraduatedYearPerevod(
 class GetEduGraduatedYearPerevod extends StatefulWidget {
   ProviderOldEdu providerOldEdu;
 
-  GetEduGraduatedYearPerevod({Key? key, required this.providerOldEdu}) : super(key: key);
+  GetEduGraduatedYearPerevod({super.key, required this.providerOldEdu});
 
   @override
   State<GetEduGraduatedYearPerevod> createState() => _GetEduGraduatedYearPerevodState();

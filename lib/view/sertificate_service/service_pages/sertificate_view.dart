@@ -14,8 +14,7 @@ class CertificateApplication extends StatefulWidget {
   String certName, serviceId;
 
   CertificateApplication(
-      {Key? key, required this.serviceId, required this.certName})
-      : super(key: key);
+      {super.key, required this.serviceId, required this.certName});
 
   @override
   State<CertificateApplication> createState() => _CertificateApplicationState();

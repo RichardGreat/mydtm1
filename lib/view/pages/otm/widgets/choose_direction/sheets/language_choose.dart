@@ -31,8 +31,7 @@ sheetLanguageChooseTest(
 class LangEduChooseTest extends StatefulWidget {
   late ProviderChooseEdu providerChooseEdu;
 
-  LangEduChooseTest({Key? key, required this.providerChooseEdu})
-      : super(key: key);
+  LangEduChooseTest({super.key, required this.providerChooseEdu});
 
   @override
   State<LangEduChooseTest> createState() => _LangEduChooseTestState();

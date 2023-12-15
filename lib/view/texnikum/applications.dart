@@ -11,8 +11,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 class ApplicationTexnikum extends StatefulWidget {
   ProviderTexnikum providerTexnikum;
 
-  ApplicationTexnikum({Key? key, required this.providerTexnikum})
-      : super(key: key);
+  ApplicationTexnikum({super.key, required this.providerTexnikum});
 
   @override
   State<ApplicationTexnikum> createState() => _ApplicationTexnikumState();

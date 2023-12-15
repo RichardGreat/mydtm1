@@ -27,8 +27,7 @@ sheetGrantContractChoose(
 class MyChooseGrantContract extends StatefulWidget {
   ProviderChooseEdu providerChooseEdu;
 
-  MyChooseGrantContract({Key? key, required this.providerChooseEdu})
-      : super(key: key);
+  MyChooseGrantContract({super.key, required this.providerChooseEdu});
 
   @override
   State<MyChooseGrantContract> createState() => _MyChooseGrantContractState();

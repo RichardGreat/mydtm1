@@ -71,11 +71,13 @@ class ProviderPersonInfo extends ChangeNotifier {
       image = dataGetImieInfo.image;
       box.delete("imie");
       box.delete("psnum");
+      box.delete("psser");
       box.delete("personImage");
       box.delete("fio");
       box.put("fio", "$lname $fname $mname");
       box.put("imie", imie);
       box.put("psnum", psnum);
+      box.put("psnum", psser);
       box.put("personImage", image);
 
       boolNetworkGetData = false;
@@ -121,11 +123,13 @@ class ProviderPersonInfo extends ChangeNotifier {
 
       box.delete("imie");
       box.delete("psnum");
+      box.delete("psser");
       box.delete("personImage");
       box.delete("fio");
       box.put("fio", "$lname $fname $mname");
       box.put("imie", imie);
       box.put("psnum", psnum);
+      box.put("psser", psser);
       box.put("personImage", image);
       boolCheckImieHas = false;
       boolNetworkGetData = false;

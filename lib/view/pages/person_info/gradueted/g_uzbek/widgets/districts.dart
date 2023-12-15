@@ -22,7 +22,7 @@ modelSheetGraduatedDistrict(
 class SheetDistrict extends StatefulWidget {
   late ProviderGraduated providerGraduated;
 
-  SheetDistrict({Key? key, required this.providerGraduated}) : super(key: key);
+  SheetDistrict({super.key, required this.providerGraduated});
 
   @override
   State<SheetDistrict> createState() => _SheetDistrictState();

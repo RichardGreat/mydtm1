@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class ChooseEduTexnikum extends StatefulWidget {
-  const ChooseEduTexnikum({Key? key}) : super(key: key);
+  const ChooseEduTexnikum({super.key});
 
   @override
   State<ChooseEduTexnikum> createState() => _ChooseEduTexnikumState();

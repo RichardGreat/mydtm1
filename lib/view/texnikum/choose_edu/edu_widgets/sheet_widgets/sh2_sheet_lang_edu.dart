@@ -27,10 +27,9 @@ class EduChooseTexnikum extends StatefulWidget {
   BuildContext contexts;
 
   EduChooseTexnikum(
-      {Key? key,
+      {super.key,
       required this.providerChooseEduTexnikum,
-      required this.contexts})
-      : super(key: key);
+      required this.contexts});
 
   @override
   State<EduChooseTexnikum> createState() => _EduChooseTexnikumState();

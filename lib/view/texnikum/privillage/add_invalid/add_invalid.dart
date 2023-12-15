@@ -15,8 +15,7 @@ class InvalidAddTexnikum extends StatefulWidget {
   String typeWindow;
 
   InvalidAddTexnikum(
-      {Key? key, required this.titleName, required this.typeWindow})
-      : super(key: key);
+      {super.key, required this.titleName, required this.typeWindow});
 
   @override
   State<InvalidAddTexnikum> createState() => _InvalidAddTexnikumState();

@@ -28,9 +28,9 @@ class SheetGetSetLang extends StatefulWidget {
   ProviderAddInvalide providerAddInvalide;
 
   SheetGetSetLang({
-    Key? key,
+    super.key,
     required this.providerAddInvalide,
-  }) : super(key: key);
+  });
 
   @override
   State<SheetGetSetLang> createState() => _SheetGetSetLangState();

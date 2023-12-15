@@ -30,10 +30,10 @@ class EduTypeTexnikumSheet extends StatefulWidget {
   BuildContext contexts;
 
   EduTypeTexnikumSheet({
-    Key? key,
+    super.key,
     required this.providerChooseEduTexnikum,
     required this.contexts,
-  }) : super(key: key);
+  });
 
   @override
   State<EduTypeTexnikumSheet> createState() => _EduTypeTexnikumSheetState();

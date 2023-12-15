@@ -15,9 +15,9 @@ class ServicePage extends StatefulWidget {
   late ServiceMainList serviceMainList;
 
   ServicePage({
-    Key? key,
+    super.key,
     required this.serviceMainList,
-  }) : super(key: key);
+  });
 
   @override
   State<ServicePage> createState() => _ServicePageState();

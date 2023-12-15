@@ -10,10 +10,9 @@ class ListChooseLangs extends StatefulWidget {
   ProviderCertificateService providerCertificateService;
 
   ListChooseLangs(
-      {Key? key,
+      {super.key,
         required this.listCerLang,
-        required this.providerCertificateService})
-      : super(key: key);
+        required this.providerCertificateService});
 
   @override
   State<ListChooseLangs> createState() => _ListChooseLangsState();

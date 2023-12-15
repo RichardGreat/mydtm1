@@ -4,7 +4,7 @@ import 'package:hive_flutter/adapters.dart';
 // import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
 class LockScreenAllWindow extends StatefulWidget {
-  const LockScreenAllWindow({Key? key}) : super(key: key);
+  const LockScreenAllWindow({super.key});
 
   @override
   State<LockScreenAllWindow> createState() => _LockScreenAllWindowState();

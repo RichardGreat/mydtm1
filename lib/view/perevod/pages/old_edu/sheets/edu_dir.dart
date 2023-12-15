@@ -26,7 +26,7 @@ modelSheetEduDirPerevod(
 class EduDirPerevodSheet extends StatefulWidget {
   ProviderOldEdu providerOldEdu;
 
-  EduDirPerevodSheet({Key? key, required this.providerOldEdu}) : super(key: key);
+  EduDirPerevodSheet({super.key, required this.providerOldEdu});
 
   @override
   State<EduDirPerevodSheet> createState() => _EduDirPerevodSheetState();

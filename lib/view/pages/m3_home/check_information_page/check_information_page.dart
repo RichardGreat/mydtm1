@@ -15,7 +15,7 @@ import 'package:showcaseview/showcaseview.dart';
 class CheckInformation extends StatefulWidget {
   String serviceName;
 
-  CheckInformation({Key? key, required this.serviceName}) : super(key: key);
+  CheckInformation({super.key, required this.serviceName});
 
   @override
   State<CheckInformation> createState() => _CheckInformationState();

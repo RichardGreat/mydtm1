@@ -28,9 +28,9 @@ class SheetGetSetLangTexnikum extends StatefulWidget {
   ProviderAddInvalideTexnikum providerAddInvalideTexnikum;
 
   SheetGetSetLangTexnikum({
-    Key? key,
+    super.key,
     required this.providerAddInvalideTexnikum,
-  }) : super(key: key);
+  });
 
   @override
   State<SheetGetSetLangTexnikum> createState() => _SheetGetSetLangTexnikumState();

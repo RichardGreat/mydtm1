@@ -11,7 +11,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 class ImageToPdf extends StatefulWidget {
   ProviderOldEdu providerOldEdu;
 
-  ImageToPdf({Key? key, required this.providerOldEdu}) : super(key: key);
+  ImageToPdf({super.key, required this.providerOldEdu});
 
   @override
   State<ImageToPdf> createState() => _ImageToPdfState();

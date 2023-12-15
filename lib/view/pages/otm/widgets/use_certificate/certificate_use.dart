@@ -26,8 +26,7 @@ class CertificateUseCheck extends StatefulWidget {
   BuildContext context;
 
   CertificateUseCheck(
-      {Key? key, required this.providerChooseEdu, required this.context})
-      : super(key: key);
+      {super.key, required this.providerChooseEdu, required this.context});
 
   @override
   State<CertificateUseCheck> createState() => _CertificateUseCheckState();

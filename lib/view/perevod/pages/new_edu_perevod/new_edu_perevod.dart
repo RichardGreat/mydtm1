@@ -6,7 +6,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class NewEduPerevod extends StatefulWidget {
-  const NewEduPerevod({Key? key}) : super(key: key);
+  const NewEduPerevod({super.key});
 
   @override
   State<NewEduPerevod> createState() => _NewEduPerevodState();

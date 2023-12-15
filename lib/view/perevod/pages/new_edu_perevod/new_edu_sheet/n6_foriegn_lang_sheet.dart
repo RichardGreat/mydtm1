@@ -26,7 +26,7 @@ modelSheetForeignLangPerevod(
 
 class GetTestForeignPerevod extends StatefulWidget {
   ProviderNewEduPerevod providerNewEduPerevod;
-  GetTestForeignPerevod({Key? key, required this.providerNewEduPerevod}) : super(key: key);
+  GetTestForeignPerevod({super.key, required this.providerNewEduPerevod});
 
   @override
   State<GetTestForeignPerevod> createState() => _GetTestForeignPerevodState();

@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 class MainMyStatement extends StatefulWidget {
   String numberParam;
 
-  MainMyStatement({Key? key, required this.numberParam}) : super(key: key);
+  MainMyStatement({super.key, required this.numberParam});
 
   @override
   State<MainMyStatement> createState() => _MainMyStatementState();

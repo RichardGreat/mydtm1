@@ -55,7 +55,7 @@ class _BookQuestionsState extends State<BookQuestions>
             appBar: AppBar(
               backgroundColor: Colors.teal,
               title: Text("standartTest".tr(),
-                  style: const TextStyle(fontWeight: FontWeight.bold)),
+                  style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
               centerTitle: true,
               elevation: 0,
             ),
@@ -224,7 +224,7 @@ class _BookQuestionsState extends State<BookQuestions>
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
                                 maxCrossAxisExtent: 179,
-                                childAspectRatio: 1.04,
+                                childAspectRatio: 1,
                                 crossAxisSpacing: 0,
                                 mainAxisSpacing: 6),
                       ),

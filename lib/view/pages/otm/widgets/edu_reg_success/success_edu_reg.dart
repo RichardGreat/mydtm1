@@ -4,7 +4,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class SuccessEduReg extends StatefulWidget {
-  const SuccessEduReg({Key? key}) : super(key: key);
+  const SuccessEduReg({super.key});
 
   @override
   State<SuccessEduReg> createState() => _SuccessEduRegState();

@@ -30,8 +30,7 @@ modelSheetEduLangPerevod(
 class GetEduLangPerevod extends StatefulWidget {
   ProviderNewEduPerevod providerNewEduPerevod;
 
-  GetEduLangPerevod({Key? key, required this.providerNewEduPerevod})
-      : super(key: key);
+  GetEduLangPerevod({super.key, required this.providerNewEduPerevod});
 
   @override
   State<GetEduLangPerevod> createState() => _GetEduLangPerevodState();

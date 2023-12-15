@@ -32,7 +32,7 @@ modelSheetTestRegionPerevod(
 
 class GetTestRegionPerevod extends StatefulWidget {
   ProviderNewEduPerevod providerNewEduPerevod;
-  GetTestRegionPerevod({Key? key, required this.providerNewEduPerevod}) : super(key: key);
+  GetTestRegionPerevod({super.key, required this.providerNewEduPerevod});
 
   @override
   State<GetTestRegionPerevod> createState() => _GetTestRegionPerevodState();

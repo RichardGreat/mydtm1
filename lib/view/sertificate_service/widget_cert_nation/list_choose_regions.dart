@@ -11,10 +11,9 @@ class ListChooseRegions extends StatefulWidget {
   ProviderCertificateService providerCertificateService;
 
   ListChooseRegions(
-      {Key? key,
+      {super.key,
       required this.listCerRegions,
-      required this.providerCertificateService})
-      : super(key: key);
+      required this.providerCertificateService});
 
   @override
   State<ListChooseRegions> createState() => _ListChooseRegionsState();

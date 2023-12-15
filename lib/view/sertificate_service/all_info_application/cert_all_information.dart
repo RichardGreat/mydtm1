@@ -13,12 +13,11 @@ class CertAllInformation extends StatefulWidget {
   String serName, serId;
 
   CertAllInformation(
-      {Key? key,
+      {super.key,
       required this.dataCertApplications,
       required this.serId,
       required this.serName,
-})
-      : super(key: key);
+});
 
   @override
   State<CertAllInformation> createState() => _CertAllInformationState();

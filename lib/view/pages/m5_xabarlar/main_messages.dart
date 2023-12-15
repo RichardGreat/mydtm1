@@ -9,7 +9,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class MainMessages extends StatefulWidget {
-  const MainMessages({Key? key}) : super(key: key);
+  const MainMessages({super.key});
 
   @override
   State<MainMessages> createState() => _MainMessagesState();

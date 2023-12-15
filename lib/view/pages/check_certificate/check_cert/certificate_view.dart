@@ -8,8 +8,7 @@ import 'package:share_plus/share_plus.dart';
 class CertificateView extends StatefulWidget {
   String linkCert;
 
-  CertificateView({Key? key, required this.linkCert})
-      : super(key: key);
+  CertificateView({super.key, required this.linkCert});
 
   @override
   State<CertificateView> createState() => _CertificateViewState();

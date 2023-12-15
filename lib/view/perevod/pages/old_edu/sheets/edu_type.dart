@@ -23,7 +23,7 @@ modelSheetEduTypePerevod(
 class GetEduTypePerevod extends StatefulWidget {
   ProviderOldEdu providerOldEdu;
 
-  GetEduTypePerevod({Key? key, required this.providerOldEdu}) : super(key: key);
+  GetEduTypePerevod({super.key, required this.providerOldEdu});
 
   @override
   State<GetEduTypePerevod> createState() => _GetEduTypePerevodState();

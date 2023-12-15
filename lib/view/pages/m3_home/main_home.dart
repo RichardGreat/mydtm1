@@ -25,7 +25,7 @@ import 'package:provider/provider.dart';
 class MainHome extends StatefulWidget {
   String homePageId;
 
-  MainHome({Key? key, required this.homePageId}) : super(key: key);
+  MainHome({super.key, required this.homePageId});
 
   @override
   State<MainHome> createState() => _MainHomeState();
@@ -38,7 +38,12 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
 
   @override
   initState() {
-    Future.delayed(Duration.zero);
+    getData();
+    super.initState();
+  }
+
+  Future getData() async {
+    await Future.delayed(Duration.zero);
     getServiceList();
     controller = AnimationController(
         duration: const Duration(milliseconds: 700), vsync: this);
@@ -49,7 +54,6 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
         // });
       });
     controller.forward();
-    super.initState();
   }
 
   @override
@@ -101,11 +105,13 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
       image = dataGetImieInfo.image;
       box.delete("imie");
       box.delete("psnum");
+      box.delete("psser");
       box.delete("personImage");
       box.delete("fio");
       box.put("fio", "$lname $fname $mname");
       box.put("imie", imie);
       box.put("psnum", psnum);
+      box.put("psser", dataGetImieInfo.psser);
       box.put("personImage", image);
     } catch (e) {
       print(e.toString());
@@ -271,6 +277,7 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
                           backgroundColor: Colors.transparent,
                           appBar: AppBar(
                             elevation: 0,
+                            iconTheme: const IconThemeData(color: Colors.white),
                             backgroundColor: Color.lerp(
                                 Colors.teal, Colors.teal.withOpacity(0.01), 1),
 
@@ -283,7 +290,8 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
                                   Navigator.push(
                                       context,
                                       CupertinoPageRoute(
-                                        builder: (context) => const MainMessages(),
+                                        builder: (context) =>
+                                            const MainMessages(),
                                       ));
                                 },
                                 child: const Padding(
@@ -314,7 +322,9 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
                               builder: (context, child) {
                                 return SlideTransition(
                                     position: Tween<Offset>(
-                                      begin:  Offset(box.get("animationWindowValue")??1, 0),
+                                      begin: Offset(
+                                          box.get("animationWindowValue") ?? 1,
+                                          0),
                                       end: const Offset(0, 0),
                                     ).animate(controller),
                                     child: SafeArea(

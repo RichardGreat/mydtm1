@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:connection_notifier/connection_notifier.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -22,11 +22,13 @@ class MyHttpOverrides extends HttpOverrides {
 Future initialization(BuildContext? context) async {
   await Future.delayed(const Duration(milliseconds: 1900));
 }
-GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
+GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await FaceCamera.initialize();
+  await ConnectionNotifierTools.initialize();
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // WidgetsFlutterBinding.ensureInitialized();
@@ -96,7 +98,7 @@ Future main() async {
         ],
         path: 'assets/lang',
         fallbackLocale: const Locale('uz', 'UZ'),
-        child:  const MyApp(),
+        child: const MyApp(),
       ),
     ),
   );
@@ -108,7 +110,7 @@ Future main() async {
 // }
 
 class MyApp extends StatefulWidget {
-   const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -117,7 +119,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   var box = Hive.box("online");
-
 
   // LocalAuthentication auth = LocalAuthentication();
   //
@@ -161,30 +162,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-
     return ConnectionNotifier(
-      disconnectedContent: const Center(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(Icons.signal_wifi_connected_no_internet_4),
-          SizedBox(width: 10),
-          Text("Internet", style: TextStyle(fontWeight: FontWeight.w600)),
-        ],
-      )),
-      connectedContent: const Center(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(CupertinoIcons.check_mark_circled_solid),
-          SizedBox(width: 10),
-          Text("Internet", style: TextStyle(fontWeight: FontWeight.w600)),
-        ],
-      )),
+      connectionNotificationOptions: const ConnectionNotificationOptions(
+          alignment: Alignment.bottomCenter,
+          disconnectedText: "Internet",
+          connectedText: "Internet"),
       child: MaterialApp(
-        navigatorKey:  navigatorKey,
+        navigatorKey: navigatorKey,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

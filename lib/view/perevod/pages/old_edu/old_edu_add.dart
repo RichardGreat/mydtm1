@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class OldEduAdd extends StatefulWidget {
-  const OldEduAdd({Key? key}) : super(key: key);
+  const OldEduAdd({super.key});
 
   @override
   State<OldEduAdd> createState() => _OldEduAddState();

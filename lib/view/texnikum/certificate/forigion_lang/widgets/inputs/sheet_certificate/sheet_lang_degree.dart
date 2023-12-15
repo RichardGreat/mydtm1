@@ -22,7 +22,7 @@ modelGetLangLevelTexnikum(
 class SheetGetSetLangLevelTexnikum extends StatefulWidget {
   ProviderCertificateTexnikum providerCertificateTexnikum;
   Function ff;
-  SheetGetSetLangLevelTexnikum({ Key? key,required  this.ff, required this.providerCertificateTexnikum}) : super(key: key);
+  SheetGetSetLangLevelTexnikum({ super.key,required  this.ff, required this.providerCertificateTexnikum});
 
   @override
   State<SheetGetSetLangLevelTexnikum> createState() => _SheetGetSetLangLevelTexnikumState();

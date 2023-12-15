@@ -27,11 +27,10 @@ class OTMEdu extends StatefulWidget {
   int titleEduDirId;
 
   OTMEdu(
-      {Key? key,
+      {super.key,
       required this.providerChooseEdu,
       required this.contexts,
-      required this.titleEduDirId})
-      : super(key: key);
+      required this.titleEduDirId});
 
   @override
   State<OTMEdu> createState() => _OTMEduState();

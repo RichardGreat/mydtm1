@@ -16,8 +16,7 @@ class ChooseImagesPerevod extends StatefulWidget {
   Function function;
 
   ChooseImagesPerevod(
-      {Key? key, required this.providerOldEdu, required this.function})
-      : super(key: key);
+      {super.key, required this.providerOldEdu, required this.function});
 
   @override
   State<ChooseImagesPerevod> createState() => _ChooseImagesPerevodState();

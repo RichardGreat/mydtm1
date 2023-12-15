@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 class MainProfile extends StatefulWidget {
   late Function myFunction;
-   MainProfile({Key? key, required this.myFunction}) : super(key: key);
+   MainProfile({super.key, required this.myFunction});
 
   @override
   State<MainProfile> createState() => _MainProfileState();

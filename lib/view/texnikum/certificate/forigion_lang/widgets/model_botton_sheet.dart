@@ -17,8 +17,7 @@ import 'package:easy_localization/easy_localization.dart';
 class ChooseImageForeignLangTexnikum extends StatefulWidget {
   ProviderCertificateTexnikum providerCertificateTexnikum;
   Function f;
-  ChooseImageForeignLangTexnikum({Key? key, required this.providerCertificateTexnikum, required this.f})
-      : super(key: key);
+  ChooseImageForeignLangTexnikum({super.key, required this.providerCertificateTexnikum, required this.f});
 
   @override
   State<ChooseImageForeignLangTexnikum> createState() => _ChooseImageForeignLangTexnikumState();

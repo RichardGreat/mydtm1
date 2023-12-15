@@ -27,10 +27,9 @@ class LangForeignTestTexnikum extends StatefulWidget {
   BuildContext contexts;
 
   LangForeignTestTexnikum(
-      {Key? key,
+      {super.key,
       required this.providerChooseEduTexnikum,
-      required this.contexts})
-      : super(key: key);
+      required this.contexts});
 
   @override
   State<LangForeignTestTexnikum> createState() =>

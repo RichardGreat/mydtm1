@@ -14,8 +14,7 @@ class ChangePasswordInput extends StatefulWidget {
   String phoneNumber;
 
   ChangePasswordInput(
-      {Key? key, required this.passResetToken, required this.phoneNumber})
-      : super(key: key);
+      {super.key, required this.passResetToken, required this.phoneNumber});
 
   @override
   State<ChangePasswordInput> createState() => _ChangePasswordInputState();

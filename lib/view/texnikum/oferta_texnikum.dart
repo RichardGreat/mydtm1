@@ -12,8 +12,7 @@ class AfertaTexnikum extends StatefulWidget {
   ProviderTexnikum providerTexnikum;
 
   AfertaTexnikum(
-      {Key? key, required this.function, required this.providerTexnikum})
-      : super(key: key);
+      {super.key, required this.function, required this.providerTexnikum});
 
   @override
   State<AfertaTexnikum> createState() => _AfertaTexnikumState();

@@ -16,8 +16,7 @@ class PersonInformation extends StatefulWidget {
   String windowIdPassport = "0";
 
   PersonInformation(
-      {Key? key, required this.funcState, required this.idFunction, required this.windowIdPassport})
-      : super(key: key);
+      {super.key, required this.funcState, required this.idFunction, required this.windowIdPassport});
 
   @override
   State<PersonInformation> createState() => _PersonInformationState();

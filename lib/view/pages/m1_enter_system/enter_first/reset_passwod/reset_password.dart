@@ -13,8 +13,7 @@ import 'package:easy_localization/easy_localization.dart';
 class ResetPasswords extends StatefulWidget {
   ProviderEnterFirst providerEnterFirst;
 
-  ResetPasswords({Key? key, required this.providerEnterFirst})
-      : super(key: key);
+  ResetPasswords({super.key, required this.providerEnterFirst});
 
   @override
   State<ResetPasswords> createState() => _ResetPasswordsState();

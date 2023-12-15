@@ -22,8 +22,7 @@ Widget captchaGet(
             borderRadius: BorderRadius.circular(10),
 
             color: MyColors.appColorWhite()),
-        child: providerEnterFirst.boolGetCaptcha
-            ? Stack(
+        child: Stack(
               children: [
                 IconButton(onPressed: (){
                   providerEnterFirst.getCaptcha();
@@ -34,10 +33,13 @@ Widget captchaGet(
                   highlightColor:  Colors.grey.shade200,
                 icon: Icon(Icons.change_circle, color: MyColors.appColorBBA()),
                 ),
-                Row(
+  providerEnterFirst.boolGetCaptcha
+  ?
+  Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  const SizedBox(width: 10),
                   Image.memory(base64Decode(providerEnterFirst
                       .modelParseCaptcha.data.captchaImg
                       .substring(22))),
@@ -104,9 +106,9 @@ Widget captchaGet(
                     ),
                   ),
                 ],
-              )],
+              ): const Center(child: CupertinoActivityIndicator()),]
             )
-            : const Center(child: CupertinoActivityIndicator()),
+
       ),
     ],
   );

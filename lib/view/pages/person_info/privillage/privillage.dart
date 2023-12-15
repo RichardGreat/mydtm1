@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 class Privilege extends StatefulWidget {
   Function funcState;
 
-  Privilege({Key? key, required this.funcState,}) : super(key: key);
+  Privilege({super.key, required this.funcState,});
 
   @override
   State<Privilege> createState() => _PrivilegeState();

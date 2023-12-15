@@ -14,8 +14,7 @@ import 'package:showcaseview/showcaseview.dart';
 class QaydVaraqaEdit extends StatefulWidget {
   ProviderCheckInformation providerCheckInformation;
 
-  QaydVaraqaEdit({Key? key, required this.providerCheckInformation})
-      : super(key: key);
+  QaydVaraqaEdit({super.key, required this.providerCheckInformation});
 
   @override
   State<QaydVaraqaEdit> createState() => _QaydVaraqaEditState();

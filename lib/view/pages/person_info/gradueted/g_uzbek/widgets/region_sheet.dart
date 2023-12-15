@@ -22,7 +22,7 @@ modelSheetProvinceGraduated(
 }
 class SheetProvince extends StatefulWidget {
   late ProviderGraduated providerGraduated;
-  SheetProvince({Key? key, required this.providerGraduated}) : super(key: key);
+  SheetProvince({super.key, required this.providerGraduated});
 
   @override
   State<SheetProvince> createState() => _SheetProvinceState();

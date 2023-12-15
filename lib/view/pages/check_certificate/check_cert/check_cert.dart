@@ -14,9 +14,9 @@ import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class CheckCertificate extends StatefulWidget {
-
   int actionAnimationValue;
-   CheckCertificate({super.key, required this.actionAnimationValue});
+
+  CheckCertificate({super.key, required this.actionAnimationValue});
 
   @override
   State<CheckCertificate> createState() => _CheckCertificateState();
@@ -68,7 +68,9 @@ class _CheckCertificateState extends State<CheckCertificate>
       child: Consumer<ProviderCheckCertificate>(
         builder: (context, value, child) => Scaffold(
             appBar: AppBar(
-              title: Text("checkCertificate".tr()),
+              title: Text("checkCertificate".tr(),
+                  style: const TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold)),
               centerTitle: true,
               backgroundColor: Colors.transparent,
               elevation: 0,
@@ -91,7 +93,7 @@ class _CheckCertificateState extends State<CheckCertificate>
                 builder: (context, child) {
                   return SlideTransition(
                     position: Tween<Offset>(
-                      begin:  Offset(box.get("animationWindowValue")??1, 0),
+                      begin: Offset(box.get("animationWindowValue") ?? 1, 0),
                       end: const Offset(0, 0),
                     ).animate(controller123),
                     child: Form(

@@ -9,7 +9,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 class ForeignLanguageAdd extends StatefulWidget {
   ProviderCertificate providerCertificate;
   Function function;
-   ForeignLanguageAdd({Key? key, required this.providerCertificate, required  this.function}) : super(key: key);
+   ForeignLanguageAdd({super.key, required this.providerCertificate, required  this.function});
 
   @override
   State<ForeignLanguageAdd> createState() => _ForeignLanguageAddState();

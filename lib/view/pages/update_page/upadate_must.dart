@@ -6,7 +6,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UpdateMust extends StatefulWidget {
-  const UpdateMust({Key? key}) : super(key: key);
+  const UpdateMust({super.key});
 
   @override
   State<UpdateMust> createState() => _UpdateMustState();

@@ -27,8 +27,7 @@ class LangGraphicChooseTest extends StatefulWidget {
   String titleName;
 
   LangGraphicChooseTest(
-      {Key? key, required this.providerChooseEdu, required this.titleName})
-      : super(key: key);
+      {super.key, required this.providerChooseEdu, required this.titleName});
 
   @override
   State<LangGraphicChooseTest> createState() => _LangGraphicChooseTestState();

@@ -4,7 +4,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class InfoNotPay extends StatefulWidget {
-  const InfoNotPay({Key? key}) : super(key: key);
+  const InfoNotPay({super.key});
 
   @override
   State<InfoNotPay> createState() => _InfoNotPayState();

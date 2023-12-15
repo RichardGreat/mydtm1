@@ -1,19 +1,22 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
-
+import 'package:mydtm/view/widgets/face_id/face_id.dart';
 
 class MyWidgets {
   var box = Hive.box("online");
 
   Future goEnterFirst({required BuildContext context}) async {
     box.delete("token");
-    Navigator.push(context,CupertinoPageRoute(builder: (context) => EnterFirst(windowIdEnterFirst: "0"),));
-
+    Navigator.push(
+        context,
+        CupertinoPageRoute(
+          builder: (context) => EnterFirst(windowIdEnterFirst: "0"),
+        ));
   }
 
   static Widget loaderDownload({required BuildContext context}) {
@@ -33,11 +36,10 @@ class MyWidgets {
     );
   }
 
-  static Text robotoFontText(
-      {required String text,
-      double? textSize,
-      Color? textColor,
-      FontWeight? textFontWeight}) {
+  static Text robotoFontText({required String text,
+    double? textSize,
+    Color? textColor,
+    FontWeight? textFontWeight}) {
     return Text(
       text,
       style: TextStyle(
@@ -114,41 +116,84 @@ class MyWidgets {
   static awesomeDialogInfo(
       {required BuildContext context, required String valueText}) {
     AwesomeDialog(
-            context: context,
-            dialogType: DialogType.noHeader,
-            animType: AnimType.bottomSlide,
-            dismissOnTouchOutside: false,
-            title: "BBA",
-            desc: valueText,
-            titleTextStyle: TextStyle(
-                color: MyColors.appColorBlue1(),
-                fontSize: 24,
-                fontWeight: FontWeight.bold),
-            descTextStyle: TextStyle(
-                color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-            btnCancelOnPress: () {},
-            btnCancelColor: MyColors.appColorBlue1(),
-            btnCancelText: "accepted".tr())
+        context: context,
+        dialogType: DialogType.noHeader,
+        animType: AnimType.bottomSlide,
+        dismissOnTouchOutside: false,
+        title: "BBA",
+        desc: valueText,
+        titleTextStyle: TextStyle(
+            color: MyColors.appColorBlue1(),
+            fontSize: 24,
+            fontWeight: FontWeight.bold),
+        descTextStyle: TextStyle(
+            color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+        btnCancelOnPress: () {},
+        btnCancelColor: MyColors.appColorBlue1(),
+        btnCancelText: "accepted".tr())
         .show();
   }
 
   static awesomeDialogError(
       {required BuildContext context, required String valueText}) {
     AwesomeDialog(
-            context: context,
-            dialogType: DialogType.noHeader,
-            animType: AnimType.bottomSlide,
-            dismissOnTouchOutside: false,
-            title: "BBA",
-            desc: valueText,
-            titleTextStyle: TextStyle(
-                color: MyColors.appColorBlue1(),
-                fontSize: 24,
-                fontWeight: FontWeight.bold),
-            descTextStyle: TextStyle(
-                color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
-            btnCancelOnPress: () {},
-            btnCancelText: "OK")
+        context: context,
+        dialogType: DialogType.noHeader,
+        animType: AnimType.bottomSlide,
+        dismissOnTouchOutside: false,
+        title: "BBA",
+        desc: valueText,
+        titleTextStyle: TextStyle(
+            color: MyColors.appColorBlue1(),
+            fontSize: 24,
+            fontWeight: FontWeight.bold),
+        descTextStyle: TextStyle(
+            color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+        btnCancelOnPress: () {},
+        btnCancelText: "OK")
+        .show();
+  }
+
+  /// face id check
+  static dialogCheckFaceId(
+      {required BuildContext context, required String valueText, required String imie, required String psnum, required String psser}) {
+    AwesomeDialog(
+        context: context,
+        dialogType: DialogType.noHeader,
+        animType: AnimType.bottomSlide,
+        dismissOnTouchOutside: false,
+        title: "BBA",
+        body: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text("BBA",
+                  style: TextStyle(
+                      color: MyColors.appColorBlue1(),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24)),
+              const Text(
+                "Xizmatlardan foydalanishda xafvsizlik uchun face id dan o'ting",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+        ),
+        titleTextStyle: TextStyle(
+            color: MyColors.appColorBlue1(),
+            fontSize: 24,
+            fontWeight: FontWeight.bold),
+        descTextStyle: TextStyle(
+            color: MyColors.appColorBlack(), fontWeight: FontWeight.bold),
+        btnCancelOnPress: () {
+          Navigator.push(context, CupertinoPageRoute(builder: (context) =>
+              ImagePhoto(imie: imie, pser: psser, snum: psnum),));
+        },
+        btnCancelColor: MyColors.appColorBlue1(),
+        buttonsBorderRadius: BorderRadius.circular(10),
+        btnCancelText: "FACE ID")
         .show();
   }
 

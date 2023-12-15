@@ -12,7 +12,7 @@ import 'package:easy_localization/easy_localization.dart';
 class LangChangeAll extends StatefulWidget {
   ProviderProfile providerProfile;
 
-  LangChangeAll({Key? key, required this.providerProfile}) : super(key: key);
+  LangChangeAll({super.key, required this.providerProfile});
 
   @override
   State<LangChangeAll> createState() => _LangChangeAllState();

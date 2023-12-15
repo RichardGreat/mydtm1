@@ -29,8 +29,7 @@ modelSheetDirNewPerevod(
 class GetTestDirNewPerevod extends StatefulWidget {
   ProviderNewEduPerevod providerNewEduPerevod;
 
-  GetTestDirNewPerevod({Key? key, required this.providerNewEduPerevod})
-      : super(key: key);
+  GetTestDirNewPerevod({super.key, required this.providerNewEduPerevod});
 
   @override
   State<GetTestDirNewPerevod> createState() => _GetTestDirNewPerevodState();

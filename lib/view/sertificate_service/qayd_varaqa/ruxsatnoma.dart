@@ -17,11 +17,10 @@ class CertRuxsatnomaView extends StatefulWidget {
   // bool boolGetAllowExam;
 
   CertRuxsatnomaView(
-      {Key? key,
+      {super.key,
       required this.certRuxsatnomaVaraqaId,
       // required this.boolGetAllowExam
-      })
-      : super(key: key);
+      });
 
   @override
   State<CertRuxsatnomaView> createState() => _CertRuxsatnomaViewState();

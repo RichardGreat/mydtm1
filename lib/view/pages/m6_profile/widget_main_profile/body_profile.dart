@@ -68,26 +68,37 @@ Widget bodyProfile({required BuildContext context,
                 ),
                 margin: const EdgeInsets.all(15),
                 padding: const EdgeInsets.all(5),
-                height: 120,
+                height: 125,
                 width: 100,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(300),
-                  child: providerProfile.boolHasTokenNoImie
-                      ? Image.asset("assets/images/icon_person.png",
-                      height: 80, fit: BoxFit.fill)
-                      : Image.memory(
-                    base64Decode(box
-                        .get("personImage")
-                        .toString()
-                        .replaceAll("\n", "")
-                        .substring(23)
-                        .trim()),
-                    fit: BoxFit.cover,
-                    width: 100,
-                    height: 100,
-                  ),
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(300),
+                      child: providerProfile.boolHasTokenNoImie
+                          ? Image.asset("assets/images/icon_person.png",
+                          height: 80, fit: BoxFit.fill)
+                          : Image.memory(
+                        base64Decode(box
+                            .get("personImage")
+                            .toString()
+                            .replaceAll("\n", "")
+                            .substring(23)
+                            .trim()),
+                        fit: BoxFit.cover,
+                        width: 100,
+                        height: 100,
+                      ),
+                    ),
+                    const Align(
+                        alignment: Alignment.bottomRight,
+                        child: Padding(
+                          padding: EdgeInsets.only(top:8.0, left: 8),
+                          child: Icon(Icons.verified, color: Colors.teal,),
+                        )),
+                  ],
                 ),
               ),
+
               const SizedBox(height: 5),
               providerProfile.boolHasTokenNoImie
                   ? const SizedBox.shrink()

@@ -26,10 +26,10 @@ class ForeignLangTest extends StatefulWidget {
   BuildContext contexts;
 
   ForeignLangTest({
-    Key? key,
+    super.key,
     required this.providerChooseEdu,
     required this.contexts,
-  }) : super(key: key);
+  });
 
   @override
   State<ForeignLangTest> createState() => _ForeignLangTestState();

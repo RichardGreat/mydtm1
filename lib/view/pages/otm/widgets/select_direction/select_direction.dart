@@ -11,8 +11,7 @@ class SelectDirection extends StatefulWidget {
   int indexEduDir;
 
   SelectDirection(
-      {Key? key, required this.providerChooseEdu, required this.indexEduDir})
-      : super(key: key);
+      {super.key, required this.providerChooseEdu, required this.indexEduDir});
 
   @override
   State<SelectDirection> createState() => _SelectDirectionState();

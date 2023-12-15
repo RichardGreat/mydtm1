@@ -17,10 +17,10 @@ class CertificateResultsView extends StatefulWidget {
   bool boolGetNatija;
 
   CertificateResultsView({
-    Key? key,
+    super.key,
     required this.certId,
     required this.boolGetNatija,
-  }) : super(key: key);
+  });
 
   @override
   State<CertificateResultsView> createState() => _CertificateResultsViewState();

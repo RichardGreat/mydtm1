@@ -34,13 +34,12 @@ class DIREdu extends StatefulWidget {
   String eduName;
 
   DIREdu(
-      {Key? key,
+      {super.key,
       required this.providerChooseEdu,
       required this.contexts,
       required this.eduId,
       required this.eduName,
-      required this.titleEduDirId})
-      : super(key: key);
+      required this.titleEduDirId});
 
   @override
   State<DIREdu> createState() => _DIREduState();

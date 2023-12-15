@@ -179,7 +179,7 @@ Widget notInfoPerson({required BuildContext context, required ProviderAriza prov
 class ArizaEnter extends StatefulWidget {
   ProviderAriza providerAriza;
 
-  ArizaEnter({Key? key, required this.providerAriza}) : super(key: key);
+  ArizaEnter({super.key, required this.providerAriza});
 
   @override
   State<ArizaEnter> createState() => _ArizaEnterState();

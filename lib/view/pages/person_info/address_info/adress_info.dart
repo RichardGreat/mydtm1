@@ -18,8 +18,7 @@ class AddressInfo extends StatefulWidget {
   String addressWindowId = "0";
 
   AddressInfo(
-      {Key? key, required this.funcState, required this.addressWindowId})
-      : super(key: key);
+      {super.key, required this.funcState, required this.addressWindowId});
 
   @override
   State<AddressInfo> createState() => _AddressInfoState();

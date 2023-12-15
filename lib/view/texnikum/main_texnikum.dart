@@ -19,7 +19,7 @@ import 'package:easy_localization/easy_localization.dart';
 class MainTexnikum extends StatefulWidget {
   String serviceName;
 
-  MainTexnikum({Key? key, required this.serviceName}) : super(key: key);
+  MainTexnikum({super.key, required this.serviceName});
 
   @override
   State<MainTexnikum> createState() => _MainTexnikumState();

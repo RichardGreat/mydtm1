@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 class TestDownload extends StatefulWidget {
-  const TestDownload({Key? key}) : super(key: key);
+  const TestDownload({super.key});
 
   @override
   _TestDownloadState createState() => _TestDownloadState();

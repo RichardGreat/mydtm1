@@ -16,8 +16,7 @@ import 'package:easy_localization/easy_localization.dart';
 class ChooseImageForeignLang extends StatefulWidget {
   ProviderCertificate providerCertificate;
   Function f;
-  ChooseImageForeignLang({Key? key, required this.providerCertificate, required this.f})
-      : super(key: key);
+  ChooseImageForeignLang({super.key, required this.providerCertificate, required this.f});
 
   @override
   State<ChooseImageForeignLang> createState() => _ChooseImageForeignLangState();

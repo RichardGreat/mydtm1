@@ -22,7 +22,7 @@ modelGetLangLevel(
 class SheetGetSetLangLevel extends StatefulWidget {
   ProviderCertificate providerCertificate;
   Function ff;
-  SheetGetSetLangLevel({ Key? key,required  this.ff, required this.providerCertificate}) : super(key: key);
+  SheetGetSetLangLevel({ super.key,required  this.ff, required this.providerCertificate});
 
   @override
   State<SheetGetSetLangLevel> createState() => _SheetGetSetLangLevelState();

@@ -15,8 +15,7 @@ import 'package:provider/provider.dart';
 class CheckInformationPerevodga extends StatefulWidget {
   String serviceName;
 
-  CheckInformationPerevodga({Key? key, required this.serviceName})
-      : super(key: key);
+  CheckInformationPerevodga({super.key, required this.serviceName});
 
   @override
   State<CheckInformationPerevodga> createState() =>

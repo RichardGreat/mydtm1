@@ -13,8 +13,7 @@ import 'package:share_plus/share_plus.dart';
 class AnswerSheetDownload extends StatefulWidget {
   ProviderAriza providerAriza;
 
-  AnswerSheetDownload({Key? key, required this.providerAriza})
-      : super(key: key);
+  AnswerSheetDownload({super.key, required this.providerAriza});
 
   @override
   State<AnswerSheetDownload> createState() => _AnswerSheetDownloadState();

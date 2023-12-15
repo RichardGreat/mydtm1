@@ -8,7 +8,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class InvalidAdd extends StatefulWidget {
-  const InvalidAdd({Key? key}) : super(key: key);
+  const InvalidAdd({super.key});
 
   @override
   State<InvalidAdd> createState() => _InvalidAddState();

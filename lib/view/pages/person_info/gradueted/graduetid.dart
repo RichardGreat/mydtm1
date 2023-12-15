@@ -24,8 +24,7 @@ class Graduated extends StatefulWidget {
   String windowIdGraduated = "0";
 
   Graduated(
-      {Key? key, required this.funcState, required this.windowIdGraduated})
-      : super(key: key);
+      {super.key, required this.funcState, required this.windowIdGraduated});
 
   @override
   State<Graduated> createState() => _GraduatedState();

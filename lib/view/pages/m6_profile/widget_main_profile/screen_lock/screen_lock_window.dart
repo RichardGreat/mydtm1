@@ -10,8 +10,7 @@ import 'package:easy_localization/easy_localization.dart';
 class ScreenLockWindow extends StatefulWidget {
   String idScreenLockWindow = "";
 
-  ScreenLockWindow({Key? key, required this.idScreenLockWindow})
-      : super(key: key);
+  ScreenLockWindow({super.key, required this.idScreenLockWindow});
 
   @override
   State<ScreenLockWindow> createState() => _ScreenLockWindowState();

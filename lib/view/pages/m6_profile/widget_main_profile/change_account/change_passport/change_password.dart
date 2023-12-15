@@ -13,8 +13,7 @@ import 'package:easy_localization/easy_localization.dart';
 class ChangeAccountPasswords extends StatefulWidget {
   ProviderProfile providerProfile;
 
-  ChangeAccountPasswords({Key? key, required this.providerProfile})
-      : super(key: key);
+  ChangeAccountPasswords({super.key, required this.providerProfile});
 
   @override
   State<ChangeAccountPasswords> createState() => _ChangeAccountPasswordsState();

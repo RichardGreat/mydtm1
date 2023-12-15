@@ -27,8 +27,7 @@ sheetMaqsadli(
 class MyChooseMaqsadli extends StatefulWidget {
   ProviderChooseEdu providerChooseEdu;
 
-  MyChooseMaqsadli({Key? key, required this.providerChooseEdu})
-      : super(key: key);
+  MyChooseMaqsadli({super.key, required this.providerChooseEdu});
 
   @override
   State<MyChooseMaqsadli> createState() => _MyChooseMaqsadliState();

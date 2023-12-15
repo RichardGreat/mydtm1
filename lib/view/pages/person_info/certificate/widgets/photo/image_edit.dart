@@ -14,8 +14,7 @@ import 'package:easy_localization/easy_localization.dart';
 class ChooseImagesAvatar extends StatefulWidget {
   ProviderCertificate providerCertificate;
 
-  ChooseImagesAvatar({Key? key, required this.providerCertificate})
-      : super(key: key);
+  ChooseImagesAvatar({super.key, required this.providerCertificate});
 
   @override
   State<ChooseImagesAvatar> createState() => _ChooseImagesAvatarState();

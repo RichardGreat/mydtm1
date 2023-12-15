@@ -29,11 +29,10 @@ class SheetGetSetLang extends StatefulWidget {
   Function f;
 
   SheetGetSetLang(
-      {Key? key,
+      {super.key,
       required this.providerCertificate,
       required this.f,
-      required this.titleName})
-      : super(key: key);
+      required this.titleName});
 
   @override
   State<SheetGetSetLang> createState() => _SheetGetSetLangState();

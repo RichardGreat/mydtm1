@@ -20,8 +20,7 @@ modelSheetDistrict(
 class SheetDistrict extends StatefulWidget {
   late ProviderAddressInfo providerAddressInfo;
 
-  SheetDistrict({Key? key, required this.providerAddressInfo})
-      : super(key: key);
+  SheetDistrict({super.key, required this.providerAddressInfo});
 
   @override
   State<SheetDistrict> createState() => _SheetDistrictState();

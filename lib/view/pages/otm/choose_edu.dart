@@ -15,7 +15,7 @@ import 'package:showcaseview/showcaseview.dart';
 class ChooseEdu extends StatefulWidget {
   Function funcState;
 
-  ChooseEdu({Key? key, required this.funcState}) : super(key: key);
+  ChooseEdu({super.key, required this.funcState});
 
   @override
   State<ChooseEdu> createState() => _ChooseEduState();

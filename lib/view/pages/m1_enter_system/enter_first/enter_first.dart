@@ -19,7 +19,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 class EnterFirst extends StatefulWidget {
   String windowIdEnterFirst = "";
-   EnterFirst({Key? key, required this.windowIdEnterFirst}) : super(key: key);
+   EnterFirst({super.key, required this.windowIdEnterFirst});
 
   @override
   State<EnterFirst> createState() => _EnterFirstState();

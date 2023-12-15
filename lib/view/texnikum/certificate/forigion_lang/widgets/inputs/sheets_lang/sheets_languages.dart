@@ -29,11 +29,10 @@ class SheetGetSetLangTexnikum extends StatefulWidget {
   Function f;
 
   SheetGetSetLangTexnikum(
-      {Key? key,
+      {super.key,
       required this.providerCertificateTexnikum,
       required this.f,
-      required this.titleName})
-      : super(key: key);
+      required this.titleName});
 
   @override
   State<SheetGetSetLangTexnikum> createState() => _SheetGetSetLangTexnikumState();

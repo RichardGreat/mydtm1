@@ -13,8 +13,7 @@ class SertificateServices extends StatefulWidget {
   String serID, serviceName;
 
   SertificateServices(
-      {Key? key, required this.serID, required this.serviceName})
-      : super(key: key);
+      {super.key, required this.serID, required this.serviceName});
 
   @override
   State<SertificateServices> createState() => _SertificateServicesState();

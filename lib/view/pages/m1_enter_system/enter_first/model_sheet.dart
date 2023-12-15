@@ -21,7 +21,7 @@ modelSheet(
       });
 }
 class ModelAppBarSheetLang extends StatefulWidget {
-  const ModelAppBarSheetLang({Key? key}) : super(key: key);
+  const ModelAppBarSheetLang({super.key});
 
   @override
   State<ModelAppBarSheetLang> createState() => _ModelAppBarSheetLangState();

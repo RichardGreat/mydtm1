@@ -15,8 +15,7 @@ import 'package:easy_localization/easy_localization.dart';
 class ChooseImageProvillageTexnikum extends StatefulWidget {
   ProviderAddInvalideTexnikum providerAddInvalideTexnikum;
   Function f;
-  ChooseImageProvillageTexnikum({Key? key, required this.providerAddInvalideTexnikum, required this.f})
-      : super(key: key);
+  ChooseImageProvillageTexnikum({super.key, required this.providerAddInvalideTexnikum, required this.f});
 
   @override
   State<ChooseImageProvillageTexnikum> createState() => _ChooseImageProvillageTexnikumState();

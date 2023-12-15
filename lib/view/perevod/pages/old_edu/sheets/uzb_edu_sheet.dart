@@ -27,7 +27,7 @@ modelSheetUzbEduPerevod(
 class UzbEduSheet extends StatefulWidget {
   ProviderOldEdu providerOldEdu;
 
-  UzbEduSheet({Key? key, required this.providerOldEdu}) : super(key: key);
+  UzbEduSheet({super.key, required this.providerOldEdu});
 
   @override
   State<UzbEduSheet> createState() => _UzbEduSheetState();

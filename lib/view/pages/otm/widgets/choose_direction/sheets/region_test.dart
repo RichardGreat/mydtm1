@@ -29,8 +29,7 @@ class ChooseRegion extends StatefulWidget {
 
 
   ChooseRegion(
-      {Key? key, required this.providerChooseEdu, required this.contexts})
-      : super(key: key);
+      {super.key, required this.providerChooseEdu, required this.contexts});
 
   @override
   State<ChooseRegion> createState() => _ChooseRegionState();

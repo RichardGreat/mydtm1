@@ -21,8 +21,7 @@ modelSheetGraduatedName(
 class SheetGraduatedName extends StatefulWidget {
   late ProviderGraduated providerGraduated;
 
-  SheetGraduatedName({Key? key, required this.providerGraduated})
-      : super(key: key);
+  SheetGraduatedName({super.key, required this.providerGraduated});
 
   @override
   State<SheetGraduatedName> createState() => _SheetGraduatedNameState();

@@ -11,8 +11,7 @@ class ChangePhoneNumber extends StatefulWidget {
   Function function;
 
   ChangePhoneNumber(
-      {Key? key, required this.providerProfile, required this.function})
-      : super(key: key);
+      {super.key, required this.providerProfile, required this.function});
 
   @override
   State<ChangePhoneNumber> createState() => _ChangePhoneNumberState();

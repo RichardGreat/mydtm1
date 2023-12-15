@@ -15,7 +15,7 @@ class PrivilegeTexnikum extends StatefulWidget {
   Function funcState;
   String windowId;
 
-  PrivilegeTexnikum({Key? key, required this.funcState, required this.windowId}) : super(key: key);
+  PrivilegeTexnikum({super.key, required this.funcState, required this.windowId});
 
   @override
   State<PrivilegeTexnikum> createState() => _PrivilegeTexnikumState();

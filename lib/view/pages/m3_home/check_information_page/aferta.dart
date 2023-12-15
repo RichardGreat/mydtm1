@@ -16,10 +16,9 @@ class Aferta extends StatefulWidget {
   ProviderCheckInformation providerCheckInformation;
 
   Aferta(
-      {Key? key,
+      {super.key,
       required this.function,
-      required this.providerCheckInformation})
-      : super(key: key);
+      required this.providerCheckInformation});
 
   @override
   State<Aferta> createState() => _AfertaState();

@@ -16,11 +16,10 @@ class CertQaydVaraqaView extends StatefulWidget {
   String certQaytVaraqaId, certId, certName;
 
   CertQaydVaraqaView(
-      {Key? key,
+      {super.key,
       required this.certQaytVaraqaId,
       required this.certId,
-      required this.certName})
-      : super(key: key);
+      required this.certName});
 
   @override
   State<CertQaydVaraqaView> createState() => _CertQaydVaraqaViewState();

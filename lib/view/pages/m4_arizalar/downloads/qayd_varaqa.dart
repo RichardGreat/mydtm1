@@ -11,7 +11,7 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 class QaydVaraqaDownload extends StatefulWidget {
   ProviderAriza providerAriza;
 
-  QaydVaraqaDownload({Key? key, required this.providerAriza}) : super(key: key);
+  QaydVaraqaDownload({super.key, required this.providerAriza});
 
   @override
   State<QaydVaraqaDownload> createState() => _QaydVaraqaDownloadState();

@@ -14,7 +14,7 @@ import 'package:showcaseview/showcaseview.dart';
 class Certificates extends StatefulWidget {
   Function funcState;
 
-  Certificates({Key? key, required this.funcState}) : super(key: key);
+  Certificates({super.key, required this.funcState});
 
   @override
   State<Certificates> createState() => _CertificatesState();

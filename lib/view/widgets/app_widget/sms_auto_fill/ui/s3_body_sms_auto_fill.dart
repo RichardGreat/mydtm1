@@ -19,13 +19,12 @@ class SmsAutoFillUi extends StatefulWidget {
   /// agar registration 0 bo'lsa parol tiklash
 
   SmsAutoFillUi(
-      {Key? key,
+      {super.key,
       required this.phoneNum,
       required this.password,
       required this.captchaKey,
       required this.captchaValue,
-      required this.registration})
-      : super(key: key);
+      required this.registration});
 
   @override
   State<SmsAutoFillUi> createState() => _SmsAutoFillUiState();

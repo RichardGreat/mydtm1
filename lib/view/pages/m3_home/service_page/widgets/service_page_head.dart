@@ -1,12 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/view/pages/m3_home/service_page/provider_service_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 
-Widget servicePageHead({required BuildContext context,
+Widget servicePageHead({
+  required BuildContext context,
   required ProviderServicePage providerServicePage,
   required ServiceMainList serviceMainList,
   // required GlobalKey oneServicePageGlobal
@@ -18,20 +19,16 @@ Widget servicePageHead({required BuildContext context,
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.all(10),
       child: Column(
-
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             box.get("language") == "1"
                 ? serviceMainList.serviceName
                 : box.get("language") == "2"
-                ? serviceMainList.serviceNameQQ
-                : serviceMainList.serviceNameRu,
-
+                    ? serviceMainList.serviceNameQQ
+                    : serviceMainList.serviceNameRu,
             textAlign: TextAlign.start,
-
             style: TextStyle(
-
                 color: MyColors.appColorBlack(),
                 fontSize: 20,
                 fontWeight: FontWeight.normal,
@@ -46,17 +43,20 @@ Widget servicePageHead({required BuildContext context,
           // child:
           MaterialButton(
               onPressed: () {
-                providerServicePage.checkUserStatus(
-                  categoryId: serviceMainList.id.toString(),
-                  context: context,
-                  status: serviceMainList.status,
-                  categoryName:
-                  box.get("language") == "1"
-                      ? serviceMainList.serviceName
-                      : box.get("language") == "2"
-                      ? serviceMainList.serviceNameQQ
-                      : serviceMainList.serviceNameRu,
-                );
+                // if (box.get("faceId").toString() == "1") {
+                  providerServicePage.checkUserStatus(
+                    categoryId: serviceMainList.id.toString(),
+                    context: context,
+                    status: serviceMainList.status,
+                    categoryName: box.get("language") == "1"
+                        ? serviceMainList.serviceName
+                        : box.get("language") == "2"
+                            ? serviceMainList.serviceNameQQ
+                            : serviceMainList.serviceNameRu,
+                  );
+                // } else {
+
+                // }
               },
               minWidth: double.infinity,
               height: 50,
