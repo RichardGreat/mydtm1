@@ -308,6 +308,23 @@
   "dayHave": " kún qaldı",
   "certView": "Sertifikat kóriw",
   "standartTest": "ÚLGI USHÍN TEST TAPSÍRMALARÍ",
-  "versionMobil": "Qosımsha versiyası "
-
+  "versionMobil": "Qosımsha versiyası ",
+  "faceNo": "MOS MA'LUMOT TOPILMADI.\nBOSHQA YUZ TASVIRI",
+  "face_no_info": "MOS MÁLUMOT TOPILMADI. \n KIRITILGAN MÁLUMOTLARNI TÓǴRILIGINI TEKSHIRING",
+  "face_center": "Júz orayda bolsın",
+  "information_acc": "Maǵlıwmat anıqlanıp atır",
+  "photoAgain": "Suwretke taǵı alıw ",
+  "checkInfo": "Maǵlıwmatlardı to'griligini tekseriń",
+  "faceId": "Face ID den ótiń",
+  "faceApply": "Júzingizni tastıyıqlang",
+  "faceSafe": "Xızmetlerden paydalanıwda xafvsizlik ushın Face ID den ótiń",
+  "day": {
+    "zero":" {} kún qaldı",
+    "one":" {} kún qaldı",
+    "two": " {} kún qaldı",
+    "three": " {} kún qaldı",
+    "four": " {} kún qaldı",
+    "five": " {} kún qaldı",
+    "other": "{} kun qoldi"
+  }
 }

@@ -122,6 +122,7 @@ class MyWidgets {
         dismissOnTouchOutside: false,
         title: "BBA",
         desc: valueText,
+        buttonsBorderRadius: BorderRadius.circular(8),
         titleTextStyle: TextStyle(
             color: MyColors.appColorBlue1(),
             fontSize: 24,
@@ -143,6 +144,7 @@ class MyWidgets {
         dismissOnTouchOutside: false,
         title: "BBA",
         desc: valueText,
+        buttonsBorderRadius:  BorderRadius.circular(8),
         titleTextStyle: TextStyle(
             color: MyColors.appColorBlue1(),
             fontSize: 24,
@@ -161,8 +163,9 @@ class MyWidgets {
         context: context,
         dialogType: DialogType.noHeader,
         animType: AnimType.bottomSlide,
-        dismissOnTouchOutside: false,
+        dismissOnTouchOutside: true,
         title: "BBA",
+
         body: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -173,10 +176,10 @@ class MyWidgets {
                       color: MyColors.appColorBlue1(),
                       fontWeight: FontWeight.bold,
                       fontSize: 24)),
-              const Text(
-                "Xizmatlardan foydalanishda xafvsizlik uchun face id dan o'ting",
+               Text(
+                "faceSafe".tr(),
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
               )
             ],
           ),
@@ -192,7 +195,7 @@ class MyWidgets {
               ImagePhoto(imie: imie, pser: psser, snum: psnum),));
         },
         btnCancelColor: MyColors.appColorBlue1(),
-        buttonsBorderRadius: BorderRadius.circular(10),
+        buttonsBorderRadius: BorderRadius.circular(8),
         btnCancelText: "FACE ID")
         .show();
   }

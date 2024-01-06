@@ -20,20 +20,22 @@ import 'package:mydtm/view/pages/person_info/gradueted/graduetid.dart';
 import 'package:mydtm/view/pages/person_info/pasport_info_set/person_information.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:mydtm/view/widgets/face_id/face_id.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+var box = Hive.box("online");
+
 Widget myText() {
-  var box = Hive.box("online");
   return box.get("language") == "1"
       ? Text("uz".tr())
       : box.get("language") == "2"
-      ? Text("qq".tr())
-      : Text("ru".tr());
+          ? Text("qq".tr())
+          : Text("ru".tr());
 }
 
 late ModelCheckUserInfo modelCheckUserInfo;
-Future<void> _makePhoneCall(String phoneNumber) async {
 
+Future<void> _makePhoneCall(String phoneNumber) async {
   final Uri launchUri = Uri(
     scheme: 'tel',
     path: phoneNumber,
@@ -41,16 +43,19 @@ Future<void> _makePhoneCall(String phoneNumber) async {
   await launchUrl(launchUri);
 }
 
-Widget bodyProfile({required BuildContext context,
+double sliderValue() {
+  return (1 - double.parse(box.get("faceIdQolganKun")) / 30).abs();
+}
+
+Widget bodyProfile({
+  required BuildContext context,
   required Function function,
   required ProviderProfile providerProfile,
-  required Function functions}) {
+  required Function functions,
+}) {
   var box = Hive.box("online");
+
   return Container(
-    // height: MediaQuery
-    //     .of(context)
-    //     .size
-    //     .height * 1.12,
     margin: const EdgeInsets.only(left: 10, right: 10),
     color: Colors.white,
     child: Column(
@@ -62,55 +67,107 @@ Widget bodyProfile({required BuildContext context,
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                margin: const EdgeInsets.all(15),
-                padding: const EdgeInsets.all(5),
-                height: 125,
-                width: 100,
+              SizedBox(
+                height: 120,
+                width: 110,
                 child: Stack(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(300),
+                      borderRadius: BorderRadius.circular(100),
                       child: providerProfile.boolHasTokenNoImie
                           ? Image.asset("assets/images/icon_person.png",
-                          height: 80, fit: BoxFit.fill)
+                              height: 80, fit: BoxFit.fill)
                           : Image.memory(
-                        base64Decode(box
-                            .get("personImage")
-                            .toString()
-                            .replaceAll("\n", "")
-                            .substring(23)
-                            .trim()),
-                        fit: BoxFit.cover,
-                        width: 100,
-                        height: 100,
-                      ),
+                              base64Decode(box
+                                  .get("personImage")
+                                  .toString()
+                                  .replaceAll("\n", "")
+                                  .substring(23)
+                                  .trim()),
+                              fit: BoxFit.fitWidth,
+                              width: 110,
+                              height: 130,
+                            ),
                     ),
-                    const Align(
-                        alignment: Alignment.bottomRight,
-                        child: Padding(
-                          padding: EdgeInsets.only(top:8.0, left: 8),
-                          child: Icon(Icons.verified, color: Colors.teal,),
-                        )),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: box.get("faceId").toString() == "1"
+                          ? const Icon(
+                              Icons.verified,
+                              color: Colors.teal,
+                            )
+                          : const SizedBox(),
+                    ),
                   ],
                 ),
               ),
-
               const SizedBox(height: 5),
               providerProfile.boolHasTokenNoImie
                   ? const SizedBox.shrink()
                   : Text(
-                providerProfile.dataGetImieInfo.lname +
-                    " " +
-                    providerProfile.dataGetImieInfo.fname +
-                    " " +
-                    providerProfile.dataGetImieInfo.mname,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
+                      providerProfile.dataGetImieInfo.lname +
+                          " " +
+                          providerProfile.dataGetImieInfo.fname,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+              box.get("faceId").toString() == "1"
+                  ? const SizedBox()
+                  : ListTile(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => ImagePhoto(
+                                  imie: box.get("imie").toString(),
+                                  pser: box.get("psser").toString(),
+                                  snum: box.get("psnum").toString()),
+                            ));
+                      },
+                      leading: Icon(
+                          CupertinoIcons.person_crop_circle_fill_badge_xmark,
+                          color: Colors.red.shade900),
+                      title:  Text(
+                        "faceId".tr(),
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      trailing: Icon(Icons.arrow_forward_ios,
+                          size: 16, color: Colors.teal.shade700),
+                    ),
+              box.get("faceId").toString() == "1"
+                  ?
+
+                  ListTile(
+                      leading: Image.asset("assets/images/face_id.png",
+                          width: 40, fit: BoxFit.cover),
+                      title: const Text("day",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12,
+                                  color: Colors.teal))
+                          .plural(
+                              int.parse(box.get("faceIdQolganKun").toString())),
+                      subtitle: SizedBox(
+                        height: 10,
+                        width: 1,
+                        child: SliderTheme(
+                            data: SliderThemeData(
+                              overlayShape: SliderComponentShape.noOverlay,
+                              thumbShape: const RoundSliderThumbShape(
+                                  enabledThumbRadius: 1),
+                            ),
+                            child: Slider(
+                                value: sliderValue(),
+                                activeColor: Colors.white,
+                                inactiveColor: sliderValue() < 0.7
+                                    ? Colors.teal
+                                    : Colors.red,
+                                divisions: 10,
+                                onChanged: (val) {})),
+                      ),
+                      trailing: const SizedBox(width: 50),
+                    )
+                  : const SizedBox.shrink(),
             ],
           ),
         ),
@@ -139,24 +196,18 @@ Widget bodyProfile({required BuildContext context,
             //       Navigator.of(context).pop();
             //     });
 
-            if (box
-                .get("personImage")
-                .toString()
-                .length > 50) {
+            if (box.get("personImage").toString().length > 50) {
               Navigator.push(
                   context,
                   CupertinoPageRoute(
                     builder: (context) => PersonInformation(
                         funcState: function,
                         windowIdPassport: "1",
-                        idFunction: box
-                            .get("personImage")
-                            .toString()
-                            .length > 50
-                            ? "1"
-                            : "99"),
+                        idFunction:
+                            box.get("personImage").toString().length > 50
+                                ? "1"
+                                : "99"),
                   ));
-
             } else {
               AwesomeDialog(
                   context: context,
@@ -185,17 +236,17 @@ Widget bodyProfile({required BuildContext context,
                       color: MyColors.appColorBlack(),
                       fontWeight: FontWeight.bold),
                   btnOkOnPress: () {
-                    Navigator.push(context,CupertinoPageRoute(builder: (context) =>  PersonInformation(
-                        funcState: function,
-                        idFunction:
-                        box
-                            .get("personImage")
-                            .toString()
-                            .length > 50
-                            ? "1"
-                            : "99",
-                        windowIdPassport: "0"),));
-
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => PersonInformation(
+                              funcState: function,
+                              idFunction:
+                                  box.get("personImage").toString().length > 50
+                                      ? "1"
+                                      : "99",
+                              windowIdPassport: "0"),
+                        ));
                   },
                   btnOkText: "iAgree".tr(),
                   btnOkColor: MyColors.appColorBlue1(),
@@ -228,12 +279,13 @@ Widget bodyProfile({required BuildContext context,
         ),
         ListTile(
           onTap: () {
-            if (box
-                .get("personImage")
-                .toString()
-                .length > 50) {
-              Navigator.push(context,CupertinoPageRoute(builder: (context) => AddressInfo(funcState: function, addressWindowId: "1"),));
-
+            if (box.get("personImage").toString().length > 50) {
+              Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) =>
+                        AddressInfo(funcState: function, addressWindowId: "1"),
+                  ));
             } else {
               MyWidgets.awesomeDialogError(
                   context: context, valueText: "passportFillInfo".tr());
@@ -246,20 +298,18 @@ Widget bodyProfile({required BuildContext context,
           title: MyWidgets.robotoFontText(
             text: "addressAlways".tr(),
           ),
-          trailing: Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 16,
-              color: Colors.teal.shade800
-          ),
+          trailing: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16, color: Colors.teal.shade800),
         ),
         ListTile(
           onTap: () {
-            if (box
-                .get("personImage")
-                .toString()
-                .length > 50) {
-              Navigator.push(context,CupertinoPageRoute(builder: (context) =>  Graduated(funcState: function, windowIdGraduated: "1"),));
-
+            if (box.get("personImage").toString().length > 50) {
+              Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) =>
+                        Graduated(funcState: function, windowIdGraduated: "1"),
+                  ));
             } else {
               MyWidgets.awesomeDialogError(
                   context: context, valueText: "passportFillInfo".tr());
@@ -272,16 +322,17 @@ Widget bodyProfile({required BuildContext context,
           title: MyWidgets.robotoFontText(
             text: "schoolInfo".tr(),
           ),
-          trailing: Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 16,
-              color: Colors.teal.shade800
-          ),
+          trailing: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16, color: Colors.teal.shade800),
         ),
         ListTile(
           onTap: () {
-            Navigator.push(context,CupertinoPageRoute(builder: (context) =>ChangePhoneNumber(
-                providerProfile: providerProfile, function: functions) ,));
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => ChangePhoneNumber(
+                      providerProfile: providerProfile, function: functions),
+                ));
           },
           leading: Icon(
             Icons.phone,
@@ -295,16 +346,17 @@ Widget bodyProfile({required BuildContext context,
           title: MyWidgets.robotoFontText(
             text: "phoneNumberChange".tr(),
           ),
-          trailing: Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 16,
-              color: Colors.teal.shade800
-          ),
+          trailing: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16, color: Colors.teal.shade800),
         ),
-
         ListTile(
           onTap: () {
-            Navigator.push(context,CupertinoPageRoute(builder: (context) =>  ChangeAccountPasswords(providerProfile: providerProfile),));
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) =>
+                      ChangeAccountPasswords(providerProfile: providerProfile),
+                ));
           },
           leading: Icon(
             Icons.lock,
@@ -316,11 +368,8 @@ Widget bodyProfile({required BuildContext context,
               textSize: 14,
               textColor: MyColors.appColorGrey400(),
               textFontWeight: FontWeight.w100),
-          trailing: Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 16,
-              color: Colors.teal.shade800
-          ),
+          trailing: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16, color: Colors.teal.shade800),
         ),
         const SizedBox(
           height: 2,
@@ -331,7 +380,12 @@ Widget bodyProfile({required BuildContext context,
         ),
         ListTile(
           onTap: () {
-            Navigator.push(context,CupertinoPageRoute(builder: (context) => LangChangeAll(providerProfile: providerProfile) ,));
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) =>
+                      LangChangeAll(providerProfile: providerProfile),
+                ));
           },
           leading: Icon(
             Icons.language,
@@ -340,36 +394,35 @@ Widget bodyProfile({required BuildContext context,
           ),
           title: MyWidgets.robotoFontText(text: "languageApp".tr()),
           subtitle: myText(),
-          trailing: Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 16,
-              color: Colors.teal.shade800
-          ),
+          trailing: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16, color: Colors.teal.shade800),
         ),
         ListTile(
           onTap: () {
-            Navigator.push(context,CupertinoPageRoute(builder: (context) =>  WebViewWindow(
-
-              modelServiceMainList: ServiceMainList(
-                  id: "600000",
-                  serviceName: "regionSection".tr(),
-                  serviceText: "regionSection".tr(),
-                  serviceTextRu: "regionSection".tr(),
-                  serviceTextQQ: "regionSection".tr(),
-                  serviceNameRu: "regionSection".tr(),
-                  serviceNameQQ: "",
-                  status: true,
-                  mobilIcon: "",
-                  link: "https://uzbmb.uz/page/representatives",
-                  icon: "",
-                  catId: "",
-                  cod: "",
-                  sortId: "",
-                  createdAt: "",
-                  updatedAt: "",
-                  deleted: "") ,
-            ),));
-
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => WebViewWindow(
+                    modelServiceMainList: ServiceMainList(
+                        id: "600000",
+                        serviceName: "regionSection".tr(),
+                        serviceText: "regionSection".tr(),
+                        serviceTextRu: "regionSection".tr(),
+                        serviceTextQQ: "regionSection".tr(),
+                        serviceNameRu: "regionSection".tr(),
+                        serviceNameQQ: "",
+                        status: true,
+                        mobilIcon: "",
+                        link: "https://uzbmb.uz/page/representatives",
+                        icon: "",
+                        catId: "",
+                        cod: "",
+                        sortId: "",
+                        createdAt: "",
+                        updatedAt: "",
+                        deleted: ""),
+                  ),
+                ));
           },
           leading: Icon(
             Icons.person_pin_circle_outlined,
@@ -377,19 +430,15 @@ Widget bodyProfile({required BuildContext context,
             size: 24,
           ),
           title: MyWidgets.robotoFontText(text: "regionSection".tr()),
-
-          trailing: Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 16,
-              color: Colors.teal.shade800
-          ),
+          trailing: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16, color: Colors.teal.shade800),
         ),
         ListTile(
           onTap: () {
-            try{
+            try {
               log("1223");
               _makePhoneCall("1195");
-            }catch(e){
+            } catch (e) {
               log(e.toString());
             }
           },
@@ -399,12 +448,8 @@ Widget bodyProfile({required BuildContext context,
             size: 24,
           ),
           title: MyWidgets.robotoFontText(text: "Call markaz"),
-
-          trailing: Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 16,
-              color: Colors.teal.shade800
-          ),
+          trailing: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16, color: Colors.teal.shade800),
         ),
         ListTile(
           onTap: () {
@@ -416,12 +461,8 @@ Widget bodyProfile({required BuildContext context,
             size: 24,
           ),
           title: MyWidgets.robotoFontText(text: "Ishonch telefoni"),
-
-          trailing: Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 16,
-              color: Colors.teal.shade800
-          ),
+          trailing: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16, color: Colors.teal.shade800),
         ),
         ListTile(
           onTap: () {
@@ -451,7 +492,11 @@ Widget bodyProfile({required BuildContext context,
                 box.delete("notShowAgain1");
                 box.delete("phoneNumber");
                 //
-                Navigator.push(context,CupertinoPageRoute(builder: (context) => MainPages(homeIdMainpage: "0"),));
+                Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) => MainPages(homeIdMainpage: "0"),
+                    ));
               },
               btnOkText: "yes".tr(),
               btnOkColor: MyColors.appColorBlue1(),
@@ -466,87 +511,83 @@ Widget bodyProfile({required BuildContext context,
             size: 24,
           ),
           title: MyWidgets.robotoFontText(text: "deleteAccount".tr()),
-          trailing: Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 16,
-              color: Colors.teal.shade800
-          ),
+          trailing: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16, color: Colors.teal.shade800),
         ),
-        box
-            .get("token")
-            .toString()
-            .length > 30
+        box.get("token").toString().length > 30
             ? ListTile(
-          onTap: () {
-            box
-                .get("token")
-                .toString()
-                .length > 30
-                ? AwesomeDialog(
-              context: context,
-              dialogType: DialogType.noHeader,
-              animType: AnimType.bottomSlide,
-              title: "BBA",
-              desc: "logUot".tr(),
-              titleTextStyle: TextStyle(
+                onTap: () {
+                  box.get("token").toString().length > 30
+                      ? AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.noHeader,
+                          animType: AnimType.bottomSlide,
+                          title: "BBA",
+                          desc: "logUot".tr(),
+                          titleTextStyle: TextStyle(
+                              color: MyColors.appColorBlue1(),
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold),
+                          descTextStyle: TextStyle(
+                              color: MyColors.appColorBlack(),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
+                          btnOkOnPress: () {
+                            box.delete("token");
+                            box.delete("imie");
+                            box.delete("psnum");
+                            box.delete("personImage");
+                            box.delete("boxAllPersonInfo");
+                            box.delete("langLock");
+                            box.delete("lockScreen");
+                            box.delete("notShowAgain1");
+                            box.delete("phoneNumber");
+
+                            // Navigator.pushAndRemoveUntil(
+                            //   context,
+                            //   CupertinoPageRoute(
+                            //       builder: (context) =>const EnterFirst()),
+                            //       (route) => false,
+                            // );
+                            Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) =>
+                                      EnterFirst(windowIdEnterFirst: "1"),
+                                ));
+                          },
+                          btnOkText: "yes".tr(),
+                          btnOkColor: MyColors.appColorBlue1(),
+                          btnCancelColor: MyColors.appColorGrey600(),
+                          btnCancelOnPress: () {},
+                          btnCancelText: "no".tr(),
+                        ).show()
+                      : {};
+                },
+                leading: Icon(
+                  Icons.logout,
                   color: MyColors.appColorBlue1(),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
-              descTextStyle: TextStyle(
-                  color: MyColors.appColorBlack(),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500),
-              btnOkOnPress: () {
-                box.delete("token");
-                box.delete("imie");
-                box.delete("psnum");
-                box.delete("personImage");
-                box.delete("boxAllPersonInfo");
-                box.delete("langLock");
-                box.delete("lockScreen");
-                box.delete("notShowAgain1");
-                box.delete("phoneNumber");
-
-                // Navigator.pushAndRemoveUntil(
-                //   context,
-                //   CupertinoPageRoute(
-                //       builder: (context) =>const EnterFirst()),
-                //       (route) => false,
-                // );
-                Navigator.push(context,CupertinoPageRoute(builder: (context) => EnterFirst(windowIdEnterFirst: "1"),));
-
-              },
-              btnOkText: "yes".tr(),
-              btnOkColor: MyColors.appColorBlue1(),
-              btnCancelColor: MyColors.appColorGrey600(),
-              btnCancelOnPress: () {},
-              btnCancelText: "no".tr(),
-            ).show()
-                : {};
-          },
-          leading: Icon(
-            Icons.logout,
-            color: MyColors.appColorBlue1(),
-            size: 24,
-          ),
-          title: MyWidgets.robotoFontText(text: "logOut1".tr()),
-          trailing: Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 16,
-              color: Colors.teal.shade800
-          ),
-        )
+                  size: 24,
+                ),
+                title: MyWidgets.robotoFontText(text: "logOut1".tr()),
+                trailing: Icon(Icons.arrow_forward_ios_rounded,
+                    size: 16, color: Colors.teal.shade800),
+              )
             : const SizedBox.shrink(),
         Divider(
           color: Colors.teal.withOpacity(0.2),
           thickness: 1,
         ),
-         Row(
+        Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(width: 10),
-            Text("${"versionMobil".tr()}: 4.5.12", style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.grey, fontSize: 13)),
+            Text("${"versionMobil".tr()}: 4.5.13",
+                style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.grey,
+                    fontSize: 13)),
           ],
         ),
         const Divider(

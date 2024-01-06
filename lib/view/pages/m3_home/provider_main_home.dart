@@ -104,7 +104,7 @@ class ProviderMainHome extends ChangeNotifier {
               dialogType: DialogType.noHeader,
               animType: AnimType.bottomSlide,
               title: "BBA",
-              dismissOnTouchOutside: false,
+              dismissOnTouchOutside: true,
               desc: "noServerConnection".tr(),
               titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(), fontWeight: FontWeight.bold),

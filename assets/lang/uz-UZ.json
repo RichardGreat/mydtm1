@@ -306,5 +306,23 @@
   "dayHave": " kun qoldi",
   "certView": "Sertifikat ko'rish",
   "standartTest": "Namunaviy test topshiriqlari",
-  "versionMobil": "Ilova versiyasi"
+  "versionMobil": "Ilova versiyasi",
+  "faceNo": "MOS MA'LUMOT TOPILMADI.\n BOSHQA YUZ TASVIRI",
+  "face_no_info": "MOS MÁLUMOT TOPILMADI. \\n KIRITILGAN MÁLUMOTLARNI TÓǴRILIGINI TEKSHIRING",
+  "face_center": "Yuz markazda bo'lsin",
+  "information_acc": "Ma'lumot aniqlanmoqda",
+  "photoAgain": "Rasmga yana olish",
+  "checkInfo": "Ma’lumotlarni to'griligini tekshiring",
+  "faceId": "Face ID dan o'ting",
+  "faceApply": "Yuzingizni tasdiqlang",
+  "faceSafe": "Xizmatdan foydalanish uchun yuzingizni Face ID tizimi orqali tasdiqlang",
+  "day": {
+    "zero":"{} kun qoldi",
+    "one":"{} kun qoldi",
+    "two": "{} kun qoldi",
+    "three": "{} kun qoldi",
+    "four": "{} kun qoldi",
+    "five": "{} kun qoldi",
+    "other": "{} kun qoldi"
+  }
 }

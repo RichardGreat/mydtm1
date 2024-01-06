@@ -80,7 +80,7 @@ class _EnterFirst0State extends State<EnterFirst0> {
                           box.put("language", "1");
                           context.setLocale(const Locale('uz', 'UZ'));
                           // context.locale = const Locale("uz", "UZ");
-                          Navigator.push(
+                       Navigator.push(
                               context,
                               CupertinoPageRoute(
                                 builder: (context) =>

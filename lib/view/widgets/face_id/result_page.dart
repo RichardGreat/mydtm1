@@ -1,10 +1,12 @@
 import 'dart:convert';
-import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/widgets/face_id/model/model_face.dart';
 import 'package:ntp/ntp.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ResultPage extends StatefulWidget {
   String resulData;
@@ -37,8 +39,7 @@ class _ResultPageState extends State<ResultPage> {
       modelFace = ModelFace.fromJson(jsonDecode(widget.resulData));
       setState(() {
         faceSuccess = 1;
-
-        box.put("faceId", myTime.month.toString());
+        box.put("faceId", "1");
         box.put("faceIdDateMonth", myTime.month.toString());
         box.put("faceIdDateDay", myTime.day.toString());
       });
@@ -49,13 +50,18 @@ class _ResultPageState extends State<ResultPage> {
         setState(() {
           faceSuccess = 2;
         });
+        box.put("faceId", "0");
       } catch (e) {
         faceSuccess = 3;
+        box.put("faceId", "0");
       }
     }
     Future.delayed(const Duration(seconds: 3)).then((value) {
       Navigator.of(context).pop();
       Navigator.of(context).pop();
+      Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainPages(
+        homeIdMainpage: "0",
+      ),), (route) => false);
     });
   }
 
@@ -88,8 +94,8 @@ class _ResultPageState extends State<ResultPage> {
                       ),
                       const SizedBox(height: 10),
                       Icon(
-                        Icons.check_circle,
-                        color: Colors.greenAccent.shade400,
+                        Icons.verified,
+                        color: Colors.teal.shade400,
                         size: 70,
                       ),
                       const SizedBox(height: 20),
@@ -126,9 +132,9 @@ class _ResultPageState extends State<ResultPage> {
                         ),
                         Text(
                           modelFaceNotRec.status.toString() == "false"
-                              ? "MOS MA'LUMOT TOPILMADI.\n BOSHQA YUZ TASVIRI"
+                              ? "faceNo".tr()
                               : modelFaceNotRec.status.toString() == "null"
-                                  ? "MOS MA'LUMOT TOPILMADI.\n  KIRITILGAN MA'LUMOTLARNI TO'G'RILIGINI TEKSHIRING"
+                                  ? "face_no_info".tr()
                                   : modelFaceNotRec.status.toString(),
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontWeight: FontWeight.bold),

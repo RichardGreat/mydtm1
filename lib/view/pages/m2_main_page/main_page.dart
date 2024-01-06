@@ -45,7 +45,6 @@ class _MainPagesState extends State<MainPages> {
   Future getFirstAction() async {
     try {
       await Future.delayed(Duration.zero);
-
       box.delete("updateVersion");
       box.put("updateVersion", "1005");
     } catch (e) {
@@ -65,16 +64,88 @@ class _MainPagesState extends State<MainPages> {
   timerM() async {
     DateTime myTime;
     myTime = await NTP.now();
-    List<int> montDayCount = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    int indexMonth1 = 0, indexMonth2 = 0;
-    indexMonth1 = myTime.month - 1;
-    indexMonth2 = myTime.month - 2;
-    int curTime = 10;
-    int today = 10;
-    log("######");
-    log((today +
-        montDayCount[indexMonth1 != -1 ? indexMonth1 : 12 - 1] -curTime).toString());
-    log("######");
+    List<int> monthDayCount = [
+      0,
+      31,
+      29,
+      31,
+      30,
+      31,
+      30,
+      31,
+      31,
+      30,
+      31,
+      30,
+      31
+    ];
+    // box.put("faceIdDateMonth", "11");
+    // box.put("faceIdDateDay", "27");
+    // box.put("faceId", "1");
+    // log("faceIdDateMonth :: ${box.get("faceIdDateMonth")}");
+    // log("faceIdDateDay :: ${box.get("faceIdDateDay")}");
+    int month = int.parse(box.get("faceIdDateMonth") ?? "12".toString());
+    int day = int.parse(box.get("faceIdDateDay") ?? "1".toString());
+
+
+    box.get("faceId").toString() == "1"
+        ? {
+            if (myTime.month - month == 0)
+              {
+                if (myTime.day - day <= 30)
+                  {
+                    box.put("faceIdQolganKun",
+                        (30 - (myTime.day - day).abs()).toString())
+                  }
+                else
+                  {
+                    box.put("faceId", "0"),
+                    box.put("faceIdDateMonth", "0"),
+                    box.put("faceIdDateDay", "0"),
+                    box.put("faceIdQolganKun", "0")
+                  }
+              }
+            else if (myTime.month - month == 1)
+              {
+                if (monthDayCount[month] -
+                        myTime.day -
+                        (monthDayCount[month] - day) >
+                    0)
+                  {
+                    box.put("faceId", "1"),
+                    // box.put("faceIdDateMonth", "0"),
+                    // box.put("faceIdDateDay", "0"),
+                    box.put(
+                        "faceIdQolganKun",
+                        (monthDayCount[month] -
+                                myTime.day -
+                                (monthDayCount[month] - day))
+                            .toString())
+                  }
+                else
+                  {
+                    box.put("faceId", "0"),
+                    box.put("faceIdDateMonth", "0"),
+                    box.put("faceIdDateDay", "0"),
+                    box.put("faceIdQolganKun", "0")
+                  }
+              }
+            else
+              {
+                box.put("faceId", "0"),
+                box.put("faceIdDateMonth", "0"),
+                box.put("faceIdDateDay", "0"),
+                box.put("faceIdQolganKun", "0")
+              }
+
+            // else{
+            //   box.put("faceId", "0"),
+            //   box.put("faceIdDateMonth", "0"),
+            //   box.put("faceIdDateDay", "0"),
+            //   box.put("faceIdQolganKun", "0")
+            // }
+          }
+        : {log("bo'sh")};
   }
 
   Future screenLock123() async {

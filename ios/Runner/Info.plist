@@ -73,6 +73,7 @@
             <string>Light</string>
             <key>UIViewControllerBasedStatusBarAppearance</key>
             <true/>
+        <key>NSCameraUsageDescription</key>
+        <string>to compare the user with his picture in the system</string>
 	</dict>
-
 </plist>

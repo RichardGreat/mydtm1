@@ -9,6 +9,7 @@ import 'package:face_camera/face_camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:mydtm/view/widgets/face_id/result_page.dart';
 
 class ImagePhoto extends StatefulWidget {
@@ -27,19 +28,26 @@ class _ImagePhotoState extends State<ImagePhoto> {
   bool boolImage = true;
 
   @override
+  void initState() {
+    log(widget.imie);
+    log(widget.pser);
+    log(widget.snum);
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: !boolSendServer
-              ? const Text(
-                  "Yuz markazda bo'lsin",
-                  style: TextStyle(
+              ?  Text(
+                  "face_center".tr(),
+                  style: const TextStyle(
                       color: Color.fromRGBO(0, 124, 128, 1),
                       fontWeight: FontWeight.bold),
                 )
-              : const Text(
-                  "Ma'lumot aniqlanmoqda",
-                  style: TextStyle(
+              :  Text(
+                  "information_acc".tr(),
+                  style:const TextStyle(
                       color: Color.fromRGBO(0, 194, 198, 1),
                       fontWeight: FontWeight.bold),
                 ),
@@ -81,11 +89,11 @@ class _ImagePhotoState extends State<ImagePhoto> {
                         ElevatedButton(
                             onPressed: () =>
                                 setState(() => _capturedImage = null),
-                            child: const Text(
-                              "Rasmga yana olish",
+                            child:  Text(
+                              "photoAgain".tr(),
 
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w700),
                             ))
                       ],
@@ -144,7 +152,7 @@ class _ImagePhotoState extends State<ImagePhoto> {
                           backgroundColor: Colors.black,
                           duration: const Duration(seconds: 2),
                           content: MyWidgets.robotoFontText(
-                              text: "Ma’lumotlarni to'griligini tekshiring",
+                              text: "checkInfo".tr(),
                               textFontWeight: FontWeight.bold,
                               textColor: Colors.black));
                     },
@@ -153,10 +161,10 @@ class _ImagePhotoState extends State<ImagePhoto> {
                     },
                     messageBuilder: (context, face) {
                       if (face == null) {
-                        return _message('Yuz qismi kameraga qarasin');
+                        return _message("face_center".tr());
                       }
                       if (!face.wellPositioned) {
-                        return _message("Yuz markazda bo'lsin");
+                        return _message("face_center".tr());
                       }
                       return const SizedBox.shrink();
                     });

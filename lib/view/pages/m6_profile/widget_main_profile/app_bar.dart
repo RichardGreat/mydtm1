@@ -25,7 +25,7 @@ PreferredSizeWidget appBarProfile(
         ? Text("personalInfo".tr(),
     maxLines: 3,
     textAlign: TextAlign.center,
-    style: const TextStyle(color: Colors.black),
+    style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500 ),
     ) //MyWidgets.robotoFontText(text: "personalInfo".tr(), textSize: 24)
         : const Text(""),
     actions: [

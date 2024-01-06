@@ -153,7 +153,7 @@ class ProviderServicePage extends ChangeNotifier {
               .length > 1) {
             MyWidgets.dialogCheckFaceId(
                 context: context,
-                valueText: "Yuzingizni tasdiqlang",
+                valueText: "faceApply".tr(),
                 imie: box.get("imie").toString(),
                 psnum: box.get("psnum").toString(),
                 psser: box.get("psser").toString()),
