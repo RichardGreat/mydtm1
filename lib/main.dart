@@ -9,8 +9,6 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
-import 'package:mydtm/view/pages/m3_home/digo/digo.dart';
-import 'package:mydtm/view/pages/m3_home/digo/digo_main/digo_main.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -144,6 +142,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       case AppLifecycleState.detached:
         {}
         break;
+      case AppLifecycleState.hidden:
+        // TODO: Handle this case.
+        break;
     }
 
     super.didChangeAppLifecycleState(state);
@@ -187,10 +188,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             box.get("language") == "1" ||
                     box.get("language") == "2" ||
                     box.get("language") == "3"
-                ?DigoMain()
-         // ? MainPages(
-         //            homeIdMainpage: "0",
-         //          )
+                // ?DigoMain()
+         ? MainPages(
+                    homeIdMainpage: "0",
+                  )
                 : const EnterFirst0(),
         // splashTransition: SplashTransition.fadeTransition,
         // pageTransitionType: PageTransitionType.fade,

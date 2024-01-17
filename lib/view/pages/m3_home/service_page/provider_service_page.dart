@@ -9,6 +9,7 @@ import 'package:mydtm/data/internet_connections/certificate_nation/get_regLang.d
 import 'package:mydtm/view/pages/m1_enter_system/enter_first/enter_first.dart';
 import 'package:mydtm/view/pages/m1_enter_system/sign_up/sign_up.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/check_information_page.dart';
+import 'package:mydtm/view/pages/m3_home/digo/digo_main/digo_main.dart';
 import 'package:mydtm/view/texnikum/main_texnikum.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -44,17 +45,6 @@ class ProviderServicePage extends ChangeNotifier {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    // Text(
-                    //   "Assalomu aleykum",
-                    //   style: TextStyle(
-                    //       fontWeight: FontWeight.bold,
-                    //       fontFamily: "Inter-Medium",
-                    //       color: MyColors.appColorBackC4(),
-                    //       fontSize: 18),
-                    // ),
-
-                    // Divider(),
-                    // SizedBox(height: 10),
                     Text(
                       "BBA",
                       style: TextStyle(
@@ -167,23 +157,6 @@ class ProviderServicePage extends ChangeNotifier {
                   int.parse(categoryId) <= 10) ||
                   int.parse(categoryId) == 64)
                 {
-                  ///
-                  // pushNewScreen(
-                  //   context,
-                  //   screen: CheckInformation(serviceName: categoryName),
-                  //   withNavBar: false,
-                  //   pageTransitionAnimation:
-                  //   PageTransitionAnimation.cupertino,
-                  // ),
-                  // boolGetSerRegion?
-                  // pushNewScreen(context,
-                  //     pageTransitionAnimation:
-                  //         PageTransitionAnimation.cupertino,
-                  //     screen: SertificateServices(
-                  //       serID: categoryId,
-                  //       serviceName: categoryName,
-                  //     ))
-                  // :
                   AwesomeDialog(
                       context: context,
                       dialogType: DialogType.noHeader,
@@ -212,7 +185,6 @@ class ProviderServicePage extends ChangeNotifier {
                 }
               else
                 if (categoryId == "42")
-                // else if ("42" == "42")
                   {
                     log("42##"),
                     Navigator.push(
@@ -227,24 +199,7 @@ class ProviderServicePage extends ChangeNotifier {
                                 ),
                               ),
                         )),
-                    // AwesomeDialog(
-                    //         context: context,
-                    //         dialogType: DialogType.noHeader,
-                    //         animType: AnimType.bottomSlide,
-                    //         dismissOnTouchOutside: false,
-                    //         title: "BBA",
-                    //         desc: "regEnd".tr(),
-                    //         titleTextStyle: TextStyle(
-                    //             color: MyColors.appColorBlue1(),
-                    //             fontSize: 24,
-                    //             fontWeight: FontWeight.bold),
-                    //         descTextStyle: TextStyle(
-                    //             color: MyColors.appColorBlack(),
-                    //             fontWeight: FontWeight.bold),
-                    //         btnCancelColor: MyColors.appColorBlue1(),
-                    //         btnCancelOnPress: () {},
-                    //         btnCancelText: "OK")
-                    //     .show(),
+
                   }
 
                 /// Perevod page
@@ -266,6 +221,13 @@ class ProviderServicePage extends ChangeNotifier {
                         builder: (context) =>
                             MainTexnikum(serviceName: categoryName),))
                     }
+                  else
+                    if (categoryId == "10")
+                      {
+                        Navigator.push(context, CupertinoPageRoute(
+                          builder: (context) =>
+                              DigoMain(),))
+                      }
                   else
                     if (box
                         .get("token")

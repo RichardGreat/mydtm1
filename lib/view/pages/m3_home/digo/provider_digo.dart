@@ -81,7 +81,7 @@ class ProviderDigo extends ChangeNotifier {
       log("message");
       Response response = await dio.get("https://api.uzbmb.uz/v1/region/index",
           options: Options(headers: {
-            "X-Access-Token": "79f72f809904f4dba5df3b410d66b7e4"
+            "X-Access-Token":  box.get("token").toString()
             // box.get("token")
           }));
       log(jsonEncode(response.data).toString());
@@ -104,7 +104,7 @@ class ProviderDigo extends ChangeNotifier {
       log("message");
       Response response = await dio.get("https://api.uzbmb.uz/v1/digo/fan-one",
           options: Options(headers: {
-            "X-Access-Token": "79f72f809904f4dba5df3b410d66b7e4"
+            "X-Access-Token":  box.get("token").toString()
             // box.get("token")
           }));
       log(jsonEncode(response.data).toString());
@@ -128,7 +128,7 @@ class ProviderDigo extends ChangeNotifier {
       Response response =
           await dio.get("https://api.uzbmb.uz/v1/digo/fan-two?first=$fan1Id",
               options: Options(headers: {
-                "X-Access-Token": "79f72f809904f4dba5df3b410d66b7e4"
+                "X-Access-Token": box.get("token").toString()
                 // box.get("token")
               }));
       modelGetFan = ModelGetFan.fromJson(response.data);
@@ -151,7 +151,7 @@ class ProviderDigo extends ChangeNotifier {
       Response response = await dio.get(
           "https://api.uzbmb.uz/v1/digo/lang?first=$fan1Id&second=$fan2Id",
           options: Options(headers: {
-            "X-Access-Token": "79f72f809904f4dba5df3b410d66b7e4"
+            "X-Access-Token": box.get("token").toString()
             // box.get("token")
           }));
       modelGetFan = ModelGetFan.fromJson(response.data);

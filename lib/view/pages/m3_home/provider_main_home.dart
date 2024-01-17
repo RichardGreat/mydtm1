@@ -179,16 +179,12 @@ class ProviderMainHome extends ChangeNotifier {
         // log(dataServiceList);
         box.put("dataServiceList", dataServiceList);
         box.put("numberApi", numberAPIUpdate);
-        // log("Download 777");
-        // log(box.get("numberApi"));
-        // log("####");
       }
       try {
         String getSlider = await networkGetSlider.getSlider();
         listModelGetSlider = (jsonDecode(jsonDecode(getSlider)) as List)
             .map((e) => ModelGetSlider.fromJson(e))
             .toList();
-        print(getSlider);
         listModelGetSlider.sort((a, b) => a.ves.compareTo(b.ves));
         notifyListeners();
       } catch (e) {

@@ -3,14 +3,17 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:mydtm/data/model_parse/digo/model_digo_fan.dart';
 import 'package:mydtm/data/model_parse/digo/model_digo_region.dart';
 import 'package:mydtm/data/model_parse/digo/model_server_natija.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProviderDigo2 extends ChangeNotifier {
   ModelDigo2GetRegion modelDigo2 = ModelDigo2GetRegion(data: []);
   String regId = "", regName = "";
   TextEditingController textEditContFan2 = TextEditingController();
+  var box = Hive.box("online");
 
   setDataModel({required ModelDigo2GetRegion modelDigo2GetRegion}) {
     modelDigo2.data.addAll(modelDigo2GetRegion.data);
@@ -41,7 +44,7 @@ class ProviderDigo2 extends ChangeNotifier {
       log("message");
       Response response = await dio.get("https://api.uzbmb.uz/v1/digo/fan-one",
           options: Options(headers: {
-            "X-Access-Token": "79f72f809904f4dba5df3b410d66b7e4"
+            "X-Access-Token": box.get("token").toString()
             // box.get("token")
           }));
       log(jsonEncode(response.data).toString());
@@ -65,7 +68,7 @@ class ProviderDigo2 extends ChangeNotifier {
       Response response =
           await dio.get("https://api.uzbmb.uz/v1/digo/fan-two?first=$fan1Id",
               options: Options(headers: {
-                "X-Access-Token": "79f72f809904f4dba5df3b410d66b7e4"
+                "X-Access-Token": box.get("token").toString()
                 // box.get("token")
               }));
       modelGetFan = ModelGetFan.fromJson(response.data);
@@ -88,7 +91,7 @@ class ProviderDigo2 extends ChangeNotifier {
       Response response = await dio.get(
           "https://api.uzbmb.uz/v1/digo/lang?first=$fan1Id&second=$fan2Id",
           options: Options(headers: {
-            "X-Access-Token": "79f72f809904f4dba5df3b410d66b7e4"
+            "X-Access-Token": box.get("token").toString()
             // box.get("token")
           }));
       modelGetFan = ModelGetFan.fromJson(response.data);
@@ -177,8 +180,6 @@ class ProviderDigo2 extends ChangeNotifier {
       countDigo: son2,
     );
     allCost();
-    log("###3");
-    log(jsonEncode(modelDigo2).toString());
     notifyListeners();
   }
 
@@ -186,9 +187,9 @@ class ProviderDigo2 extends ChangeNotifier {
     try {
       return modelDigo2.data[index].nameFan1.toString().length >= 5
           ? modelDigo2.data[index].nameFan1.toString()
-          : "Fan tanlang";
+          : "firsSub".tr();
     } catch (e) {
-      return "Fan tanlang";
+      return "firsSub".tr();
     }
   }
 
@@ -196,9 +197,9 @@ class ProviderDigo2 extends ChangeNotifier {
     try {
       return modelDigo2.data[index].nameFan2.toString().length >= 5
           ? modelDigo2.data[index].nameFan2.toString()
-          : "Fan tanlang";
+          : "secondSub".tr();
     } catch (e) {
-      return "Fan tanlang";
+      return "secondSub".tr();
     }
   }
 
@@ -206,9 +207,9 @@ class ProviderDigo2 extends ChangeNotifier {
     try {
       return modelDigo2.data[index].langName.toString().length > 5
           ? modelDigo2.data[index].langName.toString()
-          : "Til tanlang";
+          : "chooseLang".tr();
     } catch (e) {
-      return "Til tanlang";
+      return "chooseLang".tr();
     }
   }
 
@@ -216,9 +217,9 @@ class ProviderDigo2 extends ChangeNotifier {
     try {
       return modelDigo2.data[index].countDigo.isNotEmpty
           ? modelDigo2.data[index].countDigo.toString()
-          : "Son kiriting";
+          : "enterNum".tr();
     } catch (e) {
-      return "Son kiriting";
+      return "enterNum".tr();
     }
   }
 

@@ -455,7 +455,9 @@ class _DigoState extends State<Digo> {
                 height: 50,
                 color: Colors.teal,
                 textColor: Colors.white,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: Text("goBack2".tr(),
                     style: const TextStyle(
