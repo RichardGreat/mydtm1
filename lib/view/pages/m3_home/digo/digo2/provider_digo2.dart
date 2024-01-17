@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/model_parse/digo/model_digo_fan.dart';
 import 'package:mydtm/data/model_parse/digo/model_digo_region.dart';
+import 'package:mydtm/data/model_parse/digo/model_server_natija.dart';
 
 class ProviderDigo2 extends ChangeNotifier {
   ModelDigo2GetRegion modelDigo2 = ModelDigo2GetRegion(data: []);
@@ -17,11 +18,12 @@ class ProviderDigo2 extends ChangeNotifier {
     notifyListeners();
   }
 
-  addBosh(){
+  addBosh() {
     modelDigo2.data.add(DataDigo2GetRegion(countDigo: ""));
     notifyListeners();
   }
-  removeDataModel(int index){
+
+  removeDataModel(int index) {
     modelDigo2.data.removeAt(index);
     notifyListeners();
   }
@@ -182,7 +184,7 @@ class ProviderDigo2 extends ChangeNotifier {
 
   String textFan1({required int index}) {
     try {
-      return modelDigo2.data[index].nameFan1.toString().length > 5
+      return modelDigo2.data[index].nameFan1.toString().length >= 5
           ? modelDigo2.data[index].nameFan1.toString()
           : "Fan tanlang";
     } catch (e) {
@@ -192,7 +194,7 @@ class ProviderDigo2 extends ChangeNotifier {
 
   String textFan2({required int index}) {
     try {
-      return modelDigo2.data[index].nameFan2.toString().length > 5
+      return modelDigo2.data[index].nameFan2.toString().length >= 5
           ? modelDigo2.data[index].nameFan2.toString()
           : "Fan tanlang";
     } catch (e) {
@@ -221,20 +223,34 @@ class ProviderDigo2 extends ChangeNotifier {
   }
 
   int jamSon = 0;
+
   String allCost() {
     int summa = 0;
     int jamiSoni = 0;
-    try{
+    try {
       for (int i = 0; i < modelDigo2.data.length; i++) {
-        jamiSoni = jamiSoni+ int.parse(modelDigo2.data[i].countDigo);
-        summa = summa + int.parse(modelDigo2.data[i].countDigo) * 20000;
-
+        if (modelDigo2.data[i].countDigo.isNotEmpty) {
+          jamiSoni = jamiSoni + int.parse(modelDigo2.data[i].countDigo);
+          summa = summa + int.parse(modelDigo2.data[i].countDigo) * 20000;
+        }
       }
       jamSon = jamiSoni;
-      notifyListeners();
-    }catch(e){}
+    } catch (e) {}
 
     return "$jamiSoni x 20,000 = ${formatMoney(summa.toString())} so'm";
+  }
+
+  String allCount() {
+    int count = 0;
+    for (int i = 0; i < modelDigo2.data.length; i++) {
+      try {
+        if (modelDigo2.data[i].countDigo.isNotEmpty) {
+          count = count + 1;
+        }
+      } catch (e) {}
+    }
+
+    return count.toString();
   }
 
   String formatMoney(String t) {
@@ -254,7 +270,78 @@ class ProviderDigo2 extends ChangeNotifier {
     return "0";
   }
 
+  List<ModelForServer> listServer = [];
 
+  String sentServer = "1";
+  ModelGetNatija modelGetNatija = ModelGetNatija(data: []);
+
+  Future sendServer2() async {
+    try {
+      sentServer = "0";
+      notifyListeners();
+      List<ModelForServer> listServer = [];
+
+      for (int i = 0; i < modelDigo2.data.length; i++) {
+        if (modelDigo2.data[i].countDigo.isNotEmpty) {
+          listServer.add(ModelForServer(
+              modelDigo2.data[i].langId, modelDigo2.data[i].countDigo));
+        }
+      }
+
+      Map<String, dynamic> map = {
+        "region": regId.toString(),
+        "digo": listServer
+      };
+      log(jsonEncode(map).toString());
+      // Response response = await dio.post("https://api.uzbmb.uz/v1/digo/create",
+      // data: {
+      //   "region": regId.toString(),
+      //   "digo":listServer
+      // },
+      //   options: Options(headers: {"X-Access-Token":"79f72f809904f4dba5df3b410d66b7e4"})
+      // );
+
+      // log(jsonEncode(response.data).toString());
+      modelGetNatija = ModelGetNatija.fromJson({
+        "status": 1,
+        "data": [
+          {
+            "imie": 30309975270036,
+            "region_id": 1726,
+            "invoice": "18343492646792",
+            "payment": 340000,
+            "cnt": 17,
+            "status": 1,
+            "paid": false,
+            "phone": "887078499",
+            "service_id": 10,
+            "get_user_id": null,
+            "print_user_id": null,
+            "create_at": {"expression": "NOW()", "params": []},
+            "update_at": {"expression": "NOW()", "params": []},
+            "id": 33153
+          }
+        ]
+      });
+      sentServer = "2";
+      notifyListeners();
+      await Future.delayed(const Duration(milliseconds: 1500))
+          .then((value) => sentServer = "3");
+      notifyListeners();
+    } on DioException catch (e) {
+      sentServer = e.message.toString();
+      notifyListeners();
+    }
+  }
+  getDefault() {
+    // modelDigo2.data[indexList]
+    for (int i = 0; i < modelDigo2.data.length; i++) {
+      if (i > 0) {
+        modelDigo2.data[i] = DataDigo2GetRegion(countDigo: "");
+      }
+    }
+    notifyListeners();
+  }
 }
 
 class ModelDigo2GetRegion {
@@ -277,6 +364,8 @@ class ModelDigo2GetRegion {
         "status": status,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
       };
+
+
 }
 
 class DataDigo2GetRegion {
@@ -326,4 +415,13 @@ class DataDigo2GetRegion {
         "langName": langName,
         "countDigo": countDigo,
       };
+}
+
+class ModelForServer {
+  String tip;
+  String cnt;
+
+  ModelForServer(this.tip, this.cnt);
+
+  Map<String, dynamic> toJson() => {"tip": tip, "cnt": cnt};
 }

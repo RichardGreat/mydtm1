@@ -326,5 +326,32 @@
     "four": "{} дня осталось",
     "five": "осталось {} дней",
     "other":  "осталось {} дней"
-  }
+  },
+  "order": "Заказать +",
+  "myOrders": "Мои заказы",
+  "booksCount": "Количество книг: ",
+  "oldOrder": "Заказаноn",
+  "invoice": "Инвойс",
+  "cost": "Оплата",
+  "digoTest": "Диагностический тест",
+
+  "goBack": "Назад",
+  "seeOferta": "Ок",
+  "chooseRegion": "Выберите регион",
+  "firsSub": "1-предмет",
+  "chooseFirsSub": "1-предмет",
+  "secondSub": "2-предмет",
+  "chooseSecondSub": "2-предмет",
+  "langTest": "Язык тестирования",
+  "countDigBooks": "Количество тестовых заданий",
+  "againOrder": "+ Заказать",
+  "seeAllOferta": "Ознакомился со всеми условиями",
+  "successOrder": "Заказ принят",
+  "idNumber": "ID номер",
+  "countAllBooks": "Количество книг",
+  "allCost": "Общая сумма",
+  "goBack2": "Назад",
+  "wantDelete": "Хотите удалить?",
+    "enterNum": "Введите номер",
+  "countDigo": " шт"
 }

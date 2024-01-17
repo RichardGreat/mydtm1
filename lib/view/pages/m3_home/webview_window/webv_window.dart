@@ -19,13 +19,7 @@ class WebViewWindow extends StatefulWidget {
 }
 
 class _WebViewWindowState extends State<WebViewWindow> {
-  final List<IconData> icons = [
-    Icons.search,
-    Icons.book,
-    // Icons.home,
-    Icons.bookmark_add_outlined,
-    Icons.bookmark_border_outlined,
-  ];
+
   int currentIndex = -1;
   final List pages = [
     MainMyStatement(numberParam: "0"),
@@ -67,7 +61,7 @@ class _WebViewWindowState extends State<WebViewWindow> {
 
   @override
   Widget build(BuildContext context) {
-    final Uri url2 = Uri.parse(widget.modelServiceMainList.link );
+    final Uri url2 = Uri.parse(widget.modelServiceMainList.link);
     WebViewController controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
@@ -91,6 +85,7 @@ class _WebViewWindowState extends State<WebViewWindow> {
 
       extendBody: true,
       appBar: AppBar(
+          // title: Text(widget.modelServiceMainList.link.toString()),
           title: Text(widget.modelServiceMainList.serviceName.toString()),
           // backgroundColor: Colors.transparent,
           // leading: IconButton(onPressed: (){Navigator.of(context).pop();}, icon:const Icon(Icons.arrow_back_outlined)),

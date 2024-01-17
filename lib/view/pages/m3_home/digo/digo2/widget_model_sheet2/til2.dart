@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydtm/data/model_parse/digo/model_digo_fan.dart';
 import 'package:mydtm/view/pages/m3_home/digo/digo2/provider_digo2.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class GetDigoLang2 extends StatefulWidget {
   ProviderDigo2 providerDigo;
@@ -59,11 +60,11 @@ class _GetRegionDigoState extends State<GetDigoLang2> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+             Padding(
+              padding:const EdgeInsets.all(8.0),
               child: Text(
-                "Til tanlang",
-                style: TextStyle(
+                "chooseLang".tr(),
+                style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
                     fontSize: 16),

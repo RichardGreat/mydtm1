@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:mydtm/data/model_parse/digo/model_digo_fan.dart';
 import 'package:mydtm/data/model_parse/digo/model_digo_region.dart';
+import 'package:mydtm/data/model_parse/digo/model_server_natija.dart';
+import 'package:mydtm/view/pages/m3_home/digo/digo2/provider_digo2.dart';
 
 class ProviderDigo extends ChangeNotifier {
   Dio dio = Dio();
@@ -24,6 +26,7 @@ class ProviderDigo extends ChangeNotifier {
 
   String langId = "";
   String langName = "";
+  String countDigo = "";
 
   // https://api.uzbmb.uz/v1/region/index
 
@@ -36,6 +39,7 @@ class ProviderDigo extends ChangeNotifier {
     fan2Name = "";
     langId = "";
     langName = "";
+    countDigo = "";
     notifyListeners();
   }
 
@@ -46,6 +50,7 @@ class ProviderDigo extends ChangeNotifier {
     fan2Name = "";
     langId = "";
     langName = "";
+    countDigo = "";
     notifyListeners();
   }
 
@@ -54,12 +59,19 @@ class ProviderDigo extends ChangeNotifier {
     fan2Name = fan2;
     langId = "";
     langName = "";
+    countDigo = "";
     notifyListeners();
   }
 
   setLang({required String id, required String lang}) {
     langId = id;
     langName = lang;
+    countDigo = "";
+    notifyListeners();
+  }
+
+  setSonDigo({required String count}) {
+    countDigo = count;
     notifyListeners();
   }
 
@@ -155,24 +167,105 @@ class ProviderDigo extends ChangeNotifier {
   }
 
 
+  String sentServer = "1";
+  ModelGetNatija modelGetNatija = ModelGetNatija(data: []);
   Future sendServer()async{
     try{
-      Response response = await dio.post("https://api.uzbmb.uz/v1/digo/create");
-      
-      
-    }catch(e){}
+      sentServer = "0";
+      notifyListeners();
+      List<ModelForServer> listServer = [];
+
+      listServer.add(ModelForServer(langId, countDigo));
+      Map<String, dynamic> map = {
+        "region": regId.toString(),
+        "digo":listServer
+      };
+      log( jsonEncode(map).toString());
+      // Response response = await dio.post("https://api.uzbmb.uz/v1/digo/create",
+      // data: {
+      //   "region": regId.toString(),
+      //   "digo":listServer
+      // },
+      //   options: Options(headers: {"X-Access-Token":"79f72f809904f4dba5df3b410d66b7e4"})
+      // );
+
+      // log(jsonEncode(response.data).toString());
+      modelGetNatija  = ModelGetNatija.fromJson({
+        "status": 1,
+        "data": [
+          {
+            "imie": 30309975270036,
+            "region_id": 1726,
+            "invoice": "18343492646792",
+            "payment": 340000,
+            "cnt": 17,
+            "status": 1,
+            "paid": false,
+            "phone": "887078499",
+            "service_id": 10,
+            "get_user_id": null,
+            "print_user_id": null,
+            "create_at": {
+              "expression": "NOW()",
+              "params": []
+            },
+            "update_at": {
+              "expression": "NOW()",
+              "params": []
+            },
+            "id": 33153
+          }
+        ]
+      });
+      sentServer = "2";
+      notifyListeners();
+      await Future.delayed(const Duration(milliseconds: 1500)).then((value) => sentServer = "3");
+      notifyListeners();
+    }on DioException catch(e){
+      sentServer = e.message.toString();
+      notifyListeners();
+    }
+  }
+
+  getDefault(){
+    regId = "";
+    regName = "";
+    fan1Id = "";
+    fan1Name = "";
+    fan2Id = "";
+    fan2Name = "";
+    langId = "";
+    langName = "";
+    countDigo = "";
+    sentServer = "1";
+    notifyListeners();
+
   }
 
   String textCostAllDigo = "";
   String textCostNumber = "";
-  TextEditingController textEditControllerDigo = TextEditingController();
+
+
+  bool boolGetTanishdimBackColor = true;
+   boolColorRed(){
+    boolGetTanishdimBackColor = false;
+    notifyListeners();
+  }
+
+
+  bool boolGetTanishdim = false;
+   boolGetTanishdimFunc(){
+     boolGetTanishdim = true;
+     boolGetTanishdimBackColor = true;
+  notifyListeners();
+  }
 
   getNumCost({required int numDigo}) {
     try{
       textCostNumber = numDigo.toString();
       textCostAllDigo = formatMoney((numDigo * 20000).toString());
     }catch(e){
-      textEditControllerDigo.text = "";
+      countDigo = "";
     }
     notifyListeners();
   }

@@ -326,5 +326,32 @@
     "four": " {} kún qaldı",
     "five": " {} kún qaldı",
     "other": "{} kun qoldi"
-  }
+  },
+  "order": "Buyrutma beriw +",
+  "myOrders": "Buyrutmalarim",
+  "booksCount": "Kitaplar sanı : ",
+  "oldOrder": "Buyrutma berilgen",
+  "invoice": "Invoys",
+  "cost": "Tólew",
+  "digoTest": "Diagnostik test",
+
+  "goBack": "Ortqa qaytıw ",
+  "seeOferta": "Tanıstım",
+  "chooseRegion": "Regiyon saylań",
+  "firsSub": "1-Pán",
+  "chooseFirsSub": "1-Pán",
+  "secondSub": "2-Pán",
+  "chooseSecondSub": "2-Pán",
+  "langTest": "Test tapsırıw tili",
+  "countDigBooks": "Test tapsırma kitap sanı ",
+  "againOrder": "+ Taǵı buyrutma beriw",
+  "seeAllOferta": "Barlıq shártler menen tanıstım",
+  "successOrder": "Buyrutma qabıllandı",
+  "idNumber": "ID nomerińiz",
+  "countAllBooks": "Jámi kitap sanı",
+  "allCost": "Jámi summa",
+  "goBack2": "Ortqa qaytıw",
+  "enterNum": "San kiritiń",
+  "wantDelete": "Óshiriwdi xoxlaysizmi?",
+  "countDigo": " dana"
 }

@@ -324,5 +324,34 @@
     "four": "{} kun qoldi",
     "five": "{} kun qoldi",
     "other": "{} kun qoldi"
-  }
+  },
+
+  "order": "Buyrutma berish +",
+  "myOrders": "Buyrutmalarim",
+  "booksCount": "Kitoblar soni: ",
+  "oldOrder": "Buyrutma berilgan",
+  "invoice": "Invoys",
+  "cost": "To'lov",
+  "digoTest": "Diagnostik test",
+
+  "goBack": "ORTGA QAYTISH",
+  "seeOferta": "TANISHDIM",
+  "chooseRegion": "Hudud tanlang",
+  "firsSub": "1-Fan",
+  "chooseFirsSub": "1-Fan",
+  "secondSub": "2-Fan",
+  "chooseSecondSub": "2-fan tanlang",
+  "langTest": "Test topshirish tili",
+  "countDigBooks": "Test topshiriq kitob soni",
+  "againOrder": "+ Yana buyrutma berish",
+  "seeAllOferta": "Barcha shartlar bilan tanishdim",
+  "successOrder": "Buyrutma qabul qilindi",
+  "idNumber": "ID raqamingiz",
+  "countAllBooks": "Jami kitob soni",
+  "allCost": "Jami summa",
+  "goBack2": "Ortqa qaytish",
+  "enterNum": "Son kiriting",
+  "wantDelete": "O'chirishni xoxlaysizmi?",
+  "countDigo": " ta"
+
 }
