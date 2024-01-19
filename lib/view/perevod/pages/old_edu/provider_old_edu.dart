@@ -23,8 +23,8 @@ import 'package:mydtm/data/perevod/model/model_mvdir.dart';
 import 'package:mydtm/data/perevod/model/sent_server_result.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
+// import 'package:pdf/pdf.dart';
+// import 'package:pdf/widgets.dart' as pw;
 
 class ProviderOldEdu extends ChangeNotifier {
   TextEditingController textEditingEducation = TextEditingController();
@@ -386,125 +386,125 @@ class ProviderOldEdu extends ChangeNotifier {
   bool boolConvertImageToPdf = false;
   File? fileToServerPerevod;
 
-  Future<pw.PageTheme> pageThemes(PdfPageFormat format) async {
-
-    final materialIcons = await rootBundle.load("assets/fonts/Roboto-Medium.ttf");
-
-    final materialIconsTtf = pw.Font.ttf(materialIcons);
-    return pw.PageTheme(
-      pageFormat: format,
-      theme: pw.ThemeData.withFont(
-        icons: materialIconsTtf,
-      ),
-    );
-  }
-
-  Future<File> createPdfFile({required BuildContext contexts}) async {
-    final materialIcons = await rootBundle.load("assets/fonts/Roboto-Medium.ttf");
-    boolConvertImageToPdf = false;
-    var pdf = pw.Document();
-    pdf.addPage(
-      pw.MultiPage(
-        // maxPages: 3,
-        // pageFormat: PdfPageFormat.a4,
-        pageTheme:await pageThemes(PdfPageFormat.a4),
-        crossAxisAlignment: pw.CrossAxisAlignment.center,
-        mainAxisAlignment: pw.MainAxisAlignment.center,
-        header: (pw.Context context) {
-          if (context.pageNumber == 1) {
-            return pw.SizedBox(
-              width: 220,
-              child: pw.Text(box.get("fio").toString(),
-              style: pw.TextStyle(
-                font: pw.Font.ttf(materialIcons),
-              //   fontSize: 25,
-              )),
-            );
-          }else{
-            return   pw.SizedBox(
-              width: 220,
-              child: pw.Text(box.get("fio").toString(),
-                  style: pw.TextStyle(
-                    font: pw.Font.ttf(materialIcons),
-                    //   fontSize: 25,
-                  )),
-
-              // style: pw.TextStyle(
-              //   font: pw.Font.ttf(materialIcons),
-              //   fontSize: 25,
-              // ),
-            );
-          }
-        },
-        build: (context) => [
-
-          pw.SizedBox(
-              height: 700,
-              width: MediaQuery.of(contexts).size.width,
-              child: pw.Stack(children: [
-                pw.Image(
-
-                  pw.MemoryImage(
-
-                    base64Decode(
-                      listImagesByte[0],
-                    ),
-                  ),
-                  fit: pw.BoxFit.cover,
-                ),
-              ])),
-          listImagesByte.length >= 2
-              ? pw.SizedBox(
-                  height: 700,
-                  width: MediaQuery.of(contexts).size.width,
-                  child: pw.Image(
-                    pw.MemoryImage(
-                      base64Decode(
-                        listImagesByte[1],
-                      ),
-                    ),
-                    fit: pw.BoxFit.fill,
-                  ),
-                )
-              : pw.SizedBox.shrink(),
-          listImagesByte.length >= 3
-              ? pw.SizedBox(
-                  height: 700,
-                  width: MediaQuery.of(contexts).size.width,
-                  child: pw.Image(
-                    pw.MemoryImage(
-                      base64Decode(
-                        listImagesByte[2],
-                      ),
-                    ),
-                    fit: pw.BoxFit.fill,
-                  ),
-                )
-              : pw.SizedBox.shrink(),
-        ],
-      ),
-    );
-    boolConvertImageToPdf = true;
-
-    notifyListeners();
-
-    return saveDocument(name: "bmba.pdf", pdf: pdf);
-
-  }
-
-
-
-  Future<File> saveDocument(
-      {required String name, required pw.Document pdf}) async {
-    final bytes = await pdf.save();
-    final dir = await getApplicationDocumentsDirectory();
-    final file = File("${dir.path}/$name");
-    await file.writeAsBytes(bytes);
-
-    fileToServerPerevod = file;
-    notifyListeners();
-    return file;
-  }
+  // Future<pw.PageTheme> pageThemes(PdfPageFormat format) async {
+  //
+  //   final materialIcons = await rootBundle.load("assets/fonts/Roboto-Medium.ttf");
+  //
+  //   final materialIconsTtf = pw.Font.ttf(materialIcons);
+  //   return pw.PageTheme(
+  //     pageFormat: format,
+  //     theme: pw.ThemeData.withFont(
+  //       icons: materialIconsTtf,
+  //     ),
+  //   );
+  // }
+  //
+  // Future<File> createPdfFile({required BuildContext contexts}) async {
+  //   final materialIcons = await rootBundle.load("assets/fonts/Roboto-Medium.ttf");
+  //   boolConvertImageToPdf = false;
+  //   var pdf = pw.Document();
+  //   pdf.addPage(
+  //     pw.MultiPage(
+  //       // maxPages: 3,
+  //       // pageFormat: PdfPageFormat.a4,
+  //       pageTheme:await pageThemes(PdfPageFormat.a4),
+  //       crossAxisAlignment: pw.CrossAxisAlignment.center,
+  //       mainAxisAlignment: pw.MainAxisAlignment.center,
+  //       header: (pw.Context context) {
+  //         if (context.pageNumber == 1) {
+  //           return pw.SizedBox(
+  //             width: 220,
+  //             child: pw.Text(box.get("fio").toString(),
+  //             style: pw.TextStyle(
+  //               font: pw.Font.ttf(materialIcons),
+  //             //   fontSize: 25,
+  //             )),
+  //           );
+  //         }else{
+  //           return   pw.SizedBox(
+  //             width: 220,
+  //             child: pw.Text(box.get("fio").toString(),
+  //                 style: pw.TextStyle(
+  //                   font: pw.Font.ttf(materialIcons),
+  //                   //   fontSize: 25,
+  //                 )),
+  //
+  //             // style: pw.TextStyle(
+  //             //   font: pw.Font.ttf(materialIcons),
+  //             //   fontSize: 25,
+  //             // ),
+  //           );
+  //         }
+  //       },
+  //       build: (context) => [
+  //
+  //         pw.SizedBox(
+  //             height: 700,
+  //             width: MediaQuery.of(contexts).size.width,
+  //             child: pw.Stack(children: [
+  //               pw.Image(
+  //
+  //                 pw.MemoryImage(
+  //
+  //                   base64Decode(
+  //                     listImagesByte[0],
+  //                   ),
+  //                 ),
+  //                 fit: pw.BoxFit.cover,
+  //               ),
+  //             ])),
+  //         listImagesByte.length >= 2
+  //             ? pw.SizedBox(
+  //                 height: 700,
+  //                 width: MediaQuery.of(contexts).size.width,
+  //                 child: pw.Image(
+  //                   pw.MemoryImage(
+  //                     base64Decode(
+  //                       listImagesByte[1],
+  //                     ),
+  //                   ),
+  //                   fit: pw.BoxFit.fill,
+  //                 ),
+  //               )
+  //             : pw.SizedBox.shrink(),
+  //         listImagesByte.length >= 3
+  //             ? pw.SizedBox(
+  //                 height: 700,
+  //                 width: MediaQuery.of(contexts).size.width,
+  //                 child: pw.Image(
+  //                   pw.MemoryImage(
+  //                     base64Decode(
+  //                       listImagesByte[2],
+  //                     ),
+  //                   ),
+  //                   fit: pw.BoxFit.fill,
+  //                 ),
+  //               )
+  //             : pw.SizedBox.shrink(),
+  //       ],
+  //     ),
+  //   );
+  //   boolConvertImageToPdf = true;
+  //
+  //   notifyListeners();
+  //
+  //   return saveDocument(name: "bmba.pdf", pdf: pdf);
+  //
+  // }
+  //
+  //
+  //
+  // Future<File> saveDocument(
+  //     {required String name, required pw.Document pdf}) async {
+  //   final bytes = await pdf.save();
+  //   final dir = await getApplicationDocumentsDirectory();
+  //   final file = File("${dir.path}/$name");
+  //   await file.writeAsBytes(bytes);
+  //
+  //   fileToServerPerevod = file;
+  //   notifyListeners();
+  //   return file;
+  // }
 
   Future deleteItemList({required int index}) async {
     listImagesPDF.removeAt(index);

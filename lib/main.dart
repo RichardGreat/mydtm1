@@ -129,26 +129,26 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   //       availableBiometrics.contains(BiometricType.fingerprint)) {}
   // }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.resumed:
-        break;
-      case AppLifecycleState.inactive:
-        break;
-      case AppLifecycleState.paused:
-        // Handle this case
-        break;
-      case AppLifecycleState.detached:
-        {}
-        break;
-      case AppLifecycleState.hidden:
-        // TODO: Handle this case.
-        break;
-    }
-
-    super.didChangeAppLifecycleState(state);
-  }
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   switch (state) {
+  //     case AppLifecycleState.resumed:
+  //       break;
+  //     case AppLifecycleState.inactive:
+  //       break;
+  //     case AppLifecycleState.paused:
+  //       // Handle this case
+  //       break;
+  //     case AppLifecycleState.detached:
+  //       {}
+  //       break;
+  //     case AppLifecycleState.hidden:
+  //       // TODO: Handle this case.
+  //       break;
+  //   }
+  //
+  //   super.didChangeAppLifecycleState(state);
+  // }
 
   @override
   initState() {

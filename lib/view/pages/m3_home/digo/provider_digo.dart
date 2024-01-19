@@ -181,42 +181,42 @@ class ProviderDigo extends ChangeNotifier {
         "digo":listServer
       };
       log( jsonEncode(map).toString());
-      // Response response = await dio.post("https://api.uzbmb.uz/v1/digo/create",
-      // data: {
-      //   "region": regId.toString(),
-      //   "digo":listServer
-      // },
-      //   options: Options(headers: {"X-Access-Token":"79f72f809904f4dba5df3b410d66b7e4"})
-      // );
-
+      Response response = await dio.post("https://api.uzbmb.uz/v1/digo/create",
+      data: {
+        "region": regId.toString(),
+        "digo":listServer
+      },
+        options: Options(headers: {"X-Access-Token": box.get("token").toString()})
+      );
+    modelGetNatija= ModelGetNatija.fromJson(response.data);
       // log(jsonEncode(response.data).toString());
-      modelGetNatija  = ModelGetNatija.fromJson({
-        "status": 1,
-        "data": [
-          {
-            "imie": 30309975270036,
-            "region_id": 1726,
-            "invoice": "18343492646792",
-            "payment": 340000,
-            "cnt": 17,
-            "status": 1,
-            "paid": false,
-            "phone": "887078499",
-            "service_id": 10,
-            "get_user_id": null,
-            "print_user_id": null,
-            "create_at": {
-              "expression": "NOW()",
-              "params": []
-            },
-            "update_at": {
-              "expression": "NOW()",
-              "params": []
-            },
-            "id": 33153
-          }
-        ]
-      });
+      // modelGetNatija  = ModelGetNatija.fromJson({
+      //   "status": 1,
+      //   "data": [
+      //     {
+      //       "imie": 30309975270036,
+      //       "region_id": 1726,
+      //       "invoice": "18343492646792",
+      //       "payment": 340000,
+      //       "cnt": 17,
+      //       "status": 1,
+      //       "paid": false,
+      //       "phone": "887078499",
+      //       "service_id": 10,
+      //       "get_user_id": null,
+      //       "print_user_id": null,
+      //       "create_at": {
+      //         "expression": "NOW()",
+      //         "params": []
+      //       },
+      //       "update_at": {
+      //         "expression": "NOW()",
+      //         "params": []
+      //       },
+      //       "id": 33153
+      //     }
+      //   ]
+      // });
       sentServer = "2";
       notifyListeners();
       await Future.delayed(const Duration(milliseconds: 1500)).then((value) => sentServer = "3");

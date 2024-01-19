@@ -244,6 +244,7 @@ class _MainPagesState extends State<MainPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         backgroundColor:
             Color.lerp(Colors.teal.withOpacity(0.9), Colors.teal, 1),

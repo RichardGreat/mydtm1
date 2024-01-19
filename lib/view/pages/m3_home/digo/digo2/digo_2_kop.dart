@@ -1,4 +1,6 @@
 import 'dart:developer';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,8 +9,8 @@ import 'package:mydtm/view/pages/m3_home/digo/digo2/widget_model_sheet2/fan21.da
 import 'package:mydtm/view/pages/m3_home/digo/digo2/widget_model_sheet2/fan22.dart';
 import 'package:mydtm/view/pages/m3_home/digo/digo2/widget_model_sheet2/son.dart';
 import 'package:mydtm/view/pages/m3_home/digo/digo2/widget_model_sheet2/til2.dart';
+import 'package:mydtm/view/pages/m3_home/digo/digo_main/digo_main.dart';
 import 'package:provider/provider.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class Digo2DanKop extends StatefulWidget {
@@ -75,8 +77,58 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
   }
 
 
-  Widget bodyBuild(){
-    if(providerDigo2.sentServer == "1"){
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => providerDigo2,
+      child: Consumer<ProviderDigo2>(
+        builder: (context, value, child) => SafeArea(
+          child: Scaffold(
+              backgroundColor: Colors.white,
+              appBar: AppBar(
+                backgroundColor: Colors.white,
+                iconTheme: const IconThemeData(color: Colors.teal),
+                elevation: 0,
+                actions: [
+                  providerDigo2.sentServer == "1"
+                      ? Padding(
+                          padding: const EdgeInsets.only(right: 20, top: 5),
+                          child: GestureDetector(
+                            onTap: () {
+                              showAll();
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.all(5),
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.teal.shade100,
+                                        blurRadius: 1,
+                                        spreadRadius: 1)
+                                  ]),
+                              child: Text(
+                                "access".tr(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.teal.shade700),
+                              ),
+                            ),
+                          ),
+                        )
+                      : const SizedBox.shrink()
+                ],
+              ),
+              body: bodyBuild()),
+        ),
+      ),
+    );
+  }
+  Widget bodyBuild() {
+    if (providerDigo2.sentServer == "1") {
       return Container(
         margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
         child: Column(
@@ -87,10 +139,9 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                 itemCount: providerDigo2.modelDigo2.data.length,
                 itemBuilder: (context, index) {
                   return Container(
-                    margin: const EdgeInsets.only(
-                        top: 10, left: 10, right: 10),
-                    padding: const EdgeInsets.only(
-                        top: 10, left: 10, right: 10),
+                    margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
+                    padding:
+                    const EdgeInsets.only(top: 10, left: 10, right: 10),
                     decoration: BoxDecoration(
                         color: index % 2 == 0
                             ? Colors.grey.shade200
@@ -110,10 +161,9 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                               Text("firsSub".tr()),
+                              Text("firsSub".tr()),
                               Container(
                                 padding: const EdgeInsets.all(10),
                                 decoration: const BoxDecoration(
@@ -147,7 +197,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                                   Icons.keyboard_arrow_down_outlined),
                             ),
                           ),
-                           Text("secondSub".tr()),
+                          Text("secondSub".tr()),
                           Card(
                             color: Colors.white,
                             shadowColor: Colors.teal.shade300,
@@ -167,7 +217,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                                   Icons.keyboard_arrow_down_outlined),
                             ),
                           ),
-                           Text("chooseLang".tr()),
+                          Text("chooseLang".tr()),
                           Card(
                             color: Colors.white,
                             shadowColor: Colors.teal.shade300,
@@ -180,14 +230,13 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                                     index: 3,
                                     intIndexLists: index);
                               },
-                              leading: Text(
-                                  providerDigo2.textTil(index: index),
+                              leading: Text(providerDigo2.textTil(index: index),
                                   style: const TextStyle(fontSize: 18)),
                               trailing: const Icon(
                                   Icons.keyboard_arrow_down_outlined),
                             ),
                           ),
-                           Text("enterNum".tr()),
+                          Text("enterNum".tr()),
                           Card(
                             color: Colors.white,
                             shadowColor: Colors.teal.shade300,
@@ -200,8 +249,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                                     index: 4,
                                     intIndexLists: index);
                               },
-                              leading: Text(
-                                  providerDigo2.sonDigo(index: index),
+                              leading: Text(providerDigo2.sonDigo(index: index),
                                   style: const TextStyle(fontSize: 18)),
                               trailing: const Icon(
                                   Icons.keyboard_arrow_down_outlined),
@@ -213,8 +261,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                             children: [
                               Visibility(
                                 visible:
-                                providerDigo2.modelDigo2.data.length >
-                                    1 &&
+                                providerDigo2.modelDigo2.data.length > 1 &&
                                     index != 0,
                                 child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -222,12 +269,10 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                                       onPressed: () {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(SnackBar(
-                                          content:  Text(
-                                              "wantDelete".tr(),
+                                          content: Text("wantDelete".tr(),
                                               style: const TextStyle(
                                                   color: Colors.teal,
-                                                  fontWeight:
-                                                  FontWeight.bold)),
+                                                  fontWeight: FontWeight.bold)),
                                           action: SnackBarAction(
                                             label: 'yes'.tr(),
                                             textColor: Colors.teal,
@@ -248,40 +293,32 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                               ),
                               Visibility(
                                 visible: index ==
-                                    providerDigo2.modelDigo2.data.length -
-                                        1,
+                                    providerDigo2.modelDigo2.data.length - 1,
                                 child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: IconButton(
                                       onPressed: () {
-                                        providerDigo2
-                                            .modelDigo2
-                                            .data[index]
-                                            .countDigo
-                                            .isNotEmpty
+                                        providerDigo2.modelDigo2.data[index]
+                                            .countDigo.isNotEmpty
                                             ? {
                                           providerDigo2
                                               .modelDigo2
-                                              .data[
-                                          index]
+                                              .data[index]
                                               .countDigo ==
                                               "0" ||
                                               providerDigo2
                                                   .modelDigo2
-                                                  .data[
-                                              index]
+                                                  .data[index]
                                                   .countDigo ==
                                                   "00" ||
                                               providerDigo2
                                                   .modelDigo2
-                                                  .data[
-                                              index]
+                                                  .data[index]
                                                   .countDigo ==
                                                   "000" ||
                                               providerDigo2
                                                   .modelDigo2
-                                                  .data[
-                                              index]
+                                                  .data[index]
                                                   .countDigo ==
                                                   "0000"
                                               ? getRegionSheet(
@@ -289,26 +326,19 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                                               providerDigo:
                                               providerDigo2,
                                               index: 4,
-                                              intIndexLists:
-                                              index)
-                                              : providerDigo2
-                                              .addBosh(),
+                                              intIndexLists: index)
+                                              : providerDigo2.addBosh(),
                                           animateToLast(),
                                         }
                                             : {
-                                          ScaffoldMessenger.of(
-                                              context)
-                                              .showSnackBar(
-                                               SnackBar(
-                                                content: Text(
-                                                    "fillAll".tr(),
-                                                    style:const TextStyle(
-                                                        color:
-                                                        Colors.teal,
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .bold)),
-                                              )),
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content: Text("fillAll".tr(),
+                                                style: const TextStyle(
+                                                    color: Colors.teal,
+                                                    fontWeight:
+                                                    FontWeight.bold)),
+                                          )),
                                         };
                                       },
                                       icon: const Icon(
@@ -332,8 +362,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(providerDigo2.allCost(),
-                          style:
-                          const TextStyle(fontWeight: FontWeight.w600)),
+                          style: const TextStyle(fontWeight: FontWeight.w600)),
                       IconButton(
                           onPressed: showAllOrder,
                           icon: const Icon(
@@ -346,60 +375,63 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
           ],
         ),
       );
-    }else if(providerDigo2.sentServer == "0"){
-      return const Center(child: CupertinoActivityIndicator(),);
-    }else if(providerDigo2.sentServer == "2"){
-      return  const Center(
+    } else if (providerDigo2.sentServer == "0") {
+      return const Center(
+        child: CupertinoActivityIndicator(),
+      );
+    } else if (providerDigo2.sentServer == "2") {
+      return const Center(
         child: Icon(
           Icons.check_circle_outline,
           size: 90,
           color: Colors.teal,
         ),
       );
-    }else if(providerDigo2.sentServer == "3"){
+    } else if (providerDigo2.sentServer == "3") {
       return Center(
         child: Container(
-          margin:const EdgeInsets.fromLTRB(30, 10, 20, 10),
+          margin: const EdgeInsets.fromLTRB(30, 10, 20, 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
-             const SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text("successOrder".tr(),
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-             const SizedBox(height: 20),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18)),
+              const SizedBox(height: 20),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
                       width: MediaQuery.of(context).size.width * 0.3,
                       child: Text(
                         "province".tr(),
-                        style:const TextStyle(
+                        style: const TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       )),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.4,
-                    child: Text(providerDigo2.regName.toString(),
-                        style:const TextStyle(
+                    child: Text(
+                        providerDigo2.modelDigo2.data[0].nameReg.toString(),
+                        style: const TextStyle(
                           fontWeight: FontWeight.w600,
                         ),
                         textAlign: TextAlign.start),
                   )
                 ],
               ),
-             const SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: Text(
                         "idNumber".tr(),
-                        style:const TextStyle(
+                        style: const TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       )),
                   SizedBox(
@@ -411,10 +443,10 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                   )
                 ],
               ),
-             const SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
@@ -425,22 +457,23 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                       )),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.4,
-                    child: Text(providerDigo2.allCount().toString() +"countDigo".tr(),
-                        style:const TextStyle(fontWeight: FontWeight.w600),
+                    child: Text(
+                        providerDigo2.allCount().toString() + "countDigo".tr(),
+                        style: const TextStyle(fontWeight: FontWeight.w600),
                         textAlign: TextAlign.start),
                   )
                 ],
               ),
-             const SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: Text(
                         "allCost".tr(),
-                        style:const TextStyle(
+                        style: const TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       )),
                   SizedBox(
@@ -451,67 +484,80 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                   )
                 ],
               ),
-             const SizedBox(height: 10),
+              const SizedBox(height: 10),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Clipboard.setData(ClipboardData(
-                    text: providerDigo2.modelGetNatija.data[0].invoice.toString(),
+                    text:
+                    providerDigo2.modelGetNatija.data[0].invoice.toString(),
                   ));
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       duration: const Duration(seconds: 1),
-                      content: Text("${"copy".tr()} ${providerDigo2.modelGetNatija.data[0].invoice}",
+                      content: Text(
+                        "${"copy".tr()} ${providerDigo2.modelGetNatija.data[0].invoice}",
                       )));
                 },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
                         width: MediaQuery.of(context).size.width * 0.3,
                         child: Text(
                           "invoice".tr(),
-                          style:const TextStyle(
+                          style: const TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold),
                         )),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: Text(
-                          providerDigo2.modelGetNatija.data[0].invoice.toString(),
+                          providerDigo2.modelGetNatija.data[0].invoice
+                              .toString(),
                           style: const TextStyle(fontWeight: FontWeight.w600),
                           textAlign: TextAlign.start),
                     ),
-                  const  Icon(Icons.copy)
+                    const Icon(Icons.copy)
                   ],
                 ),
               ),
-             const SizedBox(height: 20),
+              const SizedBox(height: 20),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Clipboard.setData(ClipboardData(
-                    text:providerDigo2.modelGetNatija.data[0].invoice.toString(),
+                    text:
+                    providerDigo2.modelGetNatija.data[0].invoice.toString(),
                   ));
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       duration: const Duration(seconds: 1),
-                      content: Text("${"copy".tr()} ${providerDigo2.modelGetNatija.data[0].invoice.toString()}",
+                      content: Text(
+                        "${"copy".tr()} ${providerDigo2.modelGetNatija.data[0].invoice.toString()}",
                       )));
                 },
                 child: QrImageView(
-                  data:providerDigo2.modelGetNatija.data[0].invoice.toString(),
+                  data: providerDigo2.modelGetNatija.data[0].invoice.toString(),
                   version: QrVersions.auto,
                   size: 100.0,
                 ),
               ),
               const SizedBox(height: 20),
-             const SizedBox(height: 20),
+              const SizedBox(height: 20),
               MaterialButton(
                 minWidth: MediaQuery.of(context).size.width * 0.5,
                 height: 50,
                 color: Colors.teal,
                 textColor: Colors.white,
                 onPressed: () {
-                  Navigator.of(context).pop();
+
+
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => DigoMain(),
+                      ),
+                          (route) => false);
                 },
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 child: Text("goBack2".tr(),
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.white)),
@@ -520,7 +566,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
           ),
         ),
       );
-    }else{
+    } else {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -546,57 +592,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
       );
     }
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => providerDigo2,
-      child: Consumer<ProviderDigo2>(
-        builder: (context, value, child) => SafeArea(
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0,
-              actions: [
-                providerDigo2.sentServer == "1"?
-                Padding(
-                  padding: const EdgeInsets.only(right: 20, top: 5),
-                  child: GestureDetector(
-                    onTap: () {
-                      showAll();
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.all(5),
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.teal.shade100,
-                                blurRadius: 1,
-                                spreadRadius: 1)
-                          ]),
-                      child: Text(
-                        "access".tr(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.teal.shade700),
-                      ),
-                    ),
-                  ),
-                ):const SizedBox.shrink()
-              ],
-            ),
-            body: bodyBuild()
-          ),
-        ),
-      ),
-    );
-  }
-
-  showAllOrder(){
+  showAllOrder() {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.white,
@@ -606,26 +602,20 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Container(
-              margin: const EdgeInsets.fromLTRB(
-                  20, 15, 30, 10),
+              margin: const EdgeInsets.fromLTRB(20, 15, 30, 10),
               child: Column(
-                crossAxisAlignment:
-                CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   RichText(
                     text: TextSpan(
                       text: "${'countAllBooks'.tr()} ",
                       style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight:
-                          FontWeight.w600),
+                          color: Colors.black, fontWeight: FontWeight.w600),
                       children: <TextSpan>[
                         TextSpan(
                             text: "${providerDigo2.jamSon}${"countDigo".tr()}",
                             style: const TextStyle(
-                                fontWeight:
-                                FontWeight.bold,
-                                fontSize: 16)),
+                                fontWeight: FontWeight.bold, fontSize: 16)),
                         const TextSpan(text: ''),
                       ],
                     ),
@@ -634,38 +624,30 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                   //     style: const TextStyle(
                   //         fontWeight: FontWeight.w600)),
                   Text(providerDigo2.allCost(),
-                      style: const TextStyle(
-                          fontWeight:
-                          FontWeight.w600)),
+                      style: const TextStyle(fontWeight: FontWeight.w600)),
                 ],
               ),
             ),
             const Divider(),
             Container(
-              margin: const EdgeInsets.symmetric(
-                  horizontal: 25),
-              child:  Row(
-                mainAxisAlignment:
-                MainAxisAlignment.spaceBetween,
+              margin: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
-                    crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "myOrders".tr(),
                         style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight:
-                            FontWeight.bold),
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   Text(
                     "booksCount".tr(),
-                    style:const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -673,96 +655,63 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
             const Divider(),
             Expanded(
                 child: ListView.builder(
-                  itemCount: providerDigo2
-                      .modelDigo2.data.length,
-                  itemBuilder: (context, index) => Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      providerDigo2.modelDigo2.data[index]
-                          .countDigo.isNotEmpty ||
-                          providerDigo2
-                              .modelDigo2
-                              .data[index]
-                              .countDigo !=
+              itemCount: providerDigo2.modelDigo2.data.length,
+              itemBuilder: (context, index) => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  providerDigo2.modelDigo2.data[index].countDigo.isNotEmpty ||
+                          providerDigo2.modelDigo2.data[index].countDigo !=
                               "0" ||
-                          providerDigo2
-                              .modelDigo2
-                              .data[index]
-                              .countDigo !=
+                          providerDigo2.modelDigo2.data[index].countDigo !=
                               "00" ||
-                          providerDigo2
-                              .modelDigo2
-                              .data[index]
-                              .countDigo !=
+                          providerDigo2.modelDigo2.data[index].countDigo !=
                               "000" ||
-                          providerDigo2
-                              .modelDigo2
-                              .data[index]
-                              .countDigo !=
+                          providerDigo2.modelDigo2.data[index].countDigo !=
                               "0000"
-                          ? Container(
-                        margin: const EdgeInsets
-                            .symmetric(
-                            horizontal: 25),
-                        child: Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment
-                              .spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment
-                                  .start,
-                              children: [
-                                Text(
-                                  "1. ${providerDigo2.modelDigo2.data[index].nameFan1 ?? ""}",
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight:
-                                      FontWeight
-                                          .w600),
-                                ),
-                                Text(
-                                  "2. ${providerDigo2.modelDigo2.data[index].nameFan2 ?? ""}",
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight:
-                                      FontWeight
-                                          .w600),
-                                ),
-                                Text(
-                                  providerDigo2
-                                      .modelDigo2
-                                      .data[
-                                  index]
-                                      .langName ??
-                                      "",
-                                  style: const TextStyle(
-                                      fontWeight:
-                                      FontWeight
-                                          .w500),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              "${providerDigo2.modelDigo2.data[index].countDigo}",
-                              style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight:
-                                  FontWeight
-                                      .w600),
-                            ),
-                          ],
-                        ),
-                      )
-                          : const SizedBox.shrink(),
-                          providerDigo2.modelDigo2.data[index]
-                          .countDigo.isNotEmpty
-                          ? const Divider()
-                          : const SizedBox.shrink(),
-                    ],
-                  ),
-                ))
+                      ? Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 25),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "1. ${providerDigo2.modelDigo2.data[index].nameFan1 ?? ""}",
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Text(
+                                    "2. ${providerDigo2.modelDigo2.data[index].nameFan2 ?? ""}",
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Text(
+                                    providerDigo2
+                                            .modelDigo2.data[index].langName ??
+                                        "",
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                providerDigo2.modelDigo2.data[index].countDigo,
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                        )
+                      : const SizedBox.shrink(),
+                  providerDigo2.modelDigo2.data[index].countDigo.isNotEmpty
+                      ? const Divider()
+                      : const SizedBox.shrink(),
+                ],
+              ),
+            ))
           ],
         ),
       ),
@@ -844,8 +793,8 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
       builder: (context) => AlertDialog(
         elevation: 0,
         backgroundColor: Colors.white,
-        title:  Text("myOrders".tr(),
-            style:const TextStyle(fontWeight: FontWeight.bold),
+        title: Text("myOrders".tr(),
+            style: const TextStyle(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center),
         content: SizedBox(
           height: MediaQuery.of(context).size.height * 0.7,
@@ -854,22 +803,28 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               const Divider(),
-               Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "myOrders".tr(),
-                        style:const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        child: Text(
+                          "myOrders".tr(),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ],
                   ),
-                  Text(
-                    "booksCount".tr(),
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    child: Text(
+                      "countDigBooks".tr(),
+                      textAlign: TextAlign.end,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),
@@ -939,7 +894,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                               text: providerDigo2.allCount().toString(),
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16)),
-                           TextSpan(text: 'countDigo'.tr()),
+                          TextSpan(text: 'countDigo'.tr()),
                         ],
                       ),
                     ),
@@ -953,7 +908,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                               text: providerDigo2.jamSon.toString(),
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16)),
-                           TextSpan(text: 'countDigo'.tr()),
+                          TextSpan(text: 'countDigo'.tr()),
                         ],
                       ),
                     ),
@@ -973,27 +928,25 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child:  Text(
+              child: Text(
                 "goBack2".tr(),
-                style:
-                const TextStyle(fontWeight: FontWeight.bold, color: Colors.teal),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.teal),
               )),
           TextButton(
               onPressed: () {
-                try{
-                 providerDigo2.sendServer2();
-                  if(providerDigo2.sentServer == "2"){
-                    Navigator.of(context).pop();
-                  }
-                  // log(jsonEncode(map).toString());
-                }catch(e){
+                try {
+                  providerDigo2
+                      .sendServer2();
+                  Navigator.of(context).pop();
+                } catch (e) {
                   log(e.toString());
                 }
               },
-              child:  Text(
+              child: Text(
                 "access".tr(),
-                style:
-                const TextStyle(fontWeight: FontWeight.bold, color: Colors.teal),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.teal),
               )),
         ],
       ),

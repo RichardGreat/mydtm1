@@ -29,9 +29,10 @@ class _ImageToPdfState extends State<ImageToPdf> {
     widget.providerOldEdu.listFiles.length > 3 ?{Navigator.of(context).pop()}:{};
     return WillPopScope(
       onWillPop: () async {
-        if (widget.providerOldEdu.listFiles.isNotEmpty) {
-          await widget.providerOldEdu.createPdfFile(contexts: context);
-        }
+        // if (widget.providerOldEdu.listFiles.isNotEmpty) {
+        //   await widget.providerOldEdu.createPdfFile(contexts: context);
+        // }
+
         // widget.providerOldEdu
         //     .openFiles(widget.providerOldEdu.fileToServerPerevod!);
         //Navigator.of(context).pop();
@@ -51,8 +52,8 @@ class _ImageToPdfState extends State<ImageToPdf> {
               widget.providerOldEdu.listFiles.isNotEmpty
                   ? MaterialButton(
                       onPressed: () async {
-                        await widget.providerOldEdu
-                            .createPdfFile(contexts: context);
+                        // await widget.providerOldEdu
+                        //     .createPdfFile(contexts: context);
                         // widget.providerOldEdu
                         //     .openFiles(widget.providerOldEdu.fileToServerPerevod!);
                         // widget.providerOldEdu.openFiles(pdfFile);

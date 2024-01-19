@@ -41,8 +41,8 @@ class _SonKiritishState extends State<SonKiritish> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                    SizedBox(
-                    // width: MediaQuery.of(context).size.width*0.7,
-                    child: Text("booksCount".tr(),
+                    width: MediaQuery.of(context).size.width*0.511,
+                    child: Text("countDigBooks".tr(),
                         style: const TextStyle(fontWeight: FontWeight.w600)),
                   ),
                   TextButton(

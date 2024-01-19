@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 // import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+// import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:mydtm/view/pages/m3_home/check_information_page/provider_check_information.dart';
 import 'package:mydtm/view/pages/otm/choose_edu.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -55,20 +55,20 @@ class _QaydVaraqaEditState extends State<QaydVaraqaEdit> {
                 ? SingleChildScrollView(
                     child: Column(children: [
                       // SizedBox(
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.72,
-                          child: const PDF().cachedFromUrl(widget
-                              .providerCheckInformation.modelGetDownloads1.src)
-                          // PDFViewer(
-                          //   document: widget.providerCheckInformation.doc,
-                          //   lazyLoad: false,
-                          //   scrollDirection: Axis.vertical,
-                          //   zoomSteps: 1,
-                          //   showIndicator: false,
-                          //   showPicker: false,
-                          //   showNavigation: false,
-                          // ),
-                          ),
+                      // SizedBox(
+                      //     height: MediaQuery.of(context).size.height * 0.72,
+                      //     child: const PDF().cachedFromUrl(widget
+                      //         .providerCheckInformation.modelGetDownloads1.src)
+                      //     // PDFViewer(
+                      //     //   document: widget.providerCheckInformation.doc,
+                      //     //   lazyLoad: false,
+                      //     //   scrollDirection: Axis.vertical,
+                      //     //   zoomSteps: 1,
+                      //     //   showIndicator: false,
+                      //     //   showPicker: false,
+                      //     //   showNavigation: false,
+                      //     // ),
+                      //     ),
                       Container(
                         margin: const EdgeInsets.all(15),
                         child: Column(children: [

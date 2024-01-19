@@ -1,8 +1,6 @@
 PODS:
   - camera_avfoundation (0.0.1):
     - Flutter
-  - easy_pdf_viewer (1.0.7):
-    - Flutter
   - face_camera (0.0.1):
     - Flutter
   - Flutter (1.0.0)
@@ -98,7 +96,6 @@ PODS:
 
 DEPENDENCIES:
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
-  - easy_pdf_viewer (from `.symlinks/plugins/easy_pdf_viewer/ios`)
   - face_camera (from `.symlinks/plugins/face_camera/ios`)
   - Flutter (from `Flutter`)
   - flutter_pdfview (from `.symlinks/plugins/flutter_pdfview/ios`)
@@ -134,8 +131,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   camera_avfoundation:
     :path: ".symlinks/plugins/camera_avfoundation/ios"
-  easy_pdf_viewer:
-    :path: ".symlinks/plugins/easy_pdf_viewer/ios"
   face_camera:
     :path: ".symlinks/plugins/face_camera/ios"
   Flutter:
@@ -167,7 +162,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   camera_avfoundation: 3125e8cd1a4387f6f31c6c63abb8a55892a9eeeb
-  easy_pdf_viewer: 87ea0602930e7b1c8eecd36b362604254d2ad018
   face_camera: 9473f8c80e20d67bd2d946ed573ccee168d31186
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_pdfview: 25f53dd6097661e6395b17de506e6060585946bd
