@@ -51,6 +51,10 @@ class ProviderMainHome extends ChangeNotifier {
     notifyListeners();
     try {
       String dataVersion = await NetworkCheckVersions.checkMobileVersion();
+
+      print("###");
+      print(dataVersion.toString());
+      print("###");
       ModelCheckMobileVersion modelCheckMobileVersion =
           ModelCheckMobileVersion.fromJson(jsonDecode(dataVersion));
       numberAPIUpdate = modelCheckMobileVersion.data.numberApi.toString();
@@ -59,6 +63,7 @@ class ProviderMainHome extends ChangeNotifier {
       if (box.get("updateVersion").toString() !=
           modelCheckMobileVersion.data.version.toString()) {
         if (modelCheckMobileVersion.data.status.toString() == "1") {
+          /// hech narsa
         } else if (modelCheckMobileVersion.data.status.toString() == "2") {
           AwesomeDialog(
                   context: context,
@@ -72,7 +77,9 @@ class ProviderMainHome extends ChangeNotifier {
                           ? modelCheckMobileVersion.data.versionTextQq
                           : box.get("language").toString() == "3"
                               ? modelCheckMobileVersion.data.versionTextRu
-                              : "update",
+                              :
+
+                  "update",
                   titleTextStyle: TextStyle(
                       color: MyColors.appColorBlue1(),
                       fontSize: 24,
@@ -86,7 +93,8 @@ class ProviderMainHome extends ChangeNotifier {
                   btnCancelText: "OK",
                   btnCancelColor: MyColors.appColorBlue1())
               .show();
-        } else if (modelCheckMobileVersion.data.status.toString() == "3") {
+        } else if ("3" == "3") {
+        // } else if (modelCheckMobileVersion.data.status.toString() == "3") {
           box.put("updateMobileText", modelCheckMobileVersion.data.versionText);
         Navigator.push(context, CupertinoPageRoute(builder: (context) =>  const UpdateMust(),));
 
@@ -127,12 +135,20 @@ class ProviderMainHome extends ChangeNotifier {
     }
   }
 
-  final Uri _url =
+  final Uri _urlAndroid =
       Uri.parse('https://play.google.com/store/apps/details?id=www.uzbmba.uz');
+  final Uri _urlIos =
+  Uri.parse('https://apps.apple.com/uz/app/bilim-va-malakalarni-baholash/id6447829367');
 
   Future openGooglePlayMarket() async {
     try {
-      if (!await launchUrl(_url)) throw 'Could not launch $_url';
+
+      if(Platform.isAndroid){
+        if (!await launchUrl(_urlAndroid)) throw 'Could not launch $_urlAndroid';
+      }else if(Platform.isIOS){
+        if (!await launchUrl(_urlIos)) throw 'Could not launch $_urlIos';
+      }
+
     } catch (e) {
       throw Exception(e.toString());
     }

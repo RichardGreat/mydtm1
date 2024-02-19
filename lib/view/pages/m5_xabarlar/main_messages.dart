@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/one_page_news/one_news.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/provider_news.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
@@ -18,14 +21,21 @@ class MainMessages extends StatefulWidget {
 class _MainMessagesState extends State<MainMessages> {
   ProviderDtmNews providerDtmNews = ProviderDtmNews();
 
+  var box = Hive.box("online");
   @override
   initState() {
     getDtmNews();
+
     super.initState();
   }
 
   Future getDtmNews() async {
     await providerDtmNews.getAllDtmNews();
+    try{
+      box.put("windowNews", "0");
+    }catch(e){
+      log(e.toString());
+    }
   }
 
   @override

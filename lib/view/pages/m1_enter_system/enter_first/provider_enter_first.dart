@@ -24,6 +24,7 @@ import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_captcha_error.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
+import 'package:mydtm/view/widgets/save_hive.dart';
 import 'package:ntp/ntp.dart';
 
 
@@ -128,6 +129,8 @@ class ProviderEnterFirst extends ChangeNotifier {
       ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(token));
 
       box.put("token", modelGetToken.data.accessToken);
+      var person = Person()..token= modelGetToken.data.accessToken.toString();
+      box.add(person);
       log(box.get("token"));
       if (box.get("token").toString().length > 30) {
         box.delete("phoneNumber");

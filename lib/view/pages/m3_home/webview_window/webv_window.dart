@@ -86,7 +86,10 @@ class _WebViewWindowState extends State<WebViewWindow> {
       extendBody: true,
       appBar: AppBar(
           // title: Text(widget.modelServiceMainList.link.toString()),
-          title: Text(widget.modelServiceMainList.serviceName.toString()),
+        iconTheme: const IconThemeData(color: Colors.white),
+          title: Text(widget.modelServiceMainList.serviceName.toString(),
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
           // backgroundColor: Colors.transparent,
           // leading: IconButton(onPressed: (){Navigator.of(context).pop();}, icon:const Icon(Icons.arrow_back_outlined)),
           flexibleSpace: Container(

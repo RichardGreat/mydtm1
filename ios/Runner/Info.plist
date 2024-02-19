@@ -75,5 +75,11 @@
             <true/>
         <key>NSCameraUsageDescription</key>
         <string>to compare the user with his picture in the system</string>
+         <key>UIBackgroundModes</key>
+            <array>
+                <string>remote-notification</string>
+            </array>
+            <key>NSFaceIDUsageDescription</key>
+            <string>Information in the application only for the benefit of the user himself</string>
 	</dict>
 </plist>

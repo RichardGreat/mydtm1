@@ -125,7 +125,7 @@ class ProviderServicePage extends ChangeNotifier {
                       ),
                     )).show(),
               }
-            else if (box.get("faceId").toString() == "1")
+            else if (box.get("faceId").toString() != "1")
               {
                 if (box.get("imie").toString().length > 12 &&
                     box.get("psnum").toString().length > 4 &&

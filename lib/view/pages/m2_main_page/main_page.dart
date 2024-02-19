@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:mydtm/main.dart';
 import 'package:mydtm/view/pages/check_certificate/check_cert/check_cert.dart';
 import 'package:mydtm/view/pages/check_certificate/check_sertificats.dart';
@@ -147,9 +148,66 @@ class _MainPagesState extends State<MainPages> {
           }
         : {log("bo'sh")};
   }
+  //
+  // Future<void> localAuth(BuildContext context) async {
+  //   final localAuth = LocalAuthentication();
+  //   final didAuthenticate = await localAuth.authenticate(
+  //       localizedReason: 'Please authenticate',
+  //
+  //   );
+  //
+  //   if (didAuthenticate) {
+  //     Navigator.pop(context);
+  //   }
+  // }
+
+  Future<void> authenticate() async {
+    final localAuth = LocalAuthentication();
+
+    try {
+      bool canCheckBiometrics = await localAuth.canCheckBiometrics;
+      List<BiometricType> availableBiometrics = await localAuth.getAvailableBiometrics();
+
+      if (canCheckBiometrics && availableBiometrics.contains(BiometricType.face)) {
+        bool isAuthenticated = await localAuth.authenticate(
+          localizedReason: 'Authenticate with Face ID',
+          options: const AuthenticationOptions(
+            useErrorDialogs: true,
+            stickyAuth: false,
+            sensitiveTransaction: true,
+            biometricOnly: false,
+          ),
+        );
+
+        if (isAuthenticated) {
+          print('User authenticated successfully with Face ID');
+          Navigator.pop(context);
+        } else {
+          print('User could not be authenticated with Face ID');
+        }
+      } else {
+        print('Face ID is not available on this device');
+      }
+    } catch (e) {
+      print('Error during Face ID authentication: $e');
+    }
+  }
+
+  // screenLock(
+  // context: context,
+  // correctString: '1234',
+  // customizedButtonChild: Icon(Icons.fingerprint),
+  // customizedButtonTap: () async => await localAuth(context),
+  // didOpened: () async => await localAuth(context),
+  // );
+
 
   Future screenLock123() async {
     timerM();
+    final LocalAuthentication auth = LocalAuthentication();
+    final bool canAuthenticateWithBiometrics = await auth.canCheckBiometrics;
+    final bool canAuthenticate =
+        canAuthenticateWithBiometrics || await auth.isDeviceSupported();
     await Future.delayed(const Duration(milliseconds: 10)).then((value) {
       if (box.get("langLock").toString().trim() == "1") {
         box.delete("langLock");
@@ -159,6 +217,7 @@ class _MainPagesState extends State<MainPages> {
             ? {
                 screenLock(
                   useBlur: true,
+
                   context: navigatorKey.currentContext!,
                   correctString: box.get("lockScreen").toString(),
                   canCancel: false,
@@ -210,9 +269,15 @@ class _MainPagesState extends State<MainPages> {
                     ],
                   ),
                   title: Text("pinPassword".tr()),
+                  customizedButtonChild: const Icon(
+                    Icons.fingerprint,
+                  ),
+                  customizedButtonTap: () async => await authenticate(),
                   config: const ScreenLockConfig(
                     backgroundColor: Colors.black,
                   ),
+                  // customizedButtonTap: () async => await localAuth(context),
+                  // didOpened: () async => await localAuth(context),
                 ),
                 box.delete("lockHasEnter")
               }

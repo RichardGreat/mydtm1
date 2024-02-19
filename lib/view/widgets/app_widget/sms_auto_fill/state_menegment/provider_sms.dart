@@ -26,6 +26,7 @@ import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms.dart
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_sms_not_match.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/networks/network_sms.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:mydtm/view/widgets/save_hive.dart';
 
 class ProviderSms extends ChangeNotifier {
   final scaffoldKey = GlobalKey();
@@ -133,6 +134,8 @@ class ProviderSms extends ChangeNotifier {
           ModelGetToken.fromJson(jsonDecode(dataToken));
       box.delete("token");
       box.put("token", modelGetToken.data.accessToken);
+      var person = Person()..token= modelGetToken.data.accessToken.toString();
+      box.add(person);
       box.delete("langLock");
       box.put("langLock", "1");
       Navigator.pushAndRemoveUntil(
@@ -408,6 +411,8 @@ class ProviderSms extends ChangeNotifier {
         ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(token));
 
         box.put("token", modelGetToken.data.accessToken);
+        var person = Person()..token= modelGetToken.data.accessToken.toString();
+        box.add(person);
         log(box.get("token"));
         if (box.get("token").toString().length > 30) {
           box.delete("phoneNumber");

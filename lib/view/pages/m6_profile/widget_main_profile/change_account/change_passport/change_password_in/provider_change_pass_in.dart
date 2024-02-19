@@ -10,6 +10,7 @@ import 'package:mydtm/data/internet_connections/m6_profile/change_password.dart'
 import 'package:mydtm/data/model_parse/m6_model/change_password/model_new_get_tokens.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
+import 'package:mydtm/view/widgets/save_hive.dart';
 
 class ProviderChangePasswordInputs extends ChangeNotifier {
   TextEditingController textEditingPass1 = TextEditingController();
@@ -46,6 +47,8 @@ class ProviderChangePasswordInputs extends ChangeNotifier {
       dataAccessNewPassport = modelAccessNewPassport.data;
       box.delete("token");
       box.put("token", dataAccessNewPassport.accessToken);
+      var person = Person()..token= dataAccessNewPassport.accessToken.toString();
+      box.add(person);
       box.delete("phoneNumber");
       box.put("phoneNumber", phoneNumber);
       AwesomeDialog(

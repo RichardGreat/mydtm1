@@ -7,8 +7,13 @@ import 'package:face_camera/face_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mydtm/view/notification/back_service.dart';
+import 'package:mydtm/view/notification/home_page.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
+import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
+import 'package:mydtm/view/pages/m5_xabarlar/one_page_news/one_news.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -27,8 +32,20 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FaceCamera.initialize();
+  HttpOverrides.global = MyHttpOverrides();
+
   await ConnectionNotifierTools.initialize();
+  await Permission.notification.isDenied.then((value) {
+    if (value) {
+      Permission.notification.request();
+    }
+  });
+  await Hive.initFlutter();
+  await Hive.openBox("online");
+  await initializeService();
+  await NotificationService.init();
+  await FaceCamera.initialize();
+
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // WidgetsFlutterBinding.ensureInitialized();
@@ -50,10 +67,8 @@ Future main() async {
   //   statusBarColor: Colors.red, // optional
   // ));
   await EasyLocalization.ensureInitialized();
-  HttpOverrides.global = MyHttpOverrides();
-  await Hive.initFlutter();
-  await Hive.openBox("online");
-  await initialization(null);
+
+  // await initialization(null);
 
   // final config = TalsecConfig(
   //   /// For Android
@@ -188,10 +203,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             box.get("language") == "1" ||
                     box.get("language") == "2" ||
                     box.get("language") == "3"
-                // ?DigoMain()
-         ? MainPages(
-                    homeIdMainpage: "0",
-                  )
+                ?
+            box.get("windowNews").toString() == "1"?MainMessages():
+            MainPages(homeIdMainpage: "0")
                 : const EnterFirst0(),
         // splashTransition: SplashTransition.fadeTransition,
         // pageTransitionType: PageTransitionType.fade,

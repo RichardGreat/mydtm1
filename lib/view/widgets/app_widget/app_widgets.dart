@@ -210,6 +210,7 @@ class MyWidgets {
   }
 
   static List<String> checkTelephoneCompanyCode = [
+    "20",
     "33",
     "50",
     "55",
