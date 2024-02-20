@@ -1,5 +1,6 @@
 import UIKit
 import Flutter
+import flutter_background_service_ios
 
 
 @UIApplicationMain

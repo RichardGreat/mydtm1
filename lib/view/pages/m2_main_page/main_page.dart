@@ -5,9 +5,11 @@ import 'dart:io';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:mydtm/main.dart';
@@ -217,7 +219,6 @@ class _MainPagesState extends State<MainPages> {
             ? {
                 screenLock(
                   useBlur: true,
-
                   context: navigatorKey.currentContext!,
                   correctString: box.get("lockScreen").toString(),
                   canCancel: false,
@@ -269,8 +270,8 @@ class _MainPagesState extends State<MainPages> {
                     ],
                   ),
                   title: Text("pinPassword".tr()),
-                  customizedButtonChild: const Icon(
-                    Icons.fingerprint,
+                  customizedButtonChild:  Icon(
+                    Platform.isIOS? Icons.face_3_rounded:Icons.fingerprint,
                   ),
                   customizedButtonTap: () async => await authenticate(),
                   config: const ScreenLockConfig(

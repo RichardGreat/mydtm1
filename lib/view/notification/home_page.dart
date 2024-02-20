@@ -26,21 +26,19 @@ class NotificationService {
       final box = Hive.box("online");
       if ((await getImie()).toString().length > 10 &&
           ((await getInternetConnection()) == "connected")) {
-
         final wsUrl = Uri.parse("wss://uzbmb.uz/websockets");
         final channel = WebSocketChannel.connect(wsUrl);
         await channel.ready;
         channel.stream.listen(
           (message) {
-            channel.sink
-                .add("{\"action\": \"start\", \"data\": \"${box.get("imie").toString()}\"}");
-            print("^&*()");
-            print(box.get("imie").toString());
-            print(message.toString());
+            channel.sink.add(
+                "{\"action\": \"start\", \"data\": \"${box.get("imie").toString()}\"}");
             if (message.toString().contains("finish")) {
-
             } else {
-              getDataInSocket(message);
+              try {
+                log(message.toString());
+                getDataInSocket(message);
+              } catch (e) {}
             }
           },
         );
@@ -56,7 +54,7 @@ class NotificationService {
   Future getDataInSocket(String data) async {
     try {
       try {
-         var model = ModelSocketMessage.fromJson(jsonDecode(data));
+        var model = ModelSocketMessage.fromJson(jsonDecode(data));
         await showNotification(model.id.toString(), model.title.toString(),
             model.summary.toString());
       } catch (e) {
@@ -84,6 +82,7 @@ class NotificationService {
             requestAlertPermission: true,
             requestBadgePermission: true,
             requestSoundPermission: true,
+
             onDidReceiveLocalNotification: (int id, String? title, String? body,
                 String? payload) async {});
 
@@ -96,8 +95,9 @@ class NotificationService {
 
     await _flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
-      onDidReceiveBackgroundNotificationResponse:notificationTapBackground,
-      onDidReceiveNotificationResponse: (NotificationResponse notificationResponse) async{
+      onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
+      onDidReceiveNotificationResponse:
+          (NotificationResponse notificationResponse) async {
         try {
           navigatorKey.currentState?.push(MaterialPageRoute(
             builder: (context) => MainMessages(),
@@ -125,13 +125,13 @@ class NotificationService {
         } catch (e) {
           log(e.toString());
         }
-        
       },
     );
   }
 
   @pragma('vm:entry-point')
-  static notificationTapBackground(NotificationResponse notificationResponse) async{
+  static notificationTapBackground(
+      NotificationResponse notificationResponse) async {
     try {
       await Hive.initFlutter();
       await Hive.openBox('online');
@@ -159,16 +159,8 @@ class NotificationService {
             subtitle: "ios",
             presentBanner: true));
 
-
-
     await _flutterLocalNotificationsPlugin.show(
-      0,
-      title,
-      body,
-      platformChannelSpecifics
-    );
-
-
+        0, title, body, platformChannelSpecifics);
 
     await Hive.initFlutter();
     await Hive.openBox('online');
@@ -190,8 +182,7 @@ class NotificationService {
           // getDataInSocket(message);
         },
       );
-    } catch (e) {
-    }
+    } catch (e) {}
   }
 
   static Future<void> onSelectNotification(String? payload) async {

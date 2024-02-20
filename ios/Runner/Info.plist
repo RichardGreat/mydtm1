@@ -81,5 +81,9 @@
             </array>
             <key>NSFaceIDUsageDescription</key>
             <string>Information in the application only for the benefit of the user himself</string>
+            <key>BGTaskSchedulerPermittedIdentifiers</key>
+            <array>
+                <string>dev.flutter.background.refresh</string>
+            </array>
 	</dict>
 </plist>
