@@ -21,7 +21,7 @@ Future<void> initializeService() async {
           onBackground: onIosBackground),
 
       androidConfiguration: AndroidConfiguration(
-          onStart: onStart, isForegroundMode: true, autoStart: true));
+          onStart: onStart, isForegroundMode: false, autoStart: true));
 
    await service.startService();
 }
@@ -69,7 +69,7 @@ void onStart(ServiceInstance service) {
 
   // if(service is IOSServiceInstance){
 
-  // webSocket.listenServer();
+  webSocket.checkAction();
   // NotificationService.showNotification('Salom Task', 'This is a background notification.');
 
   // print(timer.tick.toString());

@@ -42,7 +42,7 @@ Future main() async {
   await Hive.initFlutter();
   await Hive.openBox("online");
   await initializeService();
-  // await NotificationService.init();
+  await NotificationService.init();
   await FaceCamera.initialize();
 
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

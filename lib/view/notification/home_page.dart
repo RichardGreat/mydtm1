@@ -12,47 +12,86 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 class NotificationService {
   String dataSocket = "";
+  List<ModelSocketMessage> dataParseList = [];
+
+  Future checkAction() async {
+    await Hive.initFlutter();
+    await Hive.openBox("online");
+    var box = Hive.box("online");
+    box.put("workNot", "1");
+    if (box.get("listenServer").toString() == "null") {
+      box.put("listenServer", "0");
+    }
+
+    Timer.periodic(const Duration(seconds: 5), (timer) async {
+      try {
+
+        log("sobir".toString());
+        log(box.get("listenServer").toString());
+        if ((await getImie()).toString().length > 12 &&
+            ((await getInternetConnection()) == "connected")) {
+
+          if (box.get("listenServer").toString() == "0") {
+
+            if (box.get("workNot").toString() == "0" || box.get("workNot").toString() == "null" ) {
+              listenServer();
+              box.put("workNot", "0");
+            }
+          } else {
+            box.put("listenServer", "1");
+          }
+        }
+      } catch (e) {
+        box.put("listenServer", "1");
+      }
+    });
+  }
 
   Future listenServer() async {
     try {
       await Hive.initFlutter();
       await Hive.openBox("online");
       final box = Hive.box("online");
-      if ((await getImie()).toString().length > 10 &&
-          ((await getInternetConnection()) == "connected")) {
+      try {
         final wsUrl = Uri.parse("wss://uzbmb.uz/websockets");
         final channel = WebSocketChannel.connect(wsUrl);
         await channel.ready;
+        log("listenServer 123457");
 
         channel.stream.listen(
           (message) {
-            // Timer.periodic(const Duration(seconds: 5), (timer) {
+            try {
               channel.sink.add(
                   "{\"action\": \"start\", \"data\": \"${box.get("imie").toString()}\"}");
-            // });
-              try {
-                if (message.toString().contains("finish")) {
-                } else {
-                getDataInSocket(message);}
-              } catch (e) {}
 
+              if (message.toString().contains("finish")) {
+              } else {
+                getDataInSocket(message);
+              }
+            } catch (e) {
+              log(e.toString());
+              box.put("workNot", "1");
+            }
           },
         );
+        box.put("listenServer", "1");
+      } catch (e) {
+        box.put("listenServer", "0");
+        box.put("workNot", "1");
       }
     } catch (e) {
       log("listenServer");
+
       log(e.toString());
     }
   }
-
-  List<ModelSocketMessage> dataParseList = [];
 
   Future getDataInSocket(String data) async {
     try {
       try {
         var model = ModelSocketMessage.fromJson(jsonDecode(data));
-        // await showNotification(model.id.toString(), model.title.toString(),
-        //     model.summary.toString());
+        await showNotification(model.id.toString(), model.title.toString(),
+            model.summary.toString());
       } catch (e) {
         log("hive saqlash");
         log(e.toString());
@@ -78,7 +117,6 @@ class NotificationService {
             requestAlertPermission: true,
             requestBadgePermission: true,
             requestSoundPermission: true,
-
             onDidReceiveLocalNotification: (int id, String? title, String? body,
                 String? payload) async {});
     final InitializationSettings initializationSettings =
@@ -168,12 +206,6 @@ class NotificationService {
         (message) {
           channel.sink.add(
               "{\"action\": \"stop\", \"data\": \"${(box.get("imie")).toString()}\", \"id\":\"$id\" }");
-          print("###");
-          print(message.toString());
-          // log(("{\"action\": \"start\", \"data\": \"${(box.get("imie")).toString()}\"}"));
-          // print(box.getAt(0));
-          // print("### 0");
-          // getDataInSocket(message);
         },
       );
     } catch (e) {}
