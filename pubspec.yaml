@@ -1,96 +1,63 @@
 name: mydtm
 description: A new Flutter project.
-
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-#version: 4.5.7+16www
-version: 4.5.14+24
+version: 4.5.15+25
 
 environment:
-  sdk: ">=2.18.5 <3.0.0"
+  sdk: '>=3.2.4 <4.0.0'
 
 dependencies:
-#  freerasp: 6.0.0
-
   flutter:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
-  easy_localization: ^3.0.3
+  easy_localization: ^3.0.4
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  provider: ^6.0.5
+  provider: ^6.1.1
   connection_notifier: ^2.0.1
-#  connectivity_plus: ^5.0.2
-  ac_connectivity: ^0.1.2
-#  persistent_bottom_nav_bar_v2: ^4.2.8
-  dio: ^5.3.4
+  dio: ^5.4.1
   flutter_pw_validator: ^1.6.0
-  image_cropper: ^3.0.2
-  share_plus: ^7.2.1
-  image_picker: ^0.8.7+3
-  awesome_dialog: ^3.1.0
+  #  image_cropper: ^5.0.1
+  share_plus: ^7.2.2
+  image_picker: ^1.0.7
+  awesome_dialog: ^3.2.0
   carousel_slider: ^4.2.1
-  flutter_widget_from_html_core: ^0.10.3
-  font_awesome_flutter: ^10.6.0
-  animated_bottom_navigation_bar: ^1.3.0
-  face_camera: ^0.0.8
-#  curved_labeled_navigation_bar: ^2.0.2
-#  curved_navigation_bar: ^1.0.3
-
-  rive: ^0.11.4
-#  file_saver: ^0.2.6
-# timer package
+  flutter_widget_from_html_core: ^0.14.11
+  font_awesome_flutter: ^10.7.0
+  animated_bottom_navigation_bar: ^1.3.3
+  face_camera: ^0.0.9
+  rive: ^0.12.4
   ntp: ^2.0.0
   date_count_down: ^3.0.0
-#  easy_pdf_viewer: ^1.0.6
-#  permission_handler: ^10.4.2
-#  pdf_viewer_plugin: ^2.0.1
-#  pdf: ^3.10.4
   flutter_cached_pdfview: ^0.4.2
-#  easy_pdf_viewer: ^1.0.7
-  cached_network_image: ^3.3.0
-  url_launcher: ^6.2.1
+  cached_network_image: ^3.3.1
+  url_launcher: ^6.2.5
   flutter_screen_lock: ^9.0.2
-  path_provider: ^2.1.1
-  flutter_animate: ^4.3.0
+  path_provider: ^2.1.2
+  flutter_animate: ^4.5.0
   showcaseview: ^2.0.3
-  webview_flutter: ^4.4.2
-  webview_flutter_wkwebview: ^3.9.4
+  webview_flutter: ^4.7.0
+  webview_flutter_wkwebview: ^3.12.0
   animated_splash_screen: ^1.3.0
   page_transition: ^2.1.0
-  flutter_shake_animated: ^0.0.5
+  #  flutter_shake_animated: ^0.0.5
   qr_flutter: ^4.1.0
   page_animation_transition: ^1.0.0
-
-#  flutter_local_notifications: ^15.1.1
-#  stylish_bottom_bar: ^1.0.3
-
-#  freerasp: ^6.0.0
-#  flutter_cached_pdfview: ^0.4.1
-#  flutter_downloader: ^1.10.2
-#  open_file: ^3.3.2
-#  otp_autofill: ^2.1.0
-#  local_auth: ^2.1.6
-#  get_it: ^7.2.0
-#  image_gallery_saver: ^1.7.1
-#  permission_handler: ^10.2.0
-#  flutter_svg: ^2.0.5
   flutter_background_service: ^5.0.5
   flutter_background_service_ios: ^5.0.0
   flutter_background_service_android: ^6.2.2
-  permission_handler: ^11.2.0
+  permission_handler: ^11.3.0
   flutter_local_notifications: ^16.3.2
-  web_socket_channel: ^2.4.0
-#  internet_connection_checker_plus: ^2.2.0
+  web_socket_channel: ^2.4.4
+  #  internet_connection_checker_plus: ^2.2.0
   flutter_app_badger: ^1.5.0
-  local_auth: ^2.1.8
+  local_auth: ^2.2.0
+
 
 
 dev_dependencies:
-
   flutter_test:
     sdk: flutter
 
@@ -115,32 +82,3 @@ flutter:
    - family: Roboto-Medium
      fonts:
        - asset: assets/fonts/Inter-Medium.ttf
-
-
-  #   - images/a_dot_ham.jpeg
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages

@@ -9,7 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:mydtm/main.dart';
@@ -82,14 +81,8 @@ class _MainPagesState extends State<MainPages> {
       30,
       31
     ];
-    // box.put("faceIdDateMonth", "11");
-    // box.put("faceIdDateDay", "27");
-    // box.put("faceId", "1");
-    // log("faceIdDateMonth :: ${box.get("faceIdDateMonth")}");
-    // log("faceIdDateDay :: ${box.get("faceIdDateDay")}");
     int month = int.parse(box.get("faceIdDateMonth") ?? "12".toString());
     int day = int.parse(box.get("faceIdDateDay") ?? "1".toString());
-
 
     box.get("faceId").toString() == "1"
         ? {
@@ -150,27 +143,18 @@ class _MainPagesState extends State<MainPages> {
           }
         : {log("bo'sh")};
   }
-  //
-  // Future<void> localAuth(BuildContext context) async {
-  //   final localAuth = LocalAuthentication();
-  //   final didAuthenticate = await localAuth.authenticate(
-  //       localizedReason: 'Please authenticate',
-  //
-  //   );
-  //
-  //   if (didAuthenticate) {
-  //     Navigator.pop(context);
-  //   }
-  // }
+
 
   Future<void> authenticate() async {
     final localAuth = LocalAuthentication();
 
     try {
       bool canCheckBiometrics = await localAuth.canCheckBiometrics;
-      List<BiometricType> availableBiometrics = await localAuth.getAvailableBiometrics();
+      List<BiometricType> availableBiometrics =
+          await localAuth.getAvailableBiometrics();
 
-      if (canCheckBiometrics && availableBiometrics.contains(BiometricType.face)) {
+      if (canCheckBiometrics &&
+          availableBiometrics.contains(BiometricType.face)) {
         bool isAuthenticated = await localAuth.authenticate(
           localizedReason: 'Authenticate with Face ID',
           options: const AuthenticationOptions(
@@ -202,7 +186,6 @@ class _MainPagesState extends State<MainPages> {
   // customizedButtonTap: () async => await localAuth(context),
   // didOpened: () async => await localAuth(context),
   // );
-
 
   Future screenLock123() async {
     timerM();
@@ -265,20 +248,48 @@ class _MainPagesState extends State<MainPages> {
                               btnCancelText: "no".tr(),
                             ).show();
                           },
-                          child: Text("exet".tr())),
+                          child: Text("exet".tr(), style: const TextStyle(fontWeight: FontWeight.bold),)),
                       const SizedBox(width: 20),
                     ],
                   ),
-                  title: Text("pinPassword".tr()),
-                  customizedButtonChild:  Icon(
-                    Platform.isIOS? Icons.face_3_rounded:Icons.fingerprint,
+                  title: Text(
+                    "pinPassword".tr(),
+                    style: const TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),
+                  ),
+                  customizedButtonChild: Icon(
+                    Platform.isIOS ? Icons.face : Icons.fingerprint,
+                    color: Colors.black,
                   ),
                   customizedButtonTap: () async => await authenticate(),
-                  config: const ScreenLockConfig(
-                    backgroundColor: Colors.black,
+                  deleteButton: const Center(
+                    child:Icon(
+                      CupertinoIcons.delete_left,
+                      color: Colors.black,
+                    )
                   ),
-                  // customizedButtonTap: () async => await localAuth(context),
-                  // didOpened: () async => await localAuth(context),
+                  config: const ScreenLockConfig(
+                    backgroundColor: Colors.white,
+                    textStyle: TextStyle(color: Colors.black),
+                  ),
+                  secretsConfig: const SecretsConfig(
+                    secretConfig: SecretConfig(
+                        borderColor: Colors.black, enabledColor: Colors.black),
+                  ),
+                  keyPadConfig: KeyPadConfig(
+                    buttonConfig: KeyPadButtonConfig(
+                      buttonStyle: OutlinedButton.styleFrom(
+                        shape: const CircleBorder(),
+                        backgroundColor: Colors.white,
+                        textStyle: const TextStyle(color: Colors.black),
+                      ),
+
+                      foregroundColor: Colors.black,
+                      // backgroundColor: Colors.yellow
+                    ),
+
+                    // customizedButtonTap: () async => await localAuth(context),
+                    // didOpened: () async => await localAuth(context),
+                  ),
                 ),
                 box.delete("lockHasEnter")
               }
@@ -310,7 +321,6 @@ class _MainPagesState extends State<MainPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor:
             Color.lerp(Colors.teal.withOpacity(0.9), Colors.teal, 1),

@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:image_cropper/image_cropper.dart';
+// import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mydtm/view/pages/person_info/certificate/provider_certificate.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -101,84 +101,84 @@ class _ChooseImagesAvatarState extends State<ChooseImagesAvatar> {
     imageFile = pickedImage != null ? File(pickedImage.path) : null;
     if (imageFile != null) {
       setState(() {
-        _cropImage();
+        // _cropImage();
       });
     }
   }
 
-  Future<void> _cropImage() async {
-    ImageCropper cropper = ImageCropper();
-    final croppedFile = await cropper.cropImage(
-        sourcePath: imageFile!.path,
-        aspectRatioPresets: Platform.isAndroid
-            ? [
-          CropAspectRatioPreset.square,
-          CropAspectRatioPreset.ratio3x2,
-          CropAspectRatioPreset.original,
-          CropAspectRatioPreset.ratio4x3,
-          CropAspectRatioPreset.ratio16x9
-        ]
-            : [
-          CropAspectRatioPreset.original,
-          CropAspectRatioPreset.square,
-          CropAspectRatioPreset.ratio3x2,
-          CropAspectRatioPreset.ratio4x3,
-          CropAspectRatioPreset.ratio5x3,
-          CropAspectRatioPreset.ratio5x4,
-          CropAspectRatioPreset.ratio7x5,
-          CropAspectRatioPreset.ratio16x9
-        ],
-        uiSettings: [ AndroidUiSettings(
-            toolbarTitle: 'Rasm tahrirlash',
-            activeControlsWidgetColor: MyColors.appColorBackC4(),
-            toolbarColor: MyColors.appColorBackC4(),
-            toolbarWidgetColor: Colors.white,
-            initAspectRatio: CropAspectRatioPreset.original,
-            lockAspectRatio: false),
-          IOSUiSettings(
-            title: 'Rasm tahrirlash',
-          )
-        ]
-    );
-    if (croppedFile != null) {
-      imageFile = File(croppedFile.path);
-      nameImg = imageFile!.path;
-      nameImg = imageFile!.path.split('image_cropper_').last;
-      fileTypeName = imageFile!.path.split('.').last;
-      final bytess = imageFile!.readAsBytesSync();
-      img64 = base64Encode(bytess);
-
-      final bytes = imageFile!.readAsBytesSync().lengthInBytes;
-      final kb = bytes / 1024;
-      final mb = kb / 1024;
-
-      setState(() {
-      });
-      // final bytes = imageFile!.readAsBytesSync().lengthInBytes;
-      // final kb = bytes / 1024;
-      // final mb = kb / 1024;
-      if (mb <= 8) {
-        widget.providerCertificate
-            .changeImage(imageData: img64, fileTypeName: fileTypeName!, file: bytess);
-        Navigator.pop(context);
-      } else {
-        AwesomeDialog(
-          context: context,
-          dialogType: DialogType.info,
-          animType: AnimType.topSlide,
-          title:
-          "${"imageMaxSize".tr()}" "${mb.toString().substring(0, 4)}",
-          closeIcon: const Icon(Icons.build),
-          btnOkColor: Colors.blueAccent,
-          btnOkOnPress: () {
-            // boolButtonChetTil = false;
-            // booleanSeriyaChetTiliTrue = false;
-            // _pickImage(widget.imageSource);
-            // notifyListeners();
-          },
-        ).show();
-        // notifyListeners();
-      }
-    }
-  }
+  // Future<void> _cropImage() async {
+  //   ImageCropper cropper = ImageCropper();
+  //   final croppedFile = await cropper.cropImage(
+  //       sourcePath: imageFile!.path,
+  //       aspectRatioPresets: Platform.isAndroid
+  //           ? [
+  //         CropAspectRatioPreset.square,
+  //         CropAspectRatioPreset.ratio3x2,
+  //         CropAspectRatioPreset.original,
+  //         CropAspectRatioPreset.ratio4x3,
+  //         CropAspectRatioPreset.ratio16x9
+  //       ]
+  //           : [
+  //         CropAspectRatioPreset.original,
+  //         CropAspectRatioPreset.square,
+  //         CropAspectRatioPreset.ratio3x2,
+  //         CropAspectRatioPreset.ratio4x3,
+  //         CropAspectRatioPreset.ratio5x3,
+  //         CropAspectRatioPreset.ratio5x4,
+  //         CropAspectRatioPreset.ratio7x5,
+  //         CropAspectRatioPreset.ratio16x9
+  //       ],
+  //       uiSettings: [ AndroidUiSettings(
+  //           toolbarTitle: 'Rasm tahrirlash',
+  //           activeControlsWidgetColor: MyColors.appColorBackC4(),
+  //           toolbarColor: MyColors.appColorBackC4(),
+  //           toolbarWidgetColor: Colors.white,
+  //           initAspectRatio: CropAspectRatioPreset.original,
+  //           lockAspectRatio: false),
+  //         IOSUiSettings(
+  //           title: 'Rasm tahrirlash',
+  //         )
+  //       ]
+  //   );
+  //   if (croppedFile != null) {
+  //     imageFile = File(croppedFile.path);
+  //     nameImg = imageFile!.path;
+  //     nameImg = imageFile!.path.split('image_cropper_').last;
+  //     fileTypeName = imageFile!.path.split('.').last;
+  //     final bytess = imageFile!.readAsBytesSync();
+  //     img64 = base64Encode(bytess);
+  //
+  //     final bytes = imageFile!.readAsBytesSync().lengthInBytes;
+  //     final kb = bytes / 1024;
+  //     final mb = kb / 1024;
+  //
+  //     setState(() {
+  //     });
+  //     // final bytes = imageFile!.readAsBytesSync().lengthInBytes;
+  //     // final kb = bytes / 1024;
+  //     // final mb = kb / 1024;
+  //     if (mb <= 8) {
+  //       widget.providerCertificate
+  //           .changeImage(imageData: img64, fileTypeName: fileTypeName!, file: bytess);
+  //       Navigator.pop(context);
+  //     } else {
+  //       AwesomeDialog(
+  //         context: context,
+  //         dialogType: DialogType.info,
+  //         animType: AnimType.topSlide,
+  //         title:
+  //         "${"imageMaxSize".tr()}" "${mb.toString().substring(0, 4)}",
+  //         closeIcon: const Icon(Icons.build),
+  //         btnOkColor: Colors.blueAccent,
+  //         btnOkOnPress: () {
+  //           // boolButtonChetTil = false;
+  //           // booleanSeriyaChetTiliTrue = false;
+  //           // _pickImage(widget.imageSource);
+  //           // notifyListeners();
+  //         },
+  //       ).show();
+  //       // notifyListeners();
+  //     }
+  //   }
+  // }
 }

@@ -12,7 +12,6 @@ import 'package:mydtm/view/notification/home_page.dart';
 import 'package:mydtm/view/pages/m0_enter_page/first_enter_page.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
-import 'package:mydtm/view/pages/m5_xabarlar/one_page_news/one_news.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -43,7 +42,7 @@ Future main() async {
   await Hive.initFlutter();
   await Hive.openBox("online");
   await initializeService();
-  await NotificationService.init();
+  // await NotificationService.init();
   await FaceCamera.initialize();
 
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:image_cropper/image_cropper.dart';
+// import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mydtm/view/perevod/pages/old_edu/provider_old_edu.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -136,7 +136,7 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
     imageFile = pickedImage != null ? File(pickedImage.path) : null;
     if (imageFile != null) {
       setState(() {
-        _cropImage();
+        // _cropImage();
       });
     }
   }
@@ -144,104 +144,104 @@ class _ChooseImagesPerevodState extends State<ChooseImagesPerevod> {
   num mb = 0;
   num mbSize = 0;
 
-  Future<void> _cropImage() async {
-    ImageCropper cropper = ImageCropper();
-    final croppedFile = await cropper.cropImage(
-        sourcePath: imageFile!.path,
-        aspectRatioPresets: Platform.isAndroid
-            ? [
-                CropAspectRatioPreset.square,
-                CropAspectRatioPreset.ratio3x2,
-                CropAspectRatioPreset.original,
-                CropAspectRatioPreset.ratio4x3,
-                CropAspectRatioPreset.ratio16x9
-              ]
-            : [
-                CropAspectRatioPreset.original,
-                CropAspectRatioPreset.square,
-                CropAspectRatioPreset.ratio3x2,
-                CropAspectRatioPreset.ratio4x3,
-                CropAspectRatioPreset.ratio5x3,
-                CropAspectRatioPreset.ratio5x4,
-                CropAspectRatioPreset.ratio7x5,
-                CropAspectRatioPreset.ratio16x9
-              ],
-        uiSettings: [
-          AndroidUiSettings(
-              toolbarTitle: "editImage".tr(),
-              activeControlsWidgetColor: MyColors.appColorBlue1(),
-              toolbarColor: MyColors.appColorBlue1(),
-              toolbarWidgetColor: Colors.white,
-              initAspectRatio: CropAspectRatioPreset.original,
-              lockAspectRatio: false),
-          IOSUiSettings(
-            title: "editImage".tr(),
-          )
-        ]);
-    if (croppedFile != null) {
-      imageFile = File(croppedFile.path);
-      nameImg = imageFile!.path;
-      nameImg = imageFile!.path.split('image_cropper_').last;
-      fileTypeName = imageFile!.path.split('.').last;
-      final bytess = imageFile!.readAsBytesSync();
-      img64 = base64Encode(bytess);
-      final bytes = imageFile!.readAsBytesSync().lengthInBytes;
-      final kb = bytes / 1024;
-      mb = kb / 1024;
-
-      widget.providerOldEdu
-          .getImageString(imageString: img64.toString().trim());
-      widget.providerOldEdu.getImageFile(file: imageFile!);
-
-      widget.providerOldEdu.getImageForPdf(
-        image: Image.memory(
-          base64Decode(img64.toString().trim()),
-          fit: BoxFit.cover,
-          height: 90,
-        ),
-      );
-      widget.providerOldEdu.mbSizeZero = 0;
-      for (var val in widget.providerOldEdu.listFiles) {
-        final bytesSize = val.readAsBytesSync().lengthInBytes;
-        final kbSize = bytesSize / 1024;
-        mbSize = kbSize / 1024;
-        widget.providerOldEdu.mbSizeZero += mbSize;
-        if (widget.providerOldEdu.mbSizeZero > 7.8) {
-          AwesomeDialog(
-            context: context,
-            dialogType: DialogType.info,
-            animType: AnimType.topSlide,
-            title: "${"imageMaxSize".tr()}" "${mb.toString().substring(0, 4)}",
-            closeIcon: const Icon(Icons.build),
-            btnOkColor: Colors.blueAccent,
-            btnOkOnPress: () {
-              // boolButtonChetTil = false;
-              // booleanSeriyaChetTiliTrue = false;
-              // _pickImage(widget.imageSource);
-              // notifyListeners();
-            },
-          ).show();
-        }
-        widget.function();
-      }
-    } else {
-      AwesomeDialog(
-        context: context,
-        dialogType: DialogType.info,
-        animType: AnimType.topSlide,
-        title: "${"imageMaxSize".tr()}" "${mb.toString().substring(0, 4)}",
-        closeIcon: const Icon(Icons.build),
-        btnOkColor: Colors.blueAccent,
-        btnOkOnPress: () {
-          // boolButtonChetTil = false;
-          // booleanSeriyaChetTiliTrue = false;
-          // _pickImage(widget.imageSource);
-          // notifyListeners();
-        },
-      ).show();
-      widget.function();
-      // notifyListeners();
-      // }
-    }
-  }
+  // Future<void> _cropImage() async {
+  //   ImageCropper cropper = ImageCropper();
+  //   final croppedFile = await cropper.cropImage(
+  //       sourcePath: imageFile!.path,
+  //       aspectRatioPresets: Platform.isAndroid
+  //           ? [
+  //               CropAspectRatioPreset.square,
+  //               CropAspectRatioPreset.ratio3x2,
+  //               CropAspectRatioPreset.original,
+  //               CropAspectRatioPreset.ratio4x3,
+  //               CropAspectRatioPreset.ratio16x9
+  //             ]
+  //           : [
+  //               CropAspectRatioPreset.original,
+  //               CropAspectRatioPreset.square,
+  //               CropAspectRatioPreset.ratio3x2,
+  //               CropAspectRatioPreset.ratio4x3,
+  //               CropAspectRatioPreset.ratio5x3,
+  //               CropAspectRatioPreset.ratio5x4,
+  //               CropAspectRatioPreset.ratio7x5,
+  //               CropAspectRatioPreset.ratio16x9
+  //             ],
+  //       uiSettings: [
+  //         AndroidUiSettings(
+  //             toolbarTitle: "editImage".tr(),
+  //             activeControlsWidgetColor: MyColors.appColorBlue1(),
+  //             toolbarColor: MyColors.appColorBlue1(),
+  //             toolbarWidgetColor: Colors.white,
+  //             initAspectRatio: CropAspectRatioPreset.original,
+  //             lockAspectRatio: false),
+  //         IOSUiSettings(
+  //           title: "editImage".tr(),
+  //         )
+  //       ]);
+  //   if (croppedFile != null) {
+  //     imageFile = File(croppedFile.path);
+  //     nameImg = imageFile!.path;
+  //     nameImg = imageFile!.path.split('image_cropper_').last;
+  //     fileTypeName = imageFile!.path.split('.').last;
+  //     final bytess = imageFile!.readAsBytesSync();
+  //     img64 = base64Encode(bytess);
+  //     final bytes = imageFile!.readAsBytesSync().lengthInBytes;
+  //     final kb = bytes / 1024;
+  //     mb = kb / 1024;
+  //
+  //     widget.providerOldEdu
+  //         .getImageString(imageString: img64.toString().trim());
+  //     widget.providerOldEdu.getImageFile(file: imageFile!);
+  //
+  //     widget.providerOldEdu.getImageForPdf(
+  //       image: Image.memory(
+  //         base64Decode(img64.toString().trim()),
+  //         fit: BoxFit.cover,
+  //         height: 90,
+  //       ),
+  //     );
+  //     widget.providerOldEdu.mbSizeZero = 0;
+  //     for (var val in widget.providerOldEdu.listFiles) {
+  //       final bytesSize = val.readAsBytesSync().lengthInBytes;
+  //       final kbSize = bytesSize / 1024;
+  //       mbSize = kbSize / 1024;
+  //       widget.providerOldEdu.mbSizeZero += mbSize;
+  //       if (widget.providerOldEdu.mbSizeZero > 7.8) {
+  //         AwesomeDialog(
+  //           context: context,
+  //           dialogType: DialogType.info,
+  //           animType: AnimType.topSlide,
+  //           title: "${"imageMaxSize".tr()}" "${mb.toString().substring(0, 4)}",
+  //           closeIcon: const Icon(Icons.build),
+  //           btnOkColor: Colors.blueAccent,
+  //           btnOkOnPress: () {
+  //             // boolButtonChetTil = false;
+  //             // booleanSeriyaChetTiliTrue = false;
+  //             // _pickImage(widget.imageSource);
+  //             // notifyListeners();
+  //           },
+  //         ).show();
+  //       }
+  //       widget.function();
+  //     }
+  //   } else {
+  //     AwesomeDialog(
+  //       context: context,
+  //       dialogType: DialogType.info,
+  //       animType: AnimType.topSlide,
+  //       title: "${"imageMaxSize".tr()}" "${mb.toString().substring(0, 4)}",
+  //       closeIcon: const Icon(Icons.build),
+  //       btnOkColor: Colors.blueAccent,
+  //       btnOkOnPress: () {
+  //         // boolButtonChetTil = false;
+  //         // booleanSeriyaChetTiliTrue = false;
+  //         // _pickImage(widget.imageSource);
+  //         // notifyListeners();
+  //       },
+  //     ).show();
+  //     widget.function();
+  //     // notifyListeners();
+  //     // }
+  //   }
+  // }
 }

@@ -14,13 +14,7 @@ class NotificationService {
   String dataSocket = "";
 
   Future listenServer() async {
-    await Hive.initFlutter();
-    await Hive.openBox("online");
-
     try {
-      // print("print");
-      // print(await getImie());
-      // print(await getInternetConnection());
       await Hive.initFlutter();
       await Hive.openBox("online");
       final box = Hive.box("online");
@@ -29,17 +23,19 @@ class NotificationService {
         final wsUrl = Uri.parse("wss://uzbmb.uz/websockets");
         final channel = WebSocketChannel.connect(wsUrl);
         await channel.ready;
+
         channel.stream.listen(
           (message) {
-            channel.sink.add(
-                "{\"action\": \"start\", \"data\": \"${box.get("imie").toString()}\"}");
-            if (message.toString().contains("finish")) {
-            } else {
+            // Timer.periodic(const Duration(seconds: 5), (timer) {
+              channel.sink.add(
+                  "{\"action\": \"start\", \"data\": \"${box.get("imie").toString()}\"}");
+            // });
               try {
-                log(message.toString());
-                getDataInSocket(message);
+                if (message.toString().contains("finish")) {
+                } else {
+                getDataInSocket(message);}
               } catch (e) {}
-            }
+
           },
         );
       }
@@ -55,8 +51,8 @@ class NotificationService {
     try {
       try {
         var model = ModelSocketMessage.fromJson(jsonDecode(data));
-        await showNotification(model.id.toString(), model.title.toString(),
-            model.summary.toString());
+        // await showNotification(model.id.toString(), model.title.toString(),
+        //     model.summary.toString());
       } catch (e) {
         log("hive saqlash");
         log(e.toString());
@@ -75,7 +71,7 @@ class NotificationService {
 
   static Future<void> init() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('app123');
+        AndroidInitializationSettings('app_icon');
 
     final DarwinInitializationSettings initializationSettingsDarwin =
         DarwinInitializationSettings(
@@ -85,8 +81,6 @@ class NotificationService {
 
             onDidReceiveLocalNotification: (int id, String? title, String? body,
                 String? payload) async {});
-
-    //
     final InitializationSettings initializationSettings =
         InitializationSettings(
       android: initializationSettingsAndroid,
@@ -95,7 +89,7 @@ class NotificationService {
 
     await _flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
-      onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
+      // onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
       onDidReceiveNotificationResponse:
           (NotificationResponse notificationResponse) async {
         try {
@@ -147,7 +141,7 @@ class NotificationService {
         AndroidNotificationDetails(
       '100',
       'BMBA',
-      importance: Importance.max,
+      importance: Importance.high,
       priority: Priority.high,
     );
 
@@ -174,8 +168,8 @@ class NotificationService {
         (message) {
           channel.sink.add(
               "{\"action\": \"stop\", \"data\": \"${(box.get("imie")).toString()}\", \"id\":\"$id\" }");
-          // print("###");
-          // print(message.toString());
+          print("###");
+          print(message.toString());
           // log(("{\"action\": \"start\", \"data\": \"${(box.get("imie")).toString()}\"}"));
           // print(box.getAt(0));
           // print("### 0");
