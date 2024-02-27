@@ -54,6 +54,10 @@ class _MainMessagesState extends State<MainMessages> {
       listModelSocket = (jsonDecode(box2.get("bildirishnoma")) as List)
           .map((e) => ModelSocketMessage.fromJson(e))
           .toList();
+
+      listModelSocket.sort((a,b) {
+        return b.sendDate.compareTo(a.sendDate);
+      });
     } catch (e) {
       log("eeee");
       log(e.toString());
@@ -393,41 +397,16 @@ class _MainMessagesState extends State<MainMessages> {
                                               ),
                                             ],
                                           ),
-                                          Row(
-                                            children: [
-                                              SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.9,
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10,
-                                                          right: 10,
-                                                          top: 5,
-                                                          bottom: 15),
-                                                  child: Text(
-                                                    listModelSocket[index]
-                                                        .title
-                                                        .toString(),
-                                                    textAlign:
-                                                        TextAlign.justify,
-                                                    maxLines: 3,
-                                                    style: const TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 16),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+
                                           SizedBox(
-                                            width: MediaQuery.of(context).size.width*0.9,
+                                            width: MediaQuery.of(context).size.width*0.95,
                                             child: ExpansionTile(
-                                              title: Text(""),
-                                              children:[ Text("In flutter, how do we create a text widget, which will show just one line of a text , but it will expand to show all the contents of the text when clicked? In flutter, how do we create a text widget, which will show just one line of a text , but it will expand to show all the contents of the text when clicked? In flutter, how do we create a text widget, which will show just one line of a text , but it will expand to show all the contents of the text when clicked?"),]
+                                                shape: Border.all(color: Colors.transparent),
+                                              title: Text(listModelSocket[index].title, style: const TextStyle(fontWeight: FontWeight.bold),),
+                                              children:[ Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Text(listModelSocket[index].summary),
+                                              ),]
 
                                             ),
                                           ),
