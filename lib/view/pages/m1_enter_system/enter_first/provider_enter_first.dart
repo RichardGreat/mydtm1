@@ -129,8 +129,8 @@ class ProviderEnterFirst extends ChangeNotifier {
       ModelGetToken modelGetToken = ModelGetToken.fromJson(jsonDecode(token));
 
       box.put("token", modelGetToken.data.accessToken);
-      var person = Person()..token= modelGetToken.data.accessToken.toString();
-      box.add(person);
+      // var person = Person().token = modelGetToken.data.accessToken.toString();
+      // box.add(person);
       log(box.get("token"));
       if (box.get("token").toString().length > 30) {
         box.delete("phoneNumber");

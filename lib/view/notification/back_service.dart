@@ -22,7 +22,6 @@ Future<void> initializeService() async {
 
       androidConfiguration: AndroidConfiguration(
           onStart: onStart, isForegroundMode: false, autoStart: true));
-
    await service.startService();
 }
 
@@ -35,7 +34,7 @@ void onStart(ServiceInstance service) {
       service.setAsBackgroundService();
     });
 
-    service.on('setAsBackground').listen((event) {
+    service.on("setAsBackground").listen((event) {
       service.setAsBackgroundService();
     });
   }
@@ -81,6 +80,5 @@ void onStart(ServiceInstance service) {
 Future<bool> onIosBackground(ServiceInstance service) async {
   WidgetsFlutterBinding.ensureInitialized();
   DartPluginRegistrant.ensureInitialized();
-
   return true;
 }

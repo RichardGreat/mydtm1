@@ -173,7 +173,7 @@ class _BookQuestionsState extends State<BookQuestions>
                                           padding:
                                               const EdgeInsets.only(top: 5),
                                           child: CachedNetworkImage(
-                                              width: 80,
+                                              width: 60,
                                               height: 80,
                                               fit: BoxFit.cover,
                                               imageUrl: _controllerBookQuestion
@@ -190,7 +190,7 @@ class _BookQuestionsState extends State<BookQuestions>
                                       : const Icon(Icons.add,
                                           size: 40, color: Colors.teal),
                                   const SizedBox(
-                                    height: 10,
+                                    height: 4,
                                   ),
                                   SizedBox(
                                     child: Text(

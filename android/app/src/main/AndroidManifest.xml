@@ -26,7 +26,6 @@
         android:allowBackup="false"
         android:launchMode="singleTop"
         android:requestLegacyExternalStorage="true"
-        android:fullBackupOnly="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:usesCleartextTraffic="true">
         <activity android:name="com.android.camera.CropImage"/>

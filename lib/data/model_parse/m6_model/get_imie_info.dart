@@ -17,20 +17,21 @@ class ModelGetImieInfo {
     "data": data.toJson(),
   };
 }
+// {"status":1,"data":{"id":2318740,"psser":"AD","psnum":"4649342","imie":31009955310031,"lname":"TOJIYEV","fname":"SOBIR","mname":"BAHODIR O‘G‘LI","bdate":"1995-09-10","sex":true,"nation_id":1,"image"
 
 class DataGetImieInfo {
   DataGetImieInfo({
-  required this.id,
-  required this.psser,
-  required this.psnum,
-  required this.imie,
-  required this.lname,
-  required this.fname,
-  required this.mname,
-  required this.bdate,
-  required this.sex,
-  required this.nationId,
-  required this.image,
+   this.id,
+   this.psser,
+   this.psnum,
+   this.imie,
+   this.lname,
+   this.fname,
+   this.mname,
+   this.bdate,
+   this.sex,
+   this.nationId,
+   this.image,
   });
 
   dynamic id;
@@ -53,7 +54,7 @@ class DataGetImieInfo {
     lname: json["lname"],
     fname: json["fname"],
     mname: json["mname"],
-    bdate: DateTime.parse(json["bdate"]),
+    bdate: json["bdate"],
     sex: json["sex"],
     nationId: json["nation_id"],
     image: json["image"],
@@ -67,7 +68,7 @@ class DataGetImieInfo {
     "lname": lname,
     "fname": fname,
     "mname": mname,
-    "bdate": "${bdate.year.toString().padLeft(4, '0')}-${bdate.month.toString().padLeft(2, '0')}-${bdate.day.toString().padLeft(2, '0')}",
+    "bdate": bdate,
     "sex": sex,
     "nation_id": nationId,
     "image": image,

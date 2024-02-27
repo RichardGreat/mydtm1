@@ -23,83 +23,26 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
-Future initialization(BuildContext? context) async {
-  await Future.delayed(const Duration(milliseconds: 1900));
-}
+
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-
-  await ConnectionNotifierTools.initialize();
   await Permission.notification.isDenied.then((value) {
     if (value) {
       Permission.notification.request();
     }
   });
-  await Hive.initFlutter();
-  await Hive.openBox("online");
+  await ConnectionNotifierTools.initialize();
   await initializeService();
   await NotificationService.init();
   await FaceCamera.initialize();
-
-  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  // WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.remove();
-  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-  //     systemNavigationBarColor: Colors.blue, // navigation bar color
-  //     statusBarColor: Colors.pink, // status bar color
-  //   ));
-  //
-  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-  //   statusBarColor: Colors.teal,
-  //   // statusBarBrightness: Brightness.light
-  // ));
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-  //   systemNavigationBarColor: Colors.red,
-  //
-  //   statusBarColor: Colors.red, // optional
-  // ));
   await EasyLocalization.ensureInitialized();
-
-  // await initialization(null);
-
-  // final config = TalsecConfig(
-  //   /// For Android
-  //   androidConfig: AndroidConfig(
-  //     packageName: 'www.uzbmba.uz',
-  //     signingCertHashes: [
-  //       'bNSrT49K4aceo7I8iMlohhDtRS0e7kcGeMiH4jSKYaE='
-  //     ],
-  //     supportedStores: ['some.other.store'],
-  //   ),
-  //   watcherMail: 'tojiyev.s.b@gmail.com',
-  //   isProd: true,
-  // );
-  // final callback = ThreatCallback(
-  //     onAppIntegrity: () => print("App integrity"),
-  //     onObfuscationIssues: () => print("Obfuscation issues"),
-  //     onDebug: () => print("Debugging"),
-  //     onDeviceBinding: () => print("Device binding"),
-  //     onDeviceID: () => print("Device ID"),
-  //     onHooks: () => print("Hooks"),
-  //     onPasscode: () => print("Passcode not set"),
-  //     onPrivilegedAccess: () => print("Privileged access"),
-  //     onSecureHardwareNotAvailable: () => print("Secure hardware not available"),
-  //     onSimulator: () => print("Simulator"),
-  //     onUnofficialStore: () => print("Unofficial store")
-  // );
-  //
-  // // Attaching listener
-  // Talsec.instance.attachListener(callback);
-  //
-  //
-  // await Talsec.instance.start(config);
+  await Hive.initFlutter();
+  await Hive.openBox("online");
+  await Hive.openBox('online2');
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then(
@@ -118,11 +61,6 @@ Future main() async {
   );
 }
 
-// FlutterNativeSplash.remove();
-// Future initializations()async{
-// await Future.delayed(const Duration(milliseconds: 1800));
-// }
-
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -134,41 +72,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   var box = Hive.box("online");
 
-  // LocalAuthentication auth = LocalAuthentication();
-  //
-  // Future<void> localAuth(BuildContext context) async {
-  //   final List<BiometricType> availableBiometrics =
-  //       await auth.getAvailableBiometrics();
-  //   if (availableBiometrics.contains(BiometricType.face) ||
-  //       availableBiometrics.contains(BiometricType.fingerprint)) {}
-  // }
-
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) {
-  //   switch (state) {
-  //     case AppLifecycleState.resumed:
-  //       break;
-  //     case AppLifecycleState.inactive:
-  //       break;
-  //     case AppLifecycleState.paused:
-  //       // Handle this case
-  //       break;
-  //     case AppLifecycleState.detached:
-  //       {}
-  //       break;
-  //     case AppLifecycleState.hidden:
-  //       // TODO: Handle this case.
-  //       break;
-  //   }
-  //
-  //   super.didChangeAppLifecycleState(state);
-  // }
-
   @override
   initState() {
-    // screenLock123();
+
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+
   }
 
   @override
@@ -203,7 +112,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                     box.get("language") == "2" ||
                     box.get("language") == "3"
                 ?
-            box.get("windowNews").toString() == "1"?MainMessages():
+            box.get("windowNews").toString() == "1"? MainMessages():
             MainPages(homeIdMainpage: "0")
                 : const EnterFirst0(),
         // splashTransition: SplashTransition.fadeTransition,

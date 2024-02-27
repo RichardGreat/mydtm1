@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
 
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -82,44 +83,74 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
   Future getProfile() async {
     try {
       boolGetProfileData = false;
-      if (box.get("boxAllPersonInfo").toString().length > 200) {
-        modelGetImieInfo = ModelGetImieInfo.fromJson(
-            jsonDecode(box.get("boxAllPersonInfo").toString()));
-      } else {
-        String dataInfo = await networkGetIMie.getIMieInformation();
-        box.delete("boxAllPersonInfo");
-        box.put("boxAllPersonInfo", dataInfo);
+      // if (box.get("boxAllPersonInfo").toString().length > 200) {
+      //   modelGetImieInfo = ModelGetImieInfo.fromJson(
+      //       jsonDecode(box.get("boxAllPersonInfo").toString()));
+      // } else {
+      //   String dataInfo = await networkGetIMie.getIMieInformation();
+      //   log("dataInfo");
+      //   log(dataInfo);
+      //   log("dataInfo");
+      //   box.delete("boxAllPersonInfo");
+      //   box.put("boxAllPersonInfo", dataInfo);
+      //   modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
+      // }
+      String dataInfo = await networkGetIMie.getIMieInformation();
+      log("dataInfo");
+      log(dataInfo);
+      log("dataInfo");
+      box.delete("boxAllPersonInfo");
+      box.put("boxAllPersonInfo", dataInfo);
+      try{
+        log("####4");
         modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
+        log("####4");
+        log(jsonEncode(modelGetImieInfo));
+        log("####4");
+
+
+        dataGetImieInfo = modelGetImieInfo.data;
+        psser = dataGetImieInfo.psser;
+        psnum = dataGetImieInfo.psnum.toString();
+        imie = dataGetImieInfo.imie.toString();
+        lname = dataGetImieInfo.lname;
+        fname = dataGetImieInfo.fname;
+        mname = dataGetImieInfo.mname;
+        bdate = dataGetImieInfo.bdate.toString();
+        sex = dataGetImieInfo.sex.toString();
+        nationId = dataGetImieInfo.nationId.toString();
+        image = dataGetImieInfo.image.toString();
+        log("####4");
+        box.put("fio", "$lname $fname $mname");
+        box.put("imie", imie);
+        box.put("psnum", psnum);
+        box.put("psser", dataGetImieInfo.psser);
+        box.put("personImage", image);
+        log("####4");
+        log( box.get("fio"));
+        log( box.get("imie"));
+        log( box.get("psnum"));
+        log( box.get("psser"));
+        log( box.get("personImage"));
+      }catch(e){
+        log("####4");
+        log(e.toString());
       }
 
-      dataGetImieInfo = modelGetImieInfo.data;
-      psser = dataGetImieInfo.psser;
-      psnum = dataGetImieInfo.psnum.toString();
-      imie = dataGetImieInfo.imie.toString();
-      lname = dataGetImieInfo.lname;
-      fname = dataGetImieInfo.fname;
-      mname = dataGetImieInfo.mname;
-      bdate = dataGetImieInfo.bdate.toString();
-      sex = dataGetImieInfo.sex.toString();
-      nationId = dataGetImieInfo.nationId.toString();
-      image = dataGetImieInfo.image;
-      box.delete("imie");
-      box.delete("psnum");
-      box.delete("psser");
-      box.delete("personImage");
-      box.delete("fio");
-      box.put("fio", "$lname $fname $mname");
-      box.put("imie", imie);
-      box.put("psnum", psnum);
-      box.put("psser", dataGetImieInfo.psser);
-      box.put("personImage", image);
+      // box.delete("imie");
+      // box.delete("psnum");
+      // box.delete("psser");
+      // box.delete("personImage");
+      // box.delete("fio");
+
     } catch (e) {
+      print("XATO 555");
       print(e.toString());
     }
   }
 
   Future getServiceList() async {
-    getProfile();
+    await getProfile();
     if (widget.homePageId == "1") {
       await providerMainHome.setLangUser();
     }
