@@ -71,6 +71,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   var box = Hive.box("online");
+  var box2 = Hive.box("online2");
 
   @override
   initState() {
@@ -112,7 +113,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                     box.get("language") == "2" ||
                     box.get("language") == "3"
                 ?
-            box.get("windowNews").toString() == "1"? MainMessages():
+            box2.get("windowNews").toString() == "1"? MainMessages(index: 1,):
             MainPages(homeIdMainpage: "0")
                 : const EnterFirst0(),
         // splashTransition: SplashTransition.fadeTransition,

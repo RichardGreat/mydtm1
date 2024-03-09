@@ -17,23 +17,26 @@ class NotificationService {
   Future checkAction() async {
     await Hive.initFlutter();
     await Hive.openBox("online2");
-    var box = Hive.box("online2");
-    box.put("workNot", "1");
+    var box2 = Hive.box("online2");
+    await Hive.openBox("online");
+    var box = Hive.box("online");
+    box2.put("workNot", "1");
 
     Timer.periodic(const Duration(seconds: 5), (timer) async {
       try {
         log("timer");
-        log(box.get("workNot").toString());
+        log(box2.get("workNot").toString());
         log((await getInternetConnection()));
-
-        if (((await getInternetConnection()) == "connected") &&
-                box.get("workNot").toString() == "1" ||
-            box.get("workNot").toString() == "null") {
-          listenServer();
-          box.put("workNot", "0");
+        if(box.get("imie").toString().length > 12) {
+          if (((await getInternetConnection()) == "connected") &&
+                  box2.get("workNot").toString() == "1" ||
+              box2.get("workNot").toString() == "null") {
+            listenServer();
+            box2.put("workNot", "0");
+          }
         }
       } catch (e) {
-        box.put("workNot", "1");
+        box2.put("workNot", "1");
       }
     });
   }
@@ -122,7 +125,7 @@ class NotificationService {
           (NotificationResponse notificationResponse) async {
         try {
           navigatorKey.currentState?.push(MaterialPageRoute(
-            builder: (context) => MainMessages(),
+            builder: (context) => MainMessages(index: 1,),
           ));
         } catch (e) {
           log(e.toString());
@@ -165,11 +168,10 @@ class NotificationService {
         iOS: DarwinNotificationDetails(
             presentBadge: true,
             presentAlert: true,
-            subtitle: "ios",
+            subtitle: "",
             presentBanner: true));
 
     try {
-      log("birinchi");
       if (box2.get("bildirishnoma").toString().length > 5) {
         listModelSocket = (jsonDecode(box2.get("bildirishnoma")) as List)
             .map((e) => ModelSocketMessage.fromJson(e))
@@ -183,9 +185,7 @@ class NotificationService {
           sendDate: sendDate,
         ));
         box2.put("bildirishnoma", (jsonEncode(listModelSocket)).toString());
-        log("ma'lumot saqlandi 123");
       }else {
-        log("ikkinchi");
         listModelSocket.add(ModelSocketMessage(
           title: title.toString(),
           id: id.toString(),
@@ -195,7 +195,6 @@ class NotificationService {
           sendDate: sendDate.toString(),
         ));
         box2.put("bildirishnoma", (jsonEncode(listModelSocket)).toString());
-        log("uchunchi");
       }
     } catch (e) {
       log("e.toString()");
@@ -209,9 +208,7 @@ class NotificationService {
         sendDate: "",
       ));
 
-      log("ma'lumot 567");
       box2.put("bildirishnoma", (jsonEncode(listModelSocket)).toString());
-      log("ma'lumot saqlandi");
     }
     await _flutterLocalNotificationsPlugin.show(
         0, title, body, platformChannelSpecifics);
@@ -234,28 +231,23 @@ class NotificationService {
     } catch (e) {}
   }
 
-  static Future<void> onSelectNotification(String? payload) async {
+   Future<void> onSelectNotification(String? payload) async {
     try {
       await Hive.initFlutter();
       await Hive.openBox('online2');
       final box2 = Hive.box("online2");
       box2.put("windowNews", "1");
+      navigatorKey.currentState?.push(MaterialPageRoute(
+        builder: (context) => MainMessages(
+          index: 1,
+        ),
+      ));
     } catch (e) {
       log(e.toString());
     }
   }
 
-  Future<String> getImie() async {
-    try {
-      await Hive.initFlutter();
-      await Hive.openBox("online2");
-      final box = Hive.box("online2");
-      return box.get("imie").toString();
-    } catch (e) {
-      log(e.toString());
-      return "";
-    }
-  }
+
 
   Future<String> getInternetConnection() async {
     try {

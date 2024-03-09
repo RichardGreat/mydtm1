@@ -591,7 +591,6 @@
 		61AFC6E03AEECD6A81D49A358136636F /* rive_text.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = rive_text.cpp; path = "../../../../../../../../.pub-cache/hosted/pub.dev/rive_common-0.1.0/ios/rive_text/rive_text.cpp"; sourceTree = "<group>"; };
 		61E6F25B625C13D9B7FE3ED8CEBE6AED /* TOCropViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TOCropViewController-dummy.m"; sourceTree = "<group>"; };
 		62DE84201D2893CD6FFB24A023F397CE /* hb-ot-color.cc */ = {isa = PBXFileReference; includeInIndex = 1; name = "hb-ot-color.cc"; path = "../../../../../../../../../.pub-cache/hosted/pub.dev/rive_common-0.1.0/ios/harfbuzz/src/hb-ot-color.cc"; sourceTree = "<group>"; };
-		669E8F25E1897672BDB80B7EB784DA24 /* Pods-Runner */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Runner"; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66E1C60E414DB3383D7BDD7E33024B00 /* FLTImagePickerImageUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLTImagePickerImageUtil.m; path = "../../../../../../../../.pub-cache/hosted/pub.dev/image_picker_ios-0.8.7+3/ios/Classes/FLTImagePickerImageUtil.m"; sourceTree = "<group>"; };
 		670C8E8BC3F615901CAE735C0CBBE8CA /* share_plus */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = share_plus; path = share_plus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67A252FAA1365A365B1EC5485E98CF9E /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fr.lproj; path = "Objective-C/TOCropViewController/Resources/fr.lproj"; sourceTree = "<group>"; };
@@ -987,7 +986,6 @@
 				EA5742351914065BCBEB9026AA0ADA61 /* image_cropper */,
 				768975E636D1D2FB85622FB67DB04E5A /* image_picker_ios */,
 				AE157A33FEF959A214796BFF348717F6 /* path_provider_foundation */,
-				669E8F25E1897672BDB80B7EB784DA24 /* Pods-Runner */,
 				DE8135CAE607F7824D08D08BDA5968B9 /* rive_common */,
 				670C8E8BC3F615901CAE735C0CBBE8CA /* share_plus */,
 				93C6A45C6E4792269BE9BE0073839BF0 /* shared_preferences_foundation */,
@@ -3377,7 +3375,6 @@
 			);
 			name = "Pods-Runner";
 			productName = Pods_Runner;
-			productReference = 669E8F25E1897672BDB80B7EB784DA24 /* Pods-Runner */;
 			productType = "com.apple.product-type.framework";
 		};
 		8CB181E0B90ABC017A42AB50FCF7A7E0 /* sqflite */ = {

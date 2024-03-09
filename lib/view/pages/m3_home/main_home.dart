@@ -55,6 +55,8 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
         // });
       });
     controller.forward();
+
+
   }
 
   @override
@@ -322,7 +324,7 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
                                       context,
                                       CupertinoPageRoute(
                                         builder: (context) =>
-                                            const MainMessages(),
+                                             MainMessages(index: 0,),
                                       ));
                                 },
                                 child: const Padding(

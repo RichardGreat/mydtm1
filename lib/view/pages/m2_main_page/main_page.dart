@@ -15,6 +15,7 @@ import 'package:mydtm/main.dart';
 import 'package:mydtm/view/pages/check_certificate/check_cert/check_cert.dart';
 import 'package:mydtm/view/pages/check_certificate/check_sertificats.dart';
 import 'package:mydtm/view/pages/m2_book_question/book_questions.dart';
+import 'package:mydtm/view/pages/m2_main_page/notification_news/notification_news.dart';
 import 'package:mydtm/view/pages/m3_home/main_home.dart';
 import 'package:mydtm/view/pages/m4_arizalar/main_my_statement.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
@@ -53,7 +54,7 @@ class _MainPagesState extends State<MainPages> {
       throw Exception("Error update");
     }
   }
-
+  NotificationNews notificationNews = NotificationNews();
   @override
   initState() {
     super.initState();
@@ -61,7 +62,13 @@ class _MainPagesState extends State<MainPages> {
     screenLock123();
     // isBiometricAvailable();
     getFirstAction();
+    // notificationNews.
+    notificationNews.checkDataInServer();
+
   }
+
+
+  checkForNotification(){}
 
   timerM() async {
     DateTime myTime;
