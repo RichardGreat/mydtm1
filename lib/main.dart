@@ -18,23 +18,23 @@ class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
+      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
   }
 }
-
-
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-  await Permission.notification.isDenied.then((value) {
-    if (value) {
-      Permission.notification.request();
-    }
-  });
+  if (Platform.isAndroid) {
+    await Permission.notification.isDenied.then((value) {
+      if (value) {
+        Permission.notification.request();
+      }
+    });
+  }
+
   await ConnectionNotifierTools.initialize();
   await initializeService();
   await NotificationService.init();
@@ -75,10 +75,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   initState() {
-
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-
   }
 
   @override
@@ -109,12 +107,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             //     splash: "assets/images/bmba.gif",
             //     splashIconSize: 150,
             //     nextScreen:
-            box.get("language") == "1" ||
-                    box.get("language") == "2" ||
-                    box.get("language") == "3"
-                ?
-            box2.get("windowNews").toString() == "1"? MainMessages(index: 1,):
-            MainPages(homeIdMainpage: "0")
+            box.get("language") == "1" || box.get("language") == "2" || box.get("language") == "3"
+                ? box2.get("windowNews").toString() == "1"
+                    ? MainMessages(
+                        index: 1,
+                      )
+                    : MainPages(homeIdMainpage: "0")
                 : const EnterFirst0(),
         // splashTransition: SplashTransition.fadeTransition,
         // pageTransitionType: PageTransitionType.fade,
