@@ -56,29 +56,13 @@ void onStart(ServiceInstance service) {
   service.on('stopService').listen((event) {
     service.stopSelf();
   });
-
-  // Timer.periodic(const Duration(seconds: 1), (timer) async {
-  //
-  //   if (service is AndroidServiceInstance) {
-  //     if (await service.isForegroundService()) {
-  //       service.setForegroundNotificationInfo(
-  //           title: "SCRIPT ACADEMY", content: "sub my channel");
-  //     }
-  //   }
-
-  // if(service is IOSServiceInstance){
-
   webSocket.checkAction();
-  // NotificationService.showNotification('Salom Task', 'This is a background notification.');
-
-  // print(timer.tick.toString());
   service.invoke("update");
-  // });
 }
 
 @pragma('vm:entry-point')
 Future<bool> onIosBackground(ServiceInstance service) async {
-  WidgetsFlutterBinding.ensureInitialized();
-  DartPluginRegistrant.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // DartPluginRegistrant.ensureInitialized();
   return true;
 }

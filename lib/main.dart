@@ -109,7 +109,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             //     nextScreen:
             box.get("language") == "1" || box.get("language") == "2" || box.get("language") == "3"
                 ? box2.get("windowNews").toString() == "1"
-                    ? MainMessages(
+                    ? const MainMessages(
                         index: 1,
                       )
                     : MainPages(homeIdMainpage: "0")

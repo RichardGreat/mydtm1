@@ -36,10 +36,24 @@ import UserNotifications
         let tokenParts = deviceToken.map { data -> String in
             return String(format: "%02.2hhx", data)
         }
+
         let token = tokenParts.joined()
         RemoteNotification.save(device: token)
         debugPrint("Divice Token:", token)
         super.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+        
+        let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
+          let platformChannel = FlutterMethodChannel(name: "uzbNotification", binaryMessenger: controller.binaryMessenger)
+          platformChannel.setMethodCallHandler({
+            (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
+            if call.method == "mChannel" {
+              result(token)
+            } else {
+              result(FlutterMethodNotImplemented)
+            }
+          })
+        
+      
     }
     
     func application(_ application: UIApplication,

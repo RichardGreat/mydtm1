@@ -58,8 +58,8 @@ class _MainPagesState extends State<MainPages> {
   @override
   initState() {
     super.initState();
-
-    screenLock123();
+    widget.homeIdMainpage != "1"?
+    screenLock123():{};
     // isBiometricAvailable();
     getFirstAction();
     // notificationNews.

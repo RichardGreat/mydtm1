@@ -7,14 +7,18 @@ import 'package:mydtm/data/internet_connections/m5_news/network_nws_body.dart';
 import 'dart:developer';
 
 import 'package:mydtm/data/model_parse/m5_model/model_news.dart';
+import 'package:mydtm/data/model_parse/m5_model/model_notifications_all.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ProviderDtmNews extends ChangeNotifier {
+
   late ModelDtmNews modelDtmNews;
   List<ModelDtmNews> modelDtmNews2 = [];
   List<ModelDtmNews> modelDtmNews3Temp = [];
   bool boolDtmNews = false;
   var box = Hive.box("online");
   String langNames="";
+
   Future getAllDtmNews() async {
     try {
       boolDtmNews = false;
@@ -60,5 +64,47 @@ class ProviderDtmNews extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  List<ModelNotificationAll> listNotificationAll = [];
+  dynamic listData = "";
+  final channel = WebSocketChannel.connect(Uri.parse("wss://uzbmb.uz/websockets"));
+
+ Future getNotificationAll() async{
+
+
+    try{
+      boolDownLoadData = false;
+
+      await channel.ready;
+      // channel.stream.listen(
+      //       (message) {
+      //     try {
+      //       channel.sink.add(
+      //           "{\"action\": \"get\", \"data\": \"${box.get("imie").toString()}\"}");
+      //         listData = message;
+      //     } catch (e) {
+      //       log(e.toString());
+      //
+      //     }
+      //   },
+      // );
+      log("listData.toString()");
+      log(listData.toString());
+      listNotificationAll = (jsonDecode(listData) as List).map((e) => ModelNotificationAll.fromJson(e)).toList();
+      boolDownLoadData = true;
+      notifyListeners();
+    }catch(e){
+      log(e.toString());
+    }
+ }
+
+ Future clotheSocket()async{
+   try{
+
+     channel.sink.close();
+   }catch(e){
+     log(e.toString());
+   }
+ }
 
 }

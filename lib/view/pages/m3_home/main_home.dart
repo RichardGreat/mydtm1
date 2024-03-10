@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -55,8 +56,6 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
         // });
       });
     controller.forward();
-
-
   }
 
   @override
@@ -82,9 +81,27 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
       nationId,
       image;
 
+  static const divaceTokenChangel = MethodChannel("uzbNotification");
+
+  Future getDeviceToken(String imie) async {
+    try {
+      if (Platform.isIOS) {
+        String data = await divaceTokenChangel.invokeMethod("mChannel");
+        log("deviceKey");
+        log(data);
+        box.put("deviceKey", data);
+      } else {
+        box.put("deviceKey", imie);
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
   Future getProfile() async {
     try {
       boolGetProfileData = false;
+
       // if (box.get("boxAllPersonInfo").toString().length > 200) {
       //   modelGetImieInfo = ModelGetImieInfo.fromJson(
       //       jsonDecode(box.get("boxAllPersonInfo").toString()));
@@ -97,20 +114,16 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
       //   box.put("boxAllPersonInfo", dataInfo);
       //   modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
       // }
+
       String dataInfo = await networkGetIMie.getIMieInformation();
-      log("dataInfo");
-      log(dataInfo);
-      log("dataInfo");
+      // log("dataInfo");
+      // log(dataInfo);
+      // log("dataInfo");
       box.delete("boxAllPersonInfo");
       box.put("boxAllPersonInfo", dataInfo);
-      try{
+      try {
         log("####4");
         modelGetImieInfo = ModelGetImieInfo.fromJson(jsonDecode(dataInfo));
-        log("####4");
-        log(jsonEncode(modelGetImieInfo));
-        log("####4");
-
-
         dataGetImieInfo = modelGetImieInfo.data;
         psser = dataGetImieInfo.psser;
         psnum = dataGetImieInfo.psnum.toString();
@@ -128,13 +141,8 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
         box.put("psnum", psnum);
         box.put("psser", dataGetImieInfo.psser);
         box.put("personImage", image);
-        log("####4");
-        log( box.get("fio"));
-        log( box.get("imie"));
-        log( box.get("psnum"));
-        log( box.get("psser"));
-        log( box.get("personImage"));
-      }catch(e){
+        getDeviceToken(imie);
+      } catch (e) {
         log("####4");
         log(e.toString());
       }
@@ -144,7 +152,6 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
       // box.delete("psser");
       // box.delete("personImage");
       // box.delete("fio");
-
     } catch (e) {
       print("XATO 555");
       print(e.toString());
@@ -323,8 +330,9 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
                                   Navigator.push(
                                       context,
                                       CupertinoPageRoute(
-                                        builder: (context) =>
-                                             MainMessages(index: 0,),
+                                        builder: (context) => MainMessages(
+                                          index: 0,
+                                        ),
                                       ));
                                 },
                                 child: const Padding(
