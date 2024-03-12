@@ -105,7 +105,7 @@ class _ImagePhotoState extends State<ImagePhoto> {
                     defaultCameraLens: CameraLens.front,
                     enableAudio: false,
                     showFlashControl: false,
-                    captureControlIcon: Container(
+                    captureControlBuilder:(context, detectedFace) =>  Container(
                         height: 100,
                         padding: const EdgeInsets.all(10),
                         margin: const EdgeInsets.all(10),
@@ -198,7 +198,9 @@ class _ImagePhotoState extends State<ImagePhoto> {
                 resulData: jsonEncode(response.data).toString(),
                 base64: image64,
               )));
-    } catch (e) {
+    } on DioException catch (e) {
+      log("****");
+      log(e.toString());
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           backgroundColor: Colors.black,
           duration: const Duration(seconds: 2),

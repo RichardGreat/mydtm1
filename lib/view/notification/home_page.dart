@@ -20,73 +20,71 @@ class NotificationService {
     var box2 = Hive.box("online2");
     await Hive.openBox("online");
     var box = Hive.box("online");
-    box2.put("workNot", "1");
 
     Timer.periodic(const Duration(seconds: 5), (timer) async {
       try {
 
 
-        log("timer");
-        log(box.get("imie").toString());
-        log((await getInternetConnection()));
-        log(box2.get("workNot").toString() );
+
 
         if (box.get("imie").toString().length > 12) {
-          if ((await getInternetConnection()) == "connected" &&
-                  (box2.get("workNot").toString() == "1" ||
-              box2.get("workNot").toString() == "null")) {
+          if ((await getInternetConnection()) == "connected") {
             listenServer();
-            box2.put("workNot", "0");
+
           }
         }
       } catch (e) {
-        box2.put("workNot", "1");
+       log(e.toString());
       }
     });
   }
+
+  String con = "";
 
   Future listenServer() async {
     try {
       await Hive.initFlutter();
       await Hive.openBox("online");
       final box = Hive.box("online");
-      await Hive.openBox("online2");
-      final box2 = Hive.box("online2");
 
       try {
+        if(con != "connected") {
           final wsUrl = Uri.parse("wss://uzbmb.uz/websockets");
           final channel = WebSocketChannel.connect(wsUrl);
           await channel.ready;
           channel.stream.listen(
             (message) {
-              try {
-                channel.sink.add(
-                    "{\"action\": \"start\", \"data\": \"${box.get("imie").toString()}\"}");
-                    // "{\"action\": \"start\", \"data\": \"${box.get("imie").toString()}\", \"device_token\": \"${box.get("deviceKey").toString()}\", }");
-                if (message.toString().contains("finish")) {
-                } else {
-                  if(Platform.isAndroid) {
+
+              channel.sink.add(
+                  "{\"action\": \"start\", \"data\": \"${box.get("imie").toString()}\"}");
+              // "{\"action\": \"start\", \"data\": \"${box.get("imie").toString()}\", \"device_token\": \"${box.get("deviceKey").toString()}\", }");
+              if (message.toString().contains("finish") ||message.toString().contains("stoped")  ) {
+              } else {
+                if (Platform.isAndroid) {
                   getDataInSocket(message);
                 }
               }
-              } catch (e) {
-                log(e.toString());
-                box2.put("workNot", "1");
-              }
             },
           );
-
-      } catch (e) {
-        box2.put("workNot", "1");
+          con = "connected";
+        }
+      } on SocketException catch (e) {
+        con = "error";
+      } on WebSocketChannelException catch (e) {
+        con = "error";
+      }
+      catch (e) {
+        con = "error";
       }
     } catch (e) {
-      log(e.toString());
+      con = "error";
     }
   }
 
   Future getDataInSocket(String data) async {
     try {
       try {
+        log(data);
         var model = ModelSocketMessage.fromJson(jsonDecode(data));
         await showNotification(model.id.toString(), model.title.toString(),
             model.summary.toString(), model.sendDate.toString());

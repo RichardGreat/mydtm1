@@ -15,6 +15,9 @@ class ControllerBookQuestion extends ChangeNotifier{
     try {
       boolGetDataQuestion = false;
       String data = await networkSubjectList.getSubjectList();
+      log("###");
+      log(jsonEncode(jsonDecode(jsonDecode(data))));
+      log("###");
       listModelSubjectGet = (jsonDecode(jsonDecode(data)) as List)
           .map((e) => ModelSubjectGet.fromJson(e))
           .toList();

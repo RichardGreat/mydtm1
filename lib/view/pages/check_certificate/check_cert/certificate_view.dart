@@ -63,39 +63,13 @@ class _CertificateViewState extends State<CertificateView> {
               // widget.providerAriza.boolDataDownload2
               //     ? widget.providerAriza.modelGetDownloadsData2.status.toString() == "1"
               //     ?
-              SingleChildScrollView(
-                child: Column(children: [
-                  SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.8,
-                      child: const PDF(
-                        autoSpacing: true,
-                        fitEachPage: true,
+              const PDF(
+                autoSpacing: false,
+                fitEachPage: true,
+                enableSwipe: false,
 
-                      ).cachedFromUrl(
-                         widget.linkCert)),
-                  // Container(
-                  //   margin: const EdgeInsets.all(15),
-                  //   child: Column(children: [
-                  //     MaterialButton(
-                  //       onPressed: () {
-                  //         widget.providerAriza.openFile(
-                  //             url: widget
-                  //                 .providerAriza.modelGetDownloadsData2.src,
-                  //             fileName: "ruxsatnoma");
-                  //       },
-                  //       height: 50,
-                  //       minWidth: double.infinity,
-                  //       color: MyColors.appColorBBA(),
-                  //       shape: RoundedRectangleBorder(
-                  //           borderRadius: BorderRadius.circular(10)),
-                  //       child: MyWidgets.robotoFontText(
-                  //           text: "download".tr(),
-                  //           textColor: MyColors.appColorWhite()),
-                  //     ),
-                  //   ]),
-                  // ),
-                ]),
-              )
+              ).cachedFromUrl(
+                 widget.linkCert)
               //     : Center(
               //   child: MyWidgets.loaderDownload(context: context),
               // )

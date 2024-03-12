@@ -1,9 +1,14 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
+import 'package:mydtm/view/pages/check_certificate/check_cert/certificate_view.dart';
+import 'package:mydtm/view/pages/m2_book_question/book_view.dart';
 import 'package:mydtm/view/pages/m2_book_question/controller_book_question.dart';
 import 'package:mydtm/view/pages/m3_home/webview_window/webv_window.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +24,8 @@ class _BookQuestionsState extends State<BookQuestions>
     with TickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
-  final ControllerBookQuestion _controllerBookQuestion = ControllerBookQuestion();
+  final ControllerBookQuestion _controllerBookQuestion =
+      ControllerBookQuestion();
 
   @override
   initState() {
@@ -41,7 +47,9 @@ class _BookQuestionsState extends State<BookQuestions>
   getData() async {
     try {
       _controllerBookQuestion.getDataQuestionBook();
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   var box = Hive.box("online");
@@ -55,14 +63,15 @@ class _BookQuestionsState extends State<BookQuestions>
             appBar: AppBar(
               backgroundColor: Colors.teal,
               title: Text("standartTest".tr(),
-                  style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white)),
               centerTitle: true,
               elevation: 0,
             ),
             body: SlideTransition(
               position: Tween<Offset>(
                 // X, Y - Origin (0, 0) is in the upper left corner.
-                begin:  Offset(box.get("animationWindowValue")??1, 0),
+                begin: Offset(box.get("animationWindowValue") ?? 1, 0),
                 end: const Offset(0, 0),
               ).animate(controller),
               child: _controllerBookQuestion.boolGetDataQuestion
@@ -85,7 +94,12 @@ class _BookQuestionsState extends State<BookQuestions>
                               // }
                               // if (myList[index].id.toString().length > 5 &&
                               //     myList[index].id.toString().length < 9) {
-
+                              log(_controllerBookQuestion
+                                  .listModelSubjectGet[index].pdfLink);
+                              log(_controllerBookQuestion
+                                  .listModelSubjectGet[index].pdfLink);
+                              log(_controllerBookQuestion
+                                  .listModelSubjectGet[index].pdfLink);
                               serviceMainList = ServiceMainList(
                                   id: "",
                                   serviceName: _controllerBookQuestion
@@ -119,31 +133,29 @@ class _BookQuestionsState extends State<BookQuestions>
                                   updatedAt: "",
                                   deleted: "");
 
+                              log(jsonEncode(serviceMainList));
+
+
                               Navigator.push(
                                   context,
                                   CupertinoPageRoute(
-                                      builder: (context) => WebViewWindow(
-                                            modelServiceMainList:
-                                                serviceMainList,
+                                      builder: (context) => BookView(
+                                           linkBook:
+                                           _controllerBookQuestion
+                                               .listModelSubjectGet[index].pdfLink,
+                                        bookName:  _controllerBookQuestion
+                                            .listModelSubjectGet[index].subjectName.toString()
                                           )));
-                              // } else {
-                              // pushNewScreen(
-                              //   context,
-                              //   screen: ShowCaseWidget(
-                              //     builder: Builder(
-                              //         builder: (context) => ShowCaseWidget(
-                              //           builder: Builder(
-                              //             builder: (context) => ServicePage(
-                              //                 serviceMainList: _controllerBookQuestion.listModelSubjectGet[index]),
-                              //           ),
-                              //         )),
-                              //   ),
-                              //   withNavBar: true,
-                              //   // OPTIONAL VALUE. True by default.
-                              //   pageTransitionAnimation:
-                              //   PageTransitionAnimation.cupertino,
-                              // );
-                              // }
+
+                              // Navigator.push(
+                              //     context,
+                              //     CupertinoPageRoute(
+                              //         builder: (context) => WebViewWindow(
+                              //               modelServiceMainList:
+                              //                   serviceMainList,
+                              //             )));
+
+
                             },
                             child: Container(
                               width: 80,

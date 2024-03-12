@@ -26,14 +26,22 @@ Widget personReceived2(
               Container(
                 margin: const EdgeInsets.all(10),
                 padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(color: MyColors.appColorWhite()),
-                child: Image.memory(
-                  base64Decode((providerPersonInfo.image
-                      .replaceAll("\n", "")
-                      .substring(23).trim())),
-                  height: 100,
-                  fit: BoxFit.cover,
-
+                decoration: BoxDecoration(color: MyColors.appColorWhite(),
+                borderRadius: BorderRadius.circular(10)
+                ),
+                
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: Image.memory(
+                    
+                    base64Decode((providerPersonInfo.image
+                        .replaceAll("\n", "")
+                        .substring(23).trim())),
+                    height: 100,
+                    fit: BoxFit.cover,
+                    
+                  
+                  ),
                 ),
               ),
               SizedBox(
@@ -63,7 +71,7 @@ Widget personReceived2(
                         textSize: 16,
                         textColor: MyColors.appColorGrey400()),
                     MyWidgets.robotoFontText(
-                      text: providerPersonInfo.bdate.substring(0, 11),
+                      text: providerPersonInfo.bdate,
                       textSize: 16,
                     ),
                     const SizedBox(height: 15),

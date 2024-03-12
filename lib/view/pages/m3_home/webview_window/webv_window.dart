@@ -21,12 +21,6 @@ class WebViewWindow extends StatefulWidget {
 class _WebViewWindowState extends State<WebViewWindow> {
 
   int currentIndex = -1;
-  final List pages = [
-    MainMyStatement(numberParam: "0"),
-    const BookQuestions(),
-    const CheckInfoCertificate(),
-     CheckCertificate( actionAnimationValue: 1),
-  ];
 
   void onItemTapped(int index) async {
     setState(() {

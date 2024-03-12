@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+
 import 'dart:developer';
 import 'dart:io';
 
@@ -22,9 +22,9 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:ntp/ntp.dart';
 
 class MainPages extends StatefulWidget {
-  String homeIdMainpage;
+ final String homeIdMainpage;
 
-  MainPages({super.key, required this.homeIdMainpage});
+ const MainPages({super.key, required this.homeIdMainpage});
 
   @override
   State<MainPages> createState() => _MainPagesState();
@@ -153,16 +153,42 @@ class _MainPagesState extends State<MainPages> {
 
 
   Future<void> authenticate() async {
+
+
+
     final localAuth = LocalAuthentication();
 
     try {
       bool canCheckBiometrics = await localAuth.canCheckBiometrics;
+      log("canCheckBiometrics");
+      log(canCheckBiometrics.toString());
       List<BiometricType> availableBiometrics =
           await localAuth.getAvailableBiometrics();
 
-      if (canCheckBiometrics &&
+      log(availableBiometrics.toString());
+      if(availableBiometrics.contains(BiometricType.strong) || availableBiometrics.contains(BiometricType.weak)){
+        bool authenticated = false;
+        try {
+          authenticated = await localAuth.authenticate(
+            localizedReason: "fingerScanner".tr(),
+
+            options: const AuthenticationOptions(useErrorDialogs: true, biometricOnly: false,  sensitiveTransaction: true, stickyAuth: false)
+          );
+
+          if(authenticated){
+            Navigator.pop(context);
+          }else{
+
+          }
+
+        } catch (e) {
+          print(e);
+        }
+        if (!mounted) return;
+      }
+      else if (canCheckBiometrics &&
           availableBiometrics.contains(BiometricType.face)) {
-        bool isAuthenticated = await localAuth.authenticate(
+          bool isAuthenticated = await localAuth.authenticate(
           localizedReason: 'Authenticate with Face ID',
           options: const AuthenticationOptions(
             useErrorDialogs: true,
@@ -171,7 +197,6 @@ class _MainPagesState extends State<MainPages> {
             biometricOnly: false,
           ),
         );
-
         if (isAuthenticated) {
           print('User authenticated successfully with Face ID');
           Navigator.pop(context);
@@ -179,7 +204,23 @@ class _MainPagesState extends State<MainPages> {
           print('User could not be authenticated with Face ID');
         }
       } else {
-        print('Face ID is not available on this device');
+        bool isAuthenticated = await localAuth.authenticate(
+          localizedReason: 'Authenticate with Face ID',
+          options: const AuthenticationOptions(
+            useErrorDialogs: true,
+            stickyAuth: true,
+            sensitiveTransaction: true,
+
+            biometricOnly: true,
+
+          ),
+        );
+        if (isAuthenticated) {
+          print('User authenticated successfully with Face ID');
+          Navigator.pop(context);
+        } else {
+          print('User could not be authenticated with Face ID');
+        }
       }
     } catch (e) {
       print('Error during Face ID authentication: $e');

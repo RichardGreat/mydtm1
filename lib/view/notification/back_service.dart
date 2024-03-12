@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:ui';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:flutter_background_service_ios/flutter_background_service_ios.dart';
@@ -21,7 +20,7 @@ Future<void> initializeService() async {
           onBackground: onIosBackground),
 
       androidConfiguration: AndroidConfiguration(
-          onStart: onStart, isForegroundMode: false, autoStart: true));
+          onStart: onStart, isForegroundMode: true, autoStart: true));
    await service.startService();
 }
 

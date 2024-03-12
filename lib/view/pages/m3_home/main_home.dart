@@ -91,7 +91,7 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
         log(data);
         box.put("deviceKey", data);
       } else {
-        box.put("deviceKey", imie);
+        box.put("deviceKey", "android");
       }
     } catch (e) {
       log(e.toString());
@@ -162,9 +162,12 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
     await getProfile();
     if (widget.homePageId == "1") {
       await providerMainHome.setLangUser();
+      log(providerMainHome.toString());
     }
     await providerMainHome.getDateService(context: context);
     await providerMainHome.checkVersion(context: context);
+    log("providerMainHome".toString());
+    log(providerMainHome.toString());
     if (box.get("token").toString().length > 30) {
     } else {
       await getMessage();
@@ -330,7 +333,7 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
                                   Navigator.push(
                                       context,
                                       CupertinoPageRoute(
-                                        builder: (context) => MainMessages(
+                                        builder: (context) => const MainMessages(
                                           index: 0,
                                         ),
                                       ));

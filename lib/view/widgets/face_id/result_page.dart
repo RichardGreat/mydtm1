@@ -60,7 +60,7 @@ class _ResultPageState extends State<ResultPage> {
       Navigator.of(context).pop();
       Navigator.of(context).pop();
       Navigator.pushAndRemoveUntil(context, CupertinoPageRoute(builder: (context) => MainPages(
-        homeIdMainpage: "0",
+        homeIdMainpage: "1",
       ),), (route) => false);
     });
   }

@@ -5,6 +5,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/data/model_parse/m3_home/model_main_list.dart';
 import 'package:mydtm/data/model_parse/person_info/check_user_info.dart';
@@ -42,16 +43,31 @@ Future<void> _makePhoneCall(String phoneNumber) async {
   );
   await launchUrl(launchUri);
 }
+_makeTelegramBot()async{
+  final Uri url = Uri.parse("http://t.me/bmba_mobile_app_bot");
+  if (!await launchUrl(url)) {
+  throw Exception('Could not launch $url');
+  }
+}
+
+
 
 double sliderValue() {
   return (1 - double.parse(box.get("faceIdQolganKun")) / 30).abs();
 }
 
+_launchURL() async {
+  final Uri url = Uri.parse('https://flutter.dev');
+  if (!await launchUrl(url)) {
+    throw Exception(' $url');
+  }}
+
+
 Widget bodyProfile({
   required BuildContext context,
-  required Function function,
-  required ProviderProfile providerProfile,
-  required Function functions,
+    required Function function,
+    required ProviderProfile providerProfile,
+    required Function functions,
 }) {
   var box = Hive.box("online");
 
@@ -76,26 +92,26 @@ Widget bodyProfile({
                       borderRadius: BorderRadius.circular(100),
                       child: providerProfile.boolHasTokenNoImie
                           ? Image.asset("assets/images/icon_person.png",
-                              height: 80, fit: BoxFit.fill)
+                          height: 80, fit: BoxFit.fill)
                           : Image.memory(
-                              base64Decode(box
-                                  .get("personImage")
-                                  .toString()
-                                  .replaceAll("\n", "")
-                                  .substring(23)
-                                  .trim()),
-                              fit: BoxFit.fitWidth,
-                              width: 110,
-                              height: 130,
-                            ),
+                        base64Decode(box
+                            .get("personImage")
+                            .toString()
+                            .replaceAll("\n", "")
+                            .substring(23)
+                            .trim()),
+                        fit: BoxFit.fitWidth,
+                        width: 110,
+                        height: 130,
+                      ),
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: box.get("faceId").toString() == "1"
                           ? const Icon(
-                              Icons.verified,
-                              color: Colors.teal,
-                            )
+                        Icons.verified,
+                        color: Colors.teal,
+                      )
                           : const SizedBox(),
                     ),
                   ],
@@ -105,68 +121,69 @@ Widget bodyProfile({
               providerProfile.boolHasTokenNoImie
                   ? const SizedBox.shrink()
                   : Text(
-                      providerProfile.dataGetImieInfo.lname +
-                          " " +
-                          providerProfile.dataGetImieInfo.fname,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                providerProfile.dataGetImieInfo.lname +
+                    " " +
+                    providerProfile.dataGetImieInfo.fname,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
               box.get("faceId").toString() == "1"
                   ? const SizedBox()
                   : ListTile(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        Navigator.push(
-                            context,
-                            CupertinoPageRoute(
-                              builder: (context) => ImagePhoto(
-                                  imie: box.get("imie").toString(),
-                                  pser: box.get("psser").toString(),
-                                  snum: box.get("psnum").toString()),
-                            ));
-                      },
-                      leading: Icon(
-                          CupertinoIcons.person_crop_circle_fill_badge_xmark,
-                          color: Colors.red.shade900),
-                      title:  Text(
-                        "faceId".tr(),
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                      trailing: Icon(Icons.arrow_forward_ios,
-                          size: 16, color: Colors.teal.shade700),
-                    ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) =>
+                            ImagePhoto(
+                                imie: box.get("imie").toString(),
+                                pser: box.get("psser").toString(),
+                                snum: box.get("psnum").toString()),
+                      ));
+                },
+                leading: Icon(
+                    CupertinoIcons.person_crop_circle_fill_badge_xmark,
+                    color: Colors.red.shade900),
+                title: Text(
+                  "faceId".tr(),
+                  style: const TextStyle(fontWeight: FontWeight.w700),
+                ),
+                trailing: Icon(Icons.arrow_forward_ios,
+                    size: 16, color: Colors.teal.shade700),
+              ),
               box.get("faceId").toString() == "1"
                   ?
 
-                  ListTile(
-                      leading: Image.asset("assets/images/face_id.png",
-                          width: 40, fit: BoxFit.cover),
-                      title: const Text("day",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 12,
-                                  color: Colors.teal))
-                          .plural(
-                              int.parse(box.get("faceIdQolganKun").toString())),
-                      subtitle: SizedBox(
-                        height: 10,
-                        width: 1,
-                        child: SliderTheme(
-                            data: SliderThemeData(
-                              overlayShape: SliderComponentShape.noOverlay,
-                              thumbShape: const RoundSliderThumbShape(
-                                  enabledThumbRadius: 1),
-                            ),
-                            child: Slider(
-                                value: sliderValue(),
-                                activeColor: Colors.white,
-                                inactiveColor: sliderValue() < 0.7
-                                    ? Colors.teal
-                                    : Colors.red,
-                                divisions: 10,
-                                onChanged: (val) {})),
+              ListTile(
+                leading: Image.asset("assets/images/face_id.png",
+                    width: 40, fit: BoxFit.cover),
+                title: const Text("day",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12,
+                        color: Colors.teal))
+                    .plural(
+                    int.parse(box.get("faceIdQolganKun")??"0".toString())),
+                subtitle: SizedBox(
+                  height: 10,
+                  width: 1,
+                  child: SliderTheme(
+                      data: SliderThemeData(
+                        overlayShape: SliderComponentShape.noOverlay,
+                        thumbShape: const RoundSliderThumbShape(
+                            enabledThumbRadius: 1),
                       ),
-                      trailing: const SizedBox(width: 50),
-                    )
+                      child: Slider(
+                          value: sliderValue(),
+                          activeColor: Colors.white,
+                          inactiveColor: sliderValue() < 0.7
+                              ? Colors.teal
+                              : Colors.red,
+                          divisions: 10,
+                          onChanged: (val) {})),
+                ),
+                trailing: const SizedBox(width: 50),
+              )
                   : const SizedBox.shrink(),
             ],
           ),
@@ -196,15 +213,22 @@ Widget bodyProfile({
             //       Navigator.of(context).pop();
             //     });
 
-            if (box.get("personImage").toString().length > 50) {
+            if (box
+                .get("personImage")
+                .toString()
+                .length > 50) {
               Navigator.push(
                   context,
                   CupertinoPageRoute(
-                    builder: (context) => PersonInformation(
-                        funcState: function,
-                        windowIdPassport: "1",
-                        idFunction:
-                            box.get("personImage").toString().length > 50
+                    builder: (context) =>
+                        PersonInformation(
+                            funcState: function,
+                            windowIdPassport: "1",
+                            idFunction:
+                            box
+                                .get("personImage")
+                                .toString()
+                                .length > 50
                                 ? "1"
                                 : "99"),
                   ));
@@ -239,13 +263,17 @@ Widget bodyProfile({
                     Navigator.push(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => PersonInformation(
-                              funcState: function,
-                              idFunction:
-                                  box.get("personImage").toString().length > 50
+                          builder: (context) =>
+                              PersonInformation(
+                                  funcState: function,
+                                  idFunction:
+                                  box
+                                      .get("personImage")
+                                      .toString()
+                                      .length > 50
                                       ? "1"
                                       : "99",
-                              windowIdPassport: "0"),
+                                  windowIdPassport: "0"),
                         ));
                   },
                   btnOkText: "iAgree".tr(),
@@ -279,7 +307,10 @@ Widget bodyProfile({
         ),
         ListTile(
           onTap: () {
-            if (box.get("personImage").toString().length > 50) {
+            if (box
+                .get("personImage")
+                .toString()
+                .length > 50) {
               Navigator.push(
                   context,
                   CupertinoPageRoute(
@@ -303,7 +334,10 @@ Widget bodyProfile({
         ),
         ListTile(
           onTap: () {
-            if (box.get("personImage").toString().length > 50) {
+            if (box
+                .get("personImage")
+                .toString()
+                .length > 50) {
               Navigator.push(
                   context,
                   CupertinoPageRoute(
@@ -330,8 +364,10 @@ Widget bodyProfile({
             Navigator.push(
                 context,
                 CupertinoPageRoute(
-                  builder: (context) => ChangePhoneNumber(
-                      providerProfile: providerProfile, function: functions),
+                  builder: (context) =>
+                      ChangePhoneNumber(
+                          providerProfile: providerProfile,
+                          function: functions),
                 ));
           },
           leading: Icon(
@@ -402,26 +438,27 @@ Widget bodyProfile({
             Navigator.push(
                 context,
                 CupertinoPageRoute(
-                  builder: (context) => WebViewWindow(
-                    modelServiceMainList: ServiceMainList(
-                        id: "600000",
-                        serviceName: "regionSection".tr(),
-                        serviceText: "regionSection".tr(),
-                        serviceTextRu: "regionSection".tr(),
-                        serviceTextQQ: "regionSection".tr(),
-                        serviceNameRu: "regionSection".tr(),
-                        serviceNameQQ: "",
-                        status: true,
-                        mobilIcon: "",
-                        link: "https://uzbmb.uz/page/representatives",
-                        icon: "",
-                        catId: "",
-                        cod: "",
-                        sortId: "",
-                        createdAt: "",
-                        updatedAt: "",
-                        deleted: ""),
-                  ),
+                  builder: (context) =>
+                      WebViewWindow(
+                        modelServiceMainList: ServiceMainList(
+                            id: "600000",
+                            serviceName: "regionSection".tr(),
+                            serviceText: "regionSection".tr(),
+                            serviceTextRu: "regionSection".tr(),
+                            serviceTextQQ: "regionSection".tr(),
+                            serviceNameRu: "regionSection".tr(),
+                            serviceNameQQ: "",
+                            status: true,
+                            mobilIcon: "",
+                            link: "https://uzbmb.uz/page/representatives",
+                            icon: "",
+                            catId: "",
+                            cod: "",
+                            sortId: "",
+                            createdAt: "",
+                            updatedAt: "",
+                            deleted: ""),
+                      ),
                 ));
           },
           leading: Icon(
@@ -451,6 +488,7 @@ Widget bodyProfile({
           trailing: Icon(Icons.arrow_forward_ios_rounded,
               size: 16, color: Colors.teal.shade800),
         ),
+
         ListTile(
           onTap: () {
             _makePhoneCall("951991914");
@@ -464,6 +502,47 @@ Widget bodyProfile({
           trailing: Icon(Icons.arrow_forward_ios_rounded,
               size: 16, color: Colors.teal.shade800),
         ),
+        ListTile(
+          onTap: () {
+            try {
+              _makeTelegramBot();
+            } catch (e) {
+              log(e.toString());
+            }
+          },
+          leading: Icon(
+            Icons.comment_outlined,
+            color: MyColors.appColorBlue1(),
+            size: 24,
+          ),
+          title: MyWidgets.robotoFontText(text: "commentTelegram".tr()),
+          trailing: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16, color: Colors.teal.shade800),
+        ),
+        (box.get("imie").toString() == "33009910211391") ?
+        ListTile(
+          onTap: () {
+            Clipboard.setData(ClipboardData(
+              text: box.get("deviceKey"),
+            ));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                duration: const Duration(seconds: 2),
+                content: Text(
+                  "${"copy".tr()} ${ box.get("deviceKey")}",
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600),
+                )));
+          },
+          leading: Icon(
+            CupertinoIcons.doc,
+            color: MyColors.appColorBlue1(),
+            size: 24,
+          ),
+          title: MyWidgets.robotoFontText(text: "Divice token"),
+          trailing: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16, color: Colors.teal.shade800),
+        ) : const SizedBox.shrink(),
+
         ListTile(
           onTap: () {
             AwesomeDialog(
@@ -514,65 +593,71 @@ Widget bodyProfile({
           trailing: Icon(Icons.arrow_forward_ios_rounded,
               size: 16, color: Colors.teal.shade800),
         ),
-        box.get("token").toString().length > 30
+        box
+            .get("token")
+            .toString()
+            .length > 30
             ? ListTile(
-                onTap: () {
-                  box.get("token").toString().length > 30
-                      ? AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.noHeader,
-                          animType: AnimType.bottomSlide,
-                          title: "BBA",
-                          desc: "logUot".tr(),
-                          titleTextStyle: TextStyle(
-                              color: MyColors.appColorBlue1(),
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold),
-                          descTextStyle: TextStyle(
-                              color: MyColors.appColorBlack(),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),
-                          btnOkOnPress: () {
-                            box.delete("token");
-                            box.delete("imie");
-                            box.delete("psnum");
-                            box.delete("personImage");
-                            box.delete("boxAllPersonInfo");
-                            box.delete("langLock");
-                            box.delete("lockScreen");
-                            box.delete("notShowAgain1");
-                            box.delete("phoneNumber");
-
-                            // Navigator.pushAndRemoveUntil(
-                            //   context,
-                            //   CupertinoPageRoute(
-                            //       builder: (context) =>const EnterFirst()),
-                            //       (route) => false,
-                            // );
-                            Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                  builder: (context) =>
-                                      EnterFirst(windowIdEnterFirst: "1"),
-                                ));
-                          },
-                          btnOkText: "yes".tr(),
-                          btnOkColor: MyColors.appColorBlue1(),
-                          btnCancelColor: MyColors.appColorGrey600(),
-                          btnCancelOnPress: () {},
-                          btnCancelText: "no".tr(),
-                        ).show()
-                      : {};
-                },
-                leading: Icon(
-                  Icons.logout,
+          onTap: () {
+            box
+                .get("token")
+                .toString()
+                .length > 30
+                ? AwesomeDialog(
+              context: context,
+              dialogType: DialogType.noHeader,
+              animType: AnimType.bottomSlide,
+              title: "BBA",
+              desc: "logUot".tr(),
+              titleTextStyle: TextStyle(
                   color: MyColors.appColorBlue1(),
-                  size: 24,
-                ),
-                title: MyWidgets.robotoFontText(text: "logOut1".tr()),
-                trailing: Icon(Icons.arrow_forward_ios_rounded,
-                    size: 16, color: Colors.teal.shade800),
-              )
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+              descTextStyle: TextStyle(
+                  color: MyColors.appColorBlack(),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500),
+              btnOkOnPress: () {
+                box.delete("token");
+                box.delete("imie");
+                box.delete("psnum");
+                box.delete("personImage");
+                box.delete("boxAllPersonInfo");
+                box.delete("langLock");
+                box.delete("lockScreen");
+                box.delete("notShowAgain1");
+                box.delete("phoneNumber");
+
+                // Navigator.pushAndRemoveUntil(
+                //   context,
+                //   CupertinoPageRoute(
+                //       builder: (context) =>const EnterFirst()),
+                //       (route) => false,
+                // );
+                Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) =>
+                          EnterFirst(windowIdEnterFirst: "1"),
+                    ));
+              },
+              btnOkText: "yes".tr(),
+              btnOkColor: MyColors.appColorBlue1(),
+              btnCancelColor: MyColors.appColorGrey600(),
+              btnCancelOnPress: () {},
+              btnCancelText: "no".tr(),
+            ).show()
+                : {};
+          },
+          leading: Icon(
+            Icons.logout,
+            color: MyColors.appColorBlue1(),
+            size: 24,
+          ),
+          title: MyWidgets.robotoFontText(text: "logOut1".tr()),
+          trailing: Icon(Icons.arrow_forward_ios_rounded,
+              size: 16, color: Colors.teal.shade800),
+        )
             : const SizedBox.shrink(),
         Divider(
           color: Colors.teal.withOpacity(0.2),
@@ -583,7 +668,7 @@ Widget bodyProfile({
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(width: 10),
-            Text("${"versionMobil".tr()}: 4.5.14",
+            Text("${"versionMobil".tr()}: 4.5.16",
                 style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.grey,

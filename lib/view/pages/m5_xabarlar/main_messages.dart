@@ -94,7 +94,7 @@ class _MainMessagesState extends State<MainMessages> {
                             context,
                             CupertinoPageRoute(
                               builder: (context) =>
-                                  MainPages(homeIdMainpage: "0"),
+                                  MainPages(homeIdMainpage: "1"),
                             ),
                             (route) => false);
                       },
@@ -123,6 +123,8 @@ class _MainMessagesState extends State<MainMessages> {
                       textFontWeight: FontWeight.w500),
                   bottom: TabBar(
                     indicatorColor: Colors.black,
+                    physics: const NeverScrollableScrollPhysics(),
+
                     indicatorWeight: 3,
                     tabs: [
                       Tab(
@@ -143,7 +145,9 @@ class _MainMessagesState extends State<MainMessages> {
                   ),
                 ),
                 body: providerDtmNews.boolDtmNews
-                    ? TabBarView(children: [
+                    ? TabBarView(
+                    physics:const NeverScrollableScrollPhysics(),
+                    children: [
                         RefreshIndicator.adaptive(
                             onRefresh: () {
                               return getDtmNews();
@@ -330,7 +334,7 @@ class _MainMessagesState extends State<MainMessages> {
             ? Padding(
                 padding: const EdgeInsets.all(8.0),
                 child:
-                    // providerDtmNews.listNotificationAll.isNotEmpty?
+                  box.get("imie").toString().length > 5 ||  box.get("imie").toString() != "null"?
                     StreamBuilder(
                   stream: providerDtmNews.channel.stream,
                   builder: (context, snapshot) {
@@ -346,14 +350,11 @@ class _MainMessagesState extends State<MainMessages> {
                       );
                     }
 
-                    // Data received from WebSocket
                     var data = snapshot.data;
-
                     List<ModelNotificationAll> listNotificationAll =
                         (jsonDecode(data) as List)
                             .map((e) => ModelNotificationAll.fromJson(e))
                             .toList();
-
                     return Center(
                       child: ListView.builder(
                           itemCount: listNotificationAll.length,
@@ -490,7 +491,7 @@ class _MainMessagesState extends State<MainMessages> {
                   },
                 )
 
-                // :Center(child: Text("noInfoFound".tr()),),
+                :Center(child: Text("noInfoFound".tr()),),
                 )
             : const Center(
                 child: CupertinoActivityIndicator(),
