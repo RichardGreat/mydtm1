@@ -14,9 +14,9 @@ import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class Digo2DanKop extends StatefulWidget {
-  ModelDigo2GetRegion modelDigo2;
+  final ModelDigo2GetRegion modelDigo2;
 
-  Digo2DanKop({super.key, required this.modelDigo2});
+  const Digo2DanKop({super.key, required this.modelDigo2});
 
   @override
   State<Digo2DanKop> createState() => _Digo2DanKopState();
@@ -37,7 +37,6 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
   @override
   void dispose() {
     scrollController.dispose();
-
     super.dispose();
   }
 
@@ -45,17 +44,13 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
     await Future.delayed(const Duration(milliseconds: 500)).then((_) {
       try {
         scrollController
-            .animateTo(
-          scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 350),
-          curve: Curves.fastOutSlowIn,
-        )
+            .animateTo(scrollController.position.maxScrollExtent,
+                duration: const Duration(milliseconds: 350),
+                curve: Curves.fastOutSlowIn)
             .then((value) {
-          scrollController.animateTo(
-            scrollController.position.maxScrollExtent,
-            duration: const Duration(milliseconds: 100),
-            curve: Curves.easeInOut,
-          );
+          scrollController.animateTo(scrollController.position.maxScrollExtent,
+              duration: const Duration(milliseconds: 100),
+              curve: Curves.easeInOut);
         });
       } catch (e) {
         // print('error on scroll $e');
@@ -75,8 +70,6 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
       // scrollController.addListener(() {});
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +120,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
       ),
     );
   }
+
   Widget bodyBuild() {
     if (providerDigo2.sentServer == "1") {
       return Container(
@@ -141,7 +135,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                   return Container(
                     margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
                     padding:
-                    const EdgeInsets.only(top: 10, left: 10, right: 10),
+                        const EdgeInsets.only(top: 10, left: 10, right: 10),
                     decoration: BoxDecoration(
                         color: index % 2 == 0
                             ? Colors.grey.shade200
@@ -204,11 +198,14 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                             elevation: 1.5,
                             child: ListTile(
                               onTap: () {
+
+                                providerDigo2.modelDigo2.data[index].nameFan1.toString() != "null"
+                                  ?
                                 getRegionSheet(
                                     context: context,
                                     providerDigo: providerDigo2,
                                     index: 2,
-                                    intIndexLists: index);
+                                    intIndexLists: index):{};
                               },
                               leading: Text(
                                   providerDigo2.textFan2(index: index),
@@ -224,11 +221,13 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                             elevation: 1.5,
                             child: ListTile(
                               onTap: () {
+                                providerDigo2.modelDigo2.data[index].nameFan2.toString().length > 4
+                                    ?
                                 getRegionSheet(
                                     context: context,
                                     providerDigo: providerDigo2,
                                     index: 3,
-                                    intIndexLists: index);
+                                    intIndexLists: index):{};
                               },
                               leading: Text(providerDigo2.textTil(index: index),
                                   style: const TextStyle(fontSize: 18)),
@@ -243,11 +242,12 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                             elevation: 1.5,
                             child: ListTile(
                               onTap: () {
+                                providerDigo2.modelDigo2.data[index].langName.toString().length > 4?
                                 getRegionSheet(
                                     context: context,
                                     providerDigo: providerDigo2,
                                     index: 4,
-                                    intIndexLists: index);
+                                    intIndexLists: index):{};
                               },
                               leading: Text(providerDigo2.sonDigo(index: index),
                                   style: const TextStyle(fontSize: 18)),
@@ -261,8 +261,8 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                             children: [
                               Visibility(
                                 visible:
-                                providerDigo2.modelDigo2.data.length > 1 &&
-                                    index != 0,
+                                    providerDigo2.modelDigo2.data.length > 1 &&
+                                        index != 0,
                                 child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: IconButton(
@@ -299,47 +299,47 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                                     child: IconButton(
                                       onPressed: () {
                                         providerDigo2.modelDigo2.data[index]
-                                            .countDigo.isNotEmpty
+                                                .countDigo.isNotEmpty
                                             ? {
-                                          providerDigo2
-                                              .modelDigo2
-                                              .data[index]
-                                              .countDigo ==
-                                              "0" ||
-                                              providerDigo2
-                                                  .modelDigo2
-                                                  .data[index]
-                                                  .countDigo ==
-                                                  "00" ||
-                                              providerDigo2
-                                                  .modelDigo2
-                                                  .data[index]
-                                                  .countDigo ==
-                                                  "000" ||
-                                              providerDigo2
-                                                  .modelDigo2
-                                                  .data[index]
-                                                  .countDigo ==
-                                                  "0000"
-                                              ? getRegionSheet(
-                                              context: context,
-                                              providerDigo:
-                                              providerDigo2,
-                                              index: 4,
-                                              intIndexLists: index)
-                                              : providerDigo2.addBosh(),
-                                          animateToLast(),
-                                        }
+                                                providerDigo2
+                                                                .modelDigo2
+                                                                .data[index]
+                                                                .countDigo ==
+                                                            "0" ||
+                                                        providerDigo2
+                                                                .modelDigo2
+                                                                .data[index]
+                                                                .countDigo ==
+                                                            "00" ||
+                                                        providerDigo2
+                                                                .modelDigo2
+                                                                .data[index]
+                                                                .countDigo ==
+                                                            "000" ||
+                                                        providerDigo2
+                                                                .modelDigo2
+                                                                .data[index]
+                                                                .countDigo ==
+                                                            "0000"
+                                                    ? getRegionSheet(
+                                                        context: context,
+                                                        providerDigo:
+                                                            providerDigo2,
+                                                        index: 4,
+                                                        intIndexLists: index)
+                                                    : providerDigo2.addBosh(),
+                                                animateToLast(),
+                                              }
                                             : {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
-                                            content: Text("fillAll".tr(),
-                                                style: const TextStyle(
-                                                    color: Colors.teal,
-                                                    fontWeight:
-                                                    FontWeight.bold)),
-                                          )),
-                                        };
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                  content: Text("fillAll".tr(),
+                                                      style: const TextStyle(
+                                                          color: Colors.teal,
+                                                          fontWeight:
+                                                              FontWeight.bold)),
+                                                )),
+                                              };
                                       },
                                       icon: const Icon(
                                         Icons.add,
@@ -359,18 +359,18 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
               margin: const EdgeInsets.only(left: 10, right: 25),
               child: Center(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(providerDigo2.allCost(),
-                          style: const TextStyle(fontWeight: FontWeight.w600)),
-                      IconButton(
-                          onPressed: showAllOrder,
-                          icon: const Icon(
-                            Icons.remove_red_eye,
-                            color: Colors.teal,
-                          ))
-                    ],
-                  )),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(providerDigo2.allCost(),
+                      style: const TextStyle(fontWeight: FontWeight.w600)),
+                  IconButton(
+                      onPressed: showAllOrder,
+                      icon: const Icon(
+                        Icons.remove_red_eye,
+                        color: Colors.teal,
+                      ))
+                ],
+              )),
             ),
           ],
         ),
@@ -489,7 +489,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                 onTap: () {
                   Clipboard.setData(ClipboardData(
                     text:
-                    providerDigo2.modelGetNatija.data[0].invoice.toString(),
+                        providerDigo2.modelGetNatija.data[0].invoice.toString(),
                   ));
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       duration: const Duration(seconds: 1),
@@ -525,7 +525,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                 onTap: () {
                   Clipboard.setData(ClipboardData(
                     text:
-                    providerDigo2.modelGetNatija.data[0].invoice.toString(),
+                        providerDigo2.modelGetNatija.data[0].invoice.toString(),
                   ));
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       duration: const Duration(seconds: 1),
@@ -547,14 +547,12 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
                 color: Colors.teal,
                 textColor: Colors.white,
                 onPressed: () {
-
-
                   Navigator.pushAndRemoveUntil(
                       context,
                       CupertinoPageRoute(
                         builder: (context) => DigoMain(),
                       ),
-                          (route) => false);
+                      (route) => false);
                 },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
@@ -592,6 +590,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
       );
     }
   }
+
   showAllOrder() {
     showModalBottomSheet(
       context: context,
@@ -742,28 +741,28 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
 
   Widget digoById({required int index, required int intIndexList}) {
     if (intIndexList != 0) {
-      if (providerDigo2.modelDigo2.data[intIndexList].nameFan1
-              .toString()
-              .length <
-          5) {
-        log(providerDigo2.modelDigo2.data[intIndexList].nameFan1.toString());
-        index = 1;
-      } else if (providerDigo2.modelDigo2.data[intIndexList].nameFan2
-              .toString()
-              .length <
-          5) {
-        log(providerDigo2.modelDigo2.data[intIndexList].nameFan2.toString());
-        index = 2;
-      } else if (providerDigo2.modelDigo2.data[intIndexList].langName
-              .toString()
-              .length <
-          5) {
-        log(providerDigo2.modelDigo2.data[intIndexList].langName.toString());
-        index = 3;
-      } else if (providerDigo2
-          .modelDigo2.data[intIndexList].countDigo.isEmpty) {
-        index = 4;
-      }
+    //   if (providerDigo2.modelDigo2.data[intIndexList].nameFan1
+    //           .toString()
+    //           .length <
+    //       5) {
+    //     log(providerDigo2.modelDigo2.data[intIndexList].nameFan1.toString());
+    //     index = 1;
+    //   } else if (providerDigo2.modelDigo2.data[intIndexList].nameFan2
+    //           .toString()
+    //           .length <
+    //       5) {
+    //     log(providerDigo2.modelDigo2.data[intIndexList].nameFan2.toString());
+    //     index = 2;
+    //   } else if (providerDigo2.modelDigo2.data[intIndexList].langName
+    //           .toString()
+    //           .length <
+    //       5) {
+    //     log(providerDigo2.modelDigo2.data[intIndexList].langName.toString());
+    //     index = 3;
+    //   } else if (providerDigo2
+    //       .modelDigo2.data[intIndexList].countDigo.isEmpty) {
+    //     index = 4;
+    //   }
 
       switch (index) {
         case 1:
@@ -936,8 +935,7 @@ class _Digo2DanKopState extends State<Digo2DanKop> {
           TextButton(
               onPressed: () {
                 try {
-                  providerDigo2
-                      .sendServer2();
+                  providerDigo2.sendServer2();
                   Navigator.of(context).pop();
                 } catch (e) {
                   log(e.toString());

@@ -11,6 +11,7 @@ import 'package:mydtm/view/pages/m3_home/digo/widget_model_sheet/fan2.dart';
 import 'package:mydtm/view/pages/m3_home/digo/widget_model_sheet/region.dart';
 import 'package:mydtm/view/pages/m3_home/digo/widget_model_sheet/son.dart';
 import 'package:mydtm/view/pages/m3_home/digo/widget_model_sheet/til.dart';
+import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -24,24 +25,6 @@ class Digo extends StatefulWidget {
 
 class _DigoState extends State<Digo> {
   ProviderDigo providerDigo = ProviderDigo();
-  bool _isLoading = true;
-  // late PDFDocument document;
-
-  loadDocument() async {
-    // document = await PDFDocument.fromAsset('assets/fonts/digo.pdf');
-
-    setState(() => _isLoading = false);
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    loadDocument();
-    super.initState();
-  }
-
- 
-
   @override
   Widget build(BuildContext context1) {
     return ChangeNotifierProvider(
@@ -84,7 +67,7 @@ class _DigoState extends State<Digo> {
                   elevation: 1.5,
                   child: ListTile(
                     onTap: () {
-                      getRegionSheet(
+                  getRegionSheet(
                           context: context1, providerDigo: providerDigo, index: 1);
                     },
                     leading: Text(
@@ -218,13 +201,14 @@ class _DigoState extends State<Digo> {
                               providerDigo.langName.isEmpty ||
                               providerDigo.countDigo.isEmpty ||
                               providerDigo.countDigo == "0") {
-                            getRegionSheet(
-                                context: context1,
-                                providerDigo: providerDigo,
-                                index: providerDigo.countDigo == "0" ? 5 : 1);
+                            MyWidgets.awesomeDialogError(context: context, valueText: "fillAll".tr());
+                            // getRegionSheet(
+                            //     context: context1,
+                            //     providerDigo: providerDigo,
+                            //     index: providerDigo.countDigo == "0" ? 5 : 1);
                           } else if (providerDigo.countDigo.isEmpty ||
                               providerDigo.countDigo == "0") {
-                            openKeyboard();
+                            // openKeyboard();
                           } else if (!providerDigo.boolGetTanishdim) {
                             providerDigo.boolColorRed();
                           } else if (providerDigo.boolGetTanishdim) {
@@ -272,10 +256,7 @@ class _DigoState extends State<Digo> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Checkbox(
-                              value: providerDigo.boolGetTanishdim,
-                              activeColor: Colors.teal,
-                              onChanged: (val) {}),
+                          Icon(providerDigo.boolGetTanishdim?Icons.check_box:Icons.check_box_outline_blank, color: Colors.teal,),
                           Text(
                             "seeAllOferta".tr(),
                             style:const TextStyle(
@@ -295,10 +276,11 @@ class _DigoState extends State<Digo> {
                         providerDigo.langName.isEmpty ||
                         providerDigo.countDigo.isEmpty ||
                         providerDigo.countDigo == "0") {
-                      getRegionSheet(
-                          context: context1,
-                          providerDigo: providerDigo,
-                          index: providerDigo.countDigo == "0" ? 5 : 1);
+                      // getRegionSheet(
+                      //     context: context1,
+                      //     providerDigo: providerDigo,
+                      //     index: providerDigo.countDigo == "0" ? 5 : 1);
+                      MyWidgets.awesomeDialogError(context: context, valueText: "fillAll".tr());
                     } else if (!providerDigo.boolGetTanishdim) {
                       providerDigo.boolColorRed();
                     } else {
@@ -546,17 +528,17 @@ class _DigoState extends State<Digo> {
   }
 
   Widget digoById({required int index}) {
-    if (providerDigo.regName.isEmpty) {
-      index = 1;
-    } else if (providerDigo.fan1Name.isEmpty) {
-      index = 2;
-    } else if (providerDigo.fan2Name.isEmpty) {
-      index = 3;
-    } else if (providerDigo.langName.isEmpty) {
-      index = 4;
-    } else if (providerDigo.countDigo.isEmpty) {
-      index = 5;
-    }
+    // if (providerDigo.regName.isEmpty) {
+    //   index = 1;
+    // } else if (providerDigo.fan1Name.isEmpty) {
+    //   index = 2;
+    // } else if (providerDigo.fan2Name.isEmpty) {
+    //   index = 3;
+    // } else if (providerDigo.langName.isEmpty) {
+    //   index = 4;
+    // } else if (providerDigo.countDigo.isEmpty) {
+    //   index = 5;
+    // }
 
     switch (index) {
       case 1:

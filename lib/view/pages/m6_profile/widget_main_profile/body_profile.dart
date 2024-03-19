@@ -668,7 +668,7 @@ Widget bodyProfile({
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(width: 10),
-            Text("${"versionMobil".tr()}: 4.5.16",
+            Text("${"versionMobil".tr()}: 4.5.17",
                 style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.grey,

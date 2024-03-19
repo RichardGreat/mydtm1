@@ -125,7 +125,7 @@ class ProviderServicePage extends ChangeNotifier {
                       ),
                     )).show(),
               }
-            else if (box.get("faceId").toString() != "1")
+            else if (box.get("faceId").toString() == "1")
               {
                 if (box.get("imie").toString().length > 12 &&
                     box.get("psnum").toString().length > 4 &&
@@ -139,10 +139,7 @@ class ProviderServicePage extends ChangeNotifier {
                         psser: box.get("psser").toString()),
                   }
               }
-            else
-
-
-                {
+            else {
                   if ((int.parse(categoryId) >= 1 &&
                           int.parse(categoryId) < 10) ||
                       int.parse(categoryId) == 64)

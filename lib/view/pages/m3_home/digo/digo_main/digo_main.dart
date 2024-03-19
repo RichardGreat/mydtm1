@@ -5,11 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
-import 'package:mydtm/main.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m3_home/digo/digo.dart';
 import 'package:mydtm/view/pages/m3_home/digo/digo_main/provider_digo_main.dart';
-import 'package:mydtm/view/pages/m3_home/main_home.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -70,11 +68,12 @@ class _DigoMainState extends State<DigoMain> {
       child: Consumer<ProviderDigoMain>(
         builder: (context, value, child) => Form(
           onPopInvoked: (bool e) {
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
                 context,
                 CupertinoPageRoute(
-                  builder: (context) => MainPages(homeIdMainpage: "1"),
-                ));
+                  builder: (context) => const MainPages(homeIdMainpage: "1"),
+                ),
+                (route) => false);
           },
           canPop: false,
           child: Scaffold(
@@ -128,7 +127,7 @@ class _DigoMainState extends State<DigoMain> {
                       Navigator.push(
                           context,
                           CupertinoPageRoute(
-                            builder: (context) => Digo(),
+                            builder: (context) => const Digo(),
                           ));
                     },
                     child: Text(
@@ -149,8 +148,6 @@ class _DigoMainState extends State<DigoMain> {
                 )),
             Expanded(
               child: RefreshIndicator.adaptive(
-                // color: Colors.teal,
-
                 onRefresh: () async {
                   getData(numPage: "1");
                 },
@@ -205,7 +202,7 @@ class _DigoMainState extends State<DigoMain> {
                                           providerDigoMain.listDatum[index].cnt
                                               .toString(),
                                           style: const TextStyle(
-                                              fontWeight: FontWeight.bold)),
+                                              fontWeight: FontWeight.bold))
                                     ],
                                   ),
                                   SizedBox(

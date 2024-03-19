@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 import 'dart:io';
 
@@ -22,9 +21,9 @@ import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:ntp/ntp.dart';
 
 class MainPages extends StatefulWidget {
- final String homeIdMainpage;
+  final String homeIdMainpage;
 
- const MainPages({super.key, required this.homeIdMainpage});
+  const MainPages({super.key, required this.homeIdMainpage});
 
   @override
   State<MainPages> createState() => _MainPagesState();
@@ -54,21 +53,20 @@ class _MainPagesState extends State<MainPages> {
       throw Exception("Error update");
     }
   }
+
   NotificationNews notificationNews = NotificationNews();
+
   @override
   initState() {
     super.initState();
-    widget.homeIdMainpage != "1"?
-    screenLock123():{};
+    widget.homeIdMainpage != "1" ? screenLock123() : {};
     // isBiometricAvailable();
     getFirstAction();
     // notificationNews.
     notificationNews.checkDataInServer();
-
   }
 
-
-  checkForNotification(){}
+  checkForNotification() {}
 
   timerM() async {
     DateTime myTime;
@@ -150,45 +148,40 @@ class _MainPagesState extends State<MainPages> {
           }
         : {log("bo'sh")};
   }
-
-
+  bool boolFaceDetectFuncStart = false;
   Future<void> authenticate() async {
-
-
+    boolFaceDetectFuncStart = true;
 
     final localAuth = LocalAuthentication();
-
     try {
       bool canCheckBiometrics = await localAuth.canCheckBiometrics;
-      log("canCheckBiometrics");
-      log(canCheckBiometrics.toString());
       List<BiometricType> availableBiometrics =
           await localAuth.getAvailableBiometrics();
 
-      log(availableBiometrics.toString());
-      if(availableBiometrics.contains(BiometricType.strong) || availableBiometrics.contains(BiometricType.weak)){
+      if (
+      availableBiometrics.contains(BiometricType.fingerprint)&&
+     (availableBiometrics.contains(BiometricType.strong) ||
+          availableBiometrics.contains(BiometricType.weak))) {
         bool authenticated = false;
         try {
           authenticated = await localAuth.authenticate(
-            localizedReason: "fingerScanner".tr(),
+              localizedReason: "fingerScanner".tr(),
+              options: const AuthenticationOptions(
+                  useErrorDialogs: true,
+                  biometricOnly: false,
+                  sensitiveTransaction: true,
+                  stickyAuth: false));
 
-            options: const AuthenticationOptions(useErrorDialogs: true, biometricOnly: false,  sensitiveTransaction: true, stickyAuth: false)
-          );
-
-          if(authenticated){
+          if (authenticated) {
             Navigator.pop(context);
-          }else{
-
-          }
-
+          } else {}
         } catch (e) {
           print(e);
         }
         if (!mounted) return;
-      }
-      else if (canCheckBiometrics &&
+      } else if (canCheckBiometrics &&
           availableBiometrics.contains(BiometricType.face)) {
-          bool isAuthenticated = await localAuth.authenticate(
+        bool isAuthenticated = await localAuth.authenticate(
           localizedReason: 'Authenticate with Face ID',
           options: const AuthenticationOptions(
             useErrorDialogs: true,
@@ -200,6 +193,7 @@ class _MainPagesState extends State<MainPages> {
         if (isAuthenticated) {
           print('User authenticated successfully with Face ID');
           Navigator.pop(context);
+
         } else {
           print('User could not be authenticated with Face ID');
         }
@@ -210,9 +204,7 @@ class _MainPagesState extends State<MainPages> {
             useErrorDialogs: true,
             stickyAuth: true,
             sensitiveTransaction: true,
-
             biometricOnly: true,
-
           ),
         );
         if (isAuthenticated) {
@@ -237,10 +229,6 @@ class _MainPagesState extends State<MainPages> {
 
   Future screenLock123() async {
     timerM();
-    final LocalAuthentication auth = LocalAuthentication();
-    final bool canAuthenticateWithBiometrics = await auth.canCheckBiometrics;
-    final bool canAuthenticate =
-        canAuthenticateWithBiometrics || await auth.isDeviceSupported();
     await Future.delayed(const Duration(milliseconds: 10)).then((value) {
       if (box.get("langLock").toString().trim() == "1") {
         box.delete("langLock");
@@ -296,25 +284,30 @@ class _MainPagesState extends State<MainPages> {
                               btnCancelText: "no".tr(),
                             ).show();
                           },
-                          child: Text("exet".tr(), style: const TextStyle(fontWeight: FontWeight.bold),)),
+                          child: Text(
+                            "exet".tr(),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          )),
                       const SizedBox(width: 20),
                     ],
                   ),
                   title: Text(
                     "pinPassword".tr(),
-                    style: const TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        color: Colors.teal, fontWeight: FontWeight.bold),
                   ),
                   customizedButtonChild: Icon(
-                    Platform.isIOS ? Icons.face : Icons.fingerprint,
-                    color: Colors.black,
-                  ),
-                  customizedButtonTap: () async => await authenticate(),
+                      Platform.isIOS ? Icons.face : Icons.fingerprint,
+                      color: Colors.black),
+                  customizedButtonTap: () async {
+
+                    await authenticate();
+                  },
                   deleteButton: const Center(
-                    child:Icon(
-                      CupertinoIcons.delete_left,
-                      color: Colors.black,
-                    )
-                  ),
+                      child: Icon(
+                    CupertinoIcons.delete_left,
+                    color: Colors.black,
+                  )),
                   config: const ScreenLockConfig(
                     backgroundColor: Colors.white,
                     textStyle: TextStyle(color: Colors.black),
@@ -337,9 +330,15 @@ class _MainPagesState extends State<MainPages> {
 
                     // customizedButtonTap: () async => await localAuth(context),
                     // didOpened: () async => await localAuth(context),
-                  ),
-                ),
-                box.delete("lockHasEnter")
+                  )),
+                  box.delete("lockHasEnter"),
+          if(Platform.isIOS){
+
+            Future.delayed(const Duration(seconds: 3)).then((value) {
+              ! boolFaceDetectFuncStart?
+              authenticate():{};
+            }),
+          },
               }
             : {};
       }

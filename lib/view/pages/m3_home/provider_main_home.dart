@@ -62,6 +62,10 @@ class ProviderMainHome extends ChangeNotifier {
       ///1005
       if (box.get("updateVersion").toString() !=
           modelCheckMobileVersion.data.version.toString()) {
+        print("::::");
+        print(box.get("updateVersion").toString());
+        print(box.get("updateVersion").toString());
+        print("::::");
         if (modelCheckMobileVersion.data.status.toString() == "1") {
           /// hech narsa
         } else if (modelCheckMobileVersion.data.status.toString() == "2") {
@@ -93,8 +97,8 @@ class ProviderMainHome extends ChangeNotifier {
                   btnCancelText: "OK",
                   btnCancelColor: MyColors.appColorBlue1())
               .show();
-        } else if ("3" == "3") {
-        // } else if (modelCheckMobileVersion.data.status.toString() == "3") {
+        // } else if ("3" == "3") {
+        } else if (modelCheckMobileVersion.data.status.toString() == "3") {
           box.put("updateMobileText", modelCheckMobileVersion.data.versionText);
         Navigator.push(context, CupertinoPageRoute(builder: (context) =>  const UpdateMust(),));
 

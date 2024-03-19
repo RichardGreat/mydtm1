@@ -16,16 +16,11 @@ class NotificationService {
 
   Future checkAction() async {
     await Hive.initFlutter();
-    await Hive.openBox("online2");
-    var box2 = Hive.box("online2");
     await Hive.openBox("online");
     var box = Hive.box("online");
 
     Timer.periodic(const Duration(seconds: 5), (timer) async {
       try {
-
-
-
 
         if (box.get("imie").toString().length > 12) {
           if ((await getInternetConnection()) == "connected") {
@@ -57,8 +52,8 @@ class NotificationService {
 
               channel.sink.add(
                   "{\"action\": \"start\", \"data\": \"${box.get("imie").toString()}\"}");
-              // "{\"action\": \"start\", \"data\": \"${box.get("imie").toString()}\", \"device_token\": \"${box.get("deviceKey").toString()}\", }");
-              if (message.toString().contains("finish") ||message.toString().contains("stoped")  ) {
+
+              if (message.toString().contains("finish") || message.toString().contains("stoped")  ) {
               } else {
                 if (Platform.isAndroid) {
                   getDataInSocket(message);

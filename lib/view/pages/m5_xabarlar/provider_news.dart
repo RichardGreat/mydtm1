@@ -68,31 +68,14 @@ class ProviderDtmNews extends ChangeNotifier {
   List<ModelNotificationAll> listNotificationAll = [];
   dynamic listData = "";
   final channel = WebSocketChannel.connect(Uri.parse("wss://uzbmb.uz/websockets"));
-
+  int channelReady = 0;
  Future getNotificationAll() async{
-
 
     try{
       boolDownLoadData = false;
-
-      await channel.ready;
-      // channel.stream.listen(
-      //       (message) {
-      //     try {
-      //       channel.sink.add(
-      //           "{\"action\": \"get\", \"data\": \"${box.get("imie").toString()}\"}");
-      //         listData = message;
-      //     } catch (e) {
-      //       log(e.toString());
-      //
-      //     }
-      //   },
-      // );
-      log("listData.toString()");
-      log(listData.toString());
-      listNotificationAll = (jsonDecode(listData) as List).map((e) => ModelNotificationAll.fromJson(e)).toList();
-      boolDownLoadData = true;
+      channelReady = 0;
       notifyListeners();
+
     }catch(e){
       log(e.toString());
     }
@@ -102,6 +85,7 @@ class ProviderDtmNews extends ChangeNotifier {
    try{
 
      channel.sink.close();
+
    }catch(e){
      log(e.toString());
    }

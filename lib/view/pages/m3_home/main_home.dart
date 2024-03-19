@@ -23,6 +23,7 @@ import 'package:mydtm/view/pages/m6_profile/main_profile.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class MainHome extends StatefulWidget {
   String homePageId;
@@ -81,15 +82,31 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
       nationId,
       image;
 
-  static const divaceTokenChangel = MethodChannel("uzbNotification");
+  static const divaceTokenChannel = MethodChannel("uzbNotification");
 
   Future getDeviceToken(String imie) async {
     try {
       if (Platform.isIOS) {
-        String data = await divaceTokenChangel.invokeMethod("mChannel");
+        String data = await divaceTokenChannel.invokeMethod("mChannel");
         log("deviceKey");
         log(data);
         box.put("deviceKey", data);
+
+        // final wsUrl = Uri.parse("wss://uzbmb.uz/insertwebsocket");
+        // final channel = WebSocketChannel.connect(wsUrl);
+        // await channel.ready;
+        // channel.stream.listen(
+        //       (message) {
+        //
+        //     channel.sink.add(
+        //         "{\"action\": \"InsertIOsDevice\", \"pnfl\": \"${box.get("imie").toString()}\", \"device_token\": \"$data\" }");
+        //
+        //     if (message.toString().contains("finish") || message.toString().contains("stoped")  ) {
+        //     } else {
+        //
+        //     }
+        //   },
+        // );
       } else {
         box.put("deviceKey", "android");
       }
@@ -162,11 +179,10 @@ class _MainHomeState extends State<MainHome> with TickerProviderStateMixin {
     await getProfile();
     if (widget.homePageId == "1") {
       await providerMainHome.setLangUser();
-      log(providerMainHome.toString());
     }
     await providerMainHome.getDateService(context: context);
     await providerMainHome.checkVersion(context: context);
-    log("providerMainHome".toString());
+    log("providerMainHome");
     log(providerMainHome.toString());
     if (box.get("token").toString().length > 30) {
     } else {

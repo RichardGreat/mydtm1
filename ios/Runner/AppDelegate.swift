@@ -14,6 +14,8 @@ import UserNotifications
         GeneratedPluginRegistrant.register(with: self)
         
         configurePushNotification()
+        
+        
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
@@ -22,8 +24,14 @@ import UserNotifications
         RemoteNotification.register(with: controller as! FlutterBinaryMessenger)
         
         UNUserNotificationCenter.current().delegate = self
+        
         UIApplication.shared.registerForRemoteNotifications()
+      
+        
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        
+        saveData(data: authorizationOptionsToString(authOptions))
+        
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (_, error) in
             guard error == nil else {
                 debugPrint(error!.localizedDescription)
@@ -31,6 +39,67 @@ import UserNotifications
             }
         }
     }
+    
+    func authorizationOptionsToString(_ options: UNAuthorizationOptions) -> String {
+        return String(describing: options.rawValue)
+    }
+
+    // Convert String to UNAuthorizationOptions
+    func stringToAuthorizationOptions(_ string: String) -> UNAuthorizationOptions? {
+        if let rawValue = UInt(string) {
+            return UNAuthorizationOptions(rawValue: rawValue)
+        } else {
+            return nil
+        }
+    }
+    
+    
+    func saveData( data : String){
+        let preferences = UserDefaults.standard
+        let currentLevelKey = "currentLevel"
+        let currentLevel = data
+        preferences.set(currentLevel, forKey: currentLevelKey)
+        //  Save to disk
+        let didSave = preferences.synchronize()
+        print("SAQLANDI")
+        print(data)
+        print("SAQLANDI 2")
+        if !didSave {
+            //  Couldn't save (I've never seen this happen in real world testing)
+            print("Couldn't save (I've never seen this happen in real world testing)")
+        }
+    }
+    
+    // read
+    func readData() -> UNAuthorizationOptions?{
+        let defaults = UserDefaults.standard
+            // Retrieve data
+        if let authOptions = defaults.string(forKey: "currentLevel"){
+                print("authOptions: \(authOptions)")
+           return  stringToAuthorizationOptions(authOptions)
+            } else {
+                print("No data found in UserDefaults")
+                return nil
+            }
+        
+       
+    }
+    
+    
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        let userInfo = response.notification.request.content.userInfo
+//        if let notificationText = userInfo["your_text_key"] as? String:String
+       print("###123")
+        print(userInfo)
+        
+        completionHandler([.alert, .sound, .badge])
+    }
+
     
     override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let tokenParts = deviceToken.map { data -> String in
@@ -67,11 +136,14 @@ import UserNotifications
         completionHandler(.newData)
     }
     
-    override func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                         didReceive response: UNNotificationResponse,
-                                         withCompletionHandler completionHandler: @escaping () -> Void) {
-        completionHandler()
-    }
+//    override func userNotificationCenter(_ center: UNUserNotificationCenter,
+//                                         didReceive response: UNNotificationResponse,
+//                                         withCompletionHandler completionHandler: @escaping () -> Void) {
+//
+//        completionHandler()
+//                print("completionHandler() ###")
+//                print(completionHandler())
+//    }
     
     override func userNotificationCenter(_ center: UNUserNotificationCenter,
                                          willPresent notification: UNNotification,

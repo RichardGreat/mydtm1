@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -10,6 +11,7 @@ import 'package:mydtm/data/model_parse/m5_model/model_notifications_all.dart';
 import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/one_page_news/one_news.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/provider_news.dart';
+import 'package:mydtm/view/pages/m5_xabarlar/web_socket_notifications.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 import 'package:provider/provider.dart';
@@ -23,59 +25,39 @@ class MainMessages extends StatefulWidget {
   State<MainMessages> createState() => _MainMessagesState();
 }
 
-class _MainMessagesState extends State<MainMessages> {
+class _MainMessagesState extends State<MainMessages> with SingleTickerProviderStateMixin{
   ProviderDtmNews providerDtmNews = ProviderDtmNews();
 
   var box = Hive.box("online");
   var box2 = Hive.box("online2");
+  late TabController _tabController;
 
   @override
-  initState() {
-    getDtmNews();
+  void initState() {
     super.initState();
+    getDtmNews();
+    _tabController = TabController(length: 2, vsync: this);
   }
+
 
   @override
   void dispose() {
     providerDtmNews.clotheSocket();
+    _tabController.dispose();
     super.dispose();
   }
 
   Future getDtmNews() async {
     box2.put("windowNews", 0);
     await providerDtmNews.getAllDtmNews();
-    await providerDtmNews.getNotificationAll();
+    // await providerDtmNews.getNotificationAll();
   }
 
   // List<ModelSocketMessage> listModelSocket = [];
 
   bool getNewNotifications = true;
 
-  // getData() async {
-  //   try {
-  //     setState(() {
-  //       getNewNotifications = false;
-  //     });
-  //     try{
-  //       listModelSocket = (jsonDecode(box2.get("bildirishnoma")) as List)
-  //           .map((e) => ModelSocketMessage.fromJson(e))
-  //           .toList();
-  //
-  //       listModelSocket.sort((a, b) {
-  //         return b.sendDate.compareTo(a.sendDate);
-  //       });
-  //     }catch(e){setState(() {
-  //       getNewNotifications = true;
-  //     });}
-  //
-  //     setState(() {
-  //       getNewNotifications = true;
-  //     });
-  //   } catch (e) {
-  //     log("eeee");
-  //     log(e.toString());
-  //   }
-  // }
+  int connect = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +76,7 @@ class _MainMessagesState extends State<MainMessages> {
                             context,
                             CupertinoPageRoute(
                               builder: (context) =>
-                                  MainPages(homeIdMainpage: "1"),
+                                 const MainPages(homeIdMainpage: "1"),
                             ),
                             (route) => false);
                       },
@@ -124,10 +106,17 @@ class _MainMessagesState extends State<MainMessages> {
                   bottom: TabBar(
                     indicatorColor: Colors.black,
                     physics: const NeverScrollableScrollPhysics(),
-
                     indicatorWeight: 3,
+                    onTap: (i){
+
+                      widget.index == 0 ?
+                      providerDtmNews.clotheSocket():{
+                        providerDtmNews.clotheSocket()
+                      };
+                    },
                     tabs: [
                       Tab(
+
                         child: Text(
                             widget.index == 0 ? "last".tr() : "mostSee".tr(),
                             style: const TextStyle(
@@ -146,35 +135,38 @@ class _MainMessagesState extends State<MainMessages> {
                 ),
                 body: providerDtmNews.boolDtmNews
                     ? TabBarView(
-                    physics:const NeverScrollableScrollPhysics(),
-                    children: [
-                        RefreshIndicator.adaptive(
-                            onRefresh: () {
-                              return getDtmNews();
-                            },
-                            child: getNewNotifications
-                                ? bodyTab(widget.index == 0 ? 0 : 1)
-                                : const Center(
-                                    child: CupertinoActivityIndicator(),
-                                  )),
-                        RefreshIndicator.adaptive(
-                            onRefresh: () async {
-                              await providerDtmNews.getNotificationAll();
-                            },
-                            child: getNewNotifications
-                                ? bodyTab(widget.index == 1 ? 0 : 1)
-                                : const Center(
-                                    child: CupertinoActivityIndicator(),
-                                  )),
-                      ])
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: [
+                            RefreshIndicator.adaptive(
+                                onRefresh: () {
+                                  return getDtmNews();
+                                },
+                                child: getNewNotifications
+                                    ? bodyTab(widget.index == 0 ? 0 : 1)
+                                    : const Center(
+                                        child: CupertinoActivityIndicator(),
+                                      )),
+                            RefreshIndicator.adaptive(
+                                onRefresh: () async {
+                                  // await providerDtmNews.getNotificationAll();
+                                },
+                                child: getNewNotifications
+                                    ? bodyTab(widget.index == 1 ? 0 : 1)
+                                    : const Center(
+                                        child: CupertinoActivityIndicator(),
+                                      )),
+                          ])
                     : MyWidgets.loaderDownload(context: context)),
           ),
         ));
   }
 
   Widget bodyTab(int index) {
-    providerDtmNews.channel.sink.add(
-        "{\"action\": \"get\", \"data\": \"${box.get("imie").toString()}\"}");
+    connect == 0?
+    {
+
+    }:{};
+    final a = providerDtmNews.channel.stream;
 
     if (index == 0) {
       return SafeArea(
@@ -329,174 +321,7 @@ class _MainMessagesState extends State<MainMessages> {
         ),
       );
     } else if (index == 1) {
-      return SafeArea(
-        child: getNewNotifications
-            ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child:
-                  box.get("imie").toString().length > 5 ||  box.get("imie").toString() != "null"?
-                    StreamBuilder(
-                  stream: providerDtmNews.channel.stream,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      return Center(
-                        child: Text('Error: ${snapshot.error}'),
-                      );
-                    }
-
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-
-                    var data = snapshot.data;
-                    List<ModelNotificationAll> listNotificationAll =
-                        (jsonDecode(data) as List)
-                            .map((e) => ModelNotificationAll.fromJson(e))
-                            .toList();
-                    return Center(
-                      child: ListView.builder(
-                          itemCount: listNotificationAll.length,
-                          itemBuilder: (context, index) => Container(
-                                margin: const EdgeInsets.only(
-                                    right: 4, left: 5, bottom: 8, top: 3),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: MyColors.appColorWhite(),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.teal.withOpacity(0.3),
-                                          spreadRadius: 1,
-                                          blurRadius: 0.5)
-                                    ]),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, top: 8, bottom: 7),
-                                      child: Row(
-                                        children: [
-                                          Image.asset(
-                                            "assets/images/logobba.png",
-                                            height: 30,
-                                          ),
-                                          const SizedBox(width: 10),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 10, top: 5, bottom: 5),
-                                            child: SizedBox(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.7,
-                                              child: Text(
-                                                  listNotificationAll[index]
-                                                      .title
-                                                      .toString(),
-                                                  maxLines: 1,
-                                                  softWrap: true,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  textAlign: TextAlign.start,
-                                                  style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold)),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.95,
-                                      child: ExpansionTile(
-                                          shape: Border.all(
-                                              color: Colors.transparent),
-                                          title: Text(
-                                            listNotificationAll[index]
-                                                .title
-                                                .toString(),
-                                            maxLines: 1,
-                                            softWrap: true,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                  listNotificationAll[index]
-                                                      .summary
-                                                      .toString()),
-                                            ),
-                                          ]),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(right: 10, left: 10, bottom: 5),
-                                          child: Text(listNotificationAll[index]
-                                              .sendDate
-                                              .toString(),
-                                            style:const TextStyle(fontSize: 12),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    // Padding(
-                                    //   padding:
-                                    //   const EdgeInsets.fromLTRB(
-                                    //       8, 8, 8, 10),
-                                    //   child: Row(
-                                    //     crossAxisAlignment:
-                                    //     CrossAxisAlignment.center,
-                                    //     mainAxisAlignment:
-                                    //     MainAxisAlignment
-                                    //         .spaceBetween,
-                                    //     children: [
-                                    //       const Icon(
-                                    //         Icons.keyboard_arrow_down,
-                                    //       ),
-                                    //       Row(
-                                    //         children: [
-                                    //           Icon(
-                                    //             Icons.remove_red_eye,
-                                    //             size: 22,
-                                    //             color: Colors.teal
-                                    //                 .withOpacity(0.7),
-                                    //           ),
-                                    //           const SizedBox(
-                                    //               width: 5),
-                                    //           Text(providerDtmNews
-                                    //               .modelDtmNews3Temp[
-                                    //           index]
-                                    //               .views
-                                    //               .toString()),
-                                    //         ],
-                                    //       )
-                                    //     ],
-                                    //   ),
-                                    // ),
-                                  ],
-                                ),
-                              )),
-                    );
-                  },
-                )
-
-                :Center(child: Text("noInfoFound".tr()),),
-                )
-            : const Center(
-                child: CupertinoActivityIndicator(),
-              ),
-      );
+      return const WebSocketNotifications();
     } else {
       return const Center(
         child: CupertinoActivityIndicator(),
