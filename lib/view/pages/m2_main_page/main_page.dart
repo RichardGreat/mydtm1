@@ -62,8 +62,8 @@ class _MainPagesState extends State<MainPages> {
     widget.homeIdMainpage != "1" ? screenLock123() : {};
     // isBiometricAvailable();
     getFirstAction();
-    // notificationNews.
-    notificationNews.checkDataInServer();
+
+    // notificationNews.checkDataInServer();
   }
 
   checkForNotification() {}

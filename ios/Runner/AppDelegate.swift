@@ -22,15 +22,11 @@ import UserNotifications
     private func configurePushNotification() {
         let controller = window?.rootViewController as! FlutterViewController
         RemoteNotification.register(with: controller as! FlutterBinaryMessenger)
-        
         UNUserNotificationCenter.current().delegate = self
-        
         UIApplication.shared.registerForRemoteNotifications()
-      
-        
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         
-        saveData(data: authorizationOptionsToString(authOptions))
+        saveData(data: authorizationOptionsToString(authOptions))  // <- saqlash
         
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (_, error) in
             guard error == nil else {
@@ -39,12 +35,23 @@ import UserNotifications
             }
         }
     }
+
+     func saveData( data : String){
+            let preferences = UserDefaults.standard
+            let currentLevelKey = "currentLevel"
+            let currentLevel = data
+            preferences.set(currentLevel, forKey: currentLevelKey)
+            let didSave = preferences.synchronize()
+            print(data)
+            if !didSave {
+                print("Couldn't save (I've never seen this happen in real world testing)")
+            }
+        }
+    
     
     func authorizationOptionsToString(_ options: UNAuthorizationOptions) -> String {
         return String(describing: options.rawValue)
     }
-
-    // Convert String to UNAuthorizationOptions
     func stringToAuthorizationOptions(_ string: String) -> UNAuthorizationOptions? {
         if let rawValue = UInt(string) {
             return UNAuthorizationOptions(rawValue: rawValue)
@@ -54,26 +61,11 @@ import UserNotifications
     }
     
     
-    func saveData( data : String){
-        let preferences = UserDefaults.standard
-        let currentLevelKey = "currentLevel"
-        let currentLevel = data
-        preferences.set(currentLevel, forKey: currentLevelKey)
-        //  Save to disk
-        let didSave = preferences.synchronize()
-        print("SAQLANDI")
-        print(data)
-        print("SAQLANDI 2")
-        if !didSave {
-            //  Couldn't save (I've never seen this happen in real world testing)
-            print("Couldn't save (I've never seen this happen in real world testing)")
-        }
-    }
+
     
     // read
     func readData() -> UNAuthorizationOptions?{
         let defaults = UserDefaults.standard
-            // Retrieve data
         if let authOptions = defaults.string(forKey: "currentLevel"){
                 print("authOptions: \(authOptions)")
            return  stringToAuthorizationOptions(authOptions)

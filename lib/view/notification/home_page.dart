@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/main.dart';
+import 'package:mydtm/view/pages/m2_main_page/notification_news/notification_news.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -28,13 +29,25 @@ class NotificationService {
 
           }
         }
+        getLocalNews();
       } catch (e) {
+       log("message 444");
        log(e.toString());
       }
     });
   }
 
   String con = "";
+
+  Future getLocalNews()async{
+    try{
+      NotificationNews notificationNews = NotificationNews();
+      notificationNews.checkDataInServer();
+    }catch(e){
+      log("getLocalNews");
+      log(e.toString());
+    }
+  }
 
   Future listenServer() async {
     try {
@@ -122,7 +135,7 @@ class NotificationService {
           (NotificationResponse notificationResponse) async {
         try {
           navigatorKey.currentState?.push(MaterialPageRoute(
-            builder: (context) => MainMessages(
+            builder: (context) => const MainMessages(
               index: 1,
             ),
           ));
@@ -238,7 +251,7 @@ class NotificationService {
       final box2 = Hive.box("online2");
       box2.put("windowNews", "1");
       navigatorKey.currentState?.push(MaterialPageRoute(
-        builder: (context) => MainMessages(
+        builder: (context) => const MainMessages(
           index: 1,
         ),
       ));

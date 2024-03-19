@@ -83,11 +83,11 @@ class _DigoMainState extends State<DigoMain> {
               elevation: 0,
               leading: IconButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushAndRemoveUntil(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => MainPages(homeIdMainpage: "1"),
-                        ));
+                          builder: (context) => const MainPages(homeIdMainpage: "1"),
+                        ), (route) => false,);
                   },
                   icon: const Icon(Icons.arrow_back_ios_new)),
               title: Text("digoTest".tr(),

@@ -16,15 +16,15 @@ class NotificationNews {
   InternetCheckNews internetCheckNews = InternetCheckNews();
 
 
-  var box = Hive.box("online");
+  // var box = Hive.box("online");
   checkDataInServer() async {
     try {
-      // await Hive.initFlutter();
-      // await Hive.openBox("online");
-      // var box = Hive.box("online");
+      await Hive.initFlutter();
+      await Hive.openBox("online");
+      var box = Hive.box("online");
        log("111");
-      await initializeService();
-      await init1234();
+      // await initializeService();
+      // await init1234();
 
       listModel  = await internetCheckNews.getNews();
       log("222");
@@ -69,7 +69,7 @@ class NotificationNews {
           (NotificationResponse notificationResponse) async {
         try {
           navigatorKey.currentState?.push(MaterialPageRoute(
-            builder: (context) => MainMessages(
+            builder: (context) => const MainMessages(
               index: 0,
             ),
           ));
