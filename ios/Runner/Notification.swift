@@ -53,9 +53,7 @@ class RemoteNotification {
             debugPrint("no notification data")
             return
         }
-        let decoder = JSONDecoder()
         let encoder = JSONEncoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
         encoder.keyEncodingStrategy = .convertToSnakeCase
         do {
             let encodable = userInfo.toStringDictionary()
