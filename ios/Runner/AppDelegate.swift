@@ -60,7 +60,13 @@ import UserNotifications
         }
     }
     
-    
+    override func application(_ application: UIApplication,
+                              didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                              fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        debugPrint(userInfo)
+        completionHandler(.newData)
+    }
 
     
     // read
@@ -84,12 +90,12 @@ import UserNotifications
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        let userInfo = response.notification.request.content.userInfo
-//        if let notificationText = userInfo["your_text_key"] as? String:String
-       print("###123")
-        print(userInfo)
-        
         completionHandler([.alert, .sound, .badge])
+    }
+    
+    override func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        RemoteNotification.save(request: response.notification.request)
+        completionHandler()
     }
 
     
