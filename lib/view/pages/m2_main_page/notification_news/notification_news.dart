@@ -3,10 +3,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:mydtm/main.dart';
-import 'package:mydtm/view/notification/back_service.dart';
 import 'package:mydtm/view/pages/m2_main_page/notification_news/internet_news.dart';
 import 'package:mydtm/view/pages/m2_main_page/notification_news/model_news.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/main_messages.dart';
@@ -16,7 +14,6 @@ class NotificationNews {
   InternetCheckNews internetCheckNews = InternetCheckNews();
 
 
-  // var box = Hive.box("online");
   checkDataInServer() async {
     try {
       await Hive.initFlutter();

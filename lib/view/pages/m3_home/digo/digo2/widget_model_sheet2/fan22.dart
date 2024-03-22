@@ -6,10 +6,10 @@ import 'package:mydtm/view/pages/m3_home/digo/digo2/provider_digo2.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class GetDigoFan22 extends StatefulWidget {
-  ProviderDigo2 providerDigo;
-  int indexList;
+  final ProviderDigo2 providerDigo;
+  final int indexList;
 
-  GetDigoFan22(
+ const GetDigoFan22(
       {super.key, required this.providerDigo, required this.indexList});
 
   @override

@@ -9,11 +9,7 @@ class NetworkSubjectList {
   Future<String> getSubjectList() async {
     var dio = Dio();
     Response response;
-    // log(box.get("lang"));
-    print(box.get("language").toString());
     response = await dio.get(
-
-      // "https://uzbmb.uz/news/books.php?token=4524A47DB75206E46CEBE47AABCEAF2C&lang=uz",
       "https://uzbmb.uz/news/books.php?token=4524A47DB75206E46CEBE47AABCEAF2C&lang=${box.get("language").toString() == "1" ? "uz" : box.get("language").toString() == "2" ? "qq" : "ru"}",
       options: Options(
         receiveTimeout: const Duration(seconds: 25),

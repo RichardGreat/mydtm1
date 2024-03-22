@@ -24,7 +24,6 @@ import 'package:mydtm/view/pages/m2_main_page/main_page.dart';
 import 'package:mydtm/view/widgets/app_widget/app_widgets.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/model/model_captcha_error.dart';
 import 'package:mydtm/view/widgets/app_widget/sms_auto_fill/ui/s3_body_sms_auto_fill.dart';
-import 'package:mydtm/view/widgets/save_hive.dart';
 import 'package:ntp/ntp.dart';
 
 

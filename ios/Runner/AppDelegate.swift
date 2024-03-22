@@ -1,7 +1,7 @@
 import UIKit
 import Flutter
 import UserNotifications
-import Foundation
+
 
 //import flutter_background_service_ios
 
@@ -27,11 +27,7 @@ import Foundation
     
         UIApplication.shared.registerForRemoteNotifications()
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-        print("%%%%%%")
-        print(controller.copy())
-        
         saveData(data: authorizationOptionsToString(authOptions))  // <- saqlash
-        
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (_, error) in
             guard error == nil else {
                 debugPrint(error!.localizedDescription)
