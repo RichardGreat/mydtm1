@@ -1,6 +1,7 @@
 import UIKit
 import Flutter
 import UserNotifications
+import Foundation
 
 //import flutter_background_service_ios
 
@@ -23,8 +24,11 @@ import UserNotifications
         let controller = window?.rootViewController as! FlutterViewController
         RemoteNotification.register(with: controller as! FlutterBinaryMessenger)
         UNUserNotificationCenter.current().delegate = self
+    
         UIApplication.shared.registerForRemoteNotifications()
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        print("%%%%%%")
+        print(controller.copy())
         
         saveData(data: authorizationOptionsToString(authOptions))  // <- saqlash
         

@@ -1,11 +1,12 @@
 // ignore_for_file: must_be_immutable, library_private_types_in_public_api
 
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:mydtm/view/pages/m5_xabarlar/provider_news.dart';
 import 'package:mydtm/view/widgets/colors/app_colors.dart';
 
@@ -41,8 +42,11 @@ setState(() {
 });
   }
 
+
   @override
   Widget build(BuildContext context) {
+
+    log(widget.providerDtmNews.data);
     return NestedScrollView(
       floatHeaderSlivers: true,
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
